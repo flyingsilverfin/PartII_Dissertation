@@ -1,0 +1,31 @@
+Subject: Phase 1 - Send: Peer to Peer Conflict Free Document Editing
+
+Phase 1 Project Selection Status Report
+
+Name: Joshua Send
+
+College: Trinity Hall
+
+User Identifier: js2173
+
+Director of Studies: Simon Moore
+
+Please complete 1, 2 and 3 below.
+
+1. Please write 100 words on your current project ideas.
+I plan to 1) simulate concurrent P2P CRDT-based (conflict free replicated datatype) document editing, and 2) compare this to what is available with the existing client-server document editing library ShareJS. 1) will be implemented from scratch, given only a simple explanation of CRDT mechanisms. 2) will require learning and building test frameworks for correctness, network efficiency and scalability under various concurrent loads. My initial system will likely need some optimizations to be added and evaluated. Three extensions include building the P2P networking (rather than simulating it), and working toward 'undo' and 'move' operations using CRDTs, which is are relatively open problems.
+
+2. Please list names of potential project supervisors.
+Stephan A. Kollmann (has agreed to supervise already)
+Martin Kleppmann (is willing to provide some guidance for project)                                    
+
+3. Is there any chance that your project will involve any
+computing resources other than the Computing Service's MCS and
+software that is already installed there, for example: your own
+machine, machines in College, special peripherals, imported
+software packages, special hardware, network access, substantial
+extra disc space on the MCS.
+
+If so indicate below what, and what it is needed for.
+           
+I will be primarily developing on my own machine. In addition, I will be using the ShareJS open source library for comparison. While I will be simulating networking for my project, the ShareJS library does require a real network connection.	   
