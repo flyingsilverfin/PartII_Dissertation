@@ -42,39 +42,31 @@ a special offering by few applications to a common and expected interface.
 
 The key property that must be implemented to achieve concurrent editing is eventual consistency,
 meaning that all connected users should end up with the same result after receiving all changes to the document 
-(even if edits conflict). There are two main technologies that are used to enable concurrent editing of a 
-document (plain text or otherwise). One approach is Operational Transforms (OT), 
+--- even if edits conflict~\cite{Technion}. There are two main technologies that are used to enable concurrent editing of a document (plain text or otherwise). One approach is Operational Transforms (OT), 
 which that generally relies  on having a central server receive, serialize, transform, and 
 relay edits occurring simultaneously to each client. OT is notoriously difficult to implement 
 correctly as incoming operations have to be transformed against preceding ones on each client, 
-such that the result converges. The server may also be required to make some transformations. 
+such that the result converges~\cite{sun1998operational}. The server may also be required to make some transformations. 
 Due to this, central server must be able to read all the operations being performed by clients.
 Thus, unless the server is trusted and secure, OT-based services cannot provide any security or privacy guarantees. 
 
-The alternative, newer technology uses Conflict Free Replicated Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing
-eventual consistency by transforming operations against each other, CRDTs use special datastructures that guarantee
-that no operations will conflict. There are many types of CRDTs that are tailored for different situations. One example
-is a simple up-down counter which could be implemented as two locally replicated registers, one for increments and one
-for decrements, where the current state is their difference. Compared to OT, there is no interdependence between edits (as long
-as the network protocol can guarantee in-order delivery), which means CRDT-based systems can do away with the server
-and be implemented using peer to peer (P2P) protocols. This lends itself to security (encryption is now possible between endpoints),
+The alternative, newer technology uses Conflict Free Replicated Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual consistency by transforming operations against each other, CRDTs use special datastructures that guarantee that no operations will conflict~\cite{preguica2009commutative}. There are many types of CRDTs that are tailored for different situations. One example is a simple up-down counter which could be implemented as two locally replicated registers, one for increments and one for decrements, where the current state is their difference\cite{Shapiro2011}. Compared to OT, there is no interdependence between edits (as long as the network protocol can guarantee in-order delivery), which means CRDT-based systems can do away with the server and be implemented using peer to peer (P2P) protocols. This lends itself to security (encryption is now possible between endpoints),
 and possibly more scalability and efficiency.
 
-This project is first concerned with exploring and developing a P2P CRDT concurrent text editor, and secondly comparing it to
-the OT-based client/server approach available in the open source library ShareJS. Several extensions are also possible,
+This project is first concerned with exploring and developing a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based client/server approach available in the open source library ShareJS. Several extensions are also possible,
 listed in later sections.
 
 \subsection*{Resources required}
 
-The primary external resource I will need is the library ShareJS, which is published under the MIT license on GitHub.
+The primary external resource I will need is the Javascript library ShareJS, which is published under the MIT license on GitHub \cite{ShareJS}.
 
-Additionally, I will be developing on my personal computer, a Thinkpad T440s with 8 GiB of RAM,
+Additionally, I am developing on my personal computer, a Thinkpad T440s with 8 GiB of RAM,
 128 GB of hard drive space, and a low wattage dual core Intel CPU running at 1.60GHz.
-The primary development environment will be under Ubuntu Linux, though Windows 10 is also available 
+The primary development environment is Ubuntu Linux, though Windows 10 is also available 
 on the same machine. 
 
-Git with Github will be used as both a version control system and a cloud backup. Dropbox will 
-provide continuous cloud backups as well. Backup development machines are any of the MCS computers.
+Git with Github is used as both a version control system and a cloud backup. Dropbox  
+provides continuous cloud backups as well. Secondary development machines are any of the MCS computers.
 
 \subsection*{Starting point}
 
@@ -91,7 +83,7 @@ Lastly, I may consult various papers on CRDTs, as well as my supervisor's work i
 \section*{Work to be done}
 
 \subsection*{Overview}
-I plan to implement a simulation of P2P CRDT text editing using Javascript. Following this, my project will focus on
+I plan to implement a simulation of P2P CRDT text editing using Typescript. Following this, my project will focus on
 comparing an existing OT-based concurrent document editing library (ShareJS) to my implementation, in order to draw conclusions
 about their relative network and memory efficiency, and scalability. It is highly likely that my 
 system will need some optimization, which can feed back into my evaluation and comparison process. In the case that
@@ -103,11 +95,12 @@ researching and implementing 'undo' and 'move' operations, which are relatively 
 
 \begin{enumerate}
 
-\item \textbf{Proposal:} Done.
+\item \textbf{Core CRDT Development:} Consider and decide CRDT datastructures. Then detail how I expect
+the insert/delete/merge algorithms to work on paper, followed by implementing these. Lastly, I need to
+learn frameworks for testing my implementation. The tests for correctness should include hand-crafted unit tests
+to confirm expected behavior of intermediate execution steps and convergence of results across clients, 
+along with generated test loads to check correct convergence on all clients.
 
-\item \textbf{Core CRDT Development:} Consider and decide on CRDT datastructure. Then detail how I expect
-the insert/delete/merge algorithms to work on paper, followed by implementing these. Lastly, I will need to
-learn frameworks for testing my implementation. Both hand-coded and automated tests for correctness should be included.
 
 \item \textbf{Implement Simulation:} Model having an arbitrary number of clients each running the CRDT algorithms, and simulate
 networking between these clients. Because this is P2P, it may be worth adding functionality for a variety of network
@@ -120,8 +113,8 @@ systems. These will focus on network efficiency, memory usage, and scalability.
 \item \textbf{Tune Implementation:} There will likely be opportunity for some optimization, which will
 feed back into the performance comparisons in the previous step and help evaluate the optimizations themselves.
 
-\item \textbf{Extensions:} The first extension would be to implement a proper P2P network stack and remove the simulated 
-networking. Next would be to research undo and move operations and perhaps try to implement one or both of these.
+\item \textbf{Extensions:} The first extension is implementing a proper P2P network stack and remove the simulated 
+networking. Next would be researching undo and move operations and perhaps try to implement one or both of these.
 
 \end{enumerate}
 
@@ -133,7 +126,7 @@ There are two extensions of varying difficulty:
 
 \begin{itemize}
 
-\item (Easier) Replace networking simulation with a P2P networking library. The end result of this extension should be a ready to deploy Javascript library.
+\item (Easier) Replace networking simulation with a P2P networking library. The end result of this extension should be a ready to deploy Typescript (compiled to Javascript) library.
 
 \item (Difficult) Research prior work on undo and move functionality using CRDTs. If something suitable is found, implement it. Otherwise, attempt to work toward my own solution.
 
@@ -189,5 +182,11 @@ incomplete draft. Implement networking extension. Research undo and move operati
 
 \end{enumerate}
 
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
 
 \end{document}
+
+
+\end{filecontents} 

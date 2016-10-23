@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{Technion}
+Hagit Attiya, Sebastian Burckhardt, Alexey Gotsman, Adam Morrison~Technion,
+  Hongseok Yang, and Marek Zawirski.
+\newblock {Specification and Complexity of Collaborative Text Editing}.
+\newblock 1(Section 3).
+
+\bibitem{sun1998operational}
+Chengzheng Sun and Clarence Ellis.
+\newblock Operational transformation in real-time group editors: issues,
+  algorithms, and achievements.
+\newblock In {\em Proceedings of the 1998 ACM conference on Computer supported
+  cooperative work}, pages 59--68. ACM, 1998.
+
+\bibitem{preguica2009commutative}
+Nuno Preguica, Joan~Manuel Marques, Marc Shapiro, and Mihai Letia.
+\newblock A commutative replicated data type for cooperative editing.
+\newblock In {\em Distributed Computing Systems, 2009. ICDCS'09. 29th IEEE
+  International Conference on}, pages 395--403. IEEE, 2009.
+
+\bibitem{Shapiro2011}
+Marc Shapiro, Nuno Pregui, Carlos Baquero, and Marek Zawirski.
+\newblock {Replicated Data Types: A comprehensive study of Convergent and
+  Commutative Replicated Data Types}.
+\newblock (RR-7506):50, 2011.
+
+\bibitem{ShareJS}
+J.~Gentle.
+\newblock Sharejs.
+\newblock \url{https://github.com/josephg/ShareJS}, 2011.
+
+\end{thebibliography}
