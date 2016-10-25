@@ -3,18 +3,12 @@
 		"module": "es6",
     	"sourceMap": true
 	},
-	"comment": [
-		"include": [
+	"include": [
 		"src",
 		"components"
-		],
-		"exclude": [
-			"node_modules",
-			"dist"
-		]
-    ],
-	"files": [
-		"src/index.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
 	]
-
 }

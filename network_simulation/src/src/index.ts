@@ -1,2 +1,1 @@
-
-console.log("hello worlds");
+"use strict"
