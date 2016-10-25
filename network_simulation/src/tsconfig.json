@@ -6,7 +6,8 @@
 	},
 	"include": [
 		"src",
-		"components"
+		"modules",
+		"types"
 	],
 	"exclude": [
 		"node_modules",
