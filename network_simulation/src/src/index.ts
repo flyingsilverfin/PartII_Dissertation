@@ -1,5 +1,6 @@
 "use strict"
 
-import NetworkGraph from '../modules/NetworkGraph';
-import Graph from  '../types/GraphTypes';
+import NetworkSimulator from '../modules/NetworkSimulator';
 
+
+let sim = new NetworkSimulator();

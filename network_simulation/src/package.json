@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "ts-loader": "~0.9.3",
-    "vis": "~4.16.1"
+    "d3": "~3.5.17"
   },
   "babel": {
     "presets": [

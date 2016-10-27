@@ -1,0 +1,13 @@
+#graph_container {
+    background-color: #AAAAAA;
+}
+
+.link {
+    width: 1px;
+    stroke: red;
+}
+
+.node {
+    fill: none;
+    stroke: black;
+}

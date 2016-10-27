@@ -1,17 +1,20 @@
 export interface Graph {
-    nodes: Nodes,
-    edges: Edges
+    nodes: Node[],
+    edges: Edge[]
 }
 
-export interface Nodes {
-    [i: number] : NodeDescription
+export interface Node {
+    // id: number  // index is ID
+    name: string,
+    x?: number, // for d3
+    y?: number  // for d3
+    weight?: number //for d3
 }
 
-export interface NodeDescription {
-    name: string
+export interface Edge {
+    source: number,
+    target: number,
+    latency: number,
+    x?: number,
+    y?: number
 }
-
-export interface Edges {
-    [i: number] : [number, number]
-}
-

@@ -1,24 +1,32 @@
- import {Graph} from '../types/GraphTypes';
+import {Graph, Node, Edge} from '../types/GraphTypes';
 
 class NetworkGraph {
     private graph: Graph = 
         {
-            nodes: {
-                1 : {
-                    name: ""
+            // index is ID
+            nodes: [
+                {   
+                    name: "",
+                    weight: 0
                 },
-                2 : {
-                    name: ""
+                {   
+                    name: "",
+                    weight: 0
                 },
-                3: {
-                    name: ""
+                {   
+                    name: "",
+                    weight: 0
                 },
-                4: {
-                    name: ""
-                }
-            },
+                {
+                    name: "",
+                    weight: 0
+                },
+            ],
             edges: [
-                [1,2], [1,3], [1,4], [3,4]
+                {source: 0, target: 1, latency: 1}, 
+                {source: 0, target: 2, latency: 1},
+                {source: 0, target: 3, latency: 1},
+                {source: 2, target: 3, latency: 1}
             ]
         };
 
@@ -26,11 +34,14 @@ class NetworkGraph {
         console.log('(NetworkGraph) Instantiated network graph');
     }
 
-    public toDot(): string {
-       
-
-        return "";
+    public getNodes(): Node[] {
+        return this.graph.nodes;
     }
+
+    public getEdges(): Edge[] {
+        return this.graph.edges;
+    }
+
 }
 
 export default NetworkGraph;

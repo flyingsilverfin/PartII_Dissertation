@@ -7,7 +7,8 @@
 	"include": [
 		"src",
 		"modules",
-		"types"
+		"types",
+		"typings"
 	],
 	"exclude": [
 		"node_modules",
