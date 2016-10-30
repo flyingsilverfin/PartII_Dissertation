@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "es6",
+    	"sourceMap": true
+	},
+	"include": [
+		"src",
+		"components"
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
+}
