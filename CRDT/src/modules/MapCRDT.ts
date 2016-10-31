@@ -25,7 +25,7 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
-    insert(bundle): void {
+    public insert(bundle): void {
 
         // ASSERT NEEDED:
         //  this.map[bundle.id] === undefined 
@@ -59,29 +59,45 @@ class MapCRDT implements CT.CRDT {
 
         entryBefore.next = id;
         this.map[id] = newEntry;
+
+
+        // update local lamport timestamp
+        let t = parseInt(id.split('.')[0]);
+        // ASSERT NEEDED
+        //  t >= this.nextCounter
+        this.nextCounter = t+1; 
     }
 
     // implements interface
-    delete(bundle): void {
+    public delete(bundle): void {
         // TODO
     }
 
     // implements interface
-    read(): string {
+    public read() {
         // writing to array then joining seems to be fastest way of doing this
 
-        let arr = [];
-        let entry = this.map[0];
+        let charArray = [];
+        let idArray = [];
+        let id = '0';
+        let entry = this.map[id];
         while (entry.next !== null) {
             if (!entry.deleted) {
-                arr.push(entry.char);
+                // TODO unsure of how to handle deletion still!
+                charArray.push(entry.char);
+                idArray.push(id)
             }
-            entry = this.map[entry.next]
+            id = entry.next;
+            entry = this.map[id];
         }
 
-        return arr.join('');
+        return {charArray: charArray, idArray: idArray};
     }
 
+
+    public getNextTs(): number {
+        return this.nextCounter;
+    }
 }
 
 export default MapCRDT;

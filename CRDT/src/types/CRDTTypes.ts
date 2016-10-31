@@ -2,7 +2,13 @@ export interface CRDT {
     insert(bundle: InsertMessage): void;    // insert char after loc with id
     delete(bundle: DeleteMessage): void;    // delete some id (need to give id for deletion?)
     
-    read(): string;     // return entire string contained within
+    read(): ParallelStringArrays;     // return entire string contained within
+    getNextTs(): number;    //next valid timestamp
+}
+
+interface ParallelStringArrays {
+    charArray: string[],
+    idArray: string[]
 }
 
 export interface InsertMessage {
