@@ -1,4 +1,4 @@
-export interface CRDTDatastructure {
+export interface CRDT {
     insert(bundle: InsertMessage): void;    // insert char after loc with id
     delete(bundle: DeleteMessage): void;    // delete some id (need to give id for deletion?)
     
@@ -18,12 +18,12 @@ export interface DeleteMessage {
 }
 
 
-// --- MapCRDTDatastructure ---
-export interface MapCRDT {
+// --- MapCRDT ---
+export interface MapCRDTStore {
     [id: string]: MapEntry
 }
 
-interface MapEntry {
+export interface MapEntry {
     char: string,
     next: string,
     deleted?: boolean
