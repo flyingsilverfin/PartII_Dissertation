@@ -24,7 +24,7 @@ class EditableText implements IT.EditableTextInterface {
 
         parent.appendChild(this.container);
 
-        this.textarea.addEventListener('onkeyup', this.keyUp);
+        this.textarea.addEventListener('keyup', this.keyUp.bind(this));
     }
 
     public setId(id: string): void {
@@ -53,6 +53,8 @@ class EditableText implements IT.EditableTextInterface {
 
     private keyUp(event): void {
 
+        console.log('[Debug] keyup detected')
+
         let cursor = this.getCursorPosition();
         let content = this.getContent();
 
@@ -78,6 +80,7 @@ class EditableText implements IT.EditableTextInterface {
             console.error('deletion not implemented yet');
         } else {
             let inserted = content[cursor-1];
+            console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor-1));
             this.insertCallback(inserted, cursor - 1);
         }
     }

@@ -34,15 +34,16 @@ class MapCRDT implements CT.CRDT {
         let char = bundle.char;
         let after = bundle.after;   // id.timestamp to insert this char after
 
-
-
         // implement core CRDT insert algorithm here
         // may want to abstract out into separate class to plug into other datastructures if desired
         let entryBeforeId = after;
         let entryBefore = this.map[after];
 
+        debugger
+
         // move forward until hit a next element which is less in lamport clock
-        while (CC.compare(id, entryBefore.next) > 0) {
+        // entryBefore.next may be null! (will often be null)
+        while (CC.compare(id, entryBefore.next) >= 0) {      //ERROR HERE
             entryBeforeId = entryBefore.next;
             entryBefore = this.map[entryBeforeId];
         }
@@ -80,15 +81,15 @@ class MapCRDT implements CT.CRDT {
         let charArray = [];
         let idArray = [];
         let id = '0';
-        let entry = this.map[id];
-        while (entry.next !== null) {
+        let entry;
+        while (id !== null) {
+            entry = this.map[id];
             if (!entry.deleted) {
                 // TODO unsure of how to handle deletion still!
                 charArray.push(entry.char);
                 idArray.push(id)
             }
             id = entry.next;
-            entry = this.map[id];
         }
 
         return {charArray: charArray, idArray: idArray};

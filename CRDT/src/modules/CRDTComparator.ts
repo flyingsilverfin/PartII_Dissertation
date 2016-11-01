@@ -1,6 +1,11 @@
 import * as ST from '../types/SharedTypes';
 
 export function compare(id1: string, id2: string) {
+
+    if (id2 === null) {
+        return -1;
+    }
+
     let split1 = id1.split('.');
     let split2 = id2.split('.');
     let t1 = parseInt(split1[0]);
