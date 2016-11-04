@@ -39,16 +39,15 @@ class MapCRDT implements CT.CRDT {
         let entryBeforeId = after;
         let entryBefore = this.map[after];
 
-        debugger
 
         // move forward until hit a next element which is less in lamport clock
         // entryBefore.next may be null! (will often be null)
-        while (CC.compare(id, entryBefore.next) >= 0) {      //ERROR HERE
+        while (CC.compare(id, entryBefore.next) < 0) {      //ERROR HERE - comparison is wrong somehow...
             entryBeforeId = entryBefore.next;
             entryBefore = this.map[entryBeforeId];
         }
 
-        console.log('Inserting after: ' + entryBeforeId);
+        console.log('Inserting after: ' + entryBeforeId + ' with id ' + id);
 
 
 

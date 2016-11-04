@@ -2,6 +2,9 @@
 
 
 import Client from '../modules/Client';
+import NetworkManager from '../modules/NetworkManager';
 
-let c = new Client();
-let d = new Client();
+let nm = new NetworkManager();
+
+let c = new Client(nm);
+let d = new Client(nm);

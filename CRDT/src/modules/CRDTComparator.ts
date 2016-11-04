@@ -3,7 +3,7 @@ import * as ST from '../types/SharedTypes';
 export function compare(id1: string, id2: string) {
 
     if (id2 === null) {
-        return -1;
+        return 1;
     }
 
     let split1 = id1.split('.');
@@ -21,9 +21,10 @@ export function compare(id1: string, id2: string) {
     } else {
         if (c1 < c2) {
             return -1;
-        } else if (c2 > c1) {
+        } else if (c1 > c2) {
             return 1;
         } else {
+            console.error('[Comparator] identical IDs: ' + id1 + ', ' + id2);
             throw new ComparatorException('got an equal case in CRDT comparator - should be globally unique!');
         }
     }   

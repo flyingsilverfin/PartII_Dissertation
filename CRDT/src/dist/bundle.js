@@ -45,8 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(75);
-	module.exports = __webpack_require__(76);
+	module.exports = __webpack_require__(75);
 
 
 /***/ },
@@ -7756,12 +7755,258 @@
 
 	"use strict";
 	
-	var greeter_1 = __webpack_require__(76);
-	var greeter = new greeter_1.default("wordl");
-	console.log(greeter.greet());
+	var Client_1 = __webpack_require__(76);
+	var NetworkManager_1 = __webpack_require__(81);
+	var nm = new NetworkManager_1.default();
+	var c = new Client_1.default(nm);
+	var d = new Client_1.default(nm);
 
 /***/ },
 /* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MapCRDT_1 = __webpack_require__(77);
+	var EditableText_1 = __webpack_require__(79);
+	var NetworkInterface_1 = __webpack_require__(80);
+	
+	var Client = function () {
+	    function Client(networkManager) {
+	        _classCallCheck(this, Client);
+	
+	        // 1 in a million collision... Would probably have the bootstrapping server hand out unique ID's
+	        this.id = Math.round(Math.random() * 1000000).toString();
+	        this.dt = new MapCRDT_1.default(this.id);
+	        var interfaceContainer = document.getElementById('container');
+	        this.interface = new EditableText_1.default(interfaceContainer);
+	        this.interface.setId(this.id);
+	        this.interface.insertCallback = this.charInsertedLocal.bind(this);
+	        this.network = new NetworkInterface_1.default(networkManager); // network manager registers itself
+	        this.network.insertPacketReceived = this.insertReceived.bind(this);
+	        this.network.deletePacketReceived = this.deleteReceived.bind(this);
+	        this.updateParallelArrays();
+	    }
+	    // interesting it doesn't type check this automatically with the required structure of this.interface.insertCallback
+	
+	
+	    _createClass(Client, [{
+	        key: 'charInsertedLocal',
+	        value: function charInsertedLocal(char, after) {
+	            var nextT = this.dt.getNextTs().toString();
+	            var opId = nextT + '.' + this.id;
+	            var idOfAfter = this.getIdOfStringIndex(after);
+	            var bundle = {
+	                id: opId,
+	                char: char,
+	                after: idOfAfter
+	            };
+	            this.dt.insert(bundle);
+	            // TODO add UNIT TEST in dt.insert
+	            // TODO
+	            //  send to network/other client
+	            var networkPacket = {
+	                origin: this.id,
+	                type: 'i',
+	                bundle: bundle
+	            };
+	            this.network.send(networkPacket);
+	            // this is bad - does a O(N) retrieval each insert!
+	            //  #optmize potential
+	            this.updateParallelArrays();
+	        }
+	    }, {
+	        key: 'insertReceived',
+	        value: function insertReceived(bundle) {
+	            this.dt.insert(bundle);
+	            // get old cursor position and 'after'
+	            var oldCursorPosition = this.interface.getCursorPosition();
+	            var oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+	            this.updateParallelArrays();
+	            // probably possible to do this more cleanly
+	            var newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+	            this.interface.setContent(this.charArray.join(''));
+	            if (oldAfterId !== newAfterId) {
+	                this.interface.incrementCursorPosition();
+	            }
+	        }
+	    }, {
+	        key: 'deleteReceived',
+	        value: function deleteReceived(bundle) {
+	            // TODO
+	        }
+	    }, {
+	        key: 'updateParallelArrays',
+	        value: function updateParallelArrays() {
+	            var readValues = this.dt.read();
+	            debugger;
+	            this.charArray = readValues.charArray;
+	            this.idArray = readValues.idArray;
+	        }
+	    }, {
+	        key: 'getIdOfStringIndex',
+	        value: function getIdOfStringIndex(after) {
+	            return this.idArray[after];
+	        }
+	    }]);
+	
+	    return Client;
+	}();
+	
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Client;
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var CC = __webpack_require__(78);
+	
+	var MapCRDT = function () {
+	    function MapCRDT(id) {
+	        _classCallCheck(this, MapCRDT);
+	
+	        this.id = id;
+	        this.nextCounter = 1;
+	        // keep '0' as as an anchorpoint
+	        this.map = {
+	            '0': {
+	                next: null,
+	                char: ''
+	            }
+	        };
+	    }
+	    // implements interface
+	
+	
+	    _createClass(MapCRDT, [{
+	        key: 'insert',
+	        value: function insert(bundle) {
+	            // ASSERT NEEDED:
+	            //  this.map[bundle.id] === undefined 
+	            var id = bundle.id; // id.timestamp to insert this char with
+	            var char = bundle.char;
+	            var after = bundle.after; // id.timestamp to insert this char after
+	            // implement core CRDT insert algorithm here
+	            // may want to abstract out into separate class to plug into other datastructures if desired
+	            var entryBeforeId = after;
+	            var entryBefore = this.map[after];
+	            debugger;
+	            // move forward until hit a next element which is less in lamport clock
+	            // entryBefore.next may be null! (will often be null)
+	            while (CC.compare(id, entryBefore.next) > 0) {
+	                entryBeforeId = entryBefore.next;
+	                entryBefore = this.map[entryBeforeId];
+	            }
+	            console.log('Inserting after: ' + entryBeforeId + ' with id ' + id);
+	            // insert new entry into linked list
+	            var newEntry = {
+	                char: char,
+	                next: entryBefore.next
+	            };
+	            entryBefore.next = id;
+	            this.map[id] = newEntry;
+	            // update local lamport timestamp
+	            var t = parseInt(id.split('.')[0]);
+	            // ASSERT NEEDED
+	            //  t >= this.nextCounter
+	            this.nextCounter = t + 1;
+	        }
+	        // implements interface
+	
+	    }, {
+	        key: 'delete',
+	        value: function _delete(bundle) {}
+	        // TODO
+	
+	        // implements interface
+	
+	    }, {
+	        key: 'read',
+	        value: function read() {
+	            // writing to array then joining seems to be fastest way of doing this
+	            var charArray = [];
+	            var idArray = [];
+	            var id = '0';
+	            var entry = void 0;
+	            while (id !== null) {
+	                entry = this.map[id];
+	                if (!entry.deleted) {
+	                    // TODO unsure of how to handle deletion still!
+	                    charArray.push(entry.char);
+	                    idArray.push(id);
+	                }
+	                id = entry.next;
+	            }
+	            return { charArray: charArray, idArray: idArray };
+	        }
+	    }, {
+	        key: 'getNextTs',
+	        value: function getNextTs() {
+	            return this.nextCounter;
+	        }
+	    }]);
+	
+	    return MapCRDT;
+	}();
+	
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = MapCRDT;
+
+/***/ },
+/* 78 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function compare(id1, id2) {
+	    if (id2 === null) {
+	        return -1;
+	    }
+	    var split1 = id1.split('.');
+	    var split2 = id2.split('.');
+	    var t1 = parseInt(split1[0]);
+	    var c1 = parseInt(split1[1]);
+	    var t2 = parseInt(split2[0]);
+	    var c2 = parseInt(split2[1]);
+	    // actual compare method
+	    if (t1 < t2) {
+	        return -1;
+	    } else if (t1 > t2) {
+	        return 1;
+	    } else {
+	        if (c1 < c2) {
+	            return -1;
+	        } else if (c1 > c2) {
+	            return 1;
+	        } else {
+	            console.error('[Comparator] identical IDs: ' + id1 + ', ' + id2);
+	            throw new ComparatorException('got an equal case in CRDT comparator - should be globally unique!');
+	        }
+	    }
+	}
+	exports.compare = compare;
+	
+	var ComparatorException = function ComparatorException(msg) {
+	    _classCallCheck(this, ComparatorException);
+	
+	    this.msg = msg;
+	};
+
+/***/ },
+/* 79 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7770,25 +8015,199 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var Greeter = function () {
-	    function Greeter(message) {
-	        _classCallCheck(this, Greeter);
+	var EditableText = function () {
+	    function EditableText(parent) {
+	        _classCallCheck(this, EditableText);
 	
-	        this.greeting = message;
+	        this.insertCallback = null; //implements in interface
+	        this.container = document.createElement('div');
+	        this.container.className = 'client-container';
+	        this.clientIdField = document.createElement('h2');
+	        this.clientIdField.className = 'client-id';
+	        this.textarea = document.createElement('textarea');
+	        this.textarea.className = 'client-textarea';
+	        this.container.appendChild(this.clientIdField);
+	        this.container.appendChild(this.textarea);
+	        parent.appendChild(this.container);
+	        this.textarea.addEventListener('keyup', this.keyUp.bind(this));
 	    }
 	
-	    _createClass(Greeter, [{
-	        key: "greet",
-	        value: function greet() {
-	            return "Hello, " + this.greeting;
+	    _createClass(EditableText, [{
+	        key: 'setId',
+	        value: function setId(id) {
+	            this.clientIdField.innerHTML = id;
+	        }
+	    }, {
+	        key: 'setContent',
+	        value: function setContent(text) {
+	            this.textarea.value = text;
+	        }
+	    }, {
+	        key: 'incrementCursorPosition',
+	        value: function incrementCursorPosition() {
+	            this.textarea.selectionStart += 1;
+	            this.textarea.selectionEnd += 1;
+	        }
+	        // public setCursorPosition(pos: number): void {
+	        //     this.textarea.selectionStart = pos;
+	        //     this.textarea.selectionEnd = pos;
+	        // }
+	
+	    }, {
+	        key: 'getCursorPosition',
+	        value: function getCursorPosition() {
+	            var selectionStart = this.textarea.selectionStart;
+	            var selectionEnd = this.textarea.selectionEnd;
+	            // ASSERT needed
+	            //  for now, require that selectionEnd === selectionStart
+	            return selectionStart;
+	        }
+	    }, {
+	        key: 'keyUp',
+	        value: function keyUp(event) {
+	            console.log('[Debug] keyup detected');
+	            var cursor = this.getCursorPosition();
+	            var content = this.getContent();
+	            /*
+	                important keycodes:
+	                    8 - backspace
+	                    46 - delete
+	            */
+	            var key = event.keyCode;
+	            if (key === 8) {
+	                // how to retrieve what was deleted?
+	                // perhaps ask the original backing store?
+	                // but this is contained above in owner of this class...
+	                // TODO
+	                console.error('deletion not implemented yet');
+	            } else if (key === 46) {
+	                // TODO
+	                console.error('deletion not implemented yet');
+	            } else {
+	                var inserted = content[cursor - 1];
+	                console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor - 1));
+	                this.insertCallback(inserted, cursor - 1);
+	            }
+	        }
+	    }, {
+	        key: 'getContent',
+	        value: function getContent() {
+	            return this.textarea.value;
 	        }
 	    }]);
 	
-	    return Greeter;
+	    return EditableText;
 	}();
 	
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = Greeter;
+	exports.default = EditableText;
+
+/***/ },
+/* 80 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var NetworkInterface = function () {
+	    function NetworkInterface(networkManager) {
+	        _classCallCheck(this, NetworkInterface);
+	
+	        this.networkManager = networkManager;
+	        this.networkManager.register(this);
+	    }
+	
+	    _createClass(NetworkInterface, [{
+	        key: 'send',
+	        value: function send(packet) {
+	            this.networkManager.broadcast(this, packet);
+	        }
+	    }, {
+	        key: 'receive',
+	        value: function receive(packet) {
+	            // ASSERT NEEDED
+	            //  this.packetReceivedCallback !== null
+	            // demultiplex packet type
+	            if (packet.type === 'i') {
+	                this.insertPacketReceived(packet.bundle);
+	            } else if (packet.type === 'd') {} else {
+	                console.error('Received unknown network type: ' + packet.type);
+	            }
+	        }
+	    }]);
+	
+	    return NetworkInterface;
+	}();
+	
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = NetworkInterface;
+
+/***/ },
+/* 81 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var NetworkManager = function () {
+	    function NetworkManager() {
+	        _classCallCheck(this, NetworkManager);
+	
+	        this.clients = [];
+	    }
+	
+	    _createClass(NetworkManager, [{
+	        key: "register",
+	        value: function register(client) {
+	            this.clients.push(client);
+	        }
+	        // just send it to all the other registered clients
+	
+	    }, {
+	        key: "broadcast",
+	        value: function broadcast(sender, packet) {
+	            console.log(this.clients);
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+	
+	            try {
+	                for (var _iterator = this.clients[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var client = _step.value;
+	
+	                    if (client === sender) {
+	                        continue;
+	                    }
+	                    client.receive(packet);
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
+	            }
+	        }
+	    }]);
+	
+	    return NetworkManager;
+	}();
+	
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = NetworkManager;
 
 /***/ }
 /******/ ]);

@@ -4,6 +4,7 @@ import * as NT from '../types/NetworkTypes';
 import MapCRDT from './MapCRDT';
 import EditableText from './EditableText';
 import NetworkInterface from './NetworkInterface';
+import NetworkManager from './NetworkManager';
 
 
 class Client implements C.Client {
@@ -34,8 +35,9 @@ class Client implements C.Client {
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
 
-        this.network = new NetworkInterface(networkManager);
-        this.network.packet //TODO
+        this.network = new NetworkInterface(networkManager);    // network manager registers itself
+        this.network.insertPacketReceived = this.insertReceived.bind(this);
+        this.network.deletePacketReceived = this.deleteReceived.bind(this);
 
         this.updateParallelArrays();
 
@@ -66,17 +68,37 @@ class Client implements C.Client {
 
         let networkPacket: NT.NetworkPacket = {
             origin: this.id,
+            type: 'i',
             bundle: bundle
         }
 
-        this.networkInterface.send(networkPacket);
-
-
+        this.network.send(networkPacket);
 
 
         // this is bad - does a O(N) retrieval each insert!
         //  #optmize potential
         this.updateParallelArrays();
+    }
+
+    private insertReceived(bundle): void {
+        this.dt.insert(bundle);
+
+        // get old cursor position and 'after'
+        let oldCursorPosition = this.interface.getCursorPosition();
+        let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+
+        this.updateParallelArrays();
+
+        // probably possible to do this more cleanly
+        let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+        this.interface.setContent(this.charArray.join(''));
+        if (oldAfterId !== newAfterId) {
+            this.interface.incrementCursorPosition();
+        }
+    }
+
+    private deleteReceived(bundle): void {
+        // TODO
     }
 
     private updateParallelArrays(): void {
