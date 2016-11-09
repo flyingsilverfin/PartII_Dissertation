@@ -40,7 +40,7 @@ class MapCRDT implements CT.CRDT {
         let entryBefore = this.map[after];
 
 
-        // move forward until hit a next element which is less in lamport clock
+        // move forward until hit a next element which is less than id
         // entryBefore.next may be null! (will often be null)
         while (CC.compare(id, entryBefore.next) < 0) {      //ERROR HERE - comparison is wrong somehow...
             entryBeforeId = entryBefore.next;
@@ -70,7 +70,8 @@ class MapCRDT implements CT.CRDT {
 
     // implements interface
     public delete(bundle): void {
-        // TODO
+        let idToDelete = bundle.deleteId;
+        this.map[idToDelete]['deleted'] = true;
     }
 
     // implements interface

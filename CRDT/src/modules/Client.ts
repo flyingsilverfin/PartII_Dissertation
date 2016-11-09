@@ -7,13 +7,13 @@ import NetworkInterface from './NetworkInterface';
 import NetworkManager from './NetworkManager';
 
 
-class Client implements C.Client {
+class Client {
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
     private interface: EditableText;
-    private network: NetworkInterface;
+    public network: NetworkInterface;
 
     // state variables
     // parallel lists of char array and CRDT IDs of chars
@@ -24,7 +24,8 @@ class Client implements C.Client {
     constructor(networkManager: NetworkManager) {
 
         // 1 in a million collision... Would probably have the bootstrapping server hand out unique ID's
-        this.id = Math.round(Math.random()*1000000).toString();
+        // this.id = Math.round(Math.random()*1000000).toString();
+        this.id = networkManager.getId().toString();
 
         this.dt = new MapCRDT(this.id);
 
@@ -34,6 +35,7 @@ class Client implements C.Client {
         this.interface = new EditableText(interfaceContainer);
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
+        this.interface.deleteCallback = this.charDeletedLocal.bind(this);
 
         this.network = new NetworkInterface(networkManager);    // network manager registers itself
         this.network.insertPacketReceived = this.insertReceived.bind(this);
@@ -41,6 +43,31 @@ class Client implements C.Client {
 
         this.updateParallelArrays();
 
+
+       
+/*
+        this.insertReceived({
+            after: '0',
+            char: 'a',
+            id: '1.1'
+        });
+        this.insertReceived({
+            after: '0',
+            char: 'b',
+            id: '1.2'
+        });
+        this.insertReceived({
+            after:'0',
+            char:'2',
+            id: '2.0'
+        })
+        this.insertReceived({
+            after: '0',
+            char: 'c',
+            id: '1.0'
+        });
+*/
+        
 
     }
 
@@ -62,10 +89,6 @@ class Client implements C.Client {
 
         // TODO add UNIT TEST in dt.insert
 
-        // TODO
-        //  send to network/other client
-
-
         let networkPacket: NT.NetworkPacket = {
             origin: this.id,
             type: 'i',
@@ -80,7 +103,7 @@ class Client implements C.Client {
         this.updateParallelArrays();
     }
 
-    private insertReceived(bundle): void {
+    private insertReceived(bundle: CT.InsertMessage): void {
         this.dt.insert(bundle);
 
         // get old cursor position and 'after'
@@ -97,8 +120,38 @@ class Client implements C.Client {
         }
     }
 
-    private deleteReceived(bundle): void {
-        // TODO
+    private charDeletedLocal(index: number) {
+        let deletedId = this.getIdOfStringIndex(index);
+        let bundle: CT.DeleteMessage = {
+            deleteId: deletedId
+        };
+
+        this.dt.delete(bundle);
+
+        let networkPacket: NT.NetworkPacket = {
+            origin: this.id,
+            type: 'd',
+            bundle: bundle
+        };
+        this.network.send(networkPacket);
+        this.updateParallelArrays();
+    }
+
+    private deleteReceived(bundle: CT.DeleteMessage): void {
+        this.dt.delete(bundle);
+        // get old cursor position and 'after'
+        let oldCursorPosition = this.interface.getCursorPosition();
+        let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+
+        this.updateParallelArrays();
+
+        // probably possible to do this more cleanly
+        let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+        this.interface.setContent(this.charArray.join(''));
+        if (oldAfterId !== newAfterId) {
+            this.interface.decrementCursorPosition();
+        }
+
     }
 
     private updateParallelArrays(): void {

@@ -25,7 +25,7 @@ class NetworkInterface {
         if (packet.type === 'i') {
             this.insertPacketReceived(packet.bundle);
         } else if (packet.type === 'd') {
-            // TODO
+            this.deletePacketReceived(packet.bundle);
         } else {
             console.error('Received unknown network type: ' + packet.type);
         }

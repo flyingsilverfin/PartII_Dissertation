@@ -2,7 +2,9 @@ import NetworkInterface from './NetworkInterface';
 
 class NetworkManager {
 
+    private id = 0;
     private clients: NetworkInterface[];
+
     constructor() {
         this.clients = [];
     }
@@ -20,6 +22,11 @@ class NetworkManager {
             }
             client.receive(packet);
         }
+    }
+
+    public getId(): number {
+        this.id++;
+        return this.id - 1;
     }
 }
 

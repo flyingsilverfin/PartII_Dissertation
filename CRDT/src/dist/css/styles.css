@@ -1,7 +1,8 @@
 
 
 .client-container {
-
+    float: left;
+    margin: 10px;
 }
 
 .client-id {
@@ -9,5 +10,6 @@
 }
 
 .client-textarea {
-    
+    height: 200px;
+    width: 400px;
 }
