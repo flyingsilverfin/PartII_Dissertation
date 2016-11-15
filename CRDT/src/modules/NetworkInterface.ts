@@ -5,7 +5,7 @@ class NetworkInterface {
 
     private networkManager: NetworkManager;
 
-    public insertPacketReceived;    // TODO type ese
+    public insertPacketReceived;    // TODO type these
     public deletePacketReceived;
 
     constructor(networkManager: any) {
@@ -19,7 +19,8 @@ class NetworkInterface {
 
     public receive(packet: NT.NetworkPacket) {
         // ASSERT NEEDED
-        //  this.packetReceivedCallback !== null
+        //  this.insertPacketReceived !== null
+        //  this.deletePacketReceived !== null
 
         // demultiplex packet type
         if (packet.type === 'i') {

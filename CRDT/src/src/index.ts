@@ -4,35 +4,25 @@
 import Client from '../modules/Client';
 import NetworkManager from '../modules/NetworkManager';
 
+import MapCRDTTester from '../tests/tmpTest';
+import * as tsUnit from 'tsunit.external/tsUnit'
+
+
+// prepare tests
+let test = new tsUnit.Test(MapCRDTTester);
+// Run the test
+let result = test.run();
+
+// Display in the element with id="results"
+result.showResults('results');
+
+
+
+
+// run main code
 let nm = new NetworkManager();
 
 for (let i = 0; i < 2; i++) {
     new Client(nm);
 }
-/*
-let tester = new Client(nm);
-nm.broadcast(tester.network,{
-    'type': 'i',
-    'bundle': {
-        after: '0',
-        char: 'a',
-        id: '1.3'
-    }
-});
-nm.broadcast(tester.network,{
-    'type': 'i',
-    'bundle': {
-        after:'0',
-        char:'2',
-        id: '2.0'
-    }
-});
-nm.broadcast(tester.network,{
-    'type': 'i',
-    'bundle': {
-        after: '0',
-        char: 'c',
-        id: '1.0'
-    }
-});
-*/
+

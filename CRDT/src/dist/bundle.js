@@ -2502,7 +2502,8 @@
 	      break;
 	
 	    case 'pathname':
-	      url.pathname = value.charAt(0) === '/' ? value : '/' + value;
+	      url.pathname = value.length && value.charAt(0) !== '/' ? '/' + value : value;
+	
 	      break;
 	
 	    default:
@@ -7758,8 +7759,9 @@
 	var Client_1 = __webpack_require__(76);
 	var NetworkManager_1 = __webpack_require__(81);
 	var nm = new NetworkManager_1.default();
-	var c = new Client_1.default(nm);
-	var d = new Client_1.default(nm);
+	for (var i = 0; i < 2; i++) {
+	    new Client_1.default(nm);
+	}
 
 /***/ },
 /* 76 */
@@ -7780,16 +7782,40 @@
 	        _classCallCheck(this, Client);
 	
 	        // 1 in a million collision... Would probably have the bootstrapping server hand out unique ID's
-	        this.id = Math.round(Math.random() * 1000000).toString();
+	        // this.id = Math.round(Math.random()*1000000).toString();
+	        this.id = networkManager.getId().toString();
 	        this.dt = new MapCRDT_1.default(this.id);
 	        var interfaceContainer = document.getElementById('container');
 	        this.interface = new EditableText_1.default(interfaceContainer);
 	        this.interface.setId(this.id);
 	        this.interface.insertCallback = this.charInsertedLocal.bind(this);
+	        this.interface.deleteCallback = this.charDeletedLocal.bind(this);
 	        this.network = new NetworkInterface_1.default(networkManager); // network manager registers itself
 	        this.network.insertPacketReceived = this.insertReceived.bind(this);
 	        this.network.deletePacketReceived = this.deleteReceived.bind(this);
 	        this.updateParallelArrays();
+	        /*
+	                this.insertReceived({
+	                    after: '0',
+	                    char: 'a',
+	                    id: '1.1'
+	                });
+	                this.insertReceived({
+	                    after: '0',
+	                    char: 'b',
+	                    id: '1.2'
+	                });
+	                this.insertReceived({
+	                    after:'0',
+	                    char:'2',
+	                    id: '2.0'
+	                })
+	                this.insertReceived({
+	                    after: '0',
+	                    char: 'c',
+	                    id: '1.0'
+	                });
+	        */
 	    }
 	    // interesting it doesn't type check this automatically with the required structure of this.interface.insertCallback
 	
@@ -7807,8 +7833,6 @@
 	            };
 	            this.dt.insert(bundle);
 	            // TODO add UNIT TEST in dt.insert
-	            // TODO
-	            //  send to network/other client
 	            var networkPacket = {
 	                origin: this.id,
 	                type: 'i',
@@ -7835,15 +7859,40 @@
 	            }
 	        }
 	    }, {
+	        key: 'charDeletedLocal',
+	        value: function charDeletedLocal(index) {
+	            var deletedId = this.getIdOfStringIndex(index);
+	            var bundle = {
+	                deleteId: deletedId
+	            };
+	            this.dt.delete(bundle);
+	            var networkPacket = {
+	                origin: this.id,
+	                type: 'd',
+	                bundle: bundle
+	            };
+	            this.network.send(networkPacket);
+	            this.updateParallelArrays();
+	        }
+	    }, {
 	        key: 'deleteReceived',
 	        value: function deleteReceived(bundle) {
-	            // TODO
+	            this.dt.delete(bundle);
+	            // get old cursor position and 'after'
+	            var oldCursorPosition = this.interface.getCursorPosition();
+	            var oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+	            this.updateParallelArrays();
+	            // probably possible to do this more cleanly
+	            var newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+	            this.interface.setContent(this.charArray.join(''));
+	            if (oldAfterId !== newAfterId) {
+	                this.interface.decrementCursorPosition();
+	            }
 	        }
 	    }, {
 	        key: 'updateParallelArrays',
 	        value: function updateParallelArrays() {
 	            var readValues = this.dt.read();
-	            debugger;
 	            this.charArray = readValues.charArray;
 	            this.idArray = readValues.idArray;
 	        }
@@ -7901,10 +7950,9 @@
 	            // may want to abstract out into separate class to plug into other datastructures if desired
 	            var entryBeforeId = after;
 	            var entryBefore = this.map[after];
-	            debugger;
-	            // move forward until hit a next element which is less in lamport clock
+	            // move forward until hit a next element which is less than id
 	            // entryBefore.next may be null! (will often be null)
-	            while (CC.compare(id, entryBefore.next) > 0) {
+	            while (CC.compare(id, entryBefore.next) < 0) {
 	                entryBeforeId = entryBefore.next;
 	                entryBefore = this.map[entryBeforeId];
 	            }
@@ -7926,9 +7974,10 @@
 	
 	    }, {
 	        key: 'delete',
-	        value: function _delete(bundle) {}
-	        // TODO
-	
+	        value: function _delete(bundle) {
+	            var idToDelete = bundle.deleteId;
+	            this.map[idToDelete]['deleted'] = true;
+	        }
 	        // implements interface
 	
 	    }, {
@@ -7973,7 +8022,7 @@
 	
 	function compare(id1, id2) {
 	    if (id2 === null) {
-	        return -1;
+	        return 1;
 	    }
 	    var split1 = id1.split('.');
 	    var split2 = id2.split('.');
@@ -8020,6 +8069,7 @@
 	        _classCallCheck(this, EditableText);
 	
 	        this.insertCallback = null; //implements in interface
+	        this.deleteCallback = null;
 	        this.container = document.createElement('div');
 	        this.container.className = 'client-container';
 	        this.clientIdField = document.createElement('h2');
@@ -8029,7 +8079,11 @@
 	        this.container.appendChild(this.clientIdField);
 	        this.container.appendChild(this.textarea);
 	        parent.appendChild(this.container);
-	        this.textarea.addEventListener('keyup', this.keyUp.bind(this));
+	        this.textarea.addEventListener('keydown', this.keydown.bind(this));
+	        // this.textarea.addEventListener('keyup', this.keyUp.bind(this));
+	        this.textarea.addEventListener('input', this.oninput.bind(this));
+	        this.preChangeCursorPosition = this.getCursorPosition();
+	        this.currentCursorPosition = this.getCursorPosition();
 	    }
 	
 	    _createClass(EditableText, [{
@@ -8045,8 +8099,16 @@
 	    }, {
 	        key: 'incrementCursorPosition',
 	        value: function incrementCursorPosition() {
-	            this.textarea.selectionStart += 1;
-	            this.textarea.selectionEnd += 1;
+	            this.currentCursorPosition += 1;
+	            this.textarea.selectionStart = this.currentCursorPosition;
+	            this.textarea.selectionEnd = this.currentCursorPosition;
+	        }
+	    }, {
+	        key: 'decrementCursorPosition',
+	        value: function decrementCursorPosition() {
+	            this.currentCursorPosition -= 1;
+	            this.textarea.selectionStart = this.currentCursorPosition;
+	            this.textarea.selectionEnd = this.currentCursorPosition;
 	        }
 	        // public setCursorPosition(pos: number): void {
 	        //     this.textarea.selectionStart = pos;
@@ -8056,38 +8118,86 @@
 	    }, {
 	        key: 'getCursorPosition',
 	        value: function getCursorPosition() {
-	            var selectionStart = this.textarea.selectionStart;
-	            var selectionEnd = this.textarea.selectionEnd;
+	            /*let selectionStart = this.textarea.selectionStart;
+	            let selectionEnd = this.textarea.selectionEnd;
+	            */
 	            // ASSERT needed
-	            //  for now, require that selectionEnd === selectionStart
-	            return selectionStart;
+	            //  require that selectionEnd === selectionStart
+	            return this.currentCursorPosition;
 	        }
 	    }, {
-	        key: 'keyUp',
-	        value: function keyUp(event) {
-	            console.log('[Debug] keyup detected');
+	        key: 'getTextLength',
+	        value: function getTextLength() {
+	            return this.textarea.value.length;
+	        }
+	    }, {
+	        key: 'keydown',
+	        value: function keydown(event) {
+	            console.log('updating onkeydown pre-change values');
+	            this.preChangeTextLength = this.getTextLength();
+	            this.preChangeCursorPosition = this.getCursorPosition();
+	        }
+	        // private keyUp(event): void {
+	        //     /*
+	        //         HAHAHA this doesn't work on keys held down!
+	        //     */
+	        //     console.log('[Debug] keyup detected')
+	        //     // the most comprehensive thing I can think of for 
+	        //     let cursor = this.getCursorPosition();
+	        //     // if a key was pressed that had no effect we can ignore it
+	        //     if (this.getTextLength() === this.preChangeTextLength) {
+	        //         return;
+	        //     }
+	        //     let content = this.getContent();
+	        //     /*
+	        //         important keycodes:
+	        //             8 - backspace
+	        //             46 - delete
+	        //     */
+	        //     let key = event.keyCode; 
+	        //     if (key === 8) {
+	        //         // how to retrieve what was deleted?
+	        //         // perhaps ask the original backing store?
+	        //         // but this is contained above in owner of this class...
+	        //         // TODO
+	        //         console.error('deletion not implemented yet');
+	        //     } else if (key === 46) {
+	        //         // TODO
+	        //         console.error('deletion not implemented yet');
+	        //     } else {
+	        //         let inserted = content[cursor-1];
+	        //         console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor-1));
+	        //         this.insertCallback(inserted, cursor - 1);
+	        //     }
+	        // }
+	
+	    }, {
+	        key: 'oninput',
+	        value: function oninput(event) {
+	            // debugger;
 	            var cursor = this.getCursorPosition();
 	            var content = this.getContent();
-	            /*
-	                important keycodes:
-	                    8 - backspace
-	                    46 - delete
-	            */
-	            var key = event.keyCode;
-	            if (key === 8) {
-	                // how to retrieve what was deleted?
-	                // perhaps ask the original backing store?
-	                // but this is contained above in owner of this class...
-	                // TODO
-	                console.error('deletion not implemented yet');
-	            } else if (key === 46) {
-	                // TODO
-	                console.error('deletion not implemented yet');
+	            // if cursor has not changed position:
+	            if (cursor === this.preChangeCursorPosition) {
+	                this.deleteCallback(cursor + 1);
+	            } else if (cursor <= this.preChangeCursorPosition - 1) {
+	                if (cursor < this.preChangeCursorPosition - 1) {
+	                    console.error('Deleting more than 1 character at a time is currently not supported');
+	                    return;
+	                }
+	                this.deleteCallback(cursor + 1); // cursor is now at position left of where the char was
 	            } else {
+	                // must have been 1 or more insert
+	                if (this.preChangeTextLength > this.getContent().length + 1) {
+	                    console.error('Inserting more than 1 character a time currently not supported');
+	                    return;
+	                }
 	                var inserted = content[cursor - 1];
 	                console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor - 1));
 	                this.insertCallback(inserted, cursor - 1);
 	            }
+	            // update our class state
+	            this.currentCursorPosition = this.getCursorPosition();
 	        }
 	    }, {
 	        key: 'getContent',
@@ -8129,11 +8239,14 @@
 	        key: 'receive',
 	        value: function receive(packet) {
 	            // ASSERT NEEDED
-	            //  this.packetReceivedCallback !== null
+	            //  this.insertPacketReceived !== null
+	            //  this.deletePacketReceived !== null
 	            // demultiplex packet type
 	            if (packet.type === 'i') {
 	                this.insertPacketReceived(packet.bundle);
-	            } else if (packet.type === 'd') {} else {
+	            } else if (packet.type === 'd') {
+	                this.deletePacketReceived(packet.bundle);
+	            } else {
 	                console.error('Received unknown network type: ' + packet.type);
 	            }
 	        }
@@ -8159,6 +8272,7 @@
 	    function NetworkManager() {
 	        _classCallCheck(this, NetworkManager);
 	
+	        this.id = 0;
 	        this.clients = [];
 	    }
 	
@@ -8200,6 +8314,12 @@
 	                    }
 	                }
 	            }
+	        }
+	    }, {
+	        key: "getId",
+	        value: function getId() {
+	            this.id++;
+	            return this.id - 1;
 	        }
 	    }]);
 	
