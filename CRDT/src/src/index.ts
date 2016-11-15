@@ -14,7 +14,7 @@ let test = new tsUnit.Test(MapCRDTTester);
 let result = test.run();
 
 // Display in the element with id="results"
-result.showResults('results');
+result.showResults('Testing-results');
 
 
 
