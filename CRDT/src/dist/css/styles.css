@@ -9,7 +9,19 @@
 
 }
 
+#container {
+    display: block;
+}
+
+#testing-results {
+    clear: both;
+}
+
 .client-textarea {
     height: 200px;
     width: 400px;
+}
+
+.results-section {
+    border-top: 1px solid black;
 }

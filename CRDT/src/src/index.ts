@@ -4,18 +4,27 @@
 import Client from '../modules/Client';
 import NetworkManager from '../modules/NetworkManager';
 
-import MapCRDTTester from '../tests/tmpTest';
+import MapCRDTTester from '../tests/MapCRDTTests';
+import CRDTComparatorTester from '../tests/CRDTComparatorTests';
 import * as tsUnit from 'tsunit.external/tsUnit'
 
 
-// prepare tests
-let test = new tsUnit.Test(MapCRDTTester);
-// Run the test
-let result = test.run();
+// for some reason I need this log for it all to compile haha
+console.log(tsUnit);
 
-// Display in the element with id="results"
-result.showResults('Testing-results');
-
+// list of tests
+let tests = [MapCRDTTester, CRDTComparatorTester];
+// execute and display tests
+for (let i = 0; i < tests.length; i++) {
+    let test = tests[i];
+    let t = new tsUnit.Test(test);
+    let result = t.run();
+    let div = document.createElement('div');
+    div.id = "results-" + i;
+    div.className = "results-section"
+    document.getElementById('testing-results').appendChild(div);
+    result.showResults("results-" + i);
+}
 
 
 

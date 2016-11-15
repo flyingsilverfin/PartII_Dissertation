@@ -1,4 +1,4 @@
-import * as ST from '../types/SharedTypes';
+import {ComparatorException} from './Helper';
 
 export function compare(id1: string, id2: string) {
 
@@ -29,12 +29,3 @@ export function compare(id1: string, id2: string) {
         }
     }   
 }
-
-
-class ComparatorException implements ST.Exception {
-    msg: string;
-    constructor(msg) {
-        this.msg = msg;
-    }
-}
-

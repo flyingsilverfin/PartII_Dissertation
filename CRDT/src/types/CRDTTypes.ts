@@ -6,7 +6,7 @@ export interface CRDT {
     getNextTs(): number;    //next valid timestamp
 }
 
-interface ParallelStringArrays {
+export interface ParallelStringArrays {
     charArray: string[],
     idArray: string[]
 }

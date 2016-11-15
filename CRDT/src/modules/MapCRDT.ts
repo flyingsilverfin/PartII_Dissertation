@@ -1,6 +1,6 @@
 import * as CT from '../types/CRDTTypes';
 import * as CC from './CRDTComparator';
-
+import * as Helper from './Helper';
 
 
 class MapCRDT implements CT.CRDT {
@@ -71,6 +71,9 @@ class MapCRDT implements CT.CRDT {
     // implements interface
     public delete(bundle): void {
         let idToDelete = bundle.deleteId;
+        if (this.map[idToDelete] === undefined) {
+            throw new Helper.DeleteNullIdCRDTException(idToDelete);
+        }
         this.map[idToDelete]['deleted'] = true;
     }
 
