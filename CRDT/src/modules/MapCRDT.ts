@@ -6,12 +6,10 @@ import * as Helper from './Helper';
 class MapCRDT implements CT.CRDT {
 
     private nextCounter: number;
-    private id: string;
 
     private map: CT.MapCRDTStore;
 
-    constructor(id: string) {
-        this.id = id;
+    constructor() {
         this.nextCounter = 1;
 
         // keep '0' as as an anchorpoint
@@ -25,7 +23,7 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
-    public insert(bundle): void {
+    public insert(bundle: CT.InsertMessage): void {
 
         // ASSERT NEEDED:
         //  this.map[bundle.id] === undefined 
@@ -69,7 +67,7 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
-    public delete(bundle): void {
+    public delete(bundle: CT.DeleteMessage): void {
         let idToDelete = bundle.deleteId;
         if (this.map[idToDelete] === undefined) {
             throw new Helper.DeleteNullIdCRDTException(idToDelete);
@@ -78,7 +76,7 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
-    public read() {
+    public read(): CT.ParallelStringArrays {
         // writing to array then joining seems to be fastest way of doing this
 
         let charArray = [];

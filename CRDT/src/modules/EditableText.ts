@@ -7,9 +7,8 @@ class EditableText implements IT.EditableTextInterface {
 
     private id: string;
 
-    private preChangeTextLength: number;
-    private preChangeCursorPosition: number;
-    private currentCursorPosition: number;
+    private preChangeTextLength: number  = 0;
+    private currentCursorPosition: number = 0;
 
     public insertCallback = null;  //implements in interface
     public deleteCallback = null;
@@ -32,10 +31,9 @@ class EditableText implements IT.EditableTextInterface {
         this.textarea.addEventListener('keydown', this.keydown.bind(this));
         // this.textarea.addEventListener('keyup', this.keyUp.bind(this));
         this.textarea.addEventListener('input', this.oninput.bind(this));
+        this.textarea.addEventListener('focus', this.onfocus.bind(this));
 
-        this.preChangeCursorPosition = this.getCursorPosition();
-        this.currentCursorPosition = this.getCursorPosition();
-
+        this.currentCursorPosition = 0;
     }
 
     public setId(id: string): void {
@@ -60,29 +58,38 @@ class EditableText implements IT.EditableTextInterface {
     }
 
 
-    // public setCursorPosition(pos: number): void {
-    //     this.textarea.selectionStart = pos;
-    //     this.textarea.selectionEnd = pos;
-    // }
+    private setCursorPosition(pos: number): void {
+        this.currentCursorPosition = pos;
+        this.textarea.selectionStart = pos;
+        this.textarea.selectionEnd = pos;
+    }
 
     public getCursorPosition(): number {
-        /*let selectionStart = this.textarea.selectionStart;
-        let selectionEnd = this.textarea.selectionEnd;
-        */
-        // ASSERT needed
-        //  require that selectionEnd === selectionStart
-
         return this.currentCursorPosition;
     }
 
+    private textareaCursorPosition(): number {
+        // ASSERT needed
+        //  require that selectionEnd === selectionStart
+        let selectionStart = this.textarea.selectionStart;
+        let selectionEnd = this.textarea.selectionEnd;
+
+        return selectionStart;
+    }
+
     private getTextLength(): number {
-        return this.textarea.value.length
+        return this.textarea.value.length;
+    }
+
+    private onfocus(event): void {
+        this.textarea.selectionStart = this.currentCursorPosition;
+        this.textarea.selectionEnd = this.currentCursorPosition;
     }
 
     private keydown(event): void {
         console.log('updating onkeydown pre-change values');
         this.preChangeTextLength = this.getTextLength();
-        this.preChangeCursorPosition = this.getCursorPosition();
+        this.currentCursorPosition = this.textareaCursorPosition();
     }
 
     // private keyUp(event): void {
@@ -133,33 +140,36 @@ class EditableText implements IT.EditableTextInterface {
     // }
 
     private oninput(event): void {
-       // debugger;
+        debugger;
 
-        let cursor = this.getCursorPosition();
+        let textareaCursor = this.textareaCursorPosition();
         let content = this.getContent();
 
-       // if cursor has not changed position:
-       if (cursor === this.preChangeCursorPosition) {
-           this.deleteCallback(cursor+1)
-       } else if (cursor <= this.preChangeCursorPosition - 1) {
-           if (cursor < this.preChangeCursorPosition - 1) {
-               console.error('Deleting more than 1 character at a time is currently not supported');
-               return;
-           }
-           this.deleteCallback(cursor+1)  // cursor is now at position left of where the char was
-       } else {
-           // must have been 1 or more insert
-           if (this.preChangeTextLength > this.getContent().length + 1) {
-               console.error('Inserting more than 1 character a time currently not supported');
-               return;
-           }
-           let inserted = content[cursor-1];
-           console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor-1));
-           this.insertCallback(inserted, cursor - 1);
-       }
+        // if cursor has not changed position:
+        if (textareaCursor === this.currentCursorPosition) {
+            this.deleteCallback(textareaCursor + 1)
+        } else if (textareaCursor <= this.currentCursorPosition - 1) {
+            if (textareaCursor < this.currentCursorPosition - 1) {
+                console.error('Deleting more than 1 character at a time is currently not supported');
+                this.setCursorPosition(textareaCursor);
+                return;
+            }
+            this.currentCursorPosition--;
+            this.deleteCallback(textareaCursor+1)  // cursor is now at position left of where the char was
+        } else {
+            // must have been 1 or more insert
+            if (this.preChangeTextLength > this.getContent().length + 1) {
+                console.error('Inserting more than 1 character a time currently not supported');
+                this.setCursorPosition(textareaCursor);
+                return;
+            }
+            let inserted = content[textareaCursor-1];
+            console.log('[Debug] inserted char ' + inserted + ' at position ' + (textareaCursor-1));
+            this.currentCursorPosition++;
+            this.insertCallback(inserted, textareaCursor - 1);
+        }
 
-       // update our class state
-       this.currentCursorPosition = this.getCursorPosition();
+        // in all cases the currentCursorPosition should be updated!
     }
 
     private getContent(): string {

@@ -27,7 +27,7 @@ class Client {
         // this.id = Math.round(Math.random()*1000000).toString();
         this.id = networkManager.getId().toString();
 
-        this.dt = new MapCRDT(this.id);
+        this.dt = new MapCRDT();
 
         let interfaceContainer = <HTMLDivElement>document.getElementById('container');
 
@@ -43,31 +43,6 @@ class Client {
 
         this.updateParallelArrays();
 
-
-       
-/*
-        this.insertReceived({
-            after: '0',
-            char: 'a',
-            id: '1.1'
-        });
-        this.insertReceived({
-            after: '0',
-            char: 'b',
-            id: '1.2'
-        });
-        this.insertReceived({
-            after:'0',
-            char:'2',
-            id: '2.0'
-        })
-        this.insertReceived({
-            after: '0',
-            char: 'c',
-            id: '1.0'
-        });
-*/
-        
 
     }
 
