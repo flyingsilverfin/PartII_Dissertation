@@ -12,7 +12,9 @@ import * as tsUnit from 'tsunit.external/tsUnit'
 // for some reason I need this log for it all to compile haha
 console.log(tsUnit);
 
-// list of tests
+
+
+// testing modules
 let tests = [MapCRDTTester, CRDTComparatorTester];
 // execute and display tests
 for (let i = 0; i < tests.length; i++) {

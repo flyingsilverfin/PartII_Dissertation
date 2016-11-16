@@ -29,7 +29,6 @@ class EditableText implements IT.EditableTextInterface {
         parent.appendChild(this.container);
 
         this.textarea.addEventListener('keydown', this.keydown.bind(this));
-        // this.textarea.addEventListener('keyup', this.keyUp.bind(this));
         this.textarea.addEventListener('input', this.oninput.bind(this));
         this.textarea.addEventListener('focus', this.onfocus.bind(this));
 
@@ -91,53 +90,6 @@ class EditableText implements IT.EditableTextInterface {
         this.preChangeTextLength = this.getTextLength();
         this.currentCursorPosition = this.textareaCursorPosition();
     }
-
-    // private keyUp(event): void {
-
-    //     /*
-    //         HAHAHA this doesn't work on keys held down!
-    //     */
-
-
-    //     console.log('[Debug] keyup detected')
-
-    //     // the most comprehensive thing I can think of for 
-
-    //     let cursor = this.getCursorPosition();
-
-    //     // if a key was pressed that had no effect we can ignore it
-    //     if (this.getTextLength() === this.preChangeTextLength) {
-    //         return;
-    //     }
-
-    //     let content = this.getContent();
-
-    //     /*
-    //         important keycodes:
-    //             8 - backspace
-    //             46 - delete
-    //     */
-
-    //     let key = event.keyCode; 
-
-    //     if (key === 8) {
-    //         // how to retrieve what was deleted?
-    //         // perhaps ask the original backing store?
-    //         // but this is contained above in owner of this class...
-
-    //         // TODO
-
-    //         console.error('deletion not implemented yet');
-
-    //     } else if (key === 46) {
-    //         // TODO
-    //         console.error('deletion not implemented yet');
-    //     } else {
-    //         let inserted = content[cursor-1];
-    //         console.log('[Debug] inserted char ' + inserted + ' at position ' + (cursor-1));
-    //         this.insertCallback(inserted, cursor - 1);
-    //     }
-    // }
 
     private oninput(event): void {
         debugger;
