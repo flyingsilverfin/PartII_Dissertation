@@ -11,7 +11,6 @@ class TopologyFullyConnected extends OpenSizeTopology  {
     constructor(defaultLatency: number) {
         super(defaultLatency)
         console.log('(NetworkGraph) Instantiated  empty star topology with latency: ' + defaultLatency);
-
     }
 
     public addNode(): T.ClientId {

@@ -12,6 +12,10 @@ abstract class OpenSizeTopology extends Topology {
         super();
         this.latency = latency;
         console.log('Constructing flexible size topology');
+        this.graph = {
+            nodes: [],
+            edges: []
+        }
     }
 
     public getMaximumSize(): number {

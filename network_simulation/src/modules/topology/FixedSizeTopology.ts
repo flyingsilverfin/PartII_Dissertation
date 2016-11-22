@@ -3,7 +3,8 @@ import * as T from '../../types/Types';
 import Topology from './Topology';
 
 /*
-    This is am abstract fixed size network topology
+    This is an abstract fixed size network topology
+    Will be used for hand coded topologie I suppose...?
 */
 
 abstract class FixedSizeTopology extends Topology {

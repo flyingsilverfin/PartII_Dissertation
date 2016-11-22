@@ -26,12 +26,6 @@ export interface Edge {
     y?: number
 }
 
-export interface Topology {
-    getNodes(): Node[],
-    getEdges(): Edge[],
-    addNode(): T.ClientId;
-}
-
 
 //--- GraphVisualizer ---
 export interface VisualizerOptions {

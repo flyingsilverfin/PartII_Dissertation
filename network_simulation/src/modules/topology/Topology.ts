@@ -5,7 +5,7 @@ import * as T from '../../types/Types';
     This is an abstract network topology
 */
 
-abstract class Topology implements GT.Topology {
+abstract class Topology {
     protected graph: GT.Graph;
     protected allocated = 0;
 
@@ -20,6 +20,10 @@ abstract class Topology implements GT.Topology {
     public abstract getMaximumSize(): number;
 
     public abstract addNode(): T.ClientId;
+
+    public getNeighborsOf(id: T.ClientId): number[] {
+        return this.graph.nodes[id].links;
+    }
 }
 
 export default Topology;

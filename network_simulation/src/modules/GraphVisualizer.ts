@@ -1,19 +1,20 @@
 /// <reference path="../typings/modules/d3/index.d.ts"/>;
 
 import * as GT from '../types/GraphTypes';
+import Topology from './topology/Topology';
 import * as d3 from 'd3';
 
 
 class GraphVisualizer {
     private container: SVGElement;
-    private topology: GT.Topology;
+    private topology: Topology;
     private nodes: GT.Node[];
     private edges: GT.Edge[];
     private options: any;
 
     constructor(container:SVGElement, 
-                topology: GT.Topology,
-                options: GT.VisualizerOptions = {height: 500, width: 500, radius: 25, linkDistance: 25}) {
+                topology: Topology,
+                options: GT.VisualizerOptions = {height: 500, width: 500, radius: 25, linkDistance: 100}) {
         this.container = container;
         this.topology = topology;
         this.options = options;

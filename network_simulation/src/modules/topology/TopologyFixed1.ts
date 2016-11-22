@@ -11,19 +11,23 @@ class TopologyFixed1 extends FixedSizeTopology {
         nodes: [
             {   
                 name: "",
-                weight: 0   // d3 value
+                weight: 0,   // d3 value,
+                links: [0, 1, 2]
             },
             {   
                 name: "",
-                weight: 0
+                weight: 0,
+                links: [0]
             },
             {   
                 name: "",
-                weight: 0
+                weight: 0,
+                links: [1]
             },
             {
                 name: "",
-                weight: 0
+                weight: 0,
+                links: [2,3]
             },
         ],
         edges: [
