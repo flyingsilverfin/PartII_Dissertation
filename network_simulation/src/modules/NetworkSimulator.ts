@@ -1,16 +1,15 @@
-import NetworkGraph from './NetworkGraph';
+import NetworkTopologyStar from './NetworkTopologyStar';
 import GraphVisualizer from './GraphVisualizer';
 
 class NetworkSimulator {
 
-    private networkGraph: NetworkGraph;
+    private topology: NetworkTopologyStar;
     private graphVisualizer: GraphVisualizer;
 
     constructor() {
-        this.networkGraph = new NetworkGraph();
-        this.graphVisualizer = new GraphVisualizer(document.getElementById('graph_container'),
-                                                   this.networkGraph.getNodes(),
-                                                   this.networkGraph.getEdges());
+        this.topology = new NetworkTopologyStar(100);
+        this.graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementById('graph_container'),
+                                                   this.topology);
         this.graphVisualizer.draw();
     }
 

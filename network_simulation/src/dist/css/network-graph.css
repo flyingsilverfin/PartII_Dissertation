@@ -3,11 +3,18 @@
 }
 
 .link {
-    width: 1px;
-    stroke: red;
+
+}
+
+.link line {
+    stroke: black;
 }
 
 .node {
+    fill: none;
+}
+
+.node circle {
     fill: none;
     stroke: black;
 }
