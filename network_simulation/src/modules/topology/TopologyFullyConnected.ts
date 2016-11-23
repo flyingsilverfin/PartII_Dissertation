@@ -1,6 +1,7 @@
 import * as GT from '../../types/GraphTypes';
 import * as T from '../../types/Types';
 import OpenSizeTopology from './OpenSizeTopology'
+import LatencyModel from './LatencyModel';
 
 /*
     Flexible size fully connected topology
@@ -8,9 +9,9 @@ import OpenSizeTopology from './OpenSizeTopology'
 
 class TopologyFullyConnected extends OpenSizeTopology  {
 
-    constructor(defaultLatency: number) {
-        super(defaultLatency)
-        console.log('(NetworkGraph) Instantiated  empty star topology with latency: ' + defaultLatency);
+    constructor(latencyModel: LatencyModel) {
+        super(latencyModel)
+        console.log('(NetworkGraph) Instantiated  empty star topology with latencyModel: ' + latencyModel.getDescription());
     }
 
     public addNode(): T.ClientId {
@@ -24,7 +25,7 @@ class TopologyFullyConnected extends OpenSizeTopology  {
             let newEdge: GT.Edge = {
                 source: i,
                 target: id,
-                latency: this.latency
+                latency: this.latencyModel.getLatency(this.graph.edges.length-1)
             }
             this.graph.edges.push(newEdge);
             // add references for fast neighbor retrieval

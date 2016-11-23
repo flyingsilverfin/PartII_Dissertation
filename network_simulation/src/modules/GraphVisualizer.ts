@@ -14,7 +14,7 @@ class GraphVisualizer {
 
     constructor(container:SVGElement, 
                 topology: Topology,
-                options: GT.VisualizerOptions = {height: 500, width: 500, radius: 25, linkDistance: 100}) {
+                options: GT.VisualizerOptions = {height: 900, width: 900, radius: 25, linkDistance: 400, charge: -10000}) {
         this.container = container;
         this.topology = topology;
         this.options = options;
@@ -32,13 +32,14 @@ class GraphVisualizer {
         let svg = d3.select(this.container).attr('height', this.options.height).attr('width', this.options.width);
         
 
-        var force = d3.layout.force()
+        let force = d3.layout.force()
             .size([this.options.width, this.options.height])
             .nodes(this.nodes)
             .links(this.edges)
-            .linkDistance(60)
-            .charge (-300)
-            .start();
+            .linkDistance(this.options.linkDistance)
+            .charge(this.options.charge);
+
+        
 
 
         let d3links = svg.selectAll('.link')
@@ -49,6 +50,8 @@ class GraphVisualizer {
         d3links.append('line')
             .attr('class', 'line');
 
+
+
         let d3nodes = svg.selectAll('.node')
             .data(this.nodes)
             .enter().append('g')
@@ -57,7 +60,6 @@ class GraphVisualizer {
         d3nodes.append('circle')
             .attr('class', 'circle')
             .attr('r', this.options.radius);
-
 
 
         force.on('end', function() {
@@ -89,12 +91,32 @@ class GraphVisualizer {
 
             // don't want links going all the way into circle...
             // need to do a tiny bit of maths
-
-            d3links.attr('x1', function(d) { return d.source['x']; })  // don't have to do this but do because of typescript not d3
+            
+            
+            /*d3links.attr('x1', function(d) { return d.source['x']; })  // don't have to do this but do because of typescript not d3
                 .attr('y1', function(d) { return d.source['y']; })
                 .attr('x2', function(d) { return d.target['x']; })
                 .attr('y2', function(d) { return d.target['y']; });
+            */
+            /*
+            d3links.attr("transform", function(d) { 
+                return "translate(" + (d.source['x'] + d.target['x'])/2 + "," + (d.source['y'] + d.target['y'])/2 + ")" });
+            */
+            
+
+            // TODO
+            //  need to do a .attr over the lines within the 'g' links
         });
+
+
+        // render the graph 
+        setTimeout( function() {
+            force.start();
+            for (let i = 0; i < 300; i++) {
+                (<any>force).tick();
+            }
+            force.stop();
+        }.bind(this), 10);
 
     }
 }

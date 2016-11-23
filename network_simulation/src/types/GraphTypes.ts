@@ -32,5 +32,6 @@ export interface VisualizerOptions {
     height: number, 
     width: number, 
     radius: number,
-    linkDistance: number
+    linkDistance: number,
+    charge: number
 }

@@ -1,16 +1,17 @@
 import * as T from '../../types/Types';
 import * as GT from '../../types/GraphTypes';
 import Topology from './Topology';
+import LatencyModel from './LatencyModel';
 
 /*
     This is a fixed size network topology interface
 */
 
 abstract class OpenSizeTopology extends Topology {
-    protected latency: number;
-    constructor(latency: number) {
+    protected latencyModel: LatencyModel;
+    constructor(latencyModel: LatencyModel) {
         super();
-        this.latency = latency;
+        this.latencyModel = latencyModel;
         console.log('Constructing flexible size topology');
         this.graph = {
             nodes: [],
