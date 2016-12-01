@@ -27,3 +27,7 @@ export class FixedSizeTopologyException implements T.Exception {
         this.msg = msg;
     }
 }
+
+export function now(): number { 
+    return Date.now();
+}
