@@ -42,12 +42,17 @@ class GraphVisualizer {
         
 
 
-        let d3links = svg.selectAll('.link')
+        let d3edges = svg.selectAll('.link')
             .data(this.edges)
             .enter().append('g')
             .attr('class', 'link')
+        
+        let d3text = d3edges.append('text')
+            .text( function(d) {
+                return "" + d.latency;
+            });
             
-        d3links.append('line')
+        let d3links = d3edges.append('line')
             .attr('class', 'line');
 
 
@@ -89,15 +94,15 @@ class GraphVisualizer {
             // `source` and `target` properties, specifying
             // `x` and `y` values in each case.
 
-            // don't want links going all the way into circle...
-            // need to do a tiny bit of maths
+            d3text.attr('transform', function(d) {
+                return "translate(" + (d.source['x'] + d.target['x'])/2 + "," + (d.source['y'] + d.target['y'])/2 + ")";
+            });
             
-            
-            /*d3links.attr('x1', function(d) { return d.source['x']; })  // don't have to do this but do because of typescript not d3
+            d3links.attr('x1', function(d) { return d.source['x']; })  // don't have to do this but do because of typescript not d3
                 .attr('y1', function(d) { return d.source['y']; })
                 .attr('x2', function(d) { return d.target['x']; })
                 .attr('y2', function(d) { return d.target['y']; });
-            */
+            
             /*
             d3links.attr("transform", function(d) { 
                 return "translate(" + (d.source['x'] + d.target['x'])/2 + "," + (d.source['y'] + d.target['y'])/2 + ")" });

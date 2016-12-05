@@ -24,6 +24,10 @@ abstract class Topology {
     public getNeighborsOf(id: T.ClientId): number[] {
         return this.graph.nodes[id].links;
     }
+
+    public getEdge(index: number): GT.Edge {
+        return this.graph.edges[index];
+    }
 }
 
 export default Topology;
