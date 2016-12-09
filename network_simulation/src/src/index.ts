@@ -6,6 +6,26 @@ import NetworkManager from '../modules/NetworkManager';
 import NetworkInterface from '../modules/NetworkInterface';
 import LatencyModelConstant from '../modules/topology/LatencyModelConstant';
 
+import * as tsUnit from 'tsunit.external/tsUnit'
+import MinHeapTests from '../tests/MinHeapTests';
+import RealtimeSchedulerTests from '../tests/RealtimeSchedulerTests';
+
+
+// testing modules
+let tests = [MinHeapTests,RealtimeSchedulerTests];
+// execute and display tests
+for (let i = 0; i < tests.length; i++) {
+    let test = tests[i];
+    let t = new tsUnit.Test(test);
+    let result = t.run();
+    let div = document.createElement('div');
+    div.id = "results-" + i;
+    div.className = "results-section"
+    document.getElementById('testing-results').appendChild(div);
+    result.showResults("results-" + i);
+}
+
+
 let latencyModel = new LatencyModelConstant(100);
 
 let topology = new TopologyFullyConnected(latencyModel);

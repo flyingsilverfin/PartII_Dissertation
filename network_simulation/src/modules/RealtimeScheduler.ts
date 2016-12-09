@@ -1,5 +1,6 @@
 import {HeapElement} from '../types/Types';
 import {now} from './Helper';
+import MinHeap from './MinHeap';
 
 
 /*
@@ -9,7 +10,7 @@ export default class RealtimeScheduler {
 
     private heap: MinHeap;
     private nextTimeoutAt: number = null;
-    private currentTimeoutHandle;
+    private currentTimeoutHandle = null;
     private cancelTimerTolerance: number;
 
     private speed: number;
@@ -27,14 +28,14 @@ export default class RealtimeScheduler {
     }
 
 
-/*
-    How to handle, if we already have a setTimeout running
-    and a new event arrives with shorter timeout that the original (what about if it's about to expire and run?)
 
-    probably want to use current actual time somehow here
+    public clear() {
+        clearTimeout(this.currentTimeoutHandle);
+        this.currentTimeoutHandle = null;
+        this.nextTimeoutAt = null;
+        this.heap.clear();
+    }
 
-
-*/
     public addEvent( time: number, action: any) {
 
         time = time/this.speed;
@@ -48,32 +49,51 @@ export default class RealtimeScheduler {
 
         // check this time against getTime - lastIntervalSetAt
         let n = now();
-        let remaining = this.nextTimeoutAt - n;
+        let self = this;    // for scoping
 
 
         if (this.currentTimeoutHandle === null) {
-            this.currentTimeoutHandle = setTimeout(
-                function() {
-                    this.runEvent(action)
-                }, time);
-            this.nextTimeoutAt = n + time;
+            this.scheduleNextEvent();
         } else {
+            let remaining = this.nextTimeoutAt - n;
+
             // if this new event is to occur cancelTimerTolerance before the reminaing time
             // then delete the timer and add a new one for this event
+
+            // TODO
+            // this will break in some cases - ie scheduled for 30 ms from now, queue has one for 10 ms from now.
+            // solution: decrease key in queue by scheduled event's key as usual
+            //           then run all events at top of queue with negative keys
+            //           ??? somehow handle those in queue with same timestamp and the actual event
             if (time + this.cancelTimerTolerance < remaining) {
                 clearTimeout(this.currentTimeoutHandle);
                 this.currentTimeoutHandle = setTimeout(
                     function() {
-                        this.runEvent(action);
-                        this.heap.decreaseAllKeysBy(time);
-                        this.runReadyEvents();
+                        self.runEvent(action);
+                        self.heap.decreaseAllKeysBy(time);
+                        self.runReadyEvents();
+                        self.scheduleNextEvent();
                     }, time);
                 this.nextTimeoutAt = n + time;
             }
         }
     }
 
-
+    private scheduleNextEvent() {
+        let self = this;
+        if (this.heap.empty()) {
+            return;
+        }
+        let top = this.heap.take();
+        this.currentTimeoutHandle = setTimeout( 
+            function() {
+                self.runEvent(top.payload);
+                self.heap.decreaseAllKeysBy(top.key);
+                self.runReadyEvents();
+                self.scheduleNextEvent();
+            }, top.key);
+        this.nextTimeoutAt = now() + top.key;
+    }
 
     private runEvent(action) {
         action();
@@ -81,102 +101,9 @@ export default class RealtimeScheduler {
 
     private runReadyEvents() {
         // process any other events from the queue that need to be run
-        while (this.heap.peek().key <= 0) {
+        while (!this.heap.empty() && this.heap.peek().key <= 0) {
             let elem = this.heap.take();
             elem.payload();
         }
-    }
-
-}
-
-class MinHeap {
-
-    private heap: HeapElement[];
-
-    constructor(initialElements: HeapElement[] = []) {
-        this.heap = initialElements;
-        this.heapify();
-    }
-
-    public insert(elem: HeapElement) {
-        this.heap.push(elem);
-        this.bubbleUp(this.heap.length-1);
-    }
-
-    public decreaseAllKeysBy(t: number) {
-        for (let elem of this.heap) {
-            elem.key -= t;
-        }
-    }
-
-    public peek(): HeapElement {
-        return this.heap[0];
-    }
-
-    public take(): HeapElement {
-        let elem = this.heap[0];
-        this.swap(0, this.heap.length-1);
-        delete this.heap[this.heap.length-1];
-        this.siftDown(0);
-        return elem;
-    }
-
-    private heapify(): void {
-        // first parent that might not satisfy heap property
-        // is parent(lastIndex) = (n-1)/2
-        for (let i = this.parent(this.heap.length) - 1; i >= 0; i--) {
-            this.siftDown(i);
-        }
-    }
-
-    private siftDown(index: number): void {
-        let largest = index;
-        let rc = this.rightChild(index);
-        let lc = this.leftChild(index);
-        while (true) {
-            if (rc < this.heap.length && this.heap[rc].key > this.heap[largest].key) {
-                largest = rc;
-            }
-            if (lc < this.heap.length && this.heap[lc].key > this.heap[largest].key){
-                largest = lc;
-            }
-            if (largest != index) {
-                this.swap(largest, index);
-                // repeat
-                index = largest;    
-                rc = this.rightChild(index);
-                lc = this.leftChild(index);
-            }
-        }
-    }
-
-    private bubbleUp(index: number): void {
-        let val = this.heap[index].key;
-        let parent = this.parent(index);
-        // base case: parent = index => equality and exit loop
-        while (this.heap[parent].key < val) {
-            this.swap(index, parent);
-            index = parent;
-            val = this.heap[index].key;
-            parent = this.parent(index);
-        }
-    }
-
-    private swap(i,j): void {
-        let tmp = this.heap[i];
-        this.heap[i] = this.heap[j];
-        this.heap[j] = tmp;
-    }
-
-    private parent(index: number): number {
-        return Math.max(0,(index-1)/2);
-    }
-
-    private leftChild(index: number): number {
-        return 2*index + 1;
-    }
-
-    private rightChild(index: number): number {
-        return 2*index + 2;
     }
 }

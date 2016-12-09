@@ -31,3 +31,7 @@ export class FixedSizeTopologyException implements T.Exception {
 export function now(): number { 
     return Date.now();
 }
+
+export function within(x:number, y:number, tolerance:number): boolean{
+    return (Math.abs(x - y) <= tolerance);
+}
