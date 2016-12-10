@@ -1,6 +1,6 @@
-import {HeapElement} from '../types/Types';
+import {DualKeyHeapElement} from '../types/Types';
 import {now} from './Helper';
-import MinHeap from './MinHeap';
+import DualKeyMinHeap from './DualKeyMinHeap';
 
 
 /*
@@ -8,7 +8,7 @@ import MinHeap from './MinHeap';
 */
 export default class RealtimeScheduler {
 
-    private heap: MinHeap;
+    private heap: DualKeyMinHeap;
     private nextTimeoutAt: number = null;
     private currentTimeoutHandle = null; 
     private cancelTimerTolerance: number;
@@ -20,7 +20,7 @@ export default class RealtimeScheduler {
     */
 
     constructor(timerTolerance = 40.0, simulationSpeed = 1.0) {
-        this.heap = new MinHeap();
+        this.heap = new DualKeyMinHeap();
         this.speed = simulationSpeed;
         //timerTolerance comes in "unscaled" units
         // divide by speed to "scale" it into simulation speed equivalent
@@ -36,12 +36,14 @@ export default class RealtimeScheduler {
         this.heap.clear();
     }
 
-    public addEvent(time: number, action: any) {
+    // logical clock is for resolving packets to correct order if they were sent in same millisecond
+    public addEvent(time: number, logicalClock: number, action: any) {
 
         time = time/this.speed;
 
-        let heapElem: HeapElement = {
-            key: time,
+        let heapElem: DualKeyHeapElement = {
+            pKey: time,
+            sKey: logicalClock,
             payload: action
         };
         this.heap.insert(heapElem);
@@ -79,7 +81,7 @@ export default class RealtimeScheduler {
     }
 
     private timerExpired(timeElapsed): void {
-        this.heap.decreaseAllKeysBy(timeElapsed);
+        this.heap.decreaseAllPrimaryKeysBy(timeElapsed);
         this.runReadyEvents();
     }
 
@@ -92,7 +94,7 @@ export default class RealtimeScheduler {
             return;
         }
 
-        let toutIn = this.heap.peek().key;
+        let toutIn = this.heap.peek().pKey;
         this.nextTimeoutAt = now() + toutIn;
 
         this.currentTimeoutHandle = setTimeout( 
@@ -105,7 +107,7 @@ export default class RealtimeScheduler {
 
     private runReadyEvents() {
         // process any other events from the queue that need to be run
-        while (!this.heap.empty() && this.heap.peek().key <= 0) {
+        while (!this.heap.empty() && this.heap.peek().pKey <= 0) {
             let elem = this.heap.take();
             elem.payload();
         }

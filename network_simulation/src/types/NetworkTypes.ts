@@ -12,3 +12,7 @@ export interface ClientMap {
     // [i: T.ClientId]: NetworkInterface;   // unfortunately can't do i: T.ClientId even though are same type underneath
     [i: number]: NetworkInterface;
 }
+
+export interface ClientLogicalCounterMap {
+    [i: number]: number;
+}

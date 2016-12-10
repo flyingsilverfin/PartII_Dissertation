@@ -7,12 +7,14 @@ import * as T from '../types/Types';
 class NetworkManager {
 
     private clientMap: NT.ClientMap;    // maps client ID (number) to NetworkInterface
+    private clientLogicalCounterMap: NT.ClientLogicalCounterMap;
     private topology: Topology;
     private scheduler: RealtimeScheduler;
 
 
     constructor(topology: Topology) {
         this.clientMap = {};
+        this.clientLogicalCounterMap = {};
         this.topology = topology;
         this.scheduler = new RealtimeScheduler();
     }
@@ -28,9 +30,12 @@ class NetworkManager {
             return;
         }
         this.clientMap[id] = client;
+        this.clientLogicalCounterMap[id] = 0;
         return id;
     }
 
+
+    
     public transmit(sender: T.ClientId, packet: NT.NetworkPacket): void {
         let neighbors = this.topology.getNeighborsOf(sender);
         for (let n of neighbors) {
@@ -39,8 +44,9 @@ class NetworkManager {
                 let targetNetworkInterface = this.clientMap[edge.target];
                 targetNetworkInterface.receive(packet);
             };
-            this.scheduler.addEvent(edge.latency, action);
+            this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[sender], action);
         }
+        this.clientLogicalCounterMap[sender]++;
     }
 
 }

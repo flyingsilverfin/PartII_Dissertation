@@ -1,6 +1,6 @@
 import * as tsUnit from 'tsunit.external/tsUnit';
 import RealtimeScheduler from '../modules/RealtimeScheduler';
-import {HeapElement} from '../types/Types';
+import {DualKeyHeapElement} from '../types/Types';
 import {now, within} from '../modules/Helper';
 
 
@@ -14,20 +14,19 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
         let n = now();
 
         let self = this;
-        this.scheduler.addEvent(100, function() {
+        this.scheduler.addEvent(100, 0, function() {
             console.log(now()-n, " should be within 5 of 100");
             self.areIdentical(true, within(now()-n, 100, 5));
-
         });
-        this.scheduler.addEvent(200, function() {
+        this.scheduler.addEvent(200, 0, function() {
             console.log(now()-n, " should be within 5 of 200");
 
             self.areIdentical(true, within(now()-n, 200, 5))
         });
-        this.scheduler.addEvent(300, function() {
+        this.scheduler.addEvent(300, 0, function() {
             console.log(now()-n, " should be within 5 of 300");
             self.areIdentical(true, within(now()-n, 300, 5));
-        })
+        });
     }
 
     /*
@@ -35,14 +34,16 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
         I can see this being an issue in the case where client 1 sends A followed by B in the same millisecond, 
         and the priority queue reorders this to arrive as B followed by A. This breaks our in-order requirement.
     */
-    identicalTimestampOrderingTest() {
+    identicalPrimaryTimestampOrderingTest() {
         let n = now();
         let self = this;
-        this.scheduler.clear();
+        let scheduler = new RealtimeScheduler();
+
+        console.log('-----Running identicalPrimaryTimestampOrderingTest ----- ');
 
         for (let i = 0; i < 20; i++) {
-            this.scheduler.addEvent(100, function() {
-                console.log(i + ". This should print before messages with > " + i);
+            scheduler.addEvent(100, i, function() {
+                console.log(i + " (secondary key). This should print before messages with > " + i);
             })
         }
     }
@@ -60,18 +61,14 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
 
         let n = now();
         let self = this;
-        this.scheduler.clear();
+        let scheduler = new RealtimeScheduler();
 
         console.log('-----Running slightDelayOrderingTest ----- ');
 
         for (let i = 5; i >= 0; i--) {
-            this.scheduler.addEvent(i * 5, function() {
+            scheduler.addEvent(i * 5, 0, function() {
                 console.log(i + ". This should print before messages with > " + i);
             })
         }
     }
-
-
-
-
 }
