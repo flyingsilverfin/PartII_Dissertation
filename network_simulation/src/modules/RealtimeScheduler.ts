@@ -10,7 +10,7 @@ export default class RealtimeScheduler {
 
     private heap: MinHeap;
     private nextTimeoutAt: number = null;
-    private currentTimeoutHandle = null;
+    private currentTimeoutHandle = null; 
     private cancelTimerTolerance: number;
 
     private speed: number;
@@ -36,7 +36,7 @@ export default class RealtimeScheduler {
         this.heap.clear();
     }
 
-    public addEvent( time: number, action: any) {
+    public addEvent(time: number, action: any) {
 
         time = time/this.speed;
 
@@ -51,7 +51,7 @@ export default class RealtimeScheduler {
         let n = now();
         let self = this;    // for scoping
 
-
+        // start a new timer if there wasn't one before
         if (this.currentTimeoutHandle === null) {
             this.scheduleNextEvent();
         } else {
@@ -60,8 +60,9 @@ export default class RealtimeScheduler {
             // if this new event is to occur cancelTimerTolerance before the reminaing time
             // then delete the timer and add a new one for this event
 
+
             // TODO
-            // this will break in some cases - ie scheduled for 30 ms from now, queue has one for 10 ms from now.
+            // this will break in some cases - ie schedule for 30 ms from now, queue has one for 10 ms from now.
             // solution: decrease key in queue by scheduled event's key as usual
             //           then run all events at top of queue with negative keys
             //           ??? somehow handle those in queue with same timestamp and the actual event
@@ -69,9 +70,7 @@ export default class RealtimeScheduler {
                 clearTimeout(this.currentTimeoutHandle);
                 this.currentTimeoutHandle = setTimeout(
                     function() {
-                        self.runEvent(action);
-                        self.heap.decreaseAllKeysBy(time);
-                        self.runReadyEvents();
+                        self.timerExpired(time);
                         self.scheduleNextEvent();
                     }, time);
                 this.nextTimeoutAt = n + time;
@@ -79,24 +78,29 @@ export default class RealtimeScheduler {
         }
     }
 
-    private scheduleNextEvent() {
-        let self = this;
-        if (this.heap.empty()) {
-            return;
-        }
-        let top = this.heap.take();
-        this.currentTimeoutHandle = setTimeout( 
-            function() {
-                self.runEvent(top.payload);
-                self.heap.decreaseAllKeysBy(top.key);
-                self.runReadyEvents();
-                self.scheduleNextEvent();
-            }, top.key);
-        this.nextTimeoutAt = now() + top.key;
+    private timerExpired(timeElapsed): void {
+        this.heap.decreaseAllKeysBy(timeElapsed);
+        this.runReadyEvents();
     }
 
-    private runEvent(action) {
-        action();
+    private scheduleNextEvent() {
+        let self = this;
+
+        if (this.heap.empty()) {
+            this.nextTimeoutAt = null;
+            this.currentTimeoutHandle = null;
+            return;
+        }
+
+        let toutIn = this.heap.peek().key;
+        this.nextTimeoutAt = now() + toutIn;
+
+        this.currentTimeoutHandle = setTimeout( 
+            function() {
+                self.timerExpired(toutIn);
+                self.scheduleNextEvent();
+            }, toutIn);
+
     }
 
     private runReadyEvents() {

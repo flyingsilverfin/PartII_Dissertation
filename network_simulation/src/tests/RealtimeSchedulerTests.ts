@@ -35,7 +35,7 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
         I can see this being an issue in the case where client 1 sends A followed by B in the same millisecond, 
         and the priority queue reorders this to arrive as B followed by A. This breaks our in-order requirement.
     */
-    orderingTest() {
+    identicalTimestampOrderingTest() {
         let n = now();
         let self = this;
         this.scheduler.clear();
@@ -45,8 +45,33 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
                 console.log(i + ". This should print before messages with > " + i);
             })
         }
-
     }
+
+
+    /*
+        The scheduler has a bit of logic which allows it retain a scheduled task up to an indicated tolerance
+        even if the new event is supposed to be run earlier. 
+
+        I originally put this in since the setTimeout is only accurate to a certain degree, so clearing and restarting a timer if there 
+        are only 10 ms left (compared to 5 with the new event) is pointless.
+        However, we need to make sure we still execute the newer event before the originally scheduled one...
+    */
+    slightDelayOrderingTest() {
+
+        let n = now();
+        let self = this;
+        this.scheduler.clear();
+
+        console.log('-----Running slightDelayOrderingTest ----- ');
+
+        for (let i = 5; i >= 0; i--) {
+            this.scheduler.addEvent(i * 5, function() {
+                console.log(i + ". This should print before messages with > " + i);
+            })
+        }
+    }
+
+
 
 
 }

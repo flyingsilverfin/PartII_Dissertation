@@ -8,11 +8,12 @@ import LatencyModelConstant from '../modules/topology/LatencyModelConstant';
 
 import * as tsUnit from 'tsunit.external/tsUnit'
 import MinHeapTests from '../tests/MinHeapTests';
+import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 import RealtimeSchedulerTests from '../tests/RealtimeSchedulerTests';
 
 
 // testing modules
-let tests = [MinHeapTests,RealtimeSchedulerTests];
+let tests = [MinHeapTests, DualKeyMinHeapTests, RealtimeSchedulerTests];
 // execute and display tests
 for (let i = 0; i < tests.length; i++) {
     let test = tests[i];
