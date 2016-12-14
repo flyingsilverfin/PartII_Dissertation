@@ -37,11 +37,20 @@ class NetworkManager {
 
     
     public transmit(sender: T.ClientId, packet: NT.NetworkPacket): void {
-        let neighbors = this.topology.getNeighborsOf(sender);
-        for (let n of neighbors) {
-            let edge = this.topology.getEdge(n);
+        debugger
+        let neighborLinkIds = this.topology.getNeighborLinksOf(sender);
+        let self = this;
+        // iterate over identifier of the links
+        for (let i = 0; i < neighborLinkIds.length; i++) {
+            let link = neighborLinkIds[i];
+            let edge = this.topology.getEdge(link);
+
+            let targetNetworkInterface = self.clientMap[edge.target];
+            // D3 is messing with my graph :| just going to work around it for now...
+            //let targetNetworkInterface = self.clientMap[(<any>edge.target).index];
+
             let action = function() {
-                let targetNetworkInterface = this.clientMap[edge.target];
+                
                 targetNetworkInterface.receive(packet);
             };
             this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[sender], action);

@@ -2,22 +2,32 @@
 
 import * as GT from '../types/GraphTypes';
 import Topology from './topology/Topology';
+import NetworkStatsManager from './NetworkStatsManager';
 import * as d3 from 'd3';
 
 
 class GraphVisualizer {
     private container: SVGElement;
     private topology: Topology;
+    private networkStats: NetworkStatsManager;
     private nodes: GT.Node[];
     private edges: GT.Edge[];
     private options: any;
+    
+    //testing
+    private d3edges;
 
     constructor(container:SVGElement, 
                 topology: Topology,
+                networkStats: NetworkStatsManager,
                 options: GT.VisualizerOptions = {height: 900, width: 900, radius: 25, linkDistance: 400, charge: -10000}) {
         this.container = container;
         this.topology = topology;
+        this.networkStats = networkStats;
         this.options = options;
+
+        //testing
+        this.d3edges = null;
     }
 
     public updateGraph(): void {
@@ -26,9 +36,15 @@ class GraphVisualizer {
         this.draw();
     }
 
+    public updateLoads(): void {
+        this.d3edges = this.d3edges.data(this.edges);
+        console.log('set data again');
+    }
+
     public draw(): void {
         this.container.innerHTML = "";  //should clear it?
-        
+        let self = this;
+
         let svg = d3.select(this.container).attr('height', this.options.height).attr('width', this.options.width);
         
 
@@ -40,12 +56,15 @@ class GraphVisualizer {
             .charge(this.options.charge);
 
         
+        this.d3edges = svg.selectAll('.link')
+            .data(this.edges);
+        
+        //this.d3edges.attr('stroke', function(d,i) { console.log('resetting stroke color'); return self.getColor(self.networkStats.getFractionalLoadOn(i)); });
 
 
-        let d3edges = svg.selectAll('.link')
-            .data(this.edges)
-            .enter().append('g')
-            .attr('class', 'link')
+        let d3edges = this.d3edges.enter()
+            .append('g')
+            .attr('class', 'link');
         
         let d3text = d3edges.append('text')
             .text( function(d) {
@@ -53,7 +72,10 @@ class GraphVisualizer {
             });
             
         let d3links = d3edges.append('line')
-            .attr('class', 'line');
+            .attr('class', 'line')
+            .attr('id', function(d,i) { return "edge-" + i; })
+            .attr("stroke", function(d, i) { console.log('resetting stroke color'); return self.getColor(self.networkStats.getFractionalLoadOn(i)); })
+
 
 
 
@@ -109,8 +131,7 @@ class GraphVisualizer {
             */
             
 
-            // TODO
-            //  need to do a .attr over the lines within the 'g' links
+            
         });
 
 
@@ -123,6 +144,14 @@ class GraphVisualizer {
             force.stop();
         }.bind(this), 10);
 
+    }
+
+    // How to color Edge given a fractional load from 0 to 1
+    private getColor(fraction: number): string {
+        let r = 255 * fraction;
+        let g = 0;
+        let b = (1-fraction) * 255;
+        return "rgb(" + r + "," + g + "," + b + ")";
     }
 }
 

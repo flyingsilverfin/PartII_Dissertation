@@ -9,6 +9,14 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
     private scheduler = new RealtimeScheduler();
     private result: number[];
 
+
+/*
+
+    TODO
+        rewrite all these with Async unit tests + promises!!!!
+        important, otherwise these aren't really usable as proper unit tests...
+
+*/
     
     events100ms() {
         let n = now();
@@ -30,9 +38,8 @@ export default class RealtimeSchedulerTests extends tsUnit.TestClass {
     }
 
     /*
-        this test is making sure that inserting many events to execute at the same time will execute in the order inserted...
-        I can see this being an issue in the case where client 1 sends A followed by B in the same millisecond, 
-        and the priority queue reorders this to arrive as B followed by A. This breaks our in-order requirement.
+        this test is making sure that inserting many events to execute at the same time will execute in the order inserted
+        => solved originally by implementing dual key queue where the second key is an always incrementing logical clock per client
     */
     identicalPrimaryTimestampOrderingTest() {
         let n = now();

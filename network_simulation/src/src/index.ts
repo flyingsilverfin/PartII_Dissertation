@@ -3,8 +3,10 @@
 import TopologyFullyConnected from '../modules/topology/TopologyFullyConnected';
 import GraphVisualizer from '../modules/GraphVisualizer';
 import NetworkManager from '../modules/NetworkManager';
+import NetworkStatsManager from '../modules/NetworkStatsManager';
 import NetworkInterface from '../modules/NetworkInterface';
 import LatencyModelConstant from '../modules/topology/LatencyModelConstant';
+import ClientMock from '../modules/ClientMock';
 
 import * as tsUnit from 'tsunit.external/tsUnit'
 import MinHeapTests from '../tests/MinHeapTests';
@@ -27,12 +29,17 @@ for (let i = 0; i < tests.length; i++) {
 }
 
 
-let latencyModel = new LatencyModelConstant(100);
+let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');
 
+let latencyModel = new LatencyModelConstant(100);
 let topology = new TopologyFullyConnected(latencyModel);
-let manager = new NetworkManager(topology);
+
+let networkStats = new NetworkStatsManager(topology, statsDiv);
+let manager = new NetworkManager(topology); 
+
 let graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementById('graph_container'),
-                                          topology, 
+                                          topology,
+                                          networkStats,
                                           {
                                               height: document.body.clientHeight,
                                               width: document.body.clientWidth,
@@ -41,13 +48,66 @@ let graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementBy
                                               radius: 25
                                             });
 
+let mockClients: ClientMock[] = [];
 
 for (let i = 0; i < 10; i++) {
     let ni = new NetworkInterface();
     let id = manager.register(ni);
     ni.setClientId(id);
+    ni.setManager(manager);
+
+    mockClients.push(new ClientMock(ni, id));
 }
 
+
+
 graphVisualizer.updateGraph();
+
+
+function sendRandomPackets() {
+    console.log('sending 20 packets');
+    for (let i = 0; i < 20; i++) {
+        debugger
+        let i = Math.floor(Math.random() * mockClients.length);
+        let c = mockClients[i];
+        let j = Math.floor(Math.random() * (122 - 97)) + 97;
+        let char = String.fromCharCode(j);
+        c.sendMockInsertPacket(char);
+    }
+}
+
+let i = Math.floor(Math.random() * mockClients.length);
+let c = mockClients[i];
+let j = Math.floor(Math.random() * (122 - 97)) + 97;
+let char = String.fromCharCode(j);
+c.sendMockInsertPacket(char);
+
+//setInterval(sendRandomPackets, 130);
+//sendRandomPackets();
+
+
+/*
+
+attempting to get d3 to show loads on graph...
+
+
+function d(){
+    setTimeout(function() {
+        networkStats.incrementLoad(0);
+        networkStats.incrementLoad(1);
+        networkStats.incrementLoad(2);
+        console.log("incrememting");
+        other();
+        graphVisualizer.updateLoads();
+    }, 1000); }
+function other() {
+    networkStats.decrementLoad(0);
+    networkStats.decrementLoad(1);
+    networkStats.decrementLoad(2);
+    d();
+}
+
+d();
+*/
 
 

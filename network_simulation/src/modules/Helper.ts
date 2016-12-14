@@ -35,3 +35,7 @@ export function now(): number {
 export function within(x:number, y:number, tolerance:number): boolean{
     return (Math.abs(x - y) <= tolerance);
 }
+
+export function initArrayWith(n: number, initWith: number) {
+    return Array.apply(null, Array(n)).map(Number.prototype.valueOf,initWith);
+}
