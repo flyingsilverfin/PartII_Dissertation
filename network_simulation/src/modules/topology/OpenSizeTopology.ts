@@ -15,7 +15,6 @@ abstract class OpenSizeTopology extends Topology {
         console.log('Constructing flexible size topology');
         this.graph = {
             nodes: [],
-            edges: []
         }
     }
 

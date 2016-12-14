@@ -16,25 +16,29 @@ class TopologyFullyConnected extends OpenSizeTopology  {
 
     public addNode(): T.ClientId {
         let newNode: GT.Node = {
-            name: "",
-            weight: 0,
             links: []
         };
-        let id = this.graph.nodes.length;
+        let nodeId = this.graph.nodes.length;
         for (let i = 0; i < this.graph.nodes.length; i++) {
-            let newEdge: GT.Edge = {
-                source: i,
-                target: id,
-                latency: this.latencyModel.getLatency(this.graph.edges.length-1)
+            let edgeId = this.numEdges;
+            this.numEdges++;
+            let adjacentEdge: GT.AdjacentEdge = {
+                id: edgeId,
+                target: i,
+                latency: this.latencyModel.getLatency(edgeId)
             }
-            this.graph.edges.push(newEdge);
             // add references for fast neighbor retrieval
-            newNode.links.push(this.graph.edges.length-1);
-            this.graph.nodes[i].links.push(this.graph.edges.length-1)
-        }
+            newNode.links.push(adjacentEdge);
 
+            let oppositeAdjacentEdge: GT.AdjacentEdge = {
+                id: edgeId,
+                target: nodeId,
+                latency: this.latencyModel.getLatency(edgeId)
+            }
+            this.graph.nodes[i].links.push(oppositeAdjacentEdge);
+        }
         this.graph.nodes.push(newNode);
-        return <T.ClientId>id;
+        return <T.ClientId>nodeId;
     }
 }
 

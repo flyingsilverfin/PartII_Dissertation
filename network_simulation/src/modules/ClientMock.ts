@@ -40,6 +40,8 @@ class ClientMock {
             bundle: bundle
         }
 
+        this.clock++;
+
         this.network.send(packet);
     }
 

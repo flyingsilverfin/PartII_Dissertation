@@ -10,12 +10,14 @@ class GraphVisualizer {
     private container: SVGElement;
     private topology: Topology;
     private networkStats: NetworkStatsManager;
-    private nodes: GT.Node[];
-    private edges: GT.Edge[];
+    private nodes: GT.d3Node[];
+    private edges: GT.d3Edge[];
     private options: any;
+    private keyText: any;
+    // coloring hack, map of edge ID to actual HTml element... will just set color through there
+    private edgeHTMLElements: {[i: number] : HTMLElement};
     
-    //testing
-    private d3edges;
+
 
     constructor(container:SVGElement, 
                 topology: Topology,
@@ -26,19 +28,37 @@ class GraphVisualizer {
         this.networkStats = networkStats;
         this.options = options;
 
-        //testing
-        this.d3edges = null;
+        this.edgeHTMLElements = {};
+
+
     }
 
-    public updateGraph(): void {
-        this.nodes = this.topology.getNodes();
-        this.edges = this.topology.getEdges();
+    public graphTopologyChanged(): void {
+        this.nodes = this.topology.getD3Nodes();
+        this.edges = this.topology.getD3Edges();
         this.draw();
     }
 
     public updateLoads(): void {
-        this.d3edges = this.d3edges.data(this.edges);
-        console.log('set data again');
+        /*let links = d3.selectAll('.link').data(this.edges, function(d) { return d.source + "-" + d.target; });
+        let self = this;
+        links.attr("stroke", function(d, i) {
+            let actualEdge = this.lastChild;
+            actualEdge.attributes.stroke.value = self.getColor(self.networkStats.getFractionalLoadOn(i));
+            debugger;
+            return self.getColor(self.networkStats.getFractionalLoadOn(i)); });
+        */
+        // above isn't working for quite a while... time to just hack it
+        for (let i in this.edgeHTMLElements) {
+            let edge = this.edgeHTMLElements[i];
+            debugger
+            //edge.attributes.stroke.value = this.getColor(this.networkStats.getFractionalLoadOn(i));
+            // hack, [2] is 'stroke'
+            edge.attributes[2].value = this.getColor(this.networkStats.getFractionalLoadOn(i));
+        }
+
+        this.keyText[0][0].textContent = this.networkStats.getMaxLinkLoad() + " packets";
+
     }
 
     public draw(): void {
@@ -46,6 +66,21 @@ class GraphVisualizer {
         let self = this;
 
         let svg = d3.select(this.container).attr('height', this.options.height).attr('width', this.options.width);
+
+       
+        this.keyText = svg.append('g');
+        this.keyText.append("rect")
+                .attr("x", 10)
+                .attr("y", 10)
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr('fill', 'red');
+        this.keyText = this.keyText.append('text')
+                .attr("x", 30)
+                .attr("y", 20);
+        this.keyText[0][0].textContent = this.networkStats.getMaxLinkLoad() + " packets";
+                
+            
         
 
         let force = d3.layout.force()
@@ -56,13 +91,9 @@ class GraphVisualizer {
             .charge(this.options.charge);
 
         
-        this.d3edges = svg.selectAll('.link')
-            .data(this.edges);
-        
-        //this.d3edges.attr('stroke', function(d,i) { console.log('resetting stroke color'); return self.getColor(self.networkStats.getFractionalLoadOn(i)); });
-
-
-        let d3edges = this.d3edges.enter()
+        let d3edges = svg.selectAll('.link')
+            .data(this.edges, function(d) { return d.source + "-" + d.target; })
+            .enter()
             .append('g')
             .attr('class', 'link');
         
@@ -73,7 +104,7 @@ class GraphVisualizer {
             
         let d3links = d3edges.append('line')
             .attr('class', 'line')
-            .attr('id', function(d,i) { return "edge-" + i; })
+            .attr('id', function(d,i) { debugger; self.edgeHTMLElements[i] = this; return "edge-" + i; })
             .attr("stroke", function(d, i) { console.log('resetting stroke color'); return self.getColor(self.networkStats.getFractionalLoadOn(i)); })
 
 
@@ -136,22 +167,29 @@ class GraphVisualizer {
 
 
         // render the graph 
-        setTimeout( function() {
-            force.start();
-            for (let i = 0; i < 300; i++) {
-                (<any>force).tick();
-            }
-            force.stop();
-        }.bind(this), 10);
+        //setTimeout( function() {
+        force.start();
+        for (let i = 0; i < 300; i++) {
+            (<any>force).tick();
+        }
+        force.stop();
+        //}.bind(this), 10);
+
+
+        // create scale for colors
+
 
     }
 
     // How to color Edge given a fractional load from 0 to 1
     private getColor(fraction: number): string {
+
+        fraction = fraction;   // for visibility
+
         let r = 255 * fraction;
         let g = 0;
-        let b = (1-fraction) * 255;
-        return "rgb(" + r + "," + g + "," + b + ")";
+        let b = (1-fraction)*255;
+        return "rgb(" + Math.floor(r) + "," + Math.floor(g) + "," + Math.floor(b) + ")";
     }
 }
 

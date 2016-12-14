@@ -35,18 +35,20 @@ let latencyModel = new LatencyModelConstant(100);
 let topology = new TopologyFullyConnected(latencyModel);
 
 let networkStats = new NetworkStatsManager(topology, statsDiv);
-let manager = new NetworkManager(topology); 
-
 let graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementById('graph_container'),
                                           topology,
                                           networkStats,
                                           {
                                               height: document.body.clientHeight,
-                                              width: document.body.clientWidth,
+                                              width: document.body.clientWidth - 100,
                                               charge: -10000,
                                               linkDistance: 400,
                                               radius: 25
                                             });
+
+let manager = new NetworkManager(topology, networkStats, graphVisualizer); 
+
+
 
 let mockClients: ClientMock[] = [];
 
@@ -61,13 +63,12 @@ for (let i = 0; i < 10; i++) {
 
 
 
-graphVisualizer.updateGraph();
+graphVisualizer.graphTopologyChanged();
 
 
 function sendRandomPackets() {
-    console.log('sending 20 packets');
-    for (let i = 0; i < 20; i++) {
-        debugger
+    console.log('sending 2 packets');
+    for (let i = 0; i < 10; i++) {
         let i = Math.floor(Math.random() * mockClients.length);
         let c = mockClients[i];
         let j = Math.floor(Math.random() * (122 - 97)) + 97;
@@ -75,14 +76,14 @@ function sendRandomPackets() {
         c.sendMockInsertPacket(char);
     }
 }
-
+/*
 let i = Math.floor(Math.random() * mockClients.length);
 let c = mockClients[i];
 let j = Math.floor(Math.random() * (122 - 97)) + 97;
 let char = String.fromCharCode(j);
 c.sendMockInsertPacket(char);
+*/
 
-//setInterval(sendRandomPackets, 130);
 //sendRandomPackets();
 
 

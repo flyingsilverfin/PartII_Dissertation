@@ -16,6 +16,6 @@
 }
 
 .node circle {
-    fill: none;
+    fill: darkred;
     stroke: black;
 }
