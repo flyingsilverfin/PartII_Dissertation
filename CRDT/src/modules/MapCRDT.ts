@@ -23,7 +23,12 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
-    public insert(bundle: CT.InsertMessage): void {
+    // return false if this ID is already used
+    public insert(bundle: CT.InsertMessage): boolean {
+
+        if (this.map.hasOwnProperty(bundle.id)) {
+            return false
+        }
 
         // ASSERT NEEDED:
         //  this.map[bundle.id] === undefined 
@@ -64,15 +69,18 @@ class MapCRDT implements CT.CRDT {
         // ASSERT NEEDED
         //  t >= this.nextCounter
         this.nextCounter = t+1; 
+
+        return true;
     }
 
     // implements interface
-    public delete(bundle: CT.DeleteMessage): void {
+    public delete(bundle: CT.DeleteMessage): boolean {
         let idToDelete = bundle.deleteId;
         if (this.map[idToDelete] === undefined) {
-            throw new Helper.DeleteNullIdCRDTException(idToDelete);
+            return false;
         }
         this.map[idToDelete]['deleted'] = true;
+        return true;
     }
 
     // implements interface

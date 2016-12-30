@@ -1,0 +1,21 @@
+#graph_container {
+    background-color: #DDDDDD;
+}
+
+.link {
+    stroke: none;
+    fill: #666666;
+}
+
+.link line {
+
+}
+
+.node {
+    fill: none;
+}
+
+.node circle {
+    fill: darkred;
+    stroke: black;
+}

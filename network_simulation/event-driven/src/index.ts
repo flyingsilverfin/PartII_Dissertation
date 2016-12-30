@@ -5,17 +5,18 @@ import GraphVisualizer from '../modules/GraphVisualizer';
 import NetworkManager from '../modules/NetworkManager';
 import NetworkStatsManager from '../modules/NetworkStatsManager';
 import NetworkInterface from '../modules/NetworkInterface';
+import Time from '../modules/Time';
+import Logger from '../modules/Logger';
 import LatencyModelConstant from '../modules/topology/LatencyModelConstant';
 import ClientMock from '../modules/ClientMock';
 
 import * as tsUnit from 'tsunit.external/tsUnit'
 import MinHeapTests from '../tests/MinHeapTests';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
-import RealtimeSchedulerTests from '../tests/RealtimeSchedulerTests';
 
 
 // testing modules
-let tests = [MinHeapTests, DualKeyMinHeapTests, RealtimeSchedulerTests];
+let tests = [MinHeapTests, DualKeyMinHeapTests];
 // execute and display tests
 for (let i = 0; i < tests.length; i++) {
     let test = tests[i];
@@ -26,12 +27,12 @@ for (let i = 0; i < tests.length; i++) {
     div.className = "results-section"
     document.getElementById('testing-results').appendChild(div);
     result.showResults("results-" + i);
-}
+} 
 
 
 let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');
 
-let latencyModel = new LatencyModelConstant(100);
+let latencyModel = new LatencyModelConstant(1000);
 let topology = new TopologyFullyConnected(latencyModel);
 
 let networkStats = new NetworkStatsManager(topology, statsDiv);
@@ -46,7 +47,12 @@ let graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementBy
                                               radius: 25
                                             });
 
-let manager = new NetworkManager(topology, networkStats, graphVisualizer); 
+
+let time = new Time();
+let logger = new Logger(time);
+
+
+let manager = new NetworkManager(topology, networkStats, graphVisualizer, time, logger); 
 
 
 
@@ -68,7 +74,7 @@ graphVisualizer.graphTopologyChanged();
 
 function sendRandomPackets() {
     console.log('sending 2 packets');
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
         let i = Math.floor(Math.random() * mockClients.length);
         let c = mockClients[i];
         let j = Math.floor(Math.random() * (122 - 97)) + 97;
@@ -84,8 +90,13 @@ let char = String.fromCharCode(j);
 c.sendMockInsertPacket(char);
 */
 
-//sendRandomPackets();
 
+//setInterval(sendRandomPackets, 1000);
+sendRandomPackets();
+
+manager.runSimulation();
+
+logger.writeLogToConsole();
 
 /*
 

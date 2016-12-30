@@ -9,10 +9,6 @@ import CRDTComparatorTester from '../tests/CRDTComparatorTests';
 import * as tsUnit from 'tsunit.external/tsUnit'
 
 
-// for some reason I need this log for it all to compile haha
-console.log(tsUnit);
-
-
 
 // testing modules
 let tests = [MapCRDTTester, CRDTComparatorTester];

@@ -1,6 +1,8 @@
+import * as T from './Types';
+
 export interface CRDT {
-    insert(bundle: InsertMessage): boolean;    // insert char after loc with id
-    delete(bundle: DeleteMessage): boolean;    // delete some id (need to give id for deletion?)
+    insert(bundle: InsertMessage): void;    // insert char after loc with id
+    delete(bundle: DeleteMessage): void;    // delete some id (need to give id for deletion?)
     
     read(): ParallelStringArrays;     // return entire string contained within
     getNextTs(): number;    //next valid timestamp

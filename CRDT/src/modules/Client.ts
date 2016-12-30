@@ -78,8 +78,11 @@ class Client {
         this.updateParallelArrays();
     }
 
-    private insertReceived(bundle: CT.InsertMessage): void {
-        this.dt.insert(bundle);
+    private insertReceived(bundle: CT.InsertMessage): boolean {
+        if (!this.dt.insert(bundle)) {
+            return false;
+        }
+
 
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
@@ -93,6 +96,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.incrementCursorPosition();
         }
+        return true;
     }
 
     private charDeletedLocal(index: number) {
@@ -112,8 +116,10 @@ class Client {
         this.updateParallelArrays();
     }
 
-    private deleteReceived(bundle: CT.DeleteMessage): void {
-        this.dt.delete(bundle);
+    private deleteReceived(bundle: CT.DeleteMessage): boolean {
+        if (!this.dt.delete(bundle)) {
+            return false;
+        }
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
@@ -126,7 +132,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
-
+        return true;
     }
 
     private updateParallelArrays(): void {
