@@ -1,14 +1,11 @@
 import * as GT from '../../types/GraphTypes';
 import * as T from '../../types/Types';
+import {NoMoreNodesToAllocateException} from '../Helper';
 
 /*
     This is an abstract network topology
 
 
-    NOTE!!!!
-        Strong requirement that adding nodes does not change the index of existing edges/existing network properties at all
-        needed for implementing network stats reasonably efficiently
-        TODO: write unit tests for this
 */
 
 abstract class Topology {
@@ -55,6 +52,17 @@ abstract class Topology {
 
     // this may need to be efficient
     public abstract addNode(): T.ClientId;
+
+    public reserveNextNodeId(): T.ClientId {
+        // if we still have nodes that we can assign
+        if (this.allocated < this.getMaximumSize()) {
+            this.allocated++;
+            return this.allocated-1;
+        } else {
+            throw new NoMoreNodesToAllocateException("Cannot reserve node ID, have all been allocated");
+        }
+
+    }
 
     // this needs to be efficient
     public getNeighborLinksOf(id: T.ClientId): GT.AdjacentEdge[] {

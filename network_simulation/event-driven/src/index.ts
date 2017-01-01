@@ -22,6 +22,7 @@ for (let i = 0; i < tests.length; i++) {
     result.showResults("results-" + i);
 } 
 
+// --- bit that fetches and runs experiments --- 
 
 
 function getNextExperiment() {
@@ -35,15 +36,20 @@ function getNextExperiment() {
 
 function runExperiment(experiment) {
 
+    let name = experiment.experiment_name;
+    console.log("-----Fetched and running experiment: " + name + "-----");
+
     let resultOfExperiment = main(experiment);
+
+    console.log("-----Completed running experiment: " + name + "-----");
     post(
         "http://localhost/experimentResult:3001",
         resultOfExperiment
-    )
+    );
 
 }
 
 
-setInterval(getNextExperiment, 300);
+setInterval(getNextExperiment, 1000);
 
 

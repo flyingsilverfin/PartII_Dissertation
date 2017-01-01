@@ -9,9 +9,13 @@ import LatencyModel from './LatencyModel';
 
 class TopologyFullyConnected extends OpenSizeTopology  {
 
-    constructor(latencyModel: LatencyModel) {
-        super(latencyModel)
-        console.log('(NetworkGraph) Instantiated  empty star topology with latencyModel: ' + latencyModel.getDescription());
+    constructor(latencyModel: LatencyModel, numClients: number = 0) {
+        // numClients are added() in the super() call
+        super(latencyModel, numClients);
+        console.log('(NetworkGraph) Instantiated  empty fully connected topology with latencyModel: ' + latencyModel.getDescription());
+
+
+        
     }
 
     public addNode(): T.ClientId {
@@ -19,13 +23,14 @@ class TopologyFullyConnected extends OpenSizeTopology  {
             links: []
         };
         let nodeId = this.graph.nodes.length;
-        for (let i = 0; i < this.graph.nodes.length; i++) {
+        for (let target = 0; target < this.graph.nodes.length; target++) {
             let edgeId = this.numEdges;
             this.numEdges++;
+            let latency = this.latencyModel.getLatency(edgeId, target);
             let adjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
-                target: i,
-                latency: this.latencyModel.getLatency(edgeId)
+                target: target,
+                latency: latency
             }
             // add references for fast neighbor retrieval
             newNode.links.push(adjacentEdge);
@@ -33,9 +38,9 @@ class TopologyFullyConnected extends OpenSizeTopology  {
             let oppositeAdjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: nodeId,
-                latency: this.latencyModel.getLatency(edgeId)
+                latency: latency
             }
-            this.graph.nodes[i].links.push(oppositeAdjacentEdge);
+            this.graph.nodes[target].links.push(oppositeAdjacentEdge);
         }
         this.graph.nodes.push(newNode);
         return <T.ClientId>nodeId;

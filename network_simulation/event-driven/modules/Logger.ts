@@ -68,6 +68,10 @@ export default class Logger {
         console.log(JSON.stringify(this.l, null, 4));
     }
 
+    public getLog(): string[] {
+        return this.l;
+    }
+
     private getTime(): string {
         let time;
         if (this.t === null) {

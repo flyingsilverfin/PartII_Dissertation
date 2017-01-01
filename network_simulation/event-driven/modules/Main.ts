@@ -5,10 +5,10 @@ import NetworkStatsManager from './NetworkStatsManager';
 import NetworkInterface from './NetworkInterface';
 import Time from './Time';
 import Logger from './Logger';
-import LatencyModelConstant from './topology/LatencyModelConstant';
+import LatencyModel from './topology/LatencyModel';
 import ClientMock from './ClientMock';
 
-import * as tsUnit from 'tsunit.external/tsUnit'
+import * as tsUnit from 'tsunit.external/tsUnit';
 import MinHeapTests from '../tests/MinHeapTests';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
@@ -17,12 +17,15 @@ export function main(experimentSetup) {
 
 
     let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');
+    let svg = <SVGElement><any>document.getElementById('graph_container');
 
-    let latencyModel = new LatencyModelConstant(1000);
-    let topology = new TopologyFullyConnected(latencyModel);
+    let latencyModel = new LatencyModel(experimentSetup.latency_model, experimentSetup.network);
+
+    let topology = new TopologyFullyConnected(latencyModel, experimentSetup.nClients);
 
     let networkStats = new NetworkStatsManager(topology, statsDiv);
-    let graphVisualizer = new GraphVisualizer(<SVGElement><any>document.getElementById('graph_container'),
+    let graphVisualizer = new GraphVisualizer(
+                                            svg, 
                                             topology,
                                             networkStats,
                                             {
@@ -31,8 +34,10 @@ export function main(experimentSetup) {
                                                 charge: -10000,
                                                 linkDistance: 400,
                                                 radius: 25
-                                                });
+                                            }
+                            );
 
+    graphVisualizer.draw();
 
     let time = new Time();
     let logger = new Logger(time);
@@ -55,13 +60,16 @@ export function main(experimentSetup) {
 
 
 
-    graphVisualizer.graphTopologyChanged();
-
-
 
     manager.runSimulation();
 
-    logger.writeLogToConsole();
+    let log = logger.getLog();
+    let result = {
+        experiment_name: experimentSetup.experiment_name,
+        log: log
+    }
+
+    return result;
 
 
     /*

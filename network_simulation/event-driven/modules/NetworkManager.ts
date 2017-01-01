@@ -36,10 +36,8 @@ class NetworkManager {
         let id;
         try {
             // collect next ID according to the topology mapping
-            id = this.topology.addNode();
-
-            // notify the networkStatsManager that the topology has changed
-            this.networkStats.topologyChanged();
+            
+            id = this.topology.reserveNextNodeId();
 
             this.log.log("join", "Node " + id + " joined network");
 
@@ -51,8 +49,6 @@ class NetworkManager {
         }
         this.clientMap[id] = client;
         this.clientLogicalCounterMap[id] = 0;
-
-        
 
         return id;
     }

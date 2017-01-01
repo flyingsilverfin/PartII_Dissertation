@@ -16,3 +16,7 @@ export interface ClientMap {
 export interface ClientLogicalCounterMap {
     [i: number]: number;
 }
+
+export interface NodeLatencies {
+    [i: number]: number;
+}

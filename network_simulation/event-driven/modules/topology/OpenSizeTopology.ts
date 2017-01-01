@@ -8,13 +8,20 @@ import LatencyModel from './LatencyModel';
 */
 
 abstract class OpenSizeTopology extends Topology {
+    protected numClients: number;
     protected latencyModel: LatencyModel;
-    constructor(latencyModel: LatencyModel) {
+    
+    constructor(latencyModel: LatencyModel, numClients: number) {
         super();
         this.latencyModel = latencyModel;
         console.log('Constructing flexible size topology');
         this.graph = {
             nodes: [],
+        }
+
+
+        for (let i = 0; i < this.numClients; i++) {
+            this.addNode();
         }
     }
 
