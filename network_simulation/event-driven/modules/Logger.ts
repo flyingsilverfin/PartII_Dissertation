@@ -55,7 +55,7 @@ export default class Logger {
         }
 
         this.l.push(
-            "[" + time + "]" +
+            "[" + time + "]    " +
             "[" + type + "]    " +
             sender + "    " +
             receiver + "    " +

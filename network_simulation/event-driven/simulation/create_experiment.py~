@@ -132,10 +132,10 @@ except Exception: #any sort of error
 experiment_name = "experiment_" + str(nextNum)
 
 #set up directories for this experiment
-os.mkdir(os.path.join('.', 'experiments', experiment_name))
-os.mkdir(os.path.join('.', 'experiments', experiment_name, 'crdt')
-os.mkdir(os.path.join('.', 'experiments', experiment_name, 'ot')
+os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum)))
+os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum), 'crdt')
+os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum), 'ot')
 
-experiment_setup["experiment_name"] = experiment_name
+experiment_setup["experiment_name"] = "experiment_"+str(nextNum)
 
-open(os.path.join(',', 'experiments', experiment_name, 'setup.json'), 'w').write(json.dumps(experiment_setup))
+open(os.path.join(',', 'experiments', 'experiment_'+str(nextNum), 'setup.json'), 'w').write(json.dumps(experiment_setup))

@@ -73,13 +73,13 @@ class NetworkManager {
 
             let action = function() {
                 self.networkStats.decrementLoad(edge.id);
-                self.log.logPacket(sender, edge.id, "received", packet);
+                self.log.logPacket(sender, edge.target, "received", packet);
                 targetNetworkInterface.receive(packet);
                 self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
             };
             this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[sender], action);
             this.networkStats.incrementLoad(edge.id);
-            this.log.logPacket(sender, edge.id, "sent", packet);
+            this.log.logPacket(sender, edge.target, "sent", packet);
         }
         this.visualizer.updateLoads();
         this.clientLogicalCounterMap[sender]++;

@@ -60,3 +60,15 @@ export function fetchJSONFile(path, callback) {
     httpRequest.open('GET', path);
     httpRequest.send(); 
 }
+
+export function post(path, object) {
+    var httpRequest = new XMLHttpRequest();
+
+    httpRequest.open('POST', path, true);
+    httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    httpRequest.onload = function () {
+        // do something to response
+        console.log("Posted data!");
+    };
+    httpRequest.send(JSON.stringify(object));
+}
