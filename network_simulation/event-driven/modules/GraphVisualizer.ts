@@ -32,13 +32,13 @@ class GraphVisualizer {
 
 
     }
-
+/*
     public graphTopologyChanged(): void {
         this.nodes = this.topology.getD3Nodes();
         this.edges = this.topology.getD3Edges();
         this.draw();
     }
-
+*/
     public updateLoads(): void {
         /*let links = d3.selectAll('.link').data(this.edges, function(d) { return d.source + "-" + d.target; });
         let self = this;
@@ -61,6 +61,11 @@ class GraphVisualizer {
     }
 
     public draw(): void {
+
+        this.nodes = this.topology.getD3Nodes();
+        this.edges = this.topology.getD3Edges();
+ 
+
         this.container.innerHTML = "";  //should clear it?
         let self = this;
 

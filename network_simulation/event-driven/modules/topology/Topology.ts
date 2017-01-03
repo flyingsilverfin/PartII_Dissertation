@@ -54,6 +54,7 @@ abstract class Topology {
     public abstract addNode(): T.ClientId;
 
     public reserveNextNodeId(): T.ClientId {
+        console.log('Reserving: ' + this.allocated);
         // if we still have nodes that we can assign
         if (this.allocated < this.getMaximumSize()) {
             this.allocated++;

@@ -1,15 +1,14 @@
 "use strict"
 
 import {main} from '../modules/Main';
-import {fetchJSONFile, post} from '../modules/Helper';
+import {fetchJSONFile, postObject} from '../modules/Helper';
 
 import * as tsUnit from 'tsunit.external/tsUnit'
-import MinHeapTests from '../tests/MinHeapTests';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
 
 // testing modules
-let tests = [MinHeapTests, DualKeyMinHeapTests];
+let tests = [DualKeyMinHeapTests];
 // execute and display tests
 for (let i = 0; i < tests.length; i++) {
     let test = tests[i];
@@ -28,7 +27,7 @@ for (let i = 0; i < tests.length; i++) {
 function getNextExperiment() {
 
     fetchJSONFile(
-        "http://localhost/nextExperiment:3001", 
+        "http://localhost:3001/nextCRDTExperiment", 
         runExperiment
     );
 
@@ -39,17 +38,23 @@ function runExperiment(experiment) {
     let name = experiment.experiment_name;
     console.log("-----Fetched and running experiment: " + name + "-----");
 
-    let resultOfExperiment = main(experiment);
+    let experimentResult = main(experiment);
 
     console.log("-----Completed running experiment: " + name + "-----");
-    post(
-        "http://localhost/experimentResult:3001",
-        resultOfExperiment
+    
+    // post() stringifies the json
+    postObject(
+        "http://localhost:3001/crdtResult",
+        {
+            'name': name,
+            'result': experimentResult
+        }
     );
 
 }
 
+getNextExperiment();
 
-setInterval(getNextExperiment, 1000);
+//setInterval(getNextExperiment, 1000);
 
 

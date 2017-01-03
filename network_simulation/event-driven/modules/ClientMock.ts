@@ -3,6 +3,7 @@ import * as NT from '../types/NetworkTypes';
 import * as T from '../types/Types';
 import NetworkInterface from './NetworkInterface';
 import NetworkManager from './NetworkManager';
+import EventDrivenScheduler from './EventDrivenScheduler';
 
 
 /*
@@ -20,11 +21,37 @@ class ClientMock {
     private clock = 0;
     private deletedIds = [];
 
-    constructor(networkInterface: NetworkInterface, id) {
+    constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents) {
         this.network = networkInterface;
         this.network.insertPacketReceived = this.insertReceived.bind(this);
         this.network.deletePacketReceived = this.deleteReceived.bind(this);
         this.id = "" + id;
+
+        // events are stored as a map between time and items to insert and delete
+
+        for (let eventTime in events.insert) {
+            let time = parseFloat(eventTime);   // TODO this is weird... shouldn't be necessary
+            let charsToInsert = events.insert[time];
+            console.log("adding insert event for chars: " + charsToInsert + " at time: " + eventTime);
+
+            let self = this;
+
+            
+            for (let i = 0; i < charsToInsert.length; i++) {
+                let char = charsToInsert[i];
+                scheduler.addEvent(time, i, function() {
+                    // schedule to be transmit! :D
+                    self.sendMockInsertPacket(char);
+                });
+            }
+        }
+
+        for (let eventTime in events) {
+            let charsToInsert = events[eventTime];
+
+            // TODO add delete events into scheduler
+        }
+
     }
 
     public sendMockInsertPacket(content: string) {

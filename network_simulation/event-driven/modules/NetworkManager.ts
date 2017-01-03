@@ -16,19 +16,16 @@ class NetworkManager {
     private scheduler: EventDrivenScheduler;
     private networkStats: NetworkStatsManager;
     private visualizer: GraphVisualizer;
-    private time: Time;
     private log: Logger;
 
 
-    constructor(topology: Topology, networkStatsManager: NetworkStatsManager, visualizer: GraphVisualizer, time: Time, log: Logger) {
+    constructor(topology: Topology, networkStatsManager: NetworkStatsManager, visualizer: GraphVisualizer, scheduler: EventDrivenScheduler, log: Logger) {
         this.clientMap = {};
         this.clientLogicalCounterMap = {};
         this.topology = topology;
-        this.scheduler = new EventDrivenScheduler(time);
+        this.scheduler = scheduler;
         this.networkStats = networkStatsManager;
         this.visualizer = visualizer;
-
-        this.time = time;
         this.log = log;
     }
 

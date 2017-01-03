@@ -14,6 +14,7 @@ abstract class OpenSizeTopology extends Topology {
     constructor(latencyModel: LatencyModel, numClients: number) {
         super();
         this.latencyModel = latencyModel;
+        this.numClients = numClients;
         console.log('Constructing flexible size topology');
         this.graph = {
             nodes: [],
@@ -26,7 +27,7 @@ abstract class OpenSizeTopology extends Topology {
     }
 
     public getMaximumSize(): number {
-        return -1;
+        return this.numClients;
     }
 
     public abstract addNode(): T.ClientId;

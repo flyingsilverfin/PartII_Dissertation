@@ -1,6 +1,8 @@
 import TopologyFullyConnected from './topology/TopologyFullyConnected';
 import GraphVisualizer from './GraphVisualizer';
 import NetworkManager from './NetworkManager';
+import EventDrivenScheduler from './EventDrivenScheduler';
+
 import NetworkStatsManager from './NetworkStatsManager';
 import NetworkInterface from './NetworkInterface';
 import Time from './Time';
@@ -9,7 +11,6 @@ import LatencyModel from './topology/LatencyModel';
 import ClientMock from './ClientMock';
 
 import * as tsUnit from 'tsunit.external/tsUnit';
-import MinHeapTests from '../tests/MinHeapTests';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
 
@@ -21,7 +22,7 @@ export function main(experimentSetup) {
 
     let latencyModel = new LatencyModel(experimentSetup.latency_model, experimentSetup.network);
 
-    let topology = new TopologyFullyConnected(latencyModel, experimentSetup.nClients);
+    let topology = new TopologyFullyConnected(latencyModel, parseInt(experimentSetup.nClients));
 
     let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = new GraphVisualizer(
@@ -42,22 +43,38 @@ export function main(experimentSetup) {
     let time = new Time();
     let logger = new Logger(time);
 
+    let scheduler = new EventDrivenScheduler(time);
 
-    let manager = new NetworkManager(topology, networkStats, graphVisualizer, time, logger); 
+    let manager = new NetworkManager(topology, networkStats, graphVisualizer, scheduler, logger); 
 
 
 
     let mockClients: ClientMock[] = [];
+    let scheduledEvents = experimentSetup.events;
+    let numClients = parseInt(experimentSetup.nClients);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < numClients; i++) {
         let ni = new NetworkInterface();
         let id = manager.register(ni);
         ni.setClientId(id);
         ni.setManager(manager);
 
-        mockClients.push(new ClientMock(ni, id));
+        mockClients.push(new ClientMock(ni, id, scheduler, experimentSetup.events[id]));
     }
 
+    /*
+
+    ****** THIS BIT IS IMPORTANT *****
+
+        The experimentSetup comes with a list of scheduled events per client
+        because this is just the network simulation and it's easier right now,
+        I will insert events straight into the scheduler...
+        HOWEVER, when the full CRDT client comes into effect, I will probably
+        want to hand each full client a schedule of events to run, which are then inserted into the scheduler from there...
+
+    */
+
+  
 
 
 

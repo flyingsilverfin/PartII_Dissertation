@@ -68,7 +68,7 @@ export function fetchJSONFile(path, callback) {
     httpRequest.send(); 
 }
 
-export function post(path, object) {
+export function postObject(path, object) {
     var httpRequest = new XMLHttpRequest();
 
     httpRequest.open('POST', path, true);

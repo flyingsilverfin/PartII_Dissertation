@@ -1,9 +1,9 @@
 import json
-import latency_models
 import os
+import latency_models
 
 experiment_setup = {
-	"experiment_name": "",
+    "experiment_name": "",
     "execution": "",
     "nClients": None,
     "latency_model": {
@@ -14,11 +14,11 @@ experiment_setup = {
     },
     "events":{
     }
-}    
+}
 
 
 
-experiment_setup_options = {
+EXPERIMENT_SETUP_OPTIONS = {
     "execution" : {
         "type": "list",
         "text": "Choose simulation type",
@@ -40,7 +40,7 @@ experiment_setup_options = {
 }
 
 def printChoicesFor(item):
-    choices = experiment_setup_options[item]
+    choices = EXPERIMENT_SETUP_OPTIONS[item]
     choiceType = choices["type"]
     choiceText = choices["text"]
     print "\n" + choiceText
@@ -61,7 +61,7 @@ i = 0
 while i < len(order):
     item = order[i]
     subindices = item.split('-')
-    typeRequired = experiment_setup_options[item]["type"]
+    typeRequired = EXPERIMENT_SETUP_OPTIONS[item]["type"]
     try:
         printChoicesFor(item)
     except Exception:
@@ -84,7 +84,7 @@ while i < len(order):
         except Exception:
             continue
     elif typeRequired == "list":
-        choices = experiment_setup_options[item]["choices"]
+        choices = EXPERIMENT_SETUP_OPTIONS[item]["choices"]
         value = int(value)
         assign[subindices[-1]] = choices[value-1]
     i += 1
@@ -114,15 +114,18 @@ for i in range(int(experiment_setup["nClients"])):
     }
 
 
-# now need to init what packets/things to do first
-print "using hard coded actions for clients"
+# now need to schedule some events for the experiment
+print "using hard coded insert actions for clients"
 for i in range(int(experiment_setup["nClients"])):
     experiment_setup["events"][i]= {
-        i*10: list(str(i))
+        "insert": {
+			i*10: list(str(i))
+		},
+		"delete": {
+		}
     }
 
-
-existingExperiments = os.listdir('./experiments')
+existingExperiments = os.listdir(os.path.join('.', 'experiments'))
 existingExperiments.sort()
 try:
     nextNum = int(existingExperiments[-1].split('_')[-1]) + 1
@@ -133,9 +136,9 @@ experiment_name = "experiment_" + str(nextNum)
 
 #set up directories for this experiment
 os.mkdir(os.path.join('.', 'experiments', experiment_name))
-os.mkdir(os.path.join('.', 'experiments', experiment_name, 'crdt')
-os.mkdir(os.path.join('.', 'experiments', experiment_name, 'ot')
+#os.mkdir(os.path.join('.', 'experiments', experiment_name, 'crdt'))
+#os.mkdir(os.path.join('.', 'experiments', experiment_name, 'ot'))
 
 experiment_setup["experiment_name"] = experiment_name
 
-open(os.path.join(',', 'experiments', experiment_name, 'setup.json'), 'w').write(json.dumps(experiment_setup))
+open(os.path.join('.', 'experiments', experiment_name, 'setup.json'), 'w').write(json.dumps(experiment_setup))

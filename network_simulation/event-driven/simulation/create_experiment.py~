@@ -114,11 +114,13 @@ for i in range(int(experiment_setup["nClients"])):
     }
 
 
-# now need to init what packets/things to do first
-print "using hard coded actions for clients"
+# now need to schedule some events for the experiment
+print "using hard coded insert actions for clients"
 for i in range(int(experiment_setup["nClients"])):
     experiment_setup["events"][i]= {
-        i*10: list(str(i))
+        "insert": {
+			i*10: list(str(i))
+		}
     }
 
 
@@ -132,10 +134,10 @@ except Exception: #any sort of error
 experiment_name = "experiment_" + str(nextNum)
 
 #set up directories for this experiment
-os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum)))
-os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum), 'crdt')
-os.mkdir(os.path.join('.', 'experiments', 'experiment_'+str(nextNum), 'ot')
+os.mkdir(os.path.join('.', 'experiments', experiment_name))
+os.mkdir(os.path.join('.', 'experiments', experiment_name, 'crdt')
+os.mkdir(os.path.join('.', 'experiments', experiment_name, 'ot')
 
-experiment_setup["experiment_name"] = "experiment_"+str(nextNum)
+experiment_setup["experiment_name"] = experiment_name
 
-open(os.path.join(',', 'experiments', 'experiment_'+str(nextNum), 'setup.json'), 'w').write(json.dumps(experiment_setup))
+open(os.path.join(',', 'experiments', experiment_name, 'setup.json'), 'w').write(json.dumps(experiment_setup))
