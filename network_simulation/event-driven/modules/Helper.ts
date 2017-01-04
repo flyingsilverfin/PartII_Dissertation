@@ -72,10 +72,10 @@ export function postObject(path, object) {
     var httpRequest = new XMLHttpRequest();
 
     httpRequest.open('POST', path, true);
-    httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    httpRequest.setRequestHeader('Content-type', 'application/json');
     httpRequest.onload = function () {
         // do something to response
-        console.log("Posted data!");
+        console.log("Posted data: " + JSON.stringify(object));
     };
     httpRequest.send(JSON.stringify(object));
 }

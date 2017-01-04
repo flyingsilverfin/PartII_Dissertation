@@ -20,8 +20,9 @@ class LatencyModel {
         this.nodeLatencies = nodeLatencies;
     }
 
-    public getLatency(source:number, target): number {
-        return (this.nodeLatencies[source] + this.nodeLatencies[target])/2;
+    public getLatency(source:number, target:number): number {
+        // /debugger
+        return (this.nodeLatencies[source].latency + this.nodeLatencies[target].latency)/2;
     }
 
     public getDescription(): string {

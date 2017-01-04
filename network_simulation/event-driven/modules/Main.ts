@@ -62,20 +62,6 @@ export function main(experimentSetup) {
         mockClients.push(new ClientMock(ni, id, scheduler, experimentSetup.events[id]));
     }
 
-    /*
-
-    ****** THIS BIT IS IMPORTANT *****
-
-        The experimentSetup comes with a list of scheduled events per client
-        because this is just the network simulation and it's easier right now,
-        I will insert events straight into the scheduler...
-        HOWEVER, when the full CRDT client comes into effect, I will probably
-        want to hand each full client a schedule of events to run, which are then inserted into the scheduler from there...
-
-    */
-
-  
-
 
 
     manager.runSimulation();

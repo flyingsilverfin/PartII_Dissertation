@@ -26,7 +26,7 @@ class TopologyFullyConnected extends OpenSizeTopology  {
         for (let target = 0; target < this.graph.nodes.length; target++) {
             let edgeId = this.numEdges;
             this.numEdges++;
-            let latency = this.latencyModel.getLatency(edgeId, target);
+            let latency = this.latencyModel.getLatency(nodeId, target);
             let adjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: target,

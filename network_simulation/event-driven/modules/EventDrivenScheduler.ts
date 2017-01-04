@@ -29,7 +29,7 @@ export default class EventDrivenScheduler {
         this.heap.insert(heapElem);
 
 
-        this.runReadyEvents();
+        // this.runReadyEvents();
     }
 
 

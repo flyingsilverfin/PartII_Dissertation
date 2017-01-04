@@ -47,6 +47,9 @@ class NetworkManager {
         this.clientMap[id] = client;
         this.clientLogicalCounterMap[id] = 0;
 
+        console.log(' mapped ID: ' + id + ' to client: ');
+
+
         return id;
     }
 
@@ -56,11 +59,15 @@ class NetworkManager {
 
         let neighborLinks = this.topology.getNeighborLinksOf(sender);
         let self = this;
+
+
         // iterate over identifier of the links
         for (let i = 0; i < neighborLinks.length; i++) {
             let edge = neighborLinks[i];
 
             let targetNetworkInterface = self.clientMap[edge.target];
+
+
             // D3 is messing with my graph :| just going to work around it for now...
             //let targetNetworkInterface = self.clientMap[(<any>edge.target).index];
 

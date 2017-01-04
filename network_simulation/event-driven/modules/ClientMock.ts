@@ -36,7 +36,7 @@ class ClientMock {
 
             let self = this;
 
-            
+
             for (let i = 0; i < charsToInsert.length; i++) {
                 let char = charsToInsert[i];
                 scheduler.addEvent(time, i, function() {
