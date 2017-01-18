@@ -103,7 +103,7 @@ class GraphVisualizer {
         
         let d3text = d3edges.append('text')
             .text( function(d) {
-                return "" + d.latency;
+                return "" + Math.round(10*d.latency)/10;
             });
             
         let d3links = d3edges.append('line')
