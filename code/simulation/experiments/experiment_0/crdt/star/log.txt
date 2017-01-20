@@ -1,4 +1,5 @@
-0    memory    36440968
+0    memory    28557392    pre-experiment
+0    memory    28577664    post-topology-init
 0    join    Node 0 joined network
 0    join    Node 1 joined network
 0    join    Node 2 joined network
@@ -9,6 +10,7 @@
 0    join    Node 7 joined network
 0    join    Node 8 joined network
 0    join    Node 9 joined network
+0    memory    28646048    post-clients-init
 0    sent    0    1    i    d    1.0    0
 0    sent    0    2    i    d    1.0    0
 0    sent    0    3    i    d    1.0    0
@@ -3141,3 +3143,4 @@
 450.3097143118613    received    2    0    i    h    15.9    14.9
 450.3097143118613    received    2    0    i    o    16.9    15.9
 450.3097143118613    received    2    0    i    w    17.9    16.9
+450.3097143118613    memory    31959472    post-experiment

@@ -80,8 +80,6 @@ def receiveOTResult():
 
     resultLog.close()
     
-    #TODO add other results that may be added into the results json later
-
 
 
 # CORS hack

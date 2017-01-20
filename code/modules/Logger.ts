@@ -58,7 +58,7 @@ export default class Logger {
             type + "    " +
             sender + "    " +
             receiver + "    " +
-            packetType + "    " +
+            readablePacketType + "    " +
             msg);
             
     }
@@ -71,7 +71,7 @@ export default class Logger {
                     ): void {
         // note: must now be a chrome > 20 instance running experiment
         let memory = (<any>window.performance).memory.usedJSHeapSize;
-        this.log("memory", memory);
+        this.log("memory", memory + "    " + when);
     }
 
     public writeLogToConsole(): void {

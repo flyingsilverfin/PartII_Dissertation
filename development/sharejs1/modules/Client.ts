@@ -18,8 +18,11 @@ class Client {
 
         console.log(id)
 
+        //use subdomains trick - given an ID it's subdomain is id/5
+        let subdomain = Math.floor((id/5)).toString();
+
         setTimeout( function() {
-            sharejs.open('testdoc', 'text', 'http://localhost:8000/channel', function(err, doc) {
+            sharejs.open('testdoc', 'text', 'http://' + subdomain + '.localhost:8000/channel', function(err, doc) {
                 console.log(err, doc);
 
                 let interfaceContainer = <HTMLDivElement>document.getElementById('client-container');

@@ -966,7 +966,7 @@
     */
 
 
-    ReconnectingWebSocket.prototype.debugAll = false;
+    ReconnectingWebSocket.prototype.debugAll = true;
 
     /*
     Additional public API method to refresh the connection if still open (close, re-open).
@@ -1253,6 +1253,7 @@
 
       if ((typeof WEB !== "undefined" && WEB !== null) && (origin == null)) {
         location = window.location;
+        debugger
         protocol = socketImpl === 'websocket' ? 'ws:' : location.protocol;
         origin = "" + protocol + "//" + location.host + "/" + socketImpl;
       }
