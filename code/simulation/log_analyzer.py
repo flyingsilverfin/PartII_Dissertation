@@ -56,7 +56,7 @@ class ExperimentAnalzer(object):
         self.end_time = None
         self.average_link_latency = None
         self.furthest_hops = None # will probably just hardcode depending on topology
-        self.total_network_packets = None
+        self.total_network_packets_sent = None
         self.total_inserts = None
         self.total_deletes = None
         self.memory_stamps = {} # map time -- memory, msg
@@ -93,6 +93,92 @@ class ExperimentAnalzer(object):
         for analyzer in self.clients:
             # get each client's results
             pass
+
+
+    
+    def calcExpectedNumberOfPackets(self, network_type):
+        """
+        calculates an expected number of packets sent across the network
+        assuming the naiive broadcast implementation (if p2p)
+
+        also returns expected number of packets sent across network
+        if the naiive broadcast had been done using multicast/proper protocol
+        """
+
+        num_clients = len(self.clients)
+        events = self.experiment_setup["events"]
+
+
+        if network_type == 'fully-connected':
+
+            num_actions = 0
+            for client in events.keys():
+                for insert_event_time in events[client]["insert"].keys():
+                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
+                    num_actions += len(inserts_at_this_time["chars"])
+
+                for delete_event_time in events[clients]["delete"].keys():
+                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
+                    num_actions += len(deletes_at_this_time)
+
+            return (
+                num_actions *
+                    ((num_clients - 1) + (num_clients - 1) * (num_clients - 1)) # this is O(n^2)
+                ,
+                num_actions * (num_clients - 1)
+            )
+        elif network_type == 'star':
+
+            """
+            non_center_actions = 0
+            center_actions = 0
+            for client in events.keys():
+                for insert_event_time in events[client]["insert"].keys():
+                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
+                    if client == '0':   # this is the center of the star
+                        center_actions += len(inserts_at_this_time)
+                    else:               # any other node
+                        num_actions += len(inserts_at_this_time)
+
+                for delete_event_time in events[clients]["delete"].keys():
+                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
+                    if client == '0':   # this is the center of the star
+                        center_actions = len(deletes_at_this_time)
+                    else:
+                        num_actions += len(deletes_at_this_time)
+            """
+            num_actions = 0
+            for client in events.keys():
+                for insert_event_time in events[client]["insert"].keys():
+                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
+                    num_actions += len(inserts_at_this_time["chars"])
+
+                for delete_event_time in events[clients]["delete"].keys():
+                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
+                    num_actions += len(deletes_at_this_time)
+
+            return (2 * num_actions * (num_clients - 1), num_actions * (num_clients - 1))
+
+        
+        elif network_type == 'sharejs':
+            # note: sharejs can insert words at a time...
+            # thus will consider each word insert as 1 message for now
+            # TODO need to think about this more...
+
+            num_actions = 0
+
+            for client in events.keys():
+                for insert_event_time in events[client]["insert"].keys():
+                    num_actions += 1
+                for delete_event_time in events[clients]["delete"].keys():
+                    num_actions += 1
+
+            return (num_actions * (num_clients-1), num_actions * (num_clients-1))
+    
+
+
+    def getNumberOfDeletes(self):
+        
 
     def getResult(self):
         """
