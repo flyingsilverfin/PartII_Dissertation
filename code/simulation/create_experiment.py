@@ -1,7 +1,8 @@
 import json
 import os
-import latency_models
 import random
+import latency_models
+
 
 experiment_setup = {
     "experiment_name": "",  # name of experiment

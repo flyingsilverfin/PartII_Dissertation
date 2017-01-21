@@ -21,11 +21,97 @@ class ClientAnalyzer(object):
     Responsible for tracking one client's stats from the log
     """
 
-    def __init__(self, client_id):
+    def __init__(self, client_id, crdt=True):
         self.client_id = client_id
+        self.crdt = crdt
 
-    def addMessage(self, msg):
-        pass
+        self.total_insert_packets_sent = 0
+        self.total_delete_packets_sent = 0
+        self.total_insert_packets_size = 0
+        self.total_delete_packets_size = 0
+
+        self.active_insert_packets = {}    # map (payload id, dest) => time packet was sent
+        self.active_delete_packets = {}    # map (payload id, dest) => time packet was sent
+
+        self.actual_link_latencies = {}     # map destination => [#packets, total time taken]
+
+
+    def sentMessage(self, log_msg):
+        """
+        Every msg which indicates this client has sent a packet is parsed here
+        """
+        when = float(log_msg[0])
+        sender = int(log_msg[2])
+
+        assert sender == self.client_id
+
+        receiver = int(log_msg[3])
+        payload_size_chars = int(log_msg[5])
+
+        if self.crdt:
+            msg_type = log_msg[4]
+            if msg_type == 'insert':
+                insert_id = log_msg[7]
+                self.active_insert_packets[(insert_id, receiver)] = when
+                self.total_insert_packets_size += payload_size_chars
+                self.total_insert_packets_sent += 1
+
+            elif msg_type == 'delete':
+                delete_id = log_msg[6]
+                self.active_delete_packets[(delete_id, receiver)] = when
+                self.total_delete_packets_size += payload_size_chars
+                self.total_delete_packets_sent += 1
+
+            else:
+                print "Unknown msg type (not insert/delete): " + msg_type
+
+        else:
+
+            #TODO
+            # as sharejs bit isn't done yet, can't create log analysis :o
+            pass
+
+    def msgArrived(self, log_msg):
+        """
+        Every msg which indicates this client has sent a packet and it has arrived is parsed here
+        """
+        when = float(log_msg[0])
+
+        sender = int(log_msg[2])
+        assert sender == self.client_id
+        receiver = int(log_msg[3])
+
+        if self.crdt:
+            msg_type = log_msg[4]
+            if msg_type == 'insert':
+                insert_id = log_msg[7]
+                sent_at = self.active_insert_packets[(insert_id, receiver)]
+                actual_latency = when - sent_at
+
+                current_totals = self.actual_link_latencies[receiver]
+                current_totals[0] += 1
+                current_totals[1] += actual_latency
+                self.actual_link_latencies[receiver] = current_totals
+
+            elif msg_type == 'delete':
+                delete_id = log_msg[6]
+                sent_at = self.active_delete_packets[(delete_id, receiver)]
+                actual_latency = when - sent_at
+
+                current_totals = self.actual_link_latencies[receiver]
+                current_totals[0] += 1
+                current_totals[1] += actual_latency
+                self.actual_link_latencies[receiver] = current_totals
+
+            else:
+                print "Unknown msg type (not insert/delete): " + msg_type
+
+
+        else:
+
+            #TODO
+            # as sharejs bit isn't done yet, can't create log analysis :o
+            pass
 
 
 class ExperimentAnalzer(object):
@@ -36,6 +122,15 @@ class ExperimentAnalzer(object):
     def __init__(self, experiment_name, identifier, log):
         self.identifier = identifier
         self.log = log
+
+        # used for filling various datapoints later
+        if identifier != "fully-connected" and identifier != "star":
+            self.network_type = "sharejs"
+            self.crdt = False
+        else:
+            self.network_type = identifier
+            self.crdt = True
+
 
         experiment_setup = json.loads(
             open(os.path.join('.', 'experiments', experiment_name, 'setup.json')).read()
@@ -48,18 +143,49 @@ class ExperimentAnalzer(object):
         self.clients = []
 
         for i in range(num_clients):
-            self.clients.append(ClientAnalyzer(i))
+            self.clients.append(ClientAnalyzer(i, self.crdt))
 
 
         #set up variables and things we want to track later in one central place
         self.start_time = None
         self.end_time = None
-        self.average_link_latency = None
-        self.furthest_hops = None # will probably just hardcode depending on topology
-        self.total_network_packets_sent = None
-        self.total_inserts = None
-        self.total_deletes = None
+        self.intended_average_link_latency = None   # set const
+        self.actual_total_link_time = None
+        self.furthest_hops = None           # set const
+        self.total_inserts_packet_size = None
+        self.total_deletes_packet_size = None
+
+        #this is the number of insert or delete events generated
+        self.total_inserts_events = None    # set const
+        self.total_deletes_events = None    # set const
+
+        self.total_inserts_packets = None
+        self.total_deletes_packets = None
+        self.total_expected_packets_naiive = None   # set const
+        self.total_expected_packets_best = None     # set const
+
         self.memory_stamps = {} # map time -- memory, msg
+
+        # write the '# set const' values
+        self.setKnownValues()
+
+    def setKnownValues(self):
+
+        (self.expected_total_packets_naiive, self.total_expected_packets_best) \
+            = self.calcExpectedNumberOfPackets()
+
+        # actually this is only true for non-sharejs methods, but hey
+        self.intended_average_link_latency = float(self.experiment_setup["latency_model"]["center"])
+        self.total_inserts_events = self.getNumberOfInsertEvents()
+        self.total_deletes_events = self.getNumberOfDeleteEvents()
+
+
+        if self.network_type == "fully-connected":
+            self.furthest_hops = 1
+        elif self.network_type == "star":
+            self.furthest_hops = 2
+        elif self.network_type == "sharejs":
+            self.furthest_hops = 2
 
 
 
@@ -77,14 +203,11 @@ class ExperimentAnalzer(object):
                 self.memory_stamps[msg[0]] = (msg[2], msg[3])
             elif msg_type == 'sent' or msg_type == 'received':
                 sender = int(msg[2])
-                receiver = int(msg[3])
-
                 if msg_type == 'sent':
-                    #TODO
-                    pass
-                else: # msg_type == 'received'
-                    #TODO
-                    pass
+                    self.clients[sender].sentMessage(msg)
+                else: # msg_type == 'receiver' -- guaranteed
+                    self.clients[sender].msgArrived(msg)
+
             else:
                 print "Unknown log msg type: " + msg
                 print "--Ignoring--"
@@ -95,8 +218,8 @@ class ExperimentAnalzer(object):
             pass
 
 
-    
-    def calcExpectedNumberOfPackets(self, network_type):
+
+    def calcExpectedNumberOfPackets(self):
         """
         calculates an expected number of packets sent across the network
         assuming the naiive broadcast implementation (if p2p)
@@ -106,79 +229,67 @@ class ExperimentAnalzer(object):
         """
 
         num_clients = len(self.clients)
-        events = self.experiment_setup["events"]
+        inserts = self.getNumberOfInsertEvents()
+        deletes = self.getNumberOfDeleteEvents()
+        num_actions = inserts + deletes
 
-
-        if network_type == 'fully-connected':
-
-            num_actions = 0
-            for client in events.keys():
-                for insert_event_time in events[client]["insert"].keys():
-                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
-                    num_actions += len(inserts_at_this_time["chars"])
-
-                for delete_event_time in events[clients]["delete"].keys():
-                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
-                    num_actions += len(deletes_at_this_time)
-
+        if self.network_type == 'fully-connected':
             return (
                 num_actions *
-                    ((num_clients - 1) + (num_clients - 1) * (num_clients - 1)) # this is O(n^2)
+                ((num_clients - 1) + (num_clients - 1) * (num_clients - 1)) # this is O(n^2)
                 ,
                 num_actions * (num_clients - 1)
             )
-        elif network_type == 'star':
 
-            """
-            non_center_actions = 0
-            center_actions = 0
-            for client in events.keys():
-                for insert_event_time in events[client]["insert"].keys():
-                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
-                    if client == '0':   # this is the center of the star
-                        center_actions += len(inserts_at_this_time)
-                    else:               # any other node
-                        num_actions += len(inserts_at_this_time)
-
-                for delete_event_time in events[clients]["delete"].keys():
-                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
-                    if client == '0':   # this is the center of the star
-                        center_actions = len(deletes_at_this_time)
-                    else:
-                        num_actions += len(deletes_at_this_time)
-            """
-            num_actions = 0
-            for client in events.keys():
-                for insert_event_time in events[client]["insert"].keys():
-                    inserts_at_this_time = events[clients]["delete"][insert_event_time]
-                    num_actions += len(inserts_at_this_time["chars"])
-
-                for delete_event_time in events[clients]["delete"].keys():
-                    deletes_at_this_time = events[clients]["delete"][delete_event_time]
-                    num_actions += len(deletes_at_this_time)
-
+        elif self.network_type == 'star':
             return (2 * num_actions * (num_clients - 1), num_actions * (num_clients - 1))
 
-        
-        elif network_type == 'sharejs':
+        elif self.network_type == 'sharejs':
             # note: sharejs can insert words at a time...
             # thus will consider each word insert as 1 message for now
             # TODO need to think about this more...
+            return (num_actions * (num_clients-1), num_actions * (num_clients-1))
 
-            num_actions = 0
+        else:
+            print "Unknown network type, cannot calculate expected number" \
+                  "of packets: " + self.network_type
+            return (-1, -1)
 
+
+    def getNumberOfInsertEvents(self):
+        events = self.experiment_setup["events"]
+        insert_events = 0
+        if self.network_type == 'fully-connected' or self.network_type == 'star':
             for client in events.keys():
                 for insert_event_time in events[client]["insert"].keys():
-                    num_actions += 1
-                for delete_event_time in events[clients]["delete"].keys():
-                    num_actions += 1
+                    inserts_at_this_time = events[client]["delete"][insert_event_time]
+                    insert_events += len(inserts_at_this_time["chars"])
+        elif self.network_type == 'sharejs':
+            for client in events.keys():
+                for insert_event_time in events[client]["insert"].keys():
+                    insert_events += 1
+        else:
+            print "unknown network type: " + self.network_type
+            return -1
 
-            return (num_actions * (num_clients-1), num_actions * (num_clients-1))
-    
+        return insert_events
 
-
-    def getNumberOfDeletes(self):
-        
+    def getNumberOfDeleteEvents(self):
+        events = self.experiment_setup["events"]
+        delete_events = 0
+        if self.network_type == 'fully-connected' or self.network_type == 'star':
+            for client in events.keys():
+                for delete_event_time in events[client]["delete"].keys():
+                    deletes_at_this_time = events[client]["delete"][delete_event_time]
+                    delete_events += len(deletes_at_this_time)
+        elif self.network_type == 'sharejs':
+            for client in events.keys():
+                for delete_event_time in events[client]["delete"].keys():
+                    delete_events += 1
+        else:
+            print "unknown network type: " + self.network_type
+            return -1
+        return delete_events
 
     def getResult(self):
         """

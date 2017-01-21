@@ -33,6 +33,8 @@ export default class Logger {
         let packetType = packet.type;
         let readablePacketType;
         let bundle = packet.bundle;
+
+        let bundleSize = JSON.stringify(bundle).length;
         
         let msg;
         if (packetType === "i") {
@@ -59,6 +61,7 @@ export default class Logger {
             sender + "    " +
             receiver + "    " +
             readablePacketType + "    " +
+            bundleSize + "    " +
             msg);
             
     }
