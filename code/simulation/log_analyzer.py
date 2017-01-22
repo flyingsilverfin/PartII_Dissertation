@@ -88,7 +88,7 @@ class ClientAnalyzer(object):
                 sent_at = self.active_insert_packets[(insert_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.actual_link_latencies[receiver]
+                current_totals = self.get_actual_link_latency(receiver) 
                 current_totals[0] += 1
                 current_totals[1] += actual_latency
                 self.actual_link_latencies[receiver] = current_totals
@@ -98,7 +98,7 @@ class ClientAnalyzer(object):
                 sent_at = self.active_delete_packets[(delete_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.actual_link_latencies[receiver]
+                current_totals = self.get_actual_link_latency(receiver)
                 current_totals[0] += 1
                 current_totals[1] += actual_latency
                 self.actual_link_latencies[receiver] = current_totals
@@ -112,6 +112,23 @@ class ClientAnalyzer(object):
             #TODO
             # as sharejs bit isn't done yet, can't create log analysis :o
             pass
+
+    def get_actual_link_latency(self, receiver):
+        try:
+            return self.actual_link_latencies[receiver]
+        except KeyError:
+            self.actual_link_latencies[receiver] = [0, 0]
+            return self.actual_link_latencies[receiver]
+
+    def getResult(self):
+        result = {}
+        result["link_latencies"] = self.actual_link_latencies
+        result["total_insert_packets"] = self.total_insert_packets_sent
+        result["total_delete_packets"] = self.total_delete_packets_sent
+        result["total_insert_packets_size"] = self.total_insert_packets_size
+        result["total_delete_packets_size"] = self.total_delete_packets_size
+
+        return result
 
 
 class ExperimentAnalzer(object):
@@ -164,14 +181,14 @@ class ExperimentAnalzer(object):
         self.total_expected_packets_naiive = None   # set const
         self.total_expected_packets_best = None     # set const
 
-        self.memory_stamps = {} # map time -- memory, msg
+        self.memory_stamps = [] # [memory, msg]
 
         # write the '# set const' values
         self.setKnownValues()
 
     def setKnownValues(self):
 
-        (self.expected_total_packets_naiive, self.total_expected_packets_best) \
+        (self.total_expected_packets_naiive, self.total_expected_packets_best) \
             = self.calcExpectedNumberOfPackets()
 
         # actually this is only true for non-sharejs methods, but hey
@@ -193,6 +210,8 @@ class ExperimentAnalzer(object):
         """
         Analyzes the log
         """
+        self.start_time = float(self.log[0].split('    ')[0])
+        self.end_time = float(self.log[-1].split('    ')[0])
         for msg in self.log:
             msg = msg.split('    ')
             msg_type = msg[1]
@@ -200,7 +219,7 @@ class ExperimentAnalzer(object):
                 #not really that interesting...
                 continue
             elif msg_type == 'memory':
-                self.memory_stamps[msg[0]] = (msg[2], msg[3])
+                self.memory_stamps.append((int(msg[2]), msg[3]))
             elif msg_type == 'sent' or msg_type == 'received':
                 sender = int(msg[2])
                 if msg_type == 'sent':
@@ -212,10 +231,6 @@ class ExperimentAnalzer(object):
                 print "Unknown log msg type: " + msg
                 print "--Ignoring--"
                 continue
-
-        for analyzer in self.clients:
-            # get each client's results
-            pass
 
 
 
@@ -262,7 +277,7 @@ class ExperimentAnalzer(object):
         if self.network_type == 'fully-connected' or self.network_type == 'star':
             for client in events.keys():
                 for insert_event_time in events[client]["insert"].keys():
-                    inserts_at_this_time = events[client]["delete"][insert_event_time]
+                    inserts_at_this_time = events[client]["insert"][insert_event_time]
                     insert_events += len(inserts_at_this_time["chars"])
         elif self.network_type == 'sharejs':
             for client in events.keys():
@@ -293,10 +308,76 @@ class ExperimentAnalzer(object):
 
     def getResult(self):
         """
-        format result and return as a string
+        get, format results and return as a string
         """
-        pass
 
+        result = ""
+
+        average_measured_link_latencies = {}
+        total_insert_packets = 0
+        total_delete_packets = 0
+        total_insert_packets_size = 0
+        total_delete_packets_size = 0
+
+        for client in self.clients:
+
+            result = client.getResult()
+
+
+            latencies = result["link_latencies"]
+            for dest in latencies.keys():
+                average_measured_link_latencies[(client.client_id, dest)] = \
+                    float(latencies[dest][1]) / latencies[dest][0]
+
+            total_insert_packets += result["total_insert_packets"]
+            total_delete_packets += result["total_delete_packets"]
+            total_insert_packets_size += result["total_insert_packets_size"]
+            total_delete_packets_size += result["total_delete_packets_size"]
+
+        av_insert_packet_size = 0 if total_insert_packets == 0 else \
+                                float(total_insert_packets_size)/total_insert_packets
+        av_delete_packet_size = 0 if total_delete_packets == 0 else \
+                                float(total_delete_packets_size)/total_delete_packets
+
+
+        initial_memory = self.memory_stamps[0][0]
+        memory_checkpoints = [self.formatResultEntry(m[1], m[0] - initial_memory) for m in self.memory_stamps]
+        # skip latencies for now 
+        # TODO
+        #self.intended_average_link_latency 
+
+        return self.buildResult(
+            self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
+
+
+            self.formatResultEntry('Total insert events', self.total_inserts_events),
+            self.formatResultEntry('Total delete events', self.total_deletes_events),
+
+            self.formatResultEntry('Total insert packets sent', total_insert_packets),
+            self.formatResultEntry('Total size of insert packets sent', total_insert_packets_size),
+            self.formatResultEntry('Average insert packet payload size', av_insert_packet_size),
+
+            self.formatResultEntry('Total delete packets sent', total_delete_packets),
+            self.formatResultEntry('Total size of delete packets sent', total_delete_packets_size),
+            self.formatResultEntry('Average delete packet payload size', av_delete_packet_size),
+
+            self.formatResultEntry('Total number of packets sent', total_insert_packets + total_delete_packets),
+            self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
+            self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+
+
+            *memory_checkpoints
+        )
+
+
+    def formatResultEntry(self, name, value):
+        return "\t" + name + ": " + str(value)
+
+    def buildResult(self, *strings):
+        res = ""
+        for s in strings:
+            res += s + '\n'
+        return res
 
 class MainAnalyzer(object):
     """
@@ -309,9 +390,8 @@ class MainAnalyzer(object):
         self.log_analyzers = []
 
         logs = self.findAllLogs()
-        for logLocation in logs:
-            logPath = logLocation.split('/')
-            logFile = [s.strip() for s in open(logLocation).readlines()]
+        for logPath in logs:
+            logFile = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
             self.log_analyzers.append(ExperimentAnalzer(experiment_name, logPath[-2], logFile))
 
         results = []
@@ -320,7 +400,7 @@ class MainAnalyzer(object):
             results.append("---" + analyzer.identifier + "---")
             results.append(analyzer.getResult())
 
-        summary = open(os.path.join('.', 'experiments', experiment_name, 'summary.txt'))
+        summary = open(os.path.join('.', 'experiments', experiment_name, 'summary.txt'), 'w')
         for res in results:
             summary.write(res + '\n')
         summary.close()

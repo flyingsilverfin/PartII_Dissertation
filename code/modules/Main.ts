@@ -19,6 +19,7 @@ import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 export function main(experimentSetup, graph=true) {
 
 
+
     let time = new Time();
     let logger = new Logger(time);
 

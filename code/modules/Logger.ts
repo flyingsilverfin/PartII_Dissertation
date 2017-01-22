@@ -53,7 +53,7 @@ export default class Logger {
             console.error("Logging a packet of neither insert nor delete type...");
             this.l.push("");
             return;
-        }
+        } 
 
         this.l.push(
             time + "    " +

@@ -10,12 +10,22 @@ print os.getcwd()
 
 def getNextIncompleteCRDTExperiment():
     existingExperiments = os.listdir(os.path.join('.', 'experiments'))
-    existingExperiments.sort()
+    existingExperiments.sort()  #impose order
 
     for experimentFolder in existingExperiments:
-        experimentFolderSubDirs = os.listdir(os.path.join('.','experiments',experimentFolder))
+        setup = json.loads(open(os.path.join('.', 'experiments', experimentFolder, 'setup.json')).read())
+        topologies = setup["topology"]
+
+        experimentFolderSubDirs = os.listdir(os.path.join('.','experiments', experimentFolder))
+        # if experiment not started at all yet, send first topology of this experiment
         if 'crdt' not in experimentFolderSubDirs:
-            return experimentFolder
+            return (experimentFolder, topologies[0])
+
+        completed = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt'))
+        completed.sort() # impose order
+        for top in topologies:
+            if top not in completed:
+                return (experimentFolder, top)
 
     return None
 
@@ -32,11 +42,12 @@ def getNextIncompleteOTExperiment():
 
 @app.route('/nextCRDTExperiment', methods=['GET'])
 def nextCRDTExperiment():
-    experimentName = getNextIncompleteCRDTExperiment()
+    (experimentName, topology) = getNextIncompleteCRDTExperiment()
     if experimentName == None:
         return "{}"
-    setup = open(os.path.join('.','experiments',experimentName, 'setup.json')).read()
-    return setup
+    setup = json.loads(open(os.path.join('.','experiments',experimentName, 'setup.json')).read())
+    setup["topology"] = topology  # only operate on this one topology for now
+    return json.dumps(setup)
 
 @app.route('/nextOTExperiment', methods=['GET'])
 def nextOTExperiment():

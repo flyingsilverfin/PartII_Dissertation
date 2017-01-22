@@ -35,30 +35,24 @@ function getNextExperiment() {
 
 function runExperiment(experiment) {
 
-    for (let topology of experiment.topology){
-        let name = experiment.experiment_name;
-        console.log("-----Fetched and running experiment with topology: " + name + " " + topology);
+    let name = experiment.experiment_name;
+    console.log("-----Fetched and running experiment with topology: " + name + " " + experiment.topology);
 
-        experiment.topology = topology
+    let experimentResult = main(experiment, false);
 
-        let experimentResult = main(experiment, false);
-
-        console.log("-----Completed running experiment with topology: " + name + " " + topology);
-        
-        // post() stringifies the json internally
-        postObject(
-            "http://localhost:3001/crdtResult",
-            {
-                'name': name,
-                'topology': topology,
-                'result': experimentResult
-            }
-        );
-    }
+    console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);
+    
+    // post() stringifies the json internally
+    postObject(
+        "http://localhost:3001/crdtResult",
+        {
+            'name': name,
+            'topology': experiment.topology,
+            'result': experimentResult
+        }
+    );
 }
-
+  
 getNextExperiment();
 
-//setInterval(getNextExperiment, 1000);
-
-
+// only runs 1 now! Then chrome is restarted for more consistent memory measurement
