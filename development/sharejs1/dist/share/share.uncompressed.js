@@ -1114,6 +1114,15 @@
       if (socketImpl === 'sockjs' || socketImpl === 'websocket') {
         data = JSON.stringify(data);
       }
+
+
+      /*
+
+        Dissertation hook needed here!
+
+      */
+
+
       return this.socket.send(data);
     };
 

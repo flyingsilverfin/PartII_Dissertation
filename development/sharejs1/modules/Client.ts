@@ -1,7 +1,7 @@
 declare var sharejs;
 
 
-import EventDrivenScheduler from '../modules/EventDrivenScheduler';
+import RealtimeScheduler from '../modules/RealtimeScheduler';
 import * as T from '../types/Types';
 
 class Client {
@@ -14,24 +14,59 @@ class Client {
     
 
 
-    constructor(id: T.ClientId, sharejs, scheduler: EventDrivenScheduler, events: T.ScheduledEvents) {
-
-        console.log(id)
+    constructor(id: T.ClientId, experimentName, sharejs, scheduler: RealtimeScheduler, events: T.ScheduledEvents, readyCallback) {
+        console.log('id: ' + id);
 
         //use subdomains trick - given an ID it's subdomain is id/5
         let subdomain = Math.floor((id/5)).toString();
 
-        setTimeout( function() {
-            sharejs.open('testdoc', 'text', 'http://' + subdomain + '.localhost:8000/channel', function(err, doc) {
-                console.log(err, doc);
+        sharejs.open('doc' + experimentName, 'text', 'http://' + subdomain + '.localhost:8000/channel', function(err, doc) {
+            
+            if (err) {
+                console.error(err);
+                console.error("Quitting sharejs doc initialization");
+                return;
+            }
 
-                let interfaceContainer = <HTMLDivElement>document.getElementById('client-container');
-                let ta = document.createElement('textarea');
-                ta.id = id.toString();
-                interfaceContainer.appendChild(ta);
-                doc.attach_textarea(ta);
-            })
-        }, id*1000);
+            if (id === 0) {
+                let contentLength = doc.getLength();
+                doc.del(0, contentLength);
+            }
+
+            let interfaceContainer = <HTMLDivElement>document.getElementById('client-container');
+            let ta = document.createElement('textarea');
+            ta.id = id.toString();
+            interfaceContainer.appendChild(ta);
+            doc.attach_textarea(ta);
+
+            for (let eventTime in events.insert) {
+                let time = parseFloat(eventTime);
+                let insert = events.insert[time];
+
+
+                scheduler.addEvent(time, 0, function() {
+                    console.log("Client: " + id + " inserted: " + insert.chars + " after: " + insert.after + " at: " + time);
+
+                    doc.insert(insert.after, insert.chars, null);
+
+                    ta.value = doc.getText();   // wasn't updating otherwise for some reason
+                })
+
+            }
+
+            for (let eventTime in events.delete) {
+                let time = parseFloat(eventTime);
+                let deletes = events.delete[eventTime];
+                for (let i = 0; i < deletes.length; i++) {
+                    let toDelete = deletes[i];
+                    scheduler.addEvent(time, i, function() {
+                        doc.insert(toDelete.index, 1, null);
+                    })
+                }
+            }
+
+            readyCallback();
+        })
 
         /*
 

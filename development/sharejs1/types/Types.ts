@@ -23,12 +23,12 @@ export interface ScheduledEvents {
 }
 
 export interface ScheduledInsertEvents {
-    [time: number] : ScheduledInsert[];
+    [time: number] : ScheduledInsert;
 }
 
 export interface ScheduledInsert {
-    char: string,
-    after: number
+    chars: string,  // word to insert
+    after: number   // at what index to insert at
 }
 
 // at each time, which indices to delete in visible char array

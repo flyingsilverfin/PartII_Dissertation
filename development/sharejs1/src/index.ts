@@ -1,29 +1,37 @@
-declare var require: any;
-declare var share: any;
-declare var textarea: any;
-declare var bcsocket: any;
+
+import {main} from '../modules/Main';
+import {fetchJSONFile, postObject} from '../modules/Helper';
 
 
-/*declare var sharejs: any;
+function getNextExperiment() {
 
-import Client from '../modules/Client';
+    fetchJSONFile(
+        "http://localhost:3001/nextOTExperiment", 
+        runExperiment
+    );
 
-let clients = []
-
-for (let i = 0; i < 10; i++) {
-
-    console.log(sharejs);
-    sharejs.open('testdoc', 'text', 'http://localhost:8000/channel', function(err, doc) {
-        console.log('got doc');
-        clients.push(new Client(i, doc, null, null));
-    });
-}*/
-
-
-for (let i = 0; i < 10; i++) {
-    let iframe = document.createElement('iframe');
-
-    iframe.id = i.toString();
-    iframe.src = "http://localhost:9000/client-index.html";
-    document.body.appendChild(iframe);
 }
+
+function runExperiment(experiment) {
+
+    let name = experiment.experiment_name;
+    console.log("-----Fetched and running OT Experiment: " + name);
+
+    let experimentResult = main(experiment, false, function() {
+
+        console.log("-----Completed running experiment: " + name);
+        
+        // post() stringifies the json internally
+        postObject(
+            "http://localhost:3001/otResult",
+            {
+                'name': name,
+                'result': experimentResult
+            }
+        );
+    });
+}
+  
+getNextExperiment();
+
+// only runs 1 now! Then chrome is restarted for more consistent memory measurement

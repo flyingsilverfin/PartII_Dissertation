@@ -37,7 +37,6 @@ def getNextIncompleteOTExperiment():
         experimentFolderSubDirs = os.listdir(os.path.join('.','experiments',experimentFolder))
         if 'ot' not in experimentFolderSubDirs:
             return experimentFolder
-
     return None
 
 @app.route('/nextCRDTExperiment', methods=['GET'])
@@ -53,9 +52,9 @@ def nextCRDTExperiment():
 def nextOTExperiment():
     experimentName = getNextIncompleteOTExperiment()
     if experimentName == None:
-        return ""
+        return "{}"
     setup = open(os.path.join('.', 'experiments', experimentName, 'setup.json')).read()
-    return json.loads(setup)
+    return setup
 
 @app.route('/crdtResult', methods=['POST'])
 def receiveCRDTResult():
@@ -81,8 +80,11 @@ def receiveCRDTResult():
 
 @app.route('/otResult', methods=['POST'])
 def receiveOTResult():
-    experimentName = request.form['name']
-    experimentResult = request.form['result']
+
+    data = request.get_json()
+    
+    experimentName = data['name']
+    experimentResult = data['result']
     os.mkdir(os.path.join('.', 'experiments', experimentName, 'ot'))
     resultLog = open(os.path.join('.', 'experiments', experimentName, 'ot', 'log.txt'), 'w')
 
@@ -90,6 +92,8 @@ def receiveOTResult():
         resultLog.write(line + '\n')
 
     resultLog.close()
+    
+    return ""
     
 
 

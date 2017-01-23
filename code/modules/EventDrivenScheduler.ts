@@ -41,7 +41,7 @@ export default class EventDrivenScheduler {
         }
     }
 
-    public runNextEvent() {
+    public run() {
         let elem = this.heap.take();
         let dt = elem.pKey;
         this.time.forward(dt);
