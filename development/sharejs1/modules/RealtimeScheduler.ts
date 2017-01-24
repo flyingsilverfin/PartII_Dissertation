@@ -16,6 +16,8 @@ export default class RealtimeScheduler {
     private speed: number;
     private running: boolean;
 
+    public onEmpty: () => void;
+
     /*
         At speed 1, all 'times' represent milliseconds
     */
@@ -100,6 +102,9 @@ export default class RealtimeScheduler {
         if (this.heap.empty()) {
             this.nextTimeoutAt = null;
             this.currentTimeoutHandle = null;
+
+            this.onEmpty();
+
             return;
         }
 

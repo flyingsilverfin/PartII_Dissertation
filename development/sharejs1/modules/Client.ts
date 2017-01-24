@@ -45,7 +45,7 @@ class Client {
 
 
                 scheduler.addEvent(time, 0, function() {
-                    console.log("Client: " + id + " inserted: " + insert.chars + " after: " + insert.after + " at: " + time);
+                    //console.log("Client: " + id + " inserted: " + insert.chars + " after: " + insert.after + " at: " + time);
 
                     doc.insert(insert.after, insert.chars, null);
 

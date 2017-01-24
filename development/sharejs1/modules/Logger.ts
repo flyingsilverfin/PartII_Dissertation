@@ -23,46 +23,6 @@ export default class Logger {
     }
 
 
-    // logs [time] [type] sender receiver type id __msg__
-    /*public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
-        let time = this.getTime();
-
-        let packetType = packet.type;
-        let readablePacketType;
-        let bundle = packet.bundle;
-
-        let bundleSize = JSON.stringify(bundle).length;
-        
-        let msg;
-        if (packetType === "i") {
-            readablePacketType = "insert"; // for logging
-            msg = 
-                (<CRDTTypes.InsertMessage>bundle).char +
-                "    " +
-                (<CRDTTypes.InsertMessage>bundle).id +
-                "    " +
-                (<CRDTTypes.InsertMessage>bundle).after;
-        } else if (packetType === "d") {
-            readablePacketType = "delete"; // for logging
-            msg = 
-                (<CRDTTypes.DeleteMessage>bundle).deleteId
-        } else {
-            console.error("Logging a packet of neither insert nor delete type...");
-            this.l.push("");
-            return;
-        } 
-
-        this.l.push(
-            time + "    " +
-            type + "    " +
-            sender + "    " +
-            receiver + "    " +
-            readablePacketType + "    " +
-            bundleSize + "    " +
-            msg);
-            
-    }*/
-
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", data: any) {
         let time = this.getTime();
 
@@ -87,6 +47,7 @@ export default class Logger {
     public logMemory(when: "pre-experiment" |
                            "post-topology-init" | 
                            "post-graph-init" |
+                           "post-clients-create" |
                            "post-clients-init" |
                            "post-experiment"
                     ): void {

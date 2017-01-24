@@ -17,7 +17,7 @@ function runExperiment(experiment) {
     let name = experiment.experiment_name;
     console.log("-----Fetched and running OT Experiment: " + name);
 
-    let experimentResult = main(experiment, false, function() {
+    main(experiment, false, function(experimentResult) {
 
         console.log("-----Completed running experiment: " + name);
         

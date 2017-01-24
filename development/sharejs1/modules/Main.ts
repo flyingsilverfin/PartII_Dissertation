@@ -20,8 +20,9 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         document.body.appendChild(iframe);
     }
 
+    logger.logMemory("post-clients-create")
 
-    logger.logMemory("post-clients-init")
+
 
 
     let numReady = 0;
@@ -45,19 +46,30 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         numReady++;
         console.log(numReady, numClients);
         if (numReady === numClients) {
+            // timeout may be needed for first client clearing the document
             setTimeout(function() {
+                logger.logMemory("post-clients-init")
                 scheduler.run();
-                let log = logger.getLog();
-                let result = {
-                    experiment_name: experimentSetup.experiment_name,
-                    log: log
-                }
-                logger.logMemory("post-experiment");
-                finishedCallback();
-
             }, 500)
         }
-        
+    }
+
+    /*
+    Hardly elegant, but should work
+    Once the Scheduler is emptied out, wait two seconds for all the in flight packets to arrive
+    then return the result of the experiment
+    */
+    scheduler.onEmpty = function() {
+
+        setTimeout(function() {
+            let log = logger.getLog();
+            let result = {
+                experiment_name: experimentSetup.experiment_name,
+                log: log
+            }
+            logger.logMemory("post-experiment");
+            finishedCallback(result);
+        }, 2000);
     }
 
 }

@@ -1053,8 +1053,13 @@
 
         */
 
-        console.log(window.getId() + " received msg: ");
-        console.log(msg);
+        if (Object.keys(msg).indexOf('op') > -1) {
+          window.logPacket(-1, window.getId(), "received", msg);
+        } else if (Object.keys(msg).indexOf('create') > -1) {
+          window.log("join", JSON.stringify(msg)); // this should really go into log as a packet...
+        } else{
+          console.log('Unknown msg type for logging: ' + JSON.stringify(msg));
+        }
 
         docName = msg.doc;
         if (docName !== void 0) {
@@ -1132,11 +1137,11 @@
 
       */
 
-      // note: due to current setup, 'window' refers to this iframe
-
+      // note: due to current setup, 'window' refers to this iframe (perfect!)
       window.logPacket(window.getId(), -1, "sent", data)
    
 
+      console.log(data);
 
       return this.socket.send(data);
     };
