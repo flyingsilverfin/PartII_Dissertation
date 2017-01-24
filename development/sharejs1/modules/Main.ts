@@ -6,17 +6,11 @@ import RealtimeScheduler from './RealtimeScheduler';
 export function main(experimentSetup, graph=true, finishedCallback) {
 
     let logger = new Logger();
-
     logger.logMemory("pre-experiment");
 
-
     let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');
-
     let scheduler = new RealtimeScheduler();
-
     let numClients = parseInt(experimentSetup.nClients);
-
-
 
     for (let i = 0; i < numClients; i++) {
         let iframe = document.createElement('iframe');
@@ -32,12 +26,17 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
     let numReady = 0;
 
+    let docSeed = Math.floor(Math.random()*1000000);
+
     // to be accessed from iframes
+    // we add a Random number to the experiment name
+    // so we (probably) get a fresh document that doesn't contain any data from an old experiment
     (<any>window).getClientSetup = function(id: number) {
         return {
-            experimentName: experimentSetup.experiment_name,
+            experimentName: experimentSetup.experiment_name + docSeed,
             scheduler: scheduler,
-            events: experimentSetup.events[id]
+            events: experimentSetup.events[id],
+            logger: logger
         }
     };
 

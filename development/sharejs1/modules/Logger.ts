@@ -63,6 +63,27 @@ export default class Logger {
             
     }*/
 
+    public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", data: any) {
+        let time = this.getTime();
+
+        let version = data.v;
+        let readablePacketType = 'sharejs-op';
+        
+        let msg = JSON.stringify(data);
+
+        let bundleSize = msg.length;
+
+        this.l.push(
+            time + "    " +
+            type + "    " +
+            sender + "    " +
+            receiver + "    " +
+            readablePacketType + "    " +
+            bundleSize + "    " +
+            msg);
+    }
+
+
     public logMemory(when: "pre-experiment" |
                            "post-topology-init" | 
                            "post-graph-init" |

@@ -1046,6 +1046,16 @@
           _this.setState('ok');
           return;
         }
+
+        /*
+
+        Dissertation hook here!
+
+        */
+
+        console.log(window.getId() + " received msg: ");
+        console.log(msg);
+
         docName = msg.doc;
         if (docName !== void 0) {
           _this.lastReceivedDoc = docName;
@@ -1121,6 +1131,11 @@
         Dissertation hook needed here!
 
       */
+
+      // note: due to current setup, 'window' refers to this iframe
+
+      window.logPacket(window.getId(), -1, "sent", data)
+   
 
 
       return this.socket.send(data);
