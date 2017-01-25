@@ -82,6 +82,9 @@ def receiveCRDTResult():
 def receiveOTResult():
 
     data = request.get_json()
+
+    print "hi"
+    print data
     
     experimentName = data['name']
     experimentResult = data['result']
