@@ -2,9 +2,12 @@
   "name": "share-testing",
   "main": "index.js",
   "scripts": {
+    "env": "env",
+    "pwd": "echo $PWD",
     "preinstall": "npm link typescript",
-    "build": "webpack",
-    "start": "webpack-dev-server"
+    "modshare": "./modifyShare.sh",
+    "build": "npm run modshare && webpack",
+    "start": "npm run modshare && webpack-dev-server"
   },
   "keywords": [],
   "author": "",

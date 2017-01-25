@@ -34,7 +34,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
     // so we (probably) get a fresh document that doesn't contain any data from an old experiment
     (<any>window).getClientSetup = function(id: number) {
         return {
-            experimentName: experimentSetup.experiment_name + docSeed,
+            experimentName: experimentSetup.experiment_name + "-" + docSeed,
             scheduler: scheduler,
             events: experimentSetup.events[id],
             logger: logger
@@ -46,11 +46,8 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         numReady++;
         console.log(numReady, numClients);
         if (numReady === numClients) {
-            // timeout may be needed for first client clearing the document
-            setTimeout(function() {
-                logger.logMemory("post-clients-init")
-                scheduler.run();
-            }, 500)
+            logger.logMemory("post-clients-init")
+            scheduler.run();
         }
     }
 
