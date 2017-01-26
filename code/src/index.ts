@@ -56,3 +56,4 @@ function runExperiment(experiment) {
 getNextExperiment();
 
 // only runs 1 now! Then chrome is restarted for more consistent memory measurement
+ 

@@ -25,16 +25,22 @@ class ClientAnalyzer(object):
         self.client_id = client_id
         self.crdt = crdt
 
-        self.total_insert_packets_sent = 0
-        self.total_delete_packets_sent = 0
-        self.total_insert_packets_size = 0
-        self.total_delete_packets_size = 0
+        if self.crdt:
+            self.total_insert_packets_sent = 0
+            self.total_delete_packets_sent = 0
+            self.total_insert_packets_size = 0
+            self.total_delete_packets_size = 0
+            self.active_insert_packets = {}    # map (payload id, dest) => time packet was sent
+            self.active_delete_packets = {}    # map (payload id, dest) => time packet was sent
+        else:
+            self.total_packets_sent = 0
+            self.total_packets_size = 0
+            self.total_packets_size_nometa = 0
+            self.active_packets = {}    # map (doc version, dest) => time packet was sent
+            self.serve_id = None
 
-        self.active_insert_packets = {}    # map (payload id, dest) => time packet was sent
-        self.active_delete_packets = {}    # map (payload id, dest) => time packet was sent
-
+        self.active_join_packets = {} # map (dest) => time packet was sent
         self.actual_link_latencies = {}     # map destination => [#packets, total time taken]
-
 
     def sentMessage(self, log_msg):
         """
@@ -48,8 +54,8 @@ class ClientAnalyzer(object):
         receiver = int(log_msg[3])
         payload_size_chars = int(log_msg[5])
 
+        msg_type = log_msg[4]
         if self.crdt:
-            msg_type = log_msg[4]
             if msg_type == 'insert':
                 insert_id = log_msg[7]
                 self.active_insert_packets[(insert_id, receiver)] = when
@@ -61,15 +67,24 @@ class ClientAnalyzer(object):
                 self.active_delete_packets[(delete_id, receiver)] = when
                 self.total_delete_packets_size += payload_size_chars
                 self.total_delete_packets_sent += 1
-
             else:
                 print "Unknown msg type (not insert/delete): " + msg_type
 
-        else:
+        else:   #case sharejs
+            assert msg_type == "sharejs-op"
+            payload = json.loads(log_msg[6])
+            version = payload['v']
+            length = len(log_msg[6])
+            self.active_packets[(version, receiver)] = when
+            self.total_packets_sent += 1
+            self.total_packets_size += length
 
-            #TODO
-            # as sharejs bit isn't done yet, can't create log analysis :o
-            pass
+            #if this client is the server can subtract how much data the 'meta' is consuming
+            if 'meta' in payload.keys():
+                payload.pop('meta')
+                len_no_meta = len(json.dumps(payload))
+                self.total_packets_size_nometa += len_no_meta
+            
 
     def msgArrived(self, log_msg):
         """
@@ -81,8 +96,8 @@ class ClientAnalyzer(object):
         assert sender == self.client_id
         receiver = int(log_msg[3])
 
+        msg_type = log_msg[4]
         if self.crdt:
-            msg_type = log_msg[4]
             if msg_type == 'insert':
                 insert_id = log_msg[7]
                 sent_at = self.active_insert_packets[(insert_id, receiver)]
@@ -102,16 +117,46 @@ class ClientAnalyzer(object):
                 current_totals[0] += 1
                 current_totals[1] += actual_latency
                 self.actual_link_latencies[receiver] = current_totals
-
             else:
                 print "Unknown msg type (not insert/delete): " + msg_type
+        else:   # case sharejs
+            assert msg_type == "sharejs-op"
+            payload = json.loads(log_msg[6])
+            version = payload['v']
 
+            sent_at = self.active_insert_packets[(version, receiver)]
+            actual_latency = when - sent_at
 
+            current_totals = self.get_actual_link_latency(receiver)
+            current_totals[0] += 1
+            current_totals[1] += actual_latency
+            self.actual_link_latencies[receiver] = current_totals
+
+    def joinSent(self, log_msg):
+        # sender = int(log_msg[2])
+        if not self.crdt:
+            self.total_packets_sent += 1
+            self.total_packets_size += len(log_msg[3])
         else:
-
-            #TODO
-            # as sharejs bit isn't done yet, can't create log analysis :o
+            #TODO no packet sent here yet (might have on join/get state later)
             pass
+
+    #only relevant for server 'client' analyzer
+    def joinReceived(self, log_msg):
+        #nothing really interesting here
+        pass
+
+    #only relevant for server 'client' analyzer
+    def joinAckSent(self, log_msg):
+        #nothing really interesting here
+        self.total_packets_sent += 1
+        self.total_packets_size += len(log_msg[3])
+
+    #IMPORTANT - provides mapping between ID and serve-id
+    def joinAckReceived(self, log_msg):
+        payload = json.loads(log_msg[3])
+        self.serve_id = payload['serveId']
+
 
     def get_actual_link_latency(self, receiver):
         try:
@@ -123,10 +168,15 @@ class ClientAnalyzer(object):
     def getResult(self):
         result = {}
         result["link_latencies"] = self.actual_link_latencies
-        result["total_insert_packets"] = self.total_insert_packets_sent
-        result["total_delete_packets"] = self.total_delete_packets_sent
-        result["total_insert_packets_size"] = self.total_insert_packets_size
-        result["total_delete_packets_size"] = self.total_delete_packets_size
+        if self.crdt:
+            result["total_insert_packets"] = self.total_insert_packets_sent
+            result["total_delete_packets"] = self.total_delete_packets_sent
+            result["total_insert_packets_size"] = self.total_insert_packets_size
+            result["total_delete_packets_size"] = self.total_delete_packets_size
+        else:
+            result["total_packets"] = self.total_packets_sent
+            result["total_packets_size"] = self.total_packets_size
+            result["total_packets_size_nometa"] = self.total_packets_size_nometa
 
         return result
 
@@ -136,9 +186,11 @@ class ExperimentAnalzer(object):
     Entry point for analyzing an experiment which generated a given log
     """
 
-    def __init__(self, experiment_name, identifier, log):
+    def __init__(self, experiment_name, identifier, logPath):
+
         self.identifier = identifier
-        self.log = log
+        self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
+        self.logPath = logPath
 
         # used for filling various datapoints later
         if identifier != "fully-connected" and identifier != "star":
@@ -157,10 +209,12 @@ class ExperimentAnalzer(object):
 
         num_clients = int(experiment_setup['nClients'])
 
-        self.clients = []
+        self.clients = {}
 
         for i in range(num_clients):
-            self.clients.append(ClientAnalyzer(i, self.crdt))
+            self.clients[i] = ClientAnalyzer(i, self.crdt)
+        if not self.crdt:
+            self.clients[-1] = ClientAnalyzer(-1, self.crdt)
 
 
         #set up variables and things we want to track later in one central place
@@ -168,16 +222,21 @@ class ExperimentAnalzer(object):
         self.end_time = None
         self.intended_average_link_latency = None   # set const
         self.actual_total_link_time = None
-        self.furthest_hops = None           # set const
-        self.total_inserts_packet_size = None
-        self.total_deletes_packet_size = None
+        self.furthest_hops = None                    # set const
+
+        if self.crdt:
+            self.total_inserts_packet_size = None
+            self.total_deletes_packet_size = None
+            self.total_inserts_packets = None
+            self.total_deletes_packets = None
+        else:
+            self.total_packets = None
+            self.total_packets_size = None
+            self.total_packets_size_nometa = None
 
         #this is the number of insert or delete events generated
-        self.total_inserts_events = None    # set const
-        self.total_deletes_events = None    # set const
-
-        self.total_inserts_packets = None
-        self.total_deletes_packets = None
+        self.total_inserts_events = None            # set const
+        self.total_deletes_events = None            # set const
         self.total_expected_packets_naiive = None   # set const
         self.total_expected_packets_best = None     # set const
 
@@ -212,12 +271,20 @@ class ExperimentAnalzer(object):
         """
         self.start_time = float(self.log[0].split('    ')[0])
         self.end_time = float(self.log[-1].split('    ')[0])
+        run_later = []
+        id_map = {} #only needed for non-crdt but whatever
+
         for msg in self.log:
             msg = msg.split('    ')
             msg_type = msg[1]
             if msg_type == 'join':
-                #not really that interesting...
-                continue
+                sender = int(msg[2])
+                self.clients[sender].joinReceived(msg)
+            elif msg_type == 'join-ack':
+                # receiver is written at [2], out of norm behavior
+                receiver = int(msg[2])
+                self.clients[receiver].joinAckReceived(msg)
+                id_map[self.clients[receiver].serve_id] = self.clients[receiver].client_id
             elif msg_type == 'memory':
                 self.memory_stamps.append((int(msg[2]), msg[3]))
             elif msg_type == 'sent' or msg_type == 'received':
@@ -225,13 +292,51 @@ class ExperimentAnalzer(object):
                 if msg_type == 'sent':
                     self.clients[sender].sentMessage(msg)
                 else: # msg_type == 'receiver' -- guaranteed
-                    self.clients[sender].msgArrived(msg)
-
+                    # stick the msg_arrived into a lambda to run later
+                    # since we need to parse the server send equivalents before the clients ClientAnalyzer
+                    # be able to account for the packets that are sent from the server
+                    run_later.append(lambda m=msg, s=sender: self.clients[s].msgArrived(m))
             else:
-                print "Unknown log msg type: " + msg
-                print "--Ignoring--"
+                print "--Ignoring: Unknown log msg type: " + msg
                 continue
 
+        # if we're in a shareJS experiment log:
+        # we have to build the mapping between clients and serveIds
+        # then open the server log file and parse it similarly
+
+        if not self.crdt:
+            id_map["-1"] = -1
+            print id_map
+
+            server_log_path = self.logPath[:-2] + ["sharejs-server.log"]
+            server_log = [s.strip() for s in open(os.path.join(*server_log_path)).readlines()]
+
+            # now all from perspective of server
+            for msg in server_log:
+                msg = msg.split('    ')
+                msg_type = msg[1]
+                if msg_type == 'join':
+                    #caution: reversed again
+                    receiver = msg[2]
+                    self.clients[id_map[receiver]].joinReceived(msg)
+                    print id_map
+                elif msg_type == 'join-ack':
+                    # sender is always server here
+                    sender = -1
+                    self.clients[sender].joinAckSent(msg)
+                elif msg_type == 'sent' or msg_type == 'received':
+                    sender = id_map[msg[2]]
+                    if msg_type == 'sent':
+                        self.clients[sender].sentMessage(msg)
+                    else: # msg_type == 'receiver' -- guaranteed
+                        msg[2] = id_map[msg[2]]
+                        self.clients[sender].msgArrived(msg)
+                else:
+                    print "--Ignoring: Unknown sever log msg type: " + msg
+                    continue
+
+        for func in run_later:
+            func()
 
 
     def calcExpectedNumberOfPackets(self):
@@ -260,10 +365,18 @@ class ExperimentAnalzer(object):
             return (2 * num_actions * (num_clients - 1), num_actions * (num_clients - 1))
 
         elif self.network_type == 'sharejs':
-            # note: sharejs can insert words at a time...
-            # thus will consider each word insert as 1 message for now
-            # TODO need to think about this more...
-            return (num_actions * (num_clients-1), num_actions * (num_clients-1))
+            """
+            Protocol:
+                Send msg to server
+                Server sends op to all other clients, and returns a sort of Ack
+                so N + 1 messages per action
+
+                To open a document, it's 2N for open/ack
+
+                Problem: sharejs can compose operations to reduce number of packets
+                => maybe less than the number given here in certain situations
+            """
+            return (num_actions * (num_clients + 1) + 2*num_clients, num_actions * (num_clients + 1) + 2*num_clients)
 
         else:
             print "Unknown network type, cannot calculate expected number" \
@@ -319,10 +432,9 @@ class ExperimentAnalzer(object):
         total_insert_packets_size = 0
         total_delete_packets_size = 0
 
-        for client in self.clients:
-
+        for id in self.clients:
+            client = self.clients[id]
             result = client.getResult()
-
 
             latencies = result["link_latencies"]
             for dest in latencies.keys():
@@ -391,8 +503,7 @@ class MainAnalyzer(object):
 
         logs = self.findAllLogs()
         for logPath in logs:
-            logFile = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
-            self.log_analyzers.append(ExperimentAnalzer(experiment_name, logPath[-2], logFile))
+            self.log_analyzers.append(ExperimentAnalzer(experiment_name, logPath[-2], logPath))
 
         results = []
         for analyzer in self.log_analyzers:

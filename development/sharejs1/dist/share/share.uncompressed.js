@@ -1056,9 +1056,9 @@
         if (Object.keys(msg).indexOf('op') > -1) {
           window.logPacket(-1, window.getId(), "received", msg);
         } else if (Object.keys(msg).indexOf('create') > -1) {
-          window.log("join", JSON.stringify(msg)); // this should really go into log as a packet...
+          window.logJoin("join-ack", window.getId(), JSON.stringify(msg)); // this should really go into log as a packet...
         } else{
-          console.log('Unknown msg type for logging: ' + JSON.stringify(msg));
+          window.logPacket(-1, window.getId(), "received", msg);
         }
 
         docName = msg.doc;
@@ -1137,10 +1137,13 @@
 
       */
 
-      // note: due to current setup, 'window' refers to this iframe (perfect!)
-      window.logPacket(window.getId(), -1, "sent", data)
-   
-
+      if (Object.keys(data).indexOf('op') > -1) {
+        window.logPacket(window.getId(), -1, "sent", data);
+      } else if (Object.keys(data).indexOf('create') > -1) {
+        window.logJoin("join", window.getId(), JSON.stringify(data)); // this should really go into log as a packet...
+      } else{
+        console.log('Unknown msg type for logging: ' + JSON.stringify(data));
+      }
       console.log(data);
 
       return this.socket.send(data);

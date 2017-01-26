@@ -17,16 +17,20 @@ export default class Logger {
         this.l = [];
     }
 
-    public log(tag: "join" | "memory", msg: string) {
+    public log(tag: "memory", msg: string) {
         let time = this.getTime();
         this.l.push(time + "    " + tag + "    " + msg);
+    }
+
+    public logJoin(tag: "join" | "join-ack", id: number, msg: string) {
+        let time = this.getTime();
+        this.l.push(time + "    " + tag + "    " + id + "    " + msg);
     }
 
 
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", data: any) {
         let time = this.getTime();
 
-        let version = data.v;
         let readablePacketType = 'sharejs-op';
         
         let msg = JSON.stringify(data);

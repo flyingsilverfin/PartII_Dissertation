@@ -16,5 +16,6 @@ let setup = (<any>parentWindow).getClientSetup(id);
 let logger = setup.logger;
 (<any>window).logPacket = logger.logPacket.bind(logger);
 (<any>window).log = logger.log.bind(logger);
+(<any>window).logJoin = logger.logJoin.bind(logger);
 
 new Client(id, setup.experimentName, sharejs, setup.scheduler, setup.events, (<any>parentWindow).clientReady);

@@ -91,12 +91,20 @@ exports.handler = (session, createAgent) ->
         query.doc = lastReceivedDoc
 
       docState[query.doc] or= queue: syncQueue (query, callback) ->
+
+        docName = null
+        for name of docState
+          docName = name
+            
         # When the session is closed, we'll nuke docState. When that happens, no more messages
         # should be handled.
         return callback() unless docState
 
         # Close messages are {open:false}
         if query.open == false
+
+          logOtherReceived(docName, agent.sessionId, query)
+        
           handleClose query, callback
 
             # Open messages are {open:true}. There's a lot of shared logic with getting snapshots
@@ -105,10 +113,15 @@ exports.handler = (session, createAgent) ->
         else if query.open or query.snapshot is null or query.create
                  # You can open, request a snapshot and create all in the same
                  # request. They're all handled together.
+        
+          # DISSERTATION LOG MSG
+          logJoinReceived(docName, agent.sessionId, query)
           handleOpenCreateSnapshot query, callback
 
                  # The socket is submitting an op.
         else if query.op? or query.meta?.path?
+          # DISSERTATION LOG MSG
+          logOpReceived(docName, agent.sessionId, query)
           handleOp query, callback
 
         else
@@ -118,18 +131,56 @@ exports.handler = (session, createAgent) ->
 
       # ... And add the message to the queue.
       docState[query.doc].queue query
+    
 
-
-
-    log = (docName, id, body) ->
+    # DISSERTATION LOG FUNCTION
+    logSent = (docName, id, body) ->
       docName = docName.split('-')[0]
-      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/'+docName+'-sharejs-server.log', 
-        Date.now() + '    ' + 'sent    ' + '-1' + id + '    ' + JSON.stringify(body) + '\n',
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
+        Date.now() + '    sent    -1    ' + id + '    ' + JSON.stringify(body) + '\n',
         (err) ->
            console.error("Error writing log file for experiment: " + docName) if err
            console.error(err) if err
-           
       );
+
+    logJoinAckSent = (docName, id, body) ->
+      docName = docName.split('-')[0]
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
+        Date.now() + '    join-ack    ' + '-1' + '    ' + JSON.stringify(body) + '\n',
+        (err) ->
+           console.error("Error writing log file for experiment: " + docName) if err
+           console.error(err) if err
+      );
+
+    
+    logJoinReceived = (docName, id, body) ->
+      docName = docName.split('-')[0]
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
+        Date.now() + '    join    ' + '-1' + '    ' + JSON.stringify(body) + '\n',
+        (err) ->
+          console.error("Error writing log file for experiment: " + docName) if err
+          console.error(err) if err
+      );
+
+    # DISSERTATION LOG FUNCTION
+    logOpReceived = (docName, id, body) ->
+      docName = docName.split('-')[0]
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
+        Date.now() + '    received    ' + id + '    -1    ' + JSON.stringify(body) + '\n',
+        (err) ->
+           console.error("Error writing log file for experiment: " + docName) if err
+           console.error(err) if err
+      );
+
+    logOtherReceived = (docName, id, body) ->
+      docName = docName.split('-')[0]
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
+        Date.now() + '    ' + 'other-received    ' + id + '    -1    ' + JSON.stringify(body) + '\n',
+        (err) ->
+          console.error("Error writing log file for experiment: " + docName) if err
+          console.error(err) if err
+      );
+
 
 
 
@@ -147,11 +198,16 @@ exports.handler = (session, createAgent) ->
       # Its invalid to send a message to a closed session. We'll silently drop messages if the
       # session has closed.
       if session.ready()
+
+        # DISSERTATION LOG MSG
         docName = null
         for name of docState
           docName = name
-        
-        log(docName, agent.sessionId, response)
+        if response.open or response.create
+          logJoinAckSent(docName, agent.sessionId, response)
+        else
+          logSent(docName, agent.sessionId, response)
+
         session.send response
 
     # Open the given document name, at the requested version.

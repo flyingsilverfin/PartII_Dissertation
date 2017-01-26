@@ -36,7 +36,7 @@ class NetworkManager {
             
             id = this.topology.reserveNextNodeId();
 
-            this.log.log("join", "Node " + id + " joined network");
+            this.log.logJoin("join", id, "Joined network!");
 
 
         } catch (err) {

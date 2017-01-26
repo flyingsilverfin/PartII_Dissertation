@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {	
 	entry: [
-		'webpack-dev-server/client?http://localhost:8000',
+		'webpack-dev-server/client?http://localhost:9000',
 		'./src/index.ts'
 	],
 	output: {
@@ -21,7 +21,7 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: './dist',
-		port: 8000
+		port: 9000
 	},
 	// Turn on sourcemaps
 	devtool: 'source-map',

@@ -20,9 +20,14 @@ export default class Logger {
         this.l = [];
     }
 
-    public log(tag: "join" | "memory", msg: string) {
+    public log(tag: "memory", msg: string) {
         let time = this.getTime();
         this.l.push(time + "    " + tag + "    " + msg);
+    }
+
+    public logJoin(tag: "join" | "join-ack", id: number, msg: string) {
+        let time = this.getTime();
+        this.l.push(time + "    " + tag + "    " + id + "    " + msg);
     }
 
 

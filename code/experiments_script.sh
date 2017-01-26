@@ -12,7 +12,7 @@ do
     echo "Restarting chrome for next experiment"
     killall chrome;
     sleep 3;
-    google-chrome --enable-precise-memory-info --js-flags="--expose-gc" http://localhost:8000
+    google-chrome --enable-precise-memory-info --js-flags="--expose-gc" http://localhost:9000
     sleep 15
     echo "finished"
 done

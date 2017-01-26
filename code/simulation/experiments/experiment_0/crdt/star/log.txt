@@ -1,16 +1,16 @@
-0    memory    5436736    pre-experiment
-0    memory    5595832    post-topology-init
-0    join    Node 0 joined network
-0    join    Node 1 joined network
-0    join    Node 2 joined network
-0    join    Node 3 joined network
-0    join    Node 4 joined network
-0    join    Node 5 joined network
-0    join    Node 6 joined network
-0    join    Node 7 joined network
-0    join    Node 8 joined network
-0    join    Node 9 joined network
-0    memory    5758944    post-clients-init
+0    memory    13665240    pre-experiment
+0    memory    13758256    post-topology-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    join    2    Joined network!
+0    join    3    Joined network!
+0    join    4    Joined network!
+0    join    5    Joined network!
+0    join    6    Joined network!
+0    join    7    Joined network!
+0    join    8    Joined network!
+0    join    9    Joined network!
+0    memory    13954056    post-clients-init
 0    sent    0    1    insert    35    c    1.0    0
 0    sent    0    2    insert    35    c    1.0    0
 0    sent    0    3    insert    35    c    1.0    0
@@ -2639,4 +2639,4 @@
 454.0213016529665    received    3    0    insert    39    i    13.9    12.9
 454.0213016529665    received    3    0    insert    39    n    14.9    13.9
 454.0213016529665    received    3    0    insert    39    g    15.9    14.9
-454.0213016529665    memory    10650288    post-experiment
+454.0213016529665    memory    11614184    post-experiment
