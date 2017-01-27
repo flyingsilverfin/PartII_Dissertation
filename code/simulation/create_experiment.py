@@ -17,12 +17,17 @@ experiment_setup = {
     },
     "events":{              # events to run per node, at which times
     },
-    "init": ""              # initial document contents
+    "init": "",              # initial document contents
+    "description": ""
 }
 
 
 
 EXPERIMENT_SETUP_OPTIONS = {
+    "description": {
+        "type": "str",
+        "text": "Experiment description"
+    },
     "execution" : {
         "type": "list",
         "text": "Choose simulation type",
@@ -65,14 +70,14 @@ def printChoicesFor(item):
         choiceOptions = choices["choices"]
         for i in range(len(choiceOptions)):
             print "%d. " %(i+1) + choiceOptions[i]
-    elif choiceType == "int" or choiceType == "float" or choiceType == "str|int":
+    elif choiceType == "int" or choiceType == "float" or choiceType == "str|int" or choiceType == "str":
         return
     else:
         print("Unknown choice type, check setup options or update code")
         raise Exception()
 
 # - indicates a sub-index
-order = ["execution", "nClients", "latency_model-type", "latency_model-center", "init"]
+order = ["description", "execution", "nClients", "latency_model-type", "latency_model-center", "init"]
 
 i = 0
 while i < len(order):
@@ -170,7 +175,7 @@ os.mkdir(os.path.join('.', 'experiments', experiment_name))
 experiment_setup["experiment_name"] = experiment_name
 
 open(os.path.join('.', 'experiments', experiment_name,
-                  'setup.json'), 'w').write(json.dumps(experiment_setup))
+                  'setup.json'), 'w').write(json.dumps(experiment_setup, indent=4))
 
 
 print "Experiment generated successfully"

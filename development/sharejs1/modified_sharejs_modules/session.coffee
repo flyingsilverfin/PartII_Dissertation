@@ -136,8 +136,9 @@ exports.handler = (session, createAgent) ->
     # DISSERTATION LOG FUNCTION
     logSent = (docName, id, body) ->
       docName = docName.split('-')[0]
+      len  = JSON.stringify(body).length
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
-        Date.now() + '    sent    -1    ' + id + '    ' + JSON.stringify(body) + '\n',
+        Date.now() + '    sent    -1    ' + id + '    sharejs-op    ' + len + '    ' + JSON.stringify(body) + '\n',
         (err) ->
            console.error("Error writing log file for experiment: " + docName) if err
            console.error(err) if err
@@ -165,8 +166,9 @@ exports.handler = (session, createAgent) ->
     # DISSERTATION LOG FUNCTION
     logOpReceived = (docName, id, body) ->
       docName = docName.split('-')[0]
+      len = JSON.stringify(body).length
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
-        Date.now() + '    received    ' + id + '    -1    ' + JSON.stringify(body) + '\n',
+        Date.now() + '    received    ' + id + '    -1    sharejs-op    ' + len + '    ' + JSON.stringify(body) + '\n',
         (err) ->
            console.error("Error writing log file for experiment: " + docName) if err
            console.error(err) if err

@@ -97,6 +97,7 @@ class ClientAnalyzer(object):
         receiver = int(log_msg[3])
 
         msg_type = log_msg[4]
+
         if self.crdt:
             if msg_type == 'insert':
                 insert_id = log_msg[7]
@@ -115,16 +116,16 @@ class ClientAnalyzer(object):
 
                 current_totals = self.get_actual_link_latency(receiver)
                 current_totals[0] += 1
-                current_totals[1] += actual_latency
                 self.actual_link_latencies[receiver] = current_totals
             else:
                 print "Unknown msg type (not insert/delete): " + msg_type
         else:   # case sharejs
+
             assert msg_type == "sharejs-op"
             payload = json.loads(log_msg[6])
             version = payload['v']
 
-            sent_at = self.active_insert_packets[(version, receiver)]
+            sent_at = self.active_packets[(version, receiver)]
             actual_latency = when - sent_at
 
             current_totals = self.get_actual_link_latency(receiver)
@@ -132,6 +133,8 @@ class ClientAnalyzer(object):
             current_totals[1] += actual_latency
             self.actual_link_latencies[receiver] = current_totals
 
+
+    # ---- these aren't really following the 'sender tracks packets' system ----
     def joinSent(self, log_msg):
         # sender = int(log_msg[2])
         if not self.crdt:
@@ -141,7 +144,6 @@ class ClientAnalyzer(object):
             #TODO no packet sent here yet (might have on join/get state later)
             pass
 
-    #only relevant for server 'client' analyzer
     def joinReceived(self, log_msg):
         #nothing really interesting here
         pass
@@ -207,11 +209,11 @@ class ExperimentAnalzer(object):
 
         self.experiment_setup = experiment_setup
 
-        num_clients = int(experiment_setup['nClients'])
+        self.num_clients = int(experiment_setup['nClients'])
 
         self.clients = {}
 
-        for i in range(num_clients):
+        for i in range(self.num_clients):
             self.clients[i] = ClientAnalyzer(i, self.crdt)
         if not self.crdt:
             self.clients[-1] = ClientAnalyzer(-1, self.crdt)
@@ -279,7 +281,7 @@ class ExperimentAnalzer(object):
             msg_type = msg[1]
             if msg_type == 'join':
                 sender = int(msg[2])
-                self.clients[sender].joinReceived(msg)
+                self.clients[sender].joinSent(msg)
             elif msg_type == 'join-ack':
                 # receiver is written at [2], out of norm behavior
                 receiver = int(msg[2])
@@ -327,6 +329,7 @@ class ExperimentAnalzer(object):
                 elif msg_type == 'sent' or msg_type == 'received':
                     sender = id_map[msg[2]]
                     if msg_type == 'sent':
+                        msg[3] = id_map[msg[3]]
                         self.clients[sender].sentMessage(msg)
                     else: # msg_type == 'receiver' -- guaranteed
                         msg[2] = id_map[msg[2]]
@@ -348,21 +351,23 @@ class ExperimentAnalzer(object):
         if the naiive broadcast had been done using multicast/proper protocol
         """
 
-        num_clients = len(self.clients)
         inserts = self.getNumberOfInsertEvents()
         deletes = self.getNumberOfDeleteEvents()
         num_actions = inserts + deletes
 
         if self.network_type == 'fully-connected':
             return (
-                num_actions *
-                ((num_clients - 1) + (num_clients - 1) * (num_clients - 1)) # this is O(n^2)
+                num_actions * (
+                    (self.num_clients - 1) +
+                    (self.num_clients - 1) * (self.num_clients - 1)
+                ) # this is O(n^2) in number of clients
                 ,
-                num_actions * (num_clients - 1)
+                num_actions * (self.num_clients - 1)
             )
 
         elif self.network_type == 'star':
-            return (2 * num_actions * (num_clients - 1), num_actions * (num_clients - 1))
+            return (2 * num_actions * (self.num_clients - 1),
+                    num_actions * (self.num_clients - 1))
 
         elif self.network_type == 'sharejs':
             """
@@ -376,7 +381,8 @@ class ExperimentAnalzer(object):
                 Problem: sharejs can compose operations to reduce number of packets
                 => maybe less than the number given here in certain situations
             """
-            return (num_actions * (num_clients + 1) + 2*num_clients, num_actions * (num_clients + 1) + 2*num_clients)
+            return (num_actions * (self.num_clients + 1) + 2*self.num_clients,
+                    num_actions * (self.num_clients + 1) + 2*self.num_clients)
 
         else:
             print "Unknown network type, cannot calculate expected number" \
@@ -427,10 +433,15 @@ class ExperimentAnalzer(object):
         result = ""
 
         average_measured_link_latencies = {}
-        total_insert_packets = 0
-        total_delete_packets = 0
-        total_insert_packets_size = 0
-        total_delete_packets_size = 0
+        if self.crdt:
+            total_insert_packets = 0
+            total_delete_packets = 0
+            total_insert_packets_size = 0
+            total_delete_packets_size = 0
+        else:
+            total_packets = 0
+            total_packets_size = 0
+            total_packets_size_nometa = 0
 
         for id in self.clients:
             client = self.clients[id]
@@ -441,45 +452,82 @@ class ExperimentAnalzer(object):
                 average_measured_link_latencies[(client.client_id, dest)] = \
                     float(latencies[dest][1]) / latencies[dest][0]
 
-            total_insert_packets += result["total_insert_packets"]
-            total_delete_packets += result["total_delete_packets"]
-            total_insert_packets_size += result["total_insert_packets_size"]
-            total_delete_packets_size += result["total_delete_packets_size"]
+            if self.crdt:
+                total_insert_packets += result["total_insert_packets"]
+                total_delete_packets += result["total_delete_packets"]
+                total_insert_packets_size += result["total_insert_packets_size"]
+                total_delete_packets_size += result["total_delete_packets_size"]
+            else:
+                total_packets += result["total_packets"]
+                total_packets_size += result["total_packets_size"]
+                total_packets_size_nometa += result["total_packets_size_nometa"]
 
-        av_insert_packet_size = 0 if total_insert_packets == 0 else \
-                                float(total_insert_packets_size)/total_insert_packets
-        av_delete_packet_size = 0 if total_delete_packets == 0 else \
-                                float(total_delete_packets_size)/total_delete_packets
 
 
         initial_memory = self.memory_stamps[0][0]
         memory_checkpoints = [self.formatResultEntry(m[1], m[0] - initial_memory) for m in self.memory_stamps]
-        # skip latencies for now 
+        # skip latencies for now
         # TODO
-        #self.intended_average_link_latency 
-
-        return self.buildResult(
-            self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
+        #self.intended_average_link_latency
 
 
-            self.formatResultEntry('Total insert events', self.total_inserts_events),
-            self.formatResultEntry('Total delete events', self.total_deletes_events),
 
-            self.formatResultEntry('Total insert packets sent', total_insert_packets),
-            self.formatResultEntry('Total size of insert packets sent', total_insert_packets_size),
-            self.formatResultEntry('Average insert packet payload size', av_insert_packet_size),
+        """
+        This is really bad program structure, but non-trivial to refactor so it stays for now
+        """
+        if self.crdt:
 
-            self.formatResultEntry('Total delete packets sent', total_delete_packets),
-            self.formatResultEntry('Total size of delete packets sent', total_delete_packets_size),
-            self.formatResultEntry('Average delete packet payload size', av_delete_packet_size),
+            av_insert_packet_size = 0 if total_insert_packets == 0 else \
+                                    float(total_insert_packets_size)/total_insert_packets
+            av_delete_packet_size = 0 if total_delete_packets == 0 else \
+                                    float(total_delete_packets_size)/total_delete_packets
 
-            self.formatResultEntry('Total number of packets sent', total_insert_packets + total_delete_packets),
-            self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
-            self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+            return self.buildResult(
+                self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
 
 
-            *memory_checkpoints
-        )
+                self.formatResultEntry('Total insert events', self.total_inserts_events),
+                self.formatResultEntry('Total delete events', self.total_deletes_events),
+
+                self.formatResultEntry('Total insert packets sent', total_insert_packets),
+                self.formatResultEntry('Total size of insert packets sent', total_insert_packets_size),
+                self.formatResultEntry('Average insert packet payload size', av_insert_packet_size),
+
+                self.formatResultEntry('Total delete packets sent', total_delete_packets),
+                self.formatResultEntry('Total size of delete packets sent', total_delete_packets_size),
+                self.formatResultEntry('Average delete packet payload size', av_delete_packet_size),
+
+                self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
+                self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+
+
+                *memory_checkpoints
+            )
+        else:
+            av_packet_size = 0 if total_packets == 0 else \
+                                float(total_packets_size)/total_packets
+            av_packet_size_nometa = 0 if total_packets == 0 else \
+                                float(total_packets_size_nometa)/total_packets
+
+            return self.buildResult(
+                self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
+
+                self.formatResultEntry('Total insert events', self.total_inserts_events),
+                self.formatResultEntry('Total delete events', self.total_deletes_events),
+
+                self.formatResultEntry('Total packets', total_packets),
+                self.formatResultEntry('Total size of packets sent', total_packets_size),
+                self.formatResultEntry('Average packet payload size', av_packet_size),
+        
+                self.formatResultEntry('Total size of delete packets sent, if there were no meta-information', total_packets_size_nometa),
+                self.formatResultEntry('Average packet payload size without meta-information', av_packet_size_nometa),
+
+                self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
+                self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+
+                *memory_checkpoints
+            )
+
 
 
     def formatResultEntry(self, name, value):

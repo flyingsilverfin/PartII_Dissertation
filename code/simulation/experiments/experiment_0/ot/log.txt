@@ -1,134 +1,134 @@
-1485452531277    memory    10000000    pre-experiment
-1485452531353    memory    10000000    post-clients-create
-1485452532080    join    4    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532091    join    0    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532103    join    9    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532119    join    1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532131    join    5    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532140    join    6    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532152    join    7    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532163    join    3    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532171    join    2    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532183    join    8    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532263    join-ack    4    {"doc":"experiment_0-480224","create":true,"open":true,"v":0,"serveId":"a61f868b2668cf57c19c5d15919c87ff"}
-1485452532274    join-ack    9    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"67db9a5fdfd992ffa4f2c5d659f8f02a"}
-1485452532285    join-ack    0    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"7c427063e88518bc70ba7f1c342fda71"}
-1485452532294    join-ack    6    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"b3e36a39c78f274ea6bd125cbd8d2ad0"}
-1485452532304    join-ack    7    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"e6e6451c6a3d1eada69ac35bc37f6f8f"}
-1485452532314    join-ack    2    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"c6d6d4632910227e19694aeae6000875"}
-1485452532322    join-ack    1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"4e2747b39a1e119ad008770d822e26c4"}
-1485452532329    join-ack    5    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"4d12a8c18ef3e10d9fc04737ef2c9c4f"}
-1485452532351    join-ack    3    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"8341c970638c3dea1399760004c68c20"}
-1485452532361    join-ack    8    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"087206e35ccdb2f47003b4970ae3ffba"}
-1485452532364    memory    10000000    post-clients-init
-1485452532377    sent    0    -1    sharejs-op    35    {"op":[{"p":0,"i":"common"}],"v":0}
-1485452532402    received    -1    4    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532409    received    -1    9    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532413    received    -1    6    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532416    received    -1    7    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532422    received    -1    2    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532427    received    -1    1    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532433    received    -1    5    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532437    received    -1    0    sharejs-op    7    {"v":0}
-1485452532438    received    -1    3    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532446    received    -1    8    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532451    sent    1    -1    sharejs-op    36    {"op":[{"p":0,"i":"glamour"}],"v":1}
-1485452532461    sent    2    -1    sharejs-op    39    {"op":[{"p":0,"i":"forfeiture"}],"v":1}
-1485452532471    received    -1    4    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532476    received    -1    9    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532478    received    -1    6    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532481    received    -1    7    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532492    received    -1    2    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532496    received    -1    2    sharejs-op    7    {"v":2}
-1485452532498    received    -1    1    sharejs-op    7    {"v":1}
-1485452532498    received    -1    1    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532500    sent    3    -1    sharejs-op    35    {"op":[{"p":0,"i":"abused"}],"v":1}
-1485452532502    received    -1    5    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532504    received    -1    5    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532505    received    -1    0    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532507    received    -1    0    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532508    received    -1    3    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532510    received    -1    3    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532512    received    -1    8    sharejs-op    108    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532514    received    -1    8    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532527    sent    4    -1    sharejs-op    35    {"op":[{"p":0,"i":"Nasser"}],"v":2}
-1485452532530    received    -1    4    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532536    received    -1    9    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532538    received    -1    6    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532545    received    -1    7    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532559    sent    5    -1    sharejs-op    41    {"op":[{"p":0,"i":"garnisheeing"}],"v":3}
-1485452532562    received    -1    2    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532566    received    -1    1    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532568    received    -1    5    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532581    received    -1    0    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532582    received    -1    0    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532586    received    -1    3    sharejs-op    7    {"v":3}
-1485452532586    received    -1    3    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532598    received    -1    8    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532600    received    -1    8    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532605    received    -1    4    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532606    received    -1    4    sharejs-op    7    {"v":4}
-1485452532607    sent    6    -1    sharejs-op    35    {"op":[{"p":0,"i":"haloed"}],"v":3}
-1485452532610    received    -1    9    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532612    received    -1    9    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532614    received    -1    6    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532616    received    -1    6    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532622    received    -1    7    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532622    received    -1    7    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532623    received    -1    7    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532629    received    -1    2    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532639    received    -1    2    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532641    received    -1    1    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532643    received    -1    1    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532647    received    -1    5    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532652    received    -1    5    sharejs-op    7    {"v":5}
-1485452532653    sent    7    -1    sharejs-op    36    {"op":[{"p":0,"i":"avenger"}],"v":6}
-1485452532667    received    -1    0    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532672    received    -1    0    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532678    received    -1    3    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532680    received    -1    3    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532684    received    -1    8    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532686    received    -1    8    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532689    received    -1    4    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532691    received    -1    4    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532696    received    -1    9    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532697    received    -1    9    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532700    received    -1    6    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532702    received    -1    6    sharejs-op    7    {"v":6}
-1485452532703    received    -1    7    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532707    sent    8    -1    sharejs-op    33    {"op":[{"i":"Amie","p":0}],"v":7}
-1485452532715    received    -1    2    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532717    received    -1    2    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532720    received    -1    1    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532726    received    -1    1    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532731    received    -1    5    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532733    received    -1    5    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532742    received    -1    0    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532745    sent    9    -1    sharejs-op    38    {"op":[{"p":0,"i":"mongering"}],"v":7}
-1485452532752    received    -1    3    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532757    received    -1    8    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532761    received    -1    4    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532763    received    -1    4    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532767    received    -1    9    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532770    received    -1    9    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532774    received    -1    6    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532777    received    -1    6    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532780    received    -1    7    sharejs-op    7    {"v":7}
-1485452532781    received    -1    7    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532785    received    -1    2    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532788    received    -1    1    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532809    received    -1    5    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532812    received    -1    5    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532815    received    -1    0    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532828    received    -1    0    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532831    received    -1    3    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532832    received    -1    3    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532835    received    -1    8    sharejs-op    7    {"v":8}
-1485452532836    received    -1    8    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532839    received    -1    4    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532841    received    -1    9    sharejs-op    7    {"v":9}
-1485452532844    received    -1    6    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532852    received    -1    7    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532856    received    -1    2    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532861    received    -1    1    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452534729    memory    10000000    post-experiment
+1485531558240    memory    10000000    pre-experiment
+1485531558279    memory    10000000    post-clients-create
+1485531559046    join    4    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559058    join    5    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559078    join    6    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559089    join    8    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559101    join    7    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559110    join    0    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559119    join    3    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559129    join    2    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559138    join    1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559218    join    9    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559230    join-ack    4    {"doc":"experiment_0-181847","create":true,"open":true,"v":0,"serveId":"8f6a4217c09e522cf680ab15df43d9a4"}
+1485531559238    join-ack    5    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"c1667c48b99d3b6813d8fe3a25bd750b"}
+1485531559244    join-ack    6    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"c5ccc5ce4e6cd48226640f2c853cd5f6"}
+1485531559249    join-ack    8    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"b8d266540b657d970a18c119f84e34ce"}
+1485531559255    join-ack    3    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"e5c6d088dd7ce286479a0e44ae108270"}
+1485531559261    join-ack    2    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"5541cd2c5fa576ac083fbb96112e0096"}
+1485531559270    join-ack    7    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"64f4bc470eb53907d6f220fb08ac5e5a"}
+1485531559278    join-ack    0    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"26cb48fd14aeb4989fb6fed9edabbbd1"}
+1485531559289    join-ack    1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"55f4a0885dba33338e1bf08896942b02"}
+1485531559303    join-ack    9    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"34047cbecde768ab6bfb8ad8ea74ffe4"}
+1485531559307    memory    10000000    post-clients-init
+1485531559314    sent    0    -1    sharejs-op    35    {"op":[{"p":0,"i":"common"}],"v":0}
+1485531559335    received    -1    4    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559337    received    -1    5    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559340    received    -1    6    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559344    received    -1    8    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559346    received    -1    3    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559348    received    -1    2    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559350    received    -1    7    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559353    received    -1    0    sharejs-op    7    {"v":0}
+1485531559354    sent    1    -1    sharejs-op    36    {"op":[{"p":0,"i":"glamour"}],"v":0}
+1485531559357    received    -1    1    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559365    received    -1    9    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559368    sent    2    -1    sharejs-op    39    {"op":[{"p":0,"i":"forfeiture"}],"v":1}
+1485531559387    sent    3    -1    sharejs-op    35    {"op":[{"p":0,"i":"abused"}],"v":1}
+1485531559394    received    -1    4    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559395    received    -1    4    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559400    received    -1    5    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559401    received    -1    5    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559406    received    -1    6    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559409    received    -1    6    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559411    received    -1    8    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559412    received    -1    8    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559415    received    -1    3    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559419    received    -1    3    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559423    received    -1    2    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559427    received    -1    2    sharejs-op    7    {"v":2}
+1485531559430    received    -1    7    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559431    received    -1    7    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559433    received    -1    0    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559435    received    -1    0    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559440    received    -1    1    sharejs-op    7    {"v":1}
+1485531559441    received    -1    1    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559442    received    -1    1    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559445    received    -1    9    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559447    received    -1    9    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559448    received    -1    9    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559449    sent    4    -1    sharejs-op    35    {"op":[{"p":0,"i":"Nasser"}],"v":3}
+1485531559455    received    -1    4    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559461    received    -1    5    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559463    sent    5    -1    sharejs-op    41    {"op":[{"i":"garnisheeing","p":0}],"v":4}
+1485531559467    received    -1    6    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559469    received    -1    8    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559480    received    -1    3    sharejs-op    7    {"v":3}
+1485531559481    received    -1    3    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559484    received    -1    2    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559485    received    -1    2    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559490    sent    6    -1    sharejs-op    35    {"op":[{"p":0,"i":"haloed"}],"v":4}
+1485531559494    received    -1    7    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559495    received    -1    7    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559496    received    -1    7    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559500    received    -1    0    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559502    received    -1    0    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559503    received    -1    0    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559505    received    -1    1    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559506    received    -1    1    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559513    received    -1    9    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559515    received    -1    9    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559518    received    -1    4    sharejs-op    7    {"v":4}
+1485531559519    received    -1    4    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559521    sent    7    -1    sharejs-op    36    {"op":[{"p":0,"i":"avenger"}],"v":6}
+1485531559528    received    -1    5    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559529    received    -1    5    sharejs-op    7    {"v":5}
+1485531559530    received    -1    5    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559533    received    -1    6    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559536    received    -1    6    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559538    received    -1    6    sharejs-op    7    {"v":6}
+1485531559539    received    -1    8    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559542    received    -1    8    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559543    received    -1    8    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559548    received    -1    3    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559550    received    -1    3    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559553    received    -1    2    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559554    received    -1    2    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559561    received    -1    7    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559566    sent    8    -1    sharejs-op    33    {"op":[{"p":0,"i":"Amie"}],"v":7}
+1485531559577    received    -1    0    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559578    received    -1    1    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559582    received    -1    9    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559584    received    -1    9    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559585    received    -1    4    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559586    received    -1    4    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559591    received    -1    5    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559595    sent    9    -1    sharejs-op    38    {"op":[{"i":"mongering","p":0}],"v":8}
+1485531559599    received    -1    6    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559602    received    -1    8    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559610    received    -1    3    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559612    received    -1    3    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559616    received    -1    2    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559617    received    -1    2    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559621    received    -1    7    sharejs-op    7    {"v":7}
+1485531559622    received    -1    7    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559623    received    -1    7    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559630    received    -1    0    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559631    received    -1    0    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559632    received    -1    0    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559635    received    -1    1    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559636    received    -1    1    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559638    received    -1    1    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559641    received    -1    9    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559642    received    -1    9    sharejs-op    7    {"v":9}
+1485531559643    received    -1    4    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559645    received    -1    4    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559647    received    -1    5    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559649    received    -1    5    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559656    received    -1    6    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559658    received    -1    6    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559661    received    -1    8    sharejs-op    7    {"v":8}
+1485531559662    received    -1    8    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559668    received    -1    3    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559672    received    -1    2    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531561581    memory    10000000    post-experiment

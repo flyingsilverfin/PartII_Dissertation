@@ -1,130 +1,130 @@
-1485452532200    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532208    join-ack    -1    {"doc":"experiment_0-480224","create":true,"open":true,"v":0,"serveId":"a61f868b2668cf57c19c5d15919c87ff"}
-1485452532214    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532215    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"67db9a5fdfd992ffa4f2c5d659f8f02a"}
-1485452532229    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532230    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"7c427063e88518bc70ba7f1c342fda71"}
-1485452532235    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532235    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"b3e36a39c78f274ea6bd125cbd8d2ad0"}
-1485452532249    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532250    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"e6e6451c6a3d1eada69ac35bc37f6f8f"}
-1485452532254    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532255    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"c6d6d4632910227e19694aeae6000875"}
-1485452532265    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532265    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"4e2747b39a1e119ad008770d822e26c4"}
-1485452532270    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532270    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"4d12a8c18ef3e10d9fc04737ef2c9c4f"}
-1485452532284    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532284    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"8341c970638c3dea1399760004c68c20"}
-1485452532286    join    -1    {"doc":"experiment_0-480224","open":true,"snapshot":null,"type":"text","create":true}
-1485452532287    join-ack    -1    {"doc":"experiment_0-480224","create":false,"v":0,"snapshot":"","open":true,"serveId":"087206e35ccdb2f47003b4970ae3ffba"}
-1485452532384    received    7c427063e88518bc70ba7f1c342fda71    -1    {"op":[{"p":0,"i":"common"}],"v":0,"doc":"experiment_0-480224"}
-1485452532389    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532389    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"7c427063e88518bc70ba7f1c342fda71","ts":1485452532387}}
-1485452532390    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"v":0}
-1485452532463    received    4e2747b39a1e119ad008770d822e26c4    -1    {"op":[{"p":0,"i":"glamour"}],"v":1,"doc":"experiment_0-480224"}
-1485452532464    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"v":1}
-1485452532464    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532464    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"p":0,"i":"glamour"}],"v":1,"meta":{"source":"4e2747b39a1e119ad008770d822e26c4","ts":1485452532463}}
-1485452532471    received    c6d6d4632910227e19694aeae6000875    -1    {"op":[{"p":0,"i":"forfeiture"}],"v":1,"doc":"experiment_0-480224"}
-1485452532473    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532473    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    c6d6d4632910227e19694aeae6000875    {"v":2}
-1485452532474    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532474    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"c6d6d4632910227e19694aeae6000875","ts":1485452532472}}
-1485452532530    received    8341c970638c3dea1399760004c68c20    -1    {"op":[{"p":0,"i":"abused"}],"v":1,"doc":"experiment_0-480224"}
-1485452532531    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532531    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532531    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    8341c970638c3dea1399760004c68c20    {"v":3}
-1485452532531    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532532    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"8341c970638c3dea1399760004c68c20","ts":1485452532531}}
-1485452532546    received    a61f868b2668cf57c19c5d15919c87ff    -1    {"op":[{"p":0,"i":"Nasser"}],"v":2,"doc":"experiment_0-480224"}
-1485452532551    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532550    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"v":4}
-1485452532551    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532551    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"a61f868b2668cf57c19c5d15919c87ff","ts":1485452532550}}
-1485452532592    received    4d12a8c18ef3e10d9fc04737ef2c9c4f    -1    {"op":[{"p":0,"i":"garnisheeing"}],"v":3,"doc":"experiment_0-480224"}
-1485452532592    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532592    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532592    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532592    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532593    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532593    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532593    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"v":5}
-1485452532592    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532592    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532593    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"4d12a8c18ef3e10d9fc04737ef2c9c4f","ts":1485452532592}}
-1485452532630    received    b3e36a39c78f274ea6bd125cbd8d2ad0    -1    {"op":[{"p":0,"i":"haloed"}],"v":3,"doc":"experiment_0-480224"}
-1485452532631    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"v":6}
-1485452532631    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532631    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"b3e36a39c78f274ea6bd125cbd8d2ad0","ts":1485452532631}}
-1485452532689    received    e6e6451c6a3d1eada69ac35bc37f6f8f    -1    {"op":[{"p":0,"i":"avenger"}],"v":6,"doc":"experiment_0-480224"}
-1485452532690    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"v":7}
-1485452532690    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532690    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"e6e6451c6a3d1eada69ac35bc37f6f8f","ts":1485452532690}}
-1485452532741    received    087206e35ccdb2f47003b4970ae3ffba    -1    {"op":[{"i":"Amie","p":0}],"v":7,"doc":"experiment_0-480224"}
-1485452532741    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"v":8}
-1485452532742    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532742    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"087206e35ccdb2f47003b4970ae3ffba","ts":1485452532741}}
-1485452532775    received    67db9a5fdfd992ffa4f2c5d659f8f02a    -1    {"op":[{"p":0,"i":"mongering"}],"v":7,"doc":"experiment_0-480224"}
-1485452532775    sent    -1    b3e36a39c78f274ea6bd125cbd8d2ad0    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    c6d6d4632910227e19694aeae6000875    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    4e2747b39a1e119ad008770d822e26c4    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    4d12a8c18ef3e10d9fc04737ef2c9c4f    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532775    sent    -1    a61f868b2668cf57c19c5d15919c87ff    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532775    sent    -1    7c427063e88518bc70ba7f1c342fda71    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532775    sent    -1    e6e6451c6a3d1eada69ac35bc37f6f8f    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    8341c970638c3dea1399760004c68c20    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    087206e35ccdb2f47003b4970ae3ffba    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"67db9a5fdfd992ffa4f2c5d659f8f02a","ts":1485452532775}}
-1485452532776    sent    -1    67db9a5fdfd992ffa4f2c5d659f8f02a    {"v":9}
+1485531559155    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559158    join-ack    -1    {"doc":"experiment_0-181847","create":true,"open":true,"v":0,"serveId":"8f6a4217c09e522cf680ab15df43d9a4"}
+1485531559163    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559163    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"c1667c48b99d3b6813d8fe3a25bd750b"}
+1485531559171    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"c5ccc5ce4e6cd48226640f2c853cd5f6"}
+1485531559171    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559176    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559177    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"b8d266540b657d970a18c119f84e34ce"}
+1485531559186    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559186    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"e5c6d088dd7ce286479a0e44ae108270"}
+1485531559202    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559202    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"5541cd2c5fa576ac083fbb96112e0096"}
+1485531559207    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"64f4bc470eb53907d6f220fb08ac5e5a"}
+1485531559209    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559207    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559209    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"26cb48fd14aeb4989fb6fed9edabbbd1"}
+1485531559224    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559224    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"55f4a0885dba33338e1bf08896942b02"}
+1485531559288    join-ack    -1    {"doc":"experiment_0-181847","create":false,"v":0,"snapshot":"","open":true,"serveId":"34047cbecde768ab6bfb8ad8ea74ffe4"}
+1485531559287    join    -1    {"doc":"experiment_0-181847","open":true,"snapshot":null,"type":"text","create":true}
+1485531559321    received    26cb48fd14aeb4989fb6fed9edabbbd1    -1    sharejs-op    63    {"op":[{"p":0,"i":"common"}],"v":0,"doc":"experiment_0-181847"}
+1485531559325    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    7    {"v":0}
+1485531559325    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559325    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559326    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    107    {"op":[{"p":0,"i":"common"}],"v":0,"meta":{"source":"26cb48fd14aeb4989fb6fed9edabbbd1","ts":1485531559323}}
+1485531559368    received    55f4a0885dba33338e1bf08896942b02    -1    sharejs-op    64    {"op":[{"p":0,"i":"glamour"}],"v":0,"doc":"experiment_0-181847"}
+1485531559371    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559371    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559371    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559371    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559373    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559371    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559371    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559373    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559373    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    108    {"op":[{"i":"glamour","p":0}],"v":1,"meta":{"source":"55f4a0885dba33338e1bf08896942b02","ts":1485531559369}}
+1485531559373    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    7    {"v":1}
+1485531559381    received    5541cd2c5fa576ac083fbb96112e0096    -1    sharejs-op    67    {"op":[{"p":0,"i":"forfeiture"}],"v":1,"doc":"experiment_0-181847"}
+1485531559382    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559382    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559382    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559382    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559383    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559383    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559383    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    7    {"v":2}
+1485531559382    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559382    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559383    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    111    {"op":[{"i":"forfeiture","p":0}],"v":2,"meta":{"source":"5541cd2c5fa576ac083fbb96112e0096","ts":1485531559382}}
+1485531559405    received    e5c6d088dd7ce286479a0e44ae108270    -1    sharejs-op    63    {"op":[{"p":0,"i":"abused"}],"v":1,"doc":"experiment_0-181847"}
+1485531559406    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559406    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559406    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    107    {"op":[{"i":"abused","p":0}],"v":3,"meta":{"source":"e5c6d088dd7ce286479a0e44ae108270","ts":1485531559406}}
+1485531559407    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    7    {"v":3}
+1485531559462    received    8f6a4217c09e522cf680ab15df43d9a4    -1    sharejs-op    63    {"op":[{"p":0,"i":"Nasser"}],"v":3,"doc":"experiment_0-181847"}
+1485531559462    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    107    {"op":[{"i":"Nasser","p":0}],"v":4,"meta":{"source":"8f6a4217c09e522cf680ab15df43d9a4","ts":1485531559462}}
+1485531559463    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    7    {"v":4}
+1485531559475    received    c1667c48b99d3b6813d8fe3a25bd750b    -1    sharejs-op    69    {"op":[{"i":"garnisheeing","p":0}],"v":4,"doc":"experiment_0-181847"}
+1485531559475    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559475    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559475    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559475    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559475    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559476    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559476    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559476    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    7    {"v":5}
+1485531559476    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559476    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    113    {"op":[{"i":"garnisheeing","p":0}],"v":5,"meta":{"source":"c1667c48b99d3b6813d8fe3a25bd750b","ts":1485531559475}}
+1485531559511    received    c5ccc5ce4e6cd48226640f2c853cd5f6    -1    sharejs-op    63    {"op":[{"p":0,"i":"haloed"}],"v":4,"doc":"experiment_0-181847"}
+1485531559512    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    7    {"v":6}
+1485531559512    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559512    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    107    {"op":[{"i":"haloed","p":0}],"v":6,"meta":{"source":"c5ccc5ce4e6cd48226640f2c853cd5f6","ts":1485531559512}}
+1485531559554    received    64f4bc470eb53907d6f220fb08ac5e5a    -1    sharejs-op    64    {"op":[{"p":0,"i":"avenger"}],"v":6,"doc":"experiment_0-181847"}
+1485531559555    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559555    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559556    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559557    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559557    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559557    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559557    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559557    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559558    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    108    {"op":[{"i":"avenger","p":0}],"v":7,"meta":{"source":"64f4bc470eb53907d6f220fb08ac5e5a","ts":1485531559555}}
+1485531559558    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    7    {"v":7}
+1485531559594    received    b8d266540b657d970a18c119f84e34ce    -1    sharejs-op    61    {"op":[{"p":0,"i":"Amie"}],"v":7,"doc":"experiment_0-181847"}
+1485531559594    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559594    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559594    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559596    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559596    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559596    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559597    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559597    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559597    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    105    {"op":[{"i":"Amie","p":0}],"v":8,"meta":{"source":"b8d266540b657d970a18c119f84e34ce","ts":1485531559594}}
+1485531559597    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    7    {"v":8}
+1485531559609    received    34047cbecde768ab6bfb8ad8ea74ffe4    -1    sharejs-op    66    {"op":[{"i":"mongering","p":0}],"v":8,"doc":"experiment_0-181847"}
+1485531559610    sent    -1    8f6a4217c09e522cf680ab15df43d9a4    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    c1667c48b99d3b6813d8fe3a25bd750b    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    c5ccc5ce4e6cd48226640f2c853cd5f6    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    64f4bc470eb53907d6f220fb08ac5e5a    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    26cb48fd14aeb4989fb6fed9edabbbd1    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    55f4a0885dba33338e1bf08896942b02    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    34047cbecde768ab6bfb8ad8ea74ffe4    sharejs-op    7    {"v":9}
+1485531559610    sent    -1    b8d266540b657d970a18c119f84e34ce    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    e5c6d088dd7ce286479a0e44ae108270    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
+1485531559610    sent    -1    5541cd2c5fa576ac083fbb96112e0096    sharejs-op    110    {"op":[{"i":"mongering","p":0}],"v":9,"meta":{"source":"34047cbecde768ab6bfb8ad8ea74ffe4","ts":1485531559610}}
