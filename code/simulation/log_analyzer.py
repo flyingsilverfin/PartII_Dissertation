@@ -188,6 +188,7 @@ class ExperimentAnalzer(object):
     Entry point for analyzing an experiment which generated a given log
     """
 
+    #identifier is a list such as ['sharejs'] or ['fully-connected', 'optimized']
     def __init__(self, experiment_name, identifier, logPath):
 
         self.identifier = identifier
@@ -195,11 +196,12 @@ class ExperimentAnalzer(object):
         self.logPath = logPath
 
         # used for filling various datapoints later
-        if identifier != "fully-connected" and identifier != "star":
+        if identifier[0] != "fully-connected" and identifier[0] != "star":
             self.network_type = "sharejs"
             self.crdt = False
         else:
-            self.network_type = identifier
+            self.network_type = identifier[0]
+            self.optimized = True if identifier[1] == 'optimized' else False
             self.crdt = True
 
 
@@ -393,12 +395,12 @@ class ExperimentAnalzer(object):
     def getNumberOfInsertEvents(self):
         events = self.experiment_setup["events"]
         insert_events = 0
-        if self.network_type == 'fully-connected' or self.network_type == 'star':
+        if (self.network_type == 'fully-connected' or self.network_type == 'star') and not self.optimized:
             for client in events.keys():
                 for insert_event_time in events[client]["insert"].keys():
                     inserts_at_this_time = events[client]["insert"][insert_event_time]
                     insert_events += len(inserts_at_this_time["chars"])
-        elif self.network_type == 'sharejs':
+        elif self.network_type == 'sharejs' or self.optimized:
             for client in events.keys():
                 for insert_event_time in events[client]["insert"].keys():
                     insert_events += 1
@@ -411,12 +413,12 @@ class ExperimentAnalzer(object):
     def getNumberOfDeleteEvents(self):
         events = self.experiment_setup["events"]
         delete_events = 0
-        if self.network_type == 'fully-connected' or self.network_type == 'star':
+        if (self.network_type == 'fully-connected' or self.network_type == 'star') and not self.optimized:
             for client in events.keys():
                 for delete_event_time in events[client]["delete"].keys():
                     deletes_at_this_time = events[client]["delete"][delete_event_time]
                     delete_events += len(deletes_at_this_time)
-        elif self.network_type == 'sharejs':
+        elif self.network_type == 'sharejs' or self.optimized:
             for client in events.keys():
                 for delete_event_time in events[client]["delete"].keys():
                     delete_events += 1
@@ -484,7 +486,7 @@ class ExperimentAnalzer(object):
 
             return self.buildResult(
                 self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
-
+                self.formatResultEntry('Optimizations enabled: ', self.optimized),
 
                 self.formatResultEntry('Total insert events', self.total_inserts_events),
                 self.formatResultEntry('Total delete events', self.total_deletes_events),
@@ -551,7 +553,9 @@ class MainAnalyzer(object):
 
         logs = self.findAllLogs()
         for logPath in logs:
-            self.log_analyzers.append(ExperimentAnalzer(experiment_name, logPath[-2], logPath))
+            optimized = logPath[-2]
+            topology = logPath[3]
+            self.log_analyzers.append(ExperimentAnalzer(experiment_name, [topology, optimized], logPath))
 
         results = []
         for analyzer in self.log_analyzers:

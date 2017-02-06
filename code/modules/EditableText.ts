@@ -13,10 +13,14 @@ class EditableText implements IT.EditableTextInterface {
     private preChangeTextLength: number  = 0;
     private currentCursorPosition: number = 0;
 
-    public insertCallback = null;  //implements in interface
-    public deleteCallback = null;
+    private optimized: boolean;
+    private movementDirection = 0;
 
-    constructor(parent: HTMLDivElement) {
+    public insertCallback = null;   //implements in interface
+    public deleteCallback = null;
+    public commitCallback = null;   // for word insert optimization
+
+    constructor(parent: HTMLDivElement, optimized=false) {
         this.container = document.createElement('div');
         this.container.className = 'client-container';
 
@@ -34,6 +38,7 @@ class EditableText implements IT.EditableTextInterface {
         this.textarea.addEventListener('keydown', this.keydown.bind(this));
         this.textarea.addEventListener('input', this.oninput.bind(this));
         this.textarea.addEventListener('focus', this.onfocus.bind(this));
+        this.textarea.addEventListener('onblur', this.onblur.bind(this));
 
         this.currentCursorPosition = 0;
     }
@@ -45,20 +50,55 @@ class EditableText implements IT.EditableTextInterface {
 
     public setContent(text: string): void {
         this.textarea.value = text;
+        this.setDirection(0);   // force client to commit it's own changes immediately
     }
 
-    public incrementCursorPosition(): void {
-        this.currentCursorPosition += 1;
+    public incrementCursorPosition(n?:number): void {
+        if (n === undefined) {
+            n = 1;
+        }
+        this.currentCursorPosition += n
+
+        this.setDirection(n);
+
+        
         this.textarea.selectionStart = this.currentCursorPosition;
         this.textarea.selectionEnd = this.currentCursorPosition;
     }
 
-    public decrementCursorPosition(): void {
-        this.currentCursorPosition -= 1;
+    public decrementCursorPosition(n?:number): void {
+        if (n === undefined) {
+            n = 1;
+        } 
+        this.currentCursorPosition -= n;
+
+        this.setDirection(-n);
+
         this.textarea.selectionStart = this.currentCursorPosition;
         this.textarea.selectionEnd = this.currentCursorPosition;
     }
 
+    public onblur(event): void {
+        this.setDirection(0);
+    }
+
+
+    /*
+        Direction tracking, only relevant if implementing word insert optimization
+    */
+    private setDirection(n: number) {
+        if (!this.optimized) {
+            return;
+        }
+
+        // if lose focus, direction changes (ie insert -> delete or delete -> insert)
+        // then the client should commit
+        if (n === 0 || this.movementDirection != n) {
+            this.commitCallback();
+        }
+
+        this.movementDirection = n;
+    }
 
     private setCursorPosition(pos: number): void {
         this.currentCursorPosition = pos;
@@ -94,7 +134,7 @@ class EditableText implements IT.EditableTextInterface {
         this.currentCursorPosition = this.textareaCursorPosition();
     }
 
-    public mockInsert(char: string, after: number): void {
+    public mockInsert(chars: string, after: number): void {
 
         let content = this.getContent();
 
@@ -104,12 +144,12 @@ class EditableText implements IT.EditableTextInterface {
         }
     
         // insert 
-        content = insertIntoString(char, after, content);
+        content = insertIntoString(chars, after, content);
 
         this.setContent(content);
-        this.setCursorPosition(after + char.length);
+        this.setCursorPosition(after + chars.length);
 
-        this.insertCallback(char, after);
+        this.insertCallback(chars, after, true);
     }
 
     public mockDelete(index: number): void {
@@ -137,15 +177,15 @@ class EditableText implements IT.EditableTextInterface {
 
         // if cursor has not changed position:
         if (textareaCursor === this.currentCursorPosition) {
-            this.deleteCallback(textareaCursor + 1)
+            this.deleteCallback(textareaCursor + 1);
         } else if (textareaCursor <= this.currentCursorPosition - 1) {
             if (textareaCursor < this.currentCursorPosition - 1) {
                 console.error('Deleting more than 1 character at a time is currently not supported');
                 this.setCursorPosition(textareaCursor);
                 return;
             }
-            this.currentCursorPosition--;
-            this.deleteCallback(textareaCursor+1)  // cursor is now at position left of where the char was
+            this.decrementCursorPosition();
+            this.deleteCallback(textareaCursor+1);  // cursor is now at position left of where the char was
         } else {
             // must have been 1 or more insert
             if (this.preChangeTextLength > this.getContent().length + 1) {
@@ -155,7 +195,7 @@ class EditableText implements IT.EditableTextInterface {
             }
             let inserted = content[textareaCursor-1];
             console.log('[Debug] inserted char ' + inserted + ' at position ' + (textareaCursor-1));
-            this.currentCursorPosition++;
+            this.incrementCursorPosition();
             this.insertCallback(inserted, textareaCursor - 1);
         }
 

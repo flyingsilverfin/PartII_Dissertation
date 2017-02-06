@@ -14,6 +14,11 @@ class Client {
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
+    private optimized: boolean;
+    private insertBuffer: string[] = [];
+    private insertStartId: string;
+    private insertStartAfter: string;
+
     private interface: EditableText;
     public network: NetworkInterface;
 
@@ -23,9 +28,11 @@ class Client {
     private idArray: string[];
 
 
-    constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents) {
+    constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
 
         this.dt = new MapCRDT();
+
+        this.optimized = optimized;
 
         this.network = networkInterface;
         this.network.insertPacketReceived = this.insertReceived.bind(this);
@@ -35,7 +42,7 @@ class Client {
 
         let interfaceContainer = <HTMLDivElement>document.getElementById('clients-container');
 
-        this.interface = new EditableText(interfaceContainer);
+        this.interface = new EditableText(interfaceContainer, optimized);
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
@@ -50,10 +57,22 @@ class Client {
 
             let self = this;
 
-            for (let i = 0; i < insert.chars.length; i++) {
-                scheduler.addEvent(time, i, function() {
-                    self.interface.mockInsert(insert.chars[i], insert.after + i);
-                });
+            /*
+            OPTIMIZATION
+                if enabled, here we will take advantage of the 'insert word' capability
+                which sends entire words to insert at once, rather than 1 character at a time
+            */
+            if (this.optimized) {
+                scheduler.addEvent(time, 0, function() {
+                    self.interface.mockInsert(insert.chars, insert.after);
+                })
+
+            } else {
+                for (let i = 0; i < insert.chars.length; i++) {
+                    scheduler.addEvent(time, i, function() {
+                        self.interface.mockInsert(insert.chars[i], insert.after + i);
+                    });
+                }
             }
         }
 
@@ -74,13 +93,45 @@ class Client {
 
     }
 
+    private commit(): void {
+        if (this.insertBuffer.length > 0) {
+            let chars = this.insertBuffer.join('');
+            let insertId = this.insertStartId;
+            let afterId = this.insertStartAfter;
+
+            let bundle: CT.InsertMessage = {
+                id: insertId,
+                char: chars,
+                after: afterId
+            };
+
+            let networkPacket: NT.NetworkPacket = {
+                origin: this.id,
+                type: 'i',
+                bundle: bundle
+            };
+            this.network.send(networkPacket);
+
+            this.insertBuffer = [];
+            // don't need to update the rest of the values as they just get overwritten
+        } else {
+            return;
+        }
+    }
+
 
     // interesting it doesn't type check this automatically with the required structure of this.interface.insertCallback
-    private charInsertedLocal(char: string, after: number): void {
-
-        let nextT = this.dt.getNextTs().toString();
+    private charInsertedLocal(char: string, after: number, commitNow=false): void {
+        let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
         let opId = nextT + '.' + this.id;
 
+
+        // CAN I PUT THIS INTO THE CRDT LATER ALL TOGETHER ie with one start ID + length????
+        // ANS: bad idea - if another message arrives with a higher Timestamp, this one will jump up
+        //      and we will no longer have a continuous sequence of timestamps in our crdt
+        // SOLUTION: insert each character into CRDT immediately with unique ID
+        //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
+        //           
         let idOfAfter = this.getIdOfStringIndex(after);
         let bundle: CT.InsertMessage = {
             id: opId,
@@ -90,20 +141,31 @@ class Client {
 
         this.dt.insert(bundle);
 
-        // TODO add UNIT TEST in dt.insert
-
-        let networkPacket: NT.NetworkPacket = {
-            origin: this.id,
-            type: 'i',
-            bundle: bundle
-        }
-
-        this.network.send(networkPacket);
-
 
         // this is bad - does a O(N) retrieval each insert!
         //  #optmize potential
         this.updateParallelArrays();
+
+        if (this.optimized) {
+            if (this.insertBuffer.length === 0) {
+                this.insertBuffer.push(char);
+                this.insertStartId = opId;
+                this.insertStartAfter = idOfAfter;
+            } else {
+                this.insertBuffer.push(char);
+            }
+            // this is used for mock inserts mostly
+            if (commitNow) {
+                this.commit();
+            }
+        } else {
+            let networkPacket: NT.NetworkPacket = {
+                origin: this.id,
+                type: 'i',
+                bundle: bundle
+            }
+            this.network.send(networkPacket);
+        }
     }
 
     private insertReceived(bundle: CT.InsertMessage): boolean {
@@ -122,7 +184,7 @@ class Client {
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
         this.interface.setContent(this.charArray.join(''));
         if (oldAfterId !== newAfterId) {
-            this.interface.incrementCursorPosition();
+            this.interface.incrementCursorPosition(bundle.char.length);
         }
         return true;
     }

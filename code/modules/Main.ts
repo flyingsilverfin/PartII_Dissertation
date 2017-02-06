@@ -23,6 +23,8 @@ export function main(experimentSetup, graph=true) {
     let time = new Time();
     let logger = new Logger(time);
 
+    let optimized = experimentSetup.optimized;
+
     logger.logMemory("pre-experiment");
 
 
@@ -87,7 +89,7 @@ export function main(experimentSetup, graph=true) {
         ni.setClientId(id);
         ni.setManager(manager);
 
-        mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id]));
+        mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id], optimized));
     }
 
     logger.logMemory("post-clients-init")

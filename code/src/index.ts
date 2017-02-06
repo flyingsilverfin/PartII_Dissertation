@@ -5,10 +5,11 @@ import {fetchJSONFile, postObject} from '../modules/Helper';
 
 import * as tsUnit from 'tsunit.external/tsUnit'
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
+import MapCRDTTests from '../tests/MapCRDTTests';
 
 
 // testing modules
-let tests = [DualKeyMinHeapTests];
+let tests = [DualKeyMinHeapTests, MapCRDTTests];
 // execute and display tests
 for (let i = 0; i < tests.length; i++) {
     let test = tests[i];

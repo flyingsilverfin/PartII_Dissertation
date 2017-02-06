@@ -17,7 +17,8 @@ experiment_setup = {
     },
     "events":{              # events to run per node, at which times
     },
-    "init": "",              # initial document contents
+    "init": "",             # initial document contents
+    "optimized": False,     #toggled by the experiment server when serving experiments
     "description": ""
 }
 
@@ -146,6 +147,7 @@ for i in range(int(experiment_setup["nClients"])):
 
 
 # now need to schedule some events for the experiment
+# just does one word per client for now
 for i in range(int(experiment_setup["nClients"])):
     experiment_setup["events"][i] = {
         "insert" : {},

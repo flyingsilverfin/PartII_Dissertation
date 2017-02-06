@@ -19,13 +19,16 @@ def getNextIncompleteCRDTExperiment():
         experimentFolderSubDirs = os.listdir(os.path.join('.','experiments', experimentFolder))
         # if experiment not started at all yet, send first topology of this experiment
         if 'crdt' not in experimentFolderSubDirs:
-            return (experimentFolder, topologies[0])
+            return (experimentFolder, topologies[0], "optimized")
 
-        completed = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt'))
-        completed.sort() # impose order
+        topology_dirs = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt'))
+        topology_dirs.sort() # impose order
         for top in topologies:
-            if top not in completed:
-                return (experimentFolder, top)
+            completed_options = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt', top))
+            if "optimized" not in completed_options:
+                return (experimentFolder, top, "optimized")
+            if "nonoptimized" not in completed_options:
+                return (experimentFolder, top, "nonoptimized")
 
     return None
 
@@ -41,11 +44,18 @@ def getNextIncompleteOTExperiment():
 
 @app.route('/nextCRDTExperiment', methods=['GET'])
 def nextCRDTExperiment():
-    (experimentName, topology) = getNextIncompleteCRDTExperiment()
+    (experimentName, topology, optimization) = getNextIncompleteCRDTExperiment()
     if experimentName == None:
         return "{}"
     setup = json.loads(open(os.path.join('.','experiments',experimentName, 'setup.json')).read())
     setup["topology"] = topology  # only operate on this one topology for now
+    if optimization == "optimized":
+        setup["optimized"] = True
+    elif optimization == "nonoptimized":
+        setup["optimized"] = False
+    else:
+        print "Unknown optimization choice: " + optimization
+        return
     return json.dumps(setup)
 
 @app.route('/nextOTExperiment', methods=['GET'])
@@ -64,12 +74,21 @@ def receiveCRDTResult():
     experimentName = data['name']
     experimentResult = data['result']
     top = data['topology']
+    optimized = data['optimized']
     try:
+    # this must be created, just try it in case it doesn't exist
         os.mkdir(os.path.join('.', 'experiments', experimentName, 'crdt'))
     except Exception:
         pass
-    os.mkdir(os.path.join('.', 'experiments', experimentName, 'crdt', top))
-    resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, 'log.txt'), 'w')
+    try:
+        # this must be created, just try it in case it doesn't exist
+        os.mkdir(os.path.join('.', 'expeirments', experimentName, 'crdt', top))
+    except Exception:
+        pass
+
+    optimized_folder_name = "optimized" if optimized else "nonoptimized"
+    os.mkdir(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name))
+    resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name, 'log.txt'), 'w')
 
     for line in experimentResult['log']:
         resultLog.write(line + '\n')
