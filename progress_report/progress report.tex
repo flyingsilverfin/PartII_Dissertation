@@ -1,0 +1,41 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage[margin=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+
+
+\begin{document}
+\title{
+\LARGE
+Part II Dissertation - Progress Report \\
+\Large 
+Conflict Free Document Editing with Different Technologies \vspace{-1ex}}
+
+\author{J.~Send \\ Trinity Hall\vspace{-1ex}}
+\date{27 January, 2017}
+\maketitle
+
+\textbf{Project Supervisor:} S.~Kollmann
+
+\textbf{Director of Studies:} Prof.~S.~Moore
+
+\textbf{Project Overseers:} Prof.~T.~Griffin \&  Prof.~P.~Lio
+
+\vspace{5mm}
+
+The submitted Project Proposal listed a timeline which stated that, by Week 2 of Lent, the following points would be complete
+\begin{enumerate}
+\item The initial Conflict Free Replicated Datatypes (CRDT) are developed with tests for correctness -- this is the core data structure that enables a Google Docs-esque shared document editor in a P2P setting
+\item A network simulator with support for arbitrary topologies is implemented -- allows defining connections between clients and their respective latencies. During the simulation, packets are sent via broadcast along all defined edges to a node's neighbors
+\item The CRDTs are combined with the network simulation in order to demonstrate mock clients communicating over the network and exploiting the CRDTs to concurrently edit text documents without conflicts
+\item The comparison environment based on the open source library ShareJS is set up in order to be able to run the same demonstrations as over the simulation
+\end{enumerate}
+
+Points 1-4 were all completed successfully and on time. Various other components have also been created, such as a script that generates 'experiments' which can be deterministically run on the simulation and the comparative system, and a script which analyzes the log files produced while running the experiments and summarizes memory and network usage, among other statistics. The simulation is implemented in Typescript, as was the comparative environment built around the ShareJS library, while the various scripts are written in Python.
+
+Various difficulties arose in the implementation of the network simulation and the generation and analysis of log files during the experiments. On the other hand, implementation of the CRDT itself and tests for correctness took less time than expected. As a result, the overall project state is as was predicted in the proposal and on time.
+
+Going forward, I predict being able to refine the work completed so far, and to begin an extension.
+
+\end{document}
