@@ -85,6 +85,7 @@ class NetworkManager {
     }
 
     public runSimulation(): void {
+        debugger
         while (!this.scheduler.areEventsScheduled()) {
             this.scheduler.run();
         }

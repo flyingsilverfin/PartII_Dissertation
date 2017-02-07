@@ -75,7 +75,10 @@ export function main(experimentSetup, graph=true) {
 
     let scheduler = new EventDrivenScheduler(time);
 
+
+
     let manager = new NetworkManager(topology, networkStats, graphVisualizer, scheduler, logger); 
+    (<any>window).runEvents = manager.runSimulation.bind(manager);
 
 
 

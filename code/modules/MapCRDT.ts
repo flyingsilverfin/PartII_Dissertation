@@ -88,9 +88,13 @@ class MapCRDT implements CT.CRDT {
     }
 
     // implements interface
+    // return false if ID already has been deleted - no need to pass on msg again
     public delete(bundle: CT.DeleteMessage): boolean {
         let idToDelete = bundle.deleteId;
-        if (this.map[idToDelete] === undefined) {
+        if (this.map[idToDelete] === undefined ) {
+            throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
+        }
+        if (this.map[idToDelete].deleted) {
             return false;
         }
         this.map[idToDelete]['deleted'] = true;

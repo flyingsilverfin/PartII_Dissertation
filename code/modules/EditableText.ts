@@ -41,6 +41,7 @@ class EditableText implements IT.EditableTextInterface {
         this.textarea.addEventListener('onblur', this.onblur.bind(this));
 
         this.currentCursorPosition = 0;
+        this.optimized = optimized;
     }
 
     public setId(id: string): void {
@@ -131,6 +132,7 @@ class EditableText implements IT.EditableTextInterface {
     private keydown(event): void {
         console.log('updating onkeydown pre-change values');
         this.preChangeTextLength = this.getTextLength();
+        //  let cursor = this.textareaCursorPosition();
         this.currentCursorPosition = this.textareaCursorPosition();
     }
 
@@ -177,6 +179,7 @@ class EditableText implements IT.EditableTextInterface {
 
         // if cursor has not changed position:
         if (textareaCursor === this.currentCursorPosition) {
+            this.setDirection(-1);
             this.deleteCallback(textareaCursor + 1);
         } else if (textareaCursor <= this.currentCursorPosition - 1) {
             if (textareaCursor < this.currentCursorPosition - 1) {
@@ -184,6 +187,7 @@ class EditableText implements IT.EditableTextInterface {
                 this.setCursorPosition(textareaCursor);
                 return;
             }
+            debugger
             this.decrementCursorPosition();
             this.deleteCallback(textareaCursor+1);  // cursor is now at position left of where the char was
         } else {
@@ -195,6 +199,7 @@ class EditableText implements IT.EditableTextInterface {
             }
             let inserted = content[textareaCursor-1];
             console.log('[Debug] inserted char ' + inserted + ' at position ' + (textareaCursor-1));
+
             this.incrementCursorPosition();
             this.insertCallback(inserted, textareaCursor - 1);
         }

@@ -46,6 +46,7 @@ class Client {
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
+        this.interface.commitCallback = this.commit.bind(this);
 
         this.updateParallelArrays();
 

@@ -8,7 +8,7 @@ export class ComparatorException implements T.Exception {
     }
 }
 
-class CRDTException implements T.Exception {
+export class CRDTException implements T.Exception {
     msg: string;
     constructor(msg) {
         this.msg = msg;

@@ -11,6 +11,7 @@ export default class EventDrivenScheduler {
     constructor(time) {
         this.heap = new DualKeyMinHeap();
         this.time = time;
+
     }
 
 
@@ -34,6 +35,7 @@ export default class EventDrivenScheduler {
 
 
     public runReadyEvents() {
+        debugger
         // process any other events from the queue that need to be run
         while (!this.heap.empty() && this.heap.peek().pKey <= 0) {
             let elem = this.heap.take();
