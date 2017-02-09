@@ -195,6 +195,7 @@ class ExperimentAnalzer(object):
     def __init__(self, experiment_name, identifier, logPath):
 
         self.identifier = identifier
+        self.stringIdentifier = ", ".join(identifier)
         self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
         self.logPath = logPath
 
@@ -385,6 +386,8 @@ class ExperimentAnalzer(object):
 
                 Problem: sharejs can compose operations to reduce number of packets
                 => maybe less than the number given here in certain situations
+
+                note: first value in tuple is actually ignored...
             """
             return (num_actions * (self.num_clients + 1) + 2*self.num_clients,
                     num_actions * (self.num_clients + 1) + 2*self.num_clients)
@@ -470,7 +473,16 @@ class ExperimentAnalzer(object):
 
 
         initial_memory = self.memory_stamps[0][0]
-        memory_checkpoints = [self.formatResultEntry(m[1], m[0] - initial_memory) for m in self.memory_stamps]
+        memory_checkpoints = [
+            self.formatResultEntry(
+                'MemoryCheckpoint' + str(i),
+                self.memory_stamps[i][0] - initial_memory,
+                readableStringOverride=self.memory_stamps[i][1]
+                )
+            for i in range(len(self.memory_stamps))
+        ]
+
+
         # skip latencies for now
         # TODO
         #self.intended_average_link_latency
@@ -480,6 +492,31 @@ class ExperimentAnalzer(object):
         """
         This is really bad program structure, but non-trivial to refactor so it stays for now
         """
+
+        #also put this into a map so I can paste it into a summarizer of summaries program
+        self.key_mapping = {
+            'simTime': 'Total simulation duration',
+            'optimized': 'Optimizations enabled',
+            'insertEvents': 'Total insert events',
+            'deleteEvents': 'Total delete events',
+
+            'insertPackets': 'Total insert packets sent',
+            'insertPacketsSize': 'Total size of insert packets sent',
+            'avgInsertPacket': 'Average insert packet payload size',
+            'deletePackets': 'Total delete packets sent',
+            'deletePacketsSize': 'Total size of delete packets sent',
+            'avgDeletePacket': 'Average delete packet payload size',
+            'naiiveP2PExpPackets': 'Expected number of packets sent - given naiive broadcast in a p2p network',
+            'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network',
+
+            'totalPackets': 'Total packets',
+            'totalPacketsSize': 'Total size of packets sent',
+            'avgPacketSize': 'Average packet payload size',
+            'totalNoMetaPacketsSize': 'Total size of packets sent, if there were no meta-information',
+            'avgNoMetaPacketsSize': 'Average packet payload size without meta-information',
+            'clientServerExpPackets': 'Expected number of packets sent - give optimal client-server network'
+        }
+
         if self.crdt:
 
             av_insert_packet_size = 0 if total_insert_packets == 0 else \
@@ -488,22 +525,22 @@ class ExperimentAnalzer(object):
                                     float(total_delete_packets_size)/total_delete_packets
 
             return self.buildResult(
-                self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
-                self.formatResultEntry('Optimizations enabled: ', self.optimized),
+                self.formatResultEntry('simTime', self.end_time - self.start_time),
+                self.formatResultEntry('optimized', self.optimized),
 
-                self.formatResultEntry('Total insert events', self.total_inserts_events),
-                self.formatResultEntry('Total delete events', self.total_deletes_events),
+                self.formatResultEntry('insertEvents', self.total_inserts_events),
+                self.formatResultEntry('deleteEvents', self.total_deletes_events),
 
-                self.formatResultEntry('Total insert packets sent', total_insert_packets),
-                self.formatResultEntry('Total size of insert packets sent', total_insert_packets_size),
-                self.formatResultEntry('Average insert packet payload size', av_insert_packet_size),
+                self.formatResultEntry('insertPackets', total_insert_packets),
+                self.formatResultEntry('insertPacketsSize', total_insert_packets_size),
+                self.formatResultEntry('avgInsertPacket', av_insert_packet_size),
 
-                self.formatResultEntry('Total delete packets sent', total_delete_packets),
-                self.formatResultEntry('Total size of delete packets sent', total_delete_packets_size),
-                self.formatResultEntry('Average delete packet payload size', av_delete_packet_size),
+                self.formatResultEntry('deletePackets', total_delete_packets),
+                self.formatResultEntry('deletePacketsSize', total_delete_packets_size),
+                self.formatResultEntry('avgDeletePacket', av_delete_packet_size),
 
-                self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
-                self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+                self.formatResultEntry('naiiveP2PExpPackets', self.total_expected_packets_naiive),
+                self.formatResultEntry('optimalP2PExpPackets', self.total_expected_packets_best),
 
 
                 *memory_checkpoints
@@ -515,34 +552,42 @@ class ExperimentAnalzer(object):
                                 float(total_packets_size_nometa)/total_packets
 
             return self.buildResult(
-                self.formatResultEntry('Total simulation duration', self.end_time - self.start_time),
+                self.formatResultEntry('simTime', self.end_time - self.start_time),
 
-                self.formatResultEntry('Total insert events', self.total_inserts_events),
-                self.formatResultEntry('Total delete events', self.total_deletes_events),
+                self.formatResultEntry('insertEvents', self.total_inserts_events),
+                self.formatResultEntry('deleteEvents', self.total_deletes_events),
 
-                self.formatResultEntry('Total packets', total_packets),
-                self.formatResultEntry('Total size of packets sent', total_packets_size),
-                self.formatResultEntry('Average packet payload size', av_packet_size),
-        
-                self.formatResultEntry('Total size of delete packets sent, if there were no meta-information', total_packets_size_nometa),
-                self.formatResultEntry('Average packet payload size without meta-information', av_packet_size_nometa),
+                self.formatResultEntry('totalPackets', total_packets),
+                self.formatResultEntry('totalPacketsSize', total_packets_size),
+                self.formatResultEntry('avgPacketSize', av_packet_size),
 
-                self.formatResultEntry('Expected number of packets sent - given naiive broadcast in a p2p network', self.total_expected_packets_naiive),
-                self.formatResultEntry('Expected number of packets sent - give optimal p2p network', self.total_expected_packets_best),
+                self.formatResultEntry('totalNoMetaPacketsSize', total_packets_size_nometa),
+                self.formatResultEntry('avgNoMetaPacketsSize', av_packet_size_nometa),
+
+                self.formatResultEntry('clientServerExpPackets', self.total_expected_packets_best),
 
                 *memory_checkpoints
             )
 
 
 
-    def formatResultEntry(self, name, value):
-        return "\t" + name + ": " + str(value)
+    def formatResultEntry(self, json_short_name, value, readableStringOverride=None):
+        readableString = self.key_mapping[json_short_name] if readableStringOverride is None else readableStringOverride
+        return ("\t" + readableString + ": " + str(value),
+                json_short_name,
+                str(value)
+               )
 
-    def buildResult(self, *strings):
-        res = ""
-        for s in strings:
-            res += s + '\n'
-        return res
+    def buildResult(self, *tuples):
+        readableResult = ""
+        jsonResult = {}
+        for (readableString, jsonKey, jsonValue) in tuples:
+            readableResult += readableString + '\n'
+            jsonResult[jsonKey] = jsonValue
+        return  {
+            'readable': readableResult,
+            'json' : jsonResult
+        }
 
 class MainAnalyzer(object):
     """
@@ -557,19 +602,27 @@ class MainAnalyzer(object):
         logs = self.findAllLogs()
         for logPath in logs:
             optimized = logPath[-2]
-            topology = logPath[3]
+            topology = logPath[-3]
             self.log_analyzers.append(ExperimentAnalzer(experiment_name, [topology, optimized], logPath))
 
         results = []
+        jsonResult = {}
         for analyzer in self.log_analyzers:
             analyzer.analyze()
-            results.append("---" + analyzer.identifier + "---")
-            results.append(analyzer.getResult())
+            results.append("---" + str(analyzer.stringIdentifier) + "---")
+            r = analyzer.getResult()
+            results.append(r['readable'])
+            jsonResult[analyzer.stringIdentifier] = r['json']
 
-        summary = open(os.path.join('.', 'experiments', experiment_name, 'summary.txt'), 'w')
+        p = ['.', 'experiments', experiment_name]
+        summary = open(os.path.join(*(p + ['summary.txt'])), 'w')
+        jsonSummary = open(os.path.join(*(p + ['summary.json'])),'w')
         for res in results:
             summary.write(res + '\n')
         summary.close()
+
+        jsonSummary.write(json.dumps(jsonResult, indent=4))
+        jsonSummary.close()
 
 
     def findAllLogs(self):
@@ -583,9 +636,11 @@ class MainAnalyzer(object):
 def findReadyExperiments():
     experiments = []
     for exp in os.listdir(os.path.join('.', 'experiments')):
-        if not os.path.isdir(os.path.join('.', 'experiments', exp)) or \
-            'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)):
+        if not os.path.isdir(os.path.join('.', 'experiments', exp)):
             continue
+        if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)):
+            os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))
+            os.remove(os.path.join('.', 'experiments', exp, 'summary.json'))
         experiments.append(['.', 'experiments', exp])
     return experiments
 

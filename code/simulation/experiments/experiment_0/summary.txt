@@ -1,0 +1,72 @@
+---fully-connected, nonoptimized---
+	Total simulation duration: 357.944938893
+	Optimizations enabled: False
+	Total insert events: 71
+	Total delete events: 0
+	Total insert packets sent: 6390
+	Total size of insert packets sent: 236160
+	Average insert packet payload size: 36.9577464789
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet payload size: 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 6390
+	Expected number of packets sent - given optimal p2p network: 639
+	pre-experiment: 0
+	post-topology-init: 161592
+	post-clients-init: 329568
+	post-experiment: 15562704
+
+---fully-connected, optimized---
+	Total simulation duration: 357.944938893
+	Optimizations enabled: True
+	Total insert events: 10
+	Total delete events: 0
+	Total insert packets sent: 900
+	Total size of insert packets sent: 37080
+	Average insert packet payload size: 41.2
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet payload size: 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 900
+	Expected number of packets sent - given optimal p2p network: 90
+	pre-experiment: 0
+	post-topology-init: 161264
+	post-clients-init: 313280
+	post-experiment: 5017832
+
+---star, nonoptimized---
+	Total simulation duration: 461.334801877
+	Optimizations enabled: False
+	Total insert events: 71
+	Total delete events: 0
+	Total insert packets sent: 1278
+	Total size of insert packets sent: 47196
+	Average insert packet payload size: 36.9295774648
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet payload size: 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 1278
+	Expected number of packets sent - given optimal p2p network: 639
+	pre-experiment: 0
+	post-topology-init: 155536
+	post-clients-init: 321592
+	post-experiment: 4337960
+
+---star, optimized---
+	Total simulation duration: 461.334801877
+	Optimizations enabled: True
+	Total insert events: 10
+	Total delete events: 0
+	Total insert packets sent: 180
+	Total size of insert packets sent: 7398
+	Average insert packet payload size: 41.1
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet payload size: 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 180
+	Expected number of packets sent - given optimal p2p network: 90
+	pre-experiment: 0
+	post-topology-init: 155536
+	post-clients-init: 305600
+	post-experiment: 1175920
+
