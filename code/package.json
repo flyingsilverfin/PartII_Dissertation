@@ -7,7 +7,7 @@
     "preinstall": "npm link typescript",
     "build": "webpack",
     "devserv": "webpack-dev-server",
-    "start": "webpack-dev-server & ./experiments_script.sh"
+    "start": "./experiments_script.sh & webpack-dev-server"
   },
   "keywords": [],
   "author": "",

@@ -187,7 +187,6 @@ class EditableText implements IT.EditableTextInterface {
                 this.setCursorPosition(textareaCursor);
                 return;
             }
-            debugger
             this.decrementCursorPosition();
             this.deleteCallback(textareaCursor+1);  // cursor is now at position left of where the char was
         } else {

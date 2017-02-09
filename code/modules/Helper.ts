@@ -66,7 +66,7 @@ export function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState === 4) {
-            if (httpRequest.status === 200) {
+            if (httpRequest.status === 200 || httpRequest.status === 304) {
                 var data = JSON.parse(httpRequest.responseText);
                 if (callback) callback(data);
             }
@@ -74,6 +74,7 @@ export function fetchJSONFile(path, callback) {
     };
     httpRequest.open('GET', path);
     httpRequest.send(); 
+    console.log("HTTP GET Sent");
 }
 
 export function postObject(path, object) {

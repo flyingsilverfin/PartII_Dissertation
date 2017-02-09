@@ -27,6 +27,8 @@ for (let i = 0; i < tests.length; i++) {
 
 function getNextExperiment() {
 
+    console.log("Getting experiment");
+
     fetchJSONFile(
         "http://localhost:3001/nextCRDTExperiment", 
         runExperiment
@@ -49,7 +51,8 @@ function runExperiment(experiment) {
         {
             'name': name,
             'topology': experiment.topology,
-            'result': experimentResult
+            'result': experimentResult,
+            'optimized': experiment.optimized
         }
     );
 }

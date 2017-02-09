@@ -33,7 +33,6 @@ export default class EventDrivenScheduler {
         // this.runReadyEvents();
     }
 
-
     public runReadyEvents() {
         debugger
         // process any other events from the queue that need to be run

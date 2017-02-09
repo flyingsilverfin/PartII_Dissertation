@@ -24,11 +24,14 @@ def getNextIncompleteCRDTExperiment():
         topology_dirs = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt'))
         topology_dirs.sort() # impose order
         for top in topologies:
-            completed_options = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt', top))
-            if "optimized" not in completed_options:
+            if top in topology_dirs:
+                completed_options = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt', top))
+                if "optimized" not in completed_options:
+                    return (experimentFolder, top, "optimized")
+                if "nonoptimized" not in completed_options:
+                    return (experimentFolder, top, "nonoptimized")
+            else:
                 return (experimentFolder, top, "optimized")
-            if "nonoptimized" not in completed_options:
-                return (experimentFolder, top, "nonoptimized")
 
     return None
 
@@ -45,6 +48,7 @@ def getNextIncompleteOTExperiment():
 @app.route('/nextCRDTExperiment', methods=['GET'])
 def nextCRDTExperiment():
     (experimentName, topology, optimization) = getNextIncompleteCRDTExperiment()
+    print "Next experiment: " + experimentName + ", topology: " + topology + ", optimization: " + optimization
     if experimentName == None:
         return "{}"
     setup = json.loads(open(os.path.join('.','experiments',experimentName, 'setup.json')).read())
@@ -82,7 +86,7 @@ def receiveCRDTResult():
         pass
     try:
         # this must be created, just try it in case it doesn't exist
-        os.mkdir(os.path.join('.', 'expeirments', experimentName, 'crdt', top))
+        os.mkdir(os.path.join('.', 'experiments', experimentName, 'crdt', top))
     except Exception:
         pass
 
@@ -125,5 +129,5 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
-
-app.run(host="localhost", port="3001")
+# need the threaded or it hangs with handling multiple requests
+app.run(threaded=True, host="localhost", port="3001")

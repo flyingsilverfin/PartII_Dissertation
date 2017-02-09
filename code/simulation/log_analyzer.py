@@ -11,6 +11,9 @@ import json
     create experiment which shows that it's actually generating correct strings
     might need more sophisticated experiment generation - including a sort of causal
     "insert ___ after word ___ arrives"
+
+    TODO
+    log result of CRDTs at each client and cross check in log analyzer
 """
 
 
