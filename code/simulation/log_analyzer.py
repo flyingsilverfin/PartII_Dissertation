@@ -237,6 +237,8 @@ class ExperimentAnalzer(object):
             self.total_deletes_packet_size = None
             self.total_inserts_packets = None
             self.total_deletes_packets = None
+            self.converged_string = None            # will be set on first convergedString log entry and all need to match...
+            self.strings_match = True               # false on a mismatch
         else:
             self.total_packets = None
             self.total_packets_size = None
@@ -304,6 +306,12 @@ class ExperimentAnalzer(object):
                     # since we need to parse the server send equivalents before the clients ClientAnalyzer
                     # be able to account for the packets that are sent from the server
                     run_later.append(lambda m=msg, s=sender: self.clients[s].msgArrived(m))
+            elif msg_type == 'convergedString':
+                if self.converged_string is None:
+                    self.converged_string = msg[2]
+                else:
+                    if self.converged_string != msg[2]:
+                        self.strings_match = False
             else:
                 print "--Ignoring: Unknown log msg type: " + msg
                 continue
@@ -508,6 +516,8 @@ class ExperimentAnalzer(object):
             'avgDeletePacket': 'Average delete packet payload size',
             'naiiveP2PExpPackets': 'Expected number of packets sent - given naiive broadcast in a p2p network',
             'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network',
+            'stringsMatch': 'All clients converged to same result',
+            'convergedString': 'Converged string (if all match, else first logged string)',
 
             'totalPackets': 'Total packets',
             'totalPacketsSize': 'Total size of packets sent',
@@ -527,6 +537,8 @@ class ExperimentAnalzer(object):
             return self.buildResult(
                 self.formatResultEntry('simTime', self.end_time - self.start_time),
                 self.formatResultEntry('optimized', self.optimized),
+                self.formatResultEntry('stringsMatch', self.strings_match),
+                self.formatResultEntry('convergedString', self.converged_string),
 
                 self.formatResultEntry('insertEvents', self.total_inserts_events),
                 self.formatResultEntry('deleteEvents', self.total_deletes_events),

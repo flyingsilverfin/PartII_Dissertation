@@ -20,7 +20,7 @@ export default class Logger {
         this.l = [];
     }
 
-    public log(tag: "memory", msg: string) {
+    public log(tag: "memory" | "convergedString", msg: string) {
         let time = this.getTime();
         this.l.push(time + "    " + tag + "    " + msg);
     }

@@ -4,8 +4,16 @@ import NetworkInterface from '../modules/NetworkInterface';
 
 export interface NetworkPacket {
     origin: string,
-    type: "i" | "d",    // insert or delete
-    bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage
+    type: "i" | "d" | "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
+    bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | RequestCRDTMessage | ReturnCRDTMessage;
+}
+
+export interface RequestCRDTMessage {
+
+}
+
+export interface ReturnCRDTMessage {
+    crdt: CRDTTypes.MapCRDTStore; //complicated CRDT Json but yay Typescript is working nicely here
 }
 
 export interface ClientMap {

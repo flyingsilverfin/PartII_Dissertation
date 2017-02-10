@@ -84,6 +84,23 @@ class NetworkManager {
         this.clientLogicalCounterMap[sender]++;
     }
 
+    public unicast(to: T.ClientId, packet: NT.NetworkPacket): void {
+        // TODO
+        // get latency
+        // scheduler delivery after that time to method receiveUnicast
+    }
+
+
+    public getNeighbors(id: T.ClientId): T.ClientId[] {
+        let neighborLinks = this.topology.getNeighborLinksOf(id);
+        let neighborIds: T.ClientId[] = [];
+        for (let n of neighborLinks) {
+            neighborIds.push(<T.ClientId>n.target);
+        }
+        return neighborIds;
+    }
+
+
     public runSimulation(): void {
         debugger
         while (!this.scheduler.areEventsScheduled()) {
