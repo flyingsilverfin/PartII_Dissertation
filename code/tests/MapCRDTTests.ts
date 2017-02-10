@@ -277,6 +277,50 @@ class MapCRDTTester extends tsUnit.TestClass {
 
     }
 
+    insertOneWord() {
+        this.crdt = new MapCRDT();
+        
+        let bundle1: CT.InsertMessage = {
+            after: '0',
+            char: 'Hello',
+            id: '1.1'
+        };
+
+        let expectedCharArray = ['','H','e','l','l','o'];
+        let expectedIdArray = ['0', '1.1', '2.1', '3.1', '4.1', '5.1'];
+
+        this.crdt.insert(bundle1);
+        let actual = this.crdt.read();
+
+        this.areCollectionsIdentical(expectedCharArray, actual.charArray);
+        this.areCollectionsIdentical(expectedIdArray, actual.idArray);
+    }
+
+    insertTwoWordsConcurrently() {
+        this.crdt = new MapCRDT();
+        
+        let bundle1: CT.InsertMessage = {
+            after: '0',
+            char: 'Hello',
+            id: '1.1'
+        }; 
+        let bundle2: CT.InsertMessage = {
+            after: '0',
+            char: 'World',
+            id: '1.2'
+        };
+
+        let expectedCharArray = ['','W','o','r','l','d', 'H','e','l','l','o'];
+        let expectedIdArray = ['0', '1.2','2.2','3.2','4.2','5.2', '1.1', '2.1', '3.1', '4.1', '5.1'];
+
+        this.crdt.insert(bundle1);
+        this.crdt.insert(bundle2);
+        let actual = this.crdt.read();
+
+        this.areCollectionsIdentical(expectedCharArray, actual.charArray);
+        this.areCollectionsIdentical(expectedIdArray, actual.idArray);
+    }
+
 }
 
 export default MapCRDTTester;
