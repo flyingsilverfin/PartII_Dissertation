@@ -5,11 +5,10 @@ import * as T from './Types';
     now using adjacency lists
 */
 export interface Graph {
-    nodes: Node[]
+    nodes: Node[]     // index of node is it's ID
 }
 
 export interface Node {
-    // index of node is it's ID
     links: AdjacentEdge[]
 }
 

@@ -9,17 +9,26 @@ class MapCRDT implements CT.CRDT {
 
     private map: CT.MapCRDTStore;
 
-    constructor() {
+    constructor(map?: CT.MapCRDTStore) {
         this.nextCounter = 1;
 
-        // keep '0' as as an anchorpoint
-        this.map = {
-            '0' : {
-                next: null,
-                char: ''
-            }
-        };
+        if (map === undefined) {
+            // keep '0' as as an anchorpoint
+            this.map = {
+                '0' : {
+                    next: null,
+                    char: ''
+                }
+            };
+        } else {
+            this.map = map;
+        }
+    }
 
+
+    // don't allow any references to the actual object to escape
+    public getCRDTCopy(): CT.MapCRDTStore {
+        return JSON.parse(JSON.stringify(this.map));
     }
 
     // implements interface

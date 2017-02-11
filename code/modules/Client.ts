@@ -20,8 +20,10 @@ class Client {
     private insertStartAfter: string;
 
     private interface: EditableText;
-    public network: NetworkInterface;
 
+    private requestedCRDTQueue: T.ClientId[];
+    public network: NetworkInterface;
+    
     // state variables
     // parallel lists of char array and CRDT IDs of chars
     private charArray: string[];
@@ -30,13 +32,15 @@ class Client {
 
     constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
 
-        this.dt = new MapCRDT();
 
         this.optimized = optimized;
 
         this.network = networkInterface;
         this.network.insertPacketReceived = this.insertReceived.bind(this);
         this.network.deletePacketReceived = this.deleteReceived.bind(this);
+        this.network.requestCRDTReceived = this.requestCRDTReceived.bind(this);
+        this.network.returnCRDTReceived = this.returnCRDTReceived.bind(this);
+        this.requestedCRDTQueue = [];
         this.id = "" + id;
 
 
@@ -92,6 +96,18 @@ class Client {
 
         }
 
+
+        // TODO
+        // this is a bit of a silly, unnecessarily hardcoded way of doing this...
+        if (this.id === '0') {
+            this.dt = new MapCRDT();
+            this.network.enable();
+        } else {
+            let neighbor = this.network.getRandomNeighbor();
+            this.network.requestCRDT(neighbor);
+            // will callback to returnCRDTReceived when received the CRDT from neighbor
+        }
+
     }
 
     private commit(): void {
@@ -111,7 +127,7 @@ class Client {
                 type: 'i',
                 bundle: bundle
             };
-            this.network.send(networkPacket);
+            this.network.broadcast(networkPacket);
 
             this.insertBuffer = [];
             // don't need to update the rest of the values as they just get overwritten
@@ -165,7 +181,7 @@ class Client {
                 type: 'i',
                 bundle: bundle
             }
-            this.network.send(networkPacket);
+            this.network.broadcast(networkPacket);
         }
     }
 
@@ -203,7 +219,7 @@ class Client {
             type: 'd',
             bundle: bundle
         };
-        this.network.send(networkPacket);
+        this.network.broadcast(networkPacket);
         this.updateParallelArrays();
     }
 
@@ -225,6 +241,29 @@ class Client {
         }
         return true;
     }
+
+    private requestCRDTReceived(origin: T.ClientId): void {
+        if (this.dt !== undefined) {
+            let crdt = (<CT.MapCRDTStore>this.dt.getCRDTCopy());
+            this.network.returnCRDT(origin, crdt);
+        } else {
+            this.requestedCRDTQueue.push(origin);
+        }
+    }
+
+    private returnCRDTReceived(crdt: CT.MapCRDTStore): void {
+        // YAS GOT A CRDT FROM NEIGHBOR
+        this.dt = new MapCRDT(crdt);
+
+        // (!!!) also don't forget to pass it to any neighbors waiting for this as well
+        for (let clientRequestingCRDT of this.requestedCRDTQueue) {
+            this.network.returnCRDT(clientRequestingCRDT, crdt);    // this network operation is always enabled
+        }
+
+        this.network.enable();  // absorb all waiting changes, plus disable queueing packet to broadcast and receive packets
+    }
+
+
 
     private updateParallelArrays(): void {
         let readValues = this.dt.read();

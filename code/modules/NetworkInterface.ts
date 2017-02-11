@@ -1,4 +1,5 @@
 import * as NT from '../types/NetworkTypes';
+import * as CT from '../types/CRDTTypes';
 import * as T from '../types/Types';
 import NetworkManager from './NetworkManager';
 
@@ -18,10 +19,24 @@ class NetworkInterface {
 
     public insertPacketReceived;    // TODO type these
     public deletePacketReceived;
+    public requestCRDTReceived: (origin: string) => void;
+    public returnCRDTReceived: (crdt: CT.MapCRDTStore) => void;
 
     constructor() {
         this.enabled = false;
         this.queue = [];
+    }
+
+    public isEnabled() {
+        return this.enabled;
+    }
+
+    public enable(): void {
+        this.enabled = true;
+        console.log('Enabled network interface of: ' + this.clientId + ', executing queued send/receive operations');
+        for (let func of this.queue) {
+            func();
+        }
     }
 
     public setClientId(id): void {
@@ -34,36 +49,41 @@ class NetworkInterface {
 
     public getRandomNeighbor(): T.ClientId {
         // TODO what if we request from another client that is not enabled?
-        // TODO maybe this should be getRandomEnabledNeighbor
+        // RESOLUTION : will keep it as is, as we don't want a server tracking any/much state in the end as to who is enabled and not
+        // thus we will simply have to wait until that client has its own CRDT and then can return it
+        // NOTE: this can lead to bad worst case (linear topology, N-1 latencies wait before get CRDT at end of line)
         let neighbors = this.networkManager.getNeighbors(this.clientId);
         let r = neighbors[Math.floor(Math.random() * neighbors.length)];
         return r;
     }
 
     // Asks a neighbor for the current CRDT state
-    public requestCRDT(whichNeighbor: T.ClientId): void {
-        let payload: NT.NetworkPacket = {
+    public requestCRDT(destination: T.ClientId): void {
+        let packet: NT.NetworkPacket = {
             origin: "" + this.clientId, // need to be string
             type: "reqCRDT",
             bundle: {}
         };
 
-        this.networkManager.unicast(whichNeighbor, payload);
+        this.networkManager.unicast(destination, packet);
     }
 
-    public enable(): void {
-        this.enabled = true;
-        console.log('Enabled network interface of: ' + this.clientId + ', executing queued send/receive operations');
-        for (let func of this.queue) {
-            func();
+    public returnCRDT(destination: T.ClientId, crdt: CT.MapCRDTStore): void {
+        let packet: NT.NetworkPacket = {
+            origin: "" + this.clientId,
+            type: "retCRDT",
+            bundle: {
+                crdt: crdt
+            }
         }
+        this.networkManager.unicast(destination, packet);
     }
 
-    public send(packet: NT.NetworkPacket): void {
+    public broadcast(packet: NT.NetworkPacket): void {
         if (!this.enabled) {
             // push the same function call into a queue to be executed later
             this.queue.push(function() {
-                this.send(packet);
+                this.broadcast(packet);
             }.bind(this));
             return;
         }
@@ -90,7 +110,17 @@ class NetworkInterface {
             isValidNewPacket = this.insertPacketReceived(packet.bundle);
         } else if (packet.type === 'd') {
             isValidNewPacket = this.deletePacketReceived(packet.bundle);
-        } else {
+        } else if (packet.type == "reqCRDT") {
+            // bundle is empty
+            let origin = packet.origin;
+            this.requestCRDTReceived(origin);
+            isValidNewPacket = false;   // disable broadcasting this unicast...
+        } else if (packet.type == "retCRDT") {
+            let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt;
+            this.returnCRDTReceived(crdt);
+            isValidNewPacket = false;   // disable broadcasting this unicast...
+        }        
+         else {
             console.error('Received unknown network packet type: ' + packet.type);
             return;
         }

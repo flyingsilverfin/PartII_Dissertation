@@ -1,12 +1,13 @@
 import NetworkInterface from './NetworkInterface';
 import NetworkStatsManager from './NetworkStatsManager';
 import GraphVisualizer from './GraphVisualizer';
-import * as NT from '../types/NetworkTypes';
 import Topology from './topology/Topology';
 import EventDrivenScheduler from './EventDrivenScheduler';
 import Time from './Time';
 import Logger from './Logger';
 import * as T from '../types/Types';
+import * as NT from '../types/NetworkTypes';
+import * as GT from '../types/GraphTypes';
 
 class NetworkManager {
 
@@ -84,10 +85,45 @@ class NetworkManager {
         this.clientLogicalCounterMap[sender]++;
     }
 
-    public unicast(to: T.ClientId, packet: NT.NetworkPacket): void {
-        // TODO
+
+    /*
+        My topologies are laid out so as to facilitate broadcast, unicast requires
+        a linear scan over the adjacency list to find the correct link
+        TODO could optimize by rewriting adjacency list as adjacency map
+             Haven't fully considered how this might affect parts of code that use the edge ID
+             Might be ok - probably was being used for D3/graph visualization
+                           is actually being used for updating loads on links
+        
+    */
+    public unicast(from: T.ClientId, to: T.ClientId, packet: NT.NetworkPacket): void {
         // get latency
         // scheduler delivery after that time to method receiveUnicast
+        let targetNetworkInterface = this.clientMap[to];
+        let edges = this.topology.getNeighborLinksOf(from);
+        let edge: GT.AdjacentEdge;
+        for (let e of edges) {
+            if (e.target === to) {
+                edge = e;
+                break;
+            }
+        }
+
+        let self = this;
+
+        let action = function() {
+            self.networkStats.decrementLoad(edge.id);
+            self.log.logPacket(from, to, "received", packet);
+            targetNetworkInterface.receive(packet);
+            if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
+        };
+
+        this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[to], action);
+
+        this.networkStats.incrementLoad(edge.id);
+        this.log.logPacket(to, edge.target, "sent", packet);
+        if (this.visualizer !== null) this.visualizer.updateLoads();
+        this.clientLogicalCounterMap[to]++;
+
     }
 
 
