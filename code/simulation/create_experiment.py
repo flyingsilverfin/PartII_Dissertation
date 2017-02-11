@@ -7,7 +7,7 @@ import latency_models
 experiment_setup = {
     "experiment_name": "",  # name of experiment
     "execution": "",        # realtime or event-driven
-    "nClients": None,       # number of clients
+    "clients": None,         # list of times clients join the network (client 0 always joins at time 0)
     "topology": ["fully-connected", "star"],    # always run all types of topologies, current setup of latency generation works well for this
     "latency_model": {      # how distribution of latencies is calculated, not really used later
         "type": "",
@@ -34,9 +34,9 @@ EXPERIMENT_SETUP_OPTIONS = {
         "text": "Choose simulation type",
         "choices": ["realtime", "event-driven"]
     },
-    "nClients": {
+    "clients": {
         "type": "int",
-        "text": "How many clients to generate (int)"
+        "text": "How many clients to generate (int) - manually edit join times"
     },
     "latency_model-type": {
         "type": "list",
@@ -78,7 +78,7 @@ def printChoicesFor(item):
         raise Exception()
 
 # - indicates a sub-index
-order = ["description", "execution", "nClients", "latency_model-type", "latency_model-center", "init"]
+order = ["description", "execution", "clients", "latency_model-type", "latency_model-center", "init"]
 
 i = 0
 while i < len(order):
@@ -99,7 +99,7 @@ while i < len(order):
         try:
             assign[subindices[-1]] = int(value)
         except Exception:
-            print "excception"
+            print "exception"
             continue
     elif typeRequired == "float":
         try:
@@ -135,10 +135,15 @@ elif expType == "normally distributed":
 else:
     raise Exception("unknown latency model type")
 
+numClients = int(experiment_setup["clients"])
+experiment_setup["clients"] = [0]
+for i in range(numClients-1):
+    experiment_setup["clients"].append(0)
+
 # here I'm going to generate the client's average latency, then the simulation will average
 # a node's value and the neighbor's value. This is also a better model of say a cell phone
 # with high latency which then factors into all of it's neighboring connections
-for i in range(int(experiment_setup["nClients"])):
+for i in range(numClients):
     id = i
     latency = model.getLatency(id)
     experiment_setup["network"][id] = {
@@ -148,7 +153,7 @@ for i in range(int(experiment_setup["nClients"])):
 
 # now need to schedule some events for the experiment
 # just does one word per client for now
-for i in range(int(experiment_setup["nClients"])):
+for i in range(numClients):
     experiment_setup["events"][i] = {
         "insert" : {},
         "delete": {}
@@ -171,8 +176,6 @@ experiment_name = "experiment_" + str(nextNum)
 
 #set up directories for this experiment
 os.mkdir(os.path.join('.', 'experiments', experiment_name))
-#os.mkdir(os.path.join('.', 'experiments', experiment_name, 'crdt'))
-#os.mkdir(os.path.join('.', 'experiments', experiment_name, 'ot'))
 
 experiment_setup["experiment_name"] = experiment_name
 

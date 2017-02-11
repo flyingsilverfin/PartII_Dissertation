@@ -21,7 +21,6 @@ class LatencyModel {
     }
 
     public getLatency(source:number, target:number): number {
-        // /debugger
         return (this.nodeLatencies[source].latency + this.nodeLatencies[target].latency)/2;
     }
 

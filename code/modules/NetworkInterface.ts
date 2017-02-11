@@ -19,7 +19,7 @@ class NetworkInterface {
 
     public insertPacketReceived;    // TODO type these
     public deletePacketReceived;
-    public requestCRDTReceived: (origin: string) => void;
+    public requestCRDTReceived: (origin: T.ClientId) => void;
     public returnCRDTReceived: (crdt: CT.MapCRDTStore) => void;
 
     constructor() {
@@ -47,14 +47,13 @@ class NetworkInterface {
         this.networkManager = manager;
     }
 
-    public getRandomNeighbor(): T.ClientId {
+    public getLowestIdNeighbor(): T.ClientId {
         // TODO what if we request from another client that is not enabled?
         // RESOLUTION : will keep it as is, as we don't want a server tracking any/much state in the end as to who is enabled and not
         // thus we will simply have to wait until that client has its own CRDT and then can return it
         // NOTE: this can lead to bad worst case (linear topology, N-1 latencies wait before get CRDT at end of line)
         let neighbors = this.networkManager.getNeighbors(this.clientId);
-        let r = neighbors[Math.floor(Math.random() * neighbors.length)];
-        return r;
+        return Math.min(...neighbors);
     }
 
     // Asks a neighbor for the current CRDT state
@@ -65,7 +64,7 @@ class NetworkInterface {
             bundle: {}
         };
 
-        this.networkManager.unicast(destination, packet);
+        this.networkManager.unicast(this.clientId, destination, packet);
     }
 
     public returnCRDT(destination: T.ClientId, crdt: CT.MapCRDTStore): void {
@@ -76,7 +75,7 @@ class NetworkInterface {
                 crdt: crdt
             }
         }
-        this.networkManager.unicast(destination, packet);
+        this.networkManager.unicast(this.clientId, destination, packet);
     }
 
     public broadcast(packet: NT.NetworkPacket): void {
@@ -113,7 +112,7 @@ class NetworkInterface {
         } else if (packet.type == "reqCRDT") {
             // bundle is empty
             let origin = packet.origin;
-            this.requestCRDTReceived(origin);
+            this.requestCRDTReceived(parseInt(origin));
             isValidNewPacket = false;   // disable broadcasting this unicast...
         } else if (packet.type == "retCRDT") {
             let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt;

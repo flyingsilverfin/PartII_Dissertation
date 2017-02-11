@@ -67,6 +67,12 @@ class NetworkManager {
             let edge = neighborLinks[i];
 
             let targetNetworkInterface = self.clientMap[edge.target];
+            if (targetNetworkInterface === undefined) {
+                // this means that client hasn't joined yet
+                // in reality wouldn't have a connection then
+                // keeping this in causes errors obviously as cannot receive on an undefined object
+                continue;
+            }
 
             // D3 is messing with my graph :| just going to work around it for now...
             //let targetNetworkInterface = self.clientMap[(<any>edge.target).index];
@@ -96,6 +102,9 @@ class NetworkManager {
         
     */
     public unicast(from: T.ClientId, to: T.ClientId, packet: NT.NetworkPacket): void {
+
+        let self = this;
+
         // get latency
         // scheduler delivery after that time to method receiveUnicast
         let targetNetworkInterface = this.clientMap[to];
@@ -108,8 +117,6 @@ class NetworkManager {
             }
         }
 
-        let self = this;
-
         let action = function() {
             self.networkStats.decrementLoad(edge.id);
             self.log.logPacket(from, to, "received", packet);
@@ -117,12 +124,12 @@ class NetworkManager {
             if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
         };
 
-        this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[to], action);
+        this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[from], action);
 
         this.networkStats.incrementLoad(edge.id);
-        this.log.logPacket(to, edge.target, "sent", packet);
+        this.log.logPacket(from, edge.target, "sent", packet);
         if (this.visualizer !== null) this.visualizer.updateLoads();
-        this.clientLogicalCounterMap[to]++;
+        this.clientLogicalCounterMap[from]++;
 
     }
 

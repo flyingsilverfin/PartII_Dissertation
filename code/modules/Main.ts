@@ -35,11 +35,12 @@ export function main(experimentSetup, graph=true) {
 
 
     let top = experimentSetup.topology;
+    let numClients = experimentSetup.clients.length;
     let topology;
     if (top === "fully-connected") {
-        topology = new TopologyFullyConnected(latencyModel, parseInt(experimentSetup.nClients));
+        topology = new TopologyFullyConnected(latencyModel, numClients);
     } else  if (top === "star") {
-        topology = new TopologyStar(latencyModel, parseInt(experimentSetup.nClients));
+        topology = new TopologyStar(latencyModel, numClients);
     } else {
         console.error("Unknown topology type: " + top);
         console.error('Quitting');
@@ -84,18 +85,21 @@ export function main(experimentSetup, graph=true) {
 
     let mockClients: Client[] = [];
     let scheduledEvents = experimentSetup.events;
-    let numClients = parseInt(experimentSetup.nClients);
+    let clients = experimentSetup.clients;
 
     for (let i = 0; i < numClients; i++) {
-        let ni = new NetworkInterface();
-        let id = manager.register(ni);
-        ni.setClientId(id);
-        ni.setManager(manager);
-
-        mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id], optimized));
+        let timeToCreate = parseInt(numClients[i]);
+        let action = function() {
+            let ni = new NetworkInterface();
+            let id = manager.register(ni);
+            ni.setClientId(id);
+            ni.setManager(manager);
+            mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id], optimized));
+        }
+        scheduler.addEvent(timeToCreate, 0, action);
     }
 
-    logger.logMemory("post-clients-init")
+    logger.logMemory("post-clients-init");
 
 
 

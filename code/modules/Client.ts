@@ -9,17 +9,34 @@ import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 
 
+/*
+TODO
+I've imagined a pretty horrible case:
+3 clients, 1 and 2 are in the system and transmit with a large latency
+Client 3 joins with a large latency to client 2 but a short one to Client 1 shortly after Client 2 broadcasts 
+a packet (only to client 1 since 3 joins right after)
+Client 3 requests CRDT from Client 1 (lowest ID) which arrives before Client 2's new packet arrives at Client 1
+Client 1 returns its CRDT to client 3, which does not contain 2's new event
+thus Client 3 will never receive Client 2's new event and lose that data...
+
+WOAH!!!!
+The broadcast bounceback will actually solve this problem! Client 1 will broadcast the packet from 2
+to all of its neighbors, which will include Client 1!
+*/
+
 class Client {
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
+    private events: T.ScheduledEvents;    // all the events to insert and delete
     private optimized: boolean;
     private insertBuffer: string[] = [];
     private insertStartId: string;
     private insertStartAfter: string;
 
     private interface: EditableText;
+    private scheduler: EventDrivenScheduler;
 
     private requestedCRDTQueue: T.ClientId[];
     public network: NetworkInterface;
@@ -32,7 +49,8 @@ class Client {
 
     constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
 
-
+        this.events = events;
+        this.scheduler = scheduler;
         this.optimized = optimized;
 
         this.network = networkInterface;
@@ -52,13 +70,37 @@ class Client {
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
         this.interface.commitCallback = this.commit.bind(this);
 
+        // TODO
+        // this is a bit of a silly, unnecessarily hardcoded way of doing this...
+        if (this.id === '0') {
+            this.dt = new MapCRDT();
+            this.enable();
+            
+        } else {
+            let neighbor = this.network.getLowestIdNeighbor();
+            this.network.requestCRDT(neighbor);
+            // will callback to returnCRDTReceived when received the CRDT from neighbor
+        }
+
+    }
+
+    private enable(): void {
+        // WARN: MUST be called first - network.enable may run queued receives which require
+        //       an up to date id and char array
         this.updateParallelArrays();
 
+        this.network.enable();
+        this.createScheduledEvents();
+
+    }
+
+    private createScheduledEvents(): void {
         // 'events' are stored as a map between time and items to insert and delete
- 
-        for (let eventTime in events.insert) {
+        // IMPORTANT: we now interpret the scheduled events as relative to when the client has been created
+        //            
+        for (let eventTime in this.events.insert) {
             let time = parseFloat(eventTime);
-            let insert = events.insert[time];
+            let insert = this.events.insert[time];
 
             let self = this;
 
@@ -68,46 +110,32 @@ class Client {
                 which sends entire words to insert at once, rather than 1 character at a time
             */
             if (this.optimized) {
-                scheduler.addEvent(time, 0, function() {
+                this.scheduler.addEvent(time, 0, function() {
                     self.interface.mockInsert(insert.chars, insert.after);
                 })
 
             } else {
                 for (let i = 0; i < insert.chars.length; i++) {
-                    scheduler.addEvent(time, i, function() {
+                    this.scheduler.addEvent(time, i, function() {
                         self.interface.mockInsert(insert.chars[i], insert.after + i);
                     });
                 }
             }
         }
 
-        for (let eventTime in events.delete) {
+        for (let eventTime in this.events.delete) {
             let time = parseFloat(eventTime);
-            let deletes = events.delete[eventTime];
+            let deletes = this.events.delete[eventTime];
 
             let self = this;
 
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
-                scheduler.addEvent(time, i, function() {
+                this.scheduler.addEvent(time, i, function() {
                     self.interface.mockDelete(mockDelete.index);
                 });
             }
-
         }
-
-
-        // TODO
-        // this is a bit of a silly, unnecessarily hardcoded way of doing this...
-        if (this.id === '0') {
-            this.dt = new MapCRDT();
-            this.network.enable();
-        } else {
-            let neighbor = this.network.getRandomNeighbor();
-            this.network.requestCRDT(neighbor);
-            // will callback to returnCRDTReceived when received the CRDT from neighbor
-        }
-
     }
 
     private commit(): void {
@@ -260,7 +288,7 @@ class Client {
             this.network.returnCRDT(clientRequestingCRDT, crdt);    // this network operation is always enabled
         }
 
-        this.network.enable();  // absorb all waiting changes, plus disable queueing packet to broadcast and receive packets
+        this.enable();  // absorb all waiting changes, plus disable queueing packet to broadcast and receive packets
     }
 
 
