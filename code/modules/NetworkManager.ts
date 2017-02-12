@@ -19,8 +19,18 @@ class NetworkManager {
     private visualizer: GraphVisualizer;
     private log: Logger;
 
+    private paused = true;
+    private simulationSpeed: number = 1.0;
+    
+    private finished: () => void;
 
-    constructor(topology: Topology, networkStatsManager: NetworkStatsManager, visualizer: GraphVisualizer, scheduler: EventDrivenScheduler, log: Logger) {
+
+    constructor(topology: Topology, 
+                networkStatsManager: NetworkStatsManager, 
+                visualizer: GraphVisualizer, 
+                scheduler: EventDrivenScheduler, 
+                log: Logger,
+                finishedCallback: () => void) {
         this.clientMap = {};
         this.clientLogicalCounterMap = {};
         this.topology = topology;
@@ -28,6 +38,23 @@ class NetworkManager {
         this.networkStats = networkStatsManager;
         this.visualizer = visualizer;
         this.log = log;
+        this.finished = finishedCallback;
+
+
+        console.log(visualizer);
+    }
+
+    public isPaused() {
+        return this.paused;
+    }
+
+    public pause() {
+        this.paused = true;
+    }
+
+    public start() {
+        this.paused = false;
+        this.runSimulation();
     }
 
     public register(client: NetworkInterface): T.ClientId {
@@ -87,6 +114,7 @@ class NetworkManager {
             this.networkStats.incrementLoad(edge.id);
             this.log.logPacket(sender, edge.target, "sent", packet);
         }
+        debugger
         if (this.visualizer !== null) this.visualizer.updateLoads();
         this.clientLogicalCounterMap[sender]++;
     }
@@ -144,12 +172,30 @@ class NetworkManager {
     }
 
 
+
+
+    public setSimulationSpeed(number: number) {
+        this.simulationSpeed = number;
+    }
+
     public runSimulation(): void {
         debugger
-        while (!this.scheduler.areEventsScheduled()) {
-            this.scheduler.run();
+        if (this.paused) {
+            return;
         }
+        if (!this.scheduler.areEventsScheduled()) {
+            (<any>window).pauseplay();  // pause
+            console.log("FINISHED SIMULATION IN NETWORK MANAGER");
+            this.finished();
+            return;
+        }
+
+        setTimeout((function() {
+            this.scheduler.run();
+            this.runSimulation();
+        }).bind(this), 100.0/this.simulationSpeed);
     }
+
 }
 
 export default NetworkManager;

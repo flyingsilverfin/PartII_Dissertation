@@ -1,6 +1,7 @@
-0    memory    11200000    pre-experiment
-0    memory    11200000    post-topology-init
-0    memory    11200000    post-clients-init
+0    memory    10000000    pre-experiment
+0    memory    10000000    post-topology-init
+0    memory    10000000    post-graph-init
+0    memory    10000000    post-clients-init
 NaN    join    0    Joined network!
 NaN    join    1    Joined network!
 
@@ -789,4 +790,4 @@ NaN    received    9    4    insert    43    placates    49.9    0
 NaN    received    9    3    insert    43    placates    49.9    0
 NaN    received    9    2    insert    43    placates    49.9    0
 NaN    received    9    1    insert    43    placates    49.9    0
-NaN    memory    11200000    post-experiment
+NaN    memory    10000000    post-experiment

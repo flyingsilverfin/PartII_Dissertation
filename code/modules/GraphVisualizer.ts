@@ -40,6 +40,7 @@ class GraphVisualizer {
     }
 */
     public updateLoads(): void {
+        console.log('updating loads/colors');
         /*let links = d3.selectAll('.link').data(this.edges, function(d) { return d.source + "-" + d.target; });
         let self = this;
         links.attr("stroke", function(d, i) {

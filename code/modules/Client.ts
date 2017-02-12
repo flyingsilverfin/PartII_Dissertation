@@ -173,9 +173,7 @@ class Client {
         Both clients insert locally at, say, index 0. Currently, I've set up local clients
         to immediately splice their text into the index they wrote locally so it shows up right away
         However, once the concurrent packet arrives, one client will see its word jump ahead
-
-        
-
+        This is expected behavior
     */
     private charInsertedLocal(char: string, after: number, commitNow=false): void {
         let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character

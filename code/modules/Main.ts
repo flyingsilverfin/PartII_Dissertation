@@ -16,7 +16,7 @@ import * as tsUnit from 'tsunit.external/tsUnit';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
 
-export function main(experimentSetup, graph=true) {
+export function main(experimentSetup, graph=true, finishedCallback) {
 
 
 
@@ -54,13 +54,13 @@ export function main(experimentSetup, graph=true) {
     let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = null;
     if (graph) {
-        let graphVisualizer = new GraphVisualizer(
+        graphVisualizer = new GraphVisualizer(
                                                 svg, 
                                                 topology,
                                                 networkStats,
                                                 {
                                                     height: document.body.clientHeight,
-                                                    width: document.body.clientWidth - 100,
+                                                    width: document.body.clientWidth/2,
                                                     charge: -10000,
                                                     linkDistance: 400,
                                                     radius: 25
@@ -77,8 +77,45 @@ export function main(experimentSetup, graph=true) {
     let scheduler = new EventDrivenScheduler(time);
 
 
-    let manager = new NetworkManager(topology, networkStats, graphVisualizer, scheduler, logger); 
-    (<any>window).runEvents = manager.runSimulation.bind(manager);
+    let manager = new NetworkManager(topology, 
+                                     networkStats,
+                                     graphVisualizer, 
+                                     scheduler, 
+                                     logger, 
+                                     function() {
+                                        // END OF EXPERIMENT
+                                        let log = logger.getLog();
+                                        let result = {
+                                            experiment_name: experimentSetup.experiment_name,
+                                            log: log
+                                        }
+                                        logger.logMemory("post-experiment");
+                                        finishedCallback(result); 
+                                     }
+    );
+
+    //(<any>window).runEvents = manager.runSimulation.bind(manager);
+    (<any>window).pauseplay = function() {
+        if (manager.isPaused()) {
+            console.log('playing');
+            document.getElementById('pauseplay-button').innerHTML = "Pause";
+            manager.start();
+        } else {
+            console.log('pausing');
+            document.getElementById('pauseplay-button').innerHTML = "Play";
+            manager.pause();
+        }
+    };
+
+    (<any>window).onSpeedEditBlur = function() {
+        try {
+            let speed = parseFloat((<HTMLInputElement>document.getElementById('speed-control')).value);
+            console.log(speed);
+            manager.setSimulationSpeed(speed);
+        } catch (Exception) {
+            console.error("Invalid speed multiplier, using old one");
+        }
+    }
 
 
     let mockClients: Client[] = [];
@@ -98,49 +135,5 @@ export function main(experimentSetup, graph=true) {
     }
 
     logger.logMemory("post-clients-init");
-
-
-
-    manager.runSimulation();
-
-    let log = logger.getLog();
-    let result = {
-        experiment_name: experimentSetup.experiment_name,
-        log: log
-    }
-
-    logger.logMemory("post-experiment");
-
-    return result;
-
-
-    /*
-
-    function sendRandomPackets() {
-        console.log('sending 2 packets');
-        for (let i = 0; i < 20; i++) {
-            let i = Math.floor(Math.random() * mockClients.length);
-            let c = mockClients[i];
-            let j = Math.floor(Math.random() * (122 - 97)) + 97;
-            let char = String.fromCharCode(j);
-            c.sendMockInsertPacket(char);
-        }
-    }
-    
-    let i = Math.floor(Math.random() * mockClients.length);
-    let c = mockClients[i];
-    let j = Math.floor(Math.random() * (122 - 97)) + 97;
-    let char = String.fromCharCode(j);
-    c.sendMockInsertPacket(char);
-    
-
-
-    //setInterval(sendRandomPackets, 1000);
-    sendRandomPackets();
-
-    manager.runSimulation();
-
-    logger.writeLogToConsole();
-*/
 }
 

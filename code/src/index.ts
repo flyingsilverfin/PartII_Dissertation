@@ -41,20 +41,21 @@ function runExperiment(experiment) {
     let name = experiment.experiment_name;
     console.log("-----Fetched and running experiment with topology: " + name + " " + experiment.topology);
 
-    let experimentResult = main(experiment, false);
+    main(experiment, true, function(experimentResult) {
 
-    console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);
-    
-    // post() stringifies the json internally
-    postObject(
-        "http://localhost:3001/crdtResult",
-        {
-            'name': name,
-            'topology': experiment.topology,
-            'result': experimentResult,
-            'optimized': experiment.optimized
-        }
-    );
+        console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);
+        
+        // post() stringifies the json internally
+        postObject(
+            "http://localhost:3001/crdtResult",
+            {
+                'name': name,
+                'topology': experiment.topology,
+                'result': experimentResult,
+                'optimized': experiment.optimized
+            }
+        );
+    });
 }
   
 getNextExperiment();

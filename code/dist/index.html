@@ -2,19 +2,27 @@
 <head>
 
 	<link rel="stylesheet" type="text/css" href="css/network-graph.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
 
 </head>
 
 <body>
 
-	<h1> HI </h1>
+	<div id="controls">
+		<button id="pauseplay-button" onclick="pauseplay()" class="inline"> Play </button>
+		<input id="speed-control" onblur="onSpeedEditBlur()" class="inline"> 1.0 </button>
+		<div class="inline"> Speed = 1.0 => ~10 events per second </div>
+	</div>
+
+	</h1>
 	
-	<svg id="graph_container"> </svg>
+	<div>
+		<svg id="graph_container"> </svg>
+		<div id="clients-container"> </div>
+ 	</div>
 
 	<div id="stats-pane"> </div>
-
-
-	<div id="clients-container"> </div>
 
 
 	<div id="testing-results"> </div>

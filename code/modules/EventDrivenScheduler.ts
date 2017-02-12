@@ -53,7 +53,7 @@ export default class EventDrivenScheduler {
     }
 
     public areEventsScheduled() {
-        return this.heap.empty();
+        return !this.heap.empty();
     }
 
     public getTime(): number {

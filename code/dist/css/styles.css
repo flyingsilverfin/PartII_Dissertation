@@ -1,0 +1,24 @@
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+#clients-container {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+}
+
+.client-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.client-textarea {
+    width: 100%;
+    min-height: 3em;
+}
+
+.inline {
+    display:inline-block;
+}

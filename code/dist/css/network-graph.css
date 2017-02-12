@@ -1,5 +1,7 @@
 #graph_container {
     background-color: #DDDDDD;
+    width: 50%;
+    display: inline-block;
 }
 
 .link {
