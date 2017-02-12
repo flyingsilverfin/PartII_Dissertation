@@ -20,10 +20,11 @@ export default class EventDrivenScheduler {
     }
 
     // logical clock is for resolving packets to correct order if they were sent in same timestamp
+    // WARNING: RELATIVE TIME ie. adds event in 'time' timesteps from now!
     public addEvent(time: number, logicalClock: number, action: any) {
 
         let heapElem: DualKeyHeapElement = {
-            pKey: time,
+            pKey: time + this.getTime(),
             sKey: logicalClock,
             payload: action
         };

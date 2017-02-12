@@ -92,6 +92,8 @@ class Client {
         this.network.enable();
         this.createScheduledEvents();
 
+        this.interface.setContent(this.charArray.join('')); // received CRDT (if got one) doesn't get displayed without an incoming packet otherwise
+
     }
 
     private createScheduledEvents(): void {
@@ -158,14 +160,23 @@ class Client {
             this.network.broadcast(networkPacket);
 
             this.insertBuffer = [];
-            // don't need to update the rest of the values as they just get overwritten
+            // don't need to reset the rest of the values as they just get overwritten
         } else {
             return;
         }
     }
 
 
-    // interesting it doesn't type check this automatically with the required structure of this.interface.insertCallback
+    /*
+        NOTE
+        There is a case where a concurrent edit happens at the same location
+        Both clients insert locally at, say, index 0. Currently, I've set up local clients
+        to immediately splice their text into the index they wrote locally so it shows up right away
+        However, once the concurrent packet arrives, one client will see its word jump ahead
+
+        
+
+    */
     private charInsertedLocal(char: string, after: number, commitNow=false): void {
         let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
         let opId = nextT + '.' + this.id;
@@ -217,6 +228,7 @@ class Client {
         if (!this.dt.insert(bundle)) {
             return false;
         }
+
 
 
         // get old cursor position and 'after'
@@ -281,6 +293,8 @@ class Client {
 
     private returnCRDTReceived(crdt: CT.MapCRDTStore): void {
         // YAS GOT A CRDT FROM NEIGHBOR
+        console.log("Client " + this.id + " got a CRDT!");
+        console.log(JSON.stringify(crdt));
         this.dt = new MapCRDT(crdt);
 
         // (!!!) also don't forget to pass it to any neighbors waiting for this as well

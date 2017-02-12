@@ -22,6 +22,15 @@ class MapCRDT implements CT.CRDT {
             };
         } else {
             this.map = map;
+            // need to find max timestamp used in CRDT already to set our own nextCounter
+            let t = 1;
+            for (let key in this.map) {
+                let usedT = parseInt(key.split('.')[0])
+                if (usedT > t) {
+                    t = usedT;
+                }
+            }
+            this.nextCounter = t + 1;
         }
     }
 
