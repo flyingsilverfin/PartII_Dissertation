@@ -7,17 +7,18 @@
 .link {
     stroke: none;
     fill: #666666;
+    stroke-width: 3px;
 }
 
 .link line {
 
 }
 
-.node {
-    fill: none;
+.node circle {
+    fill: dimgray;
+    stroke: black;
 }
 
-.node circle {
+.node-active circle{
     fill: darkred;
-    stroke: black;
 }

@@ -66,6 +66,7 @@ class NetworkManager {
 
             this.log.logJoin("join", id, "Joined network!");
 
+            this.visualizer.setNodeActive(id);
 
         } catch (err) {
             // this would be a FixedSizeTopologyException
@@ -114,7 +115,6 @@ class NetworkManager {
             this.networkStats.incrementLoad(edge.id);
             this.log.logPacket(sender, edge.target, "sent", packet);
         }
-        debugger
         if (this.visualizer !== null) this.visualizer.updateLoads();
         this.clientLogicalCounterMap[sender]++;
     }
@@ -173,27 +173,33 @@ class NetworkManager {
 
 
 
-
     public setSimulationSpeed(number: number) {
         this.simulationSpeed = number;
     }
 
     public runSimulation(): void {
-        debugger
-        if (this.paused) {
-            return;
-        }
-        if (!this.scheduler.areEventsScheduled()) {
-            (<any>window).pauseplay();  // pause
-            console.log("FINISHED SIMULATION IN NETWORK MANAGER");
+        if (this.simulationSpeed != 0) {
+            if (this.paused) {
+                return;
+            }
+            if (!this.scheduler.areEventsScheduled()) {
+                (<any>window).pauseplay();  // pause
+                console.log("FINISHED SIMULATION IN NETWORK MANAGER");
+                this.finished();
+                return;
+            }
+
+            setTimeout((function() {
+                this.scheduler.run();
+                this.runSimulation();
+            }).bind(this), 100.0/this.simulationSpeed);
+        } else {
+            while (!this.scheduler.areEventsScheduled()) {
+                this.scheduler.run();
+            }
             this.finished();
             return;
         }
-
-        setTimeout((function() {
-            this.scheduler.run();
-            this.runSimulation();
-        }).bind(this), 100.0/this.simulationSpeed);
     }
 
 }

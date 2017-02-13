@@ -24,7 +24,8 @@ export default class EventDrivenScheduler {
     public addEvent(time: number, logicalClock: number, action: any) {
 
         let heapElem: DualKeyHeapElement = {
-            pKey: time + this.getTime(),
+            // pKey: time + this.getTime(),
+            pKey: time,
             sKey: logicalClock,
             payload: action
         };
@@ -34,8 +35,11 @@ export default class EventDrivenScheduler {
         // this.runReadyEvents();
     }
 
+
+    /*
+        Run those events with t <= 0
+    */
     public runReadyEvents() {
-        debugger
         // process any other events from the queue that need to be run
         while (!this.heap.empty() && this.heap.peek().pKey <= 0) {
             let elem = this.heap.take();
@@ -46,10 +50,11 @@ export default class EventDrivenScheduler {
     public run() {
         let elem = this.heap.take();
         let dt = elem.pKey;
+        debugger
         this.time.forward(dt);
         this.heap.decreaseAllPrimaryKeysBy(dt);
         elem.payload();
-
+        this.runReadyEvents();
     }
 
     public areEventsScheduled() {

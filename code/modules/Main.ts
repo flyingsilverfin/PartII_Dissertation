@@ -123,7 +123,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
     let clients = experimentSetup.clients;
 
     for (let i = 0; i < numClients; i++) {
-        let timeToCreate = parseInt(numClients[i]);
+        let timeToCreate = parseInt(clients[i]);
         let action = function() {
             let ni = new NetworkInterface();
             let id = manager.register(ni);

@@ -54,11 +54,17 @@ class GraphVisualizer {
             let edge = this.edgeHTMLElements[i];
             //edge.attributes.stroke.value = this.getColor(this.networkStats.getFractionalLoadOn(i));
             // hack, [2] is 'stroke'
-            edge.attributes[2].value = this.getColor(this.networkStats.getFractionalLoadOn(i));
+            let load = this.networkStats.getFractionalLoadOn(i);
+            edge.attributes[2].value = this.getColor(load);
+            
         }
 
         this.keyText[0][0].textContent = this.networkStats.getMaxLinkLoad() + " packets";
 
+    }
+
+    public setNodeActive(n: number): void {
+        document.getElementById('node-'+n).classList.add("node-active");
     }
 
     public draw(): void {
@@ -119,6 +125,7 @@ class GraphVisualizer {
             .data(this.nodes)
             .enter().append('g')
             .attr('class', 'node')
+            .attr('id', function(d, i) { return "node-"+i;})
             
         d3nodes.append('circle')
             .attr('class', 'circle')

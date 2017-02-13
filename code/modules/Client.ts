@@ -291,8 +291,6 @@ class Client {
 
     private returnCRDTReceived(crdt: CT.MapCRDTStore): void {
         // YAS GOT A CRDT FROM NEIGHBOR
-        console.log("Client " + this.id + " got a CRDT!");
-        console.log(JSON.stringify(crdt));
         this.dt = new MapCRDT(crdt);
 
         // (!!!) also don't forget to pass it to any neighbors waiting for this as well
