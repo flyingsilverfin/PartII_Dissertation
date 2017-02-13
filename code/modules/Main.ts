@@ -98,6 +98,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
     (<any>window).pauseplay = function() {
         if (manager.isPaused()) {
             console.log('playing');
+            (<any>window).onSpeedEditBlur();
             document.getElementById('pauseplay-button').innerHTML = "Pause";
             manager.start();
         } else {

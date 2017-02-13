@@ -1,0 +1,95 @@
+0    memory    7152832    pre-experiment
+0    memory    7237360    post-topology-init
+0    memory    8451704    post-graph-init
+0    memory    8463872    post-clients-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    sent    1    0    requestCRDT    2    
+0    sent    0    1    insert    43    devotions    1.0    0
+0    join    2    Joined network!
+0    sent    2    0    requestCRDT    2    
+0    join    3    Joined network!
+0    sent    3    0    requestCRDT    2    
+189.69690561264161    received    1    0    requestCRDT    2    
+189.69690561264161    sent    0    1    returnCRDT    326    317
+189.69690561264161    received    0    1    insert    43    devotions    1.0    0
+192.6852940250601    received    3    0    requestCRDT    2    
+192.6852940250601    sent    0    3    returnCRDT    326    317
+208.32256939717587    received    2    0    requestCRDT    2    
+208.32256939717587    sent    0    2    returnCRDT    326    317
+379.39381122528323    received    0    1    returnCRDT    326    317
+385.3705880501202    received    0    3    returnCRDT    326    317
+394.39381122528323    sent    1    0    insert    42    stapled    10.1    0
+394.39381122528323    sent    1    2    insert    42    stapled    10.1    0
+394.39381122528323    sent    1    3    insert    42    stapled    10.1    0
+416.64513879435174    received    0    2    returnCRDT    326    317
+430.3705880501202    sent    3    0    insert    40    miaow    10.3    0
+430.3705880501202    sent    3    1    insert    40    miaow    10.3    0
+430.3705880501202    sent    3    2    insert    40    miaow    10.3    0
+446.64513879435174    sent    2    0    insert    42    Natchez    10.2    0
+446.64513879435174    sent    2    1    insert    42    Natchez    10.2    0
+446.64513879435174    sent    2    3    insert    42    Natchez    10.2    0
+581.7338097638652    received    1    3    insert    42    stapled    10.1    0
+581.7338097638652    sent    3    0    insert    42    stapled    10.1    0
+581.7338097638652    sent    3    1    insert    42    stapled    10.1    0
+581.7338097638652    sent    3    2    insert    42    stapled    10.1    0
+584.0907168379248    received    1    0    insert    42    stapled    10.1    0
+584.0907168379248    sent    0    1    insert    42    stapled    10.1    0
+584.0907168379248    sent    0    2    insert    42    stapled    10.1    0
+584.0907168379248    sent    0    3    insert    42    stapled    10.1    0
+597.3710851359809    received    1    2    insert    42    stapled    10.1    0
+597.3710851359809    sent    2    0    insert    42    stapled    10.1    0
+597.3710851359809    sent    2    1    insert    42    stapled    10.1    0
+597.3710851359809    sent    2    3    insert    42    stapled    10.1    0
+617.7105865887022    received    3    1    insert    40    miaow    10.3    0
+617.7105865887022    sent    1    0    insert    40    miaow    10.3    0
+617.7105865887022    sent    1    2    insert    40    miaow    10.3    0
+617.7105865887022    sent    1    3    insert    40    miaow    10.3    0
+623.0558820751803    received    3    0    insert    40    miaow    10.3    0
+623.0558820751803    sent    0    1    insert    40    miaow    10.3    0
+623.0558820751803    sent    0    2    insert    40    miaow    10.3    0
+623.0558820751803    sent    0    3    insert    40    miaow    10.3    0
+636.3362503732365    received    3    2    insert    40    miaow    10.3    0
+636.3362503732365    sent    2    0    insert    40    miaow    10.3    0
+636.3362503732365    sent    2    1    insert    40    miaow    10.3    0
+636.3362503732365    sent    2    3    insert    40    miaow    10.3    0
+649.6224127050496    received    2    1    insert    42    Natchez    10.2    0
+649.6224127050496    sent    1    0    insert    42    Natchez    10.2    0
+649.6224127050496    sent    1    2    insert    42    Natchez    10.2    0
+649.6224127050496    sent    1    3    insert    42    Natchez    10.2    0
+652.6108011174681    received    2    3    insert    42    Natchez    10.2    0
+652.6108011174681    sent    3    0    insert    42    Natchez    10.2    0
+652.6108011174681    sent    3    1    insert    42    Natchez    10.2    0
+652.6108011174681    sent    3    2    insert    42    Natchez    10.2    0
+654.9677081915277    received    2    0    insert    42    Natchez    10.2    0
+654.9677081915277    sent    0    1    insert    42    Natchez    10.2    0
+654.9677081915277    sent    0    2    insert    42    Natchez    10.2    0
+654.9677081915277    sent    0    3    insert    42    Natchez    10.2    0
+769.0738083024473    received    3    1    insert    42    stapled    10.1    0
+773.7876224505665    received    0    1    insert    42    stapled    10.1    0
+774.4191037889253    received    3    0    insert    42    stapled    10.1    0
+776.7760108629849    received    0    3    insert    42    stapled    10.1    0
+787.6994720869815    received    3    2    insert    42    stapled    10.1    0
+792.4132862351007    received    0    2    insert    42    stapled    10.1    0
+800.3483590466788    received    2    1    insert    42    stapled    10.1    0
+803.3367474590973    received    2    3    insert    42    stapled    10.1    0
+805.0505851272843    received    1    3    insert    40    miaow    10.3    0
+805.6936545331569    received    2    0    insert    42    stapled    10.1    0
+807.4074922013439    received    1    0    insert    40    miaow    10.3    0
+812.752787687822    received    0    1    insert    40    miaow    10.3    0
+815.7411761002404    received    0    3    insert    40    miaow    10.3    0
+820.6878604994    received    1    2    insert    40    miaow    10.3    0
+831.3784514723562    received    0    2    insert    40    miaow    10.3    0
+836.9624112436315    received    1    3    insert    42    Natchez    10.2    0
+839.3135242839343    received    2    1    insert    40    miaow    10.3    0
+839.3193183176911    received    1    0    insert    42    Natchez    10.2    0
+839.95079965605    received    3    1    insert    42    Natchez    10.2    0
+842.3019126963527    received    2    3    insert    40    miaow    10.3    0
+844.6588197704123    received    2    0    insert    40    miaow    10.3    0
+844.6646138041692    received    0    1    insert    42    Natchez    10.2    0
+845.2960951425281    received    3    0    insert    42    Natchez    10.2    0
+847.6530022165878    received    0    3    insert    42    Natchez    10.2    0
+852.5996866157473    received    1    2    insert    42    Natchez    10.2    0
+858.5764634405842    received    3    2    insert    42    Natchez    10.2    0
+863.2902775887035    received    0    2    insert    42    Natchez    10.2    0
+863.2902775887035    memory    9091616    post-experiment

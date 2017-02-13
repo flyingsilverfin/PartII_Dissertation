@@ -54,6 +54,14 @@ export default class Logger {
             readablePacketType = "delete"; // for logging
             msg = 
                 (<CRDTTypes.DeleteMessage>bundle).deleteId
+        } else if (packetType === "reqCRDT") {
+            readablePacketType = "requestCRDT";
+            msg = ""
+        } else if (packetType === "retCRDT") {
+            readablePacketType = "returnCRDT";
+            let crdt = JSON.stringify((<NT.ReturnCRDTMessage>bundle).crdt);
+            let crdtLen = crdt.length;
+            msg = "" + crdtLen;
         } else {
             console.error("Logging a packet of neither insert nor delete type...");
             this.l.push("");

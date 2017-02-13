@@ -20,7 +20,7 @@ class NetworkManager {
     private log: Logger;
 
     private paused = true;
-    private simulationSpeed: number = 1.0;
+    private simulationSpeed: number;
     
     private finished: () => void;
 
@@ -178,7 +178,7 @@ class NetworkManager {
     }
 
     public runSimulation(): void {
-        if (this.simulationSpeed != 0) {
+        if (this.simulationSpeed > 0.0) {
             if (this.paused) {
                 return;
             }
@@ -194,7 +194,7 @@ class NetworkManager {
                 this.runSimulation();
             }).bind(this), 100.0/this.simulationSpeed);
         } else {
-            while (!this.scheduler.areEventsScheduled()) {
+            while (this.scheduler.areEventsScheduled()) {
                 this.scheduler.run();
             }
             this.finished();

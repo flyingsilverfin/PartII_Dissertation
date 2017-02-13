@@ -68,6 +68,12 @@ class ClientAnalyzer(object):
                 self.active_delete_packets[(delete_id, receiver)] = when
                 self.total_delete_packets_size += payload_size_chars
                 self.total_delete_packets_sent += 1
+            elif msg_type == 'reqestCRDT':
+                #TODO
+                pass
+            elif msg_type == 'returnCRDT':
+                #TODO
+                pass
             else:
                 print "Unknown msg type (not insert/delete): " + msg_type
 
@@ -118,6 +124,13 @@ class ClientAnalyzer(object):
                 current_totals = self.get_actual_link_latency(receiver)
                 current_totals[0] += 1
                 self.actual_link_latencies[receiver] = current_totals
+
+            elif msg_type == 'requestCRDT':
+                #TODO
+                pass
+            elif msg_type == 'returnCRDT':
+                #TODO
+                pass
             else:
                 print "Unknown msg type (not insert/delete): " + msg_type
         else:   # case sharejs
@@ -135,7 +148,7 @@ class ClientAnalyzer(object):
             self.actual_link_latencies[receiver] = current_totals
 
 
-    # ---- these aren't really following the 'sender tracks packets' system ----
+    # ---- these aren't really following the 'sender tracks packets' convention ----
     def joinSent(self, log_msg):
         # sender = int(log_msg[2])
         if not self.crdt:
@@ -475,7 +488,6 @@ class ExperimentAnalzer(object):
                 total_packets += result["total_packets"]
                 total_packets_size += result["total_packets_size"]
                 total_packets_size_nometa += result["total_packets_size_nometa"]
-
 
 
         initial_memory = self.memory_stamps[0][0]
