@@ -78,6 +78,7 @@ class Client {
             
         } else {
             let neighbor = this.network.getLowestIdNeighbor();
+            this.interface.setContent("(Retrieving datastructure/document)");
             this.network.requestCRDT(neighbor);
             // will callback to returnCRDTReceived when received the CRDT from neighbor
         }
@@ -186,6 +187,8 @@ class Client {
         // SOLUTION: insert each character into CRDT immediately with unique ID
         //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
         //           
+
+        debugger
         let idOfAfter = this.getIdOfStringIndex(after);
         let bundle: CT.InsertMessage = {
             id: opId,

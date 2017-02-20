@@ -54,7 +54,7 @@ export default class EventDrivenScheduler {
         this.time.forward(dt);
         this.heap.decreaseAllPrimaryKeysBy(dt);
         elem.payload();
-        this.runReadyEvents();
+        //this.runReadyEvents();
     }
 
     public areEventsScheduled() {

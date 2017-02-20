@@ -22,9 +22,10 @@ class ClientAnalyzer(object):
     Responsible for tracking one client's stats from the log
     """
 
-    def __init__(self, client_id, crdt=True):
+    def __init__(self, client_id, other_clients_list, crdt=True):
         self.client_id = client_id
         self.crdt = crdt
+        self.other_clients = other_clients_list     #need this to easily incorporate state replay
 
         if self.crdt:
             self.total_insert_packets_sent = 0
@@ -40,6 +41,12 @@ class ClientAnalyzer(object):
             self.active_packets = {}    # map (doc version, dest) => time packet was sent
             self.serve_id = None
 
+        self.state_replay = {
+            "request" : 0,  # time
+            "return": 0,    # time
+            "returnSize": 0, # number of chars in stringified CRDT returned
+            "requestFrom": -1
+        }
         self.active_join_packets = {} # map (dest) => time packet was sent
         self.actual_link_latencies = {}     # map destination => [#packets, total time taken]
 
@@ -68,14 +75,14 @@ class ClientAnalyzer(object):
                 self.active_delete_packets[(delete_id, receiver)] = when
                 self.total_delete_packets_size += payload_size_chars
                 self.total_delete_packets_sent += 1
-            elif msg_type == 'reqestCRDT':
-                #TODO
-                pass
+            elif msg_type == 'requestCRDT':
+                self.state_replay["request"] = when
+                self.state_replay["requestFrom"] = receiver
             elif msg_type == 'returnCRDT':
-                #TODO
+                #CRDT provider has nothing useful to say when the return is sent
                 pass
             else:
-                print "Unknown msg type (not insert/delete): " + msg_type
+                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
 
         else:   #case sharejs
             assert msg_type == "sharejs-op"
@@ -91,7 +98,7 @@ class ClientAnalyzer(object):
                 payload.pop('meta')
                 len_no_meta = len(json.dumps(payload))
                 self.total_packets_size_nometa += len_no_meta
-            
+
 
     def msgArrived(self, log_msg):
         """
@@ -100,7 +107,7 @@ class ClientAnalyzer(object):
         when = float(log_msg[0])
 
         sender = int(log_msg[2])
-        assert sender == self.client_id
+        # assert sender == self.client_id   # had to hack something in that invalidates this
         receiver = int(log_msg[3])
 
         msg_type = log_msg[4]
@@ -111,7 +118,7 @@ class ClientAnalyzer(object):
                 sent_at = self.active_insert_packets[(insert_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.get_actual_link_latency(receiver) 
+                current_totals = self.get_actual_link_latency(receiver)
                 current_totals[0] += 1
                 current_totals[1] += actual_latency
                 self.actual_link_latencies[receiver] = current_totals
@@ -126,13 +133,21 @@ class ClientAnalyzer(object):
                 self.actual_link_latencies[receiver] = current_totals
 
             elif msg_type == 'requestCRDT':
-                #TODO
+                #sender has nothing useful to say when request arrives at remote
                 pass
             elif msg_type == 'returnCRDT':
-                #TODO
-                pass
+                # sender of the crdt has nothing useful to say
+                # however, the original sender of the request (receiver)
+                # should parse this (HACK lol=)
+                if self.client_id == receiver:
+                    #then this packet has already been forwarded here
+                    self.state_replay["return"] = when
+                    self.state_replay["returnSize"] = int(log_msg[6])
+                else:   # pass it to the correct client (breaks convention being used before)
+                    rec = self.other_clients[receiver]
+                    rec.msgArrived(log_msg)
             else:
-                print "Unknown msg type (not insert/delete): " + msg_type
+                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
         else:   # case sharejs
 
             assert msg_type == "sharejs-op"
@@ -154,10 +169,13 @@ class ClientAnalyzer(object):
         if not self.crdt:
             self.total_packets_sent += 1
             self.total_packets_size += len(log_msg[3])
+            self.state_replay["request"] = float(log_msg[0])
+            self.state_replay["requestFrom"] = -1 # from server always
         else:
             #TODO no packet sent here yet (might have on join/get state later)
             pass
-
+            
+    # ---- following only used for sharejs bit because I didn't unify them properly... ----
     def joinReceived(self, log_msg):
         #nothing really interesting here
         pass
@@ -172,6 +190,13 @@ class ClientAnalyzer(object):
     def joinAckReceived(self, log_msg):
         payload = json.loads(log_msg[3])
         self.serve_id = payload['serveId']
+        self.state_replay["return"] = float(log_msg[0])
+        if payload["create"]:   # this client created the document, hence no snapshot returned
+            self.state_replay["returnSize"] = 0
+        else:
+            snapshot = payload["snapshot"]
+            self.state_replay["returnSize"] = len(snapshot)
+
 
 
     def get_actual_link_latency(self, receiver):
@@ -184,6 +209,7 @@ class ClientAnalyzer(object):
     def getResult(self):
         result = {}
         result["link_latencies"] = self.actual_link_latencies
+        result["state_replay"] = self.state_replay
         if self.crdt:
             result["total_insert_packets"] = self.total_insert_packets_sent
             result["total_delete_packets"] = self.total_delete_packets_sent
@@ -226,14 +252,14 @@ class ExperimentAnalzer(object):
 
         self.experiment_setup = experiment_setup
 
-        self.num_clients = int(experiment_setup['nClients'])
+        self.num_clients = len(experiment_setup['clients'])
 
         self.clients = {}
 
         for i in range(self.num_clients):
-            self.clients[i] = ClientAnalyzer(i, self.crdt)
+            self.clients[i] = ClientAnalyzer(i, self.clients, self.crdt)
         if not self.crdt:
-            self.clients[-1] = ClientAnalyzer(-1, self.crdt)
+            self.clients[-1] = ClientAnalyzer(-1, self.clients, self.crdt)
 
 
         #set up variables and things we want to track later in one central place
@@ -283,7 +309,6 @@ class ExperimentAnalzer(object):
             self.furthest_hops = 2
         elif self.network_type == "sharejs":
             self.furthest_hops = 2
-
 
 
     def analyze(self):
@@ -457,9 +482,13 @@ class ExperimentAnalzer(object):
         get, format results and return as a string
         """
 
-        result = ""
-
         average_measured_link_latencies = {}
+        state_replay_summary = {
+            "waiting_times" : [],
+            "requested_from": [],
+            "sum_crdt_sizes" : 0
+        }
+
         if self.crdt:
             total_insert_packets = 0
             total_delete_packets = 0
@@ -478,6 +507,11 @@ class ExperimentAnalzer(object):
             for dest in latencies.keys():
                 average_measured_link_latencies[(client.client_id, dest)] = \
                     float(latencies[dest][1]) / latencies[dest][0]
+
+            state_replay = result["state_replay"]
+            state_replay_summary["waiting_times"].append(state_replay["return"] - state_replay["request"])
+            state_replay_summary["requested_from"].append(state_replay["requestFrom"])
+            state_replay_summary["sum_crdt_sizes"] += state_replay["returnSize"]
 
             if self.crdt:
                 total_insert_packets += result["total_insert_packets"]
@@ -517,6 +551,9 @@ class ExperimentAnalzer(object):
             'optimized': 'Optimizations enabled',
             'insertEvents': 'Total insert events',
             'deleteEvents': 'Total delete events',
+            'stateReplayWaitTimes': 'Latency/wait time per client when requesting CRDT',
+            'stateReplayRequestFrom': 'From whom each client request CRDT',
+            'stateReplayAvSize': 'Length of stringified document/crdt during state replay, on average',
 
             'insertPackets': 'Total insert packets sent',
             'insertPacketsSize': 'Total size of insert packets sent',
@@ -525,7 +562,7 @@ class ExperimentAnalzer(object):
             'deletePacketsSize': 'Total size of delete packets sent',
             'avgDeletePacket': 'Average delete packet payload size',
             'naiiveP2PExpPackets': 'Expected number of packets sent - given naiive broadcast in a p2p network',
-            'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network',
+            'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network with everyone joining at start',
             'stringsMatch': 'All clients converged to same result',
             'convergedString': 'Converged string (if all match, else first logged string)',
 
@@ -534,7 +571,7 @@ class ExperimentAnalzer(object):
             'avgPacketSize': 'Average packet payload size',
             'totalNoMetaPacketsSize': 'Total size of packets sent, if there were no meta-information',
             'avgNoMetaPacketsSize': 'Average packet payload size without meta-information',
-            'clientServerExpPackets': 'Expected number of packets sent - give optimal client-server network'
+            'clientServerExpPackets': 'Expected number of packets sent - give optimal client-server network with everyone joining at start'
         }
 
         if self.crdt:
@@ -564,7 +601,10 @@ class ExperimentAnalzer(object):
                 self.formatResultEntry('naiiveP2PExpPackets', self.total_expected_packets_naiive),
                 self.formatResultEntry('optimalP2PExpPackets', self.total_expected_packets_best),
 
-
+                self.formatResultEntry('stateReplayWaitTimes', state_replay_summary["waiting_times"]),
+                self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
+                self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
+                
                 *memory_checkpoints
             )
         else:
@@ -588,6 +628,10 @@ class ExperimentAnalzer(object):
 
                 self.formatResultEntry('clientServerExpPackets', self.total_expected_packets_best),
 
+                self.formatResultEntry('stateReplayWaitTimes', state_replay_summary["waiting_times"]),
+                self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
+                self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
+                
                 *memory_checkpoints
             )
 

@@ -1,3 +1,8 @@
+import RealtimeScheduler from '../modules/RealtimeScheduler';
+import Logger from '../modules/Logger';
+
+
+
 export type ClientId = number;
 
 export interface Exception {
@@ -39,4 +44,12 @@ export interface ScheduledDeleteEvents {
 
 export interface ScheduledDelete {
     index: number;
+}
+
+export interface ExperimentSetup {
+    experimentName: string,
+    scheduler: RealtimeScheduler,
+    events: ScheduledEvents,
+    logger: Logger,
+    whenToJoin: number
 }

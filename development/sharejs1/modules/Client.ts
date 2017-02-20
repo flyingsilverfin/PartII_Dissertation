@@ -20,8 +20,7 @@ class Client {
         //use subdomains trick - given an ID it's subdomain is id/5
         let subdomain = Math.floor((id/5)).toString();
 
-        sharejs.open(experimentName, 'text', 'http://' + subdomain + '.localhost:8000/channel', function(err, doc) {
-            
+        sharejs.open(experimentName, 'text', 'http://' + subdomain + '.localhost:8000/channel', function(err, doc) {            
             if (err) {
                 console.error(err);
                 console.error("Quitting sharejs doc initialization");
@@ -29,8 +28,7 @@ class Client {
             }
 
             if (doc.getText().length > 0) {
-                console.error('Starting document is not empty - must be random number collision');
-                return;
+                console.error('Starting document is not empty (just a heads up)');
             }
 
             let interfaceContainer = <HTMLDivElement>document.getElementById('client-container');

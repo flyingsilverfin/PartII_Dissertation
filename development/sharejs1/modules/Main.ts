@@ -2,6 +2,7 @@
 import Logger from './Logger';
 import Client from './Client';
 import RealtimeScheduler from './RealtimeScheduler';
+import * as T from '../types/Types';
 
 export function main(experimentSetup, graph=true, finishedCallback) {
 
@@ -10,7 +11,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
     let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');
     let scheduler = new RealtimeScheduler();
-    let numClients = parseInt(experimentSetup.nClients);
+    let numClients = experimentSetup.clients.length;
 
     for (let i = 0; i < numClients; i++) {
         let iframe = document.createElement('iframe');
@@ -20,25 +21,31 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         document.body.appendChild(iframe);
     }
 
-    logger.logMemory("post-clients-create")
-
 
 
 
     let numReady = 0;
+    let numTookSetup = 0;
 
     let docSeed = Math.floor(Math.random()*1000000);
 
     // to be accessed from iframes
     // we add a Random number to the experiment name
     // so we (probably) get a fresh document that doesn't contain any data from an old experiment
-    (<any>window).getClientSetup = function(id: number) {
-        return {
+    (<any>window).getClientSetup = function(id: number):T.ExperimentSetup  {
+        let s: T.ExperimentSetup  = {
             experimentName: experimentSetup.experiment_name + "-" + docSeed,
             scheduler: scheduler,
-            events: experimentSetup.events[id],
-            logger: logger
+            events: (<T.ScheduledEvents>experimentSetup.events[id]),
+            logger: logger,
+            whenToJoin: parseFloat(experimentSetup.clients[id])
+        };
+        numTookSetup++;
+        if (numTookSetup === numClients) {
+            logger.logMemory("post-clients-create")
+            scheduler.run();
         }
+        return s;
     };
 
     (<any>window).clientReady = function() {

@@ -1,5 +1,0 @@
-0    memory    9026352    pre-experiment
-0    memory    9120176    post-topology-init
-0    memory    11094920    post-graph-init
-0    memory    11110552    post-clients-init
-0    memory    10954840    post-experiment
