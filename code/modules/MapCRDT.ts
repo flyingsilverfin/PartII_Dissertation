@@ -16,8 +16,8 @@ class MapCRDT implements CT.CRDT {
             // keep '0' as as an anchorpoint
             this.map = {
                 '0' : {
-                    next: null,
-                    char: ''
+                    n: null,
+                    c: ''
                 }
             };
         } else {
@@ -66,8 +66,8 @@ class MapCRDT implements CT.CRDT {
 
         // move forward until hit a next element which is less than id
         // entryBefore.next may be null! (will often be null)
-        while (CC.compare(startId, entryBefore.next) < 0) {      //ERROR HERE - comparison is wrong somehow...
-            entryBeforeId = entryBefore.next;
+        while (CC.compare(startId, entryBefore.n) < 0) {      //ERROR HERE - comparison is wrong somehow...
+            entryBeforeId = entryBefore.n;
             entryBefore = this.map[entryBeforeId];
         }
 
@@ -75,7 +75,7 @@ class MapCRDT implements CT.CRDT {
 
 
         // now capable of adding words at a time given a start ID and a string
-        let lastLink = entryBefore.next;
+        let lastLink = entryBefore.n;
         for (let i = 0; i < char.length; i++) {
             let charToInsert = char[i];
             let t = startIdTimestamp + i;
@@ -83,11 +83,11 @@ class MapCRDT implements CT.CRDT {
 
             // insert new entry into linked list
             let newEntry: CT.MapEntry = {
-                char: charToInsert,
-                next: null  // will be added next iteration
+                c: charToInsert,
+                n: null  // will be added next iteration
             }
 
-            entryBefore.next = id;
+            entryBefore.n = id;
             this.map[id] = newEntry;
 
 
@@ -115,7 +115,7 @@ class MapCRDT implements CT.CRDT {
         if (this.map[idToDelete].deleted) {
             return false;
         }
-        this.map[idToDelete]['deleted'] = true;
+        this.map[idToDelete]['d'] = true;
         return true;
     }
 

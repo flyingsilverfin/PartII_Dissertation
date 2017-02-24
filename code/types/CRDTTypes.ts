@@ -34,7 +34,7 @@ export interface MapCRDTStore {
 }
 
 export interface MapEntry {
-    char: string,
-    next: string,
-    deleted?: boolean
+    c: string,  // character
+    n: string,  // next link
+    d?: boolean // deleted
 }
