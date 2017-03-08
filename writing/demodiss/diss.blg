@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: diss.aux
+The style file: plain.bst
+Illegal, another \bibstyle command---line 78 of file diss.aux
+ : \bibstyle
+ :          {unsrt}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 79 of file diss.aux
+ : \bibdata
+ :         {bibliography}
+I'm skipping whatever remains of this command
+Database file #1: refs.bib
+Warning--entry type for "Moore95" isn't style-file defined
+--line 8 of file refs.bib
+Warning--I didn't find a database entry for "Technion"
+Warning--I didn't find a database entry for "sun1998operational"
+Warning--I didn't find a database entry for "preguica2009commutative"
+Warning--I didn't find a database entry for "Shapiro2011"
+Warning--I didn't find a database entry for "ShareJS"
+You've used 2 entries,
+            2118 wiz_defined-function locations,
+            516 strings with 4271 characters,
+and the built_in function-call counts, 432 in all, are:
+= -- 36
+> -- 14
+< -- 0
++ -- 6
+- -- 4
+* -- 16
+:= -- 79
+add.period$ -- 5
+call.type$ -- 2
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 2
+duplicate$ -- 19
+empty$ -- 45
+format.name$ -- 4
+if$ -- 90
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 2
+newline$ -- 12
+num.names$ -- 4
+pop$ -- 17
+preamble$ -- 1
+purify$ -- 6
+quote$ -- 0
+skip$ -- 14
+stack$ -- 0
+substring$ -- 10
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 6
+warning$ -- 0
+while$ -- 4
+width$ -- 3
+write$ -- 20
+(There were 2 error messages)

@@ -1,0 +1,14 @@
+@article{Technion,
+abstract = {Collaborative text editing systems allow users to concurrently edit a shared document, inserting and deleting elements (e.g., characters or lines). There are a number of protocols for collaborative text editing, but so far there has been no precise specification of their desired behavior, and several of these protocols have been shown not to satisfy even basic expectations. This paper provides a precise specification of a replicated list object, which models the core functionality of replicated systems for collaborative text editing. We define a strong list specification, which we prove is implemented by an existing protocol, as well as a weak list specification, which admits additional protocol behaviors. A major factor determining the efficiency and practical feasibility of a collaborative text editing protocol is the space overhead of the metadata that the protocol must maintain to ensure correctness. We show that for a large class of list protocols, implementing either the strong or the weak list specification requires a metadata overhead that is at least linear in the number of elements deleted from the list. The class of protocols to which this lower bound applies includes all list protocols that we are aware of, and we show that one of these protocols almost matches the bound.},
+author = {Technion, Hagit Attiya and Burckhardt, Sebastian and Gotsman, Alexey and {Morrison Technion}, Adam and Yang, Hongseok and Zawirski, Marek},
+doi = {10.1145/2933057.2933090},
+file = {:media/data/Uni/Year3/dissertation/research/Papers/Specification and Complexity of Collaborative Text Editing.pdf:pdf},
+isbn = {9781450339643},
+keywords = {collaborative text editing,eventual consistency},
+number = {Section 3},
+title = {{Specification and Complexity of Collaborative Text Editing}},
+volume = {1}
+}
+
+
+

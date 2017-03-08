@@ -11,136 +11,182 @@
 \Large
 Computer Science Tripos -- Part II -- Project Proposal\\[4mm]
 \LARGE
-How to write a dissertation in \LaTeX\\[4mm]
+Conflict Free Document Editing with Different Technologies\\[4mm]
 
 \large
-M.~Richards, St John's College
+J.~Send, Trinity Hall
 
-Originator: Dr M.~Richards
+Originator: J.~Send
 
-14 October 2011
+10 October 2016
 \end{center}
 
 \vspace{5mm}
 
-\textbf{Project Supervisor:} Dr M.~Richards
+\textbf{Project Supervisor:} S.~Kollmann
 
-\textbf{Director of Studies:} Dr M.~Richards
+\textbf{Director of Studies:} Prof.~S.~Moore
 
-\textbf{Project Overseers:} Dr F.~H.~King  \& Dr A.~W.~Moore
+\textbf{Project Overseers:} Prof.~T.~Griffin \& Prof.~P.~Lio
 
 % Main document
 
 \section*{Introduction}
 
-\emph{The problem to be addressed.}
+\subsection*{Background}
 
-Many students write their CST dissertations in \LaTeX\ -- and spend a
-fair amount of time learning just how to do that. The purpose of this
-project is to write a demonstration dissertation that provides
-a starting point to show how it is done.
+In a world of ever increasing connectivity, collaborative features of applications
+will take on greater and greater roles. Popular services such as Google Docs offer real-time
+editing of documents by multiple users, a type of interaction that will move from being
+a special offering by few applications to a common and expected interface.
 
-This core proposal document will be augmented by a separately-printed
-cover sheet at the front and a resource form at the end. Additional
-sheets for risk assessment and human resources may also need to be
-included.
+The key property that must be implemented to achieve concurrent editing is eventual consistency,
+meaning that all connected users should end up with the same result after receiving all changes to the document 
+--- even if edits conflict~\cite{Technion}. There are two main technologies that are used to enable concurrent editing of a document (plain text or otherwise). One approach is Operational Transforms (OT), 
+which that generally relies  on having a central server receive, serialize, transform, and 
+relay edits occurring simultaneously to each client. OT is notoriously difficult to implement 
+correctly as incoming operations have to be transformed against preceding ones on each client, 
+such that the result converges~\cite{sun1998operational}. The server may also be required to make some transformations. 
+Due to this, central server must be able to read all the operations being performed by clients.
+Thus, unless the server is trusted and secure, OT-based services cannot provide any security or privacy guarantees. 
 
-This document will elaborate much of the material that is summarised on
-the additional sheets.
+The alternative, newer technology uses Conflict Free Replicated Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual consistency by transforming operations against each other, CRDTs use special datastructures that guarantee that no operations will conflict~\cite{preguica2009commutative}. There are many types of CRDTs that are tailored for different situations. One example is a simple up-down counter which could be implemented as two locally replicated registers, one for increments and one for decrements, where the current state is their difference\cite{Shapiro2011}. Compared to OT, there is no interdependence between edits (as long as the network protocol can guarantee in-order delivery), which means CRDT-based systems can do away with the server and be implemented using peer to peer (P2P) protocols. This lends itself to security (encryption is now possible between endpoints),
+and possibly more scalability and efficiency.
 
-\section*{Starting point}
+This project is first concerned with exploring and developing a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based client/server approach available in the open source library ShareJS. Several extensions are also possible,
+listed in later sections.
 
-\emph{Describe existing state of the art, previous work in this area,
-  libraries and databases to be used. Describe the state of any
-  existing codebase that is to be built on.}
+\subsection*{Resources required}
 
-I am already able to write prose using the English language. I have an
-online dictionary, etc.
+The primary external resource I will need is the Javascript library ShareJS, which is published under the MIT license on GitHub \cite{ShareJS}.
 
-\section*{Resources required}
+Additionally, I am developing on my personal computer, a Thinkpad T440s with 8 GiB of RAM,
+128 GB of hard drive space, and a low wattage dual core Intel CPU running at 1.60GHz.
+The primary development environment is Ubuntu Linux, though Windows 10 is also available 
+on the same machine. 
 
-\emph{A note of the resources required and confirmation of access.}
+Git with Github is used as both a version control system and a cloud backup. Dropbox  
+provides continuous cloud backups as well. Secondary development machines are any of the MCS computers.
 
-For this project I shall mainly use my own quad-core computer that
-runs Fedora Linux. Backup will be to github and/or to an SVN
-repository on an external hard disk that is dumped to writable CD/DVD
-media. I have another similar computer to hand should my main machine
-suddenly fail. I require no other special resources.
+\subsection*{Starting point}
+
+I have some knowledge of the open source library ShareJS from a past internship, which I aim to leverage when 
+evaluating and comparing it to my system. My knowledge of CRDTs and the relevant adding/insert/merge
+algorithms stems mostly from a high level explanation provided by Martin Kleppmann, along with a diagram.
+This will be the starting point for my from-scratch implementation of the concurrent text editor.
+
+Since I have no experience writing test cases and performance profiling, nor network simulation, 
+I will have to learn how to do these.
+
+Lastly, I may consult various papers on CRDTs, as well as my supervisor's work in the area, if required.
 
 \section*{Work to be done}
 
-\emph{Describe the technical work.}
+\subsection*{Overview}
+I plan to implement a simulation of P2P CRDT text editing using Typescript. Following this, my project will focus on
+comparing an existing OT-based concurrent document editing library (ShareJS) to my implementation, in order to draw conclusions
+about their relative network and memory efficiency, and scalability. It is highly likely that my 
+system will need some optimization, which can feed back into my evaluation and comparison process. In the case that
+these phases do not take too long, there are several possible extensions. The first would be to add
+a networking layer to the simulation - in effect turning the it into a usable library. The second would be
+researching and implementing 'undo' and 'move' operations, which are relatively open research problems.
 
-The project breaks down into the following sub-projects:
+\subsection*{Detailed Project Structure}
 
 \begin{enumerate}
 
-\item The construction of a skeleton dissertation with the required
-  structure. This involves writing the Makefile and making dummy
-  files for the title page, the proforma, chapters 1 to 5, the
-  appendices and the proposal.
+\item \textbf{Core CRDT Development:} Consider and decide CRDT datastructures. Then detail how I expect
+the insert/delete/merge algorithms to work on paper, followed by implementing these. Lastly, I need to
+learn frameworks for testing my implementation. The tests for correctness should include hand-crafted unit tests
+to confirm expected behavior of intermediate execution steps and convergence of results across clients, 
+along with generated test loads to check correct convergence on all clients.
 
-\item Filling in the details required in the cover page and proforma.
 
-\item Writing the contents of chapters 1 to 5, including examples of
-  common \LaTeX\ constructs.
+\item \textbf{Implement Simulation:} Model having an arbitrary number of clients each running the CRDT algorithms, and simulate
+networking between these clients. Because this is P2P, it may be worth adding functionality for a variety of network
+topologies.
 
-\item Adding a example of how to use floating figures and ``encapsulated
-  PostScript'' or PDF diagrams.
+\item \textbf{Set up ShareJS and Compare:} Set up the ShareJS environment, mirror functionality and setups 
+between two systems as much as possible, and create corresponding performance profiling tests for both 
+systems. These will focus on network efficiency, memory usage, and scalability.
+
+\item \textbf{Tune Implementation:} There will likely be opportunity for some optimization, which will
+feed back into the performance comparisons in the previous step and help evaluate the optimizations themselves.
+
+\item \textbf{Extensions:} The first extension is implementing a proper P2P network stack and remove the simulated 
+networking. Next would be researching undo and move operations and perhaps try to implement one or both of these.
 
 \end{enumerate}
 
-\section*{Success citeria}
-
-\emph{Describe what you expect to be able to demonstrate at the
-end of the project and how you are going to evaluate your achievement.}
-
-The project will be a success if I have a completed dissertation with
-the correct chapter titles and I have achieved my other success
-criteria, which are to blah \ldots
 
 
-\section*{Possible extensions}
+\subsection*{Possible extensions}
 
-{\em Potential further envisaged evaluation metrics or extensions.}
+There are two extensions of varying difficulty:
 
-If I achieve my main result early I shall try the following
-alternative experiment or method of evaluation \ldots
+\begin{itemize}
+
+\item (Easier) Replace networking simulation with a P2P networking library. The end result of this extension should be a ready to deploy Typescript (compiled to Javascript) library.
+
+\item (Difficult) Research prior work on undo and move functionality using CRDTs. If something suitable is found, implement it. Otherwise, attempt to work toward my own solution.
+
+\end{itemize}
+
+
+\section*{Success criteria}
+
+These are the main success criteria associated with my project
+
+\begin{enumerate}
+\item A concurrent text editor based on CRDTs has been implemented.
+
+\item The concurrent text editor passes all correctness tests.
+
+\item Quantitative results comparing ShareJS and the CRDT based system have been obtained and analyzed.
+\end{enumerate}
 
 
 \section*{Timetable}
-
-\emph{A workplan of perhaps ten or so two-week work-packages,
-as well as milestones to be achieved along the way. Provide a
-target date for each milestone.}
 
 Planned starting date is 16/10/2011.
 
 \begin{enumerate}
 
-\item \textbf{Michaelmas weeks 2--4} Learn to use X. Read book Y. Read papers Z.
+\item \textbf{Michaelmas weeks 2--3} Develop CRDT datastructure and algorithms on paper. Read into P2P networks 
+and simulating them.
 
-\item \textbf{Michaelmas weeks 5--6} Do preliminary test of Q.
+\item \textbf{Michaelmas weeks 4--5} Lay out project files and implement network simulation with support for different
+P2P topologies.
 
-\item \textbf{Michaelmas weeks 7--8} Start implementation of main task A.
+\item \textbf{Michaelmas weeks 6--8} Implement CRDT datastructures and algorithms, and connect these to network simulation.
 
-\item \textbf{Michaelmas vacation} Finish A and start main task B.
+\item \textbf{Michaelmas vacation} Learn an appropriate testing framework, write and generate unit tests for correctness of implementation. Fix any bugs discovered by the testing process. Set up ShareJS environment. Begin outlining progress report.
 
-\item \textbf{Lent weeks 0--2} Write progress report. Generate corpus of
-  test examples. Finish task B.
+\item \textbf{Lent weeks 0--1} Complete progress report. Mirror functionality of ShareJS to the setup
+of my system. Start writing performance benchmarks and scalability tests for both systems.
 
-\item \textbf{Lent weeks 3--5} Run main experiments and achieve working project.
+\item \textbf{Lent weeks 2--4} Execute tests and analyze results. Try to explain differences and similarities observed.
+Tune my implementation and evaluate various optimizations. Begin writing dissertation. 
 
-\item \textbf{Lent weeks 6--8} Second main deliverable here.
+\item \textbf{Lent weeks 5--6} Continue writing dissertation and optimizing system. Begin research for extension
+which implements proper networking stack.
 
-\item \textbf{Easter vacation:} Extensions and writing dissertation main
-  chapters.
+\item \textbf{Lent weeks 7--8} Continue writing dissertation. Before terms ends, review and peer-review (including supervisor)
+incomplete draft. Implement networking extension. Research undo and move operations with CRDTs.
 
-\item \textbf{Easter term 0--2:}  Further evaluation and complete dissertation.
+\item \textbf{Easter vacation:} Finish dissertation draft. Work on undo and move extensions for system.
 
-\item \textbf{Easter term 3:} Proof reading and then an early submission
-  so as to concentrate on examination revision.
+\item \textbf{Easter term 0--2:} Edit and proof read dissertation. Work on extensions.
+
+\item \textbf{Easter term 3:} Proof read and then submit early to concentrate on exams.
 
 \end{enumerate}
 
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
 \end{document}
+
+
+\end{filecontents} 
