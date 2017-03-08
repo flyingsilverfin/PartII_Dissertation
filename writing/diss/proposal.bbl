@@ -1,0 +1,154 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{nty}
+    \entry{Technion}{article}{}
+      \name{labelname}{6}{}{%
+        {{hash=5091941a46cda12c54d008b88885c1fc}{Attiya}{A\bibinitperiod}{Hagit}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=712c7950a80e789733554d845d4a1056}{Burckhardt}{B\bibinitperiod}{Sebastian}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=43b6ef103d831c5c4e2506ebd3aad931}{Gotsman}{G\bibinitperiod}{Alexey}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=1df9b05f8dfd6005b39faf88e9b27e90}{Morrison\bibnamedelima Technion}{M\bibinitperiod\bibinitdelim T\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=f54dd89dfae376ce30704e5a2ea3b4b1}{Yang}{Y\bibinitperiod}{Hongseok}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{6}{}{%
+        {{hash=5091941a46cda12c54d008b88885c1fc}{Attiya}{A\bibinitperiod}{Hagit}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=712c7950a80e789733554d845d4a1056}{Burckhardt}{B\bibinitperiod}{Sebastian}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=43b6ef103d831c5c4e2506ebd3aad931}{Gotsman}{G\bibinitperiod}{Alexey}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=1df9b05f8dfd6005b39faf88e9b27e90}{Morrison\bibnamedelima Technion}{M\bibinitperiod\bibinitdelim T\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=f54dd89dfae376ce30704e5a2ea3b4b1}{Yang}{Y\bibinitperiod}{Hongseok}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{3b887d8001c224a4c0d694ba3cfa83b6}
+      \strng{fullhash}{56f18120363baa803281d66773bd60fa}
+      \field{sortinit}{A}
+      \field{labeltitle}{{Specification and Complexity of Collaborative Text Editing}}
+      \field{abstract}{Collaborative text editing systems allow users to concurrently edit a shared document, inserting and deleting elements (e.g., characters or lines). There are a number of protocols for collaborative text editing, but so far there has been no precise specification of their desired behavior, and several of these protocols have been shown not to satisfy even basic expectations. This paper provides a precise specification of a replicated list object, which models the core functionality of replicated systems for collaborative text editing. We define a strong list specification, which we prove is implemented by an existing protocol, as well as a weak list specification, which admits additional protocol behaviors. A major factor determining the efficiency and practical feasibility of a collaborative text editing protocol is the space overhead of the metadata that the protocol must maintain to ensure correctness. We show that for a large class of list protocols, implementing either the strong or the weak list specification requires a metadata overhead that is at least linear in the number of elements deleted from the list. The class of protocols to which this lower bound applies includes all list protocols that we are aware of, and we show that one of these protocols almost matches the bound.}
+      \field{isbn}{9781450339643}
+      \field{number}{Section 3}
+      \field{title}{{Specification and Complexity of Collaborative Text Editing}}
+      \field{volume}{1}
+      \verb{doi}
+      \verb 10.1145/2933057.2933090
+      \endverb
+      \verb{file}
+      \verb :media/data/Uni/Year3/dissertation/research/Papers/Specification and Complexity of Collaborative Text Editing.pdf:pdf
+      \endverb
+      \keyw{collaborative text editing,eventual consistency}
+    \endentry
+    \entry{ShareJS}{misc}{}
+      \name{labelname}{1}{}{%
+        {{hash=ec67bdb8fc49be50e270c12c61a68662}{Gentle}{G\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=ec67bdb8fc49be50e270c12c61a68662}{Gentle}{G\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {GitHub}%
+      }
+      \strng{namehash}{ec67bdb8fc49be50e270c12c61a68662}
+      \strng{fullhash}{ec67bdb8fc49be50e270c12c61a68662}
+      \field{sortinit}{G}
+      \field{labeltitle}{ShareJS}
+      \field{howpublished}{\url{https://github.com/josephg/ShareJS}}
+      \field{journaltitle}{GitHub repository}
+      \field{title}{ShareJS}
+      \field{year}{2011}
+    \endentry
+    \entry{preguica2009commutative}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=9f33558f034e8c602d56158e0f8358a2}{Preguica}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=f34df992b11a6a7a16133449d4f1a923}{Marques}{M\bibinitperiod}{Joan\bibnamedelima Manuel}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=175d9ced76260033e1fd9361ae52aa00}{Letia}{L\bibinitperiod}{Mihai}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=9f33558f034e8c602d56158e0f8358a2}{Preguica}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=f34df992b11a6a7a16133449d4f1a923}{Marques}{M\bibinitperiod}{Joan\bibnamedelima Manuel}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=175d9ced76260033e1fd9361ae52aa00}{Letia}{L\bibinitperiod}{Mihai}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{b05f3a7e9318aae4f2be3dbbb60b45c8}
+      \strng{fullhash}{f8e45a41a9ab18a9d471aa1e57a7a902}
+      \field{sortinit}{P}
+      \field{labeltitle}{A commutative replicated data type for cooperative editing}
+      \field{booktitle}{Distributed Computing Systems, 2009. ICDCS'09. 29th IEEE International Conference on}
+      \field{title}{A commutative replicated data type for cooperative editing}
+      \field{year}{2009}
+      \field{pages}{395\bibrangedash 403}
+    \endentry
+    \entry{Shapiro2011}{article}{}
+      \name{labelname}{4}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=7f078fdb202d1490a038d30f9bf19956}{Pregui}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=0bb140bbbc1d3ac7ec6a28bd9d506581}{Baquero}{B\bibinitperiod}{Carlos}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=7f078fdb202d1490a038d30f9bf19956}{Pregui}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=0bb140bbbc1d3ac7ec6a28bd9d506581}{Baquero}{B\bibinitperiod}{Carlos}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{7936fce3a0285cdf6cd75bdb1ee0e5aa}
+      \strng{fullhash}{f593c8ded1fabef508dbf3b40d20928a}
+      \field{sortinit}{S}
+      \field{labeltitle}{{Replicated Data Types: A comprehensive study of Convergent and Commutative Replicated Data Types}}
+      \field{abstract}{Eventual consistency aims to ensure that replicas of some mutable shared object converge without foreground synchronisation. Previous approaches to eventual consistency are ad-hoc and error-prone. We study a principled approach: to base the design of shared data types on some simple formal conditions that are sufficient to guarantee eventual consistency. We call these types Convergent or Commutative Replicated Data Types (CRDTs). This paper formalises asynchronous object replication, either state based or operation based, and provides a sufficient condition appropriate for each case. It describes several useful CRDTs, including container data types supporting both $\backslash$add and $\backslash$remove operations with clean semantics, and more complex types such as graphs, montonic DAGs, and sequences. It discusses some properties needed to implement non-trivial CRDTs.}
+      \field{number}{RR-7506}
+      \field{title}{{Replicated Data Types: A comprehensive study of Convergent and Commutative Replicated Data Types}}
+      \field{year}{2011}
+      \field{pages}{50}
+      \verb{file}
+      \verb :media/data/Uni/Year3/dissertation/research/Papers/Comprehensive study of conv and comm replicated data types {\_}shapiro.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb http://hal.inria.fr/inria-00555588
+      \endverb
+      \keyw{eventual consistency; optimistic replication; repl}
+    \endentry
+    \entry{sun1998operational}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=637fdbefe4bb1ef3b5f562de5d806ecc}{Sun}{S\bibinitperiod}{Chengzheng}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=0ad9b69a59ebe8345ec1a2221ee09793}{Ellis}{E\bibinitperiod}{Clarence}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=637fdbefe4bb1ef3b5f562de5d806ecc}{Sun}{S\bibinitperiod}{Chengzheng}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=0ad9b69a59ebe8345ec1a2221ee09793}{Ellis}{E\bibinitperiod}{Clarence}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{5fe4f39d547f4ddf51c082dd98ea295f}
+      \strng{fullhash}{5fe4f39d547f4ddf51c082dd98ea295f}
+      \field{sortinit}{S}
+      \field{labeltitle}{Operational transformation in real-time group editors: issues, algorithms, and achievements}
+      \field{booktitle}{Proceedings of the 1998 ACM conference on Computer supported cooperative work}
+      \field{title}{Operational transformation in real-time group editors: issues, algorithms, and achievements}
+      \field{year}{1998}
+      \field{pages}{59\bibrangedash 68}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

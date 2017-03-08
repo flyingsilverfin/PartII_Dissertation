@@ -1,0 +1,54 @@
+
+
+@inproceedings{preguica2009commutative,
+  title={A commutative replicated data type for cooperative editing},
+  author={Preguica, Nuno and Marques, Joan Manuel and Shapiro, Marc and Letia, Mihai},
+  booktitle={Distributed Computing Systems, 2009. ICDCS'09. 29th IEEE International Conference on},
+  pages={395--403},
+  year={2009},
+  organization={IEEE}
+}
+
+
+@inproceedings{sun1998operational,
+  title={Operational transformation in real-time group editors: issues, algorithms, and achievements},
+  author={Sun, Chengzheng and Ellis, Clarence},
+  booktitle={Proceedings of the 1998 ACM conference on Computer supported cooperative work},
+  pages={59--68},
+  year={1998},
+  organization={ACM}
+}
+
+@article{Technion,
+abstract = {Collaborative text editing systems allow users to concurrently edit a shared document, inserting and deleting elements (e.g., characters or lines). There are a number of protocols for collaborative text editing, but so far there has been no precise specification of their desired behavior, and several of these protocols have been shown not to satisfy even basic expectations. This paper provides a precise specification of a replicated list object, which models the core functionality of replicated systems for collaborative text editing. We define a strong list specification, which we prove is implemented by an existing protocol, as well as a weak list specification, which admits additional protocol behaviors. A major factor determining the efficiency and practical feasibility of a collaborative text editing protocol is the space overhead of the metadata that the protocol must maintain to ensure correctness. We show that for a large class of list protocols, implementing either the strong or the weak list specification requires a metadata overhead that is at least linear in the number of elements deleted from the list. The class of protocols to which this lower bound applies includes all list protocols that we are aware of, and we show that one of these protocols almost matches the bound.},
+author = {Attiya, Hagit and Burckhardt, Sebastian and Gotsman, Alexey and Morrison Technion, Adam and Yang, Hongseok and Zawirski, Marek},
+doi = {10.1145/2933057.2933090},
+file = {:media/data/Uni/Year3/dissertation/research/Papers/Specification and Complexity of Collaborative Text Editing.pdf:pdf},
+isbn = {9781450339643},
+keywords = {collaborative text editing,eventual consistency},
+number = {Section 3},
+title = {{Specification and Complexity of Collaborative Text Editing}},
+volume = {1}
+}
+
+@misc{ShareJS,
+  author = {Gentle, J.},
+  title = {ShareJS},
+  year = {2011},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/josephg/ShareJS}}
+}
+
+@article{Shapiro2011,
+abstract = {Eventual consistency aims to ensure that replicas of some mutable shared object converge without foreground synchronisation. Previous approaches to eventual consistency are ad-hoc and error-prone. We study a principled approach: to base the design of shared data types on some simple formal conditions that are sufficient to guarantee eventual consistency. We call these types Convergent or Commutative Replicated Data Types (CRDTs). This paper formalises asynchronous object replication, either state based or operation based, and provides a sufficient condition appropriate for each case. It describes several useful CRDTs, including container data types supporting both $\backslash$add and $\backslash$remove operations with clean semantics, and more complex types such as graphs, montonic DAGs, and sequences. It discusses some properties needed to implement non-trivial CRDTs.},
+author = {Shapiro, Marc and Pregui, Nuno and Baquero, Carlos and Zawirski, Marek},
+file = {:media/data/Uni/Year3/dissertation/research/Papers/Comprehensive study of conv and comm replicated data types {\_}shapiro.pdf:pdf},
+keywords = {eventual consistency; optimistic replication; repl},
+number = {RR-7506},
+pages = {50},
+title = {{Replicated Data Types: A comprehensive study of Convergent and Commutative Replicated Data Types}},
+url = {http://hal.inria.fr/inria-00555588},
+year = {2011}
+}
+
