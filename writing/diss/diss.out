@@ -1,22 +1,49 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
-\BOOKMARK [2][-]{subsection.1.1.1}{The makefile}{section.1.1}% 3
-\BOOKMARK [1][-]{section.1.2}{Counting words}{chapter.1}% 4
-\BOOKMARK [0][-]{chapter.2}{Preparation}{}% 5
-\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 6
-\BOOKMARK [1][-]{section.3.1}{Verbatim text}{chapter.3}% 7
-\BOOKMARK [1][-]{section.3.2}{Tables}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.3}{Simple diagrams}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.4}{Adding more complicated graphics}{chapter.3}% 10
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 11
-\BOOKMARK [1][-]{section.4.1}{Printing and binding}{chapter.4}% 12
-\BOOKMARK [1][-]{section.4.2}{Further information}{chapter.4}% 13
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 14
-\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 15
-\BOOKMARK [0][-]{appendix.A}{Latex source}{}% 16
-\BOOKMARK [1][-]{section.A.1}{diss.tex}{appendix.A}% 17
-\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 18
-\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 19
-\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 20
-\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 21
-\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 22
+\BOOKMARK [1][-]{section.1.2}{Overview}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Related Work}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.3.1}{Treedoc}{section.1.3}% 5
+\BOOKMARK [2][-]{subsection.1.3.2}{Logoot}{section.1.3}% 6
+\BOOKMARK [2][-]{subsection.1.3.3}{Logoot-Undo}{section.1.3}% 7
+\BOOKMARK [0][-]{chapter.2}{Preparation}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Consistency Models}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{What is "Conflict Free"}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{CCI Consistency Model}{section.2.1}% 11
+\BOOKMARK [1][-]{section.2.2}{Achieving Eventual Consistency}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.1}{Operational Transformations}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.2}{Convergent Replicated Data Types}{section.2.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.3}{ShareJS}{section.2.2}% 15
+\BOOKMARK [1][-]{section.2.3}{Analysis}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.3.1}{Memory}{section.2.3}% 17
+\BOOKMARK [2][-]{subsection.2.3.2}{Network}{section.2.3}% 18
+\BOOKMARK [2][-]{subsection.2.3.3}{Processor Load}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.4}{Client-Server versus Peer to Peer}{section.2.3}% 20
+\BOOKMARK [1][-]{section.2.4}{Starting Point}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.5}{Requirements Analysis}{chapter.2}% 22
+\BOOKMARK [1][-]{section.2.6}{Software Engineering}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.6.1}{Libraries}{section.2.6}% 24
+\BOOKMARK [2][-]{subsection.2.6.2}{Languages}{section.2.6}% 25
+\BOOKMARK [2][-]{subsection.2.6.3}{Tooling}{section.2.6}% 26
+\BOOKMARK [2][-]{subsection.2.6.4}{Backup Strategy}{section.2.6}% 27
+\BOOKMARK [1][-]{section.2.7}{Early Design Decisions}{chapter.2}% 28
+\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 29
+\BOOKMARK [1][-]{section.3.1}{CRDT-based system}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 31
+\BOOKMARK [2][-]{subsection.3.1.2}{Custom CRDT}{section.3.1}% 32
+\BOOKMARK [2][-]{subsection.3.1.3}{Network simulation}{section.3.1}% 33
+\BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 34
+\BOOKMARK [2][-]{subsection.3.2.1}{Overview}{section.3.2}% 35
+\BOOKMARK [1][-]{section.3.3}{Experiments and Automated Log Analysis}{chapter.3}% 36
+\BOOKMARK [2][-]{subsection.3.3.1}{Separation of Concerns}{section.3.3}% 37
+\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 38
+\BOOKMARK [2][-]{subsection.3.3.3}{Log Analysis}{section.3.3}% 39
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 40
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 41
+\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 42
+\BOOKMARK [0][-]{appendix.A}{Latex source}{}% 43
+\BOOKMARK [1][-]{section.A.1}{diss.tex}{appendix.A}% 44
+\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 45
+\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 46
+\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 47
+\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 48
+\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 49

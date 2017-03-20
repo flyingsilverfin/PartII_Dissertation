@@ -1,4 +1,4 @@
 [0] Config.pm:318> INFO - This is Biber 1.8
-[0] Config.pm:321> INFO - Logfile is 'diss.blg'
-[52] biber:275> INFO - === Wed Mar  8, 2017, 22:11:24
-[52] Biber.pm:333> INFO - Reading 'diss.bcf'
+[1] Config.pm:321> INFO - Logfile is 'diss.blg'
+[90] biber:275> INFO - === Sun Mar 19, 2017, 18:55:26
+[91] Biber.pm:333> INFO - Reading 'diss.bcf'

@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  8 MAR 2017 22:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  20 MAR 2017 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**diss
+**diss.tex
 (./diss.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 2 languages loaded.
@@ -187,6 +187,42 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 ) (./docmute.sty
 Package: docmute 2012/03/22 v1.4 Input stand-alone documents
 )
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count102
+\FV@InFile=\read2
+\FV@TabBox=\box26
+\c@FancyVerbLine=\count103
+\FV@StepNumber=\count104
+\FV@OutFile=\write3
+)
+(/usr/share/texlive/texmf-dist/tex/latex/newverbs/newverbs.sty
+Package: newverbs 2012/05/08 v1.3a Define new 'verb' commands and short verb. c
+haracters
+)
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2013/12/03 3.9h The Babel package
 
@@ -195,7 +231,7 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2013/12/03 3.9h Babel common definitions
-\babel@savecnt=\count102
+\babel@savecnt=\count105
 \U@D=\dimen117
 )
 \l@british = a dialect from \language\l@english 
@@ -216,13 +252,13 @@ Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
 
 (/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count103
+\et@xins=\count106
 )
-\etb@tempcnta=\count104
+\etb@tempcnta=\count107
 )
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count105
+\lrq@indent=\count108
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -230,44 +266,44 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count106
-\c@listtotal=\count107
-\c@listcount=\count108
-\c@liststart=\count109
-\c@liststop=\count110
-\c@citecount=\count111
-\c@citetotal=\count112
-\c@multicitecount=\count113
-\c@multicitetotal=\count114
-\c@instcount=\count115
-\c@maxnames=\count116
-\c@minnames=\count117
-\c@maxitems=\count118
-\c@minitems=\count119
-\c@citecounter=\count120
-\c@savedcitecounter=\count121
-\c@uniquelist=\count122
-\c@uniquename=\count123
-\c@refsection=\count124
-\c@refsegment=\count125
-\c@maxextratitle=\count126
-\c@maxextratitleyear=\count127
-\c@maxextrayear=\count128
-\c@maxextraalpha=\count129
-\c@abbrvpenalty=\count130
-\c@highnamepenalty=\count131
-\c@lownamepenalty=\count132
-\c@maxparens=\count133
-\c@parenlevel=\count134
-\blx@tempcnta=\count135
-\blx@tempcntb=\count136
-\blx@tempcntc=\count137
-\blx@maxsection=\count138
-\blx@maxsegment@0=\count139
-\blx@notetype=\count140
-\blx@parenlevel@text=\count141
-\blx@parenlevel@foot=\count142
-\blx@sectionciteorder@0=\count143
+\c@tabx@nest=\count109
+\c@listtotal=\count110
+\c@listcount=\count111
+\c@liststart=\count112
+\c@liststop=\count113
+\c@citecount=\count114
+\c@citetotal=\count115
+\c@multicitecount=\count116
+\c@multicitetotal=\count117
+\c@instcount=\count118
+\c@maxnames=\count119
+\c@minnames=\count120
+\c@maxitems=\count121
+\c@minitems=\count122
+\c@citecounter=\count123
+\c@savedcitecounter=\count124
+\c@uniquelist=\count125
+\c@uniquename=\count126
+\c@refsection=\count127
+\c@refsegment=\count128
+\c@maxextratitle=\count129
+\c@maxextratitleyear=\count130
+\c@maxextrayear=\count131
+\c@maxextraalpha=\count132
+\c@abbrvpenalty=\count133
+\c@highnamepenalty=\count134
+\c@lownamepenalty=\count135
+\c@maxparens=\count136
+\c@parenlevel=\count137
+\blx@tempcnta=\count138
+\blx@tempcntb=\count139
+\blx@tempcntc=\count140
+\blx@maxsection=\count141
+\blx@maxsegment@0=\count142
+\blx@notetype=\count143
+\blx@parenlevel@text=\count144
+\blx@parenlevel@foot=\count145
+\blx@sectionciteorder@0=\count146
 \labelnumberwidth=\skip44
 \labelalphawidth=\skip45
 \shorthandwidth=\skip46
@@ -277,11 +313,11 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \bibinitsep=\skip50
 \bibparsep=\skip51
 \bibhang=\skip52
-\blx@bcfin=\read2
-\blx@bcfout=\write3
-\c@mincomprange=\count144
-\c@maxcomprange=\count145
-\c@mincompwidth=\count146
+\blx@bcfin=\read3
+\blx@bcfout=\write4
+\c@mincomprange=\count147
+\c@maxcomprange=\count148
+\c@mincompwidth=\count149
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -290,72 +326,72 @@ Package biblatex Info: Trying to load biblatex citestyle data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count147
-\c@savedafterword=\count148
-\c@annotator=\count149
-\c@savedannotator=\count150
-\c@author=\count151
-\c@savedauthor=\count152
-\c@bookauthor=\count153
-\c@savedbookauthor=\count154
-\c@commentator=\count155
-\c@savedcommentator=\count156
-\c@editor=\count157
-\c@savededitor=\count158
-\c@editora=\count159
-\c@savededitora=\count160
-\c@editorb=\count161
-\c@savededitorb=\count162
-\c@editorc=\count163
-\c@savededitorc=\count164
-\c@foreword=\count165
-\c@savedforeword=\count166
-\c@holder=\count167
-\c@savedholder=\count168
-\c@introduction=\count169
-\c@savedintroduction=\count170
-\c@namea=\count171
-\c@savednamea=\count172
-\c@nameb=\count173
-\c@savednameb=\count174
-\c@namec=\count175
-\c@savednamec=\count176
-\c@shortauthor=\count177
-\c@savedshortauthor=\count178
-\c@shorteditor=\count179
-\c@savedshorteditor=\count180
-\c@translator=\count181
-\c@savedtranslator=\count182
-\c@labelname=\count183
-\c@savedlabelname=\count184
-\c@institution=\count185
-\c@savedinstitution=\count186
-\c@lista=\count187
-\c@savedlista=\count188
-\c@listb=\count189
-\c@savedlistb=\count190
-\c@listc=\count191
-\c@savedlistc=\count192
-\c@listd=\count193
-\c@savedlistd=\count194
-\c@liste=\count195
-\c@savedliste=\count196
-\c@listf=\count197
-\c@savedlistf=\count198
-\c@location=\count199
-\c@savedlocation=\count200
-\c@organization=\count201
-\c@savedorganization=\count202
-\c@origlocation=\count203
-\c@savedoriglocation=\count204
-\c@origpublisher=\count205
-\c@savedorigpublisher=\count206
-\c@publisher=\count207
-\c@savedpublisher=\count208
-\c@language=\count209
-\c@savedlanguage=\count210
-\c@pageref=\count211
-\c@savedpageref=\count212
+\c@afterword=\count150
+\c@savedafterword=\count151
+\c@annotator=\count152
+\c@savedannotator=\count153
+\c@author=\count154
+\c@savedauthor=\count155
+\c@bookauthor=\count156
+\c@savedbookauthor=\count157
+\c@commentator=\count158
+\c@savedcommentator=\count159
+\c@editor=\count160
+\c@savededitor=\count161
+\c@editora=\count162
+\c@savededitora=\count163
+\c@editorb=\count164
+\c@savededitorb=\count165
+\c@editorc=\count166
+\c@savededitorc=\count167
+\c@foreword=\count168
+\c@savedforeword=\count169
+\c@holder=\count170
+\c@savedholder=\count171
+\c@introduction=\count172
+\c@savedintroduction=\count173
+\c@namea=\count174
+\c@savednamea=\count175
+\c@nameb=\count176
+\c@savednameb=\count177
+\c@namec=\count178
+\c@savednamec=\count179
+\c@shortauthor=\count180
+\c@savedshortauthor=\count181
+\c@shorteditor=\count182
+\c@savedshorteditor=\count183
+\c@translator=\count184
+\c@savedtranslator=\count185
+\c@labelname=\count186
+\c@savedlabelname=\count187
+\c@institution=\count188
+\c@savedinstitution=\count189
+\c@lista=\count190
+\c@savedlista=\count191
+\c@listb=\count192
+\c@savedlistb=\count193
+\c@listc=\count194
+\c@savedlistc=\count195
+\c@listd=\count196
+\c@savedlistd=\count197
+\c@liste=\count198
+\c@savedliste=\count199
+\c@listf=\count200
+\c@savedlistf=\count201
+\c@location=\count202
+\c@savedlocation=\count203
+\c@organization=\count204
+\c@savedorganization=\count205
+\c@origlocation=\count206
+\c@savedoriglocation=\count207
+\c@origpublisher=\count208
+\c@savedorigpublisher=\count209
+\c@publisher=\count210
+\c@savedpublisher=\count211
+\c@language=\count212
+\c@savedlanguage=\count213
+\c@pageref=\count214
+\c@savedpageref=\count215
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -367,13 +403,13 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 
-\c@textcitecount=\count213
-\c@textcitetotal=\count214
-\c@textcitemaxnames=\count215
-\c@biburlnumpenalty=\count216
-\c@biburlucpenalty=\count217
-\c@biburllcpenalty=\count218
-\c@smartand=\count219
+\c@textcitecount=\count216
+\c@textcitetotal=\count217
+\c@textcitemaxnames=\count218
+\c@biburlnumpenalty=\count219
+\c@biburlucpenalty=\count220
+\c@biburllcpenalty=\count221
+\c@smartand=\count222
 )
 Package biblatex Info: Trying to load natbib compatibility...
 Package biblatex Info: ... file 'blx-natbib.def' found.
@@ -391,8 +427,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count220
-\c@bbx:relatedtotal=\count221
+\c@bbx:relatedcount=\count223
+\c@bbx:relatedtotal=\count224
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -437,40 +473,42 @@ File: english.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count222
-\@quotereset=\count223
-No file diss.aux.
+\@quotelevel=\count225
+\@quotereset=\count226
+(./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-\AtBeginShipoutBox=\box26
-Package hyperref Info: Link coloring OFF on input line 29.
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+\AtBeginShipoutBox=\box27
+Package hyperref Info: Link coloring OFF on input line 54.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count224
+\c@section@level=\count227
 )
-LaTeX Info: Redefining \ref on input line 29.
-LaTeX Info: Redefining \pageref on input line 29.
-LaTeX Info: Redefining \nameref on input line 29.
-\@outlinefile=\write4
-\openout4 = `diss.out'.
+LaTeX Info: Redefining \ref on input line 54.
+LaTeX Info: Redefining \pageref on input line 54.
+LaTeX Info: Redefining \nameref on input line 54.
+
+(./diss.out) (./diss.out)
+\@outlinefile=\write5
+\openout5 = `diss.out'.
 
 
 *geometry* driver: auto-detecting
@@ -509,16 +547,16 @@ LaTeX Info: Redefining \nameref on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count225
+\scratchcounter=\count228
 \scratchdimen=\dimen118
-\scratchbox=\box27
-\nofMPsegments=\count226
-\nofMParguments=\count227
+\scratchbox=\box28
+\nofMPsegments=\count229
+\nofMParguments=\count230
 \everyMPshowfont=\toks18
-\MPscratchCnt=\count228
+\MPscratchCnt=\count231
 \MPscratchDim=\dimen119
-\MPnumerator=\count229
-\makeMPintoPDFobject=\count230
+\MPnumerator=\count232
+\makeMPintoPDFobject=\count233
 \everyMPtoPDFconversion=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -539,130 +577,95 @@ Package biblatex Info: No input encoding detected.
 (biblatex)             Assuming 'ascii'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'ascii'.
-\openout3 = `diss.bcf'.
+\openout4 = `diss.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'diss.bbl' not found.
 
 No file diss.bbl.
-Package biblatex Info: Reference section=0 on input line 29.
-Package biblatex Info: Reference segment=0 on input line 29.
-\docmute@nestinglevel=\count231
+Package biblatex Info: Reference section=0 on input line 54.
+Package biblatex Info: Reference segment=0 on input line 54.
+Normal \count register pool exhausted, switching to extended pool.
+\docmute@nestinglevel=\count277
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 59.
+(Font)              <14.4> on input line 84.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 59.
+(Font)              <7> on input line 84.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 71.
+(Font)              <5> on input line 96.
 
-Overfull \hbox (113.47049pt too wide) in paragraph at lines 59--73
+Overfull \hbox (113.47049pt too wide) in paragraph at lines 84--98
 []
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 78.
+(Font)              <12> on input line 103.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 78.
+(Font)              <8> on input line 103.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 78.
-[3] [4]
+(Font)              <6> on input line 103.
+[3] [4] (./diss.toc [5
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+])
+\tf@toc=\write6
+\openout6 = `diss.toc'.
 
-\tf@toc=\write5
-\openout5 = `diss.toc'.
+ [6] (./diss.lof)
+\tf@lof=\write7
+\openout7 = `diss.lof'.
 
-[5
+ [7
 
-] [6
-
-]
-
-Package hyperref Warning: old lof file detected, not used; run LaTeX again.
-
-\tf@lof=\write6
-\openout6 = `diss.lof'.
-
-[7] [8]
+] [8]
 Chapter 1.
 
-LaTeX Warning: Citation 'MotherDemo' on page 9 undefined on input line 127.
+LaTeX Warning: Citation 'MotherDemo' on page 9 undefined on input line 152.
 
 
-LaTeX Warning: Citation 'Ellis1989' on page 9 undefined on input line 127.
+LaTeX Warning: Citation 'Ellis1989' on page 9 undefined on input line 152.
 
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
 
-LaTeX Warning: Citation 'Gilbert2005' on page 9 undefined on input line 129.
+LaTeX Warning: Citation 'Gilbert2005' on page 9 undefined on input line 154.
 
 [9
 
-]
-
-LaTeX Warning: Citation 'Lamport86' on page 10 undefined on input line 132.
-
-
-LaTeX Warning: Reference `makefile' on page 10 undefined on input line 151.
-
-[10] [11] [12
-
-]
+] [10] [11] [12]
 Chapter 2.
-[13] [14
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 210.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 210.
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+ [13
+
+] [14] [15]
+[16]
+Chapter 3.
+[17
+
+] [18
 
 ]
-Chapter 3.
-[15]
-
-LaTeX Warning: Reference `latexpic1' on page 16 undefined on input line 262.
-
-
-LaTeX Warning: Reference `latexpic1' on page 16 undefined on input line 262.
-
-
-LaTeX Warning: Reference `latexpic2' on page 16 undefined on input line 263.
-
-
-LaTeX Warning: Reference `latexpic2' on page 16 undefined on input line 263.
-
-
-LaTeX Warning: Reference `epsfig' on page 16 undefined on input line 333.
-
-
-LaTeX Warning: Reference `xfig' on page 16 undefined on input line 333.
-
-
-LaTeX Warning: Reference `xfig' on page 16 undefined on input line 333.
-
-[16] <figs/cuarms.pdf, id=106, 60.225pt x 72.27pt>
-File: figs/cuarms.pdf Graphic file (type pdf)
- <use figs/cuarms.pdf>
-Package pdftex.def Info: figs/cuarms.pdf used on input line 339.
-(pdftex.def)             Requested size: 60.22484pt x 72.2698pt.
-
-<figs/diagram.pdf, id=107, 458.71375pt x 336.25626pt>
-File: figs/diagram.pdf Graphic file (type pdf)
- <use figs/diagram.pdf>
-Package pdftex.def Info: figs/diagram.pdf used on input line 352.
-(pdftex.def)             Requested size: 458.71263pt x 336.25543pt.
-
-[17 <./figs/cuarms.pdf>] [18 <./figs/diagram.pdf>]
 Chapter 4.
-[19
-
-] [20
+[19] [20
 
 ]
 Chapter 5.
 
-LaTeX Warning: Empty bibliography on input line 382.
+LaTeX Warning: Empty bibliography on input line 335.
 
 [21] [22
 
@@ -670,7 +673,7 @@ LaTeX Warning: Empty bibliography on input line 382.
 Appendix A.
 File: diss.tex  (verbatim)
 [23] [24]
-Overfull \hbox (2082.04233pt too wide) in paragraph at lines 391--391
+Overfull \hbox (2082.04233pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/8 Real time interaction between users is becoming an increasing
 ly important feature to many applications, from word processing to CAD to socia
 l networking. This dissertation examines trade offs that should be considered w
@@ -682,73 +685,328 @@ iting Operational Transformations (OT) as its core technology.[]
  []
 
 
-Overfull \hbox (4126.32169pt too wide) in paragraph at lines 391--391
+Overfull \hbox (4096.57126pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/8 Realtime collaborative editing was first motivated by a demon
 stration in the Mother of All Demos by Douglas Engelbart in 1968 \cite{MotherDe
 mo}. From that time, it took several decades for implementations of such editin
-g systems to appear. Early products appeared in the 1990's, and the 1989 paper 
-by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended research i
-nto operational transformations. Due to almost 20 years of research, OT is a re
-latively developed field of research and has been applied to products that are 
-commonly used. The most familiar of these is likely to be Google Docs, which se
-ems to behave in a predictable and well understood way. One reason Google Docs 
-is so widely used might be that it follows users' expectations for how a concur
-rent, multi-user document editor should work. Importantly, this includes lock-f
-ree editing and independence on a fast connection, no loss of data, and the gua
-rantee that everyone ends up with the same document when changes are complete. 
-These are in fact the goals around which OT and CRDTs have developed.[] 
+g systems to appear. Early products were released in the 1990's, and the 1989 p
+aper by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended resea
+rch into operational transformations. Due to almost 20 years of research, OT is
+ a relatively developed field and has been applied to products that are commonl
+y used. The most familiar of these is likely to be Google Docs, which seems to 
+behave in a predictable and well understood way. One reason Google Docs is so w
+idely used might be that it follows users' expectations for how a concurrent, m
+ulti-user document editor should work. Importantly, this includes lock-free edi
+ting and independence on a fast connection, no loss of data, and the guarantee 
+that everyone ends up with the same document when changes are complete. These a
+re in fact the goals around which OT and CRDTs have developed.[] 
  []
 
 Missing character: There is no â in font cmtt8!
 Missing character: There is no € in font cmtt8!
 Missing character: There is no “ in font cmtt8!
 
-Overfull \hbox (3926.56882pt too wide) in paragraph at lines 391--391
+Overfull \hbox (2630.3002pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/8 The convergence, or consistency, property above is the hardes
 t to provide  it is easy to create a system where the last writer wins, but dat
 a is lost in the process. In a distributed system such as a shared text editor,
  the CAP theorem tells us we cannot guarantee all three of consistency, availab
 ility, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong 
 consistency guarantees and settle for eventual consistency, we are able provide
- all three [http://gun.js.org/distributed/matters.html]. However, achieving eve
-ntual consistency is non-trivial. Operational transformations, if designed and 
-implemented correctly, accomplish this by recording changes made locally to the
- data at the moment the user submits them. These operations are sent to the ser
-ver, which linearizes [GB?] and forwards them to other clients. These clients t
-ransform incoming operations against locally made changes in a way that guarant
-ees both the sender and the receiver produce the same data. A simple example ca
-n be seen in Figure 1.[] 
+ all three [http://gun.js.org/distributed/matters.html]. As we will see, achiev
+ing eventual consistency is non-trivial. The two prevailing approaches, operati
+onal transformations and commutative replicated data structures are discussed i
+n detail the Preparation section.[] 
  []
 
-[25] [26] [27] [28]
+
+Overfull \hbox (2698.30118pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 This project aims to examine the trade-offs made when impleme
+nting highly distributed and concurrent document editing with Operational Trans
+formations (OT) versus with Convergent Replicated Data Types (CRDTs). To do thi
+s I have designed experiments which expose statistics about network and process
+or usage, memory consumption, and scalability, and run these experiments on an 
+environment built around the open source library ShareJS (which implements OT) 
+along with a comparative system I created based on a specific CRDT. The system 
+meets the originally proposed goals of implementing a concurrent text editor ba
+sed on CRDTs which passes all tests for correctness; quantitative analysis is p
+resented in the Evaluation section [section ref].[] 
+ []
+
+
+Overfull \hbox (2230.79446pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 The custom CRDT on which the collaborative text editor is bas
+ed is described in detail in the Implementation [section ref] section. In contr
+ast to the OT-based library ShareJS, my system also runs on a peer to peer netw
+ork architecture instead of a traditional client-server model. The lack of a se
+rver reduces the number of stateful parts in the overall system, at the expense
+ of more complex networking. I managed this complexity by using a simulated pee
+r to peer architecture. The simulation allows me to control the precise topolog
+y, link latencies, and protocol and explore advantages and disadvantages of usi
+ng a P2P approach.[] 
+ []
+
+
+Overfull \hbox (972.7764pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 One extension, adding undo functionality to the CRDT, was als
+o completed. Two different approaches are presented, both of which were conceiv
+ed before reading related literature. One is similar to the approach taken in L
+ogoot-Undo, which is discussed below. As far as I am aware, in the context of C
+RDTs for text editing, both are novel.[] 
+ []
+
+
+Overfull \hbox (1997.0411pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Part of the challenge of this project was to develop my CRDT 
+and associated algorithms based only on an explanation of the required function
+ality provided by Martin Kleppmann. As a result, my solution is not optimal in 
+all aspects, and could be improved upon in the future. It also falls into the c
+lass of 'tombstone' CRDTs, which mark elements as deleted rather than fully rem
+oving them, which forces the data structures to grow continuously over time. Ot
+her CRDTs are 'tombstone-less' and do not suffer from this inefficiency. Existi
+ng CRDTs of both types are discussed here.[] 
+ []
+
+
+Overfull \hbox (3527.06308pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Treedoc [reference needed] is a replicated text buffer; an or
+dered set that supports insert-at and delete operations. This CRDT gets its nam
+e from the tree structure used to encode identifiers and order elements in the 
+set. Each node in the tree contains one character, and the string contained in 
+the buffer is retried using infix traversal. Each client has a copy of the same
+ tree, and can insert new nodes at any time. Two concurrent inserts at the same
+ node are merged as two 'mini-nodes' within one tree node. Each insert is tagge
+d with a unique client identifier which comes from an ordered space. Using the 
+identifier order in combination with infix traversal creates a total ordering o
+ver the characters contained in the tree. With the total order, all clients wit
+h copies of the tree will retrieve the same string from their Treedoc. Having a
+ total order is an important property used to guarantee eventual consistency in
+ CRDTs.[] 
+ []
+
+
+Overfull \hbox (1967.29068pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Deletes in this Treedoc are handled by marking a node as dele
+ted (but the node remains in the structure). Thus Treedoc falls into the class 
+of 'tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a 
+balanced tree, the authors propose an expensive commitment protocol to rebalanc
+e it. Not only is this inefficient, but also rather contrary to the spirit of C
+RDTs. However, trees do present an elegant solution to the problem of dense ide
+ntifier spaces: we must be able to insert a new identifier between any two give
+n identifiers at any point in time.[] 
+ []
+
+
+Overfull \hbox (1733.53732pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Logoot [citation needed] belongs to the class of text CRDTs w
+hich do not require tombstones for deletion. It achieves this by totally orderi
+ng identifiers, rather than relying on implicit causal dependencies between ide
+ntifiers (which Treedoc embeds in the tree's branches). Logoot does generate id
+entifiers using a tree, but each identifier contains the full path in the tree,
+ which frees it of dependence on other nodes. This means that to delete, any cl
+ient can simply remove the identifier and the data it tags.[] 
+ []
+
+[25]
+Overfull \hbox (1661.28629pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Logoot also favors marking larger blocks of text with identif
+iers, rather than per-character. This, in combination with not needing tombston
+es, promises major efficiency gains over CRDTs such as Treedoc. Even further, t
+wo papers [citation needed] [citation needed] offer optimizations on top of the
+ basic Logoot implementation by improving the strategy used to allocate new ide
+ntifiers in the generator tree. However, these algorithms are specific to Logoo
+t and of little relevance to this project.[] 
+ []
+
+
+Overfull \hbox (322.51706pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Logoot is important as an example of a tombstone-free CRDT fo
+r text. Additionally, subsequent research enabled 'undo' and 'redo' functionali
+ty for this CRDT, which is described below.[] 
+ []
+
+
+Overfull \hbox (1882.28946pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 CRDTs generally struggle to provide an undo mechanism since t
+he concept of reversing an update to the data structure is fundamentally contra
+ry to the key property of CRDTs: commutativity of operations. For example, reve
+rsing an insert is not commutative with the original insertion. If it were, the
+ removal of a nonexistent element, followed by its insertion would have to resu
+lt in the same thing as insertion followed by removal. In the first case, the e
+lement is present, while in the second it is removed. These outcomes clearly ar
+e not the same.[] 
+ []
+
+
+Overfull \hbox (1470.03354pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Logoot Undo [citation needed] proposes to resolve this by ess
+entially tagging each identifier with a 'visibile' counter. An undo of an inser
+tion would decrement it, while redo would increment it. If the 'visible' counte
+r is positive, the characters are visible. As discussed in [REFERENCE NEEDED], 
+this leads to some rather unexpected behavior. However, this approach is viable
+ since increments and decrements commute and guarantee eventual convergence.[] 
+
+ []
+
+
+Overfull \hbox (2056.54196pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 One important question to answer is, what is the exact defini
+tion of conflict free. There appears to be more than one way of interpreting it
+. On one hand, there is the user's intuitive idea that any of their own operati
+ons should behave as if they were the only users on the system. On the other ha
+nd, there is the data-centric view of conflict. In this case, operations confli
+ct if they are concurrent and modify the same data or index in a text buffer. C
+onflict free then means that no data is lost, and after all operations are exch
+anged the resulting data is converged to the same state.[] 
+ []
+
+
+Overfull \hbox (3488.81253pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 The common conflicting operations in text editing are inserti
+ng characters into the same index of a shared text buffer, or simultaneously de
+leting the same characters. The second is easy to make conflict-free, and both 
+the user and data oriented definitions of conflict agree -- deleting a characte
+r concurrently or on a single user system should still result in the character 
+disappearing. In the case of inserting text into the same index, the definition
+s cannot agree. Both users expect their own text to appear in the index they in
+serted at. However, in order to satisfy the data-centric definition we are not 
+allowed to lose data, and must eventually present both users with the same resu
+lt. The solution is to let one user 'win' and insert their characters at the de
+sired index, and shift the other users' characters to appear after. Both operat
+ional transformations and CRDTs achieve this in fundamentally different ways.[]
+ 
+ []
+
+
+Overfull \hbox (148.26456pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 The commonly used consistency model for concurrent document e
+diting is the CCI model. The definition here is borrowed from  [citation needed
+].[] 
+ []
+
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+
+Overfull \hbox (335.26724pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 \item \textbf{Consistency:} All operations ordered by a prece
+dence relation, such as Lamports happened-before relation [citation needed], ar
+e executed in the same order on every replica.[] 
+ []
+
+
+Overfull \hbox (161.01474pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 \item \textbf{Intention Preservation:} The expected effect of
+ an operation should be observed on all replicas. This is commonly accepted to 
+mean:[] 
+ []
+
+
+Overfull \hbox (309.76688pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 \item \textit{insert}  A line inserted on a peer must appear 
+on every peer; the order relation between the document lines and a newly insert
+ed line must be preserved on every peer.[] 
+ []
+
+
+Overfull \hbox (156.76468pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 \item  \textit{undo}  Undoing a modification makes the system
+ return to the state it would have reached if this modification was never produ
+ced.[] 
+ []
+
+
+Overfull \hbox (535.02011pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 Much of the work in OT and CRDTs goes into ensuring convergen
+ce. The given definition of intention preservation is accepted, but the given m
+ay produce some unexpected results as we will see when discussing Undo in [refe
+rence needed].[] 
+ []
+
+
+Overfull \hbox (1508.28409pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 As mentioned briefly in the prior section, operational transf
+ormations and CRDTs aim to achieve eventual convergence on all clients. The com
+mon conflicting operations that must be given special consideration are concurr
+ently inserting characters at the same index, and deleting the same character, 
+and deleting a character while moving its position. Discussion of the more comp
+licated undo operation can be found in the Implementation [section referece] se
+ction.[] 
+ []
+
+
+Overfull \hbox (173.76492pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 The easiest way to understand how operational transformations
+ work is by example. The following three figures discuss each of the scenarios 
+in turn.[] 
+ []
+
+[26]
+Overfull \hbox (2307.29556pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 ShareJS [citation needed] is an open source Javascript librar
+y implementing Operational Transformations which can be deployed on web browser
+s or NodeJS [footnote citation] clients. It is the core resource around which I
+ built the comparative system to collect statistics from. To this end, it is us
+eful to know more precisely how ShareJS operates and what kind of behavior migh
+t be expected. As are a large variety of algorithms that can enable OT [citatio
+n needed - Analysis of Operational Transformations Algorithms], rather than tra
+cking down the papers ShareJS is based on, much of what is summarized below was
+ deduced by reading its source code.[] 
+ []
+
+
+Overfull \hbox (798.5239pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 ShareJS documents are versioned, and each operation applies t
+o a specific version. The version number is used to transform operations agains
+t each other and detect concurrent changes. The supported operations are insert
+ and delete, and the resulting modifications are sent as JSON to the server.[] 
+
+ []
+
+
+Overfull \hbox (1011.02695pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 ShareJS uses a server that provides a global, serialized orde
+r of operations to be applied on each client. This means the order of all non-l
+ocal operations will be the same on each client. The server also transforms con
+current operations against each other, but has the choice of rejecting an opera
+tion if the target document version is too old.[] 
+ []
+
+
+Overfull \hbox (105.76395pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/8 One important fact is that ShareJS only ever allows one packe
+t to be in flight from a particular client to a server. Each packet can[] 
+ []
+
+[27]
 File: proposal.tex  (verbatim)
- [29]
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 394--394
+ [28]
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 meaning that all connected users should end up with the same 
 result after receiving all changes to the document[] 
  []
 
 
-Overfull \hbox (411.76834pt too wide) in paragraph at lines 394--394
+Overfull \hbox (411.76834pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 --- even if edits conflict~\cite{Technion}. There are two mai
 n technologies that are used to enable concurrent editing of a document (plain 
 text or otherwise). One approach is Operational Transforms (OT),[] 
  []
 
 
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 394--394
+Overfull \hbox (50.51315pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 such that the result converges~\cite{sun1998operational}. The
  server may also be required to make some transformations.[] 
  []
 
 
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 394--394
+Overfull \hbox (33.51291pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 Thus, unless the server is trusted and secure, OT-based servi
 ces cannot provide any security or privacy guarantees.[] 
  []
 
 
-Overfull \hbox (3420.81155pt too wide) in paragraph at lines 394--394
+Overfull \hbox (3420.81155pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 The alternative, newer technology uses Conflict Free Replicat
 ed Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual 
 consistency by transforming operations against each other, CRDTs use special da
@@ -764,7 +1022,7 @@ f to security (encryption is now possible between endpoints),[]
  []
 
 
-Overfull \hbox (586.02084pt too wide) in paragraph at lines 394--394
+Overfull \hbox (586.02084pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 This project is first concerned with exploring and developing
  a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based c
 lient/server approach available in the open source library ShareJS. Several ext
@@ -772,106 +1030,106 @@ ensions are also possible,[]
  []
 
 
-Overfull \hbox (152.51462pt too wide) in paragraph at lines 394--394
+Overfull \hbox (152.51462pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 The primary external resource I will need is the Javascript l
 ibrary ShareJS, which is published under the MIT license on GitHub \cite{ShareJ
 S}.[] 
  []
 
-
-Overfull \hbox (8.01254pt too wide) in paragraph at lines 394--394
+[29]
+Overfull \hbox (8.01254pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 I have some knowledge of the open source library ShareJS from
  a past internship, which I aim to leverage when[] 
  []
 
 
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 394--394
+Overfull \hbox (37.76297pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 I plan to implement a simulation of P2P CRDT text editing usi
 ng Typescript. Following this, my project will focus on[] 
  []
 
 
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 394--394
+Overfull \hbox (84.51364pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 comparing an existing OT-based concurrent document editing li
 brary (ShareJS) to my implementation, in order to draw conclusions[] 
  []
 
 
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 394--394
+Overfull \hbox (33.51291pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 system will need some optimization, which can feed back into 
 my evaluation and comparison process. In the case that[] 
  []
 
-[30]
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 394--394
+
+Overfull \hbox (20.76273pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 learn frameworks for testing my implementation. The tests for
  correctness should include hand-crafted unit tests[] 
  []
 
 
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 394--394
+Overfull \hbox (84.51364pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Implement Simulation:} Model having an arbitrar
 y number of clients each running the CRDT algorithms, and simulate[] 
  []
 
 
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 394--394
+Overfull \hbox (37.76297pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 networking between these clients. Because this is P2P, it may
  be worth adding functionality for a variety of network[] 
  []
 
 
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 394--394
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 feed back into the performance comparisons in the previous st
 ep and help evaluate the optimizations themselves.[] 
  []
 
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 394--394
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Extensions:} The first extension is implementin
 g a proper P2P network stack and remove the simulated[] 
  []
 
 
-Overfull \hbox (25.01279pt too wide) in paragraph at lines 394--394
+Overfull \hbox (25.01279pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 networking. Next would be researching undo and move operation
 s and perhaps try to implement one or both of these.[] 
  []
 
 
-Overfull \hbox (314.01694pt too wide) in paragraph at lines 394--394
+Overfull \hbox (314.01694pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item (Easier) Replace networking simulation with a P2P netwo
 rking library. The end result of this extension should be a ready to deploy Typ
 escript (compiled to Javascript) library.[] 
  []
 
 
-Overfull \hbox (301.26675pt too wide) in paragraph at lines 394--394
+Overfull \hbox (301.26675pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item (Difficult) Research prior work on undo and move functi
 onality using CRDTs. If something suitable is found, implement it. Otherwise, a
 ttempt to work toward my own solution.[] 
  []
 
-
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 394--394
+[30]
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 2--3} Develop CRDT datastructu
 re and algorithms on paper. Read into P2P networks[] 
  []
 
 
-Overfull \hbox (46.26309pt too wide) in paragraph at lines 394--394
+Overfull \hbox (46.26309pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 4--5} Lay out project files an
 d implement network simulation with support for different[] 
  []
 
-[31]
-Overfull \hbox (67.5134pt too wide) in paragraph at lines 394--394
+
+Overfull \hbox (67.5134pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 6--8} Implement CRDT datastruc
 tures and algorithms, and connect these to network simulation.[] 
  []
 
 
-Overfull \hbox (598.77103pt too wide) in paragraph at lines 394--394
+Overfull \hbox (598.77103pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas vacation} Learn an appropriate testi
 ng framework, write and generate unit tests for correctness of implementation. 
 Fix any bugs discovered by the testing process. Set up ShareJS environment. Beg
@@ -879,42 +1137,42 @@ in outlining progress report.[]
  []
 
 
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 394--394
+Overfull \hbox (50.51315pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 2--4} Execute tests and analyze resu
 lts. Try to explain differences and similarities observed.[] 
  []
 
 
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 394--394
+Overfull \hbox (20.76273pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 5--6} Continue writing dissertation 
 and optimizing system. Begin research for extension[] 
  []
 
 
-Overfull \hbox (80.26358pt too wide) in paragraph at lines 394--394
+Overfull \hbox (80.26358pt too wide) in paragraph at lines 347--347
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 7--8} Continue writing dissertation.
  Before terms ends, review and peer-review (including supervisor)[] 
  []
 
-[32]
+[31] [32
+
+]
 Appendix B.
 No file makefile.txt.
 File: refs.bib  (verbatim)
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 402--402
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 355--355
 []  \OT1/cmtt/m/n/8 howpublished = {\url{https://archive.org/details/XD300-25_6
 8HighlightsAResearchCntAugHumanIntellect&start=286}},[] 
  []
 
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 402--402
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 355--355
 []\OT1/cmtt/m/n/8 title = {{Brewer ' s Conjecture and the Feasibility of Consis
 tent , Available , Partition-Tolerant Web Services}},[] 
  []
 
-[33
-
-] [34
+[33] [34
 
 ]
 Appendix C.
@@ -937,68 +1195,48 @@ LaTeX Warning: Citation 'Shapiro2011' on page 36 undefined on input line 62.
 
 LaTeX Warning: Citation 'ShareJS' on page 36 undefined on input line 70.
 
-[36]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 138.
-
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
- [37] [38]
-[39]
+[36] [37] [38] [39]
 
 LaTeX Warning: Empty bibliography on input line 196.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 362.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 362.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 362.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 362.
+Package rerunfilecheck Info: File `diss.out' has not changed.
+(rerunfilecheck)             Checksum: 0D9B4F76BE893F2CED883C2584C3C685;3083.
 
-
-Package rerunfilecheck Warning: File `diss.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `diss.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  DEBBCD90E3565F14F62F9A13DCF60143;1222.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 362.
  ) 
 Here is how much of TeX's memory you used:
- 11316 strings out of 495028
- 180642 string characters out of 6181496
- 607270 words of memory out of 5000000
- 14314 multiletter control sequences out of 15000+600000
- 11550 words of font info for 43 fonts, out of 8000000 for 9000
+ 12250 strings out of 495028
+ 193364 string characters out of 6181496
+ 630310 words of memory out of 5000000
+ 15202 multiletter control sequences out of 15000+600000
+ 11429 words of font info for 42 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,11n,35p,1123b,1632s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,35p,1120b,1712s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 t12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.p
-fb>
-Output written on diss.pdf (39 pages, 225518 bytes).
+>
+Output written on diss.pdf (39 pages, 206552 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
- 270 compressed objects within 3 object streams
- 105 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 535 PDF objects out of 1000 (max. 8388607)
+ 477 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 393 words of extra memory for PDF output out of 10000 (max. 10000000)
 
