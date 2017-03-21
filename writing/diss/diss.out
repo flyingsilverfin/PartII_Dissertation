@@ -24,26 +24,28 @@
 \BOOKMARK [2][-]{subsection.2.6.1}{Libraries}{section.2.6}% 24
 \BOOKMARK [2][-]{subsection.2.6.2}{Languages}{section.2.6}% 25
 \BOOKMARK [2][-]{subsection.2.6.3}{Tooling}{section.2.6}% 26
-\BOOKMARK [2][-]{subsection.2.6.4}{Backup Strategy}{section.2.6}% 27
+\BOOKMARK [2][-]{subsection.2.6.4}{Backup Strategy and Development Machine}{section.2.6}% 27
 \BOOKMARK [1][-]{section.2.7}{Early Design Decisions}{chapter.2}% 28
-\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 29
-\BOOKMARK [1][-]{section.3.1}{CRDT-based system}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 31
-\BOOKMARK [2][-]{subsection.3.1.2}{Custom CRDT}{section.3.1}% 32
-\BOOKMARK [2][-]{subsection.3.1.3}{Network simulation}{section.3.1}% 33
-\BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 34
-\BOOKMARK [2][-]{subsection.3.2.1}{Overview}{section.3.2}% 35
-\BOOKMARK [1][-]{section.3.3}{Experiments and Automated Log Analysis}{chapter.3}% 36
-\BOOKMARK [2][-]{subsection.3.3.1}{Separation of Concerns}{section.3.3}% 37
-\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 38
-\BOOKMARK [2][-]{subsection.3.3.3}{Log Analysis}{section.3.3}% 39
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 40
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 41
-\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 42
-\BOOKMARK [0][-]{appendix.A}{Latex source}{}% 43
-\BOOKMARK [1][-]{section.A.1}{diss.tex}{appendix.A}% 44
-\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 45
-\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 46
-\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 47
-\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 48
-\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 49
+\BOOKMARK [2][-]{subsection.2.7.1}{Network Simulation}{section.2.7}% 29
+\BOOKMARK [2][-]{subsection.2.7.2}{Data Collection and Logging}{section.2.7}% 30
+\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 31
+\BOOKMARK [1][-]{section.3.1}{CRDT-based system}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 33
+\BOOKMARK [2][-]{subsection.3.1.2}{Custom CRDT}{section.3.1}% 34
+\BOOKMARK [2][-]{subsection.3.1.3}{Network simulation}{section.3.1}% 35
+\BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 36
+\BOOKMARK [2][-]{subsection.3.2.1}{Overview}{section.3.2}% 37
+\BOOKMARK [1][-]{section.3.3}{Experiments and Automated Log Analysis}{chapter.3}% 38
+\BOOKMARK [2][-]{subsection.3.3.1}{Separation of Concerns}{section.3.3}% 39
+\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 40
+\BOOKMARK [2][-]{subsection.3.3.3}{Log Analysis}{section.3.3}% 41
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 42
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 43
+\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 44
+\BOOKMARK [0][-]{appendix.A}{Latex source}{}% 45
+\BOOKMARK [1][-]{section.A.1}{diss.tex}{appendix.A}% 46
+\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 47
+\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 48
+\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 49
+\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 50
+\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 51

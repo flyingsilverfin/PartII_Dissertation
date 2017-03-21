@@ -30,7 +30,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.2}Convergent Replicated Data Types}{14}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.3}ShareJS}{14}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.3}ShareJS}{15}{subsection.2.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Analysis}{16}{section.2.3}
 \defcounter {refsection}{0}\relax 
@@ -38,64 +38,68 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.2}Network}{16}{subsection.2.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.3}Processor Load}{16}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.3}Processor Load}{17}{subsection.2.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.4}Client-Server versus Peer to Peer}{16}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.4}Client-Server versus Peer to Peer}{17}{subsection.2.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Starting Point}{16}{section.2.4}
+\contentsline {section}{\numberline {2.4}Starting Point}{18}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Requirements Analysis}{16}{section.2.5}
+\contentsline {section}{\numberline {2.5}Requirements Analysis}{18}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Software Engineering}{16}{section.2.6}
+\contentsline {section}{\numberline {2.6}Software Engineering}{18}{section.2.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.1}Libraries}{16}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.1}Libraries}{18}{subsection.2.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.2}Languages}{16}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.2}Languages}{19}{subsection.2.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.3}Tooling}{16}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.3}Tooling}{19}{subsection.2.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.4}Backup Strategy}{16}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.4}Backup Strategy and Development Machine}{20}{subsection.2.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.7}Early Design Decisions}{16}{section.2.7}
+\contentsline {section}{\numberline {2.7}Early Design Decisions}{20}{section.2.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Implementation}{17}{chapter.3}
+\contentsline {subsection}{\numberline {2.7.1}Network Simulation}{20}{subsection.2.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}CRDT-based system}{17}{section.3.1}
+\contentsline {subsection}{\numberline {2.7.2}Data Collection and Logging}{21}{subsection.2.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.1}Overview}{17}{subsection.3.1.1}
+\contentsline {chapter}{\numberline {3}Implementation}{23}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.2}Custom CRDT}{17}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.1}CRDT-based system}{23}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.3}Network simulation}{17}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.1}Overview}{23}{subsection.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{17}{section.3.2}
+\contentsline {subsection}{\numberline {3.1.2}Custom CRDT}{23}{subsection.3.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Overview}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.1.3}Network simulation}{23}{subsection.3.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Experiments and Automated Log Analysis}{17}{section.3.3}
+\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{23}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Separation of Concerns}{17}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.2.1}Overview}{23}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{17}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.3}Experiments and Automated Log Analysis}{23}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Log Analysis}{17}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Separation of Concerns}{23}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Evaluation}{19}{chapter.4}
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{23}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
+\contentsline {subsection}{\numberline {3.3.3}Log Analysis}{23}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{21}{chapter.5}
+\contentsline {chapter}{\numberline {4}Evaluation}{25}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Latex source}{23}{appendix.A}
+\contentsline {chapter}{\numberline {5}Conclusion}{27}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}diss.tex}{23}{section.A.1}
+\contentsline {chapter}{Bibliography}{27}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}proposal.tex}{28}{section.A.2}
+\contentsline {chapter}{\numberline {A}Latex source}{31}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Makefile}{33}{appendix.B}
+\contentsline {section}{\numberline {A.1}diss.tex}{31}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}makefile}{33}{section.B.1}
+\contentsline {section}{\numberline {A.2}proposal.tex}{38}{section.A.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.2}refs.bib}{33}{section.B.2}
+\contentsline {chapter}{\numberline {B}Makefile}{43}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Project Proposal}{35}{appendix.C}
+\contentsline {section}{\numberline {B.1}makefile}{43}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.2}refs.bib}{43}{section.B.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Project Proposal}{47}{appendix.C}

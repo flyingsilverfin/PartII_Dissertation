@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  20 MAR 2017 18:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  21 MAR 2017 20:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**diss.tex
+**diss
 (./diss.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 2 languages loaded.
@@ -580,14 +580,57 @@ Package biblatex Info: Automatic encoding selection.
 \openout4 = `diss.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'diss.bbl' not found.
+Package biblatex Info: ... file 'diss.bbl' found.
 
-No file diss.bbl.
+(./diss.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Zeller2014
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                preguica2009commutative
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                sun1998operational
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Shapiro2011
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Technion
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                ShareJS
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
 Package biblatex Info: Reference section=0 on input line 54.
 Package biblatex Info: Reference segment=0 on input line 54.
 Normal \count register pool exhausted, switching to extended pool.
 \docmute@nestinglevel=\count277
-[1
+ [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
@@ -624,28 +667,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 ] [8]
 Chapter 1.
 
-LaTeX Warning: Citation 'MotherDemo' on page 9 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'Ellis1989' on page 9 undefined on input line 152.
-
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ì in font cmr12!
-
-LaTeX Warning: Citation 'Gilbert2005' on page 9 undefined on input line 154.
+LaTeX Warning: Citation 'zeller2014' on page 9 undefined on input line 154.
 
 [9
 
-] [10] [11] [12]
+] [10]
+
+LaTeX Warning: Citation 'nedelec2013lseq' on page 11 undefined on input line 18
+0.
+
+
+LaTeX Warning: Citation 'nedelec2013' on page 11 undefined on input line 180.
+
+[11] [12]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 210.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 209.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 210.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 209.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
@@ -653,27 +695,46 @@ Missing character: There is no ô in font cmr12!
 
 ] [14] [15]
 [16]
-Chapter 3.
-[17
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ì in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+ [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 368--368
+[][][][]$\OT1/cmtt/m/n/10 https : / / developer . mozilla . org / en-[]US / doc
+s / Mozilla / Tech / XPCOM / Reference / Interface /
+ []
 
-] [18
+[19]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ì in font cmr12!
+ [20] [21] [22
+
+]
+Chapter 3.
+[23] [24
 
 ]
 Chapter 4.
-[19] [20
+[25] [26
 
 ]
 Chapter 5.
+[27] [28
 
-LaTeX Warning: Empty bibliography on input line 335.
-
-[21] [22
+] [29] [30
 
 ]
 Appendix A.
 File: diss.tex  (verbatim)
-[23] [24]
-Overfull \hbox (2082.04233pt too wide) in paragraph at lines 344--344
+[31] [32]
+Overfull \hbox (2082.04233pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Real time interaction between users is becoming an increasing
 ly important feature to many applications, from word processing to CAD to socia
 l networking. This dissertation examines trade offs that should be considered w
@@ -685,7 +746,7 @@ iting Operational Transformations (OT) as its core technology.[]
  []
 
 
-Overfull \hbox (4096.57126pt too wide) in paragraph at lines 344--344
+Overfull \hbox (4245.3234pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Realtime collaborative editing was first motivated by a demon
 stration in the Mother of All Demos by Douglas Engelbart in 1968 \cite{MotherDe
 mo}. From that time, it took several decades for implementations of such editin
@@ -693,34 +754,32 @@ g systems to appear. Early products were released in the 1990's, and the 1989 p
 aper by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended resea
 rch into operational transformations. Due to almost 20 years of research, OT is
  a relatively developed field and has been applied to products that are commonl
-y used. The most familiar of these is likely to be Google Docs, which seems to 
-behave in a predictable and well understood way. One reason Google Docs is so w
-idely used might be that it follows users' expectations for how a concurrent, m
-ulti-user document editor should work. Importantly, this includes lock-free edi
-ting and independence on a fast connection, no loss of data, and the guarantee 
-that everyone ends up with the same document when changes are complete. These a
-re in fact the goals around which OT and CRDTs have developed.[] 
+y used. The most familiar of these is likely to be Google Docs \footnote{https:
+//docs.google.com}, which seems to behave in a predictable and well understood 
+way. One reason Google Docs is so widely used might be that it follows users' e
+xpectations for how a concurrent, multi-user document editor should work. Impor
+tantly, this includes lock-free editing and independence of a fast connection, 
+no loss of data, and the guarantee that everyone ends up with the same document
+ when changes are complete. These are in fact the goals around which OT and CRD
+Ts have developed.[] 
  []
 
-Missing character: There is no ‚ in font cmtt8!
-Missing character: There is no Ä in font cmtt8!
-Missing character: There is no ì in font cmtt8!
 
-Overfull \hbox (2630.3002pt too wide) in paragraph at lines 344--344
+Overfull \hbox (2524.04868pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 The convergence, or consistency, property above is the hardes
-t to provide  it is easy to create a system where the last writer wins, but dat
-a is lost in the process. In a distributed system such as a shared text editor,
- the CAP theorem tells us we cannot guarantee all three of consistency, availab
-ility, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong 
-consistency guarantees and settle for eventual consistency, we are able provide
- all three [http://gun.js.org/distributed/matters.html]. As we will see, achiev
-ing eventual consistency is non-trivial. The two prevailing approaches, operati
-onal transformations and commutative replicated data structures are discussed i
-n detail the Preparation section.[] 
+t to provide -- it is easy to create a system where the last writer wins, but d
+ata is lost in the process. In a distributed system such as a shared text edito
+r, the CAP theorem tells us we cannot guarantee all three of consistency, avail
+ability, and partition-tolerance \cite{Gilbert2005}. However, if we forgo stron
+g consistency guarantees and settle for eventual consistency, we are able provi
+de all three \cite{zeller2014}. As we will see, achieving eventual consistency 
+is non-trivial. The two prevailing approaches, operational transformations and 
+commutative replicated data structures are discussed in detail the Preparation 
+section.[] 
  []
 
 
-Overfull \hbox (2698.30118pt too wide) in paragraph at lines 344--344
+Overfull \hbox (2715.30142pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 This project aims to examine the trade-offs made when impleme
 nting highly distributed and concurrent document editing with Operational Trans
 formations (OT) versus with Convergent Replicated Data Types (CRDTs). To do thi
@@ -729,104 +788,101 @@ or usage, memory consumption, and scalability, and run these experiments on an
 environment built around the open source library ShareJS (which implements OT) 
 along with a comparative system I created based on a specific CRDT. The system 
 meets the originally proposed goals of implementing a concurrent text editor ba
-sed on CRDTs which passes all tests for correctness; quantitative analysis is p
-resented in the Evaluation section [section ref].[] 
+sed on CRDTs which passes various tests for correctness; quantitative analysis 
+is presented in the Evaluation section [section ref].[] 
  []
 
 
-Overfull \hbox (2230.79446pt too wide) in paragraph at lines 344--344
+Overfull \hbox (2196.79398pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 The custom CRDT on which the collaborative text editor is bas
 ed is described in detail in the Implementation [section ref] section. In contr
 ast to the OT-based library ShareJS, my system also runs on a peer to peer netw
 ork architecture instead of a traditional client-server model. The lack of a se
-rver reduces the number of stateful parts in the overall system, at the expense
- of more complex networking. I managed this complexity by using a simulated pee
-r to peer architecture. The simulation allows me to control the precise topolog
-y, link latencies, and protocol and explore advantages and disadvantages of usi
-ng a P2P approach.[] 
+rver reduces the number of stateful parts in the system, at the expense of more
+ complex networking. I managed this complexity by using a simulated peer to pee
+r architecture. The simulation allows me to control the precise topology, link 
+latencies, and protocol and explore advantages and disadvantages of using a P2P
+ approach.[] 
  []
 
 
-Overfull \hbox (972.7764pt too wide) in paragraph at lines 344--344
+Overfull \hbox (569.0206pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 One extension, adding undo functionality to the CRDT, was als
-o completed. Two different approaches are presented, both of which were conceiv
-ed before reading related literature. One is similar to the approach taken in L
-ogoot-Undo, which is discussed below. As far as I am aware, in the context of C
-RDTs for text editing, both are novel.[] 
+o completed. My approach was developed originally, before reading related liter
+ature. However, one paper, Logoot-Undo, takes a very similar approach and is di
+scussed briefly below.[] 
  []
 
 
-Overfull \hbox (1997.0411pt too wide) in paragraph at lines 344--344
+Overfull \hbox (1997.0411pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Part of the challenge of this project was to develop my CRDT 
 and associated algorithms based only on an explanation of the required function
 ality provided by Martin Kleppmann. As a result, my solution is not optimal in 
 all aspects, and could be improved upon in the future. It also falls into the c
 lass of 'tombstone' CRDTs, which mark elements as deleted rather than fully rem
 oving them, which forces the data structures to grow continuously over time. Ot
-her CRDTs are 'tombstone-less' and do not suffer from this inefficiency. Existi
+her CRDTs are 'tombstone-free' and do not suffer from this inefficiency. Existi
 ng CRDTs of both types are discussed here.[] 
  []
 
 
-Overfull \hbox (3527.06308pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 Treedoc [reference needed] is a replicated text buffer; an or
-dered set that supports insert-at and delete operations. This CRDT gets its nam
-e from the tree structure used to encode identifiers and order elements in the 
-set. Each node in the tree contains one character, and the string contained in 
-the buffer is retried using infix traversal. Each client has a copy of the same
- tree, and can insert new nodes at any time. Two concurrent inserts at the same
- node are merged as two 'mini-nodes' within one tree node. Each insert is tagge
-d with a unique client identifier which comes from an ordered space. Using the 
-identifier order in combination with infix traversal creates a total ordering o
-ver the characters contained in the tree. With the total order, all clients wit
-h copies of the tree will retrieve the same string from their Treedoc. Having a
- total order is an important property used to guarantee eventual consistency in
- CRDTs.[] 
+Overfull \hbox (3531.31314pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Treedoc \cite{preguica2009} is a replicated text buffer; an o
+rdered set that supports insert-at and delete operations. This CRDT gets its na
+me from the tree structure used to encode identifiers and order elements in the
+ set. Each node in the tree contains one character, and the string contained in
+ the buffer is retried using infix traversal. Each client has a copy of the sam
+e tree, and can insert new nodes at any time. Two concurrent inserts at the sam
+e node are merged as two 'mini-nodes' within one tree node. Each insert is tagg
+ed with a unique client identifier which comes from an ordered space. Using the
+ identifier order in combination with infix traversal creates a total ordering 
+over the characters contained in the tree. With the total order, all clients wi
+th copies of the tree will retrieve the same string from their Treedoc. Having 
+a total order is an important property used to guarantee eventual consistency i
+n CRDTs.[] 
  []
 
 
-Overfull \hbox (1967.29068pt too wide) in paragraph at lines 344--344
+Overfull \hbox (1168.2792pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Deletes in this Treedoc are handled by marking a node as dele
 ted (but the node remains in the structure). Thus Treedoc falls into the class 
 of 'tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a 
 balanced tree, the authors propose an expensive commitment protocol to rebalanc
 e it. Not only is this inefficient, but also rather contrary to the spirit of C
-RDTs. However, trees do present an elegant solution to the problem of dense ide
-ntifier spaces: we must be able to insert a new identifier between any two give
-n identifiers at any point in time.[] 
+RDTs.[] 
  []
 
 
-Overfull \hbox (1733.53732pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 Logoot [citation needed] belongs to the class of text CRDTs w
-hich do not require tombstones for deletion. It achieves this by totally orderi
-ng identifiers, rather than relying on implicit causal dependencies between ide
-ntifiers (which Treedoc embeds in the tree's branches). Logoot does generate id
-entifiers using a tree, but each identifier contains the full path in the tree,
- which frees it of dependence on other nodes. This means that to delete, any cl
-ient can simply remove the identifier and the data it tags.[] 
+Overfull \hbox (1729.28726pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Logoot \cite{weiss2008} belongs to the class of text CRDTs wh
+ich do not require tombstones for deletion. It achieves this by totally orderin
+g identifiers, rather than relying on implicit causal dependencies between iden
+tifiers (which Treedoc embeds in the tree's branches). Logoot does generate ide
+ntifiers using a tree, but each identifier contains the full path in the tree, 
+which frees it of dependence on other nodes. This means that to delete, any cli
+ent can simply remove the identifier and the data it tags.[] 
  []
 
-[25]
-Overfull \hbox (1661.28629pt too wide) in paragraph at lines 344--344
+[33]
+Overfull \hbox (1674.03647pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Logoot also favors marking larger blocks of text with identif
 iers, rather than per-character. This, in combination with not needing tombston
 es, promises major efficiency gains over CRDTs such as Treedoc. Even further, t
-wo papers [citation needed] [citation needed] offer optimizations on top of the
- basic Logoot implementation by improving the strategy used to allocate new ide
-ntifiers in the generator tree. However, these algorithms are specific to Logoo
-t and of little relevance to this project.[] 
+wo papers \cite{nedelec2013lseq} \cite{nedelec2013} offer optimizations beyond 
+the basic Logoot implementation by improving the strategy used to allocate new 
+identifiers in the generator tree. However, these algorithms are specific to Lo
+goot and of little relevance to this project.[] 
  []
 
 
-Overfull \hbox (322.51706pt too wide) in paragraph at lines 344--344
+Overfull \hbox (322.51706pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 Logoot is important as an example of a tombstone-free CRDT fo
 r text. Additionally, subsequent research enabled 'undo' and 'redo' functionali
 ty for this CRDT, which is described below.[] 
  []
 
 
-Overfull \hbox (1882.28946pt too wide) in paragraph at lines 344--344
+Overfull \hbox (1882.28946pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 CRDTs generally struggle to provide an undo mechanism since t
 he concept of reversing an update to the data structure is fundamentally contra
 ry to the key property of CRDTs: commutativity of operations. For example, reve
@@ -838,18 +894,21 @@ e not the same.[]
  []
 
 
-Overfull \hbox (1470.03354pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 Logoot Undo [citation needed] proposes to resolve this by ess
-entially tagging each identifier with a 'visibile' counter. An undo of an inser
-tion would decrement it, while redo would increment it. If the 'visible' counte
-r is positive, the characters are visible. As discussed in [REFERENCE NEEDED], 
-this leads to some rather unexpected behavior. However, this approach is viable
- since increments and decrements commute and guarantee eventual convergence.[] 
-
+Overfull \hbox (2723.80154pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Logoot Undo \cite{weiss2010undo} proposes to resolve this by 
+essentially tagging each identifier with a 'visible' counter. An undo of an ins
+ertion would decrement it, while redo would increment it. If the 'visible' coun
+ter is positive, the characters are visible. As discussed in [REFERENCE NEEDED]
+, this leads to some rather unexpected behavior. However, this approach is viab
+le since increments and decrements commute and guarantee eventual convergence. 
+In Logoot Undo, any client can undo any other client's operations which is call
+ed global undo. The use of a counter is identical to the undo mechanism I devel
+oped independently, though I chose to implement a local undo rather than global
+ one, where clients can only undo their own operations.[] 
  []
 
 
-Overfull \hbox (2056.54196pt too wide) in paragraph at lines 344--344
+Overfull \hbox (1958.79056pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 One important question to answer is, what is the exact defini
 tion of conflict free. There appears to be more than one way of interpreting it
 . On one hand, there is the user's intuitive idea that any of their own operati
@@ -857,11 +916,11 @@ ons should behave as if they were the only users on the system. On the other ha
 nd, there is the data-centric view of conflict. In this case, operations confli
 ct if they are concurrent and modify the same data or index in a text buffer. C
 onflict free then means that no data is lost, and after all operations are exch
-anged the resulting data is converged to the same state.[] 
+anged the resulting states agree.[] 
  []
 
 
-Overfull \hbox (3488.81253pt too wide) in paragraph at lines 344--344
+Overfull \hbox (3488.81253pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 The common conflicting operations in text editing are inserti
 ng characters into the same index of a shared text buffer, or simultaneously de
 leting the same characters. The second is easy to make conflict-free, and both 
@@ -870,143 +929,443 @@ r concurrently or on a single user system should still result in the character
 disappearing. In the case of inserting text into the same index, the definition
 s cannot agree. Both users expect their own text to appear in the index they in
 serted at. However, in order to satisfy the data-centric definition we are not 
-allowed to lose data, and must eventually present both users with the same resu
-lt. The solution is to let one user 'win' and insert their characters at the de
+allowed to lose data, and must eventually present both users with the same stri
+ng. The solution is to let one user 'win' and insert their characters at the de
 sired index, and shift the other users' characters to appear after. Both operat
 ional transformations and CRDTs achieve this in fundamentally different ways.[]
  
  []
 
 
-Overfull \hbox (148.26456pt too wide) in paragraph at lines 344--344
+Overfull \hbox (156.76468pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 The commonly used consistency model for concurrent document e
-diting is the CCI model. The definition here is borrowed from  [citation needed
-].[] 
+diting is the CCI model. The definition here is borrowed from \cite{weiss2010un
+do}.[] 
  []
 
 Missing character: There is no ‚ in font cmtt8!
 Missing character: There is no Ä in font cmtt8!
 Missing character: There is no ô in font cmtt8!
 
-Overfull \hbox (335.26724pt too wide) in paragraph at lines 344--344
+Overfull \hbox (339.5173pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 \item \textbf{Consistency:} All operations ordered by a prece
-dence relation, such as Lamports happened-before relation [citation needed], ar
-e executed in the same order on every replica.[] 
+dence relation, such as Lamports happened-before relation \cite{lamport1978}, a
+re executed in the same order on every replica.[] 
  []
 
 
-Overfull \hbox (161.01474pt too wide) in paragraph at lines 344--344
+Overfull \hbox (161.01474pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 \item \textbf{Intention Preservation:} The expected effect of
  an operation should be observed on all replicas. This is commonly accepted to 
 mean:[] 
  []
 
 
-Overfull \hbox (309.76688pt too wide) in paragraph at lines 344--344
+Overfull \hbox (309.76688pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 \item \textit{insert}  A line inserted on a peer must appear 
 on every peer; the order relation between the document lines and a newly insert
 ed line must be preserved on every peer.[] 
  []
 
 
-Overfull \hbox (156.76468pt too wide) in paragraph at lines 344--344
+Overfull \hbox (156.76468pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 \item  \textit{undo}  Undoing a modification makes the system
  return to the state it would have reached if this modification was never produ
 ced.[] 
  []
 
 
-Overfull \hbox (535.02011pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 Much of the work in OT and CRDTs goes into ensuring convergen
-ce. The given definition of intention preservation is accepted, but the given m
-ay produce some unexpected results as we will see when discussing Undo in [refe
-rence needed].[] 
+Overfull \hbox (216.26553pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The given definition of intention preservation is accepted, b
+ut may produce some unexpected results as we will see when discussing Undo in [
+reference needed].[] 
  []
 
 
-Overfull \hbox (1508.28409pt too wide) in paragraph at lines 344--344
+Overfull \hbox (1028.02719pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 As mentioned briefly in the prior section, operational transf
 ormations and CRDTs aim to achieve eventual convergence on all clients. The com
 mon conflicting operations that must be given special consideration are concurr
 ently inserting characters at the same index, and deleting the same character, 
-and deleting a character while moving its position. Discussion of the more comp
-licated undo operation can be found in the Implementation [section referece] se
-ction.[] 
+and deleting a character while moving its position.[] 
  []
 
 
-Overfull \hbox (173.76492pt too wide) in paragraph at lines 344--344
+Overfull \hbox (173.76492pt too wide) in paragraph at lines 434--434
 []\OT1/cmtt/m/n/8 The easiest way to understand how operational transformations
  work is by example. The following three figures discuss each of the scenarios 
 in turn.[] 
  []
 
-[26]
-Overfull \hbox (2307.29556pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 ShareJS [citation needed] is an open source Javascript librar
-y implementing Operational Transformations which can be deployed on web browser
-s or NodeJS [footnote citation] clients. It is the core resource around which I
- built the comparative system to collect statistics from. To this end, it is us
-eful to know more precisely how ShareJS operates and what kind of behavior migh
-t be expected. As are a large variety of algorithms that can enable OT [citatio
-n needed - Analysis of Operational Transformations Algorithms], rather than tra
-cking down the papers ShareJS is based on, much of what is summarized below was
- deduced by reading its source code.[] 
+
+Overfull \hbox (186.5151pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 This section will provide an intuition for CRDTs in general, 
+while the specific CRDT used for this project is outlined in chapter 3 [referen
+ce needed].[] 
  []
 
 
-Overfull \hbox (798.5239pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 ShareJS documents are versioned, and each operation applies t
-o a specific version. The version number is used to transform operations agains
-t each other and detect concurrent changes. The supported operations are insert
- and delete, and the resulting modifications are sent as JSON to the server.[] 
+Overfull \hbox (1903.53976pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 CRDTs, which were first formalized in a 2007 paper \cite{shap
+iro2007}, trade the complex algorithms used in OT for a more complex data struc
+ture. Rather than relying on a serial order provided by a server, or logic to t
+ransform operations against each other, operations are tagged with totally orde
+red identifiers which allow us to extract the data in the native form -- for ex
+ample, a string will be represented as a set of tagged characters, so they may 
+be read out according to the tag ordering. Figure TODO is a simple demonstratio
+n of how this works.[] 
+ []
 
+[34]
+Overfull \hbox (2456.0477pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 There are technically two classes of CRDTs: state- and operat
+ion-based. State-based CRDTs disseminate the entire local state to other client
+s which is then merged into their copies. This requires that the merge operatio
+n be commutative, associative, and idempotent \cite{shapiro2011}. Operation-bas
+ed CRDTs relay modifications to other clients, which execute them on the local 
+replica. These only require that all operations commute, and that the communica
+tion layer guarantees only-once, in order delivery\cite{takada2013}. However, e
+ither can be used to implement the other. This project uses an operation-based 
+CRDT. Thus, the key property to fulfill is commutativity of operations.[] 
  []
 
 
-Overfull \hbox (1011.02695pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 ShareJS uses a server that provides a global, serialized orde
-r of operations to be applied on each client. This means the order of all non-l
-ocal operations will be the same on each client. The server also transforms con
-current operations against each other, but has the choice of rejecting an opera
-tion if the target document version is too old.[] 
+Overfull \hbox (904.77542pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 If the communication layer requirements are met and commutati
+vity is guaranteed, all clients will to converge to an identical, ordered resul
+t. This follows from the fact that elements in the CRDT have a total order defi
+ned over them: as long as all modifications arrive intact, all clients can retr
+ieve the correct data.[] 
  []
 
 
-Overfull \hbox (105.76395pt too wide) in paragraph at lines 344--344
-[]\OT1/cmtt/m/n/8 One important fact is that ShareJS only ever allows one packe
-t to be in flight from a particular client to a server. Each packet can[] 
+Overfull \hbox (2808.80276pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 ShareJS \cite{sharejs} is an open source Javascript library i
+mplementing Operational Transformations which can be deployed on web browsers o
+r NodeJS \footnote{\url{https://nodejs.org/en/}} clients. It is the core resour
+ce around which I built the comparative system to collect statistics from. To t
+his end, it is useful to know more precisely how ShareJS operates and what kind
+ of behavior might be expected. As are a large variety of algorithms that can e
+nable OT \cite{kumawat2016}, rather than tracking down the papers ShareJS is ba
+sed on, much of what is summarized below was deduced by reading its source code
+. Its core features are versioned documents, an active server which orders and 
+transforms operations, and primary supported actions 'insert' and 'delete'.[] 
  []
 
-[27]
+
+Overfull \hbox (811.27408pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Replicated documents are versioned, and each operation applie
+s to a specific version. The version number is used to transform operations aga
+inst each other and detect concurrent changes. The supported operations are ins
+ert and delete, and the resulting modifications are sent as JSON to the server.
+[] 
+ []
+
+
+Overfull \hbox (1529.5344pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The library contains both client and a server code. The serve
+r provides a global, serialized order of operations to be applied on each clien
+t. The server also transforms concurrent operations against each other, but has
+ the choice of rejecting an operation if the target document version is too old
+. In order to transform operations against each other, the server must maintain
+ a list of past operations [EXPERIMENT NEEDED], which has an effect on memory c
+onsumption.[] 
+ []
+
+
+Overfull \hbox (2400.7969pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 ShareJS clients can also only have one packet to be in flight
+ to a server. This is why the operations above need to be combined into larger 
+packets. However, this also has implications for packet size and quantity as ne
+twork latency grows [EXPERIMENT NEEDED]. Additionally, since the server can rej
+ect operations that were generated locally at a given client, and have already 
+been applied to the document, the clients must be able to undo operations, as w
+ell as transform any subsequent operations that have occurred against the inver
+se of the rejected one. So, the clients must each also have a list of past oper
+ations, which also affects memory use [EXPERIMENT NEEDED].[] 
+ []
+
+
+Overfull \hbox (2834.30313pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Given our rough understanding of CRDTs and ShareJS, we can ma
+ke hypotheses about the quantitative results that might be obtained. In terms o
+f basic memory requirements, each ShareJS client requires storing the current d
+ocument string, along with a lot of past operations. At worst, each character i
+n the string was delivered as an individual operation, so given n characters we
+ expect O(2n) = O(n) memory usage. The server must also store a list of these o
+perations, but the overall cost is still O(n). On the other hand, CRDTs at wors
+t tag each character with a unique identifier. The largest identifier is O(log(
+n)) characters long (assuming increasing natural numbers as tags), which leads 
+to O(nlog(n)) cost overall. This is slightly higher than ShareJS's linear growt
+h.[] 
+ []
+
+
+Overfull \hbox (1091.7781pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Given that the CRDT system will run over a P2P network, while
+ ShareJS requires a server, as long as the P2P network is more connected than a
+ star topology (equivalent to client/server), the average latency for all the c
+lients to receive data should be lower. In fact, at best a P2P network will cut
+ the time to receive an update to half of a client/server network.[] 
+ []
+
+
+Overfull \hbox (2328.54587pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 In terms of number of characters sent over the network per ac
+tion, it is difficult to make a prediction due to optimizations that may or may
+ not be implemented. However, given a basic assumption of each character insert
+ed into a CRDT also requiring an identifier to be sent, we get an O(nlog(n)) co
+mplexity again. On the other hand, ShareJS sends one character or word at a tim
+e, plus an index and a document version that the operation was performed on. If
+ we have k characters in the document, we also have at most k versions ***?***.
+ K's length as a decimal string is log10(k) characters. Thus we get an approxim
+ate O(n*log(k)) packets sent for ShareJS.[] 
+ []
+
+
+Overfull \hbox (2086.29239pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The relative algorithmic simplicity of CRDTs versus OT hints 
+that CRDTs should be computationally more efficient. If we assume that an inser
+t and delete operation can be done in constant time in a CRDT, then the most ex
+pensive operation to be done is a linear time retrieval and update of the strin
+g displayed to the user. Operational transformations also need to update the di
+splayed string, but also need to be transformed against any concurrent changes 
+(either on clients or on the server). While this is hard to quantify, it is rea
+sonable to expect OT to be more processor intensive than CRDTs.[] 
+ []
+
+Missing character: There is no ‚ in font cmtt8!
+Missing character: There is no Ä in font cmtt8!
+Missing character: There is no ì in font cmtt8!
+Missing character: There is no ‚ in font cmtt8!
+Missing character: There is no Ä in font cmtt8!
+Missing character: There is no ú in font cmtt8!
+Missing character: There is no ‚ in font cmtt8!
+Missing character: There is no Ä in font cmtt8!
+Missing character: There is no ù in font cmtt8!
+
+Overfull \hbox (5303.5886pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 It is worth examining what other reasons there might be for u
+sing a system that is capable of running over a P2P network. Generally, a key e
+lement is privacy. A P2P network can run over a secure, anonymous network such 
+as Tor \footnote{\url{https://www.torproject.org/docs/faq}} and since no middle
+ware needs to intercept and read packets, encryption may be used. OT systems al
+most always require a server, which may need to transform operations against ea
+ch other  which requires transmitting all operations in plain text and kills an
+y hope of privacy. One benefit of using a central server is that there is a nat
+ural cloud repository in which to store the contents of documents; a P2P networ
+k either requires some peers to be connected in order to download the latest ve
+rsion, or a server to have a repository of documents. Similar issues face state
+ replay for new clients that join an active network; this is examined in sectio
+n [SECTION REF]. Luckily, in terms of privacy, a central repository for CRDT ba
+sed documents would not need to be able to read the contents, just distribute t
+hem on demand. Lastly, established P2P networks have further benefits such as l
+acking single points of failure, lower probability of downtime and lower operat
+ional cost to the provider, but these properties and their implications are not
+ in the scope of this project.[] 
+ []
+
+
+Overfull \hbox (1474.2836pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 As stated in the proposal, I had prior experience with ShareJ
+S, which was leveraged when creating the comparative system. Additionally, I wa
+s already proficient in Javascript and had working knowledge of Typescript, my 
+main implementation language. However, almost all other aspects were new, notab
+ly: learning about CRDTs, writing test cases, the process of creating experimen
+ts and using these to profile performance, and how to implement a simulation.[]
+ 
+ []
+
+
+Overfull \hbox (1784.53806pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 As the project progressed, several part II courses contribute
+d or reaffirmed ideas I could use. Notably, the Computer Systems Modeling\footn
+ote{\url{http://www.cl.cam.ac.uk/teaching/1617/CompSysMod/}} course had a short
+ section on simulation which aligned very well with what I had already implemen
+ted at the time. Secondly, the Mobile and Sensor Systems course \footnote{\url{
+http://www.cl.cam.ac.uk/teaching/1617/MobSensSys/}} gave me some ideas when see
+king alternatives to the flooding implemented in my network simulation.[] 
+ []
+
+[35]
+Overfull \hbox (501.01962pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Points one and three have multiple unspecified subgoals. For 
+clarity, Table [TODO] lists all of these and their respective importance and di
+fficulty. These more closely mirror the 'Detailed Project Structure' of the pro
+posal.[] 
+ []
+
+
+Overfull \hbox (2417.79715pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 ShareJS \cite{sharejs} is the main external resource I requir
+ed. It is released under the MIT license. I used the simpler ShareJS v0.6.3 rat
+her than the more current ShareJS 0.7, also known as ShareDB. This package was 
+installed via the NPM \footnote{\url{https://www.npmjs.com/}} package manager. 
+The other large library I used was D3.js \footnote{\url{https://d3js.org/}}, a 
+commonly used data visualization tool that helped me build a dynamic network gr
+aph for debugging purposes. I did a survey of other drawing libraries that migh
+t be simpler and lighter on resources, however in terms of documentation, ease 
+of use, and familiarity I did not find anything more suitable.[] 
+ []
+
+
+Overfull \hbox (8.01254pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The full list of package dependencies required directly and i
+ndirectly can been found in Appendix ***TODO***.[] 
+ []
+
+
+Overfull \hbox (2230.79446pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The three main implementation languages, by lines of code, ar
+e Typescript \footnote{\url{http://www.typescriptlang.org/}}, Python 2.7 \footn
+ote{\url{https://www.python.org/}}, and Coffeescript/Javascript  (mainly in Sha
+reJS). Reasons for choosing Typescript as the primary language are familiarity,
+ how easily it integrates with web technologies and JSON objects, typing -- whi
+ch helps with project scale and early error detection --, and the fact that Sha
+reJS ships as Javascript, which Typescript transpiles to. In order to maximize 
+code reuse and comparability of results, it makes sense to run both systems on 
+the same platform.[] 
+ []
+
+
+Overfull \hbox (4899.8328pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The aforementioned testing platform has to be a web browser f
+or compatibility with ShareJS. The most developer friendly choices are Mozilla 
+Firefox \footnote{\url{https://www.mozilla.org/en-US/firefox/new/}} and Google 
+Chrome \footnote{\url{https://www.google.com/chrome/}}, as both come with sophi
+sticated debuggers and script inspection capabilities. However, both have issue
+s for this project. Firstly, measuring memory consumption in Firefox is difficu
+lt, and the relatively hidden API that enables it is complex and badly document
+ed \footnote{\url{https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/R
+eference/Interface/nsIMemoryReporterManager}}. On the other hand, Chrome offers
+ a simple interface to measure memory when certain flags are enabled. Conversel
+y, I discovered Chrome does not allow more than 6 active TCP sessions to a sing
+le domain from one session, which I needed to do when running an experiment wit
+h more than 6 clients in a single browser tab. Firefox has a simple about:confi
+g setting where this limit can be increased. Luckily, ShareJS contains a built 
+in workaround for the TCP limit most browsers have. Thus with memory measuremen
+t support and a solution to the TCP limit, my platform of choice is Google Chro
+me version 56.[] 
+ []
+
+
+Overfull \hbox (2090.54245pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Before starting this project, I was already familiar with a s
+pecific Typescript development stack and environment. The wide range of choice 
+available for web development work flows pushed me to use what I was already so
+mewhat familiar with. This includes package manager NPM, Typescript, transpiler
+ Babel, and script bundler Webpack, while coding in Visual Studio Code, an open
+ source IDE largely developed alongside Typescript by Microsoft. How to couple 
+all these tools together correctly is an issue in itself, and setting up a work
+ing configuration was one of the most tedious preparation steps.[] 
+ []
+
+
+Overfull \hbox (1895.03964pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 Backups and data safety were mentioned in the project proposa
+l. Github \footnote{\url{github.com}} provided the primary backup, with commits
+ at important checkpoints and at least once per work day. The local repository 
+also lives in my Dropbox folder for continuous cloud backups. To prevent data l
+oss in event of system failure, user data resides on its own hard drive, separa
+te from the primary development operating system Ubuntu 14.04 LTS x64. The MCS 
+computers are the alternative development machines in case of complete failure 
+or loss of laptop.[] 
+ []
+
+
+Overfull \hbox (879.27505pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 From the outset, I knew I could make simplifications in some 
+aspects of the project, and would likely need to be more flexible and verbose i
+n others. These design decisions were made at various points throughout the dev
+elopment process, though happily most were made early on and required little su
+bsequent change.[] 
+ []
+
+[36]
+Missing character: There is no ‚ in font cmtt8!
+Missing character: There is no Ä in font cmtt8!
+Missing character: There is no ì in font cmtt8!
+
+Overfull \hbox (3612.0643pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 One broad category of decisions has to do with the network si
+mulation I implemented. Because I had no experience with simulation design and 
+networking is not the focal point of this project, I did my best to keep everyt
+hing simple. My system assumes the network guarantees in order delivery, and is
+ capable of a broadcast to all peers of a node. Broadcast is not typically foun
+d in Internet applications  IPv6 does not even include any broadcast functional
+ity and opts for multicast instead \cite{RFC2460}. Using global broadcast, or f
+looding, has severe implications in terms of network efficiency. Without furthe
+r measures, basic flooding sends O(n\textsuperscript{2}) packets, where n is th
+e number of clients in a fully connected network. This property can be seen in 
+the Evaluation [section ref] section. However, though it has downsides, broadca
+st is simple to simulate given a network topology, requires no addressing, and 
+no sophisticated protocols.[] 
+ []
+
+
+Overfull \hbox (2502.79837pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 While the broadcast is a useful simplification, the topology 
+of a P2P network affects a system's functionality nearly as strongly. As this p
+roject is somewhat a comparison between P2P and client-server architecture, bei
+ng able to run experiments over different topologies is fairly important. My in
+itial focus was on a fully connected P2P topology to contrast with the clients/
+server star topology. However, forcing the P2P simulation to run on a star itse
+lf is perhaps a more direct comparison. With two topologies to test it is alrea
+dy sensible to have a fully general mechanism for specifying a network, so I ch
+ose to provide support for arbitrary topologies and latencies on individual lin
+ks.[] 
+ []
+
+
+Overfull \hbox (212.01547pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 %To aid debugging and visualization [GB?] I also decided to b
+uild a dynamic graphical network representation that could be run in tandem wit
+h the simulation.[] 
+ []
+
+
+Overfull \hbox (2702.55124pt too wide) in paragraph at lines 434--434
+[]\OT1/cmtt/m/n/8 The other important design decisions are more general. One is
+ to measure all packet and data structure sizes in terms of number of character
+s they require when stringified using a standard JSON object to string conversi
+on. This allows fair comparisons working across platforms, and is the most obvi
+ous way to measure the size of a Javascript JSON object. The second is to log n
+etwork packets on the application layer. That is, rather than intercepting and 
+logging packet information at the operating system, I log data about the payloa
+ds of packets from within the applications. This is the fairest to do compariso
+ns between a simulation's network traffic, whose packets contain no headers or 
+other overhead, and a real TCP/IP stack's traffic.[] 
+ []
+
+[37]
 File: proposal.tex  (verbatim)
- [28]
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
+
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 meaning that all connected users should end up with the same 
 result after receiving all changes to the document[] 
  []
 
 
-Overfull \hbox (411.76834pt too wide) in paragraph at lines 347--347
+Overfull \hbox (411.76834pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 --- even if edits conflict~\cite{Technion}. There are two mai
 n technologies that are used to enable concurrent editing of a document (plain 
 text or otherwise). One approach is Operational Transforms (OT),[] 
  []
 
-
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 347--347
+[38]
+Overfull \hbox (50.51315pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 such that the result converges~\cite{sun1998operational}. The
  server may also be required to make some transformations.[] 
  []
 
 
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 347--347
+Overfull \hbox (33.51291pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 Thus, unless the server is trusted and secure, OT-based servi
 ces cannot provide any security or privacy guarantees.[] 
  []
 
 
-Overfull \hbox (3420.81155pt too wide) in paragraph at lines 347--347
+Overfull \hbox (3420.81155pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 The alternative, newer technology uses Conflict Free Replicat
 ed Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual 
 consistency by transforming operations against each other, CRDTs use special da
@@ -1022,7 +1381,7 @@ f to security (encryption is now possible between endpoints),[]
  []
 
 
-Overfull \hbox (586.02084pt too wide) in paragraph at lines 347--347
+Overfull \hbox (586.02084pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 This project is first concerned with exploring and developing
  a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based c
 lient/server approach available in the open source library ShareJS. Several ext
@@ -1030,106 +1389,106 @@ ensions are also possible,[]
  []
 
 
-Overfull \hbox (152.51462pt too wide) in paragraph at lines 347--347
+Overfull \hbox (152.51462pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 The primary external resource I will need is the Javascript l
 ibrary ShareJS, which is published under the MIT license on GitHub \cite{ShareJ
 S}.[] 
  []
 
-[29]
-Overfull \hbox (8.01254pt too wide) in paragraph at lines 347--347
+
+Overfull \hbox (8.01254pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 I have some knowledge of the open source library ShareJS from
  a past internship, which I aim to leverage when[] 
  []
 
 
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 347--347
+Overfull \hbox (37.76297pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 I plan to implement a simulation of P2P CRDT text editing usi
 ng Typescript. Following this, my project will focus on[] 
  []
 
 
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 347--347
+Overfull \hbox (84.51364pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 comparing an existing OT-based concurrent document editing li
 brary (ShareJS) to my implementation, in order to draw conclusions[] 
  []
 
 
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 347--347
+Overfull \hbox (33.51291pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 system will need some optimization, which can feed back into 
 my evaluation and comparison process. In the case that[] 
  []
 
 
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 347--347
+Overfull \hbox (20.76273pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 learn frameworks for testing my implementation. The tests for
  correctness should include hand-crafted unit tests[] 
  []
 
 
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 347--347
+Overfull \hbox (84.51364pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Implement Simulation:} Model having an arbitrar
 y number of clients each running the CRDT algorithms, and simulate[] 
  []
 
 
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 347--347
+Overfull \hbox (37.76297pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 networking between these clients. Because this is P2P, it may
  be worth adding functionality for a variety of network[] 
  []
 
-
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
+[39]
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 feed back into the performance comparisons in the previous st
 ep and help evaluate the optimizations themselves.[] 
  []
 
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 347--347
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Extensions:} The first extension is implementin
 g a proper P2P network stack and remove the simulated[] 
  []
 
 
-Overfull \hbox (25.01279pt too wide) in paragraph at lines 347--347
+Overfull \hbox (25.01279pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 networking. Next would be researching undo and move operation
 s and perhaps try to implement one or both of these.[] 
  []
 
 
-Overfull \hbox (314.01694pt too wide) in paragraph at lines 347--347
+Overfull \hbox (314.01694pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item (Easier) Replace networking simulation with a P2P netwo
 rking library. The end result of this extension should be a ready to deploy Typ
 escript (compiled to Javascript) library.[] 
  []
 
 
-Overfull \hbox (301.26675pt too wide) in paragraph at lines 347--347
+Overfull \hbox (301.26675pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item (Difficult) Research prior work on undo and move functi
 onality using CRDTs. If something suitable is found, implement it. Otherwise, a
 ttempt to work toward my own solution.[] 
  []
 
-[30]
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 347--347
+
+Overfull \hbox (16.51266pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 2--3} Develop CRDT datastructu
 re and algorithms on paper. Read into P2P networks[] 
  []
 
 
-Overfull \hbox (46.26309pt too wide) in paragraph at lines 347--347
+Overfull \hbox (46.26309pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 4--5} Lay out project files an
 d implement network simulation with support for different[] 
  []
 
 
-Overfull \hbox (67.5134pt too wide) in paragraph at lines 347--347
+Overfull \hbox (67.5134pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 6--8} Implement CRDT datastruc
 tures and algorithms, and connect these to network simulation.[] 
  []
 
 
-Overfull \hbox (598.77103pt too wide) in paragraph at lines 347--347
+Overfull \hbox (598.77103pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Michaelmas vacation} Learn an appropriate testi
 ng framework, write and generate unit tests for correctness of implementation. 
 Fix any bugs discovered by the testing process. Set up ShareJS environment. Beg
@@ -1137,106 +1496,102 @@ in outlining progress report.[]
  []
 
 
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 347--347
+Overfull \hbox (50.51315pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 2--4} Execute tests and analyze resu
 lts. Try to explain differences and similarities observed.[] 
  []
 
 
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 347--347
+Overfull \hbox (20.76273pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 5--6} Continue writing dissertation 
 and optimizing system. Begin research for extension[] 
  []
 
 
-Overfull \hbox (80.26358pt too wide) in paragraph at lines 347--347
+Overfull \hbox (80.26358pt too wide) in paragraph at lines 437--437
 []\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 7--8} Continue writing dissertation.
  Before terms ends, review and peer-review (including supervisor)[] 
  []
 
-[31] [32
+[40] [41] [42
 
 ]
 Appendix B.
 No file makefile.txt.
 File: refs.bib  (verbatim)
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 355--355
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 445--445
 []  \OT1/cmtt/m/n/8 howpublished = {\url{https://archive.org/details/XD300-25_6
 8HighlightsAResearchCntAugHumanIntellect&start=286}},[] 
  []
 
 
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 355--355
+Overfull \hbox (29.26285pt too wide) in paragraph at lines 445--445
 []\OT1/cmtt/m/n/8 title = {{Brewer ' s Conjecture and the Feasibility of Consis
 tent , Available , Partition-Tolerant Web Services}},[] 
  []
 
-[33] [34
+
+Overfull \hbox (8.01254pt too wide) in paragraph at lines 445--445
+[]  \OT1/cmtt/m/n/8 booktitle={International Conference on Formal Techniques fo
+r Distributed Objects, Components, and Systems},[] 
+ []
+
+[43] [44]
+Overfull \hbox (76.01352pt too wide) in paragraph at lines 445--445
+[]  \OT1/cmtt/m/n/8 booktitle={Proceedings of the International Conference on R
+ecent Cognizance in Wireless Communication \& Image Processing},[] 
+ []
+
+
+Overfull \hbox (229.01572pt too wide) in paragraph at lines 445--445
+[]  \OT1/cmtt/m/n/8 booktitle={Proceedings of the International workshop on Doc
+ument Changes: Modeling, Detection, Storage and Visualization, Florence, Italy,
+ September 10, 2013},[] 
+ []
+
+[45] [46
 
 ]
 Appendix C.
-(./proposal.tex
-
-LaTeX Warning: Citation 'Technion' on page 35 undefined on input line 54.
-
-
-LaTeX Warning: Citation 'sun1998operational' on page 35 undefined on input line
- 58.
-
-[35]
-
-LaTeX Warning: Citation 'preguica2009commutative' on page 36 undefined on input
- line 62.
-
-
-LaTeX Warning: Citation 'Shapiro2011' on page 36 undefined on input line 62.
-
-
-LaTeX Warning: Citation 'ShareJS' on page 36 undefined on input line 70.
-
-[36] [37] [38] [39]
-
-LaTeX Warning: Empty bibliography on input line 196.
-
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 362.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 362.
+(./proposal.tex [47] [48] [49] [50] [51])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 452.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 452.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 362.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 362.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 452.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 452.
 Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: 0D9B4F76BE893F2CED883C2584C3C685;3083.
+(rerunfilecheck)             Checksum: 4BDD9712272B5886FEA59F78FFBF3916;3260.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 362.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 452.
  ) 
 Here is how much of TeX's memory you used:
- 12250 strings out of 495028
- 193364 string characters out of 6181496
- 630310 words of memory out of 5000000
- 15202 multiletter control sequences out of 15000+600000
- 11429 words of font info for 42 fonts, out of 8000000 for 9000
+ 12329 strings out of 495028
+ 194506 string characters out of 6181496
+ 633464 words of memory out of 5000000
+ 15234 multiletter control sequences out of 15000+600000
+ 11730 words of font info for 43 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,11n,35p,1120b,1712s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,49p,1410b,1712s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-t12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb
->
-Output written on diss.pdf (39 pages, 206552 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on diss.pdf (51 pages, 271628 bytes).
 PDF statistics:
- 535 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
- 126 named destinations out of 1000 (max. 500000)
- 393 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 692 PDF objects out of 1000 (max. 8388607)
+ 619 compressed objects within 7 object streams
+ 170 named destinations out of 1000 (max. 500000)
+ 409 words of extra memory for PDF output out of 10000 (max. 10000000)
 

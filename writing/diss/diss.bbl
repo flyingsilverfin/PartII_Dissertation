@@ -1,0 +1,307 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{nty}
+    \entry{RFC2460}{report}{}
+      \name{labelname}{2}{}{%
+        {{hash=bf91c7bc263e6f01f0f753a0c489f976}{Deering}{D\bibinitperiod}{Stephen\bibnamedelima E.}{S\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+        {{hash=879207f498d898e1338868e606b766e0}{Hinden}{H\bibinitperiod}{Robert\bibnamedelima M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=bf91c7bc263e6f01f0f753a0c489f976}{Deering}{D\bibinitperiod}{Stephen\bibnamedelima E.}{S\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+        {{hash=879207f498d898e1338868e606b766e0}{Hinden}{H\bibinitperiod}{Robert\bibnamedelima M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {RFC Editor}%
+      }
+      \list{publisher}{1}{%
+        {RFC Editor}%
+      }
+      \strng{namehash}{69c6b966ef626c15868fe7563b6f5175}
+      \strng{fullhash}{69c6b966ef626c15868fe7563b6f5175}
+      \field{sortinit}{D}
+      \field{labeltitle}{Internet Protocol, Version 6 (IPv6) Specification}
+      \field{howpublished}{Internet Requests for Comments}
+      \field{issn}{2070-1721}
+      \field{month}{12}
+      \field{note}{\url{http://www.rfc-editor.org/rfc/rfc2460.txt}}
+      \field{number}{2460}
+      \field{title}{Internet Protocol, Version 6 (IPv6) Specification}
+      \field{type}{RFC}
+      \field{year}{1998}
+      \verb{url}
+      \verb http://www.rfc-editor.org/rfc/rfc2460.txt
+      \endverb
+    \endentry
+    \entry{Ellis1989}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=5af913b637106da04084da40c87bd44c}{Ellis}{E\bibinitperiod}{C\bibnamedelima A}{C\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=845d448bb5455caad92793bcf03bcd86}{Gibbs}{G\bibinitperiod}{S\bibnamedelima J}{S\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=5af913b637106da04084da40c87bd44c}{Ellis}{E\bibinitperiod}{C\bibnamedelima A}{C\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=845d448bb5455caad92793bcf03bcd86}{Gibbs}{G\bibinitperiod}{S\bibnamedelima J}{S\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{25367af82155767d2e03cb655b167c9e}
+      \strng{fullhash}{25367af82155767d2e03cb655b167c9e}
+      \field{sortinit}{E}
+      \field{labeltitle}{{Concurrency Control in Groupware Systems}}
+      \field{title}{{Concurrency Control in Groupware Systems}}
+      \field{year}{1989}
+    \endentry
+    \entry{sharejs}{misc}{}
+      \name{labelname}{1}{}{%
+        {{hash=b099d66dc402764218f1ec0bc366ec68}{Gentle}{G\bibinitperiod}{Joseph}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=b099d66dc402764218f1ec0bc366ec68}{Gentle}{G\bibinitperiod}{Joseph}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {GitHub}%
+      }
+      \strng{namehash}{b099d66dc402764218f1ec0bc366ec68}
+      \strng{fullhash}{b099d66dc402764218f1ec0bc366ec68}
+      \field{sortinit}{G}
+      \field{labeltitle}{ShareJS v0.6.3}
+      \field{howpublished}{\url{https://github.com/josephg/ShareJS/tree/0.6}}
+      \field{title}{ShareJS v0.6.3}
+      \field{year}{2013}
+    \endentry
+    \entry{Gilbert2005}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=1de0da84dd43d0f480ffc9c70be34dc5}{Gilbert}{G\bibinitperiod}{Seth}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=6613a6fcc0482e691a0e8d84039b9458}{Lynch}{L\bibinitperiod}{Nancy}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=1de0da84dd43d0f480ffc9c70be34dc5}{Gilbert}{G\bibinitperiod}{Seth}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=6613a6fcc0482e691a0e8d84039b9458}{Lynch}{L\bibinitperiod}{Nancy}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{220e8940797e44af8a50c3d3d438c505}
+      \strng{fullhash}{220e8940797e44af8a50c3d3d438c505}
+      \field{sortinit}{G}
+      \field{labeltitle}{{Brewer ' s Conjecture and the Feasibility of Consistent , Available , Partition-Tolerant Web Services}}
+      \field{title}{{Brewer ' s Conjecture and the Feasibility of Consistent , Available , Partition-Tolerant Web Services}}
+      \field{year}{2005}
+      \field{pages}{51\bibrangedash 59}
+    \endentry
+    \entry{kumawat2016}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=3acd0590429d75017f46857905b42d9b}{Kumawat}{K\bibinitperiod}{Santosh}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=e3204672fc221023fe2c91c691722c38}{Khunteta}{K\bibinitperiod}{Ajay}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=3acd0590429d75017f46857905b42d9b}{Kumawat}{K\bibinitperiod}{Santosh}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=e3204672fc221023fe2c91c691722c38}{Khunteta}{K\bibinitperiod}{Ajay}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{33886329b75df67d345f0d4cef567f0f}
+      \strng{fullhash}{33886329b75df67d345f0d4cef567f0f}
+      \field{sortinit}{K}
+      \field{labeltitle}{Analysis of Operational Transformation Algorithms}
+      \field{booktitle}{Proceedings of the International Conference on Recent Cognizance in Wireless Communication \& Image Processing}
+      \field{title}{Analysis of Operational Transformation Algorithms}
+      \field{year}{2016}
+      \field{pages}{9\bibrangedash 20}
+    \endentry
+    \entry{lamport1978}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=5d77435450d10a850a5b58577b9a456b}{Lamport}{L\bibinitperiod}{Leslie}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5d77435450d10a850a5b58577b9a456b}{Lamport}{L\bibinitperiod}{Leslie}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{5d77435450d10a850a5b58577b9a456b}
+      \strng{fullhash}{5d77435450d10a850a5b58577b9a456b}
+      \field{sortinit}{L}
+      \field{labeltitle}{Time, clocks, and the ordering of events in a distributed system}
+      \field{journaltitle}{Communications of the ACM}
+      \field{number}{7}
+      \field{title}{Time, clocks, and the ordering of events in a distributed system}
+      \field{volume}{21}
+      \field{year}{1978}
+      \field{pages}{558\bibrangedash 565}
+    \endentry
+    \entry{preguica2009}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=9f33558f034e8c602d56158e0f8358a2}{Preguica}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=f34df992b11a6a7a16133449d4f1a923}{Marques}{M\bibinitperiod}{Joan\bibnamedelima Manuel}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=175d9ced76260033e1fd9361ae52aa00}{Letia}{L\bibinitperiod}{Mihai}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=9f33558f034e8c602d56158e0f8358a2}{Preguica}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=f34df992b11a6a7a16133449d4f1a923}{Marques}{M\bibinitperiod}{Joan\bibnamedelima Manuel}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=175d9ced76260033e1fd9361ae52aa00}{Letia}{L\bibinitperiod}{Mihai}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{b05f3a7e9318aae4f2be3dbbb60b45c8}
+      \strng{fullhash}{f8e45a41a9ab18a9d471aa1e57a7a902}
+      \field{sortinit}{P}
+      \field{labeltitle}{A commutative replicated data type for cooperative editing}
+      \field{booktitle}{Distributed Computing Systems, 2009. ICDCS'09. 29th IEEE International Conference on}
+      \field{title}{A commutative replicated data type for cooperative editing}
+      \field{year}{2009}
+      \field{pages}{395\bibrangedash 403}
+    \endentry
+    \entry{shapiro2007}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3031eb13dd5f4f4a309890db967c5017}{Pregui{\c{c}}a}{P\bibinitperiod}{Nuno\bibnamedelima M.}{N\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3031eb13dd5f4f4a309890db967c5017}{Pregui{\c{c}}a}{P\bibinitperiod}{Nuno\bibnamedelima M.}{N\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{5dc073f31deee4075c6eb6e7f4e9a312}
+      \strng{fullhash}{5dc073f31deee4075c6eb6e7f4e9a312}
+      \field{sortinit}{S}
+      \field{labeltitle}{Designing a commutative replicated data type}
+      \field{journaltitle}{CoRR}
+      \field{title}{Designing a commutative replicated data type}
+      \field{volume}{abs/0710.1784}
+      \field{year}{2007}
+      \verb{url}
+      \verb http://arxiv.org/abs/0710.1784
+      \endverb
+    \endentry
+    \entry{shapiro2011}{report}{}
+      \name{labelname}{4}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=7f078fdb202d1490a038d30f9bf19956}{Pregui}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=0bb140bbbc1d3ac7ec6a28bd9d506581}{Baquero}{B\bibinitperiod}{Carlos}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=f13a03ea8c9e34968f9bc55bb4e93d9f}{Shapiro}{S\bibinitperiod}{Marc}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=7f078fdb202d1490a038d30f9bf19956}{Pregui}{P\bibinitperiod}{Nuno}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=0bb140bbbc1d3ac7ec6a28bd9d506581}{Baquero}{B\bibinitperiod}{Carlos}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {INRIA}%
+      }
+      \strng{namehash}{7936fce3a0285cdf6cd75bdb1ee0e5aa}
+      \strng{fullhash}{f593c8ded1fabef508dbf3b40d20928a}
+      \field{sortinit}{S}
+      \field{labeltitle}{{A comprehensive study of Convergent and Commutative Replicated Data Types}}
+      \field{number}{RR-7506}
+      \field{title}{{A comprehensive study of Convergent and Commutative Replicated Data Types}}
+      \field{type}{Research Report}
+      \field{year}{2011}
+      \field{pages}{50}
+      \verb{url}
+      \verb http://hal.inria.fr/inria-00555588
+      \endverb
+    \endentry
+    \entry{takada2013}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=2dcc3628986e6b97a504272b66a55f7a}{Takada}{T\bibinitperiod}{Mikito}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=2dcc3628986e6b97a504272b66a55f7a}{Takada}{T\bibinitperiod}{Mikito}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2dcc3628986e6b97a504272b66a55f7a}
+      \strng{fullhash}{2dcc3628986e6b97a504272b66a55f7a}
+      \field{sortinit}{T}
+      \field{labeltitle}{{Distributed Systems: for fun and profit}}
+      \field{title}{{Distributed Systems: for fun and profit}}
+      \field{year}{2013}
+      \field{pages}{1\bibrangedash 62}
+    \endentry
+    \entry{MotherDemo}{misc}{}
+      \field{sortinit}{T}
+      \field{labeltitle}{The Mother of All Demos, Reel 3}
+      \field{howpublished}{\url{https://archive.org/details/XD300-25_68HighlightsAResearchCntAugHumanIntellect&start=286}}
+      \field{note}{Accessed: 2017-03-01}
+      \field{title}{The Mother of All Demos, Reel 3}
+    \endentry
+    \entry{weiss2010undo}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=7cd774180af4b531bb6112c0566b61a7}{Weiss}{W\bibinitperiod}{Stephane}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=7cd774180af4b531bb6112c0566b61a7}{Weiss}{W\bibinitperiod}{Stephane}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{612eb2a3b75e3a6a5f4d6f4677b88261}
+      \strng{fullhash}{612eb2a3b75e3a6a5f4d6f4677b88261}
+      \field{sortinit}{W}
+      \field{labeltitle}{Logoot-undo: Distributed collaborative editing system on p2p networks}
+      \field{journaltitle}{IEEE Transactions on Parallel and Distributed Systems}
+      \field{number}{8}
+      \field{title}{Logoot-undo: Distributed collaborative editing system on p2p networks}
+      \field{volume}{21}
+      \field{year}{2010}
+      \field{pages}{1162\bibrangedash 1174}
+    \endentry
+    \entry{weiss2008}{report}{}
+      \name{labelname}{3}{}{%
+        {{hash=b2b378495ab330e47aea6c9c21071d68}{Weiss}{W\bibinitperiod}{St{\'e}phane}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=b2b378495ab330e47aea6c9c21071d68}{Weiss}{W\bibinitperiod}{St{\'e}phane}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {INRIA}%
+      }
+      \strng{namehash}{b08fa44650511474d1d107ea79788ba2}
+      \strng{fullhash}{b08fa44650511474d1d107ea79788ba2}
+      \field{sortinit}{W}
+      \field{labeltitle}{{Logoot: a P2P collaborative editing system}}
+      \field{number}{RR-6713}
+      \field{title}{{Logoot: a P2P collaborative editing system}}
+      \field{type}{Research Report}
+      \field{year}{2008}
+      \field{pages}{13}
+      \verb{file}
+      \verb https://hal.inria.fr/inria-00336191/file/main.pdf
+      \endverb
+      \verb{url}
+      \verb https://hal.inria.fr/inria-00336191
+      \endverb
+    \endentry
+  \endsortlist
+  \missing{Zeller2014}
+  \missing{preguica2009commutative}
+  \missing{sun1998operational}
+  \missing{Shapiro2011}
+  \missing{Technion}
+  \missing{ShareJS}
+\endrefsection
+\endinput
+

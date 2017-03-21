@@ -149,45 +149,44 @@ Real time interaction between users is becoming an increasingly important featur
 
 \section{Motivation}
 
-Realtime collaborative editing was first motivated by a demonstration in the Mother of All Demos by Douglas Engelbart in 1968 \cite{MotherDemo}. From that time, it took several decades for implementations of such editing systems to appear. Early products were released in the 1990's, and the 1989 paper by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended research into operational transformations. Due to almost 20 years of research, OT is a relatively developed field and has been applied to products that are commonly used. The most familiar of these is likely to be Google Docs, which seems to behave in a predictable and well understood way. One reason Google Docs is so widely used might be that it follows users' expectations for how a concurrent, multi-user document editor should work. Importantly, this includes lock-free editing and independence on a fast connection, no loss of data, and the guarantee that everyone ends up with the same document when changes are complete. These are in fact the goals around which OT and CRDTs have developed.
+Realtime collaborative editing was first motivated by a demonstration in the Mother of All Demos by Douglas Engelbart in 1968 \cite{MotherDemo}. From that time, it took several decades for implementations of such editing systems to appear. Early products were released in the 1990's, and the 1989 paper by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended research into operational transformations. Due to almost 20 years of research, OT is a relatively developed field and has been applied to products that are commonly used. The most familiar of these is likely to be Google Docs \footnote{https://docs.google.com}, which seems to behave in a predictable and well understood way. One reason Google Docs is so widely used might be that it follows users' expectations for how a concurrent, multi-user document editor should work. Importantly, this includes lock-free editing and independence of a fast connection, no loss of data, and the guarantee that everyone ends up with the same document when changes are complete. These are in fact the goals around which OT and CRDTs have developed.
 
-The convergence, or consistency, property above is the hardest to provide – it is easy to create a system where the last writer wins, but data is lost in the process. In a distributed system such as a shared text editor, the CAP theorem tells us we cannot guarantee all three of consistency, availability, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong consistency guarantees and settle for eventual consistency, we are able provide all three [http://gun.js.org/distributed/matters.html]. As we will see, achieving eventual consistency is non-trivial. The two prevailing approaches, operational transformations and commutative replicated data structures are discussed in detail the Preparation section.
+The convergence, or consistency, property above is the hardest to provide -- it is easy to create a system where the last writer wins, but data is lost in the process. In a distributed system such as a shared text editor, the CAP theorem tells us we cannot guarantee all three of consistency, availability, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong consistency guarantees and settle for eventual consistency, we are able provide all three \cite{zeller2014}. As we will see, achieving eventual consistency is non-trivial. The two prevailing approaches, operational transformations and commutative replicated data structures are discussed in detail the Preparation section.
 
 
 \section{Overview}
-This project aims to examine the trade-offs made when implementing highly distributed and concurrent document editing with Operational Transformations (OT) versus with Convergent Replicated Data Types (CRDTs). To do this I have designed experiments which expose statistics about network and processor usage, memory consumption, and scalability, and run these experiments on an environment built around the open source library ShareJS (which implements OT) along with a comparative system I created based on a specific CRDT. The system meets the originally proposed goals of implementing a concurrent text editor based on CRDTs which passes all tests for correctness; quantitative analysis is presented in the Evaluation section [section ref].
+This project aims to examine the trade-offs made when implementing highly distributed and concurrent document editing with Operational Transformations (OT) versus with Convergent Replicated Data Types (CRDTs). To do this I have designed experiments which expose statistics about network and processor usage, memory consumption, and scalability, and run these experiments on an environment built around the open source library ShareJS (which implements OT) along with a comparative system I created based on a specific CRDT. The system meets the originally proposed goals of implementing a concurrent text editor based on CRDTs which passes various tests for correctness; quantitative analysis is presented in the Evaluation section [section ref].
 
-The custom CRDT on which the collaborative text editor is based is described in detail in the Implementation [section ref] section. In contrast to the OT-based library ShareJS, my system also runs on a peer to peer network architecture instead of a traditional client-server model. The lack of a server reduces the number of stateful parts in the overall system, at the expense of more complex networking. I managed this complexity by using a simulated peer to peer architecture. The simulation allows me to control the precise topology, link latencies, and protocol and explore advantages and disadvantages of using a P2P approach. 
+The custom CRDT on which the collaborative text editor is based is described in detail in the Implementation [section ref] section. In contrast to the OT-based library ShareJS, my system also runs on a peer to peer network architecture instead of a traditional client-server model. The lack of a server reduces the number of stateful parts in the system, at the expense of more complex networking. I managed this complexity by using a simulated peer to peer architecture. The simulation allows me to control the precise topology, link latencies, and protocol and explore advantages and disadvantages of using a P2P approach. 
 
-One extension, adding undo functionality to the CRDT, was also completed. Two different approaches are presented, both of which were conceived before reading related literature. One is similar to the approach taken in Logoot-Undo, which is discussed below. As far as I am aware, in the context of CRDTs for text editing, both are novel.
+One extension, adding undo functionality to the CRDT, was also completed. My approach was developed originally, before reading related literature. However, one paper, Logoot-Undo, takes a very similar approach and is discussed briefly below.
 
 \section{Related Work}
 
-Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. It also falls into the class of 'tombstone' CRDTs, which mark elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are 'tombstone-less' and do not suffer from this inefficiency. Existing CRDTs of both types are discussed here.
+Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. It also falls into the class of 'tombstone' CRDTs, which mark elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are 'tombstone-free' and do not suffer from this inefficiency. Existing CRDTs of both types are discussed here.
 
 \subsection{Treedoc}
 
-Treedoc [reference needed] is a replicated text buffer; an ordered set that supports insert-at and delete operations. This CRDT gets its name from the tree structure used to encode identifiers and order elements in the set. Each node in the tree contains one character, and the string contained in the buffer is retried using infix traversal. Each client has a copy of the same tree, and can insert new nodes at any time. Two concurrent inserts at the same node are merged as two 'mini-nodes' within one tree node. Each insert is tagged with a unique client identifier which comes from an ordered space. Using the identifier order in combination with infix traversal creates a total ordering over the characters contained in the tree. With the total order, all clients with copies of the tree will retrieve the same string from their Treedoc. Having a total order is an important property used to guarantee eventual consistency in CRDTs.
+Treedoc \cite{preguica2009} is a replicated text buffer; an ordered set that supports insert-at and delete operations. This CRDT gets its name from the tree structure used to encode identifiers and order elements in the set. Each node in the tree contains one character, and the string contained in the buffer is retried using infix traversal. Each client has a copy of the same tree, and can insert new nodes at any time. Two concurrent inserts at the same node are merged as two 'mini-nodes' within one tree node. Each insert is tagged with a unique client identifier which comes from an ordered space. Using the identifier order in combination with infix traversal creates a total ordering over the characters contained in the tree. With the total order, all clients with copies of the tree will retrieve the same string from their Treedoc. Having a total order is an important property used to guarantee eventual consistency in CRDTs.
 
 [perhaps insert Figure of large nodes/mininodes from the paper]
 
-Deletes in this Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of 'tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the authors propose an expensive commitment protocol to rebalance it. Not only is this inefficient, but also rather contrary to the spirit of CRDTs. However, trees do present an elegant solution to the problem of dense identifier spaces: we must be able to insert a new identifier between any two given identifiers at any point in time.
+Deletes in this Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of 'tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the authors propose an expensive commitment protocol to rebalance it. Not only is this inefficient, but also rather contrary to the spirit of CRDTs.
 
 \subsection{Logoot}
 
-Logoot [citation needed] belongs to the class of text CRDTs which do not require tombstones for deletion. It achieves this by totally ordering identifiers, rather than relying on implicit causal dependencies between identifiers (which Treedoc embeds in the tree's branches). Logoot does generate identifiers using a tree, but each identifier contains the full path in the tree, which frees it of dependence on other nodes. This means that to delete, any client can simply remove the identifier and the data it tags.
+Logoot \cite{weiss2008} belongs to the class of text CRDTs which do not require tombstones for deletion. It achieves this by totally ordering identifiers, rather than relying on implicit causal dependencies between identifiers (which Treedoc embeds in the tree's branches). Logoot does generate identifiers using a tree, but each identifier contains the full path in the tree, which frees it of dependence on other nodes. This means that to delete, any client can simply remove the identifier and the data it tags.
 
-Logoot also favors marking larger blocks of text with identifiers, rather than per-character. This, in combination with not needing tombstones, promises major efficiency gains over CRDTs such as Treedoc. Even further, two papers [citation needed] [citation needed] offer optimizations on top of the basic Logoot implementation by improving the strategy used to allocate new identifiers in the generator tree. However, these algorithms are specific to Logoot and of little relevance to this project.
+Logoot also favors marking larger blocks of text with identifiers, rather than per-character. This, in combination with not needing tombstones, promises major efficiency gains over CRDTs such as Treedoc. Even further, two papers \cite{nedelec2013lseq} \cite{nedelec2013} offer optimizations beyond the basic Logoot implementation by improving the strategy used to allocate new identifiers in the generator tree. However, these algorithms are specific to Logoot and of little relevance to this project.
 
 Logoot is important as an example of a tombstone-free CRDT for text. Additionally, subsequent research enabled 'undo' and 'redo' functionality for this CRDT, which is described below.
-
 
 
 \subsection{Logoot-Undo}
 
 CRDTs generally struggle to provide an undo mechanism since the concept of reversing an update to the data structure is fundamentally contrary to the key property of CRDTs: commutativity of operations. For example, reversing an insert is not commutative with the original insertion. If it were, the removal of a nonexistent element, followed by its insertion would have to result in the same thing as insertion followed by removal. In the first case, the element is present, while in the second it is removed. These outcomes clearly are not the same.
 
-Logoot Undo [citation needed] proposes to resolve this by essentially tagging each identifier with a 'visibile' counter. An undo of an insertion would decrement it, while redo would increment it. If the 'visible' counter is positive, the characters are visible. As discussed in [REFERENCE NEEDED], this leads to some rather unexpected behavior. However, this approach is viable since increments and decrements commute and guarantee eventual convergence.
+Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging each identifier with a 'visible' counter. An undo of an insertion would decrement it, while redo would increment it. If the 'visible' counter is positive, the characters are visible. As discussed in [REFERENCE NEEDED], this leads to some rather unexpected behavior. However, this approach is viable since increments and decrements commute and guarantee eventual convergence. In Logoot Undo, any client can undo any other client's operations which is called global undo. The use of a counter is identical to the undo mechanism I developed independently, though I chose to implement a local undo rather than global one, where clients can only undo their own operations.
 
 
 \chapter{Preparation}
@@ -197,17 +196,17 @@ Logoot Undo [citation needed] proposes to resolve this by essentially tagging ea
 
 	\subsection{What is "Conflict Free"}
 	
-	One important question to answer is, what is the exact definition of conflict free. There appears to be more than one way of interpreting it. On one hand, there is the user's intuitive idea that any of their own operations should behave as if they were the only users on the system. On the other hand, there is the data-centric view of conflict. In this case, operations conflict if they are concurrent and modify the same data or index in a text buffer. Conflict free then means that no data is lost, and after all operations are exchanged the resulting data is converged to the same state.
+	One important question to answer is, what is the exact definition of conflict free. There appears to be more than one way of interpreting it. On one hand, there is the user's intuitive idea that any of their own operations should behave as if they were the only users on the system. On the other hand, there is the data-centric view of conflict. In this case, operations conflict if they are concurrent and modify the same data or index in a text buffer. Conflict free then means that no data is lost, and after all operations are exchanged the resulting states agree.
 	
-	The common conflicting operations in text editing are inserting characters into the same index of a shared text buffer, or simultaneously deleting the same characters. The second is easy to make conflict-free, and both the user and data oriented definitions of conflict agree -- deleting a character concurrently or on a single user system should still result in the character disappearing. In the case of inserting text into the same index, the definitions cannot agree. Both users expect their own text to appear in the index they inserted at. However, in order to satisfy the data-centric definition we are not allowed to lose data, and must eventually present both users with the same result. The solution is to let one user 'win' and insert their characters at the desired index, and shift the other users' characters to appear after. Both operational transformations and CRDTs achieve this in fundamentally different ways.
+	The common conflicting operations in text editing are inserting characters into the same index of a shared text buffer, or simultaneously deleting the same characters. The second is easy to make conflict-free, and both the user and data oriented definitions of conflict agree -- deleting a character concurrently or on a single user system should still result in the character disappearing. In the case of inserting text into the same index, the definitions cannot agree. Both users expect their own text to appear in the index they inserted at. However, in order to satisfy the data-centric definition we are not allowed to lose data, and must eventually present both users with the same string. The solution is to let one user 'win' and insert their characters at the desired index, and shift the other users' characters to appear after. Both operational transformations and CRDTs achieve this in fundamentally different ways.
 	
 	[create figure]
 	
 	\subsection{CCI Consistency Model}
-	The commonly used consistency model for concurrent document editing is the CCI model. The definition here is borrowed from  [citation needed].
+	The commonly used consistency model for concurrent document editing is the CCI model. The definition here is borrowed from \cite{weiss2010undo}.
 	
 	\begin{itemize}
-		\item \textbf{Consistency:} All operations ordered by a precedence relation, such as Lamport’s happened-before relation [citation needed], are executed in the same order on every replica.
+		\item \textbf{Consistency:} All operations ordered by a precedence relation, such as Lamport’s happened-before relation \cite{lamport1978}, are executed in the same order on every replica.
 	
 		\item \textbf{Convergence:} The system converges if all replicas are identical when the system is idle.
 		
@@ -224,103 +223,168 @@ Logoot Undo [citation needed] proposes to resolve this by essentially tagging ea
 		
 	\end{itemize}
 	
-	Much of the work in OT and CRDTs goes into ensuring convergence. The given definition of intention preservation is accepted, but the given may produce some unexpected results as we will see when discussing Undo in [reference needed].
-	
-	
+	The given definition of intention preservation is accepted, but may produce some unexpected results as we will see when discussing Undo in [reference needed].
 	
 
 \section{Achieving Eventual Consistency}
 
-	As mentioned briefly in the prior section, operational transformations and CRDTs aim to achieve eventual convergence on all clients. The common conflicting operations that must be given special consideration are concurrently inserting characters at the same index, and deleting the same character, and deleting a character while moving its position. Discussion of the more complicated undo operation can be found in the Implementation [section referece] section.
+	As mentioned briefly in the prior section, operational transformations and CRDTs aim to achieve eventual convergence on all clients. The common conflicting operations that must be given special consideration are concurrently inserting characters at the same index, and deleting the same character, and deleting a character while moving its position.
 
 	\subsection{Operational Transformations}
 	
 	The easiest way to understand how operational transformations work is by example. The following three figures discuss each of the scenarios in turn.
+	
+	
+	
 	
 		
 	\subsection{Convergent Replicated Data Types}
 	
 	This section will provide an intuition for CRDTs in general, while the specific CRDT used for this project is outlined in chapter 3 [reference needed].
 
-	CRDTs, which were first formalized in a 2007 paper [citation needed], trade the complex algorithms used in OT for a more complex data structure. Rather than relying on a serial order provided by a server, or logic to transform operations against each other, operations are tagged with totally ordered identifiers which allow us to extract the data in the native form – for example, a string will be represented as a set of tagged characters, so they may be read out according to the tag ordering. Figure __ is a simple demonstration of how this works. 
+	CRDTs, which were first formalized in a 2007 paper \cite{shapiro2007}, trade the complex algorithms used in OT for a more complex data structure. Rather than relying on a serial order provided by a server, or logic to transform operations against each other, operations are tagged with totally ordered identifiers which allow us to extract the data in the native form -- for example, a string will be represented as a set of tagged characters, so they may be read out according to the tag ordering. Figure TODO is a simple demonstration of how this works. 
 	
 	[Figure]
 	
-	There are technically two classes of CRDTs: state- and operation-based. State-based CRDTs disseminate the entire local state to other clients which is then merged into their copies. This requires that the merge operation be commutative, associative, and idempotent [citation needed - A comprehensive study of Convergent and Commutative Replicated Data Types]. Operation-based CRDTs relay modifications to other clients, which execute them on the local replica. These only require that all operations commute, and that the communication layer guarantees only-once and in-order delivery [citation http://book.mixu.net/distsys/eventual.html]. However, either can be used to implement the other. This project uses an operation-based CRDT. 
+	***NEED to incorporate partial order of operations, commutativity of concurrent operations***
 	
-	If the communication layer guarantees are met, that no changes are lost and messages arrive in order, all clients are guaranteed to converge to an identical, ordered result. This follows from the fact that elements in the CRDT have a total order defined over them: as long as all modifications arrive intact, all clients can retrieve the correct data.
+	There are technically two classes of CRDTs: state- and operation-based. State-based CRDTs disseminate the entire local state to other clients which is then merged into their copies. This requires that the merge operation be commutative, associative, and idempotent \cite{shapiro2011}. Operation-based CRDTs relay modifications to other clients, which execute them on the local replica. These only require that all operations commute, and that the communication layer guarantees only-once, in order delivery\cite{takada2013}. However, either can be used to implement the other. This project uses an operation-based CRDT. Thus, the key property to fulfill is commutativity of operations.
+	
+	If the communication layer requirements are met and commutativity is guaranteed, all clients will to converge to an identical, ordered result. This follows from the fact that elements in the CRDT have a total order defined over them: as long as all modifications arrive intact, all clients can retrieve the correct data.
 
 	\subsection{ShareJS}
 	
-	ShareJS [citation needed] is an open source Javascript library implementing Operational Transformations which can be deployed on web browsers or NodeJS [footnote citation] clients. It is the core resource around which I built the comparative system to collect statistics from. To this end, it is useful to know more precisely how ShareJS operates and what kind of behavior might be expected. As are a large variety of algorithms that can enable OT [citation needed - Analysis of Operational Transformations Algorithms], rather than tracking down the papers ShareJS is based on, much of what is summarized below was deduced by reading its source code.
+	ShareJS \cite{sharejs} is an open source Javascript library implementing Operational Transformations which can be deployed on web browsers or NodeJS \footnote{\url{https://nodejs.org/en/}} clients. It is the core resource around which I built the comparative system to collect statistics from. To this end, it is useful to know more precisely how ShareJS operates and what kind of behavior might be expected. As are a large variety of algorithms that can enable OT \cite{kumawat2016}, rather than tracking down the papers ShareJS is based on, much of what is summarized below was deduced by reading its source code. Its core features are versioned documents, an active server which orders and transforms operations, and primary supported actions 'insert' and 'delete'.
 	
-	ShareJS documents are versioned, and each operation applies to a specific version. The version number is used to transform operations against each other and detect concurrent changes. The supported operations are insert and delete, and the resulting modifications are sent as JSON to the server.
+	Replicated documents are versioned, and each operation applies to a specific version. The version number is used to transform operations against each other and detect concurrent changes. The supported operations are insert and delete, and the resulting modifications are sent as JSON to the server.
 	
 	An Insert operation for adding text at index 100 in document version 1:
 \begin{lcverbatim}
 {v:1, op:[{i:'Hello World', p:100}]}
 \end{lcverbatim}
 
-	A delete operation
+	A delete operation:
 \begin{lcverbatim}
 {v:1, op:[{d:'Hello', p:100}]}
 \end{lcverbatim}
 
-	Multiple operations may be sent in one packet
+	Multiple operations may be sent in one packet:
 \begin{lcverbatim}
 {v:1, op:[{d:'World', p:100}, {i:'Cambridge', p:110}]}
 \end{lcverbatim}
 
-TODO QUOTATION MARKS
-
 \vspace{5mm}
 
-	ShareJS uses a server that provides a global, serialized order of operations to be applied on each client. The server also transforms concurrent operations against each other, but has the choice of rejecting an operation if the target document version is too old. In order to transform operations against each other, the server must maintain a list of past operations [EXPERIMENT NEEDED], which has an effect on memory consumption.
+	The library contains both client and a server code. The server provides a global, serialized order of operations to be applied on each client. The server also transforms concurrent operations against each other, but has the choice of rejecting an operation if the target document version is too old. In order to transform operations against each other, the server must maintain a list of past operations [EXPERIMENT NEEDED], which has an effect on memory consumption.
 	
-	ShareJS clients can also only have one packet to be in flight to a server. This is why the operations above can be combined into larger packets. However, this also has implications for packet size and number as network latency grows [EXPERIMENT NEEDED]. Additionally, since the server can reject operations that were generated locally and have already been applied, the clients must be able to undo operations, as well as transform any subsequent operations that have occurred against the inverse of the rejected one. So, the clients must each also have a list of past operations, which also affects memory use [EXPERIMENT NEEDED].
+	ShareJS clients can also only have one packet to be in flight to a server. This is why the operations above need to be combined into larger packets. However, this also has implications for packet size and quantity as network latency grows [EXPERIMENT NEEDED]. Additionally, since the server can reject operations that were generated locally at a given client, and have already been applied to the document, the clients must be able to undo operations, as well as transform any subsequent operations that have occurred against the inverse of the rejected one. So, the clients must each also have a list of past operations, which also affects memory use [EXPERIMENT NEEDED].
 
 	
 \section{Analysis}
 	
 	\subsection{Memory}
 	
+	***This can be redone, for instance ops grow in size as document number grows***
+	
+	Given our rough understanding of CRDTs and ShareJS, we can make hypotheses about the quantitative results that might be obtained. In terms of basic memory requirements, each ShareJS client requires storing the current document string, along with a lot of past operations. At worst, each character in the string was delivered as an individual operation, so given n characters we expect O(2n) = O(n) memory usage. The server must also store a list of these operations, but the overall cost is still O(n). On the other hand, CRDTs at worst tag each character with a unique identifier. The largest identifier is O(log(n)) characters long (assuming increasing natural numbers as tags), which leads to O(nlog(n)) cost overall. This is slightly higher than ShareJS's linear growth.
+	
 	\subsection{Network}
+	
+	Given that the CRDT system will run over a P2P network, while ShareJS requires a server, as long as the P2P network is more connected than a star topology (equivalent to client/server), the average latency for all the clients to receive data should be lower. In fact, at best a P2P network will cut the time to receive an update to half of a client/server network. 
+	
+	In terms of number of characters sent over the network per action, it is difficult to make a prediction due to optimizations that may or may not be implemented. However, given a basic assumption of each character inserted into a CRDT also requiring an identifier to be sent, we get an O(nlog(n)) complexity again. On the other hand, ShareJS sends one character or word at a time, plus an index and a document version that the operation was performed on. If we have k characters in the document, we also have at most k versions ***?***. K's length as a decimal string is log10(k) characters. Thus we get an approximate O(n*log(k)) packets sent for ShareJS.
 	
 	\subsection{Processor Load}
 	
+	The relative algorithmic simplicity of CRDTs versus OT hints that CRDTs should be computationally more efficient. If we assume that an insert and delete operation can be done in constant time in a CRDT, then the most expensive operation to be done is a linear time retrieval and update of the string displayed to the user. Operational transformations also need to update the displayed string, but also need to be transformed against any concurrent changes (either on clients or on the server). While this is hard to quantify, it is reasonable to expect OT to be more processor intensive than CRDTs.
+	
+	
 	\subsection{Client-Server versus Peer to Peer}
+	
+	It is worth examining what other reasons there might be for using a system that is capable of running over a P2P network. Generally, a key element is privacy. A P2P network can run over a secure, anonymous network such as Tor \footnote{\url{https://www.torproject.org/docs/faq}} and since no middleware needs to intercept and read packets, encryption may be used. OT systems almost always require a server, which may need to transform operations against each other – which requires transmitting all operations in plain text and kills any hope of privacy. One benefit of using a central server is that there is a natural “cloud” repository in which to store the contents of documents; a P2P network either requires some peers to be connected in order to download the latest version, or a server to have a repository of documents. Similar issues face state replay for new clients that join an active network; this is examined in section [SECTION REF]. Luckily, in terms of privacy, a central repository for CRDT based documents would not need to be able to read the contents, just distribute them on demand. Lastly, established P2P networks have further benefits such as lacking single points of failure, lower probability of downtime and lower operational cost to the provider, but these properties and their implications are not in the scope of this project.
 	
 \section{Starting Point}
 
+As stated in the proposal, I had prior experience with ShareJS, which was leveraged when creating the comparative system. Additionally, I was already proficient in Javascript and had working knowledge of Typescript, my main implementation language. However, almost all other aspects were new, notably: learning about CRDTs, writing test cases, the process of creating experiments and using these to profile performance, and how to implement a simulation.
+
+As the project progressed, several part II courses contributed or reaffirmed ideas I could use. Notably, the Computer Systems Modeling \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/CompSysMod/}} course had a short section on simulation which aligned very well with what I had already implemented at the time. Secondly, the Mobile and Sensor Systems course \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/MobSensSys/}} gave me some ideas when seeking alternatives to the flooding implemented in my network simulation.
+
 \section{Requirements Analysis}
+To reiterate the success criteria listed in the project proposal, I hoped to
+
+\begin{enumerate}
+\item Implement a concurrent, distributed text editor based on CRDTs 
+\item Pass correctness tests for this CRDT
+\item Obtain and compare quantitative results comparing ShareJS and the CRDT based system
+\end{enumerate}
+
+Points one and three have multiple unspecified subgoals. For clarity, Table [TODO] lists all of these and their respective importance and difficulty. These more closely mirror the 'Detailed Project Structure' of the proposal.
+
+\begin{samepage}
+
+\begin{center}
+\begin{tabular}{l|c|r}
+
+TODO
+
+\end{tabular}
+\end{center}
+\end{samepage}
+
+Goal
+Priority
+Difficulty
+Implement and unit test core CRDT
+High
+Medium
+Implement network simulation
+High
+High
+Optimize CRDT Insert
+Low
+Medium
+Design experiment format
+High
+Low
+Create ShareJS system capable of running experiments
+High
+Medium
+Write log analysis scripts
+Med
+Low
+
 
 \section{Software Engineering}
 
 	\subsection{Libraries}
-	ShareJS is the main external resource I required. It is released under the MIT license [citation needed]. The versioning and project direction is somewhat confusing, however I used ShareJS v0.6.3 rather than the more current ShareJS 0.7, also known as ShareDB. This package was installed via the NPM [footnote citation] package manager. The other large library I used was D3.js [footnote citation], a commonly used visualization tool that helped me build a network visualization for debugging purposes. I did a survey of other drawing libraries that might be simpler and lighter on resources, however in terms of documentation, ease of use, and familiarity I did not find anything more suitable.
+	ShareJS \cite{sharejs} is the main external resource I required. It is released under the MIT license. I used the simpler ShareJS v0.6.3 rather than the more current ShareJS 0.7, also known as ShareDB. This package was installed via the NPM \footnote{\url{https://www.npmjs.com/}} package manager. The other large library I used was D3.js \footnote{\url{https://d3js.org/}}, a commonly used data visualization tool that helped me build a dynamic network graph for debugging purposes. I did a survey of other drawing libraries that might be simpler and lighter on resources, however in terms of documentation, ease of use, and familiarity I did not find anything more suitable.
 	
-	The full list of package dependencies required directly and indirectly can been found in Appendix __ [appendix ref].
+	The full list of package dependencies required directly and indirectly can been found in Appendix ***TODO***.
 	
 	\subsection{Languages}
-	The three main implementation languages, by lines of code, are Typescript [footnote citation], Python 2.7 [footnote citation], and Coffeescript[footnote citation]/Javascript  (mainly in ShareJS). Reasons for choosing Typescript as the primary language are familiarity, how easily it integrates with web technologies and JSON objects, typing -- which helps with project scale and early error detection --, and the fact that ShareJS was written in Coffeescript and transpiled to Javascript, which Typescript also transpiles to. In order to maximize code reuse and comparability of results, it makes sense to run both systems on the same platform.
+	The three main implementation languages, by lines of code, are Typescript \footnote{\url{http://www.typescriptlang.org/}}, Python 2.7 \footnote{\url{https://www.python.org/}}, and Coffeescript/Javascript  (mainly in ShareJS). Reasons for choosing Typescript as the primary language are familiarity, how easily it integrates with web technologies and JSON objects, typing -- which helps with project scale and early error detection --, and the fact that ShareJS ships as Javascript, which Typescript transpiles to. In order to maximize code reuse and comparability of results, it makes sense to run both systems on the same platform.
 	
 	\subsection{Tooling}
-	The aforementioned platform has to be a web browser for compatibility with ShareJS. The most developer friendly choices are Firefox and Chrome, as both come with sophisticated debuggers and script inspection capabilities. However, both have issues for this project. Firstly, measuring memory consumption in Firefox is difficult, and the relatively hidden API that enables it is complex and badly documented [citation needed]. On the other hand, Chrome offers a simple interface to measure memory when certain flags are enabled [citation needed]. Conversely, Chrome does not allow more than 6 active TCP sessions to a single domain from one session, which I needed to do when running an experiment with more than 6 clients in a single browser tab. Firefox has a simple about:config setting where this limit can be increased [citation needed]. Luckily, ShareJS contains a built in workaround for the TCP limit most browsers have. Thus with memory measurement support and a solution to the TCP limit, my platform of choice is Chrome version 56.
+	The aforementioned testing platform has to be a web browser for compatibility with ShareJS. The most developer friendly choices are Mozilla Firefox \footnote{\url{https://www.mozilla.org/en-US/firefox/new/}} and Google Chrome \footnote{\url{https://www.google.com/chrome/}}, as both come with sophisticated debuggers and script inspection capabilities. However, both have issues for this project. Firstly, measuring memory consumption in Firefox is difficult, and the relatively hidden API that enables it is complex and badly documented \footnote{\url{https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIMemoryReporterManager}}. On the other hand, Chrome offers a simple interface to measure memory when certain flags are enabled. Conversely, I discovered Chrome does not allow more than 6 active TCP sessions to a single domain from one session, which I needed to do when running an experiment with more than 6 clients in a single browser tab. Firefox has a simple about:config setting where this limit can be increased. Luckily, ShareJS contains a built in workaround for the TCP limit most browsers have. Thus with memory measurement support and a solution to the TCP limit, my platform of choice is Google Chrome version 56.
 	
-	Before starting this project, I was already familiar with a specific Typescript development flow and environment. The rapid changes in and wide range of choice available for web development work flows pushed me to use what I was already somewhat familiar with. This stack includes package manager NPM [citation needed], Typescript, transpiler Babel [citation needed], and script bundler Webpack [citation needed], while coding in Visual Studio Code [citation needed], an open source IDE largely developed alongside Typescript by Microsoft. How to couple all these tools together correctly is an issue in itself, and setting up a working configuration was one of the most tedious preparation steps before implementation began.
+	Before starting this project, I was already familiar with a specific Typescript development stack and environment. The wide range of choice available for web development work flows pushed me to use what I was already somewhat familiar with. This includes package manager NPM, Typescript, transpiler Babel, and script bundler Webpack, while coding in Visual Studio Code, an open source IDE largely developed alongside Typescript by Microsoft. How to couple all these tools together correctly is an issue in itself, and setting up a working configuration was one of the most tedious preparation steps.
 	
 	\subsection{Backup Strategy and Development Machine}
-	Backups and data safety were mentioned in the project proposal. Github provided the primary backup, with commits at important checkpoints and at least once per work day. The local repository also lives in my Dropbox folder for continuous cloud backups. In the event of file system failure, my data lives on a separate data hard drive from the primary development operating system Ubuntu 14.04 LTS x64. The MCS computers are the alternative development machines in case of complete failure or loss of laptop.
+	Backups and data safety were mentioned in the project proposal. Github \footnote{\url{github.com}} provided the primary backup, with commits at important checkpoints and at least once per work day. The local repository also lives in my Dropbox folder for continuous cloud backups. To prevent data loss in event of system failure, user data resides on its own hard drive, separate from the primary development operating system Ubuntu 14.04 LTS x64. The MCS computers are the alternative development machines in case of complete failure or loss of laptop.
 	
 	
 \section{Early Design Decisions}
 From the outset, I knew I could make simplifications in some aspects of the project, and would likely need to be more flexible and verbose in others. These design decisions were made at various points throughout the development process, though happily most were made early on and required little subsequent change. 
 
-One broad category of decisions has to do with the network simulation I implemented. Because I had no experience with simulation design, did not want to implement a full network protocol, and networking is not the focal point of this project, I did my best to keep everything simple. My system assumes the network guarantees in order delivery, and is capable of a broadcast to all peers of a node. Broadcast is not typically found in Internet applications – IPv6 does not even include any broadcast functionality and opts for multicast instead [citation needed https://www.ietf.org/rfc/rfc2460.txt]. Using global broadcast has severe implications in terms of network efficiency – without any further measures, it requires packets be forwarded to all neighbors, who choose not to forward if seen before. Thus every packet will be sent one too many times to neighbors, who at some point in time will already have seen it. The symptoms of this property can be seen in the Evaluation [section ref] section. However, while it has downsides, broadcast is simple to simulate given a network topology, requires no addressing, and no sophisticated protocols.
+	\subsection{Network Simulation}
+	One broad category of decisions has to do with the network simulation I implemented. Because I had no experience with simulation design and networking is not the focal point of this project, I did my best to keep everything simple. My system assumes the network guarantees in order delivery, and is capable of a broadcast to all peers of a node. Broadcast is not typically found in Internet applications – IPv6 does not even include any broadcast functionality and opts for multicast instead \cite{RFC2460}. Using global broadcast, or flooding, has severe implications in terms of network efficiency. Without further measures, basic flooding sends O(n\textsuperscript{2}) packets, where n is the number of clients in a fully connected network. This property can be seen in the Evaluation [section ref] section. However, though it has downsides, broadcast is simple to simulate given a network topology, requires no addressing, and no sophisticated protocols.
+	
+	While the broadcast is a useful simplification, the topology of a P2P network affects a system's functionality nearly as strongly. As this project is somewhat a comparison between P2P and client-server architecture, being able to run experiments over different topologies is fairly important. My initial focus was on a fully connected P2P topology to contrast with the clients/server star topology. However, forcing the P2P simulation to run on a star itself is perhaps a more direct comparison. With two topologies to test it is already sensible to have a fully general mechanism for specifying a network, so I chose to provide support for arbitrary topologies and latencies on individual links. 
+	
+	%To aid debugging and visualization [GB?] I also decided to build a dynamic graphical network representation that could be run in tandem with the simulation.
 
-While the broadcast is a useful simplification, the topology of a P2P network affects a system's functionality nearly as strongly. As this project is somewhat a comparison between P2P and client-server architecture, being able to run experiments over different topologies is fairly important. My initial focus was on a fully connected P2P topology to contrast with the star that models clients and servers. However, forcing the P2P simulation to run on a star itself is perhaps a more direct comparison that might be enlightening. With just two desired topologies it is already sensible to have a fully general mechanism for specifying a network. My simulation can be programmed to accept an arbitrary topology and model latencies on individual links. To aid debugging and visualization [GB?] I also decided to build a dynamic graphical network representation that could be run in tandem with the simulation.
-
-The other important design decisions are more general. One is to measure all packet and data structure sizes in terms of number of characters they require when represented in string form, using a standard JSON object to string conversion. This allows fair comparisons working across platforms, and is the most obvious way to measure the size of a Javascript JSON object. The second is to log network packets on the application layer. That is, rather than intercepting and logging packet information at the operating system, I log data about the payloads of packets from within the applications. This is the simplest way to do fair comparisons between a simulation's network traffic, whose packets contain no headers or other overhead, and a real TCP/IP stack's traffic.
+	\subsection{Data Collection and Logging}
+	The other important design decisions are more general. One is to measure all packet and data structure sizes in terms of number of characters they require when stringified using a standard JSON object to string conversion. This allows fair comparisons working across platforms, and is the most obvious way to measure the size of a Javascript JSON object. The second is to log network packets on the application layer. That is, rather than intercepting and logging packet information at the operating system, I log data about the payloads of packets from within the applications. This is the fairest to do comparisons between a simulation's network traffic, whose packets contain no headers or other overhead, and a real TCP/IP stack's traffic.
 
 
 \chapter{Implementation}

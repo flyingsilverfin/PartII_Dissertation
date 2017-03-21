@@ -96,11 +96,12 @@ class MapCRDT implements CT.CRDT {
 
             // ASSERT NEEDED
             //  t >= this.nextCounter
-            this.nextCounter = t+1; 
+            // this assert would not always hold, not sure why I almost had it
+            this.nextCounter = Math.max(t+1, this.nextCounter);
             entryBefore = newEntry;
         }
         // connect last link
-        entryBefore.next = lastLink;
+        entryBefore.n = lastLink;
 
         return true;
     }
@@ -112,7 +113,7 @@ class MapCRDT implements CT.CRDT {
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }
-        if (this.map[idToDelete].deleted) {
+        if (this.map[idToDelete].d) {
             return false;
         }
         this.map[idToDelete]['d'] = true;
