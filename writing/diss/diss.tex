@@ -292,7 +292,7 @@ Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging
 	
 	Given that the CRDT system will run over a P2P network, while ShareJS requires a server, as long as the P2P network is more connected than a star topology (equivalent to client/server), the average latency for all the clients to receive data should be lower. In fact, at best a P2P network will cut the time to receive an update to half of a client/server network. 
 	
-	In terms of number of characters sent over the network per action, it is difficult to make a prediction due to optimizations that may or may not be implemented. However, given a basic assumption of each character inserted into a CRDT also requiring an identifier to be sent, we get an O(nlog(n)) complexity again. On the other hand, ShareJS sends one character or word at a time, plus an index and a document version that the operation was performed on. If we have k characters in the document, we also have at most k versions ***?***. K's length as a decimal string is log10(k) characters. Thus we get an approximate O(n*log(k)) packets sent for ShareJS.
+	In terms of number of characters sent over the network per action, it is difficult to make a prediction due to optimizations that may or may not be implemented. However, given a basic assumption of each character inserted into a CRDT also requiring an identifier to be sent, we get an O(nlog(n)) complexity again. On the other hand, ShareJS sends one character or word at a time, plus an index and a document version that the operation was performed on. If we have n characters in the document, we also have at most n versions ***?***. The length of the decimal string n is log(n) characters. Thus we get an approximate O(nlog(n)) packets sent for ShareJS.
 	
 	\subsection{Processor Load}
 	
@@ -397,7 +397,21 @@ This section will...
 	
 	\subsection{Custom CRDT}
 	
+		\subsubsection{Identifiers}
+		
+		\subsubsection{Operations}
+		Plus proofs of correctness
+			
+		\subsubsection{Tombstones}
+		
+		\subsubsection{Optimizations}
+		
+	
 	\subsection{Network simulation}
+	
+		\subsubsection{Abstraction}
+		
+		\subsubsection{Scheduler}
 	
 \section{ShareJS Comparative Environment}
 
@@ -411,6 +425,8 @@ This section will...
 	
 	\subsection{Log Analysis}
 	
+\section{Extension: Local Undo}
+
 
 \chapter{Evaluation}
 
