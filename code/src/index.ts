@@ -8,6 +8,34 @@ import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 import MapCRDTTests from '../tests/MapCRDTTests';
 
 
+/*
+
+set some stuff up
+
+*/
+
+Map.prototype.toString = function():string  {
+    /*
+    let mapping = [...this];
+    let s = "";
+    let k,v; // just to satisfy typescript which doesn't seem to know this quite yet
+    for ( [k, v] of this.entries()) {
+        s += `[${k}] : ${v}, `
+    }
+    return s.substr(0, s.length-2);
+    */
+
+    let mapping = [...this];
+    return JSON.stringify(mapping);
+}
+
+
+
+/*
+--- end setup
+*/
+
+
 // testing modules
 let tests = [DualKeyMinHeapTests, MapCRDTTests];
 // execute and display tests

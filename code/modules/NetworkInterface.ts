@@ -59,7 +59,7 @@ class NetworkInterface {
     // Asks a neighbor for the current CRDT state
     public requestCRDT(destination: T.ClientId): void {
         let packet: NT.NetworkPacket = {
-            origin: "" + this.clientId, // need to be string
+            origin: this.clientId, // need to be string
             type: "reqCRDT",
             bundle: {}
         };
@@ -69,7 +69,7 @@ class NetworkInterface {
 
     public returnCRDT(destination: T.ClientId, crdt: CT.MapCRDTStore): void {
         let packet: NT.NetworkPacket = {
-            origin: "" + this.clientId,
+            origin: this.clientId,
             type: "retCRDT",
             bundle: {
                 crdt: crdt
@@ -112,7 +112,7 @@ class NetworkInterface {
         } else if (packet.type == "reqCRDT") {
             // bundle is empty
             let origin = packet.origin;
-            this.requestCRDTReceived(parseInt(origin));
+            this.requestCRDTReceived(origin);
             isValidNewPacket = false;   // disable broadcasting this unicast...
         } else if (packet.type == "retCRDT") {
             let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt;

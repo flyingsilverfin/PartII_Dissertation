@@ -1,4 +1,4 @@
-import {now} from './Helper';
+import {now, mapToJsonCompatible} from './Helper';
 import Time from './Time';
 
 import * as T from '../types/Types';
@@ -53,13 +53,13 @@ export default class Logger {
         } else if (packetType === "d") {
             readablePacketType = "delete"; // for logging
             msg = 
-                (<CRDTTypes.DeleteMessage>bundle).deleteId
+                (<CRDTTypes.DeleteMessage>bundle).del
         } else if (packetType === "reqCRDT") {
             readablePacketType = "requestCRDT";
-            msg = ""
+            msg = "";
         } else if (packetType === "retCRDT") {
             readablePacketType = "returnCRDT";
-            let crdt = JSON.stringify((<NT.ReturnCRDTMessage>bundle).crdt);
+            let crdt = JSON.stringify(mapToJsonCompatible((<NT.ReturnCRDTMessage>bundle).crdt));
             let crdtLen = crdt.length;
             msg = "" + crdtLen;
         } else {

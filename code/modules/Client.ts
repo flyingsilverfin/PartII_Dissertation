@@ -26,14 +26,14 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
-    private id: string;
+    private id: T.ClientId;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
     private events: T.ScheduledEvents;    // all the events to insert and delete
     private optimized: boolean;
     private insertBuffer: string[] = [];
-    private insertStartId: string;
-    private insertStartAfter: string;
+    private insertStartId: CT.id;
+    private insertStartAfter: CT.id;
 
     private interface: EditableText;
     private scheduler: EventDrivenScheduler;
@@ -44,7 +44,7 @@ class Client {
     // state variables
     // parallel lists of char array and CRDT IDs of chars
     private charArray: string[];
-    private idArray: string[];
+    private idArray: CT.id[];
 
 
     constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
@@ -59,7 +59,7 @@ class Client {
         this.network.requestCRDTReceived = this.requestCRDTReceived.bind(this);
         this.network.returnCRDTReceived = this.returnCRDTReceived.bind(this);
         this.requestedCRDTQueue = [];
-        this.id = "" + id;
+        this.id = id;
 
 
         let interfaceContainer = <HTMLDivElement>document.getElementById('clients-container');
@@ -72,10 +72,10 @@ class Client {
 
         // TODO
         // this is a bit of a silly, unnecessarily hardcoded way of doing this...
-        if (this.id === '0') {
+        // if first client, start new document
+        if (this.id === 0) {
             this.dt = new MapCRDT();
             this.enable();
-            
         } else {
             let neighbor = this.network.getLowestIdNeighbor();
             this.interface.setContent("(Retrieving datastructure/document)");
@@ -177,8 +177,8 @@ class Client {
         This is expected behavior
     */
     private charInsertedLocal(char: string, after: number, commitNow=false): void {
-        let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
-        let opId = nextT + '.' + this.id;
+        let nextT = this.dt.getNextTs(); // must reserve this timestamp for this character
+        let opId: CT.id = [nextT, this.id];
 
 
         // CAN I PUT THIS INTO THE CRDT LATER ALL TOGETHER ie with one start ID + length????
@@ -188,7 +188,7 @@ class Client {
         //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
         //           
 
-        debugger
+        
         let idOfAfter = this.getIdOfStringIndex(after);
         let bundle: CT.InsertMessage = {
             id: opId,
@@ -250,7 +250,7 @@ class Client {
     private charDeletedLocal(index: number) {
         let deletedId = this.getIdOfStringIndex(index);
         let bundle: CT.DeleteMessage = {
-            deleteId: deletedId
+            del: deletedId
         };
 
         this.dt.delete(bundle);
@@ -312,7 +312,7 @@ class Client {
         this.idArray = readValues.idArray;
     }
 
-    private getIdOfStringIndex(after: number): string {
+    private getIdOfStringIndex(after: number): CT.id {
         return this.idArray[after];
     }
 

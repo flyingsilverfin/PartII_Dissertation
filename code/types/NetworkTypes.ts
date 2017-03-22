@@ -3,7 +3,7 @@ import * as T from './Types';
 import NetworkInterface from '../modules/NetworkInterface';
 
 export interface NetworkPacket {
-    origin: string,
+    origin: number,
     type: "i" | "d" | "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
     bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | RequestCRDTMessage | ReturnCRDTMessage;
 }

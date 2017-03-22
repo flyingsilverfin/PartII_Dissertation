@@ -12,29 +12,34 @@ export interface CRDT {
 
 export interface ParallelStringArrays {
     charArray: string[],
-    idArray: string[]
+    idArray: id[]
 }
 
 export interface InsertMessage {
-    id: string,
+    id: id,
     char: string,
-    after: string
+    after: id
 }
 
 
 export interface DeleteMessage {
-    // id: string   // unsure exactly how to implement this
-    deleteId: string
+    // clock value, client ID
+    del: id
 }
 
 
 // --- MapCRDT ---
-export interface MapCRDTStore {
-    [id: string]: MapEntry
-}
+// SWITCHING to JS Map native as it supports keys that are objects like [1,2] etc.
+
+
+
+export type MapCRDTStore = Map<id, MapEntry>;
+
+
+export type id = [number, T.ClientId];
 
 export interface MapEntry {
     c: string,  // character
-    n: string,  // next link
+    n: id,      // next link
     d?: boolean // deleted
 }

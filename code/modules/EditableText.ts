@@ -1,6 +1,7 @@
-import {insertIntoString, deleteAt} from './Helper';
-
+import * as T from '../types/Types';
 import * as IT from '../types/InterfaceTypes';
+
+import {insertIntoString, deleteAt} from './Helper';
 
 
 class EditableText implements IT.EditableTextInterface {
@@ -44,8 +45,8 @@ class EditableText implements IT.EditableTextInterface {
         this.optimized = optimized;
     }
 
-    public setId(id: string): void {
-        this.clientIdField.innerHTML = id;
+    public setId(id: T.ClientId): void {
+        this.clientIdField.innerHTML = id.toString();
     }
 
 

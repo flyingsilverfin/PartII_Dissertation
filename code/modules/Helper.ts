@@ -62,6 +62,26 @@ export function deleteAt(str: string, index: number) {
     return str.substring(0, index) + str.substring(index+1);
 }
 
+
+/* new as of switch to native Map() for MapCRDT */
+
+
+// need to parametrize function for this to work
+// it should be able to do type inference on the call though
+// 
+export function mapToJsonCompatible<K,V>(map: Map<K,V>): [K,V][] {
+    return [...map];
+}
+
+// and its inverse
+export function jsonToMap<K,V>(json: [K,V][]): Map<K,V> {
+    return new Map(json);
+}
+
+
+
+
+
 export function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
