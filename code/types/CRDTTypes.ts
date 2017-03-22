@@ -15,12 +15,21 @@ export interface ParallelStringArrays {
     idArray: string[]
 }
 
+
+/*
+    The messages are really built wrong: messages should contain tag for type of message
+    rather than relying on the embedding to take care of it
+*/
 export interface InsertMessage {
     id: string,
     char: string,
     after: string
 }
 
+// built in support for multiple undos of the same type in case I decide to do batching
+export interface UndoMessage {
+    id: string[]
+}
 
 export interface DeleteMessage {
     // id: string   // unsure exactly how to implement this
@@ -36,5 +45,6 @@ export interface MapCRDTStore {
 export interface MapEntry {
     c: string,  // character
     n: string,  // next link
-    d?: boolean // deleted
+    d?: number,  // deleted
+    v?: boolean  // visible, used for creator to undo
 }

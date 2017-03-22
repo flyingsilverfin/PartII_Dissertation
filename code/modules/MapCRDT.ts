@@ -113,11 +113,46 @@ class MapCRDT implements CT.CRDT {
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }
-        if (this.map[idToDelete].d) {
+        if (this.map[idToDelete].d > 0) {
             return false;
         }
-        this.map[idToDelete]['d'] = true;
+        this.map[idToDelete].d++;
         return true;
+    }
+
+
+    // has capability for multi undo already
+    public undoInsert(bundle: CT.UndoMessage): boolean {
+        let undoTargets = bundle.id;
+        for (let id in undoTargets) {
+            this.map[id].v = false;
+        }
+    }
+
+    // has capability for multi undo already
+    public undoDelete(bundle: CT.UndoMessage): boolean {
+        let undoTargets = bundle.id;
+        // since this is undo, by causality each target ID must already have been deleted ie. have a tag
+        for (let id in undoTargets) {
+            this.map[id].d++;
+        }
+    }
+
+    // has capability for multi undo already
+    public redoInsert(bundle: CT.UndoMessage): boolean {
+        let undoTargets = bundle.id;
+        for (let id in undoTargets) {
+            this.map[id].v = true;
+        }
+    }
+
+    // has capability for multi undo already
+    public redoDelete(bundle: CT.UndoMessage): boolean {
+        let undoTargets = bundle.id;
+        // since this is undo, by causality each target ID must already have been deleted ie. have a tag
+        for (let id in undoTargets) {
+            this.map[id].d--;
+        }
     }
 
     // implements interface

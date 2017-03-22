@@ -7,6 +7,7 @@ import EditableText from './EditableText';
 import NetworkInterface from './NetworkInterface';
 import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
+import ClientOpStack from './ClientOpStack';
 
 
 /*
@@ -28,6 +29,8 @@ class Client {
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
+
+    private opStack: ClientOpStack;
 
     private events: T.ScheduledEvents;    // all the events to insert and delete
     private optimized: boolean;
@@ -52,6 +55,7 @@ class Client {
         this.events = events;
         this.scheduler = scheduler;
         this.optimized = optimized;
+        this.opStack = new ClientOpStack();
 
         this.network = networkInterface;
         this.network.insertPacketReceived = this.insertReceived.bind(this);
@@ -69,6 +73,8 @@ class Client {
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
         this.interface.commitCallback = this.commit.bind(this);
+        this.interface.setUndoCallback(this.localUndo);
+        this.interface.setRedoCallback(this.localRedo);
 
         // TODO
         // this is a bit of a silly, unnecessarily hardcoded way of doing this...
@@ -82,7 +88,33 @@ class Client {
             this.network.requestCRDT(neighbor);
             // will callback to returnCRDTReceived when received the CRDT from neighbor
         }
+    }
 
+
+    private localUndo(): void {
+        if (!this.opStack.undoAvailable()) {
+            return;
+        }
+        let packet = this.opStack.undo();
+        let op = packet.bundle;
+
+        if (packet.type === "ui") {
+            this.dt.undoInsert(op);
+        } else {    // type ud - undo delete
+            this.dt.undoDelete(op);
+        }
+
+        packet.origin = this.id;
+        this.network.broadcast(packet);
+    }
+
+    private localRedo(): void {
+        if (!this.opStack.redoAvailable()) {
+            return;
+        }
+        let packet = this.opStack.redo();
+        packet.origin = this.id;
+        this.network.broadcast(packet);
     }
 
     private enable(): void {
@@ -188,7 +220,6 @@ class Client {
         //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
         //           
 
-        debugger
         let idOfAfter = this.getIdOfStringIndex(after);
         let bundle: CT.InsertMessage = {
             id: opId,
@@ -197,6 +228,7 @@ class Client {
         };
 
         this.dt.insert(bundle);
+        this.opStack.localInsert(opId);
 
 
         // this is bad - does a O(N) retrieval each insert!
@@ -254,6 +286,7 @@ class Client {
         };
 
         this.dt.delete(bundle);
+        this.opStack.localDelete(deletedId);
 
         let networkPacket: NT.NetworkPacket = {
             origin: this.id,

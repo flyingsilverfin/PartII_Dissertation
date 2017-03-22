@@ -4,8 +4,8 @@ import NetworkInterface from '../modules/NetworkInterface';
 
 export interface NetworkPacket {
     origin: string,
-    type: "i" | "d" | "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
-    bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | RequestCRDTMessage | ReturnCRDTMessage;
+    type: "i" | "d"  | "ui" | "ud" | "ri" | "rd" |  "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
+    bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | CRDTTypes.UndoMessage | RequestCRDTMessage | ReturnCRDTMessage;
 }
 
 export interface RequestCRDTMessage {

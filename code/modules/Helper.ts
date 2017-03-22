@@ -35,6 +35,21 @@ export class NoMoreNodesToAllocateException implements T.Exception {
     }
 }
 
+export class NoUndosAvailableException implements T.Exception {
+    msg: string;
+    constructor(msg) {
+        this.msg = msg;
+    }
+}
+
+export class NoRedosAvailableException implements T.Exception {
+    msg: string;
+    constructor(msg) {
+        this.msg = msg;
+    }
+}
+
+
 export function now(): number { 
     return Date.now();
 }

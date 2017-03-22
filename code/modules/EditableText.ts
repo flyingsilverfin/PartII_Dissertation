@@ -20,6 +20,14 @@ class EditableText implements IT.EditableTextInterface {
     public deleteCallback = null;
     public commitCallback = null;   // for word insert optimization
 
+
+    //new undo/redo capability
+    private undoButton: HTMLButtonElement;
+    private redoButton: HTMLButtonElement;
+    private undoCallback = null;    // need to be set via setter
+    private redoCallback = null;    // need to set via setter
+
+
     constructor(parent: HTMLDivElement, optimized=false) {
         this.container = document.createElement('div');
         this.container.className = 'client-container';
@@ -27,10 +35,21 @@ class EditableText implements IT.EditableTextInterface {
         this.clientIdField = document.createElement('h2');
         this.clientIdField.className = 'client-id';
 
+        this.undoButton = document.createElement('button');
+        this.undoButton.innerHTML = "undo";
+        this.undoButton.className = "client-button";
+            
+        this.redoButton = document.createElement('button');
+        this.redoButton.innerHTML = "redo";
+        this.redoButton.className = "client-button";
+
+
         this.textarea = document.createElement('textarea');
         this.textarea.className = 'client-textarea';
 
         this.container.appendChild(this.clientIdField);
+        this.container.appendChild(this.undoButton);
+        this.container.appendChild(this.redoButton);
         this.container.appendChild(this.textarea);
 
         parent.appendChild(this.container);
@@ -53,6 +72,18 @@ class EditableText implements IT.EditableTextInterface {
         this.textarea.value = text;
         this.setDirection(0);   // force client to commit it's own changes immediately
     }
+
+    public setUndoCallback(f: any): void {
+        this.undoCallback = f;
+        this.undoButton.onClick = this.undoCallback;
+    }
+
+    public setRedoCallback(f: any): void {
+        this.redoCallback = f;
+        this.redoButton.onclick = this.redoCallback;
+    }
+
+
 
     public incrementCursorPosition(n?:number): void {
         if (n === undefined) {
