@@ -2,6 +2,8 @@ import * as CT from '../types/CRDTTypes';
 import * as CC from './CRDTComparator';
 import * as Helper from './Helper';
 
+import UniquePairMap from './UniqueMap';
+
 
 class MapCRDT implements CT.CRDT {
 
@@ -18,7 +20,7 @@ class MapCRDT implements CT.CRDT {
 
         if (map === undefined) {
             // keep '0' as as an anchorpoint
-            this.map = new Map();
+            this.map = new UniquePairMap();
             this.map.set([0, -1], {
                     n: null,
                     c: ''

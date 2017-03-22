@@ -29,12 +29,19 @@ export interface DeleteMessage {
 
 
 // --- MapCRDT ---
-// SWITCHING to JS Map native as it supports keys that are objects like [1,2] etc.
+// SWITCHING back from JS Map native
+// but adding wrapper to support [1,2] as key
 
 
+export interface UniquePairMap<K, V> {
+    get(K): V,
+    set(K, V): void,
+    has(K): boolean,
+    keys(): [number, number][],
+    size(): number
+}
 
-export type MapCRDTStore = Map<id, MapEntry>;
-
+export type MapCRDTStore = UniquePairMap<id, MapEntry>;
 
 export type id = [number, T.ClientId];
 
