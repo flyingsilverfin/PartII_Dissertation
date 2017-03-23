@@ -1,0 +1,602 @@
+0    memory    34641256    pre-experiment
+0    memory    34730032    post-topology-init
+0    memory    42405672    post-graph-init
+0    memory    42419064    post-clients-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    sent    1    0    requestCRDT    2    
+0    sent    0    1    insert    43    coliseums    1.0    0
+100    join    2    Joined network!
+100    sent    2    0    requestCRDT    2    
+208.38680480157308    received    1    0    requestCRDT    2    
+208.38680480157308    sent    0    1    returnCRDT    288    257
+208.38680480157308    received    0    1    insert    43    coliseums    1.0    0
+259.5393113886031    received    2    0    requestCRDT    2    
+259.5393113886031    sent    0    2    returnCRDT    288    257
+400    join    3    Joined network!
+400    sent    3    0    requestCRDT    2    
+416.77360960314616    received    0    1    returnCRDT    288    257
+419.07862277720614    received    0    2    returnCRDT    288    257
+431.77360960314616    sent    1    0    insert    43    tackling    10.1    0
+449.07862277720614    sent    2    0    insert    45    freshening    10.2    0
+500    join    4    Joined network!
+500    sent    4    0    requestCRDT    2    
+500    join    5    Joined network!
+500    sent    5    0    requestCRDT    2    
+586.7160403705681    received    3    0    requestCRDT    2    
+586.7160403705681    sent    0    3    returnCRDT    288    257
+608.6179341658092    received    2    0    insert    45    freshening    10.2    0
+608.6179341658092    sent    0    1    insert    45    freshening    10.2    0
+608.6179341658092    sent    0    2    insert    45    freshening    10.2    0
+608.6179341658092    sent    0    3    insert    45    freshening    10.2    0
+608.6179341658092    sent    0    4    insert    45    freshening    10.2    0
+608.6179341658092    sent    0    5    insert    45    freshening    10.2    0
+640.1604144047192    received    1    0    insert    43    tackling    10.1    0
+640.1604144047192    sent    0    1    insert    43    tackling    10.1    0
+640.1604144047192    sent    0    2    insert    43    tackling    10.1    0
+640.1604144047192    sent    0    3    insert    43    tackling    10.1    0
+640.1604144047192    sent    0    4    insert    43    tackling    10.1    0
+640.1604144047192    sent    0    5    insert    43    tackling    10.1    0
+695.1278583065123    received    4    0    requestCRDT    2    
+695.1278583065123    sent    0    4    returnCRDT    804    761
+718.9761081010023    received    5    0    requestCRDT    2    
+718.9761081010023    sent    0    5    returnCRDT    804    761
+768.1572455544123    received    0    2    insert    45    freshening    10.2    0
+773.4320807411361    received    0    3    returnCRDT    288    257
+795.3339745363772    received    0    3    insert    45    freshening    10.2    0
+795.3339745363772    sent    3    0    insert    45    freshening    10.2    0
+799.6997257933223    received    0    2    insert    43    tackling    10.1    0
+799.6997257933223    sent    2    0    insert    43    tackling    10.1    0
+803.7457924723215    received    0    4    insert    45    freshening    10.2    0
+817.0047389673822    received    0    1    insert    45    freshening    10.2    0
+817.0047389673822    sent    1    0    insert    45    freshening    10.2    0
+818.4320807411361    sent    3    0    insert    40    irony    20.3    0
+826.8764547752872    received    0    3    insert    43    tackling    10.1    0
+826.8764547752872    sent    3    0    insert    43    tackling    10.1    0
+827.5940422668114    received    0    5    insert    45    freshening    10.2    0
+835.2882727112315    received    0    4    insert    43    tackling    10.1    0
+848.5472192062922    received    0    1    insert    43    tackling    10.1    0
+859.1365225057214    received    0    5    insert    43    tackling    10.1    0
+890.2557166130244    received    0    4    returnCRDT    804    761
+937.9522162020044    received    0    5    returnCRDT    804    761
+950.2557166130243    sent    4    0    insert    40    cagey    20.4    0
+959.2390371819251    received    2    0    insert    43    tackling    10.1    0
+982.0500149069452    received    3    0    insert    45    freshening    10.2    0
+999.9999999999997    join    6    Joined network!
+999.9999999999997    sent    6    0    requestCRDT    2    
+999.9999999999997    join    7    Joined network!
+999.9999999999997    sent    7    0    requestCRDT    2    
+999.9999999999997    join    8    Joined network!
+999.9999999999997    sent    8    0    requestCRDT    2    
+999.9999999999997    join    9    Joined network!
+999.9999999999997    sent    9    0    requestCRDT    2    
+1005.1481211117041    received    3    0    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    1    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    2    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    3    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    4    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    5    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    6    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    7    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    8    insert    40    irony    20.3    0
+1005.1481211117041    sent    0    9    insert    40    irony    20.3    0
+1012.9522162020044    sent    5    0    insert    49    discontinuance    20.5    0
+1013.5924951458552    received    3    0    insert    43    tackling    10.1    0
+1025.3915437689552    received    1    0    insert    45    freshening    10.2    0
+1145.3835749195368    received    4    0    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    1    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    2    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    3    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    4    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    5    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    6    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    7    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    8    insert    40    cagey    20.4    0
+1145.3835749195368    sent    0    9    insert    40    cagey    20.4    0
+1159.7227076439292    received    7    0    requestCRDT    2    
+1159.7227076439292    sent    0    7    returnCRDT    1096    1041
+1164.6874325003073    received    0    2    insert    40    irony    20.3    0
+1164.6874325003073    sent    2    0    insert    40    irony    20.3    0
+1164.8708287556337    received    0    7    insert    40    irony    20.3    0
+1188.2443192140213    received    9    0    requestCRDT    2    
+1188.2443192140213    sent    0    9    returnCRDT    1096    1041
+1191.8641614822723    received    0    3    insert    40    irony    20.3    0
+1193.3924403257256    received    0    9    insert    40    irony    20.3    0
+1200.2759794182164    received    0    4    insert    40    irony    20.3    0
+1200.2759794182164    sent    4    0    insert    40    irony    20.3    0
+1213.5349259132772    received    0    1    insert    40    irony    20.3    0
+1213.5349259132772    sent    1    0    insert    40    irony    20.3    0
+1218.425840853772    received    8    0    requestCRDT    2    
+1218.425840853772    sent    0    8    returnCRDT    1096    1041
+1223.5739619654762    received    0    8    insert    40    irony    20.3    0
+1224.1242292127065    received    0    5    insert    40    irony    20.3    0
+1224.1242292127065    sent    5    0    insert    40    irony    20.3    0
+1230.9572853511631    received    6    0    requestCRDT    2    
+1230.9572853511631    sent    0    6    returnCRDT    1096    1041
+1231.9283243030068    received    5    0    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    1    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    2    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    3    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    4    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    5    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    6    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    7    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    8    insert    49    discontinuance    20.5    0
+1231.9283243030068    sent    0    9    insert    49    discontinuance    20.5    0
+1236.1054064628674    received    0    6    insert    40    irony    20.3    0
+1304.9228863081398    received    0    2    insert    40    cagey    20.4    0
+1304.9228863081398    sent    2    0    insert    40    cagey    20.4    0
+1305.1062825634663    received    0    7    insert    40    cagey    20.4    0
+1319.4454152878586    received    0    7    returnCRDT    1096    1041
+1324.2267438889103    received    2    0    insert    40    irony    20.3    0
+1332.0996152901048    received    0    3    insert    40    cagey    20.4    0
+1332.0996152901048    sent    3    0    insert    40    cagey    20.4    0
+1333.6278941335581    received    0    9    insert    40    cagey    20.4    0
+1340.511433226049    received    0    4    insert    40    cagey    20.4    0
+1353.7703797211097    received    0    1    insert    40    cagey    20.4    0
+1353.7703797211097    sent    1    0    insert    40    cagey    20.4    0
+1363.8094157733087    received    0    8    insert    40    cagey    20.4    0
+1364.359683020539    received    0    5    insert    40    cagey    20.4    0
+1364.359683020539    sent    5    0    insert    40    cagey    20.4    0
+1376.3408602707002    received    0    6    insert    40    cagey    20.4    0
+1376.4886384280426    received    0    9    returnCRDT    1096    1041
+1391.4676356916098    received    0    2    insert    49    discontinuance    20.5    0
+1391.4676356916098    sent    2    0    insert    49    discontinuance    20.5    0
+1391.6510319469362    received    0    7    insert    49    discontinuance    20.5    0
+1391.6510319469362    sent    7    0    insert    49    discontinuance    20.5    0
+1395.4038377247289    received    4    0    insert    40    irony    20.3    0
+1418.644364673575    received    0    3    insert    49    discontinuance    20.5    0
+1418.644364673575    sent    3    0    insert    49    discontinuance    20.5    0
+1420.1726435170283    received    0    9    insert    49    discontinuance    20.5    0
+1420.1726435170283    sent    9    0    insert    49    discontinuance    20.5    0
+1421.9217307148504    received    1    0    insert    40    irony    20.3    0
+1424.4454152878586    sent    7    0    insert    41    Aludra    34.7    0
+1427.056182609519    received    0    4    insert    49    discontinuance    20.5    0
+1427.056182609519    sent    4    0    insert    49    discontinuance    20.5    0
+1436.8516817075438    received    0    8    returnCRDT    1096    1041
+1440.3151291045797    received    0    1    insert    49    discontinuance    20.5    0
+1440.3151291045797    sent    1    0    insert    49    discontinuance    20.5    0
+1443.1003373137087    received    5    0    insert    40    irony    20.3    0
+1450.3541651567787    received    0    8    insert    49    discontinuance    20.5    0
+1450.3541651567787    sent    8    0    insert    49    discontinuance    20.5    0
+1450.904432404009    received    0    5    insert    49    discontinuance    20.5    0
+1461.9145707023265    received    0    6    returnCRDT    1096    1041
+1462.8856096541701    received    0    6    insert    49    discontinuance    20.5    0
+1462.8856096541701    sent    6    0    insert    49    discontinuance    20.5    0
+1464.4621976967428    received    2    0    insert    40    cagey    20.4    0
+1499.9999999999998    join    10    Joined network!
+1499.9999999999998    sent    10    0    requestCRDT    2    
+1511.4886384280426    sent    9    0    insert    37    Dr    34.9    0
+1518.815655660673    received    3    0    insert    40    cagey    20.4    0
+1551.006947080213    received    2    0    insert    49    discontinuance    20.5    0
+1551.3737395908656    received    7    0    insert    49    discontinuance    20.5    0
+1551.9145707023265    sent    6    0    insert    44    courtroom    34.6    0
+1556.8516817075438    sent    8    0    insert    40    Soddy    34.8    0
+1562.1571845226829    received    1    0    insert    40    cagey    20.4    0
+1583.3357911215412    received    5    0    insert    40    cagey    20.4    0
+1584.1681229317878    received    7    0    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    1    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    2    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    3    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    4    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    5    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    6    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    7    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    8    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    9    insert    41    Aludra    34.7    0
+1584.1681229317878    sent    0    10    insert    41    Aludra    34.7    0
+1605.3604050441427    received    3    0    insert    49    discontinuance    20.5    0
+1608.4169627310494    received    9    0    insert    49    discontinuance    20.5    0
+1622.184040916031    received    4    0    insert    49    discontinuance    20.5    0
+1648.7019339061526    received    1    0    insert    49    discontinuance    20.5    0
+1668.7800060105506    received    8    0    insert    49    discontinuance    20.5    0
+1693.8428950053333    received    6    0    insert    49    discontinuance    20.5    0
+1699.7329576420639    received    9    0    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    1    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    2    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    3    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    4    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    5    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    6    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    7    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    8    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    9    insert    37    Dr    34.9    0
+1699.7329576420639    sent    0    10    insert    37    Dr    34.9    0
+1701.680592224599    received    10    0    requestCRDT    2    
+1701.680592224599    sent    0    10    returnCRDT    1730    1657
+1743.7074343203908    received    0    2    insert    41    Aludra    34.7    0
+1743.7074343203908    sent    2    0    insert    41    Aludra    34.7    0
+1743.8908305757172    received    0    7    insert    41    Aludra    34.7    0
+1770.884163302356    received    0    3    insert    41    Aludra    34.7    0
+1770.884163302356    sent    3    0    insert    41    Aludra    34.7    0
+1772.4124421458093    received    0    9    insert    41    Aludra    34.7    0
+1772.4124421458093    sent    9    0    insert    41    Aludra    34.7    0
+1775.277522561316    received    8    0    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    1    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    2    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    3    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    4    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    5    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    6    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    7    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    8    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    9    insert    40    Soddy    34.8    0
+1775.277522561316    sent    0    10    insert    40    Soddy    34.8    0
+1779.2959812383003    received    0    4    insert    41    Aludra    34.7    0
+1779.2959812383003    sent    4    0    insert    41    Aludra    34.7    0
+1782.8718560534899    received    6    0    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    1    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    2    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    3    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    4    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    5    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    6    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    7    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    8    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    9    insert    44    courtroom    34.6    0
+1782.8718560534899    sent    0    10    insert    44    courtroom    34.6    0
+1785.8487151563872    received    0    10    insert    41    Aludra    34.7    0
+1792.554927733361    received    0    1    insert    41    Aludra    34.7    0
+1792.554927733361    sent    1    0    insert    41    Aludra    34.7    0
+1802.59396378556    received    0    8    insert    41    Aludra    34.7    0
+1802.59396378556    sent    8    0    insert    41    Aludra    34.7    0
+1803.1442310327902    received    0    5    insert    41    Aludra    34.7    0
+1803.1442310327902    sent    5    0    insert    41    Aludra    34.7    0
+1815.1254082829514    received    0    6    insert    41    Aludra    34.7    0
+1815.1254082829514    sent    6    0    insert    41    Aludra    34.7    0
+1859.2722690306673    received    0    2    insert    37    Dr    34.9    0
+1859.2722690306673    sent    2    0    insert    37    Dr    34.9    0
+1859.4556652859937    received    0    7    insert    37    Dr    34.9    0
+1859.4556652859937    sent    7    0    insert    37    Dr    34.9    0
+1886.4489980126325    received    0    3    insert    37    Dr    34.9    0
+1886.4489980126325    sent    3    0    insert    37    Dr    34.9    0
+1887.9772768560858    received    0    9    insert    37    Dr    34.9    0
+1894.8608159485766    received    0    4    insert    37    Dr    34.9    0
+1894.8608159485766    sent    4    0    insert    37    Dr    34.9    0
+1901.4135498666637    received    0    10    insert    37    Dr    34.9    0
+1903.2467457089945    received    2    0    insert    41    Aludra    34.7    0
+1903.3611844491988    received    0    10    returnCRDT    1730    1657
+1908.1197624436375    received    0    1    insert    37    Dr    34.9    0
+1908.1197624436375    sent    1    0    insert    37    Dr    34.9    0
+1918.1587984958364    received    0    8    insert    37    Dr    34.9    0
+1918.1587984958364    sent    8    0    insert    37    Dr    34.9    0
+1918.7090657430667    received    0    5    insert    37    Dr    34.9    0
+1918.7090657430667    sent    5    0    insert    37    Dr    34.9    0
+1930.690242993228    received    0    6    insert    37    Dr    34.9    0
+1930.690242993228    sent    6    0    insert    37    Dr    34.9    0
+1934.8168339499193    received    0    2    insert    40    Soddy    34.8    0
+1934.8168339499193    sent    2    0    insert    40    Soddy    34.8    0
+1935.0002302052458    received    0    7    insert    40    Soddy    34.8    0
+1935.0002302052458    sent    7    0    insert    40    Soddy    34.8    0
+1942.4111674420933    received    0    2    insert    44    courtroom    34.6    0
+1942.4111674420933    sent    2    0    insert    44    courtroom    34.6    0
+1942.5945636974197    received    0    7    insert    44    courtroom    34.6    0
+1942.5945636974197    sent    7    0    insert    44    courtroom    34.6    0
+1957.6002036729246    received    3    0    insert    41    Aludra    34.7    0
+1960.6567613598313    received    9    0    insert    41    Aludra    34.7    0
+1961.9935629318843    received    0    3    insert    40    Soddy    34.8    0
+1961.9935629318843    sent    3    0    insert    40    Soddy    34.8    0
+1963.5218417753376    received    0    9    insert    40    Soddy    34.8    0
+1963.5218417753376    sent    9    0    insert    40    Soddy    34.8    0
+1969.5878964240583    received    0    3    insert    44    courtroom    34.6    0
+1969.5878964240583    sent    3    0    insert    44    courtroom    34.6    0
+1970.4053808678284    received    0    4    insert    40    Soddy    34.8    0
+1970.4053808678284    sent    4    0    insert    40    Soddy    34.8    0
+1971.1161752675116    received    0    9    insert    44    courtroom    34.6    0
+1971.1161752675116    sent    9    0    insert    44    courtroom    34.6    0
+1974.4238395448128    received    4    0    insert    41    Aludra    34.7    0
+1976.9581147859155    received    0    10    insert    40    Soddy    34.8    0
+1976.9581147859155    sent    10    0    insert    40    Soddy    34.8    0
+1977.9997143600026    received    0    4    insert    44    courtroom    34.6    0
+1977.9997143600026    sent    4    0    insert    44    courtroom    34.6    0
+1983.6643273628893    received    0    1    insert    40    Soddy    34.8    0
+1983.6643273628893    sent    1    0    insert    40    Soddy    34.8    0
+1984.5524482780895    received    0    10    insert    44    courtroom    34.6    0
+1984.5524482780895    sent    10    0    insert    44    courtroom    34.6    0
+1991.2586608550632    received    0    1    insert    44    courtroom    34.6    0
+1991.2586608550632    sent    1    0    insert    44    courtroom    34.6    0
+1993.7033634150882    received    0    8    insert    40    Soddy    34.8    0
+1994.2536306623185    received    0    5    insert    40    Soddy    34.8    0
+1994.2536306623185    sent    5    0    insert    40    Soddy    34.8    0
+2000    join    11    Joined network!
+2000    sent    11    0    requestCRDT    2    
+2000.9417325349345    received    1    0    insert    41    Aludra    34.7    0
+2001.2976969072624    received    0    8    insert    44    courtroom    34.6    0
+2001.2976969072624    sent    8    0    insert    44    courtroom    34.6    0
+2001.8479641544927    received    0    5    insert    44    courtroom    34.6    0
+2001.8479641544927    sent    5    0    insert    44    courtroom    34.6    0
+2006.23480791248    received    0    6    insert    40    Soddy    34.8    0
+2006.23480791248    sent    6    0    insert    40    Soddy    34.8    0
+2013.829141404654    received    0    6    insert    44    courtroom    34.6    0
+2018.8115804192707    received    2    0    insert    37    Dr    34.9    0
+2019.1783729299234    received    7    0    insert    37    Dr    34.9    0
+2021.0198046393325    received    8    0    insert    41    Aludra    34.7    0
+2022.120339133793    received    5    0    insert    41    Aludra    34.7    0
+2046.0826936341152    received    6    0    insert    41    Aludra    34.7    0
+2053.361184449199    sent    10    0    insert    49    interrogative    43.10    0
+2073.1650383832007    received    3    0    insert    37    Dr    34.9    0
+2089.988674255089    received    4    0    insert    37    Dr    34.9    0
+2094.3561453385223    received    2    0    insert    40    Soddy    34.8    0
+2094.722937849175    received    7    0    insert    40    Soddy    34.8    0
+2101.9504788306963    received    2    0    insert    44    courtroom    34.6    0
+2102.317271341349    received    7    0    insert    44    courtroom    34.6    0
+2116.5065672452106    received    1    0    insert    37    Dr    34.9    0
+2136.5846393496086    received    8    0    insert    37    Dr    34.9    0
+2137.685173844069    received    5    0    insert    37    Dr    34.9    0
+2148.7096033024527    received    3    0    insert    40    Soddy    34.8    0
+2151.7661609893594    received    9    0    insert    40    Soddy    34.8    0
+2156.3039367946267    received    3    0    insert    44    courtroom    34.6    0
+2159.3604944815334    received    9    0    insert    44    courtroom    34.6    0
+2161.6475283443915    received    6    0    insert    37    Dr    34.9    0
+2165.5332391743414    received    4    0    insert    40    Soddy    34.8    0
+2173.1275726665153    received    4    0    insert    44    courtroom    34.6    0
+2177.7676314730375    received    11    0    requestCRDT    2    
+2177.7676314730375    sent    0    11    returnCRDT    2134    2049
+2178.638707010515    received    10    0    insert    40    Soddy    34.8    0
+2186.233040502689    received    10    0    insert    44    courtroom    34.6    0
+2192.0511321644626    received    1    0    insert    40    Soddy    34.8    0
+2199.6454656566366    received    1    0    insert    44    courtroom    34.6    0
+2213.229738763321    received    5    0    insert    40    Soddy    34.8    0
+2219.7235377610345    received    8    0    insert    44    courtroom    34.6    0
+2220.824072255495    received    5    0    insert    44    courtroom    34.6    0
+2237.1920932636435    received    6    0    insert    40    Soddy    34.8    0
+2255.0417766737987    received    10    0    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    1    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    2    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    3    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    4    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    5    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    6    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    7    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    8    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    9    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    10    insert    49    interrogative    43.10    0
+2255.0417766737987    sent    0    11    insert    49    interrogative    43.10    0
+2355.535262946075    received    0    11    returnCRDT    2134    2049
+2414.581088062402    received    0    2    insert    49    interrogative    43.10    0
+2414.581088062402    sent    2    0    insert    49    interrogative    43.10    0
+2414.7644843177286    received    0    7    insert    49    interrogative    43.10    0
+2414.7644843177286    sent    7    0    insert    49    interrogative    43.10    0
+2432.809408146836    received    0    11    insert    49    interrogative    43.10    0
+2432.809408146836    sent    11    0    insert    49    interrogative    43.10    0
+2441.757817044367    received    0    3    insert    49    interrogative    43.10    0
+2441.757817044367    sent    3    0    insert    49    interrogative    43.10    0
+2443.2860958878205    received    0    9    insert    49    interrogative    43.10    0
+2443.2860958878205    sent    9    0    insert    49    interrogative    43.10    0
+2450.1696349803115    received    0    4    insert    49    interrogative    43.10    0
+2450.1696349803115    sent    4    0    insert    49    interrogative    43.10    0
+2456.7223688983986    received    0    10    insert    49    interrogative    43.10    0
+2463.4285814753725    received    0    1    insert    49    interrogative    43.10    0
+2463.4285814753725    sent    1    0    insert    49    interrogative    43.10    0
+2473.4676175275717    received    0    8    insert    49    interrogative    43.10    0
+2473.4676175275717    sent    8    0    insert    49    interrogative    43.10    0
+2474.017884774802    received    0    5    insert    49    interrogative    43.10    0
+2474.017884774802    sent    5    0    insert    49    interrogative    43.10    0
+2485.999062024963    received    0    6    insert    49    interrogative    43.10    0
+2485.999062024963    sent    6    0    insert    49    interrogative    43.10    0
+2520.535262946076    sent    11    0    insert    47    established    56.11    0
+2574.120399451006    received    2    0    insert    49    interrogative    43.10    0
+2574.487191961659    received    7    0    insert    49    interrogative    43.10    0
+2610.5770396198745    received    11    0    insert    49    interrogative    43.10    0
+2628.4738574149364    received    3    0    insert    49    interrogative    43.10    0
+2631.530415101843    received    9    0    insert    49    interrogative    43.10    0
+2645.2974932868246    received    4    0    insert    49    interrogative    43.10    0
+2671.8153862769464    received    1    0    insert    49    interrogative    43.10    0
+2691.8934583813443    received    8    0    insert    49    interrogative    43.10    0
+2692.993992875805    received    5    0    insert    49    interrogative    43.10    0
+2698.3028944191133    received    11    0    insert    47    established    56.11    0
+2698.3028944191133    sent    0    1    insert    47    established    56.11    0
+2698.3028944191133    sent    0    2    insert    47    established    56.11    0
+2698.3028944191133    sent    0    3    insert    47    established    56.11    0
+2698.3028944191133    sent    0    4    insert    47    established    56.11    0
+2698.3028944191133    sent    0    5    insert    47    established    56.11    0
+2698.3028944191133    sent    0    6    insert    47    established    56.11    0
+2698.3028944191133    sent    0    7    insert    47    established    56.11    0
+2698.3028944191133    sent    0    8    insert    47    established    56.11    0
+2698.3028944191133    sent    0    9    insert    47    established    56.11    0
+2698.3028944191133    sent    0    10    insert    47    established    56.11    0
+2698.3028944191133    sent    0    11    insert    47    established    56.11    0
+2716.956347376127    received    6    0    insert    49    interrogative    43.10    0
+2857.8422058077163    received    0    2    insert    47    established    56.11    0
+2857.8422058077163    sent    2    0    insert    47    established    56.11    0
+2858.0256020630427    received    0    7    insert    47    established    56.11    0
+2858.0256020630427    sent    7    0    insert    47    established    56.11    0
+2876.0705258921503    received    0    11    insert    47    established    56.11    0
+2885.018934789681    received    0    3    insert    47    established    56.11    0
+2885.018934789681    sent    3    0    insert    47    established    56.11    0
+2886.5472136331346    received    0    9    insert    47    established    56.11    0
+2886.5472136331346    sent    9    0    insert    47    established    56.11    0
+2893.4307527256256    received    0    4    insert    47    established    56.11    0
+2893.4307527256256    sent    4    0    insert    47    established    56.11    0
+2899.9834866437127    received    0    10    insert    47    established    56.11    0
+2899.9834866437127    sent    10    0    insert    47    established    56.11    0
+2906.6896992206866    received    0    1    insert    47    established    56.11    0
+2906.6896992206866    sent    1    0    insert    47    established    56.11    0
+2916.7287352728854    received    0    8    insert    47    established    56.11    0
+2916.7287352728854    sent    8    0    insert    47    established    56.11    0
+2917.2790025201157    received    0    5    insert    47    established    56.11    0
+2917.2790025201157    sent    5    0    insert    47    established    56.11    0
+2929.260179770277    received    0    6    insert    47    established    56.11    0
+2929.260179770277    sent    6    0    insert    47    established    56.11    0
+3017.3815171963197    received    2    0    insert    47    established    56.11    0
+3017.7483097069726    received    7    0    insert    47    established    56.11    0
+3071.73497516025    received    3    0    insert    47    established    56.11    0
+3074.7915328471568    received    9    0    insert    47    established    56.11    0
+3088.5586110321383    received    4    0    insert    47    established    56.11    0
+3101.6640788683126    received    10    0    insert    47    established    56.11    0
+3115.07650402226    received    1    0    insert    47    established    56.11    0
+3135.154576126658    received    8    0    insert    47    established    56.11    0
+3136.2551106211185    received    5    0    insert    47    established    56.11    0
+3160.217465121441    received    6    0    insert    47    established    56.11    0
+4000.000000000002    join    12    Joined network!
+4000.000000000002    sent    12    0    requestCRDT    2    
+4212.255063373259    received    12    0    requestCRDT    2    
+4212.255063373259    sent    0    12    returnCRDT    2868    2769
+4424.510126746516    received    0    12    returnCRDT    2868    2769
+4604.510126746516    sent    12    0    insert    47    admonishing    67.12    0
+4816.765190119773    received    12    0    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    1    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    2    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    3    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    4    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    5    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    6    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    7    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    8    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    9    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    10    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    11    insert    47    admonishing    67.12    0
+4816.765190119773    sent    0    12    insert    47    admonishing    67.12    0
+4976.304501508376    received    0    2    insert    47    admonishing    67.12    0
+4976.304501508376    sent    2    0    insert    47    admonishing    67.12    0
+4976.487897763703    received    0    7    insert    47    admonishing    67.12    0
+4976.487897763703    sent    7    0    insert    47    admonishing    67.12    0
+4994.53282159281    received    0    11    insert    47    admonishing    67.12    0
+4994.53282159281    sent    11    0    insert    47    admonishing    67.12    0
+5003.481230490341    received    0    3    insert    47    admonishing    67.12    0
+5003.481230490341    sent    3    0    insert    47    admonishing    67.12    0
+5005.009509333794    received    0    9    insert    47    admonishing    67.12    0
+5005.009509333794    sent    9    0    insert    47    admonishing    67.12    0
+5011.893048426285    received    0    4    insert    47    admonishing    67.12    0
+5011.893048426285    sent    4    0    insert    47    admonishing    67.12    0
+5018.445782344372    received    0    10    insert    47    admonishing    67.12    0
+5018.445782344372    sent    10    0    insert    47    admonishing    67.12    0
+5025.151994921345    received    0    1    insert    47    admonishing    67.12    0
+5025.151994921345    sent    1    0    insert    47    admonishing    67.12    0
+5029.0202534930295    received    0    12    insert    47    admonishing    67.12    0
+5035.191030973545    received    0    8    insert    47    admonishing    67.12    0
+5035.191030973545    sent    8    0    insert    47    admonishing    67.12    0
+5035.741298220775    received    0    5    insert    47    admonishing    67.12    0
+5035.741298220775    sent    5    0    insert    47    admonishing    67.12    0
+5047.722475470936    received    0    6    insert    47    admonishing    67.12    0
+5047.722475470936    sent    6    0    insert    47    admonishing    67.12    0
+5135.843812896978    received    2    0    insert    47    admonishing    67.12    0
+5136.210605407631    received    7    0    insert    47    admonishing    67.12    0
+5172.300453065846    received    11    0    insert    47    admonishing    67.12    0
+5190.197270860908    received    3    0    insert    47    admonishing    67.12    0
+5193.253828547815    received    9    0    insert    47    admonishing    67.12    0
+5207.020906732797    received    4    0    insert    47    admonishing    67.12    0
+5220.126374568971    received    10    0    insert    47    admonishing    67.12    0
+5233.538799722919    received    1    0    insert    47    admonishing    67.12    0
+5253.616871827317    received    8    0    insert    47    admonishing    67.12    0
+5254.717406321777    received    5    0    insert    47    admonishing    67.12    0
+5278.6797608220995    received    6    0    insert    47    admonishing    67.12    0
+6000.000000000001    join    13    Joined network!
+6000.000000000001    sent    13    0    requestCRDT    2    
+6231.898328561369    received    13    0    requestCRDT    2    
+6231.898328561369    sent    0    13    returnCRDT    3205    3099
+6463.796657122738    received    0    13    returnCRDT    3205    3099
+6658.796657122738    sent    13    0    insert    47    attentively    78.13    0
+6890.6949856841065    received    13    0    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    1    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    2    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    3    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    4    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    5    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    6    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    7    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    8    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    9    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    10    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    11    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    12    insert    47    attentively    78.13    0
+6890.6949856841065    sent    0    13    insert    47    attentively    78.13    0
+7050.2342970727095    received    0    2    insert    47    attentively    78.13    0
+7050.2342970727095    sent    2    0    insert    47    attentively    78.13    0
+7050.417693328036    received    0    7    insert    47    attentively    78.13    0
+7050.417693328036    sent    7    0    insert    47    attentively    78.13    0
+7068.4626171571435    received    0    11    insert    47    attentively    78.13    0
+7068.4626171571435    sent    11    0    insert    47    attentively    78.13    0
+7077.411026054674    received    0    3    insert    47    attentively    78.13    0
+7077.411026054674    sent    3    0    insert    47    attentively    78.13    0
+7078.939304898127    received    0    9    insert    47    attentively    78.13    0
+7078.939304898127    sent    9    0    insert    47    attentively    78.13    0
+7085.822843990618    received    0    4    insert    47    attentively    78.13    0
+7085.822843990618    sent    4    0    insert    47    attentively    78.13    0
+7092.375577908705    received    0    10    insert    47    attentively    78.13    0
+7092.375577908705    sent    10    0    insert    47    attentively    78.13    0
+7099.0817904856785    received    0    1    insert    47    attentively    78.13    0
+7099.0817904856785    sent    1    0    insert    47    attentively    78.13    0
+7102.950049057363    received    0    12    insert    47    attentively    78.13    0
+7102.950049057363    sent    12    0    insert    47    attentively    78.13    0
+7109.120826537877    received    0    8    insert    47    attentively    78.13    0
+7109.120826537877    sent    8    0    insert    47    attentively    78.13    0
+7109.671093785108    received    0    5    insert    47    attentively    78.13    0
+7109.671093785108    sent    5    0    insert    47    attentively    78.13    0
+7121.652271035268    received    0    6    insert    47    attentively    78.13    0
+7121.652271035268    sent    6    0    insert    47    attentively    78.13    0
+7122.593314245473    received    0    13    insert    47    attentively    78.13    0
+7209.773608461311    received    2    0    insert    47    attentively    78.13    0
+7210.140400971964    received    7    0    insert    47    attentively    78.13    0
+7246.230248630179    received    11    0    insert    47    attentively    78.13    0
+7264.127066425241    received    3    0    insert    47    attentively    78.13    0
+7267.183624112147    received    9    0    insert    47    attentively    78.13    0
+7280.950702297129    received    4    0    insert    47    attentively    78.13    0
+7294.056170133304    received    10    0    insert    47    attentively    78.13    0
+7307.468595287251    received    1    0    insert    47    attentively    78.13    0
+7315.20511243062    received    12    0    insert    47    attentively    78.13    0
+7327.54666739165    received    8    0    insert    47    attentively    78.13    0
+7328.64720188611    received    5    0    insert    47    attentively    78.13    0
+7352.609556386433    received    6    0    insert    47    attentively    78.13    0
+10000.000000000004    join    14    Joined network!
+10000.000000000004    sent    14    0    requestCRDT    2    
+10192.740074241774    received    14    0    requestCRDT    2    
+10192.740074241774    sent    0    14    returnCRDT    3542    3429
+10385.480148483544    received    0    14    returnCRDT    3542    3429
+10595.480148483544    sent    14    0    insert    44    piloting    89.14    0
+10788.220222725315    received    14    0    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    1    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    2    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    3    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    4    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    5    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    6    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    7    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    8    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    9    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    10    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    11    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    12    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    13    insert    44    piloting    89.14    0
+10788.220222725315    sent    0    14    insert    44    piloting    89.14    0
+10947.759534113919    received    0    2    insert    44    piloting    89.14    0
+10947.759534113919    sent    2    0    insert    44    piloting    89.14    0
+10947.942930369245    received    0    7    insert    44    piloting    89.14    0
+10947.942930369245    sent    7    0    insert    44    piloting    89.14    0
+10965.987854198353    received    0    11    insert    44    piloting    89.14    0
+10965.987854198353    sent    11    0    insert    44    piloting    89.14    0
+10974.936263095884    received    0    3    insert    44    piloting    89.14    0
+10974.936263095884    sent    3    0    insert    44    piloting    89.14    0
+10976.464541939338    received    0    9    insert    44    piloting    89.14    0
+10976.464541939338    sent    9    0    insert    44    piloting    89.14    0
+10980.960296967087    received    0    14    insert    44    piloting    89.14    0
+10983.348081031829    received    0    4    insert    44    piloting    89.14    0
+10983.348081031829    sent    4    0    insert    44    piloting    89.14    0
+10989.900814949915    received    0    10    insert    44    piloting    89.14    0
+10989.900814949915    sent    10    0    insert    44    piloting    89.14    0
+10996.607027526888    received    0    1    insert    44    piloting    89.14    0
+10996.607027526888    sent    1    0    insert    44    piloting    89.14    0
+11000.475286098572    received    0    12    insert    44    piloting    89.14    0
+11000.475286098572    sent    12    0    insert    44    piloting    89.14    0
+11006.646063579086    received    0    8    insert    44    piloting    89.14    0
+11006.646063579086    sent    8    0    insert    44    piloting    89.14    0
+11007.196330826317    received    0    5    insert    44    piloting    89.14    0
+11007.196330826317    sent    5    0    insert    44    piloting    89.14    0
+11019.177508076478    received    0    6    insert    44    piloting    89.14    0
+11019.177508076478    sent    6    0    insert    44    piloting    89.14    0
+11020.118551286683    received    0    13    insert    44    piloting    89.14    0
+11020.118551286683    sent    13    0    insert    44    piloting    89.14    0
+11107.29884550252    received    2    0    insert    44    piloting    89.14    0
+11107.665638013174    received    7    0    insert    44    piloting    89.14    0
+11143.755485671389    received    11    0    insert    44    piloting    89.14    0
+11161.65230346645    received    3    0    insert    44    piloting    89.14    0
+11164.708861153356    received    9    0    insert    44    piloting    89.14    0
+11178.475939338337    received    4    0    insert    44    piloting    89.14    0
+11191.581407174512    received    10    0    insert    44    piloting    89.14    0
+11204.993832328459    received    1    0    insert    44    piloting    89.14    0
+11212.730349471827    received    12    0    insert    44    piloting    89.14    0
+11225.071904432858    received    8    0    insert    44    piloting    89.14    0
+11226.172438927319    received    5    0    insert    44    piloting    89.14    0
+11250.13479342764    received    6    0    insert    44    piloting    89.14    0
+11252.01687984805    received    13    0    insert    44    piloting    89.14    0
+11252.01687984805    memory    9565144    post-experiment

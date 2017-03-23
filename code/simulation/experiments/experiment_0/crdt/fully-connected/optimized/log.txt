@@ -1,7 +1,7 @@
-0    memory    7746024    pre-experiment
-0    memory    7920288    post-topology-init
-0    memory    8052320    post-graph-init
-0    memory    8068168    post-clients-init
+0    memory    12986056    pre-experiment
+0    memory    13091768    post-topology-init
+0    memory    15980744    post-graph-init
+0    memory    15994416    post-clients-init
 0    join    0    Joined network!
 0    join    1    Joined network!
 0    sent    1    0    requestCRDT    2    
@@ -9,14 +9,14 @@
 100    join    2    Joined network!
 100    sent    2    0    requestCRDT    2    
 208.38680480157308    received    1    0    requestCRDT    2    
-208.38680480157308    sent    0    1    returnCRDT    326    317
+208.38680480157308    sent    0    1    returnCRDT    288    257
 208.38680480157308    received    0    1    insert    43    coliseums    1.0    0
 259.5393113886031    received    2    0    requestCRDT    2    
-259.5393113886031    sent    0    2    returnCRDT    326    317
+259.5393113886031    sent    0    2    returnCRDT    288    257
 400    join    3    Joined network!
 400    sent    3    0    requestCRDT    2    
-416.77360960314616    received    0    1    returnCRDT    326    317
-419.07862277720614    received    0    2    returnCRDT    326    317
+416.77360960314616    received    0    1    returnCRDT    288    257
+419.07862277720614    received    0    2    returnCRDT    288    257
 431.77360960314616    sent    1    0    insert    43    tackling    10.1    0
 431.77360960314616    sent    1    2    insert    43    tackling    10.1    0
 431.77360960314616    sent    1    3    insert    43    tackling    10.1    0
@@ -28,7 +28,7 @@
 500    join    5    Joined network!
 500    sent    5    0    requestCRDT    2    
 586.7160403705681    received    3    0    requestCRDT    2    
-586.7160403705681    sent    0    3    returnCRDT    326    317
+586.7160403705681    sent    0    3    returnCRDT    288    257
 598.5707664340057    received    2    3    insert    45    freshening    10.2    0
 602.9365176909507    received    1    2    insert    43    tackling    10.1    0
 602.9365176909507    sent    2    0    insert    43    tackling    10.1    0
@@ -56,14 +56,14 @@
 640.1604144047192    sent    0    4    insert    43    tackling    10.1    0
 640.1604144047192    sent    0    5    insert    43    tackling    10.1    0
 695.1278583065123    received    4    0    requestCRDT    2    
-695.1278583065123    sent    0    4    returnCRDT    938    929
+695.1278583065123    sent    0    4    returnCRDT    804    761
 718.9761081010023    received    5    0    requestCRDT    2    
-718.9761081010023    sent    0    5    returnCRDT    938    929
+718.9761081010023    sent    0    5    returnCRDT    804    761
 752.4286613477502    received    2    3    insert    43    tackling    10.1    0
 760.8404792836944    received    2    4    insert    43    tackling    10.1    0
 762.4758290795537    received    2    0    insert    43    tackling    10.1    0
 768.1572455544122    received    0    2    insert    45    freshening    10.2    0
-773.4320807411361    received    0    3    returnCRDT    326    317
+773.4320807411361    received    0    3    returnCRDT    288    257
 773.4320807411361    sent    3    0    insert    45    freshening    10.2    0
 773.4320807411361    sent    3    1    insert    45    freshening    10.2    0
 773.4320807411361    sent    3    2    insert    45    freshening    10.2    0
@@ -81,11 +81,11 @@
 799.6997257933224    received    0    2    insert    43    tackling    10.1    0
 803.7457924723216    received    0    4    insert    45    freshening    10.2    0
 817.0047389673823    received    0    1    insert    45    freshening    10.2    0
-818.4320807411362    sent    3    0    insert    40    irony    18.3    0
-818.4320807411362    sent    3    1    insert    40    irony    18.3    0
-818.4320807411362    sent    3    2    insert    40    irony    18.3    0
-818.4320807411362    sent    3    4    insert    40    irony    18.3    0
-818.4320807411362    sent    3    5    insert    40    irony    18.3    0
+818.4320807411362    sent    3    0    insert    40    irony    20.3    0
+818.4320807411362    sent    3    1    insert    40    irony    20.3    0
+818.4320807411362    sent    3    2    insert    40    irony    20.3    0
+818.4320807411362    sent    3    4    insert    40    irony    20.3    0
+818.4320807411362    sent    3    5    insert    40    irony    20.3    0
 818.5811679347803    received    1    3    insert    45    freshening    10.2    0
 826.8764547752874    received    0    3    insert    43    tackling    10.1    0
 826.9929858707245    received    1    4    insert    45    freshening    10.2    0
@@ -95,10 +95,10 @@
 848.5472192062923    received    0    1    insert    43    tackling    10.1    0
 850.8412356652144    received    1    5    insert    45    freshening    10.2    0
 859.1365225057215    received    0    5    insert    43    tackling    10.1    0
-890.2557166130246    received    0    4    returnCRDT    938    929
+890.2557166130246    received    0    4    returnCRDT    804    761
 922.9242243979356    received    3    2    insert    45    freshening    10.2    0
 922.9242243979356    received    3    2    insert    43    tackling    10.1    0
-937.9522162020045    received    0    5    returnCRDT    938    929
+937.9522162020045    received    0    5    returnCRDT    804    761
 950.2557166130246    sent    4    0    insert    40    cagey    20.4    0
 950.2557166130246    sent    4    1    insert    40    cagey    20.4    0
 950.2557166130246    sent    4    2    insert    40    cagey    20.4    0
@@ -108,12 +108,12 @@
 958.5127713158449    received    3    4    insert    43    tackling    10.1    0
 960.1481211117042    received    3    0    insert    45    freshening    10.2    0
 960.1481211117042    received    3    0    insert    43    tackling    10.1    0
-967.9242243979356    received    3    2    insert    40    irony    18.3    0
-967.9242243979356    sent    2    0    insert    40    irony    18.3    0
-967.9242243979356    sent    2    1    insert    40    irony    18.3    0
-967.9242243979356    sent    2    3    insert    40    irony    18.3    0
-967.9242243979356    sent    2    4    insert    40    irony    18.3    0
-967.9242243979356    sent    2    5    insert    40    irony    18.3    0
+967.9242243979356    received    3    2    insert    40    irony    20.3    0
+967.9242243979356    sent    2    0    insert    40    irony    20.3    0
+967.9242243979356    sent    2    1    insert    40    irony    20.3    0
+967.9242243979356    sent    2    3    insert    40    irony    20.3    0
+967.9242243979356    sent    2    4    insert    40    irony    20.3    0
+967.9242243979356    sent    2    5    insert    40    irony    20.3    0
 971.7717178109057    received    3    1    insert    45    freshening    10.2    0
 971.7717178109057    received    3    1    insert    43    tackling    10.1    0
 982.3610211103348    received    3    5    insert    45    freshening    10.2    0
@@ -126,26 +126,26 @@
 999.9999999999997    sent    8    0    requestCRDT    2    
 999.9999999999997    join    9    Joined network!
 999.9999999999997    sent    9    0    requestCRDT    2    
-1003.5127713158449    received    3    4    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    0    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    1    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    2    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    3    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    5    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    6    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    7    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    8    insert    40    irony    18.3    0
-1003.5127713158449    sent    4    9    insert    40    irony    18.3    0
-1005.1481211117042    received    3    0    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    1    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    2    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    3    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    4    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    5    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    6    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    7    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    8    insert    40    irony    18.3    0
-1005.1481211117042    sent    0    9    insert    40    irony    18.3    0
+1003.5127713158449    received    3    4    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    0    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    1    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    2    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    3    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    5    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    6    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    7    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    8    insert    40    irony    20.3    0
+1003.5127713158449    sent    4    9    insert    40    irony    20.3    0
+1005.1481211117042    received    3    0    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    1    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    2    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    3    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    4    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    5    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    6    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    7    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    8    insert    40    irony    20.3    0
+1005.1481211117042    sent    0    9    insert    40    irony    20.3    0
 1012.9522162020045    sent    5    0    insert    49    discontinuance    20.5    0
 1012.9522162020045    sent    5    1    insert    49    discontinuance    20.5    0
 1012.9522162020045    sent    5    2    insert    49    discontinuance    20.5    0
@@ -155,26 +155,26 @@
 1012.9522162020045    sent    5    7    insert    49    discontinuance    20.5    0
 1012.9522162020045    sent    5    8    insert    49    discontinuance    20.5    0
 1012.9522162020045    sent    5    9    insert    49    discontinuance    20.5    0
-1016.7717178109057    received    3    1    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    0    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    2    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    3    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    4    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    5    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    6    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    7    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    8    insert    40    irony    18.3    0
-1016.7717178109057    sent    1    9    insert    40    irony    18.3    0
-1027.3610211103348    received    3    5    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    0    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    1    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    2    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    3    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    4    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    6    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    7    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    8    insert    40    irony    18.3    0
-1027.3610211103348    sent    5    9    insert    40    irony    18.3    0
+1016.7717178109057    received    3    1    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    0    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    2    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    3    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    4    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    5    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    6    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    7    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    8    insert    40    irony    20.3    0
+1016.7717178109057    sent    1    9    insert    40    irony    20.3    0
+1027.3610211103348    received    3    5    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    0    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    1    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    2    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    3    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    4    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    6    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    7    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    8    insert    40    irony    20.3    0
+1027.3610211103348    sent    5    9    insert    40    irony    20.3    0
 1108.1596782057682    received    4    2    insert    40    cagey    20.4    0
 1108.1596782057682    sent    2    0    insert    40    cagey    20.4    0
 1108.1596782057682    sent    2    1    insert    40    cagey    20.4    0
@@ -185,9 +185,9 @@
 1108.1596782057682    sent    2    7    insert    40    cagey    20.4    0
 1108.1596782057682    sent    2    8    insert    40    cagey    20.4    0
 1108.1596782057682    sent    2    9    insert    40    cagey    20.4    0
-1117.4163680547351    received    2    3    insert    40    irony    18.3    0
-1125.8281859906792    received    2    4    insert    40    irony    18.3    0
-1127.4635357865386    received    2    0    insert    40    irony    18.3    0
+1117.4163680547351    received    2    3    insert    40    irony    20.3    0
+1125.8281859906792    received    2    4    insert    40    irony    20.3    0
+1127.4635357865386    received    2    0    insert    40    irony    20.3    0
 1135.3364071877331    received    4    3    insert    40    cagey    20.4    0
 1135.3364071877331    sent    3    0    insert    40    cagey    20.4    0
 1135.3364071877331    sent    3    1    insert    40    cagey    20.4    0
@@ -198,7 +198,7 @@
 1135.3364071877331    sent    3    7    insert    40    cagey    20.4    0
 1135.3364071877331    sent    3    8    insert    40    cagey    20.4    0
 1135.3364071877331    sent    3    9    insert    40    cagey    20.4    0
-1139.08713248574    received    2    1    insert    40    irony    18.3    0
+1139.08713248574    received    2    1    insert    40    irony    20.3    0
 1145.3835749195368    received    4    0    insert    40    cagey    20.4    0
 1145.3835749195368    sent    0    1    insert    40    cagey    20.4    0
 1145.3835749195368    sent    0    2    insert    40    cagey    20.4    0
@@ -209,7 +209,7 @@
 1145.3835749195368    sent    0    7    insert    40    cagey    20.4    0
 1145.3835749195368    sent    0    8    insert    40    cagey    20.4    0
 1145.3835749195368    sent    0    9    insert    40    cagey    20.4    0
-1149.6764357851694    received    2    5    insert    40    irony    18.3    0
+1149.6764357851694    received    2    5    insert    40    irony    20.3    0
 1157.0071716187383    received    4    1    insert    40    cagey    20.4    0
 1157.0071716187383    sent    1    0    insert    40    cagey    20.4    0
 1157.0071716187383    sent    1    2    insert    40    cagey    20.4    0
@@ -221,11 +221,11 @@
 1157.0071716187383    sent    1    8    insert    40    cagey    20.4    0
 1157.0071716187383    sent    1    9    insert    40    cagey    20.4    0
 1159.7227076439292    received    7    0    requestCRDT    2    
-1159.7227076439292    sent    0    7    returnCRDT    1278    1269
-1161.4167329085888    received    4    2    insert    40    irony    18.3    0
-1161.6001291639152    received    4    7    insert    40    irony    18.3    0
-1164.6874325003075    received    0    2    insert    40    irony    18.3    0
-1164.870828755634    received    0    7    insert    40    irony    18.3    0
+1159.7227076439292    sent    0    7    returnCRDT    1096    1041
+1161.4167329085888    received    4    2    insert    40    irony    20.3    0
+1161.6001291639152    received    4    7    insert    40    irony    20.3    0
+1164.6874325003075    received    0    2    insert    40    irony    20.3    0
+1164.870828755634    received    0    7    insert    40    irony    20.3    0
 1167.5964749181678    received    4    5    insert    40    cagey    20.4    0
 1167.5964749181678    sent    5    0    insert    40    cagey    20.4    0
 1167.5964749181678    sent    5    1    insert    40    cagey    20.4    0
@@ -236,14 +236,14 @@
 1167.5964749181678    sent    5    7    insert    40    cagey    20.4    0
 1167.5964749181678    sent    5    8    insert    40    cagey    20.4    0
 1167.5964749181678    sent    5    9    insert    40    cagey    20.4    0
-1187.9346258987105    received    1    2    insert    40    irony    18.3    0
-1188.118022154037    received    1    7    insert    40    irony    18.3    0
+1187.9346258987105    received    1    2    insert    40    irony    20.3    0
+1188.118022154037    received    1    7    insert    40    irony    20.3    0
 1188.2443192140215    received    9    0    requestCRDT    2    
-1188.2443192140215    sent    0    9    returnCRDT    1278    1269
-1188.593461890554    received    4    3    insert    40    irony    18.3    0
-1190.1217407340073    received    4    9    insert    40    irony    18.3    0
-1191.8641614822725    received    0    3    insert    40    irony    18.3    0
-1193.3924403257258    received    0    9    insert    40    irony    18.3    0
+1188.2443192140215    sent    0    9    returnCRDT    1096    1041
+1188.593461890554    received    4    3    insert    40    irony    20.3    0
+1190.1217407340073    received    4    9    insert    40    irony    20.3    0
+1191.8641614822725    received    0    3    insert    40    irony    20.3    0
+1193.3924403257258    received    0    9    insert    40    irony    20.3    0
 1194.7044275892385    received    5    2    insert    49    discontinuance    20.5    0
 1194.7044275892385    sent    2    0    insert    49    discontinuance    20.5    0
 1194.7044275892385    sent    2    1    insert    49    discontinuance    20.5    0
@@ -255,18 +255,18 @@
 1194.7044275892385    sent    2    8    insert    49    discontinuance    20.5    0
 1194.7044275892385    sent    2    9    insert    49    discontinuance    20.5    0
 1194.887823844565    received    5    7    insert    49    discontinuance    20.5    0
-1198.6406296223577    received    4    0    insert    40    irony    18.3    0
-1200.275979418217    received    0    4    insert    40    irony    18.3    0
-1209.1132324975692    received    5    2    insert    40    irony    18.3    0
-1209.2966287528957    received    5    7    insert    40    irony    18.3    0
-1210.2642263215594    received    4    1    insert    40    irony    18.3    0
-1213.534925913278    received    0    1    insert    40    irony    18.3    0
-1215.111354880676    received    1    3    insert    40    irony    18.3    0
-1216.6396337241292    received    1    9    insert    40    irony    18.3    0
+1198.6406296223577    received    4    0    insert    40    irony    20.3    0
+1200.275979418217    received    0    4    insert    40    irony    20.3    0
+1209.1132324975692    received    5    2    insert    40    irony    20.3    0
+1209.2966287528957    received    5    7    insert    40    irony    20.3    0
+1210.2642263215594    received    4    1    insert    40    irony    20.3    0
+1213.534925913278    received    0    1    insert    40    irony    20.3    0
+1215.111354880676    received    1    3    insert    40    irony    20.3    0
+1216.6396337241292    received    1    9    insert    40    irony    20.3    0
 1218.4258408537723    received    8    0    requestCRDT    2    
-1218.4258408537723    sent    0    8    returnCRDT    1278    1269
-1220.3032623737583    received    4    8    insert    40    irony    18.3    0
-1220.8535296209886    received    4    5    insert    40    irony    18.3    0
+1218.4258408537723    sent    0    8    returnCRDT    1096    1041
+1220.3032623737583    received    4    8    insert    40    irony    20.3    0
+1220.8535296209886    received    4    5    insert    40    irony    20.3    0
 1221.881156571204    received    5    3    insert    49    discontinuance    20.5    0
 1221.881156571204    sent    3    0    insert    49    discontinuance    20.5    0
 1221.881156571204    sent    3    1    insert    49    discontinuance    20.5    0
@@ -278,10 +278,10 @@
 1221.881156571204    sent    3    8    insert    49    discontinuance    20.5    0
 1221.881156571204    sent    3    9    insert    49    discontinuance    20.5    0
 1223.4094354146573    received    5    9    insert    49    discontinuance    20.5    0
-1223.52317281662    received    1    4    insert    40    irony    18.3    0
-1223.5739619654769    received    0    8    insert    40    irony    18.3    0
-1224.1242292127072    received    0    5    insert    40    irony    18.3    0
-1225.1585226124794    received    1    0    insert    40    irony    18.3    0
+1223.52317281662    received    1    4    insert    40    irony    20.3    0
+1223.5739619654769    received    0    8    insert    40    irony    20.3    0
+1224.1242292127072    received    0    5    insert    40    irony    20.3    0
+1225.1585226124794    received    1    0    insert    40    irony    20.3    0
 1230.292974507148    received    5    4    insert    49    discontinuance    20.5    0
 1230.292974507148    sent    4    0    insert    49    discontinuance    20.5    0
 1230.292974507148    sent    4    1    insert    49    discontinuance    20.5    0
@@ -294,7 +294,7 @@
 1230.292974507148    sent    4    9    insert    49    discontinuance    20.5    0
 1230.6584891359298    received    2    7    insert    40    cagey    20.4    0
 1230.9572853511636    received    6    0    requestCRDT    2    
-1230.9572853511636    sent    0    6    returnCRDT    1278    1269
+1230.9572853511636    sent    0    6    returnCRDT    1096    1041
 1231.9283243030072    received    5    0    insert    49    discontinuance    20.5    0
 1231.9283243030072    sent    0    1    insert    49    discontinuance    20.5    0
 1231.9283243030072    sent    0    2    insert    49    discontinuance    20.5    0
@@ -305,10 +305,10 @@
 1231.9283243030072    sent    0    7    insert    49    discontinuance    20.5    0
 1231.9283243030072    sent    0    8    insert    49    discontinuance    20.5    0
 1231.9283243030072    sent    0    9    insert    49    discontinuance    20.5    0
-1232.8347068711494    received    4    6    insert    40    irony    18.3    0
-1236.105406462868    received    0    6    insert    40    irony    18.3    0
-1236.289961479534    received    5    3    insert    40    irony    18.3    0
-1237.8182403229873    received    5    9    insert    40    irony    18.3    0
+1232.8347068711494    received    4    6    insert    40    irony    20.3    0
+1236.105406462868    received    0    6    insert    40    irony    20.3    0
+1236.289961479534    received    5    3    insert    40    irony    20.3    0
+1237.8182403229873    received    5    9    insert    40    irony    20.3    0
 1243.5519210022085    received    5    1    insert    49    discontinuance    20.5    0
 1243.5519210022085    sent    1    0    insert    49    discontinuance    20.5    0
 1243.5519210022085    sent    1    2    insert    49    discontinuance    20.5    0
@@ -319,21 +319,21 @@
 1243.5519210022085    sent    1    7    insert    49    discontinuance    20.5    0
 1243.5519210022085    sent    1    8    insert    49    discontinuance    20.5    0
 1243.5519210022085    sent    1    9    insert    49    discontinuance    20.5    0
-1244.701779415478    received    5    4    insert    40    irony    18.3    0
-1246.3371292113375    received    5    0    insert    40    irony    18.3    0
-1246.8211553638794    received    1    8    insert    40    irony    18.3    0
-1247.3714226111097    received    1    5    insert    40    irony    18.3    0
+1244.701779415478    received    5    4    insert    40    irony    20.3    0
+1246.3371292113375    received    5    0    insert    40    irony    20.3    0
+1246.8211553638794    received    1    8    insert    40    irony    20.3    0
+1247.3714226111097    received    1    5    insert    40    irony    20.3    0
 1253.5909570544075    received    5    8    insert    49    discontinuance    20.5    0
 1257.651821862568    received    2    3    insert    40    cagey    20.4    0
-1257.960725910539    received    5    1    insert    40    irony    18.3    0
+1257.960725910539    received    5    1    insert    40    irony    20.3    0
 1259.1801007060214    received    2    9    insert    40    cagey    20.4    0
-1259.3525998612708    received    1    6    insert    40    irony    18.3    0
+1259.3525998612708    received    1    6    insert    40    irony    20.3    0
 1266.0636397985124    received    2    4    insert    40    cagey    20.4    0
 1266.122401551799    received    5    6    insert    49    discontinuance    20.5    0
 1267.6989895943716    received    2    0    insert    40    cagey    20.4    0
-1267.999761962738    received    5    8    insert    40    irony    18.3    0
+1267.999761962738    received    5    8    insert    40    irony    20.3    0
 1279.322586293573    received    2    1    insert    40    cagey    20.4    0
-1280.5312064601292    received    5    6    insert    40    irony    18.3    0
+1280.5312064601292    received    5    6    insert    40    irony    20.3    0
 1284.828550844533    received    3    2    insert    40    cagey    20.4    0
 1285.0119470998595    received    3    7    insert    40    cagey    20.4    0
 1289.361622345772    received    2    8    insert    40    cagey    20.4    0
@@ -343,7 +343,7 @@
 1305.1062825634667    received    0    7    insert    40    cagey    20.4    0
 1313.5335586699516    received    3    9    insert    40    cagey    20.4    0
 1317.2032385193995    received    2    7    insert    49    discontinuance    20.5    0
-1319.4454152878589    received    0    7    returnCRDT    1278    1269
+1319.4454152878589    received    0    7    returnCRDT    1096    1041
 1319.4454152878589    sent    7    0    insert    49    discontinuance    20.5    0
 1319.4454152878589    sent    7    1    insert    49    discontinuance    20.5    0
 1319.4454152878589    sent    7    2    insert    49    discontinuance    20.5    0
@@ -383,7 +383,7 @@
 1375.906371729242    received    2    8    insert    49    discontinuance    20.5    0
 1376.3408602707004    received    0    6    insert    40    cagey    20.4    0
 1376.4566389764723    received    2    5    insert    49    discontinuance    20.5    0
-1376.4886384280428    received    0    9    returnCRDT    1278    1269
+1376.4886384280428    received    0    9    returnCRDT    1096    1041
 1376.4886384280428    sent    9    0    insert    49    discontinuance    20.5    0
 1376.4886384280428    sent    9    1    insert    49    discontinuance    20.5    0
 1376.4886384280428    sent    9    2    insert    49    discontinuance    20.5    0
@@ -431,7 +431,7 @@
 1427.0561826095195    received    0    4    insert    49    discontinuance    20.5    0
 1430.2598296931722    received    3    8    insert    49    discontinuance    20.5    0
 1430.8100969404024    received    3    5    insert    49    discontinuance    20.5    0
-1436.8516817075442    received    0    8    returnCRDT    1278    1269
+1436.8516817075442    received    0    8    returnCRDT    1096    1041
 1436.8516817075442    sent    8    0    insert    49    discontinuance    20.5    0
 1436.8516817075442    sent    8    1    insert    49    discontinuance    20.5    0
 1436.8516817075442    sent    8    2    insert    49    discontinuance    20.5    0
@@ -454,7 +454,7 @@
 1450.90443240401    received    0    5    insert    49    discontinuance    20.5    0
 1451.9387258037823    received    1    0    insert    49    discontinuance    20.5    0
 1459.6149100624525    received    4    6    insert    49    discontinuance    20.5    0
-1461.9145707023274    received    0    6    returnCRDT    1278    1269
+1461.9145707023274    received    0    6    returnCRDT    1096    1041
 1461.9145707023274    sent    6    0    insert    49    discontinuance    20.5    0
 1461.9145707023274    sent    6    1    insert    49    discontinuance    20.5    0
 1461.9145707023274    sent    6    2    insert    49    discontinuance    20.5    0
@@ -690,7 +690,7 @@
 1699.7329576420655    sent    0    9    insert    37    Dr    34.9    0
 1699.7329576420655    sent    0    10    insert    37    Dr    34.9    0
 1701.680592224601    received    10    0    requestCRDT    2    
-1701.680592224601    sent    0    10    returnCRDT    2026    2017
+1701.680592224601    sent    0    10    returnCRDT    1730    1657
 1704.4954527526927    received    6    1    insert    49    discontinuance    20.5    0
 1704.6503417642932    received    9    10    insert    37    Dr    34.9    0
 1704.8481878107646    received    2    4    insert    41    Aludra    34.7    0
@@ -1089,7 +1089,7 @@
 1902.5975345334714    received    8    2    insert    37    Dr    34.9    0
 1902.7809307887978    received    8    7    insert    37    Dr    34.9    0
 1902.8771138690342    received    7    10    insert    40    Soddy    34.8    0
-1903.3611844492023    received    0    10    returnCRDT    2026    2017
+1903.3611844492023    received    0    10    returnCRDT    1730    1657
 1903.3611844492023    sent    10    0    insert    40    Soddy    34.8    0
 1903.3611844492023    sent    10    1    insert    40    Soddy    34.8    0
 1903.3611844492023    sent    10    2    insert    40    Soddy    34.8    0
@@ -1351,7 +1351,7 @@
 2139.235853922594    received    10    6    insert    40    Soddy    34.8    0
 2139.235853922594    received    10    6    insert    44    courtroom    34.6    0
 2177.7676314730415    received    11    0    requestCRDT    2    
-2177.7676314730415    sent    0    11    returnCRDT    2502    2493
+2177.7676314730415    sent    0    11    returnCRDT    2134    2049
 2217.8178799600337    received    10    2    insert    49    interrogative    43.10    0
 2217.8178799600337    sent    2    0    insert    49    interrogative    43.10    0
 2217.8178799600337    sent    2    1    insert    49    interrogative    43.10    0
@@ -1475,7 +1475,7 @@
 2289.235853922594    sent    6    11    insert    49    interrogative    43.10    0
 2340.3166908901944    received    2    7    insert    49    interrogative    43.10    0
 2340.500087145521    received    7    2    insert    49    interrogative    43.10    0
-2355.5352629460785    received    0    11    returnCRDT    2502    2493
+2355.5352629460785    received    0    11    returnCRDT    2134    2049
 2355.5352629460785    sent    11    0    insert    49    interrogative    43.10    0
 2355.5352629460785    sent    11    1    insert    49    interrogative    43.10    0
 2355.5352629460785    sent    11    2    insert    49    interrogative    43.10    0
@@ -1873,8 +1873,8 @@
 3999.9999999999936    join    12    Joined network!
 3999.9999999999936    sent    12    0    requestCRDT    2    
 4212.255063373251    received    12    0    requestCRDT    2    
-4212.255063373251    sent    0    12    returnCRDT    3366    3357
-4424.510126746508    received    0    12    returnCRDT    3366    3357
+4212.255063373251    sent    0    12    returnCRDT    2868    2769
+4424.510126746508    received    0    12    returnCRDT    2868    2769
 4604.510126746508    sent    12    0    insert    47    admonishing    67.12    0
 4604.510126746508    sent    12    1    insert    47    admonishing    67.12    0
 4604.510126746508    sent    12    2    insert    47    admonishing    67.12    0
@@ -2190,8 +2190,8 @@
 5999.999999999998    join    13    Joined network!
 5999.999999999998    sent    13    0    requestCRDT    2    
 6231.898328561367    received    13    0    requestCRDT    2    
-6231.898328561367    sent    0    13    returnCRDT    3762    3753
-6463.796657122735    received    0    13    returnCRDT    3762    3753
+6231.898328561367    sent    0    13    returnCRDT    3205    3099
+6463.796657122735    received    0    13    returnCRDT    3205    3099
 6658.796657122735    sent    13    0    insert    47    attentively    78.13    0
 6658.796657122735    sent    13    1    insert    47    attentively    78.13    0
 6658.796657122735    sent    13    2    insert    47    attentively    78.13    0
@@ -2559,8 +2559,8 @@
 10000.000000000007    join    14    Joined network!
 10000.000000000007    sent    14    0    requestCRDT    2    
 10192.740074241778    received    14    0    requestCRDT    2    
-10192.740074241778    sent    0    14    returnCRDT    4158    4149
-10385.480148483548    received    0    14    returnCRDT    4158    4149
+10192.740074241778    sent    0    14    returnCRDT    3542    3429
+10385.480148483548    received    0    14    returnCRDT    3542    3429
 10595.480148483548    sent    14    0    insert    44    piloting    89.14    0
 10595.480148483548    sent    14    1    insert    44    piloting    89.14    0
 10595.480148483548    sent    14    2    insert    44    piloting    89.14    0
@@ -2981,4 +2981,4 @@
 11077.466571744326    received    13    5    insert    44    piloting    89.14    0
 11088.506705784283    received    6    13    insert    44    piloting    89.14    0
 11089.447748994487    received    13    6    insert    44    piloting    89.14    0
-11089.447748994487    memory    8663480    post-experiment
+11089.447748994487    memory    18162952    post-experiment
