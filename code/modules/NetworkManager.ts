@@ -127,7 +127,8 @@ class NetworkManager {
              Haven't fully considered how this might affect parts of code that use the edge ID
              Might be ok - probably was being used for D3/graph visualization
                            is actually being used for updating loads on links
-        
+
+      note: can only unicast to any neighbor  
     */
     public unicast(from: T.ClientId, to: T.ClientId, packet: NT.NetworkPacket): void {
 

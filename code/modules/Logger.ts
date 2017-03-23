@@ -32,7 +32,7 @@ export default class Logger {
 
 
     // logs [time] [type] sender receiver type id __msg__
-    public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
+    public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.PreparedPacket) {
         let time = this.getTime();
 
         let packetType = packet.type;
@@ -52,8 +52,7 @@ export default class Logger {
                 (<CRDTTypes.InsertMessage>bundle).after;
         } else if (packetType === "d") {
             readablePacketType = "delete"; // for logging
-            msg = 
-                (<CRDTTypes.DeleteMessage>bundle).deleteId
+            msg = (<CRDTTypes.DeleteMessage>bundle).deleteId
         } else if (packetType === "reqCRDT") {
             readablePacketType = "requestCRDT";
             msg = ""
@@ -62,7 +61,15 @@ export default class Logger {
             let crdt = JSON.stringify((<NT.ReturnCRDTMessage>bundle).crdt);
             let crdtLen = crdt.length;
             msg = "" + crdtLen;
-        } else {
+        } else if (packetType === 'ui') {
+            
+        } else if (packetType === 'ud') {
+            
+        } else if (packetType === 'ri') {
+            
+        } else if (packetType === 'rd') {
+            
+        }else {
             console.error("Logging a packet of neither insert nor delete type...");
             this.l.push("");
             return;

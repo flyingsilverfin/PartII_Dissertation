@@ -62,6 +62,11 @@ class Client {
         this.network.deletePacketReceived = this.deleteReceived.bind(this);
         this.network.requestCRDTReceived = this.requestCRDTReceived.bind(this);
         this.network.returnCRDTReceived = this.returnCRDTReceived.bind(this);
+        this.network.undoInsertReceived = this.undoInsertReceived.bind(this);
+        this.network.undoDeleteReceived = this.undoDeleteReceived.bind(this);
+        this.network.redoInsertReceived = this.redoInsertReceived.bind(this);
+        this.network.redoDeleteReceived = this.redoDeleteReceived.bind(this);
+
         this.requestedCRDTQueue = [];
         this.id = "" + id;
 
@@ -73,8 +78,8 @@ class Client {
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
         this.interface.commitCallback = this.commit.bind(this);
-        this.interface.setUndoCallback(this.localUndo);
-        this.interface.setRedoCallback(this.localRedo);
+        this.interface.setUndoCallback(this.localUndo.bind(this));
+        this.interface.setRedoCallback(this.localRedo.bind(this));
 
         // TODO
         // this is a bit of a silly, unnecessarily hardcoded way of doing this...
@@ -92,19 +97,19 @@ class Client {
 
 
     private localUndo(): void {
+        debugger
         if (!this.opStack.undoAvailable()) {
             return;
         }
         let packet = this.opStack.undo();
-        let op = packet.bundle;
+        let op = <CT.UndoMessage>packet.bundle;
 
         if (packet.type === "ui") {
             this.dt.undoInsert(op);
         } else {    // type ud - undo delete
             this.dt.undoDelete(op);
         }
-
-        packet.origin = this.id;
+        this.updateInterface();
         this.network.broadcast(packet);
     }
 
@@ -113,19 +118,45 @@ class Client {
             return;
         }
         let packet = this.opStack.redo();
-        packet.origin = this.id;
+        let op = <CT.UndoMessage>packet.bundle;
+
+        if (packet.type === "ri") {
+            this.dt.redoInsert(op);
+        } else {    // type rd - redo delete
+            this.dt.redoDelete(op);
+        }
+        this.updateInterface();
         this.network.broadcast(packet);
+    }
+
+    private undoInsertReceived(bundle: CT.UndoMessage): void {
+        this.dt.undoInsert(bundle);
+        this.updateInterface();
+    }
+
+    private undoDeleteReceived(bundle: CT.UndoMessage): void {
+        this.dt.undoDelete(bundle);
+        this.updateInterface();
+    }
+
+    private redoInsertReceived(bundle: CT.UndoMessage): void {
+        this.dt.redoInsert(bundle);
+        this.updateInterface();
+    }
+    private redoDeleteReceived(bundle: CT.UndoMessage): void {
+        this.dt.undoInsert(bundle);
+        this.updateInterface();
     }
 
     private enable(): void {
         // WARN: MUST be called first - network.enable may run queued receives which require
         //       an up to date id and char array
-        this.updateParallelArrays();
-
+        //this.updateParallelArrays();
+        this.updateInterface();
         this.network.enable();
         this.createScheduledEvents();
 
-        this.interface.setContent(this.charArray.join('')); // received CRDT (if got one) doesn't get displayed without an incoming packet otherwise
+        //this.interface.setContent(this.charArray.join('')); // received CRDT (if got one) doesn't get displayed without an incoming packet otherwise
 
     }
 
@@ -185,8 +216,7 @@ class Client {
                 after: afterId
             };
 
-            let networkPacket: NT.NetworkPacket = {
-                origin: this.id,
+            let networkPacket: NT.PreparedPacket = {
                 type: 'i',
                 bundle: bundle
             };
@@ -218,7 +248,8 @@ class Client {
         //      and we will no longer have a continuous sequence of timestamps in our crdt
         // SOLUTION: insert each character into CRDT immediately with unique ID
         //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
-        //           
+        // NOTE: this is a possible optimization that requires inserts/deletes to be labeled as (prior hash identifier, offset)
+        //       then split up the word in the CRDT into sub words/characters
 
         let idOfAfter = this.getIdOfStringIndex(after);
         let bundle: CT.InsertMessage = {
@@ -228,7 +259,7 @@ class Client {
         };
 
         this.dt.insert(bundle);
-        this.opStack.localInsert(opId);
+        this.opStack.localInsert(opId, char.length);
 
 
         // this is bad - does a O(N) retrieval each insert!
@@ -248,8 +279,7 @@ class Client {
                 this.commit();
             }
         } else {
-            let networkPacket: NT.NetworkPacket = {
-                origin: this.id,
+            let networkPacket: NT.PreparedPacket = {
                 type: 'i',
                 bundle: bundle
             }
@@ -257,11 +287,13 @@ class Client {
         }
     }
 
-    private insertReceived(bundle: CT.InsertMessage): boolean {
+    private insertReceived(bundle: CT.InsertMessage): void {
+        /*  
         if (!this.dt.insert(bundle)) {
             return false;
         }
-
+        */
+        this.dt.insert(bundle);
 
 
         // get old cursor position and 'after'
@@ -276,7 +308,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.incrementCursorPosition(bundle.char.length);
         }
-        return true;
+        //return true;
     }
 
     private charDeletedLocal(index: number) {
@@ -286,10 +318,9 @@ class Client {
         };
 
         this.dt.delete(bundle);
-        this.opStack.localDelete(deletedId);
+        this.opStack.localDelete(deletedId, 1); // no support for group deletes yet, would need a buffering layer
 
-        let networkPacket: NT.NetworkPacket = {
-            origin: this.id,
+        let networkPacket: NT.PreparedPacket = {
             type: 'd',
             bundle: bundle
         };
@@ -297,10 +328,14 @@ class Client {
         this.updateParallelArrays();
     }
 
-    private deleteReceived(bundle: CT.DeleteMessage): boolean {
+    private deleteReceived(bundle: CT.DeleteMessage): void {
+        /*
         if (!this.dt.delete(bundle)) {
             return false;
         }
+        */
+        this.dt.delete(bundle);
+
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
@@ -313,7 +348,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
-        return true;
+        //return true;
     }
 
     private requestCRDTReceived(origin: T.ClientId): void {
@@ -347,6 +382,11 @@ class Client {
 
     private getIdOfStringIndex(after: number): string {
         return this.idArray[after];
+    }
+
+    private updateInterface(): void {
+        this.updateParallelArrays();
+        this.interface.setContent(this.charArray.join(''));
     }
 
 }

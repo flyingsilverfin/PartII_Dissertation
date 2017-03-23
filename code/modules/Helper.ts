@@ -54,6 +54,17 @@ export function now(): number {
     return Date.now();
 }
 
+
+export function assert(condition, message): void {
+    if (!condition) {
+        message = message || "Assertion failed";
+        if (typeof Error !== "undefined") {
+            throw new Error(message);
+        }
+        throw message; // Fallback
+    }
+}
+
 export function within(x:number, y:number, tolerance:number): boolean{
     return (Math.abs(x - y) <= tolerance);
 }

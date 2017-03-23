@@ -50,7 +50,6 @@ export default class EventDrivenScheduler {
     public run() {
         let elem = this.heap.take();
         let dt = elem.pKey;
-        debugger
         this.time.forward(dt);
         this.heap.decreaseAllPrimaryKeysBy(dt);
         elem.payload();

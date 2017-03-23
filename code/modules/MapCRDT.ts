@@ -42,10 +42,12 @@ class MapCRDT implements CT.CRDT {
 
     // implements interface
     // return false if this ID is already used
-    public insert(bundle: CT.InsertMessage): boolean {
+    public insert(bundle: CT.InsertMessage): void {
 
+        // this is now checked by sequence numbers at network layer
+        // keep this as a check
         if (this.map.hasOwnProperty(bundle.id)) {
-            return false
+            throw new Helper.CRDTException("Received an insert bundle which has already been inserted... network failed to reject already seen before packet");
         }
 
         // ASSERT NEEDED:
@@ -103,55 +105,55 @@ class MapCRDT implements CT.CRDT {
         // connect last link
         entryBefore.n = lastLink;
 
-        return true;
     }
 
     // implements interface
-    // return false if ID already has been deleted - no need to pass on msg again
-    public delete(bundle: CT.DeleteMessage): boolean {
+    // 
+    public delete(bundle: CT.DeleteMessage): void {
         let idToDelete = bundle.deleteId;
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }
-        if (this.map[idToDelete].d > 0) {
-            return false;
+        if (this.map[idToDelete].d === undefined) {
+            this.map[idToDelete].d = 1;
+        } else {
+            this.map[idToDelete].d++;
         }
-        this.map[idToDelete].d++;
-        return true;
     }
 
 
     // has capability for multi undo already
-    public undoInsert(bundle: CT.UndoMessage): boolean {
+    public undoInsert(bundle: CT.UndoMessage): void {
+        debugger
         let undoTargets = bundle.id;
-        for (let id in undoTargets) {
+        for (let id of undoTargets) {
             this.map[id].v = false;
         }
     }
 
     // has capability for multi undo already
-    public undoDelete(bundle: CT.UndoMessage): boolean {
+    public undoDelete(bundle: CT.UndoMessage): void {
         let undoTargets = bundle.id;
         // since this is undo, by causality each target ID must already have been deleted ie. have a tag
-        for (let id in undoTargets) {
-            this.map[id].d++;
+        for (let id of undoTargets) {
+            this.map[id].d--;
         }
     }
 
     // has capability for multi undo already
-    public redoInsert(bundle: CT.UndoMessage): boolean {
+    public redoInsert(bundle: CT.UndoMessage): void {
         let undoTargets = bundle.id;
-        for (let id in undoTargets) {
+        for (let id  of undoTargets) {
             this.map[id].v = true;
         }
     }
 
     // has capability for multi undo already
-    public redoDelete(bundle: CT.UndoMessage): boolean {
+    public redoDelete(bundle: CT.UndoMessage): void {
         let undoTargets = bundle.id;
         // since this is undo, by causality each target ID must already have been deleted ie. have a tag
-        for (let id in undoTargets) {
-            this.map[id].d--;
+        for (let id of undoTargets) {
+            this.map[id].d++;
         }
     }
 
@@ -162,15 +164,15 @@ class MapCRDT implements CT.CRDT {
         let charArray = [];
         let idArray = [];
         let id = '0';
-        let entry;
+        let entry: CT.MapEntry;
         while (id !== null) {
-            entry = this.map[id];
-            if (!entry.deleted) {
-                // TODO unsure of how to handle deletion still!
-                charArray.push(entry.char);
+            entry = this.map[id];   // if only TS did inference on this too...
+            // if 'visible' is undefined or true, and 'deleted' is undefined or 0
+            if ((entry.v === undefined || entry.v) && (entry.d === undefined || entry.d === 0)) { // if == 0 should work just fine I think
+                charArray.push(entry.c);
                 idArray.push(id)
             }
-            id = entry.next;
+            id = entry.n;
         }
 
         return {charArray: charArray, idArray: idArray};

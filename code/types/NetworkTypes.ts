@@ -2,8 +2,12 @@ import * as CRDTTypes from './CRDTTypes';
 import * as T from './Types';
 import NetworkInterface from '../modules/NetworkInterface';
 
-export interface NetworkPacket {
-    origin: string,
+export interface NetworkPacket extends PreparedPacket {
+    seq: number,
+    origin: number
+}
+
+export interface PreparedPacket {
     type: "i" | "d"  | "ui" | "ud" | "ri" | "rd" |  "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
     bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | CRDTTypes.UndoMessage | RequestCRDTMessage | ReturnCRDTMessage;
 }
@@ -13,14 +17,22 @@ export interface RequestCRDTMessage {
 }
 
 export interface ReturnCRDTMessage {
-    crdt: CRDTTypes.MapCRDTStore; //complicated CRDT Json but yay Typescript is working nicely here
+    crdt: CRDTTypes.MapCRDTStore, //complicated CRDT Json but yay Typescript is working nicely here
+    peerSeqNums: PeerSequenceNumbersMap;
 }
 
+// used to reject seen-before packets
+export interface PeerSequenceNumbersMap  {
+    [s : string] : number;
+}
+
+// for network manager to map to NetworkInterface objects
 export interface ClientMap {
     // [i: T.ClientId]: NetworkInterface;   // unfortunately can't do i: T.ClientId even though are same type underneath
     [i: number]: NetworkInterface;
 }
 
+// for network manager, guarantees inorder delivery
 export interface ClientLogicalCounterMap {
     [i: number]: number;
 }

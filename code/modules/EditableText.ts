@@ -75,7 +75,7 @@ class EditableText implements IT.EditableTextInterface {
 
     public setUndoCallback(f: any): void {
         this.undoCallback = f;
-        this.undoButton.onClick = this.undoCallback;
+        this.undoButton.onclick = this.undoCallback;
     }
 
     public setRedoCallback(f: any): void {

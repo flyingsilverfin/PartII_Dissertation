@@ -3,6 +3,10 @@ import * as T from './Types';
 export interface CRDT {
     insert(bundle: InsertMessage): void;    // insert char after loc with id
     delete(bundle: DeleteMessage): void;    // delete some id (need to give id for deletion?)
+    undoInsert(bundle: UndoMessage): void;
+    undoDelete(bundle: UndoMessage): void;
+    redoInsert(bundle: UndoMessage): void;
+    redoDelete(bundle: UndoMessage): void;
 
     getCRDTCopy(): any; // need some sort of mechanism for extracting crdt datastructure
     
