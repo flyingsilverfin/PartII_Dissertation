@@ -3,7 +3,7 @@ import * as T from './Types';
 import NetworkInterface from '../modules/NetworkInterface';
 
 export interface NetworkPacket extends PreparedPacket {
-    seq: number,
+    vector: VectorClock,
     origin: number
 }
 
@@ -18,12 +18,11 @@ export interface RequestCRDTMessage {
 
 export interface ReturnCRDTMessage {
     crdt: CRDTTypes.MapCRDTStore, //complicated CRDT Json but yay Typescript is working nicely here
-    peerSeqNums: PeerSequenceNumbersMap;
+    currentVector: VectorClock;
 }
 
-// used to reject seen-before packets
-export interface PeerSequenceNumbersMap  {
-    [s : string] : number;
+export interface VectorClock  {
+    [i : number] : number;
 }
 
 // for network manager to map to NetworkInterface objects

@@ -2,6 +2,7 @@ import * as NT from '../types/NetworkTypes';
 import * as CT from '../types/CRDTTypes';
 import * as T from '../types/Types';
 import NetworkManager from './NetworkManager';
+import CausalDeliveryLayer from './CausalDeliveryLayer';
 import * as Helper from './Helper';
 
 
@@ -13,8 +14,9 @@ import * as Helper from './Helper';
 
 class NetworkInterface {
     private clientId: T.ClientId;
-    private seqNum: number;
-    private peerSeqNums: NT.PeerSequenceNumbersMap; // this introduces problems such as when do you drop elements from this map
+    //private seqNum: number;
+    //private peerSeqNums: NT.PeerSequenceNumbersMap; // this introduces problems such as when do you drop elements from this MapCRDTStore
+    private causalDeliveryLayer: CausalDeliveryLayer;
     private networkManager: NetworkManager;
 
     private enabled: boolean;
@@ -32,8 +34,8 @@ class NetworkInterface {
     constructor() {
         this.enabled = false;
         this.queue = [];
-        this.peerSeqNums = {};
-        this.seqNum = 1;
+
+        // initialize Causal layer in setId
     }
 
     public isEnabled() {
@@ -50,6 +52,7 @@ class NetworkInterface {
 
     public setClientId(id): void {
         this.clientId = id;
+        this.causalDeliveryLayer = new CausalDeliveryLayer(id);
     }
 
     public setManager(manager): void {
@@ -66,11 +69,11 @@ class NetworkInterface {
     }
 
     // Asks a neighbor for the current CRDT state
-    // only use sequence numbers for BROADCAST!! NOT for unicast!
+    // only use vectors for BROADCAST!! NOT for unicast!
     public requestCRDT(destination: T.ClientId): void {
         let packet: NT.NetworkPacket = {
             origin: this.clientId, 
-            seq: -1,
+            vector: {},
             type: "reqCRDT",
             bundle: {}
         };
@@ -80,17 +83,15 @@ class NetworkInterface {
 
     public returnCRDT(destination: T.ClientId, crdt: CT.MapCRDTStore): void {
 
-        let seqNumsToSend = {}
-        seqNumsToSend[this.clientId] = this.seqNum; //copy in this client's sequence number for the receiver
-        seqNumsToSend = Object.assign(seqNumsToSend, this.peerSeqNums);
+        let vectorCopy = this.causalDeliveryLayer.copyVector(); //copy in this client's sequence number for the receiver
 
         let packet: NT.NetworkPacket = {
             origin: this.clientId,
-            seq: -1,
+            vector: {},
             type: "retCRDT",
             bundle: {
                 crdt: crdt,
-                peerSeqNums: seqNumsToSend
+                peerSeqNums: vectorCopy
             },
         }
         this.networkManager.unicast(this.clientId, destination, packet);
@@ -105,7 +106,7 @@ class NetworkInterface {
             return;
         }
 
-        let netPacket: NT.NetworkPacket = Object.assign({seq: this.nextSeqNum(), origin: this.clientId}, packet);
+        let netPacket: NT.NetworkPacket = Object.assign({vector: this.causalDeliveryLayer.getVector(), origin: this.clientId}, packet);
 
         this.networkManager.transmit(this.clientId, netPacket);
     }
@@ -120,17 +121,14 @@ class NetworkInterface {
             return;
         }
 
-        // ASSERT NEEDED
-        //  this.insertPacketReceived !== null
-        //  this.deletePacketReceived !== null
-
+/*
         let from = packet.origin;
         let s = packet.seq;
         let isValidNewPacket = this.receivedSeqNum(from, s);
         console.log("is valid new packet: " + isValidNewPacket);
         let retransmit = s !== -1 && isValidNewPacket;  // if not a unicast and is a new packet ie. a broadcast packet
-
         // demultiplex packet type
+*/
 
         let actions = {
             'i': () => this.insertPacketReceived(<CT.InsertMessage>packet.bundle),
@@ -140,22 +138,21 @@ class NetworkInterface {
             'ri': () => this.redoInsertReceived(<CT.UndoMessage>packet.bundle),
             'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.bundle),
             'reqCRDT': () => {
-                                this.requestCRDTReceived(from); 
-                                isValidNewPacket = false;    //forwarding as broadcast should already be rejected by seq num!!!
+                                this.requestCRDTReceived(packet.origin); 
                             },   
             'retCRDT': () => {
                                 // copying in sequence numbers need to happen before copying in CRDT and executing queued operations
-                                let peerSeqNumsReceived = (<NT.ReturnCRDTMessage>packet.bundle).peerSeqNums;
-                                this.peerSeqNums = peerSeqNumsReceived;
+                                let vectorReceived = (<NT.ReturnCRDTMessage>packet.bundle).currentVector;
+                                this.causalDeliveryLayer.setVector(vectorReceived);
                                 let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt; 
                                 this.returnCRDTReceived(crdt);
-                                isValidNewPacket = false
                             }
         };
 
-        if (isValidNewPacket) actions[packet.type]()
-        if (retransmit) this.networkManager.transmit(this.clientId, packet);
+        let isNewPacket = this.causalDeliveryLayer.receive(packet, actions[packet.type].bind(this));
+        let retransmit = packet.type !== "retCRDT" && packet.type !== "reqCRDT" && isNewPacket;
 
+        if (retransmit) this.networkManager.transmit(this.clientId, packet);
 
 
 
@@ -181,32 +178,6 @@ class NetworkInterface {
 
     }
 
-    private nextSeqNum(): number {
-        this.seqNum++;
-        return this.seqNum-1;
-    }
-
-    private receivedSeqNum(from: T.ClientId, n: number): boolean {
-        if (n === -1) { // unicast, ignore
-            return true;
-        }
-        if (from === this.clientId) {   // reject anything that's bounced back to original sender
-            return false;
-        }
-        if (!this.peerSeqNums[from]) {
-            Helper.assert(n === 1, "First seq num received from a peer is not 1");
-            this.peerSeqNums[from] = n+1; //should be 2
-            return true;
-        }
-        // if n is less than the next expected sequence number, we've seen it
-        if (n < this.peerSeqNums[from]) {
-            return false;
-        } else {
-            Helper.assert(n === this.peerSeqNums[from], "Received sequence number is out of order");
-            this.peerSeqNums[from]++;
-            return true;
-        }
-    }
 }
 
 export default NetworkInterface;
