@@ -307,7 +307,7 @@ Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging
 
 As stated in the proposal, I had prior experience with ShareJS, which was leveraged when creating the comparative system. Additionally, I was already proficient in Javascript and had working knowledge of Typescript, my main implementation language. However, almost all other aspects were new, notably: learning about CRDTs, writing test cases, the process of creating experiments and using these to profile performance, and how to implement a simulation.
 
-As the project progressed, several part II courses contributed or reaffirmed ideas I could use. Notably, the Computer Systems Modeling \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/CompSysMod/}} course had a short section on simulation which aligned very well with what I had already implemented at the time. Secondly, the Mobile and Sensor Systems course \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/MobSensSys/}} gave me some ideas when seeking alternatives to the flooding implemented in my network simulation.
+As the project progressed, several courses contributed or reaffirmed ideas I could use. Notably, the Computer Systems Modeling \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/CompSysMod/}} course had a short section on simulation which aligned very well with what I had already implemented at the time. Secondly, the Part IB course on Concurrent and Distributed Systems \footnote{\url{https://www.cl.cam.ac.uk/teaching/1617/ConcDisSys/}} provided valuable background towards Lamport and Vector clocks, causality, and total orderings. Lastly, the Mobile and Sensor Systems course \footnote{\url{http://www.cl.cam.ac.uk/teaching/1617/MobSensSys/}} gave me some ideas when seeking alternatives to the flooding implemented in my network simulation.
 
 \section{Requirements Analysis}
 To reiterate the success criteria listed in the project proposal, I hoped to
@@ -320,38 +320,23 @@ To reiterate the success criteria listed in the project proposal, I hoped to
 
 Points one and three have multiple unspecified subgoals. For clarity, Table [TODO] lists all of these and their respective importance and difficulty. These more closely mirror the 'Detailed Project Structure' of the proposal.
 
-\begin{samepage}
-
 \begin{center}
-\begin{tabular}{l|c|r}
-
-TODO
-
+\begin{table}[]
+\centering
+\caption{Specific Project Goals}
+\label{my-label}
+\begin{tabular}{|l|l|l|}
+\hline
+Implement and unit test core CRDT                & High   & Medium \\ \hline
+Implement network simulation                     & High   & High   \\ \hline
+Optimize CRDT Insert                             & Low    & Low    \\ \hline
+Design experiment format                         & High   & Low    \\ \hline
+Adapt ShareJS to run experiments 				 & High   & Medium \\ \hline
+Write log analysis scripts                       & Medium & Low    \\ \hline
 \end{tabular}
+\end{table}
 \end{center}
-\end{samepage}
 
-Goal
-Priority
-Difficulty
-Implement and unit test core CRDT
-High
-Medium
-Implement network simulation
-High
-High
-Optimize CRDT Insert
-Low
-Medium
-Design experiment format
-High
-Low
-Create ShareJS system capable of running experiments
-High
-Medium
-Write log analysis scripts
-Med
-Low
 
 
 \section{Software Engineering}
@@ -377,7 +362,7 @@ Low
 From the outset, I knew I could make simplifications in some aspects of the project, and would likely need to be more flexible and verbose in others. These design decisions were made at various points throughout the development process, though happily most were made early on and required little subsequent change. 
 
 	\subsection{Network Simulation}
-	One broad category of decisions has to do with the network simulation I implemented. Because I had no experience with simulation design and networking is not the focal point of this project, I did my best to keep everything simple. My system assumes the network guarantees in order delivery, and is capable of a broadcast to all peers of a node. Broadcast is not typically found in Internet applications – IPv6 does not even include any broadcast functionality and opts for multicast instead \cite{RFC2460}. Using global broadcast, or flooding, has severe implications in terms of network efficiency. Without further measures, basic flooding sends O(n\textsuperscript{2}) packets, where n is the number of clients in a fully connected network. This property can be seen in the Evaluation [section ref] section. However, though it has downsides, broadcast is simple to simulate given a network topology, requires no addressing, and no sophisticated protocols.
+	One broad category of decisions has to do with the network simulation I implemented. Because I had no experience with simulation design and networking is not the focal point of this project, I did my best to keep everything simple. My system assumes the network guarantees in order delivery, the network does not during simulation, and is capable of a broadcast to all peers of a node. We will see how to relax some of these guarantees in section [section ref]. Broadcast is not typically found in Internet applications – IPv6 does not even include any broadcast functionality and opts for multicast instead \cite{RFC2460}. Using global broadcast, or flooding, has severe implications in terms of network efficiency. Without further measures, basic flooding sends O(n\textsuperscript{2}) packets, where n is the number of clients in a fully connected network. This property can be seen in the Evaluation [section ref] section [EXPERIMENT NEEDED]. However, though it has downsides, broadcast is simple to simulate given a network topology, requires no addressing, and no sophisticated protocols.
 	
 	While the broadcast is a useful simplification, the topology of a P2P network affects a system's functionality nearly as strongly. As this project is somewhat a comparison between P2P and client-server architecture, being able to run experiments over different topologies is fairly important. My initial focus was on a fully connected P2P topology to contrast with the clients/server star topology. However, forcing the P2P simulation to run on a star itself is perhaps a more direct comparison. With two topologies to test it is already sensible to have a fully general mechanism for specifying a network, so I chose to provide support for arbitrary topologies and latencies on individual links. 
 	
@@ -389,15 +374,51 @@ From the outset, I knew I could make simplifications in some aspects of the proj
 
 \chapter{Implementation}
 
-This section will...
+The chapter describes the implementation of both real time editing systems, firstly the one based on CRDTs and secondly the one based on ShareJS, the experiment generation and results analysis components that are common to both systems, and lastly the extension that adds Local Undo capability to the CRDT.
+
 
 \section{CRDT-based system}
 
 	\subsection{Overview}
+	The high level components that make up my CRDT-based text editor are the user interface, the CRDT, and the network simulation. Each simulated client owns a local replica of the CRDT, has access to an editable text area, and a simplified network stack. The network stack that each client has access to hides from the client that the network is simulated -- in the background, a large part of the work is handed off to the network simulation manager. This approach aims to ease exchanging the simulation for a peer to peer protocol such as WebRTC \footnote{\url{https://webrtc.org}} at a later date. It also allowed separate development of the networking subsystem and the CRDT. Such separation of concerns and independence between subsystems are core principles of software engineering.
 	
-	\subsection{Custom CRDT}
+	The system architecture is diagrammatically shown in Figure [TODO].
+	
+	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, these clients integrate the changes into local replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
+	
+	
+	\subsection{CRDT}
+		To briefly review section [section ref], a text CRDT can be viewed as a set containing characters or string tagged with a totally ordered identifier. The document is then extracted in full by ordering the elements according to the total order. 
+		
+		\subsection{Structure}
+		In the Related Work section [section ref] various structures were mentioned, such as Treedoc which stores characters in the nodes of a tree and retrieves them in infix order. Rather than using using a tree to store characters, my approach implements a singly-linked list. Each link contains exactly a character, a pointer, and is associated with a unique identifier. Inserting characters is done as in standard linked lists -- find the node after which the insert should occur, rewrite its pointer to point to the new node, and repair the broken link with the new node's pointer.
+		
+		Figure of Linked List "insert" in my context
+		
+		Deletes are handled by adding to the relevant link a 'deleted' tag. Lastly, the read operation is a linear time traversal over the linked list, beginning with an invisible anchor element that marks the start of the document and cannot be deleted.
+		
+		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations are O(n): finding the character to insert after or delete requires at worst a scan of the whole list. A read is BigTheta(n) ***Todo***. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve O(1) lookup times for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes BigTheta(n) to retrieve the document.
+		
+		[Figure. Caption describe key as identifier and value as \{char: 'h', 'next': etc...\}]
+		
+		Javascript provides two native objects capable of mapping. One is the Map \footnote{\url{[https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map]}} structure, and another is the standard Javascript object (referred to as Objects from now on). Both have advantages and disadvantages: Objects only allow strings and numbers to be used as keys, while Maps can use arbitrary entities. On the other hand, Objects serialize very easily to JSON (JSON stands for Javascript Object Notation), while Maps would require their own conversion functions. As we will see in the next section, CRDT keys are pairs of numbers. Thus, the sensible structure would be a Map. Unfortunately, Maps natively do not hash the contents of the keys, but only the reference pointing to the key. I implemented both Map and Object variants of the CRDT, but the original pointer to the key used to insert into the Map was never retained. To solve this issue I serialized the key pair into a string on each lookup and insert, at which point there was no advantage over using Objects and a distinct disadvantage in terms of serializing the whole structure to JSON. Thus, I eventually settled on CRDTs implemented using Objects as lookup structures.
 	
 		\subsubsection{Identifiers}
+		
+		Recall that CRDT identifiers are required to be globally unique and totally ordered. My CRDT is advantageous over tree-based CRDTs in that generating identifiers is straightforward. Each client has a unique ID which forms one part of each character identifier. This ID can either be randomly generated or provided out by the bootstrapping server. In this project, the network simulation provides an ID.
+		
+		The other part of character identifier is drawn from the Natural numbers [insert Fancy N]. Every client maintains a Lamport \cite{lamport1978} clock that is incremented on each local insert and updated on receipt of an insert operation from another client. To create an identifier we then use the following definition.
+		
+		Define an identifier generated by client i to be a pair (t, Ci) where t is the next value Ti, the value of the Lamport clock on client I. Ci is the globally unique identifier of client I.
+		
+		Since each client provides a fresh t per character, and Ci is globally unique, each character identifier generated in the system is guaranteed to be unique.
+		
+		We can now define a total order over the identifiers
+		
+		[todo, formal total order definition]
+		
+		[describe why we even need Lamport clock... I think this has to do with the fact that if one client does loads and loads of edits then it always wins the concurrent insert...? This is pretty arbitrary and could probably be done without lamport anyway... need to think about it a bit more]
+		
 		
 		\subsubsection{Operations}
 		Plus proofs of correctness
