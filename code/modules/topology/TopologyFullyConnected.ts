@@ -26,11 +26,11 @@ class TopologyFullyConnected extends OpenSizeTopology  {
         for (let target = 0; target < this.graph.nodes.length; target++) {
             let edgeId = this.numEdges;
             this.numEdges++;
-            let latency = this.latencyModel.getLatency(nodeId, target);
+            let lambda = () => this.latencyModel.getLatency(nodeId, target);
             let adjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: target,
-                latency: latency
+                getLatency: lambda
             }
             // add references for fast neighbor retrieval
             newNode.links.push(adjacentEdge);
@@ -38,11 +38,11 @@ class TopologyFullyConnected extends OpenSizeTopology  {
             let oppositeAdjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: nodeId,
-                latency: latency
+                getLatency: lambda
             }
             this.graph.nodes[target].links.push(oppositeAdjacentEdge);
         }
-        this.graph.nodes.push(newNode);
+        this.graph.nodes.push(newNode); 
         return <T.ClientId>nodeId;
     }
 }

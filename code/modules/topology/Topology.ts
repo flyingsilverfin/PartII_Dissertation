@@ -35,7 +35,7 @@ abstract class Topology {
             for (let j = 0; j < node.links.length; j++) {
                 let link = node.links[j];
                 let d3edge: GT.d3Edge = {
-                    latency: link.latency,
+                    latency: link.getLatency(),
                     source: i,
                     target: link.target
                 };

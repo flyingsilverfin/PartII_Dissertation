@@ -143,7 +143,7 @@ class NetworkInterface {
             'retCRDT': () => {
                                 // copying in sequence numbers need to happen before copying in CRDT and executing queued operations
                                 let vectorReceived = (<NT.ReturnCRDTMessage>packet.bundle).currentVector;
-                                debugger
+                                
                                 this.causalDeliveryLayer.setVector(vectorReceived);
                                 let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt; 
                                 this.returnCRDTReceived(crdt);

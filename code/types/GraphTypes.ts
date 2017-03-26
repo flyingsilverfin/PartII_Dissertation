@@ -14,7 +14,8 @@ export interface Node {
 
 export interface AdjacentEdge {
     id: number, // graph-wide unique number as ID
-    latency: number,
+    //latency: number,
+    getLatency: () => number,
     target: number
 }
 

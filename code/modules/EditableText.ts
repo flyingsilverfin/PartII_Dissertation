@@ -169,7 +169,6 @@ class EditableText implements IT.EditableTextInterface {
 
     public mockInsert(chars: string, after: number): void {
         console.log('mock insert');
-        debugger
 
         let content = this.getContent();
 

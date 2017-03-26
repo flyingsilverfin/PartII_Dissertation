@@ -557,10 +557,10 @@ class ExperimentAnalzer(object):
 
             'insertPackets': 'Total insert packets sent',
             'insertPacketsSize': 'Total size of insert packets sent',
-            'avgInsertPacket': 'Average insert packet payload size',
+            'avgInsertPacket': 'Average insert packet size (incl vector clock etc.)',
             'deletePackets': 'Total delete packets sent',
             'deletePacketsSize': 'Total size of delete packets sent',
-            'avgDeletePacket': 'Average delete packet payload size',
+            'avgDeletePacket': 'Average delete packet size (incl vector clock etc.)',
             'naiiveP2PExpPackets': 'Expected number of packets sent - given naiive broadcast in a p2p network',
             'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network with everyone joining at start',
             'stringsMatch': 'All clients converged to same result',

@@ -6,8 +6,8 @@
 	Total insert events: 127
 	Total delete events: 0
 	Total insert packets sent: 12973
-	Total size of insert packets sent: 517888
-	Average insert packet payload size: 39.9204501657
+	Total size of insert packets sent: 2024594
+	Average insert packet payload size: 156.062129037
 	Total delete packets sent: 0
 	Total size of delete packets sent: 0
 	Average delete packet payload size: 0
@@ -30,8 +30,8 @@
 	Total insert events: 15
 	Total delete events: 0
 	Total insert packets sent: 1454
-	Total size of insert packets sent: 64674
-	Average insert packet payload size: 44.4800550206
+	Total size of insert packets sent: 224564
+	Average insert packet payload size: 154.445667125
 	Total delete packets sent: 0
 	Total size of delete packets sent: 0
 	Average delete packet payload size: 0
@@ -54,8 +54,8 @@
 	Total insert events: 127
 	Total delete events: 0
 	Total insert packets sent: 2279
-	Total size of insert packets sent: 90557
-	Average insert packet payload size: 39.7354102677
+	Total size of insert packets sent: 341677
+	Average insert packet payload size: 149.924089513
 	Total delete packets sent: 0
 	Total size of delete packets sent: 0
 	Average delete packet payload size: 0
@@ -78,8 +78,8 @@
 	Total insert events: 15
 	Total delete events: 0
 	Total insert packets sent: 263
-	Total size of insert packets sent: 11605
-	Average insert packet payload size: 44.1254752852
+	Total size of insert packets sent: 38933
+	Average insert packet payload size: 148.034220532
 	Total delete packets sent: 0
 	Total size of delete packets sent: 0
 	Average delete packet payload size: 0

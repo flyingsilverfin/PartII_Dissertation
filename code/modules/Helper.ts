@@ -88,6 +88,11 @@ export function deleteAt(str: string, index: number) {
     return str.substring(0, index) + str.substring(index+1);
 }
 
+export function remove(arr: any[], index: number) {
+    arr.splice(index, 1);
+    return arr;
+}
+
 export function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {

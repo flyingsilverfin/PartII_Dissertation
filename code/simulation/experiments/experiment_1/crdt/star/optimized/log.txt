@@ -1,0 +1,34 @@
+0    memory    11900000    pre-experiment
+0    memory    11900000    post-topology-init
+0    memory    11900000    post-graph-init
+0    memory    11900000    post-clients-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    sent    1    0    requestCRDT    53    
+0    sent    0    1    insert    93    coliseums    1.0    0
+0    join    2    Joined network!
+0    sent    2    0    requestCRDT    53    
+249.07862277720614    received    2    0    requestCRDT    53    
+249.07862277720614    sent    0    2    returnCRDT    347    257
+356.77360960314616    received    0    1    insert    93    coliseums    1.0    0
+366.77360960314616    received    1    0    requestCRDT    53    
+366.77360960314616    sent    0    1    returnCRDT    353    257
+488.15724555441227    received    0    2    returnCRDT    347    257
+518.1572455544123    sent    2    0    insert    101    freshening    10.2    0
+693.5472192062923    received    0    1    returnCRDT    353    257
+708.5472192062923    sent    1    0    insert    105    tackling    10.1    0
+737.2358683316183    received    2    0    insert    101    freshening    10.2    0
+737.2358683316183    sent    0    1    insert    101    freshening    10.2    0
+737.2358683316183    sent    0    2    insert    101    freshening    10.2    0
+926.3144911088245    received    0    2    insert    101    freshening    10.2    0
+1015.3208288094385    received    1    0    insert    105    tackling    10.1    0
+1015.3208288094385    sent    0    1    insert    105    tackling    10.1    0
+1015.3208288094385    sent    0    2    insert    105    tackling    10.1    0
+1034.0094779347646    received    0    1    insert    101    freshening    10.2    0
+1034.0094779347646    sent    1    0    insert    101    freshening    10.2    0
+1184.3994515866448    received    0    2    insert    105    tackling    10.1    0
+1184.3994515866448    sent    2    0    insert    105    tackling    10.1    0
+1290.783087537911    received    1    0    insert    101    freshening    10.2    0
+1292.0944384125849    received    0    1    insert    105    tackling    10.1    0
+1333.478074363851    received    2    0    insert    105    tackling    10.1    0
+1333.478074363851    memory    11900000    post-experiment

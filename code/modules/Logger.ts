@@ -32,14 +32,14 @@ export default class Logger {
 
 
     // logs [time] [type] sender receiver type id __msg__
-    public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.PreparedPacket) {
+    public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
         let time = this.getTime();
 
         let packetType = packet.type;
         let readablePacketType;
         let bundle = packet.bundle;
 
-        let bundleSize = JSON.stringify(bundle).length;
+        let packetSize = JSON.stringify(packet).length;
         
         let msg;
         if (packetType === "i") {
@@ -81,7 +81,7 @@ export default class Logger {
             sender + "    " +
             receiver + "    " +
             readablePacketType + "    " +
-            bundleSize + "    " +
+            packetSize + "    " +
             msg);
             
     }

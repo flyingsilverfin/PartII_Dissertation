@@ -111,7 +111,7 @@ class NetworkManager {
                 targetNetworkInterface.receive(packet);
                 if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
             };
-            this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[sender], action);
+            this.scheduler.addEvent(edge.getLatency(), this.clientLogicalCounterMap[sender], action);
             this.networkStats.incrementLoad(edge.id);
             this.log.logPacket(sender, edge.target, "sent", packet);
         }
@@ -153,7 +153,7 @@ class NetworkManager {
             if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
         };
 
-        this.scheduler.addEvent(edge.latency, this.clientLogicalCounterMap[from], action);
+        this.scheduler.addEvent(edge.getLatency(), this.clientLogicalCounterMap[from], action);
 
         this.networkStats.incrementLoad(edge.id);
         this.log.logPacket(from, edge.target, "sent", packet);
