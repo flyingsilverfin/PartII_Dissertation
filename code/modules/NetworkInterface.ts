@@ -91,7 +91,7 @@ class NetworkInterface {
             type: "retCRDT",
             bundle: {
                 crdt: crdt,
-                peerSeqNums: vectorCopy
+                currentVector: vectorCopy
             },
         }
         this.networkManager.unicast(this.clientId, destination, packet);
@@ -106,7 +106,7 @@ class NetworkInterface {
             return;
         }
 
-        let netPacket: NT.NetworkPacket = Object.assign({vector: this.causalDeliveryLayer.getVector(), origin: this.clientId}, packet);
+        let netPacket: NT.NetworkPacket = Object.assign({vector: this.causalDeliveryLayer.getNextVector(), origin: this.clientId}, packet);
 
         this.networkManager.transmit(this.clientId, netPacket);
     }
@@ -139,10 +139,11 @@ class NetworkInterface {
             'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.bundle),
             'reqCRDT': () => {
                                 this.requestCRDTReceived(packet.origin); 
-                            },   
+                            },
             'retCRDT': () => {
                                 // copying in sequence numbers need to happen before copying in CRDT and executing queued operations
                                 let vectorReceived = (<NT.ReturnCRDTMessage>packet.bundle).currentVector;
+                                debugger
                                 this.causalDeliveryLayer.setVector(vectorReceived);
                                 let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt; 
                                 this.returnCRDTReceived(crdt);

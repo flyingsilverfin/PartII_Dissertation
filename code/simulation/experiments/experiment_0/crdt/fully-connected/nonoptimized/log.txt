@@ -1,7 +1,7 @@
-0    memory    12168584    pre-experiment
-0    memory    12257296    post-topology-init
-0    memory    14786048    post-graph-init
-0    memory    14796296    post-clients-init
+0    memory    10000000    pre-experiment
+0    memory    10000000    post-topology-init
+0    memory    10000000    post-graph-init
+0    memory    10000000    post-clients-init
 0    join    0    Joined network!
 0    join    1    Joined network!
 0    sent    1    0    requestCRDT    2    
@@ -18,7 +18,7 @@
 100    sent    2    0    requestCRDT    2    
 208.38680480157308    received    0    1    insert    35    c    1.0    0
 208.38680480157308    received    1    0    requestCRDT    2    
-208.38680480157308    sent    0    1    returnCRDT    289    257
+208.38680480157308    sent    0    1    returnCRDT    296    257
 208.38680480157308    received    0    1    insert    37    o    2.0    1.0
 208.38680480157308    received    0    1    insert    37    l    3.0    2.0
 208.38680480157308    received    0    1    insert    37    i    4.0    3.0
@@ -28,11 +28,11 @@
 208.38680480157308    received    0    1    insert    37    m    8.0    7.0
 208.38680480157308    received    0    1    insert    37    s    9.0    8.0
 259.5393113886031    received    2    0    requestCRDT    2    
-259.5393113886031    sent    0    2    returnCRDT    289    257
+259.5393113886031    sent    0    2    returnCRDT    302    257
 400    join    3    Joined network!
 400    sent    3    0    requestCRDT    2    
-416.77360960314616    received    0    1    returnCRDT    289    257
-419.07862277720614    received    0    2    returnCRDT    289    257
+416.77360960314616    received    0    1    returnCRDT    296    257
+419.07862277720614    received    0    2    returnCRDT    302    257
 431.77360960314616    sent    1    0    insert    36    t    10.1    0
 431.77360960314616    sent    1    2    insert    36    t    10.1    0
 431.77360960314616    sent    1    3    insert    36    t    10.1    0
@@ -92,7 +92,7 @@
 500    join    5    Joined network!
 500    sent    5    0    requestCRDT    2    
 586.7160403705681    received    3    0    requestCRDT    2    
-586.7160403705681    sent    0    3    returnCRDT    289    257
+586.7160403705681    sent    0    3    returnCRDT    308    257
 598.5707664340057    received    2    3    insert    36    f    10.2    0
 598.5707664340057    received    2    3    insert    39    r    11.2    10.2
 598.5707664340057    received    2    3    insert    39    e    12.2    11.2
@@ -328,9 +328,9 @@
 640.1604144047192    sent    0    4    insert    39    g    17.1    16.1
 640.1604144047192    sent    0    5    insert    39    g    17.1    16.1
 695.1278583065123    received    4    0    requestCRDT    2    
-695.1278583065123    sent    0    4    returnCRDT    806    761
+695.1278583065123    sent    0    4    returnCRDT    819    761
 718.9761081010023    received    5    0    requestCRDT    2    
-718.9761081010023    sent    0    5    returnCRDT    806    761
+718.9761081010023    sent    0    5    returnCRDT    825    761
 752.4286613477502    received    2    3    insert    36    t    10.1    0
 752.4286613477502    received    2    3    insert    39    a    11.1    10.1
 752.4286613477502    received    2    3    insert    39    c    12.1    11.1
@@ -365,7 +365,7 @@
 768.1572455544122    received    0    2    insert    39    i    17.2    16.2
 768.1572455544122    received    0    2    insert    39    n    18.2    17.2
 768.1572455544122    received    0    2    insert    39    g    19.2    18.2
-773.4320807411361    received    0    3    returnCRDT    289    257
+773.4320807411361    received    0    3    returnCRDT    308    257
 773.4320807411361    sent    3    0    insert    36    f    10.2    0
 773.4320807411361    sent    3    1    insert    36    f    10.2    0
 773.4320807411361    sent    3    2    insert    36    f    10.2    0
@@ -627,7 +627,7 @@
 859.1365225057215    received    0    5    insert    39    i    15.1    14.1
 859.1365225057215    received    0    5    insert    39    n    16.1    15.1
 859.1365225057215    received    0    5    insert    39    g    17.1    16.1
-890.2557166130246    received    0    4    returnCRDT    806    761
+890.2557166130246    received    0    4    returnCRDT    819    761
 922.9242243979356    received    3    2    insert    36    f    10.2    0
 922.9242243979356    received    3    2    insert    39    r    11.2    10.2
 922.9242243979356    received    3    2    insert    39    e    12.2    11.2
@@ -646,7 +646,7 @@
 922.9242243979356    received    3    2    insert    39    i    15.1    14.1
 922.9242243979356    received    3    2    insert    39    n    16.1    15.1
 922.9242243979356    received    3    2    insert    39    g    17.1    16.1
-937.9522162020045    received    0    5    returnCRDT    806    761
+937.9522162020045    received    0    5    returnCRDT    825    761
 950.2557166130246    sent    4    0    insert    36    c    20.4    0
 950.2557166130246    sent    4    1    insert    36    c    20.4    0
 950.2557166130246    sent    4    2    insert    36    c    20.4    0
@@ -1334,7 +1334,7 @@
 1157.0071716187383    sent    1    8    insert    39    y    24.4    23.4
 1157.0071716187383    sent    1    9    insert    39    y    24.4    23.4
 1159.7227076439292    received    7    0    requestCRDT    2    
-1159.7227076439292    sent    0    7    returnCRDT    1098    1041
+1159.7227076439292    sent    0    7    returnCRDT    1111    1041
 1161.4167329085888    received    4    2    insert    36    i    20.3    0
 1161.4167329085888    received    4    2    insert    39    r    21.3    20.3
 1161.4167329085888    received    4    2    insert    39    o    22.3    21.3
@@ -1416,7 +1416,7 @@
 1188.118022154037    received    1    7    insert    39    n    23.3    22.3
 1188.118022154037    received    1    7    insert    39    y    24.3    23.3
 1188.2443192140215    received    9    0    requestCRDT    2    
-1188.2443192140215    sent    0    9    returnCRDT    1098    1041
+1188.2443192140215    sent    0    9    returnCRDT    1117    1041
 1188.593461890554    received    4    3    insert    36    i    20.3    0
 1188.593461890554    received    4    3    insert    39    r    21.3    20.3
 1188.593461890554    received    4    3    insert    39    o    22.3    21.3
@@ -1632,7 +1632,7 @@
 1216.6396337241292    received    1    9    insert    39    n    23.3    22.3
 1216.6396337241292    received    1    9    insert    39    y    24.3    23.3
 1218.4258408537723    received    8    0    requestCRDT    2    
-1218.4258408537723    sent    0    8    returnCRDT    1098    1041
+1218.4258408537723    sent    0    8    returnCRDT    1123    1041
 1220.3032623737583    received    4    8    insert    36    i    20.3    0
 1220.3032623737583    received    4    8    insert    39    r    21.3    20.3
 1220.3032623737583    received    4    8    insert    39    o    22.3    21.3
@@ -1963,7 +1963,7 @@
 1230.6584891359298    received    2    7    insert    39    e    23.4    22.4
 1230.6584891359298    received    2    7    insert    39    y    24.4    23.4
 1230.9572853511636    received    6    0    requestCRDT    2    
-1230.9572853511636    sent    0    6    returnCRDT    1098    1041
+1230.9572853511636    sent    0    6    returnCRDT    1129    1041
 1231.9283243030072    received    5    0    insert    36    d    20.5    0
 1231.9283243030072    sent    0    1    insert    36    d    20.5    0
 1231.9283243030072    sent    0    2    insert    36    d    20.5    0
@@ -2411,7 +2411,7 @@
 1317.2032385193995    received    2    7    insert    39    n    31.5    30.5
 1317.2032385193995    received    2    7    insert    39    c    32.5    31.5
 1317.2032385193995    received    2    7    insert    39    e    33.5    32.5
-1319.4454152878589    received    0    7    returnCRDT    1098    1041
+1319.4454152878589    received    0    7    returnCRDT    1111    1041
 1319.4454152878589    sent    7    0    insert    36    d    20.5    0
 1319.4454152878589    sent    7    1    insert    36    d    20.5    0
 1319.4454152878589    sent    7    2    insert    36    d    20.5    0
@@ -2769,7 +2769,7 @@
 1376.4566389764723    received    2    5    insert    39    n    31.5    30.5
 1376.4566389764723    received    2    5    insert    39    c    32.5    31.5
 1376.4566389764723    received    2    5    insert    39    e    33.5    32.5
-1376.4886384280428    received    0    9    returnCRDT    1098    1041
+1376.4886384280428    received    0    9    returnCRDT    1117    1041
 1376.4886384280428    sent    9    0    insert    36    d    20.5    0
 1376.4886384280428    sent    9    1    insert    36    d    20.5    0
 1376.4886384280428    sent    9    2    insert    36    d    20.5    0
@@ -3266,7 +3266,7 @@
 1430.8100969404024    received    3    5    insert    39    n    31.5    30.5
 1430.8100969404024    received    3    5    insert    39    c    32.5    31.5
 1430.8100969404024    received    3    5    insert    39    e    33.5    32.5
-1436.8516817075442    received    0    8    returnCRDT    1098    1041
+1436.8516817075442    received    0    8    returnCRDT    1123    1041
 1436.8516817075442    sent    8    0    insert    36    d    20.5    0
 1436.8516817075442    sent    8    1    insert    36    d    20.5    0
 1436.8516817075442    sent    8    2    insert    36    d    20.5    0
@@ -3575,7 +3575,7 @@
 1459.6149100624525    received    4    6    insert    39    n    31.5    30.5
 1459.6149100624525    received    4    6    insert    39    c    32.5    31.5
 1459.6149100624525    received    4    6    insert    39    e    33.5    32.5
-1461.9145707023274    received    0    6    returnCRDT    1098    1041
+1461.9145707023274    received    0    6    returnCRDT    1129    1041
 1461.9145707023274    sent    6    0    insert    36    d    20.5    0
 1461.9145707023274    sent    6    1    insert    36    d    20.5    0
 1461.9145707023274    sent    6    2    insert    36    d    20.5    0
@@ -5091,7 +5091,7 @@
 1699.7329576420655    sent    0    9    insert    39    r    35.9    34.9
 1699.7329576420655    sent    0    10    insert    39    r    35.9    34.9
 1701.680592224601    received    10    0    requestCRDT    2    
-1701.680592224601    sent    0    10    returnCRDT    1733    1657
+1701.680592224601    sent    0    10    returnCRDT    1753    1657
 1704.4954527526927    received    6    1    insert    36    d    20.5    0
 1704.4954527526927    received    6    1    insert    39    i    21.5    20.5
 1704.4954527526927    received    6    1    insert    39    s    22.5    21.5
@@ -7350,7 +7350,7 @@
 1902.8771138690342    received    7    10    insert    39    d    36.8    35.8
 1902.8771138690342    received    7    10    insert    39    d    37.8    36.8
 1902.8771138690342    received    7    10    insert    39    y    38.8    37.8
-1903.3611844492023    received    0    10    returnCRDT    1733    1657
+1903.3611844492023    received    0    10    returnCRDT    1753    1657
 1903.3611844492023    sent    10    0    insert    36    S    34.8    0
 1903.3611844492023    sent    10    1    insert    36    S    34.8    0
 1903.3611844492023    sent    10    2    insert    36    S    34.8    0
@@ -9013,7 +9013,7 @@
 2139.235853922594    received    10    6    insert    39    o    41.6    40.6
 2139.235853922594    received    10    6    insert    39    m    42.6    41.6
 2177.7676314730415    received    11    0    requestCRDT    2    
-2177.7676314730415    sent    0    11    returnCRDT    2138    2049
+2177.7676314730415    sent    0    11    returnCRDT    2152    2049
 2217.8178799600337    received    10    2    insert    37    i    43.10    0
 2217.8178799600337    sent    2    0    insert    37    i    43.10    0
 2217.8178799600337    sent    2    1    insert    37    i    43.10    0
@@ -10613,7 +10613,7 @@
 2340.500087145521    received    7    2    insert    41    i    53.10    52.10
 2340.500087145521    received    7    2    insert    41    v    54.10    53.10
 2340.500087145521    received    7    2    insert    41    e    55.10    54.10
-2355.5352629460785    received    0    11    returnCRDT    2138    2049
+2355.5352629460785    received    0    11    returnCRDT    2152    2049
 2355.5352629460785    sent    11    0    insert    37    i    43.10    0
 2355.5352629460785    sent    11    1    insert    37    i    43.10    0
 2355.5352629460785    sent    11    2    insert    37    i    43.10    0
@@ -15211,8 +15211,8 @@
 3999.9999999999936    join    12    Joined network!
 3999.9999999999936    sent    12    0    requestCRDT    2    
 4212.255063373251    received    12    0    requestCRDT    2    
-4212.255063373251    sent    0    12    returnCRDT    2874    2769
-4424.510126746508    received    0    12    returnCRDT    2874    2769
+4212.255063373251    sent    0    12    returnCRDT    2881    2769
+4424.510126746508    received    0    12    returnCRDT    2881    2769
 4604.510126746508    sent    12    0    insert    37    a    67.12    0
 4604.510126746508    sent    12    1    insert    37    a    67.12    0
 4604.510126746508    sent    12    2    insert    37    a    67.12    0
@@ -18648,8 +18648,8 @@
 5999.999999999998    join    13    Joined network!
 5999.999999999998    sent    13    0    requestCRDT    2    
 6231.898328561367    received    13    0    requestCRDT    2    
-6231.898328561367    sent    0    13    returnCRDT    3212    3099
-6463.796657122735    received    0    13    returnCRDT    3212    3099
+6231.898328561367    sent    0    13    returnCRDT    3219    3099
+6463.796657122735    received    0    13    returnCRDT    3219    3099
 6658.796657122735    sent    13    0    insert    37    a    78.13    0
 6658.796657122735    sent    13    1    insert    37    a    78.13    0
 6658.796657122735    sent    13    2    insert    37    a    78.13    0
@@ -22657,8 +22657,8 @@
 10000.000000000007    join    14    Joined network!
 10000.000000000007    sent    14    0    requestCRDT    2    
 10192.740074241778    received    14    0    requestCRDT    2    
-10192.740074241778    sent    0    14    returnCRDT    3550    3429
-10385.480148483548    received    0    14    returnCRDT    3550    3429
+10192.740074241778    sent    0    14    returnCRDT    3557    3429
+10385.480148483548    received    0    14    returnCRDT    3557    3429
 10595.480148483548    sent    14    0    insert    37    p    89.14    0
 10595.480148483548    sent    14    1    insert    37    p    89.14    0
 10595.480148483548    sent    14    2    insert    37    p    89.14    0
@@ -26019,4 +26019,4 @@
 11089.447748994487    received    13    6    insert    41    i    94.14    93.14
 11089.447748994487    received    13    6    insert    41    n    95.14    94.14
 11089.447748994487    received    13    6    insert    41    g    96.14    95.14
-11089.447748994487    memory    34000456    post-experiment
+11089.447748994487    memory    10000000    post-experiment
