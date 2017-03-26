@@ -8,6 +8,8 @@
 \usepackage{docmute}   % only needed to allow inclusion of proposal.tex
 \usepackage{url}
 \usepackage[parfill]{parskip}
+\usepackage{booktabs}
+
 
 \usepackage{fancyvrb,newverbs,xcolor}
 
@@ -323,16 +325,16 @@ Points one and three have multiple unspecified subgoals. For clarity, Table [TOD
 \begin{center}
 \begin{table}[]
 \centering
-\caption{Specific Project Goals}
+\caption{My caption}
 \label{my-label}
-\begin{tabular}{|l|l|l|}
-\hline
-Implement and unit test core CRDT                & High   & Medium \\ \hline
-Implement network simulation                     & High   & High   \\ \hline
-Optimize CRDT Insert                             & Low    & Low    \\ \hline
-Design experiment format                         & High   & Low    \\ \hline
-Adapt ShareJS to run experiments 				 & High   & Medium \\ \hline
-Write log analysis scripts                       & Medium & Low    \\ \hline
+\begin{tabular}{@{}|l|l|l|@{}}
+\toprule
+Implement and unit test core CRDT                & High   & Medium \\ \midrule
+Implement network simulation                     & High   & High   \\ \midrule
+Optimize CRDT Insert                             & Low    & Low    \\ \midrule
+Design experiment format                         & High   & Low    \\ \midrule
+Create ShareJS system capable of running experim & High   & Medium \\ \midrule
+Write log analysis scripts                       & Medium & Low    \\ \bottomrule
 \end{tabular}
 \end{table}
 \end{center}
@@ -374,7 +376,7 @@ From the outset, I knew I could make simplifications in some aspects of the proj
 
 \chapter{Implementation}
 
-The chapter describes the implementation of both real time editing systems, firstly the one based on CRDTs and secondly the one based on ShareJS, the experiment generation and results analysis components that are common to both systems, and lastly the extension that adds Local Undo capability to the CRDT.
+The chapter describes the implementation of both real time editing systems, firstly the one based on CRDTs and secondly the one based on ShareJS, the experiment generation and results analysis components that are shared by both systems, and lastly the extension that adds Local Undo capability to the CRDT.
 
 
 \section{CRDT-based system}
@@ -384,34 +386,34 @@ The chapter describes the implementation of both real time editing systems, firs
 	
 	The system architecture is diagrammatically shown in Figure [TODO].
 	
-	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, these clients integrate the changes into local replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
+	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, the remote clients integrate the changes into local replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
 	
 	
 	\subsection{CRDT}
-		To briefly review section [section ref], a text CRDT can be viewed as a set containing characters or string tagged with a totally ordered identifier. The document is then extracted in full by ordering the elements according to the total order. 
+		To briefly review section [section ref], a text CRDT can be thought of as a set containing characters tagged with totally ordered identifiers. The document is then extracted in full by ordering the elements according to the total order. 
 		
-		\subsection{Structure}
+		\subsubsection{Structure}
 		In the Related Work section [section ref] various structures were mentioned, such as Treedoc which stores characters in the nodes of a tree and retrieves them in infix order. Rather than using using a tree to store characters, my approach implements a singly-linked list. Each link contains exactly a character, a pointer, and is associated with a unique identifier. Inserting characters is done as in standard linked lists -- find the node after which the insert should occur, rewrite its pointer to point to the new node, and repair the broken link with the new node's pointer.
 		
 		Figure of Linked List "insert" in my context
 		
 		Deletes are handled by adding to the relevant link a 'deleted' tag. Lastly, the read operation is a linear time traversal over the linked list, beginning with an invisible anchor element that marks the start of the document and cannot be deleted.
 		
-		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations are O(n): finding the character to insert after or delete requires at worst a scan of the whole list. A read is BigTheta(n) ***Todo***. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve O(1) lookup times for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes BigTheta(n) to retrieve the document.
+		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations we might want to do on a linked list are O(n): finding a node to insert after or delete requires at worst a scan of the whole list. A read is BigTheta(n) ***Todo***. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve O(1) lookup times for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes BigTheta(n) to retrieve the document.
 		
 		[Figure. Caption describe key as identifier and value as \{char: 'h', 'next': etc...\}]
 		
-		Javascript provides two native objects capable of mapping. One is the Map \footnote{\url{[https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map]}} structure, and another is the standard Javascript object (referred to as Objects from now on). Both have advantages and disadvantages: Objects only allow strings and numbers to be used as keys, while Maps can use arbitrary entities. On the other hand, Objects serialize very easily to JSON (JSON stands for Javascript Object Notation), while Maps would require their own conversion functions. As we will see in the next section, CRDT keys are pairs of numbers. Thus, the sensible structure would be a Map. Unfortunately, Maps natively do not hash the contents of the keys, but only the reference pointing to the key. I implemented both Map and Object variants of the CRDT, but the original pointer to the key used to insert into the Map was never retained. To solve this issue I serialized the key pair into a string on each lookup and insert, at which point there was no advantage over using Objects and a distinct disadvantage in terms of serializing the whole structure to JSON. Thus, I eventually settled on CRDTs implemented using Objects as lookup structures.
+		Javascript provides two native objects capable of mapping. One is the Map \footnote{\url{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map}} structure, and another is the standard Javascript object (referred to as Objects from now on). Both have advantages and disadvantages: Objects only allow strings and numbers to be used as keys, while Maps can use arbitrary entities. On the other hand, Objects serialize very easily to JSON (Javascript Object Notation), while Maps would require their own conversion functions. As we will see in the next section, CRDT keys are pairs of numbers. Thus, the sensible structure would be a Map, as we can map from pairs to values. Unfortunately, Maps natively do not hash the contents of the keys, but only the reference pointing to the key. I implemented both Map and Object variants of the CRDT, but the original pointer to the identifier used is not retained; it is not possible to retrieve the value associated with a given identifier. To solve this issue I serialized the key pair into a string on each lookup and insert (which, being immutable in Javascript are compared by content rather than pointer). At that point there was no advantage over using Objects and a distinct disadvantage in terms of serializing to JSON. Thus, I eventually settled on CRDTs implemented using Objects as lookup structures.
 	
 		\subsubsection{Identifiers}
 		
-		Recall that CRDT identifiers are required to be globally unique and totally ordered. My CRDT is advantageous over tree-based CRDTs in that generating identifiers is straightforward. Each client has a unique ID which forms one part of each character identifier. This ID can either be randomly generated or provided out by the bootstrapping server. In this project, the network simulation provides an ID.
+		Recall that CRDT identifiers are required to be globally unique and totally ordered. My CRDT is advantageous over tree-based CRDTs in that generating identifiers is straightforward. Each client has a unique ID (referred to as \textit{cid}) which forms one part of each character identifier. A \textit{cid} can either be randomly generated or provided by the bootstrapping server for the P2P network. In this project, the network simulation provides unique \textit{cid}s.
 		
-		The other part of character identifier is drawn from the Natural numbers [insert Fancy N]. Every client maintains a Lamport \cite{lamport1978} clock that is incremented on each local insert and updated on receipt of an insert operation from another client. To create an identifier we then use the following definition.
+		The other part of character identifiers is drawn from the Natural numbers [insert Fancy N]. Every client maintains a Lamport \cite{lamport1978} clock that is incremented on each local insert and updated on receipt of an insert operation from another client. To create an identifier we then use the following definition.
 		
-		Define an identifier generated by client i to be a pair (t, Ci) where t is the next value Ti, the value of the Lamport clock on client I. Ci is the globally unique identifier of client I.
+		Define an identifier generated by client i to be a pair (\textit{t}, \textit{cid}) where \textit{t} is the next value Ti, the value of the Lamport clock on client I. \textit{cid} is the globally unique identifier of client I.
 		
-		Since each client provides a fresh t per character, and Ci is globally unique, each character identifier generated in the system is guaranteed to be unique.
+		Since each client provides a fresh \textit{t} per character, and \textit{cid} is globally unique, each pair generated in the system is guaranteed to be unique.
 		
 		We can now define a total order over the identifiers
 		
@@ -421,14 +423,47 @@ The chapter describes the implementation of both real time editing systems, firs
 		
 		
 		\subsubsection{Operations}
-		Plus proofs of correctness
-			
-		\subsubsection{Tombstones}
+		The text CRDT supports two core operations: insert and delete.
 		
-		\subsubsection{Optimizations}
+			\paragraph{Insert}
+			Inserting a character into the text document generates an insert operation. An insert operation is stored and transmitted as a bundle.
+			
+			An insert bundle \textit{B} contains
+			\begin{itemize}
+				\item A unique identifier  \textit{id} for the character
+				\item The character \textit{c} itself
+				\item The node after which to insert the character \textit{after}. This corresponds to the position in the linked list at which the character needs to be spliced into and another unique identifier.
+			
+			\end{itemize}
+			
+			Incorporating an insert bundle into the CRDT is the following sequence of steps
+			\begin{enumerate}
+				\item Locate in the hash table the node \textit{Prev} corresponding to the \textit{B.after} identifier received
+				\item Insert into the table \textit{B.id} mapped to a new node \textit{N} containing the character \textit{B.c} and a pointer to \textit{Prev}'s \textit{next} pointer
+				\item Rewrite \textit{Prev}'s \textit{next} pointer to point to \textit{B}
+			\end{enumerate}
+			This is the standard procedure to insert a new node into a linked list.
+			
+			\subsubsection{Delete}
+			Deleting a character from the text document generates a delete operation, which is transmitted as a bundle \textit{B} containing
+			\begin{itemize}
+				\item The target character's identifier to be deleted \textit{deleteId}
+			\end{itemize}
+			
+			Incorporating a delete bundle into the CRDT is straightforward
+			\begin{enumerate}
+				\item Locate the node \textit{N} corresponding to \textit{B.deleteId}
+				\item Set a boolean flag in \textit{N.d} to true
+			\end{enumerate}
+			
+			\
+			
+		\subsection{Tombstones}
+		
+		\subsection{Optimizations}
 		
 	
-	\subsection{Network simulation}
+	\subsection{Network simuation}
 	
 		\subsubsection{Abstraction}
 		
