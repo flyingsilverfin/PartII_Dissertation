@@ -6,8 +6,8 @@ class LatencyModel {
     private modelDescription;
     private nodeLatencies: NT.NodeLatencies;
 
-    //for testing
-    private n;
+    //for testing overtaking on same link
+    //private n;
 
     // parameter node_latencies is defined as:
     //  map between node_id and a latency
@@ -21,14 +21,14 @@ class LatencyModel {
     constructor(modelDescription, nodeLatencies) {
         this.modelDescription = modelDescription;
         this.nodeLatencies = nodeLatencies;
-        this.n = 1;
+        //this.n = 1;
     }
 
     public getLatency(source:number, target:number): number {
 
         let base = this.nodeLatencies[source].latency + this.nodeLatencies[target].latency;
-        this.n++;
-        return base - (this.n-1)*10;
+        //this.n++;
+        return base/2;
 
         // return (this.nodeLatencies[source].latency + this.nodeLatencies[target].latency)/2;
     }

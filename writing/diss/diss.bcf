@@ -1983,8 +1983,9 @@
     <bcf:citekey order="17">sharejs</bcf:citekey>
     <bcf:citekey order="18">RFC2460</bcf:citekey>
     <bcf:citekey order="19">lamport1978</bcf:citekey>
-    <bcf:citekey order="20">Technion</bcf:citekey>
-    <bcf:citekey order="21">sun1998operational</bcf:citekey>
-    <bcf:citekey order="22">preguica2009commutative</bcf:citekey>
-    <bcf:citekey order="23">Shapiro2011</bcf:citekey>
-    <bcf:citekey order="24">ShareJS</bcf:citekey>
+    <bcf:citekey order="20">preguica2009</bcf:citekey>
+    <bcf:citekey order="21">Technion</bcf:citekey>
+    <bcf:citekey order="22">sun1998operational</bcf:citekey>
+    <bcf:citekey order="23">preguica2009commutative</bcf:citekey>
+    <bcf:citekey order="24">Shapiro2011</bcf:citekey>
+    <bcf:citekey order="25">ShareJS</bcf:citekey>

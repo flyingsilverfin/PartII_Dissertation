@@ -9,6 +9,10 @@
 \usepackage{url}
 \usepackage[parfill]{parskip}
 \usepackage{booktabs}
+\usepackage{fixltx2e}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{listings}
 
 
 \usepackage{fancyvrb,newverbs,xcolor}
@@ -28,6 +32,38 @@
 \renewcommand{\baselinestretch}{1.1}    % adjust line spacing to make
                                         % more readable
 
+
+  
+\lstdefinelanguage{Typescript}{
+	keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={interface, class, extends, export, void, number, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{orange}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+	language=Typescript,
+	backgroundcolor=\color{lightgray},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b
+}
 
 
 \definecolor{cverbbg}{gray}{0.93}
@@ -51,6 +87,7 @@
 \newverbcommand{\cverb}
   {\setbox\verbbox\hbox\bgroup}
   {\egroup\colorbox{cverbbg}{\box\verbbox}}
+  
   
   
 \begin{document}
@@ -382,18 +419,20 @@ The chapter describes the implementation of both real time editing systems, firs
 \section{CRDT-based system}
 
 	\subsection{Overview}
-	The high level components that make up my CRDT-based text editor are the user interface, the CRDT, and the network simulation. Each simulated client owns a local replica of the CRDT, has access to an editable text area, and a simplified network stack. The network stack that each client has access to hides from the client that the network is simulated -- in the background, a large part of the work is handed off to the network simulation manager. This approach aims to ease exchanging the simulation for a peer to peer protocol such as WebRTC \footnote{\url{https://webrtc.org}} at a later date. It also allowed separate development of the networking subsystem and the CRDT. Such separation of concerns and independence between subsystems are core principles of software engineering.
+	The high level components that make up my CRDT-based text editor are the user interface, the CRDT, and the network simulation. Each simulated client owns a local replica of the CRDT, has access to an editable text area, and a simplified network stack. The network stack that each client has access to hides from the client that the network is simulated -- in the background, a large part of the work is handed off to the network simulation manager. This approach aims to ease exchanging the simulation for a peer to peer protocol such as WebRTC \footnote{\url{https://webrtc.org}} at a later date. It also allowed separate development of the networking subsystem and the CRDT. Such separation of concerns and independence between subsystems are core principles of software engineering that were adhered to throughout the implementation.
 	
 	The system architecture is diagrammatically shown in Figure [TODO].
 	
-	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, the remote clients integrate the changes into local replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
+	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, the remote clients integrate the changes into their replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
 	
 	
 	\subsection{CRDT}
 		To briefly review section [section ref], a text CRDT can be thought of as a set containing characters tagged with totally ordered identifiers. The document is then extracted in full by ordering the elements according to the total order. 
 		
+		This subsection goes through the structure and capabilities of the CRDT I utilized, how character identifiers are generated and totally ordered, the operations that are supported in the context of text editing, a brief discussion of tombstones left behind by deletions, and some optimizations I added.
+		
 		\subsubsection{Structure}
-		In the Related Work section [section ref] various structures were mentioned, such as Treedoc which stores characters in the nodes of a tree and retrieves them in infix order. Rather than using using a tree to store characters, my approach implements a singly-linked list. Each link contains exactly a character, a pointer, and is associated with a unique identifier. Inserting characters is done as in standard linked lists -- find the node after which the insert should occur, rewrite its pointer to point to the new node, and repair the broken link with the new node's pointer.
+		In the Related Work section [section ref] various structures were mentioned, such as Treedoc which stores characters in the nodes of a tree and retrieves them in infix order. Rather than using using a tree to store characters, my approach implements a singly-linked list. Each link contains exactly a character, a pointer, and is associated with a unique identifier.  Inserting characters is done as in standard linked lists -- find the node after which the insert should occur, rewrite its pointer to point to the new node, and repair the broken link with the new node's pointer.
 		
 		Figure of Linked List "insert" in my context
 		
@@ -404,6 +443,8 @@ The chapter describes the implementation of both real time editing systems, firs
 		[Figure. Caption describe key as identifier and value as \{char: 'h', 'next': etc...\}]
 		
 		Javascript provides two native objects capable of mapping. One is the Map \footnote{\url{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map}} structure, and another is the standard Javascript object (referred to as Objects from now on). Both have advantages and disadvantages: Objects only allow strings and numbers to be used as keys, while Maps can use arbitrary entities. On the other hand, Objects serialize very easily to JSON (Javascript Object Notation), while Maps would require their own conversion functions. As we will see in the next section, CRDT keys are pairs of numbers. Thus, the sensible structure would be a Map, as we can map from pairs to values. Unfortunately, Maps natively do not hash the contents of the keys, but only the reference pointing to the key. I implemented both Map and Object variants of the CRDT, but the original pointer to the identifier used is not retained; it is not possible to retrieve the value associated with a given identifier. To solve this issue I serialized the key pair into a string on each lookup and insert (which, being immutable in Javascript are compared by content rather than pointer). At that point there was no advantage over using Objects and a distinct disadvantage in terms of serializing to JSON. Thus, I eventually settled on CRDTs implemented using Objects as lookup structures.
+		
+		From now on, "CRDT" and "linked-list" will be used interchangeably.
 	
 		\subsubsection{Identifiers}
 		
@@ -426,48 +467,105 @@ The chapter describes the implementation of both real time editing systems, firs
 		The text CRDT supports two core operations: insert and delete.
 		
 			\paragraph{Insert}
-			Inserting a character into the text document generates an insert operation. An insert operation is stored and transmitted as a bundle.
-			
-			An insert bundle \textit{B} contains
-			\begin{itemize}
-				\item A unique identifier  \textit{id} for the character
-				\item The character \textit{c} itself
-				\item The node after which to insert the character \textit{after}. This corresponds to the position in the linked list at which the character needs to be spliced into and another unique identifier.
-			
-			\end{itemize}
-			
-			Incorporating an insert bundle into the CRDT is the following sequence of steps
-			\begin{enumerate}
-				\item Locate in the hash table the node \textit{Prev} corresponding to the \textit{B.after} identifier received
-				\item Insert into the table \textit{B.id} mapped to a new node \textit{N} containing the character \textit{B.c} and a pointer to \textit{Prev}'s \textit{next} pointer
-				\item Rewrite \textit{Prev}'s \textit{next} pointer to point to \textit{B}
-			\end{enumerate}
-			This is the standard procedure to insert a new node into a linked list.
-			
-			\subsubsection{Delete}
-			Deleting a character from the text document generates a delete operation, which is transmitted as a bundle \textit{B} containing
-			\begin{itemize}
-				\item The target character's identifier to be deleted \textit{deleteId}
-			\end{itemize}
-			
-			Incorporating a delete bundle into the CRDT is straightforward
-			\begin{enumerate}
-				\item Locate the node \textit{N} corresponding to \textit{B.deleteId}
-				\item Set a boolean flag in \textit{N.d} to true
-			\end{enumerate}
-			
-			\
-			
+				Inserting a character into the text document generates an insert operation. An insert operation is stored and transmitted as a bundle.
+				
+				An insert bundle $B$ contains
+				\begin{itemize}
+					\item A unique identifier $id$ for the character
+					\item The character $c$ itself
+					\item The node after which to insert the character denoted $after$. This corresponds to the position in the linked list at which the character needs to be spliced in. $after$ is another unique identifier
+				
+				\end{itemize}
+				
+				Incorporating an insert bundle into the CRDT is the following sequence of steps
+				\begin{enumerate}
+					\item Locate in the hash table the node $Prev$ corresponding to the $B.after$ identifier received
+					\item Insert into the table $B.id$ mapped to a new node $N$ containing the character $B.c$ and a copy of $Prev$'s $next$ pointer
+					\item Rewrite $Prev$'s $next$ pointer to point to$N$
+				\end{enumerate}
+				This is the standard procedure to insert a new node into a linked list.
+				
+			\paragraph{Delete}
+				Deleting a character from the text document generates a delete operation, which is transmitted as a bundle $B$ containing
+				\begin{itemize}
+					\item The target character's identifier to be deleted $deleteId$
+				\end{itemize}
+				
+				Incorporating a delete bundle into the CRDT is straightforward
+				\begin{enumerate}
+					\item Locate the node $N$ corresponding to $B.deleteId$
+					\item Set a boolean flag in $N.d$ to true
+				\end{enumerate}
+				
 		\subsection{Tombstones}
+			The delete operation described previously never removes nodes, but leaves them behind as tombstones. Some CRDTs, such as Logoot described in section [section ref], are structured such that the document is series of independent nodes, which are arranged solely according to their identifiers. Thus, a node can be fully removed without consequence to other nodes. In my CRDT, each node depends on the prior node in the linked list. Unless we can establish that each client has received and executed a delete operation, we cannot remove our node from the linked list -- other clients may be executing concurrent edits which depend on that node, are working on a document offline, or on a very high latency link.
+			
+			The process of establishing that each client has received and executed an operation can be achieved using an expensive commitment protocol, which is what is suggested in \cite{preguica2009}. In effect, the system periodically executes a distributed garbage collection. While possible, I have not implemented this protocol. While remove tombstones may be necessary after the data structure becomes too large, until such a point tombstones are useful in implementing undo functionality for the text editor. This is discussed in section [section ref].
 		
 		\subsection{Optimizations}
-		
+			The insert operation produces a bundle which contains exactly one character, one identifier, and one \textit{after} tag. We can drastically cut the number of operations generated, and thus packets sent in the network, by allowing an insert bundle to contain a contiguous sequence of characters. 
+			
+			An optimized insert bundle contains
+			\begin{itemize}
+				\item A unique identifier  \textit{(t, cid)} for the first character
+				\item The character sequence \textit{s} itself
+				\item The node after which to insert the character sequence denoted \textit{(t\textsubscript{after}, c)}
+			\end{itemize}
+			The receiver CRDT incorporates the bundle by generating a new node for each character \textit{s\textsubscript{i}} with identifier \textit{(t + i, cid)}. The first node is pointed to by the \textit{(t\textsubscript{after}, c)}'s \textit{after} pointer and each new node points to \textit{t + (i+1), c)}. The final node points to the original target of \textit{(t\textsubscript{after}, c)}.
+			
+			This insert optimization has potentially massive gains in terms of network efficiency. At best, an entire document could be inserted at once. A more likely scenario is word-by-word or line-by-line insertion. At worst, the number of bundles generated is still linear. Thus we conclude the resulting complexity is somewhere between constant and linear.
+			
+			Another optimization I added was renaming tags and names to be as short as possible (often single characters), so that the resulting serialized JSON string sent over the network is as short as possible. However, this is strictly a constant multiplier gain.
 	
 	\subsection{Network simuation}
-	
+		The section describes the network that delivers operation bundles from one client to another. First, I will detail the initial assumptions I made. This is followed by the abstractions the simulation provides to each client. Next I describe the core difficulty in implementing a simulation: the scheduler. Lastly, I will relax the assumptions made to more closely mirror real world situations.
+		
+		\subsubsection{Assumptions} 
+		The CRDT I implemented requires that messages be delivered causally [lecture notes - http://www.cl.cam.ac.uk/teaching/1617/ConcDisSys/2017-DistributedSystems-1B-L4-handout.pdf]. We define the happens-before relation \(a \rightarrow b\) to be true whenever $a$ happens before $b$ on the same process, for example \[Receive\ Insert\ "Hello" \rightarrow Insert\ " World"\]
+		We then require that all events ordered by $\rightarrow$ be delivered in a valid ordering according to $\rightarrow$. We call this "Causal Order". 	
+		This defines a partial order, since concurrent operations $A$ and $B$ are valid and are neither $A \rightarrow B$ nor $A \rightarrow B$ holds. Concurrent operations can be delivered in any order since these operations are guaranteed to commute by the properties of the CRDT.
+		
+		The CRDT requires causal order delivery since operations depends on each other. It is not valid to insert a link into a linked list after a node that does not exist: the links in the CRDT embed the causal ordering.
+		
+		\underline{Network Assumptions}. These are guaranteed by the simulation.
+		\begin{enumerate}
+			\item Unchanging network topology
+			\item In order delivery on any single link in the network
+			\item No packets are lost
+		\end{enumerate}
+		
+		Along with this, I also wrote my simulation such that a client that receives a packet from the network immediately floods it to its peers before generating and broadcasting dependent operations. Along with the assumptions above, the network provably guarantees causal delivery
+		
+		\begin{proof}[Guarantee of Causal Delivery]
+			Proof by contradiction. Assume a client receives some packets $A$ and $B$ such that $A \not\rightarrow B$ and that at some prior point, it must have been the case that $A \rightarrow B$. This implies that somewhere in the network $A$ and $B$ switched order. However, on any individual link, $A$ and $B$ stay in order by network assumption 2 above. At any node, packets cannot switch order either, since the implementation immediately forwards an incoming packet to its neighbors (If a particular client generated $B$, it is put on a link after $A$ by the same condition). Lastly, because the network does not change topology and the protocol is deterministic flooding, packets do not dynamically adjust routes and so any packet that begins in order $A$, then $B$ stays in order $A$, $B$. Thus, in no case can $A$ and $B$ switch order and our assumption must be incorrect. Either $A \rightarrow B$ or it must have been the case that $A \not\rightarrow B$ to begin with. The first case proves our goal and the second is irrelevant.
+		\end{proof}
+		
+		That the network is able to guarantee causal delivery is a very strong assumption and cannot be made in general. We will see in section [section ref] how to relax assumptions 1 and 2.
+		
 		\subsubsection{Abstraction}
+		My network simulation is implemented in two core modules: a Network Manager which is shared between all simulated clients, and a Network Interface, of which each client has a copy. The Network Interface essentially emulates the top of a classic network stack. The essential parts of the Network Interface Typescript signature are shown below (cleaned).
+		
+\begin{lstlisting}[caption=NetworkInterface Type Signature]
+interface NetworkInterface {
+	isEnabled: () => boolean;
+	enable: () => void;
+	setClientId: (ClientId) => void;
+	setManager: (NetworkManager) => void;
+	requestCRDT: (ClientId) => void;
+	returnCRDT: (ClientId, MapCRDTStore) => void;
+	broadcast: (PreparedPacket) => void;
+	receive: (NetworkPacket) => void;
+}
+\end{lstlisting}
+
+		The primary mechanism for disseminating a bundle to other clients is via the \lstinline|Test|
+		
+		 The lower layers of the stack are absorbed into the Network Manager.
+		
 		
 		\subsubsection{Scheduler}
+		
+		\subsubsection{Causal Delivery}
 	
 \section{ShareJS Comparative Environment}
 
