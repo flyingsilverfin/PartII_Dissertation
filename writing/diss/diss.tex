@@ -357,14 +357,14 @@ To reiterate the success criteria listed in the project proposal, I hoped to
 \item Obtain and compare quantitative results comparing ShareJS and the CRDT based system
 \end{enumerate}
 
-Points one and three have multiple unspecified subgoals. For clarity, Table [TODO] lists all of these and their respective importance and difficulty. These more closely mirror the 'Detailed Project Structure' of the proposal.
+Points one and three have multiple unspecified subgoals. For clarity, Table lists all of these and their respective importance and difficulty. These more closely mirror the 'Detailed Project Structure' of the proposal.
 
 \begin{center}
-\begin{table}[]
+\begin{table}
 \centering
-\caption{My caption}
+\caption{Project Goals, Priority, and Difficulty}
 \label{my-label}
-\begin{tabular}{@{}|l|l|l|@{}}
+\begin{tabular}{lll}
 \toprule
 Implement and unit test core CRDT                & High   & Medium \\ \midrule
 Implement network simulation                     & High   & High   \\ \midrule
@@ -474,8 +474,16 @@ The chapter describes the implementation of both real time editing systems, firs
 					\item A unique identifier $id$ for the character
 					\item The character $c$ itself
 					\item The node after which to insert the character denoted $after$. This corresponds to the position in the linked list at which the character needs to be spliced in. $after$ is another unique identifier
-				
 				\end{itemize}
+			
+\vspace{3mm}	
+\begin{lstlisting}[caption=Insert Bundle Type Signature]
+interface InsertMessage {
+    id: string,
+    char: string,
+    after: string
+}
+\end{lstlisting}
 				
 				Incorporating an insert bundle into the CRDT is the following sequence of steps
 				\begin{enumerate}
@@ -490,6 +498,13 @@ The chapter describes the implementation of both real time editing systems, firs
 				\begin{itemize}
 					\item The target character's identifier to be deleted $deleteId$
 				\end{itemize}
+				
+\vspace{3mm}
+\begin{lstlisting}[caption=Delete Bundle Type Signature]
+interface DeleteMessage {
+    deleteId: string
+}
+\end{lstlisting}				
 				
 				Incorporating a delete bundle into the CRDT is straightforward
 				\begin{enumerate}
@@ -517,7 +532,7 @@ The chapter describes the implementation of both real time editing systems, firs
 			
 			Another optimization I added was renaming tags and names to be as short as possible (often single characters), so that the resulting serialized JSON string sent over the network is as short as possible. However, this is strictly a constant multiplier gain.
 	
-	\subsection{Network simuation}
+	\subsection{Network simulation}
 		The section describes the network that delivers operation bundles from one client to another. First, I will detail the initial assumptions I made. This is followed by the abstractions the simulation provides to each client. Next I describe the core difficulty in implementing a simulation: the scheduler. Lastly, I will relax the assumptions made to more closely mirror real world situations.
 		
 		\subsubsection{Assumptions} 
@@ -543,9 +558,11 @@ The chapter describes the implementation of both real time editing systems, firs
 		That the network is able to guarantee causal delivery is a very strong assumption and cannot be made in general. We will see in section [section ref] how to relax assumptions 1 and 2.
 		
 		\subsubsection{Abstraction}
-		My network simulation is implemented in two core modules: a Network Manager which is shared between all simulated clients, and a Network Interface, of which each client has a copy. The Network Interface essentially emulates the top of a classic network stack. The essential parts of the Network Interface Typescript signature are shown below (cleaned).
+		My network simulation is implemented in two core modules: a Network Manager which is shared between all simulated clients, and a Network Interface, of which each client has a copy. The Network Interface essentially emulates the top of a classic network stack, whereas the Network Manager abstracts away the bottom layers.
 		
-\begin{lstlisting}[caption=NetworkInterface Type Signature]
+		\paragraph{Network Interface} The essential parts of the Network Interface Typescript signature are shown below.
+		
+\begin{lstlisting}[caption=NetworkInterface Type Signature (cleaned)]
 interface NetworkInterface {
 	isEnabled: () => boolean;
 	enable: () => void;
@@ -558,12 +575,28 @@ interface NetworkInterface {
 }
 \end{lstlisting}
 
-		The primary mechanism for disseminating a bundle to other clients is via the \lstinline|Test|
+		The primary mechanism for disseminating a packet to other clients is via the \lstinline|NetworkInterface.broadcast| method, which in turn calls the \lstinline|broadcast| method of the \lstinline|NetworkManager| (see [section ref]). It accepts a \lstinline|PreparedPacket| which is an object that contains a bundle (such as \lstinline|InsertMessage| or \lstinline|DeleteMessage| from section [section ref]) and a tag which the receiver uses to disambiguate the type of the incoming packet. This is required since packets are serialized to strings when sent over the network and all type information is lost in the process.
+\begin{lstlisting}	
+interface PreparedPacket {
+	type: "i" | "d" | "reqCRDT" | "retCRDT",    // insert or delete message, or request CRDT or return CRDT
+	bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | RequestCRDTMessage | ReturnCRDTMessage;
+}
+\end{lstlisting}
 		
-		 The lower layers of the stack are absorbed into the Network Manager.
+		Other types of bundles that can be sent are \lstinline|RequestCRDTMessage| and \lstinline|ReturnCRDTMessage|. These are special messages which clients use when joining the network and requesting a copy of the CRDT be sent from an active client.
+		
+		\paragraph{Joining the Network}
+		During the execution of a simulation, clients may join the network (but not leave) at any time. Only the first client gets to create a fresh CRDT. Any other client must request a copy of that CRDT when joining. This means that there is at least 1 round trip time before a new editor can come online. The packets which deliver the CRDT can become quite large -- the later a client joins, the larger the packet. However, they would also have avoided many individual packets being delivered to them in the meantime. There is a trade off here as well. A new client could begin with a empty CRDT and obtain and replay all subsequent operations on it. This would however be even less efficient as it would require all remote clients to store all of their previous operations forever (or have a sort of server store them), and the local client would have to spend computational time reintegrating all the changes. The downside to obtaining an up to date copy is that there is no straightforward way to do a partial replay. If a client simply has an out of date CRDT, it must request an entire new copy.
+		
+		
+		
+		\paragraph{Network Manager}
+		The lower layers of the network stack are provided by the Network Manager. It has two key methods: \lstinline|NetworkManager.transmit(sender, packet)| and \lstinline|NetworkManager.unicast(from, to, packet)|. The simulation is given a predefined topology, which contains connectivity and latency information (discussed further in section [section ref]). Thus, when a client's \lstinline|NetworkInterface| calls \lstinline|NetworkManager.broadcast|, the manager knows which clients are neighbors and corresponding link latencies, and can schedule a delivery event for each. The \lstinline|NetworkManager.unicast| is used for point to point, single hop communication when joining the network and requesting or sending copies of CRDTs. Overall, this module replaces the network and data of most network stacks and abstracts away how packets get between neighboring clients.
 		
 		
 		\subsubsection{Scheduler}
+		
+		
 		
 		\subsubsection{Causal Delivery}
 	

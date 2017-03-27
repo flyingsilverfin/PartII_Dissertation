@@ -34,7 +34,7 @@
 \BOOKMARK [2][-]{subsection.3.1.2}{CRDT}{section.3.1}% 34
 \BOOKMARK [2][-]{subsection.3.1.3}{Tombstones}{section.3.1}% 35
 \BOOKMARK [2][-]{subsection.3.1.4}{Optimizations}{section.3.1}% 36
-\BOOKMARK [2][-]{subsection.3.1.5}{Network simuation}{section.3.1}% 37
+\BOOKMARK [2][-]{subsection.3.1.5}{Network simulation}{section.3.1}% 37
 \BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 38
 \BOOKMARK [2][-]{subsection.3.2.1}{Overview}{section.3.2}% 39
 \BOOKMARK [1][-]{section.3.3}{Experiments and Automated Log Analysis}{chapter.3}% 40
