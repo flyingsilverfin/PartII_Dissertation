@@ -1,12 +1,13 @@
 import * as T from './Types';
+import * as NT from './NetworkTypes';
 
 export interface CRDT {
     insert(bundle: InsertMessage): void;    // insert char after loc with id
-    delete(bundle: DeleteMessage): void;    // delete some id (need to give id for deletion?)
+    delete(bundle: DeleteMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void;    // delete some id
     undoInsert(bundle: UndoMessage): void;
-    undoDelete(bundle: UndoMessage): void;
+    undoDelete(bundle: UndoMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void;
     redoInsert(bundle: UndoMessage): void;
-    redoDelete(bundle: UndoMessage): void;
+    redoDelete(bundle: UndoMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void;
 
     getCRDTCopy(): any; // need some sort of mechanism for extracting crdt datastructure
     
@@ -37,7 +38,7 @@ export interface UndoMessage {
 
 export interface DeleteMessage {
     // id: string   // unsure exactly how to implement this
-    deleteId: string
+    deleteId: string,
 }
 
 
@@ -49,6 +50,6 @@ export interface MapCRDTStore {
 export interface MapEntry {
     c: string,  // character
     n: string,  // next link
-    d?: number,  // deleted
+    d?: [boolean, NT.VectorClock],  // [deleted, when]
     v?: boolean  // visible, used for creator to undo
 }

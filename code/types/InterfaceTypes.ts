@@ -4,7 +4,3 @@ export interface EditableTextInterface {
 }
 
 export type InsertCallback = (char: string, after: number) => void;
-
-interface Test {
-    isEnabled: () => void;
-}

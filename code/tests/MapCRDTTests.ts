@@ -27,7 +27,7 @@ class MapCRDTTester extends tsUnit.TestClass {
         }
 
         this.throws(() =>
-            this.crdt.delete(toDelete), "Deleting nonexistant ID did not throw an error!");
+            this.crdt.delete(toDelete, {}, {}), "Deleting nonexistant ID did not throw an error!");
     }
 
     deleteDefinedId() {
@@ -49,7 +49,7 @@ class MapCRDTTester extends tsUnit.TestClass {
 
         this.crdt.insert(insert1);
         this.crdt.insert(insert2);
-        this.crdt.delete(toDelete);
+        this.crdt.delete(toDelete, {}, {});
 
         let expectedCharArray = ['', 'b'];
         let expectedIdArray = ['0', '2.1'];

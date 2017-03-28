@@ -1,6 +1,8 @@
 import * as CT from '../types/CRDTTypes';
+import * as NT from '../types/NetworkTypes';
 import * as CC from './CRDTComparator';
 import * as Helper from './Helper';
+import {areConcurrent} from './VectorComparators';
 
 
 class MapCRDT implements CT.CRDT {
@@ -109,15 +111,26 @@ class MapCRDT implements CT.CRDT {
 
     // implements interface
     // 
-    public delete(bundle: CT.DeleteMessage): void {
+    public delete(bundle: CT.DeleteMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void {
         let idToDelete = bundle.deleteId;
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }
         if (this.map[idToDelete].d === undefined) {
-            this.map[idToDelete].d = 1;
+            this.map[idToDelete].d = [true, when] ;
         } else {
-            this.map[idToDelete].d++;
+            let value = this.map[idToDelete].d;
+
+            /*
+            Defined semantics for immediate undo:
+                If concurrent delete and undo, the make-visible operation (undo) wins
+                So we discard the effect of this delete but update the timestamp
+            */
+
+            if (!areConcurrent(value[1], when)) { // because of causal delivery guarantee, if not concurrent, 'when' is newer
+                value[0] = true;    // then set as deleted
+            }    
+            value[1] = mergedVector;   // in any case, update the when label
         }
     }
 
@@ -132,11 +145,25 @@ class MapCRDT implements CT.CRDT {
     }
 
     // has capability for multi undo already
-    public undoDelete(bundle: CT.UndoMessage): void {
+    // when: is the vector that came in the packet
+    // mergedVector: is the vector that is the result of merging our and 'when' ie. causally after when
+    public undoDelete(bundle: CT.UndoMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void {
         let undoTargets = bundle.id;
         // since this is undo, by causality each target ID must already have been deleted ie. have a tag
         for (let id of undoTargets) {
-            this.map[id].d--;
+            let value = this.map[id].d;  //obtain a reference we can modify map with directly
+
+            /*
+            Defined semantics for immediate undo:
+                If there is a concurrent delete and Undo Delete, the 'make-visible' action win.
+                If there are concurrent Undo Delete's it doesn't really matter, idempotent
+
+                basically, an Undo-Delete always wins
+            */
+            if (value[0]) { //if deleted currently, then undo
+                value[0] = false;
+            }   // else if already visible, then it's fine
+            value[1] = mergedVector;
         }
     }
 
@@ -149,11 +176,24 @@ class MapCRDT implements CT.CRDT {
     }
 
     // has capability for multi undo already
-    public redoDelete(bundle: CT.UndoMessage): void {
+    // when: is the vector that came in the packet
+    // mergedVector: is the vector that is the result of merging our and 'when' ie. causally after when
+    public redoDelete(bundle: CT.UndoMessage, when: NT.VectorClock, mergedVector: NT.VectorClock): void {
         let undoTargets = bundle.id;
         // since this is undo, by causality each target ID must already have been deleted ie. have a tag
         for (let id of undoTargets) {
-            this.map[id].d++;
+            let value = this.map[id].d;  //obtain a reference we can modify map with directly
+
+            /*
+            Defined semantics for immediate undo:
+                If concurrent redo'ing and undo-ing, the make-visible operation (undo) wins
+                So we discard the effect of this redo but update the timestamp
+            */
+
+            if (!areConcurrent(value[1], when)) { // because of causal delivery guarantee, if not concurrent, 'when' is newer
+                value[0] = true;    // then set as deleted
+            }    
+            value[1] = mergedVector;   // in any case, update the when label
         }
     }
 
@@ -168,7 +208,7 @@ class MapCRDT implements CT.CRDT {
         while (id !== null) {
             entry = this.map[id];   // if only TS did inference on this too...
             // if 'visible' is undefined or true, and 'deleted' is undefined or 0
-            if ((entry.v === undefined || entry.v) && (entry.d === undefined || entry.d === 0)) { // if == 0 should work just fine I think
+            if ((entry.v === undefined || entry.v) && (entry.d === undefined || entry.d[0] === false)) { // if == 0 should work just fine I think
                 charArray.push(entry.c);
                 idArray.push(id)
             }

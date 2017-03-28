@@ -23,13 +23,13 @@ class NetworkInterface {
     private queue: (()=>void)[];    // list of actions to do queued up
 
     public insertPacketReceived: (bundle: CT.InsertMessage) => void;
-    public deletePacketReceived: (bundle: CT.DeleteMessage) => void;
+    public deletePacketReceived: (bundle: CT.DeleteMessage, when: NT.VectorClock) => void;
     public requestCRDTReceived: (origin: T.ClientId) => void;
     public returnCRDTReceived: (crdt: CT.MapCRDTStore) => void;
     public undoInsertReceived: (bundle: CT.UndoMessage) => void;
-    public undoDeleteReceived: (bundle: CT.UndoMessage) => void;
+    public undoDeleteReceived: (bundle: CT.UndoMessage, when: NT.VectorClock) => void;
     public redoInsertReceived: (bundle: CT.UndoMessage) => void;
-    public redoDeleteReceived: (bundle: CT.UndoMessage) => void;
+    public redoDeleteReceived: (bundle: CT.UndoMessage, when: NT.VectorClock) => void;
 
     constructor() {
         this.enabled = false;
@@ -132,14 +132,14 @@ class NetworkInterface {
 
         let actions = {
             'i': () => this.insertPacketReceived(<CT.InsertMessage>packet.bundle),
-            'd': () => this.deletePacketReceived(<CT.DeleteMessage>packet.bundle),
+            'd': () => this.deletePacketReceived(<CT.DeleteMessage>packet.bundle, packet.vector),
             'ui': () => this.undoInsertReceived(<CT.UndoMessage>packet.bundle),
-            'ud': () => this.undoDeleteReceived(<CT.UndoMessage>packet.bundle),
+            'ud': () => this.undoDeleteReceived(<CT.UndoMessage>packet.bundle, packet.vector),
             'ri': () => this.redoInsertReceived(<CT.UndoMessage>packet.bundle),
-            'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.bundle),
+            'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.bundle, packet.vector),
             'reqCRDT': () => {
                                 this.requestCRDTReceived(packet.origin); 
-                            },
+                            },  
             'retCRDT': () => {
                                 // copying in sequence numbers need to happen before copying in CRDT and executing queued operations
                                 let vectorReceived = (<NT.ReturnCRDTMessage>packet.bundle).currentVector;
@@ -155,28 +155,14 @@ class NetworkInterface {
 
         if (retransmit) this.networkManager.transmit(this.clientId, packet);
 
+    }
 
+    public getCurrentVector(): NT.VectorClock {
+        return this.causalDeliveryLayer.copyVector();
+    }
 
-/*
-        if (packet.type === 'i') {
-            this.insertPacketReceived(packet.bundle);
-        } else if (packet.type === 'd') {
-            this.deletePacketReceived(packet.bundle);
-        } else if (packet.type == "reqCRDT") {
-            // bundle is empty
-            this.requestCRDTReceived(from);
-            isValidNewPacket = false;   // disable broadcasting this unicast... //should also be not be rejected by seq num
-        } else if (packet.type == "retCRDT") {
-            let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt;
-            this.returnCRDTReceived(crdt);
-            isValidNewPacket = false;   // disable broadcasting this unicast... //should also be not be rejected by seq num
-        }        
-         else {
-            console.error('Received unknown network packet type: ' + packet.type);
-            return;
-        }
-*/
-
+    public peekNextVector(): NT.VectorClock {
+        return this.causalDeliveryLayer.peekNextVector();
     }
 
 }

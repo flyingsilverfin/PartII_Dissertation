@@ -107,7 +107,8 @@ class Client {
         if (packet.type === "ui") {
             this.dt.undoInsert(op);
         } else {    // type ud - undo delete
-            this.dt.undoDelete(op);
+            let when = this.network.peekNextVector();
+            this.dt.undoDelete(op, when, when);
         }
         this.updateInterface();
         this.network.broadcast(packet);
@@ -120,10 +121,12 @@ class Client {
         let packet = this.opStack.redo();
         let op = <CT.UndoMessage>packet.bundle;
 
+
         if (packet.type === "ri") {
             this.dt.redoInsert(op);
         } else {    // type rd - redo delete
-            this.dt.redoDelete(op);
+            let when = this.network.peekNextVector();
+            this.dt.redoDelete(op, when, when);
         }
         this.updateInterface();
         this.network.broadcast(packet);
@@ -134,8 +137,8 @@ class Client {
         this.updateInterface();
     }
 
-    private undoDeleteReceived(bundle: CT.UndoMessage): void {
-        this.dt.undoDelete(bundle);
+    private undoDeleteReceived(bundle: CT.UndoMessage, when: NT.VectorClock): void {
+        this.dt.undoDelete(bundle, when, this.network.getCurrentVector());
         this.updateInterface();
     }
 
@@ -143,8 +146,9 @@ class Client {
         this.dt.redoInsert(bundle);
         this.updateInterface();
     }
-    private redoDeleteReceived(bundle: CT.UndoMessage): void {
-        this.dt.undoInsert(bundle);
+
+    private redoDeleteReceived(bundle: CT.UndoMessage, when: NT.VectorClock): void {
+        this.dt.redoDelete(bundle, when, this.network.getCurrentVector());
         this.updateInterface();
     }
 
@@ -317,7 +321,12 @@ class Client {
             deleteId: deletedId
         };
 
-        this.dt.delete(bundle);
+        // WARNING: NOT ROBOUST IF BUFFERING IN THE FUTURE
+        //          all buffered local deletes will have same peeked vector...
+        //          would either need some sort of keep for next buffered item OR redo this architecture (better)
+        let when = this.network.peekNextVector();   // vector that will be used with the delete
+
+        this.dt.delete(bundle, when, when);
         this.opStack.localDelete(deletedId, 1); // no support for group deletes yet, would need a buffering layer
 
         let networkPacket: NT.PreparedPacket = {
@@ -328,13 +337,9 @@ class Client {
         this.updateParallelArrays();
     }
 
-    private deleteReceived(bundle: CT.DeleteMessage): void {
-        /*
-        if (!this.dt.delete(bundle)) {
-            return false;
-        }
-        */
-        this.dt.delete(bundle);
+    private deleteReceived(bundle: CT.DeleteMessage, when: NT.VectorClock): void {
+        
+        this.dt.delete(bundle, when, this.network.getCurrentVector());
 
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
@@ -348,7 +353,6 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
-        //return true;
     }
 
     private requestCRDTReceived(origin: T.ClientId): void {

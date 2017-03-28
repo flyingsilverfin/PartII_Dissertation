@@ -50,7 +50,7 @@ export default class ClientOpStack {
         }
 
         let op = this.back();
-        let inverseType : "ui" | "ud" = op[0] === 'i' ? 'ui' : 'ud';    // not sure why i need to specify this, TS should do it
+        let inverseType : "ui" | "ud" = op[0] === 'i' ? 'ui' : 'ud';    // not sure why i need to specify this typing, TS should do it
 
         // generate list of ID's to undo (either insert or delete, delete could go backwards or forwards from start ID)
         let undoIds = [];
