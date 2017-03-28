@@ -50,6 +50,23 @@
       \verb http://www.rfc-editor.org/rfc/rfc2460.txt
       \endverb
     \endentry
+    \entry{compsysmodeling}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=d937b4c20569e6953c3575a1dc383a3e}{Dr\bibnamedelima R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=d937b4c20569e6953c3575a1dc383a3e}{Dr\bibnamedelima R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{d937b4c20569e6953c3575a1dc383a3e}
+      \strng{fullhash}{d937b4c20569e6953c3575a1dc383a3e}
+      \field{sortinit}{D}
+      \field{labeltitle}{Computer Systems Modeling Lecture Notes}
+      \field{title}{Computer Systems Modeling Lecture Notes}
+      \field{year}{2017}
+      \verb{url}
+      \verb http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm
+      \endverb
+    \endentry
     \entry{Ellis1989}{article}{}
       \name{labelname}{2}{}{%
         {{hash=5af913b637106da04084da40c87bd44c}{Ellis}{E\bibinitperiod}{C\bibnamedelima A}{C\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
@@ -142,6 +159,56 @@
       \field{volume}{21}
       \field{year}{1978}
       \field{pages}{558\bibrangedash 565}
+    \endentry
+    \entry{nedelec2013}{inproceedings}{}
+      \true{morelabelname}
+      \name{labelname}{4}{}{%
+        {{hash=0588522c2d991393f1ce5f17c4e59078}{N{\'e}delec}{N\bibinitperiod}{Brice}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=3b597a71d72e2426e3f99f1f56a4b6c5}{Mostefaoui}{M\bibinitperiod}{Achour}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=abde99792c0d50187f790ab1b78266c4}{Desmontils}{D\bibinitperiod}{Emmanuel}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \true{moreauthor}
+      \name{author}{4}{}{%
+        {{hash=0588522c2d991393f1ce5f17c4e59078}{N{\'e}delec}{N\bibinitperiod}{Brice}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=3b597a71d72e2426e3f99f1f56a4b6c5}{Mostefaoui}{M\bibinitperiod}{Achour}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=abde99792c0d50187f790ab1b78266c4}{Desmontils}{D\bibinitperiod}{Emmanuel}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{c09886a5cafbc297938befc43ceb8eb0}
+      \strng{fullhash}{606858e0b5ed4c17c62af5888ef91cfb}
+      \field{sortinit}{N}
+      \field{labeltitle}{Concurrency Effects Over Variable-size Identifiers in Distributed Collaborative Editing}
+      \field{booktitle}{Proceedings of the International workshop on Document Changes: Modeling, Detection, Storage and Visualization, Florence, Italy, September 10, 2013}
+      \field{title}{Concurrency Effects Over Variable-size Identifiers in Distributed Collaborative Editing}
+      \field{volume}{1008}
+      \field{year}{2013}
+      \field{pages}{\bibrangedash 7}
+    \endentry
+    \entry{nedelec2013lseq}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=0588522c2d991393f1ce5f17c4e59078}{N{\'e}delec}{N\bibinitperiod}{Brice}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=3b597a71d72e2426e3f99f1f56a4b6c5}{Mostefaoui}{M\bibinitperiod}{Achour}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=abde99792c0d50187f790ab1b78266c4}{Desmontils}{D\bibinitperiod}{Emmanuel}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=0588522c2d991393f1ce5f17c4e59078}{N{\'e}delec}{N\bibinitperiod}{Brice}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=3b597a71d72e2426e3f99f1f56a4b6c5}{Mostefaoui}{M\bibinitperiod}{Achour}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=abde99792c0d50187f790ab1b78266c4}{Desmontils}{D\bibinitperiod}{Emmanuel}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{c09886a5cafbc297938befc43ceb8eb0}
+      \strng{fullhash}{85d9b4266557b73a5cb486b6e50c7c14}
+      \field{sortinit}{N}
+      \field{labeltitle}{LSEQ: an adaptive structure for sequences in distributed collaborative editing}
+      \field{booktitle}{Proceedings of the 2013 ACM symposium on Document engineering}
+      \field{title}{LSEQ: an adaptive structure for sequences in distributed collaborative editing}
+      \field{year}{2013}
+      \field{pages}{37\bibrangedash 46}
     \endentry
     \entry{preguica2009}{inproceedings}{}
       \name{labelname}{4}{}{%
@@ -295,11 +362,33 @@
       \verb https://hal.inria.fr/inria-00336191
       \endverb
     \endentry
+    \entry{zeller2014}{inproceedings}{}
+      \name{labelname}{3}{}{%
+        {{hash=e1f2520cba6dc4b812f5d32112a1f220}{Zeller}{Z\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=815b3180386a2046c7beeb1736c3229d}{Bieniusa}{B\bibinitperiod}{Annette}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=dc8b0bbc2048cfa8e9fb4ff5a6522174}{Poetzsch-Heffter}{P\bibinithyphendelim H\bibinitperiod}{Arnd}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=e1f2520cba6dc4b812f5d32112a1f220}{Zeller}{Z\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=815b3180386a2046c7beeb1736c3229d}{Bieniusa}{B\bibinitperiod}{Annette}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=dc8b0bbc2048cfa8e9fb4ff5a6522174}{Poetzsch-Heffter}{P\bibinithyphendelim H\bibinitperiod}{Arnd}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{423527f01348df00de6af564dde14019}
+      \strng{fullhash}{423527f01348df00de6af564dde14019}
+      \field{sortinit}{Z}
+      \field{labeltitle}{Formal specification and verification of CRDTs}
+      \field{booktitle}{International Conference on Formal Techniques for Distributed Objects, Components, and Systems}
+      \field{title}{Formal specification and verification of CRDTs}
+      \field{year}{2014}
+      \field{pages}{33\bibrangedash 48}
+    \endentry
   \endsortlist
-  \missing{Zeller2014}
+  \missing{Shapiro2011}
   \missing{preguica2009commutative}
   \missing{sun1998operational}
-  \missing{Shapiro2011}
   \missing{Technion}
   \missing{ShareJS}
 \endrefsection

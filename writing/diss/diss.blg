@@ -1,23 +1,21 @@
 [0] Config.pm:318> INFO - This is Biber 1.8
 [0] Config.pm:321> INFO - Logfile is 'diss.blg'
-[55] biber:275> INFO - === Tue Mar 21, 2017, 18:34:55
-[56] Biber.pm:333> INFO - Reading 'diss.bcf'
-[103] Biber.pm:630> INFO - Found 19 citekeys in bib section 0
-[118] Biber.pm:3053> INFO - Processing section 0
-[134] Biber.pm:3190> INFO - Looking for bibtex format file 'refs.bib' for section 0
-[136] bibtex.pm:808> INFO - Found BibTeX data source 'refs.bib'
-[141] Utils.pm:169> WARN - Possible typo (case mismatch) between citation and datasource keys: 'Zeller2014' and 'zeller2014' in file 'refs.bib'
-[162] Utils.pm:169> WARN - Possible typo (case mismatch) between citation and datasource keys: 'Shapiro2011' and 'shapiro2011' in file 'refs.bib'
-[163] Utils.pm:169> WARN - Possible typo (case mismatch) between citation and datasource keys: 'ShareJS' and 'sharejs' in file 'refs.bib'
-[164] Utils.pm:169> WARN - I didn't find a database entry for 'Zeller2014' (section 0)
-[164] Utils.pm:169> WARN - I didn't find a database entry for 'Technion' (section 0)
-[164] Utils.pm:169> WARN - I didn't find a database entry for 'sun1998operational' (section 0)
-[164] Utils.pm:169> WARN - I didn't find a database entry for 'preguica2009commutative' (section 0)
-[165] Utils.pm:169> WARN - I didn't find a database entry for 'Shapiro2011' (section 0)
-[165] Utils.pm:169> WARN - I didn't find a database entry for 'ShareJS' (section 0)
-[223] Biber.pm:2939> INFO - Overriding locale 'en_US.UTF-8' default tailoring 'variable = shifted' with 'variable = non-ignorable'
-[223] Biber.pm:2945> INFO - Sorting 'entry' list 'nty' keys
-[224] Biber.pm:2949> INFO - No sort tailoring available for locale 'en_US.UTF-8'
+[49] biber:275> INFO - === Tue Mar 28, 2017, 20:09:11
+[50] Biber.pm:333> INFO - Reading 'diss.bcf'
+[103] Biber.pm:630> INFO - Found 22 citekeys in bib section 0
+[117] Biber.pm:3053> INFO - Processing section 0
+[132] Biber.pm:3190> INFO - Looking for bibtex format file 'refs.bib' for section 0
+[134] bibtex.pm:808> INFO - Found BibTeX data source 'refs.bib'
+[159] Utils.pm:169> WARN - Possible typo (case mismatch) between citation and datasource keys: 'Shapiro2011' and 'shapiro2011' in file 'refs.bib'
+[159] Utils.pm:169> WARN - Possible typo (case mismatch) between citation and datasource keys: 'ShareJS' and 'sharejs' in file 'refs.bib'
+[160] Utils.pm:169> WARN - I didn't find a database entry for 'Technion' (section 0)
+[160] Utils.pm:169> WARN - I didn't find a database entry for 'sun1998operational' (section 0)
+[161] Utils.pm:169> WARN - I didn't find a database entry for 'preguica2009commutative' (section 0)
+[161] Utils.pm:169> WARN - I didn't find a database entry for 'Shapiro2011' (section 0)
+[161] Utils.pm:169> WARN - I didn't find a database entry for 'ShareJS' (section 0)
+[212] Biber.pm:2939> INFO - Overriding locale 'en_US.UTF-8' default tailoring 'variable = shifted' with 'variable = non-ignorable'
+[213] Biber.pm:2945> INFO - Sorting 'entry' list 'nty' keys
+[213] Biber.pm:2949> INFO - No sort tailoring available for locale 'en_US.UTF-8'
 [253] bbl.pm:482> INFO - Writing 'diss.bbl' with encoding 'ascii'
-[256] bbl.pm:555> INFO - Output to diss.bbl
-[256] Biber.pm:105> INFO - WARNINGS: 9
+[257] bbl.pm:555> INFO - Output to diss.bbl
+[257] Biber.pm:105> INFO - WARNINGS: 7

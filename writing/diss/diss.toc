@@ -70,11 +70,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.2}CRDT}{24}{subsection.3.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Structure}{24}{section*.9}
+\contentsline {subsubsection}{Structure and Functionality}{24}{section*.9}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Identifiers}{25}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Operations}{25}{section*.11}
+\contentsline {subsubsection}{Operations}{26}{section*.11}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Insert}{26}{section*.12}
 \defcounter {refsection}{0}\relax 
@@ -96,23 +96,25 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Network Manager}{30}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Scheduler}{31}{section*.19}
+\contentsline {subsubsection}{Scheduler}{30}{section*.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Causal Delivery}{31}{section*.20}
+\contentsline {paragraph}{Time}{31}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{31}{section.3.2}
+\contentsline {subsubsection}{Causal Delivery}{32}{section*.21}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Overview}{31}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{32}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Experiments and Automated Log Analysis}{31}{section.3.3}
+\contentsline {subsection}{\numberline {3.2.1}Overview}{32}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Separation of Concerns}{31}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.3}Experiments and Automated Log Analysis}{32}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{31}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.1}Separation of Concerns}{32}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Log Analysis}{31}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{32}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Extension: Local Undo}{31}{section.3.4}
+\contentsline {subsection}{\numberline {3.3.3}Log Analysis}{32}{subsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Extension: Local Undo}{32}{section.3.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Evaluation}{33}{chapter.4}
 \defcounter {refsection}{0}\relax 
