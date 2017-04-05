@@ -41,13 +41,18 @@
 \BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 41
 \BOOKMARK [2][-]{subsection.3.3.3}{Separation of Concerns}{section.3.3}% 42
 \BOOKMARK [1][-]{section.3.4}{Extension: Local Undo}{chapter.3}% 43
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 44
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 45
-\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 46
-\BOOKMARK [0][-]{appendix.A}{Simple Experiment}{}% 47
-\BOOKMARK [1][-]{section.A.1}{Summary of Logs of Simple Experiment}{appendix.A}% 48
-\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 49
-\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 50
-\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 51
-\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 52
-\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 53
+\BOOKMARK [2][-]{subsection.3.4.1}{Overview}{section.3.4}% 44
+\BOOKMARK [2][-]{subsection.3.4.2}{Insert}{section.3.4}% 45
+\BOOKMARK [2][-]{subsection.3.4.3}{Delete}{section.3.4}% 46
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 47
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 48
+\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 49
+\BOOKMARK [0][-]{appendix.A}{Vector Clocks}{}% 50
+\BOOKMARK [1][-]{section.A.1}{Formal Definition}{appendix.A}% 51
+\BOOKMARK [0][-]{appendix.B}{Simple Experiment}{}% 52
+\BOOKMARK [1][-]{section.B.1}{Summary of Logs of Simple Experiment}{appendix.B}% 53
+\BOOKMARK [1][-]{section.B.2}{proposal.tex}{appendix.B}% 54
+\BOOKMARK [0][-]{appendix.C}{Makefile}{}% 55
+\BOOKMARK [1][-]{section.C.1}{makefile}{appendix.C}% 56
+\BOOKMARK [1][-]{section.C.2}{refs.bib}{appendix.C}% 57
+\BOOKMARK [0][-]{appendix.D}{Project Proposal}{}% 58

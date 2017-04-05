@@ -124,22 +124,46 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Extension: Local Undo}{37}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Evaluation}{39}{chapter.4}
+\contentsline {subsection}{\numberline {3.4.1}Overview}{37}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{41}{chapter.5}
+\contentsline {subsection}{\numberline {3.4.2}Insert}{38}{subsection.3.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{41}{chapter.5}
+\contentsline {subsubsection}{Semantics}{38}{section*.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Simple Experiment}{45}{appendix.A}
+\contentsline {subsubsection}{Implementation}{38}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Summary of Logs of Simple Experiment}{45}{section.A.1}
+\contentsline {subsection}{\numberline {3.4.3}Delete}{39}{subsection.3.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}proposal.tex}{48}{section.A.2}
+\contentsline {subsubsection}{CCI Undo}{39}{section*.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Makefile}{53}{appendix.B}
+\contentsline {paragraph}{Modified Links}{39}{section*.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}makefile}{53}{section.B.1}
+\contentsline {paragraph}{Delete, Undo, Redo}{39}{section*.31}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.2}refs.bib}{53}{section.B.2}
+\contentsline {paragraph}{Proof of Commutativity}{40}{section*.32}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Project Proposal}{57}{appendix.C}
+\contentsline {subsubsection}{Immediate Undo}{40}{section*.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Evaluation}{41}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Conclusion}{43}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{43}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Vector Clocks}{47}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Formal Definition}{47}{section.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Simple Experiment}{49}{appendix.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.1}Summary of Logs of Simple Experiment}{49}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.2}proposal.tex}{52}{section.B.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Makefile}{57}{appendix.C}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C.1}makefile}{57}{section.C.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C.2}refs.bib}{57}{section.C.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {D}Project Proposal}{61}{appendix.D}

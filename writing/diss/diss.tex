@@ -669,9 +669,9 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<$.
 		
-		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \Lambda\ v1.c' > v2.c'\]
+		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \land\ v1.c' > v2.c'\]
 		
-		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \Lambda\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
+		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \land\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
 		In this definition, $v2$ is causally dependent on $v1$ and $v1$ is causally prior to $v2$.
 		
 		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
@@ -805,7 +805,7 @@ public addEvent(time: number, clock: number, action: any) {
 		 
 		The bundle contains
 		\begin{itemize}
-			\item The unique identifier  \textit{($t$, $cid$)} of the character to be operated upon
+			\item The unique identifier of the character to be operated upon
 		\end{itemize}
 		
 		Undo packets also contain, besides the bundle, a string disambiguator to differentiate undo/redo and insert/delete.
@@ -819,6 +819,56 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		\subsubsection{CCI Undo}
 		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires full consensus between $n$ clients that concurrently deleted a character.
+		
+			\paragraph{Modified Links}
+			While consensus is awkward, it is effectively implemented with counters. The key change is to modify the `deleted' tag of links in the CRDT from boolean to integer.
+			
+\begin{lstlisting}[caption={New Type Signature of a Link in the CRDT}]
+export interface MapEntry {
+	c: string,   // character
+	n: string,   // next link
+	d?: number,  // (optional) deleted, nonexistant $\rightarrow$ not deleted
+	v?: boolean  // (optional) visible, nonexistant $\rightarrow$ visible
+}
+\end{lstlisting}
+
+			\paragraph{Delete, Undo, Redo}
+			The first delete bundle can no longer have the effect of setting the boolean `deleted' flag. Instead, on each client it increments the $d$ value in the target link. A redo delete operation will also increment the `deleted' value on every client.
+			
+			On the other hand, an undo delete operation is a bundle containing only the target ID to undo the deletion of. Its effect on any client is to decrement the `deleted' value.
+			
+			Now, when the $read()$ method is called on the CRDT, we only retrieve links that satisfy
+			
+				\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor l.d = 0 ) \] 
+			
+			\paragraph{Proof of Commutativity}
+			TODO
+			
+			\paragraph{Cost and Causality}
+			TODO
+			talk about cost (minimal) and the fact that an undo that happened a lot time ago and in a operation stack has the same weight as one that happened more recently and afterward (by $\rightarrow$) ??? Is this even right, the other implementation lets you do this too if your Delete was way back in the stack or long ago
+			
+		\subsubsection{Immediate Undo}
+		The CCI Undo is awkward in that it requires consensus to make concurrently deleted characters reappear. It would be preferable for any user to be able to immediately undo a character they may or may not have deleted concurrently with another user.
+		
+			\paragraph{Semantics}
+			To this end, I will define the desired semantics to be
+			
+			\textbf{Definition} In the case of conflicting concurrent make-invisible operations (such as delete or redo delete) and make-visible operations (such as undo delete), the make-visible operation will take effect.
+			
+			The follows the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. This effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character. ??? On causality stuff ie. overwrite earlier undos/deletes
+			
+			\paragraph{Implementation}
+			TODO
+			
+			\paragraph{Proof of Convergence}
+			
+			\paragraph{Cost}
+			
+			
+			
+			
+			
 		
 
 
