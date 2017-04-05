@@ -1,0 +1,22 @@
+1491327179784    memory    16707440    pre-experiment
+1491327179858    memory    18877952    post-clients-create
+1491327179918    join    1    {"doc":"experiment_1-463963","open":true,"snapshot":null,"type":"text","create":true}
+1491327179922    join    0    {"doc":"experiment_1-463963","open":true,"snapshot":null,"type":"text","create":true}
+1491327179923    join    2    {"doc":"experiment_1-463963","open":true,"snapshot":null,"type":"text","create":true}
+1491327179936    join-ack    1    {"doc":"experiment_1-463963","create":true,"open":true,"v":0,"serveId":"a3ce689ab3a2cd683130dbaf61b3ec99"}
+1491327179942    join-ack    2    {"doc":"experiment_1-463963","create":false,"v":0,"snapshot":"","open":true,"serveId":"54850df5b03aab885d9a0239eef625ed"}
+1491327179957    sent    1    -1    sharejs-op    37    {"op":[{"p":0,"i":"tackling"}],"v":0}
+1491327179965    join-ack    0    {"doc":"experiment_1-463963","create":false,"v":0,"snapshot":"","open":true,"serveId":"f04e245c14ea36cb0bfad8c8c170e145"}
+1491327179966    memory    17423472    post-clients-init
+1491327179973    sent    0    -1    sharejs-op    38    {"op":[{"p":0,"i":"coliseums"}],"v":0}
+1491327179974    sent    2    -1    sharejs-op    39    {"op":[{"p":0,"i":"freshening"}],"v":0}
+1491327179990    received    -1    1    sharejs-op    7    {"v":0}
+1491327179990    received    -1    1    sharejs-op    110    {"op":[{"i":"coliseums","p":0}],"v":1,"meta":{"source":"f04e245c14ea36cb0bfad8c8c170e145","ts":1491327179977}}
+1491327179991    received    -1    1    sharejs-op    111    {"op":[{"i":"freshening","p":0}],"v":2,"meta":{"source":"54850df5b03aab885d9a0239eef625ed","ts":1491327179979}}
+1491327179993    received    -1    2    sharejs-op    109    {"op":[{"p":0,"i":"tackling"}],"v":0,"meta":{"source":"a3ce689ab3a2cd683130dbaf61b3ec99","ts":1491327179964}}
+1491327179995    received    -1    2    sharejs-op    110    {"op":[{"i":"coliseums","p":0}],"v":1,"meta":{"source":"f04e245c14ea36cb0bfad8c8c170e145","ts":1491327179977}}
+1491327179995    received    -1    2    sharejs-op    7    {"v":2}
+1491327180017    received    -1    0    sharejs-op    109    {"op":[{"p":0,"i":"tackling"}],"v":0,"meta":{"source":"a3ce689ab3a2cd683130dbaf61b3ec99","ts":1491327179964}}
+1491327180020    received    -1    0    sharejs-op    7    {"v":1}
+1491327180020    received    -1    0    sharejs-op    111    {"op":[{"i":"freshening","p":0}],"v":2,"meta":{"source":"54850df5b03aab885d9a0239eef625ed","ts":1491327179979}}
+1491327181884    memory    17808720    post-experiment

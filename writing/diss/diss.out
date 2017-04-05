@@ -36,19 +36,18 @@
 \BOOKMARK [2][-]{subsection.3.1.4}{Optimizations}{section.3.1}% 36
 \BOOKMARK [2][-]{subsection.3.1.5}{Network simulation}{section.3.1}% 37
 \BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 38
-\BOOKMARK [2][-]{subsection.3.2.1}{Overview}{section.3.2}% 39
-\BOOKMARK [1][-]{section.3.3}{Experiments and Automated Log Analysis}{chapter.3}% 40
-\BOOKMARK [2][-]{subsection.3.3.1}{Separation of Concerns}{section.3.3}% 41
-\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 42
-\BOOKMARK [2][-]{subsection.3.3.3}{Log Analysis}{section.3.3}% 43
-\BOOKMARK [1][-]{section.3.4}{Extension: Local Undo}{chapter.3}% 44
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 45
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 46
-\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 47
-\BOOKMARK [0][-]{appendix.A}{Latex source}{}% 48
-\BOOKMARK [1][-]{section.A.1}{diss.tex}{appendix.A}% 49
-\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 50
-\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 51
-\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 52
-\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 53
-\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 54
+\BOOKMARK [1][-]{section.3.3}{Experiment Creation and Use}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.3.1}{Work Flow}{section.3.3}% 40
+\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 41
+\BOOKMARK [2][-]{subsection.3.3.3}{Separation of Concerns}{section.3.3}% 42
+\BOOKMARK [1][-]{section.3.4}{Extension: Local Undo}{chapter.3}% 43
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 44
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 45
+\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 46
+\BOOKMARK [0][-]{appendix.A}{Simple Experiment}{}% 47
+\BOOKMARK [1][-]{section.A.1}{Summary of Logs of Simple Experiment}{appendix.A}% 48
+\BOOKMARK [1][-]{section.A.2}{proposal.tex}{appendix.A}% 49
+\BOOKMARK [0][-]{appendix.B}{Makefile}{}% 50
+\BOOKMARK [1][-]{section.B.1}{makefile}{appendix.B}% 51
+\BOOKMARK [1][-]{section.B.2}{refs.bib}{appendix.B}% 52
+\BOOKMARK [0][-]{appendix.C}{Project Proposal}{}% 53

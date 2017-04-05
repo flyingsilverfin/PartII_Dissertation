@@ -78,7 +78,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Insert}{26}{section*.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Delete}{26}{section*.13}
+\contentsline {paragraph}{Delete}{27}{section*.13}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.3}Tombstones}{27}{subsection.3.1.3}
 \defcounter {refsection}{0}\relax 
@@ -96,37 +96,45 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Network Manager}{30}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Scheduler}{30}{section*.19}
+\contentsline {subsubsection}{Scheduler}{31}{section*.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Time}{31}{section*.20}
+\contentsline {paragraph}{Time}{32}{section*.20}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Causal Delivery}{32}{section*.21}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{32}{section.3.2}
+\contentsline {paragraph}{Vector Clocks}{32}{section*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Overview}{32}{subsection.3.2.1}
+\contentsline {paragraph}{Modified Vector Clocks}{33}{section*.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Experiments and Automated Log Analysis}{32}{section.3.3}
+\contentsline {paragraph}{Efficient Delivery}{34}{section*.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Separation of Concerns}{32}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{34}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{32}{subsection.3.3.2}
+\contentsline {paragraph}{Scheduling}{34}{section*.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Log Analysis}{32}{subsection.3.3.3}
+\contentsline {paragraph}{Logging}{34}{section*.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Extension: Local Undo}{32}{section.3.4}
+\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{35}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Evaluation}{33}{chapter.4}
+\contentsline {subsection}{\numberline {3.3.1}Work Flow}{35}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{35}{chapter.5}
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{35}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{35}{chapter.5}
+\contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{37}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Latex source}{39}{appendix.A}
+\contentsline {section}{\numberline {3.4}Extension: Local Undo}{37}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}diss.tex}{39}{section.A.1}
+\contentsline {chapter}{\numberline {4}Evaluation}{39}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}proposal.tex}{49}{section.A.2}
+\contentsline {chapter}{\numberline {5}Conclusion}{41}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{41}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Simple Experiment}{45}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Summary of Logs of Simple Experiment}{45}{section.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}proposal.tex}{48}{section.A.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Makefile}{53}{appendix.B}
 \defcounter {refsection}{0}\relax 

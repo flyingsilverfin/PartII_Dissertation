@@ -83,6 +83,23 @@
       \field{title}{{Concurrency Control in Groupware Systems}}
       \field{year}{1989}
     \endentry
+    \entry{fidge1987}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=9cfaaac4a7d65139cb6b16250bb92abb}{Fidge}{F\bibinitperiod}{Colin\bibnamedelima J}{C\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9cfaaac4a7d65139cb6b16250bb92abb}{Fidge}{F\bibinitperiod}{Colin\bibnamedelima J}{C\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Australian National University. Department of Computer Science}%
+      }
+      \strng{namehash}{9cfaaac4a7d65139cb6b16250bb92abb}
+      \strng{fullhash}{9cfaaac4a7d65139cb6b16250bb92abb}
+      \field{sortinit}{F}
+      \field{labeltitle}{Timestamps in message-passing systems that preserve the partial ordering}
+      \field{title}{Timestamps in message-passing systems that preserve the partial ordering}
+      \field{year}{1987}
+    \endentry
     \entry{sharejs}{misc}{}
       \name{labelname}{1}{}{%
         {{hash=b099d66dc402764218f1ec0bc366ec68}{Gentle}{G\bibinitperiod}{Joseph}{J\bibinitperiod}{}{}{}{}}%
@@ -307,6 +324,23 @@
       \field{note}{Accessed: 2017-03-01}
       \field{title}{The Mother of All Demos, Reel 3}
     \endentry
+    \entry{concdistsystems}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=50f9beeb72948cb2605ce8c7d61b3cfd}{Watson}{W\bibinitperiod}{Dr.\bibnamedelimi Robert\bibnamedelima N.\bibnamedelimi M.\bibnamedelimi }{D\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=50f9beeb72948cb2605ce8c7d61b3cfd}{Watson}{W\bibinitperiod}{Dr.\bibnamedelimi Robert\bibnamedelima N.\bibnamedelimi M.\bibnamedelimi }{D\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{50f9beeb72948cb2605ce8c7d61b3cfd}
+      \strng{fullhash}{50f9beeb72948cb2605ce8c7d61b3cfd}
+      \field{sortinit}{W}
+      \field{labeltitle}{Concurrent and Distributed Systems}
+      \field{title}{Concurrent and Distributed Systems}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://www.cl.cam.ac.uk/teaching/1617/ConcDisSys/
+      \endverb
+    \endentry
     \entry{weiss2010undo}{article}{}
       \name{labelname}{3}{}{%
         {{hash=7cd774180af4b531bb6112c0566b61a7}{Weiss}{W\bibinitperiod}{Stephane}{S\bibinitperiod}{}{}{}{}}%
@@ -386,11 +420,11 @@
       \field{pages}{33\bibrangedash 48}
     \endentry
   \endsortlist
-  \missing{Shapiro2011}
-  \missing{preguica2009commutative}
   \missing{sun1998operational}
-  \missing{Technion}
+  \missing{preguica2009commutative}
+  \missing{Shapiro2011}
   \missing{ShareJS}
+  \missing{Technion}
 \endrefsection
 \endinput
 

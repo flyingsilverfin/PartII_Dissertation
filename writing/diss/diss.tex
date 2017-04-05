@@ -198,7 +198,7 @@ This project aims to examine the trade-offs made when implementing highly distri
 
 The custom CRDT on which the collaborative text editor is based is described in detail in the Implementation [section ref] section. In contrast to the OT-based library ShareJS, my system also runs on a peer to peer network architecture instead of a traditional client-server model. The lack of a server reduces the number of stateful parts in the system, at the expense of more complex networking. I managed this complexity by using a simulated peer to peer architecture. The simulation allows me to control the precise topology, link latencies, and protocol and explore advantages and disadvantages of using a P2P approach. 
 
-One extension, adding undo functionality to the CRDT, was also completed. My approach was developed originally, before reading related literature. However, one paper, Logoot-Undo, takes a very similar approach and is discussed briefly below.
+One extension, adding undo functionality to the CRDT, was also completed. I developed two approaches which implement different semantics and consistency models and were developed originally, before reading related literature. However, one paper, Logoot-Undo, takes a very similar approach and is discussed briefly below.
 
 \section{Related Work}
 
@@ -408,6 +408,9 @@ From the outset, I knew I could make simplifications in some aspects of the proj
 	%To aid debugging and visualization [GB?] I also decided to build a dynamic graphical network representation that could be run in tandem with the simulation.
 
 	\subsection{Data Collection and Logging}
+	
+	[todo talk about alternatives to JSON]
+	
 	The other important design decisions are more general. One is to measure all packet and data structure sizes in terms of number of characters they require when stringified using a standard JSON object to string conversion. This allows fair comparisons working across platforms, and is the most obvious way to measure the size of a Javascript JSON object. The second is to log network packets on the application layer. That is, rather than intercepting and logging packet information at the operating system, I log data about the payloads of packets from within the applications. This is the fairest to do comparisons between a simulation's network traffic, whose packets contain no headers or other overhead, and a real TCP/IP stack's traffic.
 
 
@@ -424,6 +427,8 @@ The chapter describes the implementation of both real time editing systems, firs
 	The system architecture is diagrammatically shown in Figure [TODO].
 	
 	Upon interaction with a client's text interface, the CRDT is modified and the operations generated are passed to the network to transmit to other clients. Upon receipt, the remote clients integrate the changes into their replicas of the CRDT and update the user interface to reflect the new state. The process of executing these steps is described in the following subsection. This is followed by a description of the network simulation and the design choices made within it.  ***ugly wording***
+	
+	Throughout a simulation, upon various events such as initialization, packet sending and receiving, joining clients, and others, log lines are written to a server and saved for later analysis. This analysis is discussed in [section ref].
 	
 	
 	\subsection{CRDT}
@@ -447,7 +452,7 @@ The chapter describes the implementation of both real time editing systems, firs
 		
 		Deletes are handled by adding to the relevant link a 'deleted' tag. Lastly, the read operation is a linear time traversal over the linked list, beginning with an invisible anchor element that marks the start of the document and cannot be deleted.
 		
-		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations we might want to do on a linked list are O(n): finding a node to insert after or delete requires at worst a scan of the whole list. A read is BigTheta(n) ***Todo***. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve O(1) lookup times for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes BigTheta(n) to retrieve the document.
+		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations we might want to do on a linked list are O(n): finding a node to insert after or delete requires at worst a scan of the whole list. A read is BigTheta(n) ***Todo***. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve O(1) lookup times [ASSUMPTIONS:Uniform hash, depends on length of key (hash might take time to compute over a string - my strings can grow unbounded as logn) -- BE Precise] for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes BigTheta(n) to retrieve the document.
 		
 		[Figure. Caption describe key as identifier and value as \{char: 'h', 'next': etc...\}]
 		
@@ -542,6 +547,9 @@ interface DeleteMessage {
 			Another optimization I added was renaming tags and names to be as short as possible (often single characters), so that the resulting serialized JSON string sent over the network is as short as possible. However, this is strictly a constant multiplier gain.
 	
 	\subsection{Network simulation}
+	
+		[is this a network simulator? emulation? something in between...]
+	
 		The section describes the network that delivers operation bundles from one client to another. First, I will detail the initial assumptions I made. This is followed by the abstractions the simulation provides to each client. Next I describe the core difficulty in implementing a simulation: the scheduler. Lastly, I will relax the assumptions made to more closely mirror real world situations.
 		
 		\subsubsection{Assumptions} 
@@ -561,7 +569,13 @@ interface DeleteMessage {
 		Along with this, I also wrote my simulation such that a client that receives a packet from the network immediately floods it to its peers before generating and broadcasting dependent operations. Along with the assumptions above, the network provably guarantees causal delivery
 		
 		\begin{proof}[Guarantee of Causal Delivery]
-			Proof by contradiction. Assume a client receives some packets $A$ and $B$ such that $A \not\rightarrow B$ and that at some prior point, it must have been the case that $A \rightarrow B$. This implies that somewhere in the network $A$ and $B$ switched order. However, on any individual link, $A$ and $B$ stay in order by network assumption 2 above. At any node, packets cannot switch order either, since the implementation immediately forwards an incoming packet to its neighbors (If a particular client generated $B$, it is put on a link after $A$ by the same condition). Lastly, because the network does not change topology and the protocol is deterministic flooding, packets do not dynamically adjust routes and so any packet that begins in order $A$, then $B$ stays in order $A$, $B$. Thus, in no case can $A$ and $B$ switch order and our assumption must be incorrect. Either $A \rightarrow B$ or it must have been the case that $A \not\rightarrow B$ to begin with. The first case proves our goal and the second is irrelevant.
+		
+			restate: 
+			A is sent before B, but some client receives B before A...
+			Then list of things that 
+			
+		
+			Proof by contradiction. Assume a client receives some packets $A$ and $B$ and that at some prior point, it must have been the case that $A \rightarrow B$. This implies that somewhere in the network $A$ and $B$ switched order. However, on any individual link, $A$ and $B$ stay in order by network assumption 2 above. At any node, packets cannot switch order either, since the implementation immediately forwards an incoming packet to its neighbors (If a particular client generated $B$, it is put on a link after $A$ by the same condition). Lastly, because the network does not change topology and the protocol is deterministic flooding, packets do not dynamically adjust routes and so any packet that begins in order $A$, then $B$ stays in order $A$, $B$. Thus, in no case can $A$ and $B$ switch order and our assumption must be incorrect. Either $A \rightarrow B$ or it must have been the case that $A \not\rightarrow B$ to begin with. The first case proves our goal and the second is irrelevant.
 		\end{proof}
 		
 		That the network is able to guarantee causal delivery is a very strong assumption and cannot be made in general. We will see in section [section ref] how to relax assumptions 1 and 2.
@@ -637,25 +651,175 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		
 		\subsubsection{Causal Delivery}
-		Until this point, the network has guaranteed causal delivery of packets based on very strong assumptions and knowledge of the system implementation [reference needed]. We can relax these to allow out of order delivery and a changing network topology without a specific implementation. This can be done by ensuring causal delivery using vector clocks \cite[Lecture 4]{concdistsystems}.
+		Until this point, the network has guaranteed causal delivery of packets based on very strong assumptions and knowledge of the system implementation [reference needed]. We can relax these to allow out of order delivery and a changing network topology without a specific implementation. This can be done by ensuring causal delivery using vector clocks \cite{fidge1987}.
+		
+		In addition to my two original network stack modules, there is now an additional one between a client and the network interface. We make a distinction between receiving and delivering a message. Receiving is the arrival of a message at a client, whereas delivery is the step of passing the message from the network stack to the application itself. Causal delivery guarantees that messages are delivered such that $A \ B \Rightarrow\ deliver(A)$, $deliver(B)$.
+		
+		[figure with extra causal layer in receive half between client and network interface]]
 		
 		\paragraph{Vector Clocks}
-		A vector clock is an ordered list of 
+		A vector clock is an list of sequence numbers, one per distributed process. At the time the system is initialized, all clients have a vector of zeros. According to the original paper by Fidge, there are 5 rules for updating which ensure that causal order can be determined by comparing vectors. The specifics of vector clocks are outlined in Appendix~\ref{appendix:vectorclocks}. The properties of vector clocks guarantee that \[ A \rightarrow B\ \Leftrightarrow Vector(A) < Vector(B)\] where $<$ is defined to in the appendix.
 		
+		Fidge's nth[TODO] rule indicates that a receiver should increment its own local clock value on receipt of a message, as well as on sending its own messages. While this rule makes it easy to determine whether a message comes before or after or occurred concurrently with another, it is not so straightforward to determine, for instance, if a message overtook another on the same link, or how many messages occurred between two given vectors.
+		
+		\paragraph{Modified Vector Clocks}
+		Causal delivery layers delay messages that arrive before all of their causal dependencies are delivered. This requires calculating exactly which messages are missing, before a delayed message can be passed from the buffer to the client.
+		
+		To do this simply, I modified the rule of incrementing local clocks on receipt, and only increment locally whenever a message is generated. This way, each value in a vector represents exactly how many messages have been sent by the corresponding client. This avoids conflating `how many messages this client has seen' with `how many messages this client has generated'.
+		
+		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<$.
+		
+		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \Lambda\ v1.c' > v2.c'\]
+		
+		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \Lambda\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
+		In this definition, $v2$ is causally dependent on $v1$ and $v1$ is causally prior to $v2$.
+		
+		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
+		
+		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Figure [todo] shows this process in context of the vector clock representation I used.
+		
+		[Figure]
+		
+		\paragraph{Efficient Delivery}
+		The causal delivery middleware must buffer all messages with dependencies that have not arrived yet. This means, that on each new message, the buffer must be searched for messages that can be delivered. This could lead to a cascade of deliveries which if implemented naiively [TODO ii] is quadratic in the number of buffered messages.
+		
+		Instead, using Delta Vectors we can form a dependency graph which allows more efficient delivery.
+		
+		[figure]
 	
 \section{ShareJS Comparative Environment}
 
-	\subsection{Overview}
+	The main difficulty when building a ShareJS-based comparative system is adapting it to allow executing the same format experiments as the system built bottom up before. The main components in enabling this were incorporating the real-time scheduler discussed in [section ref], and inserting log statements to record data to the logging server.
 	
-\section{Experiments and Automated Log Analysis}
+	\paragraph{Scheduling}
+	An experiment consists, at its most basic, of a set of simulated events that each client performs at given times. In the CRDT system, these events could be scheduled in logical time, as the entire simulation was under the control of the same system and all event times and durations were deterministic. Here, ShareJS requires that sockets be used to transmit operations between clients, even if they are all on the same machine. Nondeterminism is introduced by going through a traditional networking stack, so logical time is no longer applicable.
+	
+	The real-time scheduler takes the basic time unit to be a millisecond, and executes experiment events accordingly. Of course, this choice of unit is arbitrary and can be sped up or slowed down by a constant multiplier. The unchanging factor is the time needed to deliver packets via a real network stack using TCP (the standard protocol used by ShareJS). It makes sense to schedule events on the same order of magnitude as a network round trip time: much less, and all events occur nearly instantaneously and concurrently on all clients. Much slower, and there is little concurrency to explore. Thus a middle ground, similar to the average link latency, is the best choice when designing experiments. This core idea is used when automatic the creation of experiments [section ref].
+	
+	\paragraph{Logging}
+	Enabling data logging primarily consists of inserting log lines at critical points that reveal interesting information about the system. The most important of these are the receiving or sending of any packets from a client or the server, and total memory consumption of the clients before and after the simulation. This was done by reading the ShareJS source code and inserting references to a global logging class at the appropriate points.
+	
+\section{Experiment Creation and Use}
 
-	\subsection{Separation of Concerns}
+	This section deals with the creation and analysis of the experiments. First I outline the overall system work flow. Then, I discuss the design of an individual experiment. Lastly, I examine why I decided to log to text files, then separately parse and analyze these files.
+
+	\subsection{Work Flow}
+	On the whole, this project operates as in Figure [figure TODO]. 
 	
+	[figure]
+	
+	
+	Manually or with a custom script, experiment setup files are created, with specifications over which variations should be executed (such as different topologies or optimizations enabled). An experiment server provides whichever experiment and variant is queued to the requester, which may be the CRDT-based system, or the ShareJS-based one. In either case, the same basic data is served, though the experiment variations only apply to the CRDT-based system. The system then runs the experiment and submits the resulting log back to a logging server that then identifies which experiment was served, and writes the log to the correct file system directory. Then at some future point, a separate script collects logs and summarizes them into digestible formats.
+
 	\subsection{Experiment Design}
 	
-	\subsection{Log Analysis}
+	A basic experiment must specify the number of clients participating and when they join the network, a set of events for each client to execute, and the network topology and link latencies. I chose to save this data in a JSON file which is easily served from an experiment server to the web browser (browsers do not have facilities for automatically accessing local files for security reasons, otherwise the server would be redundant). Other options in experiment setups are variants, such as different network topologies to run the same experiment on and the type of scheduler to use in the CRDT-based system.	Listing~\ref{lst:simple} below makes all of these features visible for a simple experiment.
+	
+
+\begin{lstlisting}[caption={A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}, label={lst:simple}]
+{
+	// Experiment Name
+    "experiment_name": "experiment_1", 	
+	// How many clients and when they join
+    "clients": [0,0,0],		
+	// CRDT-only: Per client values used to compute link latencies	
+    "network": {				
+        "0": {"latency": 196.7632081023716}, 
+        "1": {"latency": 220.01040150077455}, 
+        "2": {"latency": 122.31541467483453}
+    },
+	// CRDT-only: type of scheduler to use
+    "execution": "event-driven", 	
+	// Scheduled events
+    "events": {						
+        "0": {					// Events for client 0
+         "insert": {				// Insert events for client 0
+                "0": {				// Insert "coliseums" at time 0, index 0
+                    "chars": "coliseums", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}			// No delete events
+        }, 
+        "1": {					// Events for client 1
+            "insert": {				// Insert events for client 1
+                "15": {				// Insert "tackling" at time 15, index 0
+                    "chars": "tackling", 		
+                    "after": 0
+                }
+            }, 
+            "delete": {}			// No delete events
+        }, 
+        "2": {					// Events for client 1
+            "insert": {				// Insert events for client 1
+                "30": {				// Insert "freshening" at time 30, index 0
+                    "chars": "freshening", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}			// No delete events
+        }
+	},
+	// CRDT-only: Topologies over which to run the same experiment
+    "topology": [					
+        "fully-connected", 
+        "star"
+    ]
+}
+\end{lstlisting}
+
+	The choice to assign latencies per-node, and calculate a link latency as the average between two nodes' values, rather than assign per-link stems from the need to have one network description that fits any topology. It also models the real world better on a conceptual level: a device with one high latency link, such as a mobile phone, will likely have only higher latency links rather than some fast and slow links. This ``higher on all connections'' is modeled with the average between a (high-valued) node and its neighbors.
+
+	
+	\subsection{Separation of Concerns}
+	
+	A major decision that was made was to separate log analysis from the system generating the log itself. One reason for this was that it is good software engineering: one component should do one task. Another is that a separate analysis layer can analyze results from both the ShareJS and CRDT systems, rather than duplicating functionality for each system. On the other hand, modules for examining logged packet departures and arrivals end up resembling a set of `clients', much like the original simulations' and ShareJS's clients. However, I decided that having a system common to both that is separate and easily extensible is worth duplicating some high level functionality. The result is a Python script which parses and summarizes multiple log files from a single experiment.
+	
+	The analyzer pairs up send and receive log lines for each packet and calculates link latencies (important for ShareJS where latencies are nondeterministic) and length of packets, records the increases in memory usage at checkpoints in the log files, and various other statistics. A sample output is listed in Appendix~\ref{appendix:simplelogsummary}.	
+	
+	
 	
 \section{Extension: Local Undo}
+	
+	In interactive systems undo and redo are key features \cite{shneiderman1982}. As such, it is an interesting extension to the capabilities of a CRDT beyond basic insertion and deletion. I chose to implement a local undo -- that is, only allow undoing and redoing operations that were performed locally -- rather than a global undo, where everyone can modify any operation, at the suggestion of my supervisor. The approaches detailed below were developed originally prior to reading related literature, but one is very similar to that of Logoot Undo [section ref needed].
+	
+	\subsection{Overview}
+	Each client keeps a local stack of operations that it produced. The stack can be truncated to a certain length to avoid ever-growing memory consumption. When undoing an operation, a pointer is moved back down the stack and the inverse operation of the corresponding item on the stack is generated and broadcast to other clients.
+	
+	There are two operations that can be undone or redone: insert and delete. Only one client can ever locally generate an insert event (as each character is tagged with a globally unique identifier generated on the client) and thus it can undo and redo the operation. In the other case, two clients can concurrently delete the same character and so have the same operation on their local stack. How undoing and redoing this concurrent case is handled leads to two different semantics and consistency models. However, the insert is handled the same way in both cases.
+	
+	
+	\subsection{Insert}
+	The undoing of an insert can be thought of as a deletion, but this leads to the idea undo/redo can be implemented using the existing delete and insert operations. However, this is not feasible: doing a `redo insert' by inserting a new character of the same value, is not the same thing as redoing the insertion of the original character -- this is especially obvious when looking at the structure of the CRDT. Since each character is identified uniquely, the redo must reintroduce the same character with the same unique identifier rather than creating a new one with a fresh tag. Additionally, other clients may have performed concurrent operations on the character which must be brought back into effect on redo. The solution to this is discussed in the following subsections.
+	
+		\subsubsection{Semantics}
+		The creator of an insert can choose to undo its creation at any point in time. To satisfy the CCI consistency model (defined in [section ref] and below), an undo and a redo should have same effect on the visible text as if the prior creation or undo never occurred. For instance, if $A$ creates a character which is deleted by $B$, and the creation is undone and then redone by $A$, the character should still not be visible: the effect of client $B$s delete come back into effect as if $A$ never undid the insertion.
+		
+		Using this idea, it is evident that `undo insert' and `delete' operations need to be kept separate. Additionally, the operation needs to take precedence over deletions that have occurred subsequently. This along with the fact that a redo needs to reintroduce the original character leads to an effective semantics and straightforward implementation.
+		
+		[UNCLEAR what exactly the semantics are...? Not sure how to define them properly]
+		
+		\subsubsection{Implementation}
+		
+		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, but these along with the undo-delete and redo-delete bundles (to be seen) all have the same functional form.
+		 
+		The bundle contains
+		\begin{itemize}
+			\item The unique identifier  \textit{($t$, $cid$)} of the character to be operated upon
+		\end{itemize}
+		
+		Undo packets also contain, besides the bundle, a string disambiguator to differentiate undo/redo and insert/delete.
+		
+		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called, see [ref to Structure and Functionality TODO]), nodes which have $v = false$ are ignored and not retrieved.
+		
+		Normally, operations on the same piece of data in a CRDT need to commute. However, in this case, only one client can generate the messages and so conflict from different clients cannot occur. This also means the operations are all causally related by $\rightarrow$, and since the network layer guarantees causal delivery, there is never conflict. Thus, no proof of commutativity is required.
+		
+	\subsection{Delete}
+		Undoing a delete, as mentioned before, is tricker than an insert as multiple clients can perform and therefore `own' a delete at the same time. How this concurrency is handled determines system behavior. The two possibilities are implementing the CCI consistency model and a variant I termed ``Immediate Undo''.
+		
+		\subsubsection{CCI Undo}
+		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires full consensus between $n$ clients that concurrently deleted a character.
+		
 
 
 \chapter{Evaluation}
@@ -674,10 +838,134 @@ public addEvent(time: number, clock: number, action: any) {
 % the appendices
 \appendix
 
-\chapter{Latex source}
+\chapter{Vector Clocks}
 
-\section{diss.tex}
-{\scriptsize\verbatiminput{diss.tex}}
+\section{Formal Definition}
+\label{appendix:vectorclocks}
+TODO
+
+
+\chapter{Simple Experiment}
+
+\section{Summary of Logs of Simple Experiment}
+\label{appendix:simplelogsummary}
+
+\begin{verbatim}
+---fully-connected, nonoptimized---
+	Total simulation duration: 848.547219206
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 27
+	Total delete events: 0
+	Total insert packets sent: 125
+	Total size of insert packets sent: 11995
+	Average insert packet size (incl vector clock etc.): 95.96
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 162
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 54
+	Latency/wait time per client when requesting CRDT: [0, 416.77360960314616, 319.07862277720614]
+	From whom each client request CRDT: [-1, 0, 0]
+	Length of stringified document/crdt during state replay, on average: 171
+	pre-experiment: 0
+	post-topology-init: 68752
+	post-graph-init: 633464
+	post-clients-init: 651976
+	post-experiment: 1256448
+
+---fully-connected, optimized---
+	Total simulation duration: 848.547219206
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 3
+	Total delete events: 0
+	Total insert packets sent: 13
+	Total size of insert packets sent: 1329
+	Average insert packet size (incl vector clock etc.): 102.230769231
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 18
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 6
+	Latency/wait time per client when requesting CRDT: [0, 416.77360960314616, 319.07862277720614]
+	From whom each client request CRDT: [-1, 0, 0]
+	Length of stringified document/crdt during state replay, on average: 171
+	pre-experiment: 0
+	post-topology-init: 149136
+	post-graph-init: 1114064
+	post-clients-init: 1125632
+	post-experiment: -1833488
+
+---star, nonoptimized---
+	Total simulation duration: 959.239037182
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 27
+	Total delete events: 0
+	Total insert packets sent: 89
+	Total size of insert packets sent: 8489
+	Average insert packet size (incl vector clock etc.): 95.3820224719
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 108
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 54
+	Latency/wait time per client when requesting CRDT: [0, 416.77360960314616, 319.07862277720614]
+	From whom each client request CRDT: [-1, 0, 0]
+	Length of stringified document/crdt during state replay, on average: 171
+	pre-experiment: 0
+	post-topology-init: 71056
+	post-graph-init: 2482896
+	post-clients-init: 2491528
+	post-experiment: -2005448
+
+---star, optimized---
+	Total simulation duration: 959.239037182
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 3
+	Total delete events: 0
+	Total insert packets sent: 9
+	Total size of insert packets sent: 917
+	Average insert packet size (incl vector clock etc.): 101.888888889
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 12
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 6
+	Latency/wait time per client when requesting CRDT: [0, 416.77360960314616, 319.07862277720614]
+	From whom each client request CRDT: [-1, 0, 0]
+	Length of stringified document/crdt during state replay, on average: 171
+	pre-experiment: 0
+	post-topology-init: 73776
+	post-graph-init: 1485920
+	post-clients-init: 1493768
+	post-experiment: 1192544
+
+---experiment_1, ot---
+	Total simulation duration: 2100.0
+	Total insert events: 3
+	Total delete events: 0
+	Total packets: 18
+	Total size of packets sent: 1398
+	Average packet payload size: 77.6666666667
+	Total size of packets sent, if there were no meta-information: 264
+	Average packet payload size without meta-information: 14.6666666667
+	Expected number of packets sent - give optimal client-server network with everyone joining at start: 18
+	Latency/wait time per client when requesting CRDT: [43.0, 18.0, 19.0, 0]
+	From whom each client request CRDT: [-1, -1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	pre-experiment: 0
+	post-clients-create: 2170512
+	post-clients-init: 716032
+	post-experiment: 1101280
+
+\end{verbatim}
 
 \section{proposal.tex}
 {\scriptsize\verbatiminput{proposal.tex}}

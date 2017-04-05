@@ -23,6 +23,24 @@
         "stateReplayAvSize": "1297", 
         "insertPackets": "263"
     }, 
+    "experiment_0, ot": {
+        "insertEvents": "15", 
+        "stateReplayWaitTimes": "[15.0, 17.0, 9.0, 13.0, 43.0, 20.0, 42.0, 16.0, 7.0, 19.0, 10.0, 11.0, 15.0, 8.0, 9.0, 0]", 
+        "MemoryCheckpoint2": "7037480", 
+        "MemoryCheckpoint3": "7483800", 
+        "clientServerExpPackets": "270", 
+        "simTime": "12661.0", 
+        "avgPacketSize": "98.3121387283", 
+        "MemoryCheckpoint1": "10288128", 
+        "totalNoMetaPacketsSize": "5001", 
+        "stateReplayAvSize": "49", 
+        "deleteEvents": "0", 
+        "MemoryCheckpoint0": "0", 
+        "avgNoMetaPacketsSize": "28.9075144509", 
+        "totalPacketsSize": "17008", 
+        "stateReplayRequestFrom": "[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]", 
+        "totalPackets": "173"
+    }, 
     "fully-connected, optimized": {
         "optimalP2PExpPackets": "210", 
         "stringsMatch": "True", 

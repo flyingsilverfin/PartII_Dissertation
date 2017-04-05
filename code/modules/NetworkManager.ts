@@ -94,7 +94,7 @@ class NetworkManager {
         for (let i = 0; i < neighborLinks.length; i++) {
             let edge = neighborLinks[i];
 
-            let targetNetworkInterface = self.clientMap[edge.target];
+            let targetNetworkInterface = self.clientMap[edge.target]; 
             if (targetNetworkInterface === undefined) {
                 // this means that client hasn't joined yet
                 // in reality wouldn't have a connection then
