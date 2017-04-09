@@ -51,7 +51,7 @@
 
 \lstset{
 	language=Typescript,
-	backgroundcolor=\color{lightgray},
+	backgroundcolor=\color{cverbbg},
 	extendedchars=true,
 	basicstyle=\footnotesize\ttfamily,
 	showstringspaces=false,
@@ -66,7 +66,7 @@
 }
 
 
-\definecolor{cverbbg}{gray}{0.93}
+\definecolor{cverbbg}{gray}{0.85}
 \newenvironment{cverbatim}
  {\SaveVerbatim{cverb}}
  {\endSaveVerbatim
@@ -202,7 +202,7 @@ One extension, adding undo functionality to the CRDT, was also completed. I deve
 
 \section{Related Work}
 
-Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. It also falls into the class of 'tombstone' CRDTs, which mark elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are 'tombstone-free' and do not suffer from this inefficiency. Existing CRDTs of both types are discussed here.
+Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. It also falls into the class of `tombstone' CRDTs, which mark elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are 'tombstone-free' and do not suffer from this inefficiency. Existing CRDTs of both types are discussed here.
 
 \subsection{Treedoc}
 
@@ -325,7 +325,7 @@ Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging
 	
 	***This can be redone, for instance ops grow in size as document number grows***
 	
-	Given our rough understanding of CRDTs and ShareJS, we can make hypotheses about the quantitative results that might be obtained. In terms of basic memory requirements, each ShareJS client requires storing the current document string, along with a lot of past operations. At worst, each character in the string was delivered as an individual operation, so given n characters we expect O(2n) = O(n) memory usage. The server must also store a list of these operations, but the overall cost is still O(n). On the other hand, CRDTs at worst tag each character with a unique identifier. The largest identifier is O(log(n)) characters long (assuming increasing natural numbers as tags), which leads to O(nlog(n)) cost overall. This is slightly higher than ShareJS's linear growth.
+	Given our rough understanding of CRDTs and ShareJS, we can make hypotheses about the quantitative results that might be obtained. In terms of basic memory requirements, each ShareJS client requires storing the current document string, along with past operations. At worst, each character in the string was delivered as an individual operation, so given n characters we expect O(2n) = O(n) memory usage. The server must also store a list of these operations, but the overall cost is still O(n). On the other hand, CRDTs at worst tag each character with a unique identifier. The largest identifier is O(log(n)) characters long (assuming increasing natural numbers as tags), which leads to O(nlog(n)) cost overall. This is slightly higher than ShareJS's linear growth.
 	
 	\subsection{Network}
 	
@@ -354,7 +354,7 @@ To reiterate the success criteria listed in the project proposal, I hoped to
 \begin{enumerate}
 \item Implement a concurrent, distributed text editor based on CRDTs 
 \item Pass correctness tests for this CRDT
-\item Obtain and compare quantitative results comparing ShareJS and the CRDT based system
+\item Obtain and compare quantitative results from ShareJS and the CRDT based systems
 \end{enumerate}
 
 Points one and three have multiple unspecified subgoals. For clarity, Table lists all of these and their respective importance and difficulty. These more closely mirror the 'Detailed Project Structure' of the proposal.
@@ -818,17 +818,17 @@ public addEvent(time: number, clock: number, action: any) {
 		Undoing a delete, as mentioned before, is tricker than an insert as multiple clients can perform and therefore `own' a delete at the same time. How this concurrency is handled determines system behavior. The two possibilities are implementing the CCI consistency model and a variant I termed ``Immediate Undo''.
 		
 		\subsubsection{CCI Undo}
-		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires full consensus between $n$ clients that concurrently deleted a character.
+		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires full consensus between $n$ clients that concurrently deleted a character to return it.
 		
 			\paragraph{Modified Links}
 			While consensus is awkward, it is effectively implemented with counters. The key change is to modify the `deleted' tag of links in the CRDT from boolean to integer.
 			
-\begin{lstlisting}[caption={New Type Signature of a Link in the CRDT}]
+\begin{lstlisting}[caption={New Type Signature of a Link in the CRDT}, mathescape=true]
 export interface MapEntry {
 	c: string,   // character
 	n: string,   // next link
-	d?: number,  // (optional) deleted, nonexistant $\rightarrow$ not deleted
-	v?: boolean  // (optional) visible, nonexistant $\rightarrow$ visible
+	d?: number,  // (optional) deleted, nonexistant $\Rightarrow$ not deleted
+	v?: boolean  // (optional) visible, nonexistant $\Rightarrow$ visible
 }
 \end{lstlisting}
 
@@ -852,19 +852,35 @@ export interface MapEntry {
 		The CCI Undo is awkward in that it requires consensus to make concurrently deleted characters reappear. It would be preferable for any user to be able to immediately undo a character they may or may not have deleted concurrently with another user.
 		
 			\paragraph{Semantics}
-			To this end, I will define the desired semantics to be
+			To this end, the following describes the desired semantics:
 			
-			\textbf{Definition} In the case of conflicting concurrent make-invisible operations (such as delete or redo delete) and make-visible operations (such as undo delete), the make-visible operation will take effect.
+			In the case of conflicting concurrent \textit{make-invisible} operations (such as delete or redo delete) and \textit{make-visible} operations (such as undo delete), the \textit{make-visible} operation will take effect.
 			
-			The follows the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. This effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character. ??? On causality stuff ie. overwrite earlier undos/deletes
+			The follows the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. Note that this effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character. ??? On causality stuff ie. overwrite earlier undos/deletes
 			
 			\paragraph{Implementation}
-			TODO
+			In order to support an immediate undo effectively, we need to be able to compare the ``time'' at which a deletion, undo, or redo occurred in order to detect concurrency. Vector clocks allow exactly this. Thus, every such operation needs to tag the data in the CRDT with the vector clock value it occurred at. Then, when other operations arrive which affect the same data, the packet's vector and the vector in the CRDT can be compared and acted upon.
+			
+			The required modification in the CRDT is that the `deleted' tag of a link $l.d$ now represents a pair ($true/false$, $vector$). The first value is a boolean for whether or not the character is deleted. The second is the vector of the packet that delivered the operation (this cheats a little and reaches across network layers into the causal delivery mechanism to obtain a copy, but is more efficient than redundantly sending the vector in the bundle and in the packet containing the bundle).
+			
+			As before, both undo and redo delete bundles contain only the identifier of the link $l$ to act upon. In the case of any form of undo delete, $l.d[0]$, the boolean, is set to $false$, and in redo only sets $l.d[0] = true$ if the redo operation and the vectors stored at $l.d[1]$ are not concurrent as defined in [section ref]. Both operations update $l.d[1]$ to the vector in the bundle's packet.
+			
+			When the CRDT $read()$ method is called, we only retrieve links that satisfy
+			
+					\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor \lnot l.d[0]) \] 
+						
 			
 			\paragraph{Proof of Convergence}
 			
-			\paragraph{Cost}
+			TODO
 			
+			\paragraph{Cost}
+			Storing a vector with every character that at one point was deleted can become quite expensive. Vector clocks are $\O(n*log(k))$ , where $n$ is the number of clients in the network and $k$ is the decimal length of the longest sequence number in the vector.
+			[TODO is this $\Theta$ instead of $O$? Problem is $k$ is an upper bound!]
+			
+			The worst case space complexity of implementing Immediate Undo is thus $O(m*n*log(k)*log(m))$ where $m$ is the number of characters in the CRDT and the $log(m)$ term represents the cost of character identifiers. This could in some cases become prohibitive.
+			
+			[EXPERIMENT NEEDED]
 			
 			
 			
@@ -873,6 +889,99 @@ export interface MapEntry {
 
 
 \chapter{Evaluation}
+	This chapter aims to analyze the project's success in terms of meeting the proposed goals. First
+
+	\section{Overall Results}
+	
+	The project can described as successful if the objectives stated in the proposal are met. These are described below along with brief summaries and references to the work taken to complete them.
+	
+	\textbf{Success Criterion 1:} \textit{Implement a concurrent, distributed text editor based on CRDTs.}
+	
+	I can qualitatively assert that this first goal has been completed. Section [section ref] outlines the components needed and steps taken to create a distributed text editor based on CRDTs and connected by a network simulation. Though the primary use of the editor is to gather data via programmatically predefined experiments, it can also be used manually via the user interface. This feature is counted towards fulfilling success criterion 1.
+	
+	\textbf{Success Criterion 2:} \textit{Pass correctness tests for this CRDT.}
+	
+	The key property of concurrent, distributed text editing is eventual convergence of the data. To this end, the second success criterion aims to ensure that the implementation provides the same guarantees as the theory. Unit testing of the CRDT helped find and eliminate bugs that broke these guarantees. The testing results are described more in the following section.
+	
+
+	\textbf{Success Criterion 3:} \textit{Obtain and compare quantitative results from ShareJS and the CRDT based systems}
+	
+	This criterion was intentionally vague in the proposal to allow maximum flexibility during analysis. Beyond the basic implementation that will be analyzed, various optimization possibilities (see sections [section ref] and [section ref]) were revealed while implementing the CRDT and the network simulation underlying it. These were not known during the proposal stages of the project but fall under the umbrella of criterion three. The bulk of this chapter will focus on the results obtained by experimenting on both the CRDT and ShareJS based systems, with and without optimizations.
+	[this doesn't flow very well...]
+	
+	
+	
+	\section{Testing the CRDT}
+	350 words
+	
+	Used black box testing (need a citation, plus exact definition)... implementation agnostic
+	
+	
+	\section{Quantitative Analysis}
+	
+		Begin by empirically confirming the predictions made before... 
+		
+		Axes of comparison: memory, CPU, network, number of users, concurrency
+			Network: Latency, packet size, packet quantity, cost of state replay
+			CPU: Cost of integrating remote changes and cost of generating local changes and sending them... how to deal with server
+			
+		
+			
+		Lastly, a real world simulation based on user interactions with wikipedia
+		
+		
+		Experiments
+			ShareJS: Confirm O(n) memory usage for document string + past operations
+			ShareJS: Confirm O(n) memory usage on server for stored ops
+			ShareJS: Confirm - one packet in flight => packet size and quantity change as network latency grows. 
+						Also: Clients must be able to undo operations in case of reject, as well as transform any subsequent operations that have occurred against the inverse of the rejected one => So, the clients must each also have a list of past operations, which also affects memory use.
+						
+			CRDT:	 Confirm O(nlogn) memory growth per client
+			
+			ShareJS: something with latency...? maybe just a distribution of latencies given local hosting
+			ShareJS: sending N words of average length k => total packet size (grows with version number)
+			CRDT: 	 Given average latency of ShareJS, show how latency scales with connectivity in simulation versus 2*RTT for ShareJS
+			CRDT:	 sending N words of average length k => packet size growth ... cf above. Perhaps same plot?
+			CRDT: 	 Flooding as a function as number of clients at one or two topologies (fully connected and star)
+			
+			If have time: Implement lpbcast and anti-entropy and show latency and number of packets vs infection rate
+			
+			ShareJS, CRDT: Network cost of State Replay, especially growth over size of document
+							Make note about protocol buffers here and the potential of saving multiples of space size. Focus on growth	
+							Perhaps manually convert a few into proto buffers as a demonstration
+			
+			
+			CRDT: 	 CPU cost of inserting ~10000 words of length K into CRDT (easy enough to measure). Perhaps up to but not including sending into network
+			ShareJS: CPU cost of inserting same 10000 words into document... how to measure?? How to measure server as well...
+							Perhaps up to but not including sending op into network
+			
+			Vector clocks:
+				CRDT: Network Cost of using vector clocks to ensure causal delivery. Discuss how we can't really do what ShareJS does since we don't know (1 packet in flight only) since we don't know when a packet has reached the final client in the network
+							
+			Undo:
+				CRDT: Show cost of Undo with graph of no undo, CCI Undo, Immediate undo
+				
+							
+							
+			
+			
+			
+	
+		\subsection{ShareJS Performance}
+		
+			\subsubsection{}
+		
+		\subsection{Core CRDT Performance}
+		
+		\subsection{ShareJS vs CRDT for Text Editing}
+		
+		\subsection{Network}
+		
+		
+		
+		
+		
+		
 
 
 \chapter{Conclusion}
