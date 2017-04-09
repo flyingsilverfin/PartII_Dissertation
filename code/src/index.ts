@@ -45,7 +45,7 @@ function runExperiment(experiment) {
 
         console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);
         
-        // post() stringifies the json internally
+        // postObject() stringifies the json internally
         postObject(
             "http://localhost:3001/crdtResult",
             {

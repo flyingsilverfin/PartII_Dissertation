@@ -84,10 +84,11 @@ export function main(experimentSetup, graph=true, finishedCallback) {
                                      logger, 
                                      function() {
                                         // END OF EXPERIMENT
-                                        let log = logger.getLog();
+                                        //let log = logger.getLog();
                                         let result = {
                                             experiment_name: experimentSetup.experiment_name,
-                                            log: log
+                                            log: "",
+                                            totalLines: logger.getTotalLines()
                                         }
                                         logger.logMemory("post-experiment");
                                         finishedCallback(result); 
