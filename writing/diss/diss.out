@@ -7,7 +7,7 @@
 \BOOKMARK [2][-]{subsection.1.3.3}{Logoot-Undo}{section.1.3}% 7
 \BOOKMARK [0][-]{chapter.2}{Preparation}{}% 8
 \BOOKMARK [1][-]{section.2.1}{Consistency Models}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.1.1}{What is "Conflict Free"}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.1}{What is ``Conflict Free''}{section.2.1}% 10
 \BOOKMARK [2][-]{subsection.2.1.2}{CCI Consistency Model}{section.2.1}% 11
 \BOOKMARK [1][-]{section.2.2}{Achieving Eventual Consistency}{chapter.2}% 12
 \BOOKMARK [2][-]{subsection.2.2.1}{Operational Transformations}{section.2.2}% 13

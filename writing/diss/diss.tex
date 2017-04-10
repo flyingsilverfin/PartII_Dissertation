@@ -13,6 +13,8 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{listings}
+\usepackage{array}
+\usepackage[font={it},justification={centering}]{caption}
 
 
 \usepackage{fancyvrb,newverbs,xcolor}
@@ -183,14 +185,14 @@ TODO
 
 \chapter{Introduction}
 
-Real time interaction between users is becoming an increasingly important feature to many applications, from word processing to CAD to social networking. This dissertation examines trade offs that should be considered when applying the prevailing technologies that enable concurrent use of data in applications. More specifically, this project implements and analyzes a concurrent text editor based on Convergent Replicated Data Types (also known as Conflict-free Replicated Data Types), CRDT in short, in comparison to an editor exploiting Operational Transformations (OT) as its core technology.
+Real time interaction between users is becoming an increasingly important feature to many applications, from word processing to CAD to social networking. This dissertation examines trade offs that should be considered when applying the prevailing technologies that enable concurrent use of data in applications. More specifically, this project implements and analyzes a concurrent text editor based on Convergent Replicated Data Types (also known as Conflict-free Replicated Data Types), CRDT in short, in comparison to an existing editor exploiting Operational Transformations (OT) as its core technology.
 
 
 \section{Motivation}
 
 Realtime collaborative editing was first motivated by a demonstration in the Mother of All Demos by Douglas Engelbart in 1968 \cite{MotherDemo}. From that time, it took several decades for implementations of such editing systems to appear. Early products were released in the 1990's, and the 1989 paper by Gibbs and Ellis \cite{Ellis1989} marked the beginning of extended research into operational transformations. Due to almost 20 years of research, OT is a relatively developed field and has been applied to products that are commonly used. The most familiar of these is likely to be Google Docs \footnote{https://docs.google.com}, which seems to behave in a predictable and well understood way. One reason Google Docs is so widely used might be that it follows users' expectations for how a concurrent, multi-user document editor should work. Importantly, this includes lock-free editing and independence of a fast connection, no loss of data, and the guarantee that everyone ends up with the same document when changes are complete. These are in fact the goals around which OT and CRDTs have developed.
 
-The convergence, or consistency, property above is the hardest to provide -- it is easy to create a system where the last writer wins, but data is lost in the process. In a distributed system such as a shared text editor, the CAP theorem tells us we cannot guarantee all three of consistency, availability, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong consistency guarantees and settle for eventual consistency, we are able provide all three \cite{zeller2014}. As we will see, achieving eventual consistency is non-trivial. The two prevailing approaches, operational transformations and commutative replicated data structures are discussed in detail the Preparation section.
+The convergence, or consistency, property above is the hardest to provide -- it is easy to create a system where the last writer wins, but data is lost in the process. In a distributed system such as a shared text editor, the CAP theorem tells us we cannot guarantee all three of consistency, availability, and partition-tolerance \cite{Gilbert2005}. However, if we forgo strong consistency guarantees and settle for eventual consistency, we are able provide all three \cite{zeller2014}. As we will see, achieving eventual consistency is non-trivial. The two prevailing approaches that enable it, operational transformations and commutative replicated data structures, are discussed in detail the Preparation section.
 
 
 \section{Overview}
@@ -202,15 +204,24 @@ One extension, adding undo functionality to the CRDT, was also completed. I deve
 
 \section{Related Work}
 
-Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. It also falls into the class of `tombstone' CRDTs, which mark elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are 'tombstone-free' and do not suffer from this inefficiency. Existing CRDTs of both types are discussed here.
+Part of the challenge of this project was to develop my CRDT and associated algorithms based only on an explanation of the required functionality provided by Martin Kleppmann. As a result, my solution is not optimal in all aspects, and could be improved upon in the future. Several possible optimizations are discussed in the Implementation section [TODO, section ref]. It also falls into the class of `tombstone' CRDTs, marking elements as deleted rather than fully removing them, which forces the data structures to grow continuously over time. Other CRDTs are `tombstone-free' and do not suffer from this unbounded growth. Existing CRDTs of both types are discussed here.
 
 \subsection{Treedoc}
 
-Treedoc \cite{preguica2009} is a replicated text buffer; an ordered set that supports insert-at and delete operations. This CRDT gets its name from the tree structure used to encode identifiers and order elements in the set. Each node in the tree contains one character, and the string contained in the buffer is retried using infix traversal. Each client has a copy of the same tree, and can insert new nodes at any time. Two concurrent inserts at the same node are merged as two 'mini-nodes' within one tree node. Each insert is tagged with a unique client identifier which comes from an ordered space. Using the identifier order in combination with infix traversal creates a total ordering over the characters contained in the tree. With the total order, all clients with copies of the tree will retrieve the same string from their Treedoc. Having a total order is an important property used to guarantee eventual consistency in CRDTs.
+Treedoc \cite{preguica2009} is a replicated text buffer; an ordered set that supports insert-at and delete operations. This CRDT gets its name from the tree structure used to encode identifiers and order elements in the set. Each node in the tree contains at least one character, and the string contained in the buffer is retried using infix traversal. Each client has a copy of the same tree, and can insert new nodes at any time. Two concurrent inserts at the same node are merged as two `mini-nodes' within one tree node. Each insert is tagged with a unique client identifier which comes from an ordered space. Using the identifier order in combination with infix traversal creates a total ordering over the characters contained in the tree. With the total order, all clients with copies of the tree will retrieve the same string from their Treedoc. Having a total order is an important property used to guarantee eventual consistency in CRDTs. Using unique, ordered client IDs to provide a total order in concurrent cases is common in CRDT design and indeed used in my own CRDT.
 
-[perhaps insert Figure of large nodes/mininodes from the paper]
+\begin{figure}[htb]
+\centering
+  \begin{tabular}{ >{\centering}m{6cm} >{\centering}m{15mm} >{\centering\arraybackslash}m{6cm} }
+    \includegraphics[width=1\linewidth]{figs/treedoc_1.eps}  &
+    $\longrightarrow$  &
+    \includegraphics[width=1\linewidth]{figs/treedoc_2.eps}
+  \end{tabular}
+\caption{\textit{Concurrent updates to the same node. In the first state (left), client 1 has written the string `Cambride' into the text buffer. The systems settles and client 2 also sees the string `Cambride'. Both clients 1 and 2 realize there is a missing character -- client 1 inserts `g' and client 2 mistakenly inserts 'h'. As both create the same node in the tree, the nodes are merged as mini-nodes into a larger node. Both clients now see the string 'Cambridghe'.}}
+\label{treedoc}
+\end{figure}
 
-Deletes in this Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of 'tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the authors propose an expensive commitment protocol to rebalance it. Not only is this inefficient, but also rather contrary to the spirit of CRDTs.
+Deletes in Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of `tombstone' CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the authors propose an expensive commitment protocol to rebalance it. Not only is this inefficient, but also rather contrary to the spirit of CRDTs.
 
 \subsection{Logoot}
 
@@ -218,14 +229,14 @@ Logoot \cite{weiss2008} belongs to the class of text CRDTs which do not require 
 
 Logoot also favors marking larger blocks of text with identifiers, rather than per-character. This, in combination with not needing tombstones, promises major efficiency gains over CRDTs such as Treedoc. Even further, two papers \cite{nedelec2013lseq} \cite{nedelec2013} offer optimizations beyond the basic Logoot implementation by improving the strategy used to allocate new identifiers in the generator tree. However, these algorithms are specific to Logoot and of little relevance to this project.
 
-Logoot is important as an example of a tombstone-free CRDT for text. Additionally, subsequent research enabled 'undo' and 'redo' functionality for this CRDT, which is described below.
+Logoot is important as an example of a tombstone-free CRDT for text. Additionally, subsequent research enabled `undo' and `redo' functionality for this CRDT, which is described below.
 
 
 \subsection{Logoot-Undo}
 
 CRDTs generally struggle to provide an undo mechanism since the concept of reversing an update to the data structure is fundamentally contrary to the key property of CRDTs: commutativity of operations. For example, reversing an insert is not commutative with the original insertion. If it were, the removal of a nonexistent element, followed by its insertion would have to result in the same thing as insertion followed by removal. In the first case, the element is present, while in the second it is removed. These outcomes clearly are not the same.
 
-Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging each identifier with a 'visible' counter. An undo of an insertion would decrement it, while redo would increment it. If the 'visible' counter is positive, the characters are visible. As discussed in [REFERENCE NEEDED], this leads to some rather unexpected behavior. However, this approach is viable since increments and decrements commute and guarantee eventual convergence. In Logoot Undo, any client can undo any other client's operations which is called global undo. The use of a counter is identical to the undo mechanism I developed independently, though I chose to implement a local undo rather than global one, where clients can only undo their own operations.
+Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging each identifier with a $visible$ counter. An undo of an insertion would decrement it, while redo would increment it. If the $visible$ counter is positive, the characters are visible. As discussed in [REFERENCE NEEDED], this leads to some rather unexpected behavior. However, this approach is viable since increments and decrements commute and guarantee eventual convergence. In Logoot Undo, any client can undo any other client's operations which is called global undo. The use of a counter is identical to the undo mechanism I developed independently, though I chose to implement a local undo rather than global one, where clients can only undo their own operations.
 
 
 \chapter{Preparation}
@@ -233,9 +244,9 @@ Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging
 
 \section{Consistency Models}
 
-	\subsection{What is "Conflict Free"}
+	\subsection{What is ``Conflict Free''}
 	
-	One important question to answer is, what is the exact definition of conflict free. There appears to be more than one way of interpreting it. On one hand, there is the user's intuitive idea that any of their own operations should behave as if they were the only users on the system. On the other hand, there is the data-centric view of conflict. In this case, operations conflict if they are concurrent and modify the same data or index in a text buffer. Conflict free then means that no data is lost, and after all operations are exchanged the resulting states agree.
+	One important definition is the exact meaning of ``conflict free''. There appears to be more than one way of interpreting it. On one hand, there is the user's intuitive idea that any of their own operations should behave as if they were the only users on the system. On the other hand, there is the data-centric view of conflict. In this case, operations conflict if they are concurrent and modify the same data or index in a text buffer. Conflict free then means that no data is lost, and after all operations are exchanged the resulting states agree.
 	
 	The common conflicting operations in text editing are inserting characters into the same index of a shared text buffer, or simultaneously deleting the same characters. The second is easy to make conflict-free, and both the user and data oriented definitions of conflict agree -- deleting a character concurrently or on a single user system should still result in the character disappearing. In the case of inserting text into the same index, the definitions cannot agree. Both users expect their own text to appear in the index they inserted at. However, in order to satisfy the data-centric definition we are not allowed to lose data, and must eventually present both users with the same string. The solution is to let one user 'win' and insert their characters at the desired index, and shift the other users' characters to appear after. Both operational transformations and CRDTs achieve this in fundamentally different ways.
 	
