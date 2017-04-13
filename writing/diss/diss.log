@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  10 APR 2017 17:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  13 APR 2017 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -335,16 +335,24 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count127
+\float@exts=\toks31
+\float@box=\box30
+\@float@everytoks=\toks32
+\@floatcapt=\box31
+)
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count127
+\FV@CodeLineNo=\count128
 \FV@InFile=\read2
-\FV@TabBox=\box30
-\c@FancyVerbLine=\count128
-\FV@StepNumber=\count129
+\FV@TabBox=\box32
+\c@FancyVerbLine=\count129
+\FV@StepNumber=\count130
 \FV@OutFile=\write3
 )
 (/usr/share/texlive/texmf-dist/tex/latex/newverbs/newverbs.sty
@@ -376,7 +384,7 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2013/12/03 3.9h Babel common definitions
-\babel@savecnt=\count130
+\babel@savecnt=\count131
 \U@D=\dimen152
 )
 \l@british = a dialect from \language\l@english 
@@ -397,13 +405,13 @@ Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
 
 (/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count131
+\et@xins=\count132
 )
-\etb@tempcnta=\count132
+\etb@tempcnta=\count133
 )
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count133
+\lrq@indent=\count134
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -411,44 +419,44 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count134
-\c@listtotal=\count135
-\c@listcount=\count136
-\c@liststart=\count137
-\c@liststop=\count138
-\c@citecount=\count139
-\c@citetotal=\count140
-\c@multicitecount=\count141
-\c@multicitetotal=\count142
-\c@instcount=\count143
-\c@maxnames=\count144
-\c@minnames=\count145
-\c@maxitems=\count146
-\c@minitems=\count147
-\c@citecounter=\count148
-\c@savedcitecounter=\count149
-\c@uniquelist=\count150
-\c@uniquename=\count151
-\c@refsection=\count152
-\c@refsegment=\count153
-\c@maxextratitle=\count154
-\c@maxextratitleyear=\count155
-\c@maxextrayear=\count156
-\c@maxextraalpha=\count157
-\c@abbrvpenalty=\count158
-\c@highnamepenalty=\count159
-\c@lownamepenalty=\count160
-\c@maxparens=\count161
-\c@parenlevel=\count162
-\blx@tempcnta=\count163
-\blx@tempcntb=\count164
-\blx@tempcntc=\count165
-\blx@maxsection=\count166
-\blx@maxsegment@0=\count167
-\blx@notetype=\count168
-\blx@parenlevel@text=\count169
-\blx@parenlevel@foot=\count170
-\blx@sectionciteorder@0=\count171
+\c@tabx@nest=\count135
+\c@listtotal=\count136
+\c@listcount=\count137
+\c@liststart=\count138
+\c@liststop=\count139
+\c@citecount=\count140
+\c@citetotal=\count141
+\c@multicitecount=\count142
+\c@multicitetotal=\count143
+\c@instcount=\count144
+\c@maxnames=\count145
+\c@minnames=\count146
+\c@maxitems=\count147
+\c@minitems=\count148
+\c@citecounter=\count149
+\c@savedcitecounter=\count150
+\c@uniquelist=\count151
+\c@uniquename=\count152
+\c@refsection=\count153
+\c@refsegment=\count154
+\c@maxextratitle=\count155
+\c@maxextratitleyear=\count156
+\c@maxextrayear=\count157
+\c@maxextraalpha=\count158
+\c@abbrvpenalty=\count159
+\c@highnamepenalty=\count160
+\c@lownamepenalty=\count161
+\c@maxparens=\count162
+\c@parenlevel=\count163
+\blx@tempcnta=\count164
+\blx@tempcntb=\count165
+\blx@tempcntc=\count166
+\blx@maxsection=\count167
+\blx@maxsegment@0=\count168
+\blx@notetype=\count169
+\blx@parenlevel@text=\count170
+\blx@parenlevel@foot=\count171
+\blx@sectionciteorder@0=\count172
 \labelnumberwidth=\skip52
 \labelalphawidth=\skip53
 \shorthandwidth=\skip54
@@ -460,9 +468,9 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \bibhang=\skip60
 \blx@bcfin=\read3
 \blx@bcfout=\write4
-\c@mincomprange=\count172
-\c@maxcomprange=\count173
-\c@mincompwidth=\count174
+\c@mincomprange=\count173
+\c@maxcomprange=\count174
+\c@mincompwidth=\count175
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -471,73 +479,73 @@ Package biblatex Info: Trying to load biblatex citestyle data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count175
-\c@savedafterword=\count176
-\c@annotator=\count177
-\c@savedannotator=\count178
-\c@author=\count179
-\c@savedauthor=\count180
-\c@bookauthor=\count181
-\c@savedbookauthor=\count182
-\c@commentator=\count183
-\c@savedcommentator=\count184
-\c@editor=\count185
-\c@savededitor=\count186
-\c@editora=\count187
-\c@savededitora=\count188
-\c@editorb=\count189
-\c@savededitorb=\count190
-\c@editorc=\count191
-\c@savededitorc=\count192
-\c@foreword=\count193
-\c@savedforeword=\count194
-\c@holder=\count195
-\c@savedholder=\count196
-\c@introduction=\count197
-\c@savedintroduction=\count198
-\c@namea=\count199
-\c@savednamea=\count200
-\c@nameb=\count201
-\c@savednameb=\count202
-\c@namec=\count203
-\c@savednamec=\count204
-\c@shortauthor=\count205
-\c@savedshortauthor=\count206
-\c@shorteditor=\count207
-\c@savedshorteditor=\count208
-\c@translator=\count209
-\c@savedtranslator=\count210
-\c@labelname=\count211
-\c@savedlabelname=\count212
-\c@institution=\count213
-\c@savedinstitution=\count214
-\c@lista=\count215
-\c@savedlista=\count216
-\c@listb=\count217
-\c@savedlistb=\count218
-\c@listc=\count219
-\c@savedlistc=\count220
-\c@listd=\count221
-\c@savedlistd=\count222
-\c@liste=\count223
-\c@savedliste=\count224
-\c@listf=\count225
-\c@savedlistf=\count226
-\c@location=\count227
-\c@savedlocation=\count228
-\c@organization=\count229
-\c@savedorganization=\count230
-\c@origlocation=\count231
-\c@savedoriglocation=\count232
-\c@origpublisher=\count233
+\c@afterword=\count176
+\c@savedafterword=\count177
+\c@annotator=\count178
+\c@savedannotator=\count179
+\c@author=\count180
+\c@savedauthor=\count181
+\c@bookauthor=\count182
+\c@savedbookauthor=\count183
+\c@commentator=\count184
+\c@savedcommentator=\count185
+\c@editor=\count186
+\c@savededitor=\count187
+\c@editora=\count188
+\c@savededitora=\count189
+\c@editorb=\count190
+\c@savededitorb=\count191
+\c@editorc=\count192
+\c@savededitorc=\count193
+\c@foreword=\count194
+\c@savedforeword=\count195
+\c@holder=\count196
+\c@savedholder=\count197
+\c@introduction=\count198
+\c@savedintroduction=\count199
+\c@namea=\count200
+\c@savednamea=\count201
+\c@nameb=\count202
+\c@savednameb=\count203
+\c@namec=\count204
+\c@savednamec=\count205
+\c@shortauthor=\count206
+\c@savedshortauthor=\count207
+\c@shorteditor=\count208
+\c@savedshorteditor=\count209
+\c@translator=\count210
+\c@savedtranslator=\count211
+\c@labelname=\count212
+\c@savedlabelname=\count213
+\c@institution=\count214
+\c@savedinstitution=\count215
+\c@lista=\count216
+\c@savedlista=\count217
+\c@listb=\count218
+\c@savedlistb=\count219
+\c@listc=\count220
+\c@savedlistc=\count221
+\c@listd=\count222
+\c@savedlistd=\count223
+\c@liste=\count224
+\c@savedliste=\count225
+\c@listf=\count226
+\c@savedlistf=\count227
+\c@location=\count228
+\c@savedlocation=\count229
+\c@organization=\count230
+\c@savedorganization=\count231
+\c@origlocation=\count232
+\c@savedoriglocation=\count233
 Normal \count register pool exhausted, switching to extended pool.
-\c@savedorigpublisher=\count277
-\c@publisher=\count278
-\c@savedpublisher=\count279
-\c@language=\count280
-\c@savedlanguage=\count281
-\c@pageref=\count282
-\c@savedpageref=\count283
+\c@origpublisher=\count277
+\c@savedorigpublisher=\count278
+\c@publisher=\count279
+\c@savedpublisher=\count280
+\c@language=\count281
+\c@savedlanguage=\count282
+\c@pageref=\count283
+\c@savedpageref=\count284
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -549,13 +557,13 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 
-\c@textcitecount=\count284
-\c@textcitetotal=\count285
-\c@textcitemaxnames=\count286
-\c@biburlnumpenalty=\count287
-\c@biburlucpenalty=\count288
-\c@biburllcpenalty=\count289
-\c@smartand=\count290
+\c@textcitecount=\count285
+\c@textcitetotal=\count286
+\c@textcitemaxnames=\count287
+\c@biburlnumpenalty=\count288
+\c@biburlucpenalty=\count289
+\c@biburllcpenalty=\count290
+\c@smartand=\count291
 )
 Package biblatex Info: Trying to load natbib compatibility...
 Package biblatex Info: ... file 'blx-natbib.def' found.
@@ -573,8 +581,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2013/11/25 v2.8a biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count291
-\c@bbx:relatedtotal=\count292
+\c@bbx:relatedcount=\count292
+\c@bbx:relatedtotal=\count293
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -619,38 +627,38 @@ File: english.lbx 2013/11/25 v2.8a biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count293
-\@quotereset=\count294
+\@quotelevel=\count294
+\@quotereset=\count295
 (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring OFF on input line 96.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count295
+\c@section@level=\count296
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 96.
+LaTeX Info: Redefining \pageref on input line 96.
+LaTeX Info: Redefining \nameref on input line 96.
 
 (./diss.out) (./diss.out)
 \@outlinefile=\write5
@@ -693,17 +701,17 @@ LaTeX Info: Redefining \nameref on input line 95.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count296
+\scratchcounter=\count297
 \scratchdimen=\dimen153
-\scratchbox=\box32
-\nofMPsegments=\count297
-\nofMParguments=\count298
-\everyMPshowfont=\toks31
-\MPscratchCnt=\count299
+\scratchbox=\box34
+\nofMPsegments=\count298
+\nofMParguments=\count299
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count300
 \MPscratchDim=\dimen154
-\MPnumerator=\count300
-\makeMPintoPDFobject=\count301
-\everyMPtoPDFconversion=\toks32
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
+\everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -719,8 +727,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count302
+\c@lstlisting=\count303
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: No input encoding detected.
 (biblatex)             Assuming 'ascii'.
@@ -742,21 +751,7 @@ Package biblatex Warning: The following entry could not be found
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
-(biblatex)                preguica2009commutative
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
 (biblatex)                Shapiro2011
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                ShareJS
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
@@ -767,16 +762,30 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                preguica2009commutative
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                ShareJS
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
 )
-Package biblatex Info: Reference section=0 on input line 95.
-Package biblatex Info: Reference segment=0 on input line 95.
-\docmute@nestinglevel=\count303
+Package biblatex Info: Reference section=0 on input line 96.
+Package biblatex Info: Reference segment=0 on input line 96.
+\docmute@nestinglevel=\count304
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-Overfull \hbox (113.47049pt too wide) in paragraph at lines 125--139
+Overfull \hbox (113.47049pt too wide) in paragraph at lines 126--140
 []
  []
 
@@ -805,15 +814,15 @@ Package epstopdf Info: Source file: <figs/treedoc_1.eps>
 (epstopdf)                    size: 5931 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/treedoc_1-eps-convert
 ed-to.pdf figs/treedoc_1.eps>
-(epstopdf)             \includegraphics on input line 216.
+(epstopdf)             \includegraphics on input line 217.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/treedoc_1-eps-converted-to.pdf, id=410, 307.1475pt x 300.12125pt>
+<figs/treedoc_1-eps-converted-to.pdf, id=408, 307.1475pt x 300.12125pt>
 File: figs/treedoc_1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/treedoc_1-eps-converted-to.pdf>
 Package pdftex.def Info: figs/treedoc_1-eps-converted-to.pdf used on input line
- 216.
+ 217.
 (pdftex.def)             Requested size: 170.71652pt x 166.81197pt.
 Package epstopdf Info: Source file: <figs/treedoc_2.eps>
 (epstopdf)                    date: 2017-04-10 17:04:07
@@ -823,33 +832,122 @@ Package epstopdf Info: Source file: <figs/treedoc_2.eps>
 (epstopdf)                    size: 6517 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/treedoc_2-eps-convert
 ed-to.pdf figs/treedoc_2.eps>
-(epstopdf)             \includegraphics on input line 218.
+(epstopdf)             \includegraphics on input line 219.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/treedoc_2-eps-converted-to.pdf, id=411, 328.22626pt x 300.12125pt>
+<figs/treedoc_2-eps-converted-to.pdf, id=409, 328.22626pt x 300.12125pt>
 File: figs/treedoc_2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/treedoc_2-eps-converted-to.pdf>
 Package pdftex.def Info: figs/treedoc_2-eps-converted-to.pdf used on input line
- 218.
+ 219.
 (pdftex.def)             Requested size: 170.71652pt x 156.10057pt.
  [11 <./figs/treedoc_1-eps-converted-to.pdf> <./figs/treedoc_2-eps-converted-to
 .pdf>] [12]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 259.
+Package epstopdf Info: Source file: <figs/reconcile.eps>
+(epstopdf)                    date: 2017-04-10 18:50:27
+(epstopdf)                    size: 25836 bytes
+(epstopdf)             Output file: <figs/reconcile-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-11 13:10:29
+(epstopdf)                    size: 6896 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/reconcile-eps-convert
+ed-to.pdf figs/reconcile.eps>
+(epstopdf)             \includegraphics on input line 256.
+Package epstopdf Info: Output file is already uptodate.
+<figs/reconcile-eps-converted-to.pdf, id=440, 947.54pt x 413.545pt>
+File: figs/reconcile-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/reconcile-eps-converted-to.pdf>
+Package pdftex.def Info: figs/reconcile-eps-converted-to.pdf used on input line
+ 256.
+(pdftex.def)             Requested size: 455.24411pt x 198.68233pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 265.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 259.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 265.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
  [13
 
-] [14] [15]
-[16]
+] [14 <./figs/reconcile-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figs/ot1.eps>
+(epstopdf)                    date: 2017-04-13 16:32:44
+(epstopdf)                    size: 10178 bytes
+(epstopdf)             Output file: <figs/ot1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 16:35:37
+(epstopdf)                    size: 10022 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/ot1-eps-converted-to.
+pdf figs/ot1.eps>
+(epstopdf)             \includegraphics on input line 298.
+Package epstopdf Info: Output file is already uptodate.
+
+<figs/ot1-eps-converted-to.pdf, id=459, 816.04875pt x 306.14375pt>
+File: figs/ot1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/ot1-eps-converted-to.pdf>
+Package pdftex.def Info: figs/ot1-eps-converted-to.pdf used on input line 298.
+(pdftex.def)             Requested size: 455.24411pt x 170.78532pt.
+Package epstopdf Info: Source file: <figs/ot2.eps>
+(epstopdf)                    date: 2017-04-13 16:35:02
+(epstopdf)                    size: 9971 bytes
+(epstopdf)             Output file: <figs/ot2-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 16:35:38
+(epstopdf)                    size: 9930 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/ot2-eps-converted-to.
+pdf figs/ot2.eps>
+(epstopdf)             \includegraphics on input line 307.
+Package epstopdf Info: Output file is already uptodate.
+
+<figs/ot2-eps-converted-to.pdf, id=461, 767.86874pt x 301.125pt>
+File: figs/ot2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/ot2-eps-converted-to.pdf>
+Package pdftex.def Info: figs/ot2-eps-converted-to.pdf used on input line 307.
+(pdftex.def)             Requested size: 455.24411pt x 178.53061pt.
+ [15 <./figs/ot1-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figs/ot3.eps>
+(epstopdf)                    date: 2017-04-13 16:30:19
+(epstopdf)                    size: 12890 bytes
+(epstopdf)             Output file: <figs/ot3-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 16:30:26
+(epstopdf)                    size: 10288 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/ot3-eps-converted-to.
+pdf figs/ot3.eps>
+(epstopdf)             \includegraphics on input line 317.
+Package epstopdf Info: Output file is already uptodate.
+
+<figs/ot3-eps-converted-to.pdf, id=479, 810.02625pt x 309.155pt>
+File: figs/ot3-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/ot3-eps-converted-to.pdf>
+Package pdftex.def Info: figs/ot3-eps-converted-to.pdf used on input line 317.
+(pdftex.def)             Requested size: 455.24411pt x 173.753pt.
+ [16 <./figs/ot2-eps-converted-to.pdf> <./figs/ot3-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figs/tagged_set.eps>
+(epstopdf)                    date: 2017-04-12 19:49:40
+(epstopdf)                    size: 15915 bytes
+(epstopdf)             Output file: <figs/tagged_set-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-12 19:49:46
+(epstopdf)                    size: 8342 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/tagged_set-eps-conver
+ted-to.pdf figs/tagged_set.eps>
+(epstopdf)             \includegraphics on input line 334.
+Package epstopdf Info: Output file is already uptodate.
+
+<figs/tagged_set-eps-converted-to.pdf, id=509, 373.395pt x 191.71625pt>
+File: figs/tagged_set-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/tagged_set-eps-converted-to.pdf>
+Package pdftex.def Info: figs/tagged_set-eps-converted-to.pdf used on input lin
+e 334.
+(pdftex.def)             Requested size: 455.24411pt x 233.75012pt.
+ [17 <./figs/tagged_set-eps-converted-to.pdf>] [18]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ì in font cmr12!
@@ -859,394 +957,262 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 403--403
+ [19] [20] [21]
+Underfull \hbox (badness 10000) in paragraph at lines 444--444
 [][][][]$\OT1/cmtt/m/n/10 https : / / developer . mozilla . org / en-[]US / doc
 s / Mozilla / Tech / XPCOM / Reference / Interface /
  []
 
-[19]
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ì in font cmr12!
- [20] [21] [22
+[22]
 
-]
+LaTeX Warning: Citation 'protobuf' on page 23 undefined on input line 465.
+
+[23] [24]
 Chapter 3.
-[23] [24] [25]
+Package epstopdf Info: Source file: <figs/sysarch.eps>
+(epstopdf)                    date: 2017-04-13 18:21:27
+(epstopdf)                    size: 9215 bytes
+(epstopdf)             Output file: <figs/sysarch-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 18:23:57
+(epstopdf)                    size: 7383 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/sysarch-eps-converted
+-to.pdf figs/sysarch.eps>
+(epstopdf)             \includegraphics on input line 488.
+Package epstopdf Info: Output file is already uptodate.
+<figs/sysarch-eps-converted-to.pdf, id=608, 1048.91875pt x 471.7625pt>
+File: figs/sysarch-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/sysarch-eps-converted-to.pdf>
+Package pdftex.def Info: figs/sysarch-eps-converted-to.pdf used on input line 4
+88.
+(pdftex.def)             Requested size: 455.24411pt x 204.74712pt.
+ [25
+
+] [26 <./figs/sysarch-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figs/linkedlist_0.eps>
+(epstopdf)                    date: 2017-04-13 18:59:47
+(epstopdf)                    size: 5683 bytes
+(epstopdf)             Output file: <figs/linkedlist_0-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 19:00:40
+(epstopdf)                    size: 4262 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/linkedlist_0-eps-conv
+erted-to.pdf figs/linkedlist_0.eps>
+(epstopdf)             \includegraphics on input line 514.
+Package epstopdf Info: Output file is already uptodate.
+
+<figs/linkedlist_0-eps-converted-to.pdf, id=626, 411.5375pt x 53.19875pt>
+File: figs/linkedlist_0-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/linkedlist_0-eps-converted-to.pdf>
+Package pdftex.def Info: figs/linkedlist_0-eps-converted-to.pdf used on input l
+ine 514.
+(pdftex.def)             Requested size: 170.71652pt x 22.06813pt.
+Package epstopdf Info: Source file: <figs/linkedlist.eps>
+(epstopdf)                    date: 2017-04-13 19:01:14
+(epstopdf)                    size: 6688 bytes
+(epstopdf)             Output file: <figs/linkedlist-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 19:00:41
+(epstopdf)                    size: 4534 bytes
+(epstopdf)             Command: <repstopdf --outfile=figs/linkedlist-eps-conver
+ted-to.pdf figs/linkedlist.eps>
+(epstopdf)             \includegraphics on input line 516.
+runsystem(repstopdf --outfile=figs/linkedlist-eps-converted-to.pdf figs/linkedl
+ist.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <figs/linkedlist-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-04-13 19:01:18
+(epstopdf)                    size: 4641 bytes.
+
+<figs/linkedlist-eps-converted-to.pdf, id=627, 411.5375pt x 147.55125pt>
+File: figs/linkedlist-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figs/linkedlist-eps-converted-to.pdf>
+Package pdftex.def Info: figs/linkedlist-eps-converted-to.pdf used on input lin
+e 516.
+(pdftex.def)             Requested size: 170.71652pt x 61.20786pt.
+ [27 <./figs/linkedlist_0-eps-converted-to.pdf> <./figs/linkedlist-eps-converte
+d-to.pdf>] [28]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 505.
+nput line 559.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 506.
- [26] [27] [28] [29]
-Underfull \hbox (badness 1552) in paragraph at lines 612--613
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 560.
+ [29] [30] [31]
+[32]
+Underfull \hbox (badness 1552) in paragraph at lines 709--710
 []\OT1/cmr/m/n/12 The pri-mary mech-a-nism for dis-sem-i-nat-ing a packet to ot
 her clients is via the
  []
 
-[30] [31] [32] [33] [34] [35] [36]
+[33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]
 
-LaTeX Warning: Citation 'shneiderman1982' on page 37 undefined on input line 79
-5.
+LaTeX Warning: Command \O invalid in math mode on input line 986.
 
-[37] [38] [39] [40]
-
-LaTeX Warning: Command \O invalid in math mode on input line 889.
-
-[41] [42
+[44]
+Chapter 4.
+[45
 
 ]
-Chapter 4.
-[43] [44] [45] [46
+Underfull \hbox (badness 10000) in paragraph at lines 1047--1048
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1049--1054
+
+ []
+
+[46]
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1056
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1057--1060
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1062--1065
+
+ []
+
+[47] [48
 
 ]
 Chapter 5.
-[47] [48
+[49] [50
 
-] [49] [50]
+] [51] [52]
 Appendix A.
-[51
+[53
 
-] [52
+] [54
 
 ]
 Appendix B.
 
-Overfull \hbox (26.40613pt too wide) in paragraph at lines 1037--1037
+Overfull \hbox (26.40613pt too wide) in paragraph at lines 1134--1134
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given naiive broadcast in 
 a p2p network: 162[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1038--1038
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1135--1135
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given optimal p2p network 
 with everyone joining at start: 54[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1039--1039
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1136--1136
 []\OT1/cmtt/m/n/12 Latency/wait time per client when requesting CRDT: [0, 416.7
 7360960314616, 319.07862277720614][] 
  []
 
-[53]
-Overfull \hbox (20.23112pt too wide) in paragraph at lines 1061--1061
+[55]
+Overfull \hbox (20.23112pt too wide) in paragraph at lines 1158--1158
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given naiive broadcast in 
 a p2p network: 18[] 
  []
 
 
-Overfull \hbox (119.03117pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (119.03117pt too wide) in paragraph at lines 1159--1159
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given optimal p2p network 
 with everyone joining at start: 6[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1063--1063
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1160--1160
 []\OT1/cmtt/m/n/12 Latency/wait time per client when requesting CRDT: [0, 416.7
 7360960314616, 319.07862277720614][] 
  []
 
 
-Overfull \hbox (26.40613pt too wide) in paragraph at lines 1085--1085
+Overfull \hbox (26.40613pt too wide) in paragraph at lines 1182--1182
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given naiive broadcast in 
 a p2p network: 108[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1086--1086
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1183--1183
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given optimal p2p network 
 with everyone joining at start: 54[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1087--1087
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1184--1184
 []\OT1/cmtt/m/n/12 Latency/wait time per client when requesting CRDT: [0, 416.7
 7360960314616, 319.07862277720614][] 
  []
 
-[54]
-Overfull \hbox (20.23112pt too wide) in paragraph at lines 1109--1109
+[56]
+Overfull \hbox (20.23112pt too wide) in paragraph at lines 1206--1206
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given naiive broadcast in 
 a p2p network: 12[] 
  []
 
 
-Overfull \hbox (119.03117pt too wide) in paragraph at lines 1110--1110
+Overfull \hbox (119.03117pt too wide) in paragraph at lines 1207--1207
 []\OT1/cmtt/m/n/12 Expected number of packets sent - given optimal p2p network 
 with everyone joining at start: 6[] 
  []
 
 
-Overfull \hbox (125.20618pt too wide) in paragraph at lines 1111--1111
+Overfull \hbox (125.20618pt too wide) in paragraph at lines 1208--1208
 []\OT1/cmtt/m/n/12 Latency/wait time per client when requesting CRDT: [0, 416.7
 7360960314616, 319.07862277720614][] 
  []
 
 
-Overfull \hbox (180.7812pt too wide) in paragraph at lines 1129--1129
+Overfull \hbox (180.7812pt too wide) in paragraph at lines 1226--1226
 []\OT1/cmtt/m/n/12 Expected number of packets sent - give optimal client-server
  network with everyone joining at start: 18[] 
  []
 
-File: proposal.tex  (verbatim)
-[55]
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 meaning that all connected users should end up with the same 
-result after receiving all changes to the document[] 
- []
-
-
-Overfull \hbox (411.76834pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 --- even if edits conflict~\cite{Technion}. There are two mai
-n technologies that are used to enable concurrent editing of a document (plain 
-text or otherwise). One approach is Operational Transforms (OT),[] 
- []
-
-
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 such that the result converges~\cite{sun1998operational}. The
- server may also be required to make some transformations.[] 
- []
-
-
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 Thus, unless the server is trusted and secure, OT-based servi
-ces cannot provide any security or privacy guarantees.[] 
- []
-
-
-Overfull \hbox (3420.81155pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 The alternative, newer technology uses Conflict Free Replicat
-ed Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual 
-consistency by transforming operations against each other, CRDTs use special da
-tastructures that guarantee that no operations will conflict~\cite{preguica2009
-commutative}. There are many types of CRDTs that are tailored for different sit
-uations. One example is a simple up-down counter which could be implemented as 
-two locally replicated registers, one for increments and one for decrements, wh
-ere the current state is their difference\cite{Shapiro2011}. Compared to OT, th
-ere is no interdependence between edits (as long as the network protocol can gu
-arantee in-order delivery), which means CRDT-based systems can do away with the
- server and be implemented using peer to peer (P2P) protocols. This lends itsel
-f to security (encryption is now possible between endpoints),[] 
- []
-
-
-Overfull \hbox (586.02084pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 This project is first concerned with exploring and developing
- a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based c
-lient/server approach available in the open source library ShareJS. Several ext
-ensions are also possible,[] 
- []
-
-[56]
-Overfull \hbox (152.51462pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 The primary external resource I will need is the Javascript l
-ibrary ShareJS, which is published under the MIT license on GitHub \cite{ShareJ
-S}.[] 
- []
-
-
-Overfull \hbox (8.01254pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 I have some knowledge of the open source library ShareJS from
- a past internship, which I aim to leverage when[] 
- []
-
-
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 I plan to implement a simulation of P2P CRDT text editing usi
-ng Typescript. Following this, my project will focus on[] 
- []
-
-
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 comparing an existing OT-based concurrent document editing li
-brary (ShareJS) to my implementation, in order to draw conclusions[] 
- []
-
-
-Overfull \hbox (33.51291pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 system will need some optimization, which can feed back into 
-my evaluation and comparison process. In the case that[] 
- []
-
-
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 learn frameworks for testing my implementation. The tests for
- correctness should include hand-crafted unit tests[] 
- []
-
-
-Overfull \hbox (84.51364pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Implement Simulation:} Model having an arbitrar
-y number of clients each running the CRDT algorithms, and simulate[] 
- []
-
-
-Overfull \hbox (37.76297pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 networking between these clients. Because this is P2P, it may
- be worth adding functionality for a variety of network[] 
- []
-
-
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 feed back into the performance comparisons in the previous st
-ep and help evaluate the optimizations themselves.[] 
- []
-
-
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Extensions:} The first extension is implementin
-g a proper P2P network stack and remove the simulated[] 
- []
-
-
-Overfull \hbox (25.01279pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 networking. Next would be researching undo and move operation
-s and perhaps try to implement one or both of these.[] 
- []
-
-[57]
-Overfull \hbox (314.01694pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item (Easier) Replace networking simulation with a P2P netwo
-rking library. The end result of this extension should be a ready to deploy Typ
-escript (compiled to Javascript) library.[] 
- []
-
-
-Overfull \hbox (301.26675pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item (Difficult) Research prior work on undo and move functi
-onality using CRDTs. If something suitable is found, implement it. Otherwise, a
-ttempt to work toward my own solution.[] 
- []
-
-
-Overfull \hbox (16.51266pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 2--3} Develop CRDT datastructu
-re and algorithms on paper. Read into P2P networks[] 
- []
-
-
-Overfull \hbox (46.26309pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 4--5} Lay out project files an
-d implement network simulation with support for different[] 
- []
-
-
-Overfull \hbox (67.5134pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Michaelmas weeks 6--8} Implement CRDT datastruc
-tures and algorithms, and connect these to network simulation.[] 
- []
-
-
-Overfull \hbox (598.77103pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Michaelmas vacation} Learn an appropriate testi
-ng framework, write and generate unit tests for correctness of implementation. 
-Fix any bugs discovered by the testing process. Set up ShareJS environment. Beg
-in outlining progress report.[] 
- []
-
-
-Overfull \hbox (50.51315pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 2--4} Execute tests and analyze resu
-lts. Try to explain differences and similarities observed.[] 
- []
-
-
-Overfull \hbox (20.76273pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 5--6} Continue writing dissertation 
-and optimizing system. Begin research for extension[] 
- []
-
-
-Overfull \hbox (80.26358pt too wide) in paragraph at lines 1141--1141
-[]\OT1/cmtt/m/n/8 \item \textbf{Lent weeks 7--8} Continue writing dissertation.
- Before terms ends, review and peer-review (including supervisor)[] 
- []
-
-[58] [59] [60
+[57] [58
 
 ]
 Appendix C.
-No file makefile.txt.
-File: refs.bib  (verbatim)
-
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 1149--1149
-[]  \OT1/cmtt/m/n/8 howpublished = {\url{https://archive.org/details/XD300-25_6
-8HighlightsAResearchCntAugHumanIntellect&start=286}},[] 
- []
-
-
-Overfull \hbox (29.26285pt too wide) in paragraph at lines 1149--1149
-[]\OT1/cmtt/m/n/8 title = {{Brewer ' s Conjecture and the Feasibility of Consis
-tent , Available , Partition-Tolerant Web Services}},[] 
- []
-
-
-Overfull \hbox (8.01254pt too wide) in paragraph at lines 1149--1149
-[]  \OT1/cmtt/m/n/8 booktitle={International Conference on Formal Techniques fo
-r Distributed Objects, Components, and Systems},[] 
- []
-
-[61] [62]
-Overfull \hbox (76.01352pt too wide) in paragraph at lines 1149--1149
-[]  \OT1/cmtt/m/n/8 booktitle={Proceedings of the International Conference on R
-ecent Cognizance in Wireless Communication \& Image Processing},[] 
- []
-
-
-Overfull \hbox (229.01572pt too wide) in paragraph at lines 1149--1149
-[]  \OT1/cmtt/m/n/8 booktitle={Proceedings of the International workshop on Doc
-ument Changes: Modeling, Detection, Storage and Visualization, Florence, Italy,
- September 10, 2013},[] 
- []
-
-[63] [64]
-Appendix D.
-(./proposal.tex [65
-
-] [66] [67] [68] [69])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1156.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1156.
+(./proposal.tex [59] [60] [61] [62] [63])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1241.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1241.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1156.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1156.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1241.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1241.
 
 Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: 24D3F013FAD80B46F0C6445E7FB8B734;4196.
+(rerunfilecheck)             Checksum: D6A5635BC766E4FE1DEBFEA064B2E3B4;3979.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1156.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1241.
  ) 
 Here is how much of TeX's memory you used:
- 15587 strings out of 495028
- 243538 string characters out of 6181496
- 767405 words of memory out of 5000000
- 18263 multiletter control sequences out of 15000+600000
- 13434 words of font info for 50 fonts, out of 8000000 for 9000
+ 15674 strings out of 495028
+ 245600 string characters out of 6181496
+ 790820 words of memory out of 5000000
+ 18341 multiletter control sequences out of 15000+600000
+ 13082 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,17n,49p,1408b,2873s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,17n,49p,1410b,2875s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on diss.pdf (69 pages, 374673 bytes).
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on diss.pdf (63 pages, 399278 bytes).
 PDF statistics:
- 1068 PDF objects out of 1200 (max. 8388607)
- 967 compressed objects within 10 object streams
- 345 named destinations out of 1000 (max. 500000)
- 531 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1124 PDF objects out of 1200 (max. 8388607)
+ 1006 compressed objects within 11 object streams
+ 347 named destinations out of 1000 (max. 500000)
+ 539 words of extra memory for PDF output out of 10000 (max. 10000000)
 

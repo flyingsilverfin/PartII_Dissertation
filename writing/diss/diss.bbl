@@ -50,21 +50,38 @@
       \verb http://www.rfc-editor.org/rfc/rfc2460.txt
       \endverb
     \endentry
-    \entry{compsysmodeling}{online}{}
+    \entry{computernetworking}{online}{}
       \name{labelname}{1}{}{%
-        {{hash=d937b4c20569e6953c3575a1dc383a3e}{Dr\bibnamedelima R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+        {{hash=e2b7f853cd1184ee44401e852e13fbaa}{Dr.\bibnamedelimi Andrew\bibnamedelima Moore}{A\bibinitperiod}{}{}{}{}{}{}}%
       }
       \name{author}{1}{}{%
-        {{hash=d937b4c20569e6953c3575a1dc383a3e}{Dr\bibnamedelima R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+        {{hash=e2b7f853cd1184ee44401e852e13fbaa}{Dr.\bibnamedelimi Andrew\bibnamedelima Moore}{A\bibinitperiod}{}{}{}{}{}{}}%
       }
-      \strng{namehash}{d937b4c20569e6953c3575a1dc383a3e}
-      \strng{fullhash}{d937b4c20569e6953c3575a1dc383a3e}
+      \strng{namehash}{e2b7f853cd1184ee44401e852e13fbaa}
+      \strng{fullhash}{e2b7f853cd1184ee44401e852e13fbaa}
       \field{sortinit}{D}
-      \field{labeltitle}{Computer Systems Modeling Lecture Notes}
-      \field{title}{Computer Systems Modeling Lecture Notes}
+      \field{labeltitle}{Computer Networking}
+      \field{title}{Computer Networking}
+      \field{year}{2016}
+      \verb{url}
+      \verb http://www.cl.cam.ac.uk/teaching/1516/CompNet/
+      \endverb
+    \endentry
+    \entry{compsysmodeling}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=4e0b3033f43afd33c4603d89542bba74}{Dr.\bibnamedelimi R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=4e0b3033f43afd33c4603d89542bba74}{Dr.\bibnamedelimi R.J.\bibnamedelimi Gibbens}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{4e0b3033f43afd33c4603d89542bba74}
+      \strng{fullhash}{4e0b3033f43afd33c4603d89542bba74}
+      \field{sortinit}{D}
+      \field{labeltitle}{Computer Systems Modeling}
+      \field{title}{Computer Systems Modeling}
       \field{year}{2017}
       \verb{url}
-      \verb http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm
+      \verb http://www.cl.cam.ac.uk/teaching/1617/CompSysMod/
       \endverb
     \endentry
     \entry{Ellis1989}{article}{}
@@ -302,6 +319,30 @@
       \verb http://hal.inria.fr/inria-00555588
       \endverb
     \endentry
+    \entry{shneiderman1982}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=a9b37eeb6071450c1f1338625053f37e}{Shneiderman}{S\bibinitperiod}{B\bibnamedelima E\bibnamedelima N}{B\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim N\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=a9b37eeb6071450c1f1338625053f37e}{Shneiderman}{S\bibinitperiod}{B\bibnamedelima E\bibnamedelima N}{B\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim N\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{a9b37eeb6071450c1f1338625053f37e}
+      \strng{fullhash}{a9b37eeb6071450c1f1338625053f37e}
+      \field{sortinit}{S}
+      \field{labeltitle}{{The future of interactive systems and the emergence of direct manipulation}}
+      \field{journaltitle}{Behaviour {\&} Information Technology}
+      \field{number}{3}
+      \field{title}{{The future of interactive systems and the emergence of direct manipulation}}
+      \field{volume}{1}
+      \field{year}{1982}
+      \field{pages}{237\bibrangedash 256}
+      \verb{doi}
+      \verb 10.1080/01449298208914450
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1080/01449298208914450
+      \endverb
+    \endentry
     \entry{takada2013}{book}{}
       \name{labelname}{1}{}{%
         {{hash=2dcc3628986e6b97a504272b66a55f7a}{Takada}{T\bibinitperiod}{Mikito}{M\bibinitperiod}{}{}{}{}}%
@@ -421,10 +462,10 @@
     \endentry
   \endsortlist
   \missing{sun1998operational}
-  \missing{preguica2009commutative}
   \missing{Shapiro2011}
-  \missing{ShareJS}
   \missing{Technion}
+  \missing{preguica2009commutative}
+  \missing{ShareJS}
 \endrefsection
 \endinput
 
