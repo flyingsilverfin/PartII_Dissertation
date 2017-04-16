@@ -16,6 +16,7 @@
 \usepackage{array}
 \usepackage[font={it},justification={centering}]{caption}
 \usepackage{float}
+\usepackage{framed}
 
 
 \usepackage{fancyvrb,newverbs,xcolor}
@@ -249,7 +250,7 @@ Logoot Undo \cite{weiss2010undo} proposes to resolve this by essentially tagging
 	
 	One important definition is the exact meaning of ``conflict free''. There appears to be more than one way of interpreting it. On one hand, there is the user's intuitive idea that any of their own operations should behave as if they were the only users on the system. On the other hand, there is the data-centric view of conflict. In this case, operations conflict if they are concurrent and modify the same data or index in a text buffer. Conflict free then means that no data is lost, and after all operations are exchanged the resulting states agree.
 	
-	The common conflicting operations in text editing are inserting characters into the same index of a shared text buffer, or simultaneously deleting the same characters. The second is easy to make conflict-free, and both the user and data oriented definitions of conflict agree -- deleting a character concurrently or on a single user system should still result in the character disappearing. In the case of inserting text into the same index, the definitions cannot agree. Both users expect their own text to appear in the index they inserted at. However, in order to satisfy the data-centric definition we are not allowed to lose data, and must eventually present both users with the same string. The solution is to let one user `win' and insert their characters at the desired index, and shift the other users' characters to appear after. Both operational transformations and CRDTs achieve this in fundamentally different ways. This entire process is demonstrated in Figure \ref{fig:reconcile}.
+	The common conflicting operations in text editing are inserting characters into the same index of a shared text buffer, or simultaneously deleting the same characters. The second is easy to make conflict-free, and both the user and data oriented definitions of conflict agree -- deleting a character concurrently or on a single user system should still result in the character disappearing. In the case of inserting text into the same index, the definitions cannot agree. Both users expect their own text to appear in the index they inserted at. However, in order to satisfy the data-centric definition we are not allowed to lose data, and must eventually present both users with the same string. The solution is to let one user `win' and insert their characters at the desired index, and shift the other users' characters to appear after. Both operational transformations and CRDTs achieve this in fundamentally different ways. This entire process is demonstrated in  \ref{fig:reconcile}.
 	
 	\begin{figure}[htb]
 	\centering
@@ -515,15 +516,42 @@ The chapter describes the implementation of both real time editing systems, firs
 		    $\longrightarrow$  &
 		    \includegraphics[width=1\linewidth]{figs/linkedlist.eps}
 		  \end{tabular}
-		\caption[Updating linked lists]{}
+		\caption[Updating linked lists]{A graphical representation of updating linked lists. Here, a new link containing the character `c' is inserted between `b' and `d' to produce `abcd'.}
 		\label{fig:linkedlist}
 		\end{figure}
 		
 		Deletes are handled by adding to the relevant link a `deleted' tag. Lastly, the read operation is a linear time traversal over the linked list, beginning with an invisible anchor element that marks the start of the document and cannot be deleted.
 		
-		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations one might want to do on a linked list are $\Theta (n)$: finding a node to insert after or delete requires scanning some proportion of the list. A read is $\Theta (n)$. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve $O(1)$ lookup times [TODO ASSUMPTIONS:Uniform hash, depends on length of key (hash might take time to compute over a string - my strings can grow unbounded as logn) -- BE Precise] for any node. Figure [todo] gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes $\Theta (n)$ to retrieve the document.
+		Various data structures were considered when implementing this linked list. The most intuitive approach is to implement each link as an instance of a class or structure containing the required identifier, character, and pointer. However, all operations one might want to do on a linked list are $\Theta (n)$: finding a node to insert after or delete requires scanning some proportion of the list. A read is $\Theta (n)$. A much better approach is to implement the linked list within a hash table. Since character identifiers are required to be unique, we can use them as keys in our map and achieve $O(1)$ lookup times [TODO ASSUMPTIONS:Uniform hash, depends on length of key (hash might take time to compute over a string - my strings can grow unbounded as logn) -- BE Precise] for any node. Figure~\ref{fig:hashlist} gives a full CRDT using this structure. Hashing means insert and delete operations can complete in constant time, and only read takes $\Theta (n)$ to retrieve the document.
 		
-		[Figure. Caption describe key as identifier and value as \{char: 'h', 'next': etc...\}]
+		
+		
+
+
+%\begin{framed}
+%	\begin{lstlisting}
+%	{
+%	 	"0":	{"n":"7.1","c":""},
+%		"1.0":	{"c": " ","n":"2.0"},
+%		"2.0":	{"c":"w","n":"3.0"},
+%		"3.0":	{"c":"o","n":"4.0"},
+%		"4.0":	{"c":"r","n":"5.0"},
+%		"5.0":	{"c":"l","n":"6.0"},
+%		"6.0":	{"c":"d","n":null},
+%		"7.1":	{"c":"H","n":"8.1"},
+%		"8.1":	{"c":"e","n":"9.1"},
+%		"9.1":	{"c":"l","n":"10.1"},
+%		"10.1":	{"c":"l","n":"11.1"},
+%		"11.1":	{"c":"o","n":"1.0"}
+%	}
+%	\end{lstlisting}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figs/hash_list.eps}
+		\caption[Annotated CRDT]{A sample CRDT annotated with arrows. These denote the links implemented within the has hash map. The anchor element tagged `0' is invariant and is invisible to the user. The final link, tagged ``6.0'' has no further pointer. The overall string is ``Hello world''.}
+		\label{fig:hashlist}
+		\end{figure}
+%\ end{framed}
 		
 		Javascript provides two native objects capable of mapping. One is the Map\footnote{\url{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map}} structure, and another is the standard Javascript Object (referred to as Objects from now on). Both have advantages and disadvantages: Objects only allow strings and numbers to be used as keys, while Maps can use arbitrary entities. On the other hand, Objects serialize very easily to JSON (Javascript Object Notation), while Maps would require their own conversion functions. As we will see in the next section, CRDT keys are pairs of numbers. Thus, the sensible structure would be a Map, as we can map from pairs to values. Unfortunately, Maps natively do not hash the contents of the keys, but only the reference pointing to the key. I implemented both Map and Object variants of the CRDT, but the original pointer to the identifier used is not retained; it is not possible to retrieve the value associated with a given identifier. To solve this issue I serialized the key pair into a string on each lookup and insert (which, being immutable in Javascript are compared by content rather than pointer). At that point Maps have no more advantages over Objects and a distinct disadvantage in terms of serializing to JSON. Thus, I eventually settled on CRDTs implemented using Objects as lookup structures.
 		
@@ -614,7 +642,7 @@ interface DeleteMessage {
 			\end{itemize}
 			The receiver CRDT incorporates the bundle by generating a new node for each character $s_i$ with identifier $(t + i, cid)$. The first node is pointed to by the $(t_{after}, c)$ $after$ pointer and each new node points to $(t + (i+1), c)$. The final node points to the original target of $(t_{after}, c$.
 			
-			This insert optimization has potentially massive gains in terms of network efficiency. With the optimization, at best, an entire document could be inserted at once, sending exactly one identifier plus a string of length $n$ in a single packet. A more likely scenario is word-by-word or line-by-line insertion. At worst, we revert to the unoptimized case: $n$ characters and identifiers are sent in $n$ packets. If we assume the network protocol can send arbitrarily long packets, the application-layer network capacity requirement is reduced to between $\Omega (n)$ and $O(nlog(n))$ from $Theta(nlog(n))$. Written another way, if an average of $m$ characters is sent per packet, the capacity needed is $\Theta ((m+log(n)) * n/m)$ = $\Theta (n + nlog(n)/m)$. The number of packets is reduced to $\Theta (n/m)$. The reduction in number of packets is desirable since standard protocols such as TCP have high per-packet dissemination overheads.
+			This insert optimization has potentially massive gains in terms of network efficiency. With the optimization, at best, an entire document could be inserted at once, sending exactly one identifier plus a string of length $n$ in a single packet. A more likely scenario is word-by-word or line-by-line insertion. At worst, we revert to the unoptimized case: $n$ characters and identifiers are sent in $n$ packets. If we assume the network protocol can send arbitrarily long packets, the application-layer network capacity requirement is reduced to between $\Omega (n)$ and $O(nlog(n))$ from $\Theta(nlog(n))$. Written another way, if an average of $m$ characters is sent per packet, the capacity needed is $\Theta ((m+log(n)) * n/m)$ = $\Theta (n + nlog(n)/m)$. The number of packets is reduced to $\Theta (n/m)$. The reduction in number of packets is desirable since standard protocols such as TCP have high per-packet dissemination overheads.
 			
 			Another optimization I added was renaming tags and names to be as short as possible (often single characters), so that the resulting serialized JSON string sent over the network is as short as possible. As discussed before [section ref TODO], alternatives to JSON such as Protocol Buffers would eliminate almost all of these overheads, but this would make comparison with ShareJS less fair.
 	
@@ -689,9 +717,9 @@ interface DeleteMessage {
 		That the network is able to guarantee causal delivery is a strong assumption and cannot be made in general. We will see in section [section ref] how to relax network assumptions 1 and 2.
 		
 		\subsubsection{Abstraction}
-		My network simulation is implemented in two core modules: a Network Manager which is shared between all simulated clients, and a Network Interface, of which each client has a copy. The Network Interface essentially emulates the top of a classic network stack, whereas the Network Manager abstracts away the bottom layers.
-		
-		\paragraph{Network Interface} The essential parts of the Network Interface Typescript signature are shown below.
+		My network simulation is implemented in two parts: a manager which is shared between all simulated clients, and a Network Interface, of which each client has a copy. The Network Interface essentially emulates the top of a classic network stack, whereas the manager abstracts away the bottom layers. 
+
+		\paragraph{Network Interface} The essential parts of the Network Interface type signature are shown below.
 		
 \begin{lstlisting}[caption=NetworkInterface Type Signature (cleaned)]
 interface NetworkInterface {
@@ -717,7 +745,7 @@ interface PreparedPacket {
 		Other types of bundles that can be sent are \lstinline|RequestCRDTMessage| and \lstinline|ReturnCRDTMessage|. These are special messages which clients use when joining the network and requesting a copy of the CRDT be sent from an active client.
 		
 		\paragraph{Joining the Network}
-		During the execution of a simulation, clients may join the network (but not leave) at any time. Only the first client gets to create a new CRDT. Any other client must request a copy of that CRDT when joining via \lstinline|RequestCRDTMessage|. This means that there is at least 1 round trip time before a new editor can come online. The \lstinline|ReturnCRDTMessage|s become quite large -- the later a client joins, the larger the CRDT, and the larger the packet. However, they would also have avoided many individual packets being delivered to them in the meantime. To maintain
+		During the execution of a simulation, clients may join the network (but not leave) at any time. Only the first client gets to create a new CRDT. Any other client must request a copy of that CRDT when joining via \lstinline|RequestCRDTMessage|. This means that there is at least 1 round trip time before a new editor can come online. The \lstinline|ReturnCRDTMessage|s become quite large -- the later a client joins, the larger the CRDT, and the larger the packet. However, they would also have avoided many individual packets being delivered to them in the meantime.
 		
 		An alternative method to requesting an up-to-date CRDT is to begin with a empty CRDT and replay all subsequent operations on it. This would however be even less efficient as it would require all remote clients to store all of their previous operations forever (or have a server store them), and the local client would have to spend computational time reintegrating all the changes. The downside to obtaining an up to date copy is that there is no straightforward way to do a partial replay. If a client simply has an out of date CRDT, it must request an entire new copy as if rejoining the network.
 		
@@ -742,9 +770,9 @@ public addEvent(time: number, clock: number, action: any) {
 }
 \end{lstlisting}
 
-		My scheduler is somewhat more sophisticated than might be expected in that it takes two keys for scheduling: a primary key $time$, and a secondary key $clock$. The need for this arose when submitting multiple packets from a single client at the same time - the original underlying data structure, a heap, makes no first-in first-out assurances. Thus, packets on a link could arrive out of order, which violated one of the guarantees the network has to provide [reference needed]. To fix this, my scheduler breaks ties using $clock$, which is usually a monotonically increasing counter provided by the caller.
+		My scheduler is somewhat more sophisticated than might be expected in that it takes two keys for scheduling: a primary key $pKey$, and a secondary key $sKey$. The need for this arose when submitting multiple packets from a single client at the same time - the original underlying data structure, a heap with a single key, makes no first-in first-out assurances. Thus, packets on a link could arrive out of order, which violated one of the guarantees the network has to provide [reference needed]. To fix this, my scheduler breaks ties using $sKey$, which is a monotonically increasing counter provided by the caller.
 		
-		The key property of a correct scheduler, as noted in the Part II Computer Systems Modeling \cite[slide 120]{compsysmodeling} course, is that the next executed event be the one with the least remaining time. To do this efficiently, I implemented a heap that orders elements based on the two keys discussed above. Using a heap, we get $O(log(n))$ retrieval per element.
+		The key property of a correct scheduler, as noted in the Part II Computer Systems Modeling \cite[slide 120]{compsysmodeling} course, is that the next executed event be the one with the least remaining time. To do this efficiently, I implemented a heap that orders elements based on the two keys discussed above. Using a heap, we get $\Theta (log(n))$ retrieval per element.
 		
 		When the simulation is running, the scheduler removes the top event $E$ off the heap, decreases all remaining events' primary keys by $E.pKey$, and executes $E.payload$. This may in turn generate more events which are added back into the heap. The scheduler continues this until paused or the event queue is empty.
 		
@@ -753,7 +781,7 @@ public addEvent(time: number, clock: number, action: any) {
 		\paragraph{Time}
 		The concept of time in a simulation is generally taken to be ``logical time''. The system begins in $t = 0$, and each subsequent event moves the $t$ variable forward. This works perfectly well for the CRDT-based system, since the latency on any individual network link is well defined and known.
 		
-		The alternative `time' that can be used is real time. The amount of time until some next event $E$ is given in milliseconds, rather than a $\Delta t$ which is skipped over once executed. Using this concept of time in a simulation introduces extra complexity, primarily stemming from inaccuracy in timers provided by the host platform. Indeed, it is likely that some events will have very small deltas, for which starting and stopping a timer would be impossible. To handle this difficulty, the scheduler runs, in order, all ready events whenever it wakes up rather than just one at a time.
+		The alternative `time' that can be used is real time. The amount of time until some next event is given in milliseconds to wait, rather than a logical delta which is skipped over. Using this concept of time in a simulation introduces extra complexity, primarily stemming from inaccuracy in timers provided by the host platform. Indeed, it is likely that some events will have very small deltas, for which starting and stopping a timer would be impossible. To handle this difficulty, the scheduler runs, in order, all ready events whenever it wakes up rather than just one at a time.
 		
 		In this project, I implemented both an event-driven scheduler and a timer-driven scheduler. The timer-driven version is useful when debugging and watching the simulation unfold in real time, whereas the event-driven version runs as fast as the hardware lets it. However, I found that I could, to an extent, emulate the timer-driven scheduler using the event-driven scheduler by adding a sleep proportional to the $\Delta t$ until the next event. As the event-driven version is more flexible, and simpler -- the driver is simple while loop, rather than recursively set timers with callbacks -- I decided to use it when executing experiments on the CRDT-based system.
 		
@@ -763,9 +791,16 @@ public addEvent(time: number, clock: number, action: any) {
 		\subsubsection{Causal Delivery}
 		Until this point, the network has guaranteed causal delivery of packets based on very strong assumptions and knowledge of the system implementation [reference needed]. We can relax these to allow out of order delivery and a changing network topology without a specific implementation. This can be done by ensuring causal delivery using vector clocks \cite{fidge1987}.
 		
-		In addition to my two original network stack modules, there is now an additional one between a client and the network interface. We make a distinction between receiving and delivering a message. Receiving is the arrival of a message at a client, whereas delivery is the step of passing the message from the network stack to the application itself. Causal delivery guarantees that messages are delivered such that $A \rightarrow B \Rightarrow\ deliver(A)$, $deliver(B)$.
+		In addition to the two part network stack, there is now an additional layer between a client and the network interface. We make a distinction between receiving and delivering a message. Receiving is the arrival of a message at a client, whereas delivery is the step of passing the message from the network stack to the application itself. Causal delivery guarantees that messages are delivered such that $A \rightarrow B \Rightarrow\ deliver(A)$, $deliver(B)$.
 		
-		[figure with extra causal layer in receive half between client and network interface]]
+				
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figs/causal_arch.eps}
+	\caption[Ensuring Causal Delivery]{}
+	\label{fig:causal}
+	\end{figure}
+
 		
 		\paragraph{Vector Clocks}
 		A vector clock is an list of sequence numbers, one per distributed process. At the time the system is initialized, all clients have a vector of zeros. According to the original paper by Fidge, there are 5 rules for updating which ensure that causal order can be determined by comparing vectors. The specifics of vector clocks are outlined in Appendix~\ref{appendix:vectorclocks}. The properties of vector clocks guarantee that \[ A \rightarrow B\ \Leftrightarrow Vector(A) < Vector(B)\] where $<$ is defined to in the appendix.
@@ -786,16 +821,21 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
 		
-		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Figure [todo] shows this process in context of the vector clock representation I used.
+		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Delta vectors are useful for delivering messages efficiently.
 		
-		[Figure]
 		
 		\paragraph{Efficient Delivery}
 		The causal delivery middleware must buffer all messages with dependencies that have not arrived yet. This means, that on each new message, the buffer must be searched for messages that can be delivered. This could lead to a cascade of deliveries which if implemented naiively is quadratic in the number of buffered messages.
 		
 		Instead, using Delta Vectors we can form a dependency graph which allows more efficient delivery.
 		
-		[figure]
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figs/efficient_message_buffer.eps}
+		\caption[Dependency Graph in Message Buffer]{A representation of the graph structure used to efficiently deliver packets. When a new packet arrives from some destination D, all outgoing links from D are decremented. The target of each link checks the head of its queue for potential delivery. The efficiency gain relies on the fact that messages from the same client must be delivered sequentially.}
+		\label{fig:efficient}
+		\end{figure}
+	
 	
 \section{ShareJS Comparative Environment}
 
@@ -814,9 +854,15 @@ public addEvent(time: number, clock: number, action: any) {
 	This section deals with the creation and analysis of the experiments. First I outline the overall system work flow. Then, I discuss the design of an individual experiment. Lastly, I examine why I decided to log to text files, then separately parse and analyze these files.
 
 	\subsection{Work Flow}
-	On the whole, this project operates as in Figure [figure TODO]. 
+	On the whole, this project operates as in Figure~\ref{fig:workflow}. 
 	
-	[figure]
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\linewidth]{figs/workflow.eps}
+	\caption[Workflow]{}
+	\label{fig:workflow}
+	\end{figure}
+
 	
 	
 	Manually or with a custom script, experiment setup files are created, with specifications over which variations should be executed (such as different topologies or optimizations enabled). An experiment server provides whichever experiment and variant is queued to the requester, which may be the CRDT-based system, or the ShareJS-based one. In either case, the same basic data is served, though the experiment variations only apply to the CRDT-based system. The system then runs the experiment and submits the resulting log back to a logging server that then identifies which experiment was served, and writes the log to the correct file system directory. Then at some future point, a separate script collects logs and summarizes them into digestible formats.
@@ -918,7 +964,7 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		Undo packets also contain, besides the bundle, a string disambiguator to differentiate undo/redo and insert/delete.
 		
-		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called, see [ref to Structure and Functionality TODO]), nodes which have $v = false$ are ignored and not retrieved.
+		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called), nodes which have $v = false$ are ignored and not retrieved.
 		
 		Normally, operations on the same piece of data in a CRDT need to commute. However, in this case, only one client can generate the messages and so conflict from different clients cannot occur. This also means the operations are all causally related by $\rightarrow$, and since the network layer guarantees causal delivery, there is never conflict. Thus, no proof of commutativity is required.
 		
@@ -949,12 +995,16 @@ export interface MapEntry {
 			
 				\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor l.d = 0 ) \] 
 			
-			\paragraph{Proof of Commutativity}
-			TODO
+			\paragraph{Proof of Commutativity of Delete, Undo, Redo}
+			We only need to consider commutativity with other operations that may operate on the same data in the CRDT and therefore conflict. Since any given delete, undo, or redo operation $op$ only affects the specific node $node$ in the linked list identified by $op.deleteId$, the only conflicting operations might be other delete, undo delete, and redo delete operations.
+			
+			\begin{proof}
+				We treat delete and redo delete operations identically, that is having the effect of incrementing $node.d$. An undo delete has the effect of decrementing $node.d$. Any set of these operations applies a sequence of $+1$ and $-1$ to $node.d$. By the commutativity of addition and subtraction, these arithmetic operations can occur in any order, so the delete, undo and redo operations can occur in any order.
+			\end{proof}
 			
 			\paragraph{Cost and Causality}
 			TODO
-			talk about cost (minimal) and the fact that an undo that happened a lot time ago and is no longer on an operation stack has the same weight as one that happened more recently and is still in a stack(by $\rightarrow$) ??? 
+			talk about cost (minimal) and the fact that an undo that happened a long time ago and is no longer on an operation stack has the same weight as one that happened more recently and is still in a stack(by $\rightarrow$) ??? 
 			
 		\subsubsection{Immediate Undo}
 		The CCI Undo is awkward in that it requires consensus to make concurrently deleted characters reappear. It would be preferable for any user to be able to immediately undo a character they may or may not have deleted concurrently with another user.
@@ -969,21 +1019,38 @@ export interface MapEntry {
 			\paragraph{Implementation}
 			In order to support an immediate undo effectively, we need to be able to compare the ``time'' at which a deletion, undo, or redo occurred in order to detect concurrency. Vector clocks allow exactly this. Thus, every such operation needs to tag the data in the CRDT with the vector clock value it occurred at. Then, when other operations arrive which affect the same data, the packet's vector and the vector in the CRDT can be compared and acted upon.
 			
-			The required modification in the CRDT is that the `deleted' tag of a link $l.d$ now represents a pair ($true/false$, $vector$). The first value is a boolean for whether or not the character is deleted. The second is the vector of the packet that delivered the operation (this cheats a little and reaches across network layers into the causal delivery mechanism to obtain a copy, but is more efficient than redundantly sending the vector in the bundle and in the packet containing the bundle).
+			The required modification in the CRDT is that the `deleted' tag of a link $l.d$ now represents a pair ($true/false$, $vector$). The first value is a boolean for whether or not the character is deleted. The second is the vector of the packet that delivered the operation (this cheats a little and reaches across network layers into the causal delivery mechanism to obtain a copy, but is more efficient than redundantly sending the vector both in the bundle and in the packet containing the bundle).
 			
-			As before, both undo and redo delete bundles contain only the identifier of the link $l$ to act upon. In the case of any form of undo delete, $l.d[0]$, the boolean, is set to $false$, and in redo only sets $l.d[0] = true$ if the redo operation and the vectors stored at $l.d[1]$ are not concurrent as defined in [section ref]. Both operations update $l.d[1]$ to the vector in the bundle's packet.
+			As before, delete, undo delete and redo delete bundles contain only the identifier of the link $l$ to act upon. In non-concurrent cases, that is, operations are causally dependent, the latest operation is applied to $l$. 
+			
+			If a remote delete or redo delete operation is concurrent with the vector stored in $l.d[1]$, do nothing. This ensures that a local make-visible operation retains its effect (e.g. a undo delete). Otherwise, a make-invisible operation is already in effect and $l.d[0]$ is already $true$.
+			
+			Similarly, if a remote undo delete operation is concurrent with the vector stored in $l.d[1]$, always set $l.d$ to $false$, so that the make-visible operation takes effect.
+			
+			In any case, the vector stored at $l.d[1]$ is updated to the current client vector clock.
 			
 			When the CRDT $read()$ method is called, we only retrieve links that satisfy
 			
 					\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor \lnot l.d[0]) \] 
 						
 			
-			\paragraph{Proof of Convergence}
+			\paragraph{Proof of Commutativity}
 			
-			TODO
+			We only need to consider commutativity with other operations that may operate on the same data in the CRDT and therefore conflict. Since any given delete, undo, or redo operation $op$ only affects the specific node $node$ in the linked list identified by $op.deleteId$, the only conflicting operations might be other delete, undo delete, and redo delete operations.
+						
+			\begin{proof}
+				We treat delete and redo delete operations identically. Any non-concurrent modifications are not considered as the latest causally dependent operation is defined to take effect.
+				
+				Take a system which begins in quiescence, submits concurrent operations and returns to quiescence. There are three possible cases: delete-delete, delete and delete-undo, and undo-undo.
+				
+				In the delete-delete scenario, the operations are idempotent: both set $node.d[0]$ to $true$ and $node.d[1]$ to the merged vectors of the two operations. Thus on any client, the target node is no longer visible. The undo-undo case is exactly analogous except $node.d[0] = false$. 
+				
+				In the delete, delete-undo case (which is one client deletes while another deletes then undoes immediately), any client receiving a single delete $op_{d_1}$ first will set $node.d[0] = true$ and record the current vector in $node.d[1]$. On delivery of the concurrent delete $op_{d_2}$, only the vector at $node.d[1]$ is updated as the node is already marked as deleted. Then, undo $op_{undo_2}$, since it is a \textit{make-visible} operation, and determined to concurrent with the merged vector stored at $node.d[1]$, takes effect and $node.d[0]$ is set to $false$. If $op_{d_2}$ were delivered before $op_{d_1}$ the same would occur. Lastly, if the first arrivals are $op_{d_2}$ followed by $undo_{d_2}$, the undo takes effect and $node.d[0] = false$ and $node.d[1]$ is set to the merged vector. On arrival of $op_{d_1}$, since it is concurrent with $node.d[1]$ and a \textit{make-invisible} operation taking effect against a \textit{make-visible} operation, it is ignored. Thus, in any case the clients resolve $node.d[0] = false$ and the node is visible. The stored vector is the result of merging the vectors of the three operations which may be done in any order, thus equivalent in any case.
+				
+			\end{proof}
 			
 			\paragraph{Cost}
-			Storing a vector with every character that at one point was deleted can become quite expensive. Vector clocks are $\O(n*log(k))$ , where $n$ is the number of clients in the network and $k$ is the decimal length of the longest sequence number in the vector.
+			Storing a vector with every character that at one point was deleted can become quite expensive. Vector clocks are $O(n*log(k))$, where $n$ is the number of clients in the network and $k$ is the decimal length of the longest sequence number in the vector.
 			[TODO is this $\Theta$ instead of $O$? Problem is $k$ is an upper bound!]
 			
 			The worst case space complexity of implementing Immediate Undo is thus $O(m*n*log(k)*log(m))$ where $m$ is the number of characters in the CRDT and the $log(m)$ term represents the cost of character identifiers. This could in some cases become prohibitive.
@@ -1020,9 +1087,19 @@ export interface MapEntry {
 	
 	
 	\section{Testing the CRDT}
-	350 words
 	
-	Used black box testing (need a citation, plus exact definition)... implementation agnostic
+	The testing of the core CRDT used a \textit{black-box testing} approach~\cite{Patton}. Unit tests were for the interface provided by the CRDT without need for knowledge of the CRDT internals. This meant that the CRDT itself could be implemented using a linked list, a linked list within a hash table, or in fact a completely different CRDT providing the same interface described in [section ref TODO]. In general, insert and delete operations were applied to the CRDT in different orders, and every order needed to produce the same resulting string from \textit{CRDT.read()}.
+	
+	The Typescript unit testing library tsUnit~\footnote{\url{https://github.com/Steve-Fenton/tsUnit}} provided the framework used in this process. The testing output is shown below in Figure~\ref{fig:unittests}.
+
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figs/unittests.png}
+	\caption[Unit tests for CRDT]{Results of various unit tests for CRDT. The undo and redo tests depicted here are for the `Immediate Undo' functionality}
+	\label{fig:unittests}
+	\end{figure}
+	
+	
 	
 	
 	\section{Quantitative Analysis}

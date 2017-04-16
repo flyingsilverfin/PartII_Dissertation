@@ -32,7 +32,9 @@ export default class RealtimeScheduler {
         this.running = false;
     }
 
-
+    public isEmpty(): boolean {
+        return this.heap.size() === 0;
+    }
 
     public clear() {
         clearTimeout(this.currentTimeoutHandle);

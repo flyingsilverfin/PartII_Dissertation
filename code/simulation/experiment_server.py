@@ -1,20 +1,13 @@
 import json
 import os
-import time
 from flask import Flask
 from flask import request
-import logging
-
-#turn off print statements in case of success, due to thousands of log lines being sent this kills performance otherwise
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
-
+import glob
 
 app = Flask(__name__)
 
-
-OPEN_EXPERIMENT_LOG = []
-
+print "---Current dir---"
+print os.getcwd()
 
 def getNextIncompleteCRDTExperiment():
     existingExperiments = os.listdir(os.path.join('.', 'experiments'))
@@ -44,11 +37,11 @@ def getNextIncompleteCRDTExperiment():
     return None
 
 def getNextIncompleteOTExperiment():
-    existingExperiments = os.listdir(os.path.join('.', 'experiments'))
+    existingExperiments = glob.glob('./experiments/experiment_*')
     existingExperiments.sort()
 
     for experimentFolder in existingExperiments:
-        experimentFolderSubDirs = os.listdir(os.path.join('.','experiments',experimentFolder))
+        experimentFolderSubDirs = os.listdir(experimentFolder)
         if 'ot' not in experimentFolderSubDirs:
             return experimentFolder
     return None
@@ -59,10 +52,7 @@ def nextCRDTExperiment():
     print "Next experiment: " + experimentName + ", topology: " + topology + ", optimization: " + optimization
     if experimentName == None:
         return "{}"
-
-    OPEN_EXPERIMENT_LOG = []
-
-    setup = json.loads(open(os.path.join('.', 'experiments', experimentName, 'setup.json')).read())
+    setup = json.loads(open(os.path.join('.','experiments',experimentName, 'setup.json')).read())
     setup["topology"] = topology  # only operate on this one topology for now
     if optimization == "optimized":
         setup["optimized"] = True
@@ -71,24 +61,14 @@ def nextCRDTExperiment():
     else:
         print "Unknown optimization choice: " + optimization
         return
-
-
-    OPEN_EXPERIMENT_LOG = []
-
-
     return json.dumps(setup)
 
 @app.route('/nextOTExperiment', methods=['GET'])
 def nextOTExperiment():
-    experimentName = getNextIncompleteOTExperiment()
-    if experimentName == None:
+    experimentPath = getNextIncompleteOTExperiment()
+    if experimentPath == None:
         return "{}"
-    setup = open(os.path.join('.', 'experiments', experimentName, 'setup.json')).read()
-
-
-    OPEN_EXPERIMENT_LOG = []
-
-
+    setup = open(os.path.join(experimentPath, 'setup.json')).read()
     return setup
 
 @app.route('/crdtResult', methods=['POST'])
@@ -97,17 +77,7 @@ def receiveCRDTResult():
     data = request.get_json()
 
     experimentName = data['name']
-    #experimentResult = data['result']
-
-    while int(data['result']['totalLines']) > len(OPEN_EXPERIMENT_LOG):
-        # I hope the app is still interrupted for network requests... threading IS enabled so it should!
-        time.sleep(0.5)
-        print "sleeping, incomplete results"
-    print "have %d of %d lines" %(len(OPEN_EXPERIMENT_LOG), int(data['result']['totalLines']))
-
-    OPEN_EXPERIMENT_LOG.sort(key=lambda pair: pair[0])
-    experimentResult = [x[1] for x in OPEN_EXPERIMENT_LOG]
-
+    experimentResult = data['result']
     top = data['topology']
     optimized = data['optimized']
     try:
@@ -125,7 +95,7 @@ def receiveCRDTResult():
     os.mkdir(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name))
     resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name, 'log.txt'), 'w')
 
-    for line in experimentResult:
+    for line in experimentResult['log']:
         resultLog.write(line + '\n')
 
     resultLog.close()
@@ -138,32 +108,20 @@ def receiveOTResult():
     data = request.get_json()
     
     experimentName = data['name']
-    #experimentResult = data['result']
-
-    experimentResult = OPEN_EXPERIMENT_LOG
-
-
-    os.mkdir(os.path.join('.', 'experiments', experimentName, 'ot'))
+    experimentResult = data['result']
+    try:
+        os.mkdir(os.path.join('.', 'experiments', experimentName, 'ot'))
+    except Exception:
+        pass
     resultLog = open(os.path.join('.', 'experiments', experimentName, 'ot', 'log.txt'), 'w')
 
-    for line in experimentResult:
+    for line in experimentResult['log']:
         resultLog.write(line + '\n')
 
     resultLog.close()
     
     return ""
     
-
-
-
-@app.route('/log', methods=['POST'])
-def receiveLogLine():
-    data = request.get_json()
-    line = data['line']
-    n = data['counter']
-    OPEN_EXPERIMENT_LOG.append([int(n),line])
-    return ""
-
 
 
 # CORS hack

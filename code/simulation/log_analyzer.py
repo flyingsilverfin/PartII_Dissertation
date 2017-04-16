@@ -48,7 +48,7 @@ class ClientAnalyzer(object):
             "requestFrom": -1
         }
         self.active_join_packets = {} # map (dest) => time packet was sent
-        self.actual_link_latencies = {}     # map destination => [#packets, total time taken]
+        self.actual_link_latencies = {}     # map destination => time[]
 
     def sentMessage(self, log_msg):
         """
@@ -90,6 +90,7 @@ class ClientAnalyzer(object):
             version = payload['v']
             length = len(log_msg[6])
             self.active_packets[(version, receiver)] = when
+            #print "sent: " + str(self.client_id) + " sent v: " + str(version) + " to: " + str(receiver)
             self.total_packets_sent += 1
             self.total_packets_size += length
 
@@ -118,19 +119,16 @@ class ClientAnalyzer(object):
                 sent_at = self.active_insert_packets[(insert_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.get_actual_link_latency(receiver)
-                current_totals[0] += 1
-                current_totals[1] += actual_latency
-                self.actual_link_latencies[receiver] = current_totals
+                latencies = self.get_actual_link_latency(receiver)
+                latencies.append(actual_latency)
 
             elif msg_type == 'delete':
                 delete_id = log_msg[6]
                 sent_at = self.active_delete_packets[(delete_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.get_actual_link_latency(receiver)
-                current_totals[0] += 1
-                self.actual_link_latencies[receiver] = current_totals
+                latencies = self.get_actual_link_latency(receiver)
+                latencies.append(actual_latency)
 
             elif msg_type == 'requestCRDT':
                 #sender has nothing useful to say when request arrives at remote
@@ -157,10 +155,8 @@ class ClientAnalyzer(object):
             sent_at = self.active_packets[(version, receiver)]
             actual_latency = when - sent_at
 
-            current_totals = self.get_actual_link_latency(receiver)
-            current_totals[0] += 1
-            current_totals[1] += actual_latency
-            self.actual_link_latencies[receiver] = current_totals
+            latencies = self.get_actual_link_latency(receiver)
+            latencies.append(actual_latency)
 
 
     # ---- these aren't really following the 'sender tracks packets' convention ----
@@ -203,7 +199,7 @@ class ClientAnalyzer(object):
         try:
             return self.actual_link_latencies[receiver]
         except KeyError:
-            self.actual_link_latencies[receiver] = [0, 0]
+            self.actual_link_latencies[receiver] = []
             return self.actual_link_latencies[receiver]
 
     def getResult(self):
@@ -320,6 +316,9 @@ class ExperimentAnalzer(object):
         run_later = []
         id_map = {} #only needed for non-crdt but whatever
 
+        #print self.log
+
+
         for msg in self.log:
             msg = msg.split('    ')
             msg_type = msg[1]
@@ -336,6 +335,7 @@ class ExperimentAnalzer(object):
             elif msg_type == 'sent' or msg_type == 'received':
                 sender = int(msg[2])
                 if msg_type == 'sent':
+                    # print "sent"
                     self.clients[sender].sentMessage(msg)
                 else: # msg_type == 'receiver' -- guaranteed
                     # stick the msg_arrived into a lambda to run later
@@ -358,7 +358,6 @@ class ExperimentAnalzer(object):
 
         if not self.crdt:
             id_map["-1"] = -1
-            print id_map
 
             server_log_path = self.logPath[:-2] + ["sharejs-server.log"]
             server_log = [s.strip() for s in open(os.path.join(*server_log_path)).readlines()]
@@ -371,7 +370,7 @@ class ExperimentAnalzer(object):
                     #caution: reversed again
                     receiver = msg[2]
                     self.clients[id_map[receiver]].joinReceived(msg)
-                    print id_map
+                    #print id_map
                 elif msg_type == 'join-ack':
                     # sender is always server here
                     sender = -1
@@ -482,7 +481,7 @@ class ExperimentAnalzer(object):
         get, format results and return as a string
         """
 
-        average_measured_link_latencies = {}
+        link_latencies = {}
         state_replay_summary = {
             "waiting_times" : [],
             "requested_from": [],
@@ -505,8 +504,7 @@ class ExperimentAnalzer(object):
 
             latencies = result["link_latencies"]
             for dest in latencies.keys():
-                average_measured_link_latencies[(client.client_id, dest)] = \
-                    float(latencies[dest][1]) / latencies[dest][0]
+                link_latencies[(client.client_id, dest)] = latencies[dest]
 
             state_replay = result["state_replay"]
             state_replay_summary["waiting_times"].append(state_replay["return"] - state_replay["request"])
@@ -554,6 +552,7 @@ class ExperimentAnalzer(object):
             'stateReplayWaitTimes': 'Latency/wait time per client when requesting CRDT',
             'stateReplayRequestFrom': 'From whom each client request CRDT',
             'stateReplayAvSize': 'Length of stringified document/crdt during state replay, on average',
+            'latencies': 'latencies',
 
             'insertPackets': 'Total insert packets sent',
             'insertPacketsSize': 'Total size of insert packets sent',
@@ -605,6 +604,8 @@ class ExperimentAnalzer(object):
                 self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
                 self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
                 
+                self.formatResultEntry('latencies', link_latencies),
+
                 *memory_checkpoints
             )
         else:
@@ -632,6 +633,8 @@ class ExperimentAnalzer(object):
                 self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
                 self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
                 
+                self.formatResultEntry('latencies', link_latencies),
+
                 *memory_checkpoints
             )
 
@@ -702,7 +705,7 @@ class MainAnalyzer(object):
 def findReadyExperiments():
     experiments = []
     for exp in os.listdir(os.path.join('.', 'experiments')):
-        if not os.path.isdir(os.path.join('.', 'experiments', exp)):
+        if not os.path.isdir(os.path.join('.', 'experiments', exp)) or 'setup.json' not in os.listdir(os.path.join('.', 'experiments', exp)):
             continue
         if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)):
             os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))

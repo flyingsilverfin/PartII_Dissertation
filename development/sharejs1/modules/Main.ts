@@ -50,12 +50,12 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
     (<any>window).clientReady = function() {
 
-        numReady++;
-        console.log(numReady, numClients);
-        if (numReady === numClients) {
-            logger.logMemory("post-clients-init")
-            scheduler.run();
-        }
+        //numReady++;
+        //console.log(numReady, numClients);
+        //if (numReady === numClients) {
+        //    logger.logMemory("post-clients-init")
+        //    scheduler.run();
+        //}
     }
 
     /*
@@ -66,6 +66,9 @@ export function main(experimentSetup, graph=true, finishedCallback) {
     scheduler.onEmpty = function() {
 
         setTimeout(function() {
+            if (!scheduler.isEmpty()) {
+                return;
+            }
             let log = logger.getLog();
             let result = {
                 experiment_name: experimentSetup.experiment_name,

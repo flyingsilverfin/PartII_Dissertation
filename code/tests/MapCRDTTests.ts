@@ -79,7 +79,7 @@ class MapCRDTTester extends tsUnit.TestClass {
 
     // standard case, one client inserts one character, followed by
     // same client entering another character
-    insertConsecutiveTimestampsAfterEachOther() {
+    /*insertConsecutiveTimestampsAfterEachOther() {
         this.crdt = new MapCRDT();
         let bundle1: CT.InsertMessage = {
             after: '0',
@@ -101,14 +101,14 @@ class MapCRDTTester extends tsUnit.TestClass {
 
         this.areCollectionsIdentical(expectedCharArray, actual.charArray);
         this.areCollectionsIdentical(expectedIdArray, actual.idArray);
-    }
+    }*/
 
     // this case might arise when client 2 inserts far away with t = 1,
     // followed by an insert at '0' with t = 2
     // these events happen over a high latency link so that
     // client 1 does not update it's clock to t = 2 or t = 3
     // and concurrently inserts with t = 1 into '0'
-    insertConsecutiveTimestampsConcurrently() {
+    insertConsecutiveTimestamps() {
         this.crdt = new MapCRDT();
         // time 1, from client 1
         let bundle1: CT.InsertMessage = {
@@ -138,7 +138,7 @@ class MapCRDTTester extends tsUnit.TestClass {
     // following two tests model the case where
     // client 1 and client 2 insert into the same spot concurrently
     // this test makes sure that client 1's local crdt ends up correct
-    insertSameTimestampsLowerIdFirst() {
+    /*insertSameTimestampsLowerIdFirst() {
         this.crdt = new MapCRDT();
         
         let bundle1: CT.InsertMessage = {
@@ -161,12 +161,12 @@ class MapCRDTTester extends tsUnit.TestClass {
 
         this.areCollectionsIdentical(expectedCharArray, actual.charArray);
         this.areCollectionsIdentical(expectedIdArray, actual.idArray);
-    }
+    }*/
 
     // works with previous test where
     // client 1 and client 2 insert into the same spot concurrently
     // this test makes sure that client 2's local crdt ends up the same
-    insertSameTimestampsLowerIdSecond() {
+    insertSameTimestampsConcurrently() {
         this.crdt = new MapCRDT();
         
         let bundle1: CT.InsertMessage = {
@@ -196,7 +196,7 @@ class MapCRDTTester extends tsUnit.TestClass {
     // client 2 has a large latency from client 1, client 1 has written
     // quite a lot of things in the meantime, and then client 2's
     // insert arrives at '0'
-    insertDelayedLowerTimestamp() {
+    /*insertDelayedLowerTimestamp() {
         this.crdt = new MapCRDT();
         
         let bundle1: CT.InsertMessage = {
@@ -232,7 +232,7 @@ class MapCRDTTester extends tsUnit.TestClass {
         this.areCollectionsIdentical(expectedCharArray, actual.charArray);
         this.areCollectionsIdentical(expectedIdArray, actual.idArray);
 
-    }
+    }*/
     
     // works with above case where 
     // client 1 has a large latency from client 2, client 1 has written
@@ -319,6 +319,247 @@ class MapCRDTTester extends tsUnit.TestClass {
 
         this.areCollectionsIdentical(expectedCharArray, actual.charArray);
         this.areCollectionsIdentical(expectedIdArray, actual.idArray);
+    }
+
+    insertDeleteConcurrently() {
+        debugger
+        let c1 = new MapCRDT();
+        let c2 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+        let bundle1: CT.InsertMessage  = {
+            after:'1.1',
+            char: 'Humm',
+            id: '6.1'
+        };
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        // init
+        c1.insert(bundle0);
+        c2.insert(bundle0);
+
+        c1.insert(bundle1);
+        c1.delete(bundle2, {1:1}, {1:1});
+
+        c2.delete(bundle2, {1:1}, {1:1});
+        c2.insert(bundle1);
+
+        console.log(c1.read());
+        console.log(c2.read());
+
+        this.areCollectionsIdentical(c1.read().charArray, c2.read().charArray);
+    }
+
+    undoDelete() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});
+        c1.undoDelete(bundle3,  {0:0, 1:2, 2:0}, {0:0, 1:2, 2:0}); 
+        
+
+        this.areCollectionsIdentical(['','H','e','l','l','o'], c1.read().charArray);
+    }
+
+    undoRedoDelete() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});
+        c1.undoDelete(bundle3,  {0:0, 1:2, 2:0}, {0:0, 1:2, 2:0}); 
+        c1.redoDelete(bundle3, {0:0, 1:3, 2:0}, {0:0, 1:3, 2:0});
+        
+
+        this.areCollectionsIdentical(['','e','l','l','o'], c1.read().charArray);
+    }
+
+    deleteDeleteConcurrently() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        // init
+        c1.insert(bundle0);
+
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});
+        c1.delete(bundle2, {0:0, 1:0, 2:1}, {0:0, 1:0, 2:1});
+
+        this.areCollectionsIdentical(['','e','l','l','o'], c1.read().charArray);
+    }
+
+    undoDeleteUndoDeleteConcurrently() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});   // both delete
+        c1.delete(bundle2, {0:0, 1:0, 2:1}, {0:0, 1:0, 2:1});   // 
+
+        c1.undoDelete(bundle3, {0:0, 1:0, 2:2}, {0:0, 1:0, 2:2});
+        c1.undoDelete(bundle3, {0:0, 1:2, 2:0}, {0:0, 1:0, 2:0});
+
+
+        this.areCollectionsIdentical(['','H','e','l','l','o'], c1.read().charArray);
+    }
+
+    deleteUndoDeleteConcurrently() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});   // both delete
+        c1.delete(bundle2, {0:0, 1:0, 2:1}, {0:0, 1:0, 2:1});   // 
+
+        c1.undoDelete(bundle3, {0:0, 1:0, 2:2}, {0:0, 1:0, 2:2});
+
+        this.areCollectionsIdentical(['','H','e','l','l','o'], c1.read().charArray);
+    }
+
+    deleteUndoRedoDeleteConcurrently() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+        
+        let bundle2: CT.DeleteMessage = {
+            deleteId: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.delete(bundle2, {0:0, 1:1, 2:0}, {0:0, 1:1, 2:0});   // both delete
+        c1.delete(bundle2, {0:0, 1:0, 2:1}, {0:0, 1:0, 2:1});   // 
+
+        c1.undoDelete(bundle3, {0:0, 1:0, 2:2}, {0:0, 1:0, 2:2});
+        c1.redoDelete(bundle3, {0:0, 1:0, 2:3}, {0:0, 1:0, 2:3});
+
+        c1.undoDelete(bundle3, {0:0, 1:2, 2:0}, {0:0, 1:2, 2:3});
+
+
+        this.areCollectionsIdentical(['','H','e','l','l','o'], c1.read().charArray);
+    }
+
+    insertUndoInsert() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.undoInsert(bundle3); 
+        
+
+        this.areCollectionsIdentical(['','e','l','l','o'], c1.read().charArray);
+    }
+
+    insertUndoRedoInsert() {
+        let c1 = new MapCRDT();
+
+        let bundle0: CT.InsertMessage = {
+            after:'0',
+            char: 'Hello',
+            id: '1.1'
+        };
+
+        let bundle3: CT.UndoMessage = {
+            id: ['1.1']
+        };
+
+        // init
+        c1.insert(bundle0);
+        c1.undoInsert(bundle3);
+        c1.redoInsert(bundle3);
+
+        this.areCollectionsIdentical(['','H','e','l','l','o'], c1.read().charArray);
     }
 
 }

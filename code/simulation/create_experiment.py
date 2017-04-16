@@ -2,6 +2,7 @@ import json
 import os
 import random
 import latency_models
+import glob
 
 
 experiment_setup = {
@@ -121,6 +122,8 @@ while i < len(order):
             value = s[:-1] # remove last space
         # otherwise, just use the string entered
         assign[subindices[-1]] = value
+    elif typeRequired == 'str':
+        assign[subindices[-1]] = value
     i += 1
 
 
@@ -153,19 +156,35 @@ for i in range(numClients):
 
 # now need to schedule some events for the experiment
 # just does one word per client for now
+
+num_inserts_per_client = raw_input("Number of insert events per client (default 1 word): ")
+num_inserts_per_client = 1 if len(num_inserts_per_client) == 0 else int(num_inserts_per_client)
+
+num_deletes_per_client = raw_input("Number of delete events per client (default 0 char): ")
+num_deletes_per_client = 0 if len(num_deletes_per_client) == 0 else int(num_deletes_per_client)
+
+dt_per_client_event = raw_input("Event spacing per client (default 0): ")
+dt_per_client_event = 0 if len(dt_per_client_event) == 0 else int(dt_per_client_event)
+
+
 for i in range(numClients):
     experiment_setup["events"][i] = {
         "insert" : {},
         "delete": {}
     }
-    toInsert = pickRandomWord()
-    when = i*15
-    experiment_setup["events"][i]["insert"][when] = {
-        "chars": toInsert,
-        "after": 0
-    }
+    for j in range(num_inserts_per_client):
+        toInsert = pickRandomWord()
+        when = j*dt_per_client_event
+        experiment_setup["events"][i]["insert"][when] = {
+            "chars": toInsert,
+            "after": 0
+        }
+    for j in range(num_deletes_per_client):
+        toDelete = random.randint(1,num_inserts_per_client)    #just pick between index 1 and 5 or however many
+        when = j*dt_per_client_event
+        experiment_setup["events"][i]["delete"][when] = [toDelete]
 
-existingExperiments = os.listdir(os.path.join('.', 'experiments'))
+existingExperiments = glob.glob('./experiments/experiment_*')
 existingExperiments.sort()
 try:
     nextNum = int(existingExperiments[-1].split('_')[-1]) + 1

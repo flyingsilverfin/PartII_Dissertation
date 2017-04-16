@@ -27,6 +27,8 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
+    private DISABLE_INTERFACE = true;
+
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
@@ -51,6 +53,10 @@ class Client {
 
 
     constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
+
+
+        
+
 
         this.events = events;
         this.scheduler = scheduler;
@@ -202,7 +208,7 @@ class Client {
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
                 this.scheduler.addEvent(time, i, function() {
-                    self.interface.mockDelete(mockDelete.index);
+                    self.interface.mockDelete(mockDelete);
                 });
             }
         }
@@ -304,6 +310,8 @@ class Client {
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
 
+
+if (!this.DISABLE_INTERFACE) {
         this.updateParallelArrays();
 
         // probably possible to do this more cleanly
@@ -312,6 +320,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.incrementCursorPosition(bundle.char.length);
         }
+}
         //return true;
     }
 
@@ -341,6 +350,7 @@ class Client {
         
         this.dt.delete(bundle, when, this.network.getCurrentVector());
 
+if (!this.DISABLE_INTERFACE) {
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
@@ -353,6 +363,7 @@ class Client {
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
+}
     }
 
     private requestCRDTReceived(origin: T.ClientId): void {
@@ -389,6 +400,10 @@ class Client {
     }
 
     private updateInterface(): void {
+
+if (this.DISABLE_INTERFACE) {
+    return;
+}
         this.updateParallelArrays();
         this.interface.setContent(this.charArray.join(''));
     }

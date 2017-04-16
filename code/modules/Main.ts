@@ -83,14 +83,15 @@ export function main(experimentSetup, graph=true, finishedCallback) {
                                      scheduler, 
                                      logger, 
                                      function() {
+                                        mockClients;
                                         // END OF EXPERIMENT
-                                        //let log = logger.getLog();
+                                        let log = logger.getLog();
                                         let result = {
                                             experiment_name: experimentSetup.experiment_name,
-                                            log: "",
-                                            totalLines: logger.getTotalLines()
+                                            log: log
                                         }
                                         logger.logMemory("post-experiment");
+                                        debugger
                                         finishedCallback(result); 
                                      }
     );
@@ -121,6 +122,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
 
     let mockClients: Client[] = [];
+    this.clients = mockClients;
     let scheduledEvents = experimentSetup.events;
     let clients = experimentSetup.clients;
 

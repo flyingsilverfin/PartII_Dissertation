@@ -37,6 +37,4 @@ export interface ScheduledDeleteEvents {
     [time: number]: ScheduledDelete[]
 }
 
-export interface ScheduledDelete {
-    index: number;
-}
+export type ScheduledDelete  = number

@@ -1,4 +1,4 @@
-import {now, postObject} from './Helper';
+import {now} from './Helper';
 import Time from './Time';
 
 import * as T from '../types/Types';
@@ -9,11 +9,7 @@ import * as CRDTTypes from '../types/CRDTTypes';
 export default class Logger {
 
     private t: Time;
-    //private l: string[];
-
-    private experimentName: string;
-    private logCounter;
-
+    private l: string[];
 
     constructor(time=null) {
         if (time!==null) {
@@ -21,17 +17,17 @@ export default class Logger {
         } else {
             this.t = null;
         }
-        this.logCounter = 0;
+        this.l = [];
     }
 
     public log(tag: "memory" | "convergedString", msg: string) {
         let time = this.getTime();
-        this.writeToLog(time + "    " + tag + "    " + msg);
+        this.l.push(time + "    " + tag + "    " + msg);
     }
 
     public logJoin(tag: "join" | "join-ack", id: number, msg: string) {
         let time = this.getTime();
-        this.writeToLog(time + "    " + tag + "    " + id + "    " + msg);
+        this.l.push(time + "    " + tag + "    " + id + "    " + msg);
     }
 
 
@@ -75,11 +71,11 @@ export default class Logger {
             
         }else {
             console.error("Logging a packet of neither insert nor delete type...");
-            this.writeToLog("");
+            this.l.push("");
             return;
         } 
 
-        this.writeToLog(
+        this.l.push(
             time + "    " +
             type + "    " +
             sender + "    " +
@@ -101,21 +97,6 @@ export default class Logger {
         this.log("memory", memory + "    " + when);
     }
 
-    public getTotalLines(): number {
-        return this.logCounter;
-    }
-
-    private writeToLog(s: string) {
-        let line = {
-            counter: this.logCounter,
-            line: s
-        }
-        this.logCounter++;
-
-        postObject('http://localhost:3001/log', line);
-    }
-
-    /*
     public writeLogToConsole(): void {
         console.log(JSON.stringify(this.l, null, 4));
     }
@@ -123,7 +104,6 @@ export default class Logger {
     public getLog(): string[] {
         return this.l;
     }
-    */
 
     private getTime(): string {
         let time;

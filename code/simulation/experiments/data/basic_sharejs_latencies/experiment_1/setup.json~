@@ -1,0 +1,4030 @@
+{
+    "optimized": false, 
+    "latency_model": {
+        "type": "normally distributed", 
+        "center": 100.0
+    }, 
+    "experiment_name": "experiment_1", 
+    "clients": [
+        0
+    ], 
+    "network": {
+        "0": {
+            "latency": 98.77592391380965
+        }
+    }, 
+    "description": "", 
+    "execution": "event-driven", 
+    "init": "", 
+    "events": {
+        "0": {
+            "insert": {
+                "0": {
+                    "chars": "taut", 
+                    "after": 0
+                }, 
+                "2050": {
+                    "chars": "pesticide", 
+                    "after": 0
+                }, 
+                "4100": {
+                    "chars": "veil", 
+                    "after": 0
+                }, 
+                "6150": {
+                    "chars": "daubs", 
+                    "after": 0
+                }, 
+                "8200": {
+                    "chars": "uninhabited", 
+                    "after": 0
+                }, 
+                "10250": {
+                    "chars": "mummification", 
+                    "after": 0
+                }, 
+                "12300": {
+                    "chars": "exaggerated", 
+                    "after": 0
+                }, 
+                "14350": {
+                    "chars": "dummies", 
+                    "after": 0
+                }, 
+                "16400": {
+                    "chars": "frazzling", 
+                    "after": 0
+                }, 
+                "18450": {
+                    "chars": "Sandoval", 
+                    "after": 0
+                }, 
+                "20500": {
+                    "chars": "fettering", 
+                    "after": 0
+                }, 
+                "22550": {
+                    "chars": "bellows", 
+                    "after": 0
+                }, 
+                "24600": {
+                    "chars": "Mandy", 
+                    "after": 0
+                }, 
+                "26650": {
+                    "chars": "subsequent", 
+                    "after": 0
+                }, 
+                "28700": {
+                    "chars": "diocesan", 
+                    "after": 0
+                }, 
+                "30750": {
+                    "chars": "unifies", 
+                    "after": 0
+                }, 
+                "32800": {
+                    "chars": "naught", 
+                    "after": 0
+                }, 
+                "34850": {
+                    "chars": "edifices", 
+                    "after": 0
+                }, 
+                "36900": {
+                    "chars": "motormouth", 
+                    "after": 0
+                }, 
+                "38950": {
+                    "chars": "tastier", 
+                    "after": 0
+                }, 
+                "41000": {
+                    "chars": "rear", 
+                    "after": 0
+                }, 
+                "43050": {
+                    "chars": "purposefully", 
+                    "after": 0
+                }, 
+                "45100": {
+                    "chars": "pericardiums", 
+                    "after": 0
+                }, 
+                "47150": {
+                    "chars": "gentling", 
+                    "after": 0
+                }, 
+                "49200": {
+                    "chars": "patronize", 
+                    "after": 0
+                }, 
+                "50": {
+                    "chars": "diabetic", 
+                    "after": 0
+                }, 
+                "2100": {
+                    "chars": "Brahe", 
+                    "after": 0
+                }, 
+                "4150": {
+                    "chars": "bruiser", 
+                    "after": 0
+                }, 
+                "6200": {
+                    "chars": "gaberdines", 
+                    "after": 0
+                }, 
+                "8250": {
+                    "chars": "shuffler", 
+                    "after": 0
+                }, 
+                "10300": {
+                    "chars": "inviolate", 
+                    "after": 0
+                }, 
+                "12350": {
+                    "chars": "protractor", 
+                    "after": 0
+                }, 
+                "14400": {
+                    "chars": "weatherized", 
+                    "after": 0
+                }, 
+                "16450": {
+                    "chars": "Annapolis", 
+                    "after": 0
+                }, 
+                "18500": {
+                    "chars": "NASCAR", 
+                    "after": 0
+                }, 
+                "20550": {
+                    "chars": "forays", 
+                    "after": 0
+                }, 
+                "22600": {
+                    "chars": "gruffness", 
+                    "after": 0
+                }, 
+                "24650": {
+                    "chars": "penitence", 
+                    "after": 0
+                }, 
+                "26700": {
+                    "chars": "grassland", 
+                    "after": 0
+                }, 
+                "28750": {
+                    "chars": "zeroing", 
+                    "after": 0
+                }, 
+                "30800": {
+                    "chars": "network", 
+                    "after": 0
+                }, 
+                "32850": {
+                    "chars": "forbade", 
+                    "after": 0
+                }, 
+                "34900": {
+                    "chars": "briar", 
+                    "after": 0
+                }, 
+                "36950": {
+                    "chars": "adverser", 
+                    "after": 0
+                }, 
+                "39000": {
+                    "chars": "landmass", 
+                    "after": 0
+                }, 
+                "41050": {
+                    "chars": "extravaganza", 
+                    "after": 0
+                }, 
+                "43100": {
+                    "chars": "inexplicably", 
+                    "after": 0
+                }, 
+                "45150": {
+                    "chars": "trapeze", 
+                    "after": 0
+                }, 
+                "47200": {
+                    "chars": "whatever", 
+                    "after": 0
+                }, 
+                "49250": {
+                    "chars": "forwarded", 
+                    "after": 0
+                }, 
+                "100": {
+                    "chars": "hammocks", 
+                    "after": 0
+                }, 
+                "2150": {
+                    "chars": "Ogbomosho", 
+                    "after": 0
+                }, 
+                "4200": {
+                    "chars": "Erika", 
+                    "after": 0
+                }, 
+                "6250": {
+                    "chars": "astonished", 
+                    "after": 0
+                }, 
+                "8300": {
+                    "chars": "constitutionals", 
+                    "after": 0
+                }, 
+                "10350": {
+                    "chars": "instant", 
+                    "after": 0
+                }, 
+                "12400": {
+                    "chars": "Siamese", 
+                    "after": 0
+                }, 
+                "14450": {
+                    "chars": "lacquers", 
+                    "after": 0
+                }, 
+                "16500": {
+                    "chars": "exactly", 
+                    "after": 0
+                }, 
+                "18550": {
+                    "chars": "Timurid", 
+                    "after": 0
+                }, 
+                "20600": {
+                    "chars": "tandems", 
+                    "after": 0
+                }, 
+                "22650": {
+                    "chars": "neodymium", 
+                    "after": 0
+                }, 
+                "24700": {
+                    "chars": "loomed", 
+                    "after": 0
+                }, 
+                "26750": {
+                    "chars": "subheads", 
+                    "after": 0
+                }, 
+                "28800": {
+                    "chars": "committee", 
+                    "after": 0
+                }, 
+                "30850": {
+                    "chars": "upholster", 
+                    "after": 0
+                }, 
+                "32900": {
+                    "chars": "relativistic", 
+                    "after": 0
+                }, 
+                "34950": {
+                    "chars": "blindside", 
+                    "after": 0
+                }, 
+                "37000": {
+                    "chars": "trill", 
+                    "after": 0
+                }, 
+                "39050": {
+                    "chars": "ripped", 
+                    "after": 0
+                }, 
+                "41100": {
+                    "chars": "Lavern", 
+                    "after": 0
+                }, 
+                "43150": {
+                    "chars": "satraps", 
+                    "after": 0
+                }, 
+                "45200": {
+                    "chars": "vagabonding", 
+                    "after": 0
+                }, 
+                "47250": {
+                    "chars": "Congregationalist", 
+                    "after": 0
+                }, 
+                "49300": {
+                    "chars": "punters", 
+                    "after": 0
+                }, 
+                "150": {
+                    "chars": "Dramamine", 
+                    "after": 0
+                }, 
+                "2200": {
+                    "chars": "plunk", 
+                    "after": 0
+                }, 
+                "4250": {
+                    "chars": "negation", 
+                    "after": 0
+                }, 
+                "6300": {
+                    "chars": "shrunk", 
+                    "after": 0
+                }, 
+                "8350": {
+                    "chars": "aggrandizing", 
+                    "after": 0
+                }, 
+                "10400": {
+                    "chars": "slily", 
+                    "after": 0
+                }, 
+                "12450": {
+                    "chars": "Jonah", 
+                    "after": 0
+                }, 
+                "14500": {
+                    "chars": "davit", 
+                    "after": 0
+                }, 
+                "16550": {
+                    "chars": "dejecting", 
+                    "after": 0
+                }, 
+                "18600": {
+                    "chars": "fife", 
+                    "after": 0
+                }, 
+                "20650": {
+                    "chars": "expiates", 
+                    "after": 0
+                }, 
+                "22700": {
+                    "chars": "brokenhearted", 
+                    "after": 0
+                }, 
+                "24750": {
+                    "chars": "shrink", 
+                    "after": 0
+                }, 
+                "26800": {
+                    "chars": "pardon", 
+                    "after": 0
+                }, 
+                "28850": {
+                    "chars": "remonstrated", 
+                    "after": 0
+                }, 
+                "30900": {
+                    "chars": "lousiness", 
+                    "after": 0
+                }, 
+                "32950": {
+                    "chars": "Sm", 
+                    "after": 0
+                }, 
+                "35000": {
+                    "chars": "dozed", 
+                    "after": 0
+                }, 
+                "37050": {
+                    "chars": "worldwide", 
+                    "after": 0
+                }, 
+                "39100": {
+                    "chars": "Congregationalists", 
+                    "after": 0
+                }, 
+                "41150": {
+                    "chars": "miscounting", 
+                    "after": 0
+                }, 
+                "43200": {
+                    "chars": "discouragingly", 
+                    "after": 0
+                }, 
+                "45250": {
+                    "chars": "riddled", 
+                    "after": 0
+                }, 
+                "47300": {
+                    "chars": "woodman", 
+                    "after": 0
+                }, 
+                "49350": {
+                    "chars": "acceleration", 
+                    "after": 0
+                }, 
+                "200": {
+                    "chars": "slinkier", 
+                    "after": 0
+                }, 
+                "2250": {
+                    "chars": "blends", 
+                    "after": 0
+                }, 
+                "4300": {
+                    "chars": "attaining", 
+                    "after": 0
+                }, 
+                "6350": {
+                    "chars": "conformance", 
+                    "after": 0
+                }, 
+                "8400": {
+                    "chars": "Dwight", 
+                    "after": 0
+                }, 
+                "10450": {
+                    "chars": "Milwaukee", 
+                    "after": 0
+                }, 
+                "12500": {
+                    "chars": "sprinting", 
+                    "after": 0
+                }, 
+                "14550": {
+                    "chars": "weeklies", 
+                    "after": 0
+                }, 
+                "16600": {
+                    "chars": "miseries", 
+                    "after": 0
+                }, 
+                "18650": {
+                    "chars": "lactation", 
+                    "after": 0
+                }, 
+                "20700": {
+                    "chars": "oviducts", 
+                    "after": 0
+                }, 
+                "22750": {
+                    "chars": "lactic", 
+                    "after": 0
+                }, 
+                "24800": {
+                    "chars": "Marylou", 
+                    "after": 0
+                }, 
+                "26850": {
+                    "chars": "assimilating", 
+                    "after": 0
+                }, 
+                "28900": {
+                    "chars": "pharmacologists", 
+                    "after": 0
+                }, 
+                "30950": {
+                    "chars": "sanctified", 
+                    "after": 0
+                }, 
+                "33000": {
+                    "chars": "folding", 
+                    "after": 0
+                }, 
+                "35050": {
+                    "chars": "girlfriend", 
+                    "after": 0
+                }, 
+                "37100": {
+                    "chars": "tossups", 
+                    "after": 0
+                }, 
+                "39150": {
+                    "chars": "logger", 
+                    "after": 0
+                }, 
+                "41200": {
+                    "chars": "adulterants", 
+                    "after": 0
+                }, 
+                "43250": {
+                    "chars": "superabundant", 
+                    "after": 0
+                }, 
+                "45300": {
+                    "chars": "winterier", 
+                    "after": 0
+                }, 
+                "47350": {
+                    "chars": "shorter", 
+                    "after": 0
+                }, 
+                "49400": {
+                    "chars": "Hosea", 
+                    "after": 0
+                }, 
+                "250": {
+                    "chars": "sourness", 
+                    "after": 0
+                }, 
+                "2300": {
+                    "chars": "Confucianisms", 
+                    "after": 0
+                }, 
+                "4350": {
+                    "chars": "nurseryman", 
+                    "after": 0
+                }, 
+                "6400": {
+                    "chars": "Cointreau", 
+                    "after": 0
+                }, 
+                "8450": {
+                    "chars": "Art", 
+                    "after": 0
+                }, 
+                "10500": {
+                    "chars": "villa", 
+                    "after": 0
+                }, 
+                "12550": {
+                    "chars": "nailbrush", 
+                    "after": 0
+                }, 
+                "14600": {
+                    "chars": "Anacin", 
+                    "after": 0
+                }, 
+                "16650": {
+                    "chars": "nonplussing", 
+                    "after": 0
+                }, 
+                "18700": {
+                    "chars": "suntan", 
+                    "after": 0
+                }, 
+                "20750": {
+                    "chars": "Meade", 
+                    "after": 0
+                }, 
+                "22800": {
+                    "chars": "formula", 
+                    "after": 0
+                }, 
+                "24850": {
+                    "chars": "breadbasket", 
+                    "after": 0
+                }, 
+                "26900": {
+                    "chars": "dissimilar", 
+                    "after": 0
+                }, 
+                "28950": {
+                    "chars": "neophyte", 
+                    "after": 0
+                }, 
+                "31000": {
+                    "chars": "frequentest", 
+                    "after": 0
+                }, 
+                "33050": {
+                    "chars": "dosage", 
+                    "after": 0
+                }, 
+                "35100": {
+                    "chars": "schlepping", 
+                    "after": 0
+                }, 
+                "37150": {
+                    "chars": "Manchester", 
+                    "after": 0
+                }, 
+                "39200": {
+                    "chars": "holstering", 
+                    "after": 0
+                }, 
+                "41250": {
+                    "chars": "hypnotizes", 
+                    "after": 0
+                }, 
+                "43300": {
+                    "chars": "timorously", 
+                    "after": 0
+                }, 
+                "45350": {
+                    "chars": "Rutledge", 
+                    "after": 0
+                }, 
+                "47400": {
+                    "chars": "quarreled", 
+                    "after": 0
+                }, 
+                "49450": {
+                    "chars": "ventriloquism", 
+                    "after": 0
+                }, 
+                "300": {
+                    "chars": "sundries", 
+                    "after": 0
+                }, 
+                "2350": {
+                    "chars": "regimen", 
+                    "after": 0
+                }, 
+                "4400": {
+                    "chars": "administrates", 
+                    "after": 0
+                }, 
+                "6450": {
+                    "chars": "Webb", 
+                    "after": 0
+                }, 
+                "8500": {
+                    "chars": "flubs", 
+                    "after": 0
+                }, 
+                "10550": {
+                    "chars": "limp", 
+                    "after": 0
+                }, 
+                "12600": {
+                    "chars": "ex", 
+                    "after": 0
+                }, 
+                "14650": {
+                    "chars": "psychologist", 
+                    "after": 0
+                }, 
+                "16700": {
+                    "chars": "footwork", 
+                    "after": 0
+                }, 
+                "18750": {
+                    "chars": "ballyhooing", 
+                    "after": 0
+                }, 
+                "20800": {
+                    "chars": "locus", 
+                    "after": 0
+                }, 
+                "22850": {
+                    "chars": "Hrothgar", 
+                    "after": 0
+                }, 
+                "24900": {
+                    "chars": "disqualified", 
+                    "after": 0
+                }, 
+                "26950": {
+                    "chars": "Fiberglas", 
+                    "after": 0
+                }, 
+                "29000": {
+                    "chars": "persuading", 
+                    "after": 0
+                }, 
+                "31050": {
+                    "chars": "chairing", 
+                    "after": 0
+                }, 
+                "33100": {
+                    "chars": "bibliophiles", 
+                    "after": 0
+                }, 
+                "35150": {
+                    "chars": "pounding", 
+                    "after": 0
+                }, 
+                "37200": {
+                    "chars": "Pandora", 
+                    "after": 0
+                }, 
+                "39250": {
+                    "chars": "cheerfullest", 
+                    "after": 0
+                }, 
+                "41300": {
+                    "chars": "Bismarck", 
+                    "after": 0
+                }, 
+                "43350": {
+                    "chars": "sidewalls", 
+                    "after": 0
+                }, 
+                "45400": {
+                    "chars": "mannequins", 
+                    "after": 0
+                }, 
+                "47450": {
+                    "chars": "spoke", 
+                    "after": 0
+                }, 
+                "49500": {
+                    "chars": "spreed", 
+                    "after": 0
+                }, 
+                "350": {
+                    "chars": "honesty", 
+                    "after": 0
+                }, 
+                "2400": {
+                    "chars": "Segovia", 
+                    "after": 0
+                }, 
+                "4450": {
+                    "chars": "tunefully", 
+                    "after": 0
+                }, 
+                "6500": {
+                    "chars": "achier", 
+                    "after": 0
+                }, 
+                "8550": {
+                    "chars": "Rushmore", 
+                    "after": 0
+                }, 
+                "10600": {
+                    "chars": "used", 
+                    "after": 0
+                }, 
+                "12650": {
+                    "chars": "Lie", 
+                    "after": 0
+                }, 
+                "14700": {
+                    "chars": "Sphinx", 
+                    "after": 0
+                }, 
+                "16750": {
+                    "chars": "dissection", 
+                    "after": 0
+                }, 
+                "18800": {
+                    "chars": "naming", 
+                    "after": 0
+                }, 
+                "20850": {
+                    "chars": "foresting", 
+                    "after": 0
+                }, 
+                "22900": {
+                    "chars": "plantations", 
+                    "after": 0
+                }, 
+                "24950": {
+                    "chars": "cherishes", 
+                    "after": 0
+                }, 
+                "27000": {
+                    "chars": "Jasper", 
+                    "after": 0
+                }, 
+                "29050": {
+                    "chars": "nova", 
+                    "after": 0
+                }, 
+                "31100": {
+                    "chars": "recitation", 
+                    "after": 0
+                }, 
+                "33150": {
+                    "chars": "bullheaded", 
+                    "after": 0
+                }, 
+                "35200": {
+                    "chars": "shrivelling", 
+                    "after": 0
+                }, 
+                "37250": {
+                    "chars": "Chad", 
+                    "after": 0
+                }, 
+                "39300": {
+                    "chars": "servility", 
+                    "after": 0
+                }, 
+                "41350": {
+                    "chars": "cultivating", 
+                    "after": 0
+                }, 
+                "43400": {
+                    "chars": "indication", 
+                    "after": 0
+                }, 
+                "45450": {
+                    "chars": "naphtha", 
+                    "after": 0
+                }, 
+                "47500": {
+                    "chars": "feudalistic", 
+                    "after": 0
+                }, 
+                "49550": {
+                    "chars": "forefront", 
+                    "after": 0
+                }, 
+                "400": {
+                    "chars": "wrangled", 
+                    "after": 0
+                }, 
+                "2450": {
+                    "chars": "gibbering", 
+                    "after": 0
+                }, 
+                "4500": {
+                    "chars": "pippins", 
+                    "after": 0
+                }, 
+                "6550": {
+                    "chars": "pug", 
+                    "after": 0
+                }, 
+                "8600": {
+                    "chars": "saddlebags", 
+                    "after": 0
+                }, 
+                "10650": {
+                    "chars": "electronics", 
+                    "after": 0
+                }, 
+                "12700": {
+                    "chars": "limper", 
+                    "after": 0
+                }, 
+                "14750": {
+                    "chars": "poorly", 
+                    "after": 0
+                }, 
+                "16800": {
+                    "chars": "vanished", 
+                    "after": 0
+                }, 
+                "18850": {
+                    "chars": "liter", 
+                    "after": 0
+                }, 
+                "20900": {
+                    "chars": "mysteriously", 
+                    "after": 0
+                }, 
+                "22950": {
+                    "chars": "raconteur", 
+                    "after": 0
+                }, 
+                "25000": {
+                    "chars": "flied", 
+                    "after": 0
+                }, 
+                "27050": {
+                    "chars": "glitch", 
+                    "after": 0
+                }, 
+                "29100": {
+                    "chars": "Devi", 
+                    "after": 0
+                }, 
+                "31150": {
+                    "chars": "zodiacs", 
+                    "after": 0
+                }, 
+                "33200": {
+                    "chars": "addend", 
+                    "after": 0
+                }, 
+                "35250": {
+                    "chars": "closures", 
+                    "after": 0
+                }, 
+                "37300": {
+                    "chars": "misguides", 
+                    "after": 0
+                }, 
+                "39350": {
+                    "chars": "pendant", 
+                    "after": 0
+                }, 
+                "41400": {
+                    "chars": "gleans", 
+                    "after": 0
+                }, 
+                "43450": {
+                    "chars": "acceleration", 
+                    "after": 0
+                }, 
+                "45500": {
+                    "chars": "buffaloed", 
+                    "after": 0
+                }, 
+                "47550": {
+                    "chars": "yeas", 
+                    "after": 0
+                }, 
+                "49600": {
+                    "chars": "extemporaneously", 
+                    "after": 0
+                }, 
+                "450": {
+                    "chars": "exhaustively", 
+                    "after": 0
+                }, 
+                "2500": {
+                    "chars": "croupiers", 
+                    "after": 0
+                }, 
+                "4550": {
+                    "chars": "intersected", 
+                    "after": 0
+                }, 
+                "6600": {
+                    "chars": "Gorbachev", 
+                    "after": 0
+                }, 
+                "8650": {
+                    "chars": "Sweeney", 
+                    "after": 0
+                }, 
+                "10700": {
+                    "chars": "remarked", 
+                    "after": 0
+                }, 
+                "12750": {
+                    "chars": "Sabrina", 
+                    "after": 0
+                }, 
+                "14800": {
+                    "chars": "repaints", 
+                    "after": 0
+                }, 
+                "16850": {
+                    "chars": "coincidence", 
+                    "after": 0
+                }, 
+                "18900": {
+                    "chars": "Dardanelles", 
+                    "after": 0
+                }, 
+                "20950": {
+                    "chars": "train", 
+                    "after": 0
+                }, 
+                "23000": {
+                    "chars": "zealous", 
+                    "after": 0
+                }, 
+                "25050": {
+                    "chars": "Huns", 
+                    "after": 0
+                }, 
+                "27100": {
+                    "chars": "inductees", 
+                    "after": 0
+                }, 
+                "29150": {
+                    "chars": "privier", 
+                    "after": 0
+                }, 
+                "31200": {
+                    "chars": "cadenzas", 
+                    "after": 0
+                }, 
+                "33250": {
+                    "chars": "bonged", 
+                    "after": 0
+                }, 
+                "35300": {
+                    "chars": "pointing", 
+                    "after": 0
+                }, 
+                "37350": {
+                    "chars": "Mississauga", 
+                    "after": 0
+                }, 
+                "39400": {
+                    "chars": "Euclidean", 
+                    "after": 0
+                }, 
+                "41450": {
+                    "chars": "belabor", 
+                    "after": 0
+                }, 
+                "43500": {
+                    "chars": "domiciles", 
+                    "after": 0
+                }, 
+                "45550": {
+                    "chars": "Hellenism", 
+                    "after": 0
+                }, 
+                "47600": {
+                    "chars": "overlooks", 
+                    "after": 0
+                }, 
+                "49650": {
+                    "chars": "flounders", 
+                    "after": 0
+                }, 
+                "500": {
+                    "chars": "ruggedest", 
+                    "after": 0
+                }, 
+                "2550": {
+                    "chars": "tzarina", 
+                    "after": 0
+                }, 
+                "4600": {
+                    "chars": "besmirching", 
+                    "after": 0
+                }, 
+                "6650": {
+                    "chars": "drachmae", 
+                    "after": 0
+                }, 
+                "8700": {
+                    "chars": "shakiest", 
+                    "after": 0
+                }, 
+                "10750": {
+                    "chars": "misjudgements", 
+                    "after": 0
+                }, 
+                "12800": {
+                    "chars": "zebu", 
+                    "after": 0
+                }, 
+                "14850": {
+                    "chars": "glumly", 
+                    "after": 0
+                }, 
+                "16900": {
+                    "chars": "Katelyn", 
+                    "after": 0
+                }, 
+                "18950": {
+                    "chars": "affinity", 
+                    "after": 0
+                }, 
+                "21000": {
+                    "chars": "ejected", 
+                    "after": 0
+                }, 
+                "23050": {
+                    "chars": "potable", 
+                    "after": 0
+                }, 
+                "25100": {
+                    "chars": "partook", 
+                    "after": 0
+                }, 
+                "27150": {
+                    "chars": "convalescent", 
+                    "after": 0
+                }, 
+                "29200": {
+                    "chars": "bragger", 
+                    "after": 0
+                }, 
+                "31250": {
+                    "chars": "bedsores", 
+                    "after": 0
+                }, 
+                "33300": {
+                    "chars": "knacker", 
+                    "after": 0
+                }, 
+                "35350": {
+                    "chars": "worthier", 
+                    "after": 0
+                }, 
+                "37400": {
+                    "chars": "timidity", 
+                    "after": 0
+                }, 
+                "39450": {
+                    "chars": "liveries", 
+                    "after": 0
+                }, 
+                "41500": {
+                    "chars": "disinterest", 
+                    "after": 0
+                }, 
+                "43550": {
+                    "chars": "Bismarck", 
+                    "after": 0
+                }, 
+                "45600": {
+                    "chars": "mine", 
+                    "after": 0
+                }, 
+                "47650": {
+                    "chars": "stymying", 
+                    "after": 0
+                }, 
+                "49700": {
+                    "chars": "sportsmen", 
+                    "after": 0
+                }, 
+                "550": {
+                    "chars": "moat", 
+                    "after": 0
+                }, 
+                "2600": {
+                    "chars": "augment", 
+                    "after": 0
+                }, 
+                "4650": {
+                    "chars": "enigmas", 
+                    "after": 0
+                }, 
+                "6700": {
+                    "chars": "performer", 
+                    "after": 0
+                }, 
+                "8750": {
+                    "chars": "slay", 
+                    "after": 0
+                }, 
+                "10800": {
+                    "chars": "floodgates", 
+                    "after": 0
+                }, 
+                "12850": {
+                    "chars": "baddest", 
+                    "after": 0
+                }, 
+                "14900": {
+                    "chars": "woes", 
+                    "after": 0
+                }, 
+                "16950": {
+                    "chars": "califs", 
+                    "after": 0
+                }, 
+                "19000": {
+                    "chars": "mumble", 
+                    "after": 0
+                }, 
+                "21050": {
+                    "chars": "endways", 
+                    "after": 0
+                }, 
+                "23100": {
+                    "chars": "buffalo", 
+                    "after": 0
+                }, 
+                "25150": {
+                    "chars": "Sibelius", 
+                    "after": 0
+                }, 
+                "27200": {
+                    "chars": "vacated", 
+                    "after": 0
+                }, 
+                "29250": {
+                    "chars": "patinae", 
+                    "after": 0
+                }, 
+                "31300": {
+                    "chars": "autographed", 
+                    "after": 0
+                }, 
+                "33350": {
+                    "chars": "transliterating", 
+                    "after": 0
+                }, 
+                "35400": {
+                    "chars": "stancher", 
+                    "after": 0
+                }, 
+                "37450": {
+                    "chars": "implacable", 
+                    "after": 0
+                }, 
+                "39500": {
+                    "chars": "poorly", 
+                    "after": 0
+                }, 
+                "41550": {
+                    "chars": "geegaw", 
+                    "after": 0
+                }, 
+                "43600": {
+                    "chars": "penetrable", 
+                    "after": 0
+                }, 
+                "45650": {
+                    "chars": "abrogated", 
+                    "after": 0
+                }, 
+                "47700": {
+                    "chars": "rowed", 
+                    "after": 0
+                }, 
+                "49750": {
+                    "chars": "commanding", 
+                    "after": 0
+                }, 
+                "600": {
+                    "chars": "Stallone", 
+                    "after": 0
+                }, 
+                "2650": {
+                    "chars": "complains", 
+                    "after": 0
+                }, 
+                "4700": {
+                    "chars": "older", 
+                    "after": 0
+                }, 
+                "6750": {
+                    "chars": "rhinestone", 
+                    "after": 0
+                }, 
+                "8800": {
+                    "chars": "foam", 
+                    "after": 0
+                }, 
+                "10850": {
+                    "chars": "cinema", 
+                    "after": 0
+                }, 
+                "12900": {
+                    "chars": "reef", 
+                    "after": 0
+                }, 
+                "14950": {
+                    "chars": "unstops", 
+                    "after": 0
+                }, 
+                "17000": {
+                    "chars": "speakeasies", 
+                    "after": 0
+                }, 
+                "19050": {
+                    "chars": "shorter", 
+                    "after": 0
+                }, 
+                "21100": {
+                    "chars": "Mollie", 
+                    "after": 0
+                }, 
+                "23150": {
+                    "chars": "resistant", 
+                    "after": 0
+                }, 
+                "25200": {
+                    "chars": "forecasted", 
+                    "after": 0
+                }, 
+                "27250": {
+                    "chars": "picturing", 
+                    "after": 0
+                }, 
+                "29300": {
+                    "chars": "Purim", 
+                    "after": 0
+                }, 
+                "31350": {
+                    "chars": "Jamaicans", 
+                    "after": 0
+                }, 
+                "33400": {
+                    "chars": "crabbily", 
+                    "after": 0
+                }, 
+                "35450": {
+                    "chars": "savannas", 
+                    "after": 0
+                }, 
+                "37500": {
+                    "chars": "euphemism", 
+                    "after": 0
+                }, 
+                "39550": {
+                    "chars": "ewe", 
+                    "after": 0
+                }, 
+                "41600": {
+                    "chars": "treasonable", 
+                    "after": 0
+                }, 
+                "43650": {
+                    "chars": "Madurai", 
+                    "after": 0
+                }, 
+                "45700": {
+                    "chars": "procedure", 
+                    "after": 0
+                }, 
+                "47750": {
+                    "chars": "pregnancies", 
+                    "after": 0
+                }, 
+                "49800": {
+                    "chars": "Carina", 
+                    "after": 0
+                }, 
+                "650": {
+                    "chars": "vindication", 
+                    "after": 0
+                }, 
+                "2700": {
+                    "chars": "unlearning", 
+                    "after": 0
+                }, 
+                "4750": {
+                    "chars": "attach", 
+                    "after": 0
+                }, 
+                "6800": {
+                    "chars": "mania", 
+                    "after": 0
+                }, 
+                "8850": {
+                    "chars": "semitones", 
+                    "after": 0
+                }, 
+                "10900": {
+                    "chars": "firebugs", 
+                    "after": 0
+                }, 
+                "12950": {
+                    "chars": "thirties", 
+                    "after": 0
+                }, 
+                "15000": {
+                    "chars": "breathed", 
+                    "after": 0
+                }, 
+                "17050": {
+                    "chars": "dripping", 
+                    "after": 0
+                }, 
+                "19100": {
+                    "chars": "frats", 
+                    "after": 0
+                }, 
+                "21150": {
+                    "chars": "Dawes", 
+                    "after": 0
+                }, 
+                "23200": {
+                    "chars": "Hartman", 
+                    "after": 0
+                }, 
+                "25250": {
+                    "chars": "uninstalled", 
+                    "after": 0
+                }, 
+                "27300": {
+                    "chars": "whitewashed", 
+                    "after": 0
+                }, 
+                "29350": {
+                    "chars": "unguents", 
+                    "after": 0
+                }, 
+                "31400": {
+                    "chars": "blent", 
+                    "after": 0
+                }, 
+                "33450": {
+                    "chars": "proscribed", 
+                    "after": 0
+                }, 
+                "35500": {
+                    "chars": "stack", 
+                    "after": 0
+                }, 
+                "37550": {
+                    "chars": "topological", 
+                    "after": 0
+                }, 
+                "39600": {
+                    "chars": "Macao", 
+                    "after": 0
+                }, 
+                "41650": {
+                    "chars": "sisal", 
+                    "after": 0
+                }, 
+                "43700": {
+                    "chars": "unseal", 
+                    "after": 0
+                }, 
+                "45750": {
+                    "chars": "sanctity", 
+                    "after": 0
+                }, 
+                "47800": {
+                    "chars": "liner", 
+                    "after": 0
+                }, 
+                "49850": {
+                    "chars": "compacter", 
+                    "after": 0
+                }, 
+                "700": {
+                    "chars": "multiplexor", 
+                    "after": 0
+                }, 
+                "2750": {
+                    "chars": "deludes", 
+                    "after": 0
+                }, 
+                "4800": {
+                    "chars": "nominatives", 
+                    "after": 0
+                }, 
+                "6850": {
+                    "chars": "Hamlet", 
+                    "after": 0
+                }, 
+                "8900": {
+                    "chars": "Abe", 
+                    "after": 0
+                }, 
+                "10950": {
+                    "chars": "haranguing", 
+                    "after": 0
+                }, 
+                "13000": {
+                    "chars": "limeades", 
+                    "after": 0
+                }, 
+                "15050": {
+                    "chars": "chickadee", 
+                    "after": 0
+                }, 
+                "17100": {
+                    "chars": "designated", 
+                    "after": 0
+                }, 
+                "19150": {
+                    "chars": "wisp", 
+                    "after": 0
+                }, 
+                "21200": {
+                    "chars": "stowed", 
+                    "after": 0
+                }, 
+                "23250": {
+                    "chars": "nodal", 
+                    "after": 0
+                }, 
+                "25300": {
+                    "chars": "exorcize", 
+                    "after": 0
+                }, 
+                "27350": {
+                    "chars": "impressing", 
+                    "after": 0
+                }, 
+                "29400": {
+                    "chars": "westward", 
+                    "after": 0
+                }, 
+                "31450": {
+                    "chars": "overhearing", 
+                    "after": 0
+                }, 
+                "33500": {
+                    "chars": "apse", 
+                    "after": 0
+                }, 
+                "35550": {
+                    "chars": "kingfisher", 
+                    "after": 0
+                }, 
+                "37600": {
+                    "chars": "cracked", 
+                    "after": 0
+                }, 
+                "39650": {
+                    "chars": "clomped", 
+                    "after": 0
+                }, 
+                "41700": {
+                    "chars": "patronize", 
+                    "after": 0
+                }, 
+                "43750": {
+                    "chars": "autobiographies", 
+                    "after": 0
+                }, 
+                "45800": {
+                    "chars": "flannelette", 
+                    "after": 0
+                }, 
+                "47850": {
+                    "chars": "goblin", 
+                    "after": 0
+                }, 
+                "49900": {
+                    "chars": "partings", 
+                    "after": 0
+                }, 
+                "750": {
+                    "chars": "elevating", 
+                    "after": 0
+                }, 
+                "2800": {
+                    "chars": "nylons", 
+                    "after": 0
+                }, 
+                "4850": {
+                    "chars": "lye", 
+                    "after": 0
+                }, 
+                "6900": {
+                    "chars": "steeper", 
+                    "after": 0
+                }, 
+                "8950": {
+                    "chars": "Xe", 
+                    "after": 0
+                }, 
+                "11000": {
+                    "chars": "deforestation", 
+                    "after": 0
+                }, 
+                "13050": {
+                    "chars": "hyperventilation", 
+                    "after": 0
+                }, 
+                "15100": {
+                    "chars": "beleaguer", 
+                    "after": 0
+                }, 
+                "17150": {
+                    "chars": "priming", 
+                    "after": 0
+                }, 
+                "19200": {
+                    "chars": "playboys", 
+                    "after": 0
+                }, 
+                "21250": {
+                    "chars": "reconfiguration", 
+                    "after": 0
+                }, 
+                "23300": {
+                    "chars": "Maris", 
+                    "after": 0
+                }, 
+                "25350": {
+                    "chars": "disapproval", 
+                    "after": 0
+                }, 
+                "27400": {
+                    "chars": "bloodier", 
+                    "after": 0
+                }, 
+                "29450": {
+                    "chars": "specialist", 
+                    "after": 0
+                }, 
+                "31500": {
+                    "chars": "reds", 
+                    "after": 0
+                }, 
+                "33550": {
+                    "chars": "irascibility", 
+                    "after": 0
+                }, 
+                "35600": {
+                    "chars": "cuffed", 
+                    "after": 0
+                }, 
+                "37650": {
+                    "chars": "Lidia", 
+                    "after": 0
+                }, 
+                "39700": {
+                    "chars": "thermally", 
+                    "after": 0
+                }, 
+                "41750": {
+                    "chars": "coeducation", 
+                    "after": 0
+                }, 
+                "43800": {
+                    "chars": "colorless", 
+                    "after": 0
+                }, 
+                "45850": {
+                    "chars": "displace", 
+                    "after": 0
+                }, 
+                "47900": {
+                    "chars": "fiddly", 
+                    "after": 0
+                }, 
+                "49950": {
+                    "chars": "thwarting", 
+                    "after": 0
+                }, 
+                "800": {
+                    "chars": "stupendously", 
+                    "after": 0
+                }, 
+                "2850": {
+                    "chars": "slung", 
+                    "after": 0
+                }, 
+                "4900": {
+                    "chars": "pressures", 
+                    "after": 0
+                }, 
+                "6950": {
+                    "chars": "articulations", 
+                    "after": 0
+                }, 
+                "9000": {
+                    "chars": "behalf", 
+                    "after": 0
+                }, 
+                "11050": {
+                    "chars": "Thorazine", 
+                    "after": 0
+                }, 
+                "13100": {
+                    "chars": "sickness", 
+                    "after": 0
+                }, 
+                "15150": {
+                    "chars": "lambast", 
+                    "after": 0
+                }, 
+                "17200": {
+                    "chars": "shilling", 
+                    "after": 0
+                }, 
+                "19250": {
+                    "chars": "anchormen", 
+                    "after": 0
+                }, 
+                "21300": {
+                    "chars": "Bantu", 
+                    "after": 0
+                }, 
+                "23350": {
+                    "chars": "rapscallion", 
+                    "after": 0
+                }, 
+                "25400": {
+                    "chars": "obfuscating", 
+                    "after": 0
+                }, 
+                "27450": {
+                    "chars": "Martians", 
+                    "after": 0
+                }, 
+                "29500": {
+                    "chars": "hinging", 
+                    "after": 0
+                }, 
+                "31550": {
+                    "chars": "mounded", 
+                    "after": 0
+                }, 
+                "33600": {
+                    "chars": "sheet", 
+                    "after": 0
+                }, 
+                "35650": {
+                    "chars": "sidewall", 
+                    "after": 0
+                }, 
+                "37700": {
+                    "chars": "maestros", 
+                    "after": 0
+                }, 
+                "39750": {
+                    "chars": "impairing", 
+                    "after": 0
+                }, 
+                "41800": {
+                    "chars": "fucking", 
+                    "after": 0
+                }, 
+                "43850": {
+                    "chars": "desensitize", 
+                    "after": 0
+                }, 
+                "45900": {
+                    "chars": "booziest", 
+                    "after": 0
+                }, 
+                "47950": {
+                    "chars": "ads", 
+                    "after": 0
+                }, 
+                "850": {
+                    "chars": "dislocate", 
+                    "after": 0
+                }, 
+                "2900": {
+                    "chars": "discotheques", 
+                    "after": 0
+                }, 
+                "4950": {
+                    "chars": "straggliest", 
+                    "after": 0
+                }, 
+                "7000": {
+                    "chars": "clinker", 
+                    "after": 0
+                }, 
+                "9050": {
+                    "chars": "misfits", 
+                    "after": 0
+                }, 
+                "11100": {
+                    "chars": "curfew", 
+                    "after": 0
+                }, 
+                "13150": {
+                    "chars": "Polynesians", 
+                    "after": 0
+                }, 
+                "15200": {
+                    "chars": "loadstone", 
+                    "after": 0
+                }, 
+                "17250": {
+                    "chars": "Dyson", 
+                    "after": 0
+                }, 
+                "19300": {
+                    "chars": "churls", 
+                    "after": 0
+                }, 
+                "21350": {
+                    "chars": "dared", 
+                    "after": 0
+                }, 
+                "23400": {
+                    "chars": "hairsplitting", 
+                    "after": 0
+                }, 
+                "25450": {
+                    "chars": "tenanted", 
+                    "after": 0
+                }, 
+                "27500": {
+                    "chars": "millennia", 
+                    "after": 0
+                }, 
+                "29550": {
+                    "chars": "minim", 
+                    "after": 0
+                }, 
+                "31600": {
+                    "chars": "woodcutting", 
+                    "after": 0
+                }, 
+                "33650": {
+                    "chars": "songwriter", 
+                    "after": 0
+                }, 
+                "35700": {
+                    "chars": "brusquer", 
+                    "after": 0
+                }, 
+                "37750": {
+                    "chars": "prudent", 
+                    "after": 0
+                }, 
+                "39800": {
+                    "chars": "deciding", 
+                    "after": 0
+                }, 
+                "41850": {
+                    "chars": "lifeboat", 
+                    "after": 0
+                }, 
+                "43900": {
+                    "chars": "tosses", 
+                    "after": 0
+                }, 
+                "45950": {
+                    "chars": "Giotto", 
+                    "after": 0
+                }, 
+                "48000": {
+                    "chars": "jostling", 
+                    "after": 0
+                }, 
+                "900": {
+                    "chars": "decomposition", 
+                    "after": 0
+                }, 
+                "2950": {
+                    "chars": "woodwind", 
+                    "after": 0
+                }, 
+                "5000": {
+                    "chars": "Amadeus", 
+                    "after": 0
+                }, 
+                "7050": {
+                    "chars": "usage", 
+                    "after": 0
+                }, 
+                "9100": {
+                    "chars": "soliloquizes", 
+                    "after": 0
+                }, 
+                "11150": {
+                    "chars": "chromium", 
+                    "after": 0
+                }, 
+                "13200": {
+                    "chars": "somewhere", 
+                    "after": 0
+                }, 
+                "15250": {
+                    "chars": "eyelashes", 
+                    "after": 0
+                }, 
+                "17300": {
+                    "chars": "hatting", 
+                    "after": 0
+                }, 
+                "19350": {
+                    "chars": "Manning", 
+                    "after": 0
+                }, 
+                "21400": {
+                    "chars": "penalizing", 
+                    "after": 0
+                }, 
+                "23450": {
+                    "chars": "whisks", 
+                    "after": 0
+                }, 
+                "25500": {
+                    "chars": "searcher", 
+                    "after": 0
+                }, 
+                "27550": {
+                    "chars": "overlies", 
+                    "after": 0
+                }, 
+                "29600": {
+                    "chars": "Cabrera", 
+                    "after": 0
+                }, 
+                "31650": {
+                    "chars": "hamstrung", 
+                    "after": 0
+                }, 
+                "33700": {
+                    "chars": "derailments", 
+                    "after": 0
+                }, 
+                "35750": {
+                    "chars": "chartreuse", 
+                    "after": 0
+                }, 
+                "37800": {
+                    "chars": "cancelling", 
+                    "after": 0
+                }, 
+                "39850": {
+                    "chars": "nosed", 
+                    "after": 0
+                }, 
+                "41900": {
+                    "chars": "lawfully", 
+                    "after": 0
+                }, 
+                "43950": {
+                    "chars": "scurf", 
+                    "after": 0
+                }, 
+                "46000": {
+                    "chars": "Bayesian", 
+                    "after": 0
+                }, 
+                "48050": {
+                    "chars": "hyper", 
+                    "after": 0
+                }, 
+                "950": {
+                    "chars": "headmasters", 
+                    "after": 0
+                }, 
+                "3000": {
+                    "chars": "Frankel", 
+                    "after": 0
+                }, 
+                "5050": {
+                    "chars": "listeners", 
+                    "after": 0
+                }, 
+                "7100": {
+                    "chars": "riots", 
+                    "after": 0
+                }, 
+                "9150": {
+                    "chars": "muskellunges", 
+                    "after": 0
+                }, 
+                "11200": {
+                    "chars": "feistiest", 
+                    "after": 0
+                }, 
+                "13250": {
+                    "chars": "drake", 
+                    "after": 0
+                }, 
+                "15300": {
+                    "chars": "birthmark", 
+                    "after": 0
+                }, 
+                "17350": {
+                    "chars": "flimflamming", 
+                    "after": 0
+                }, 
+                "19400": {
+                    "chars": "discountenance", 
+                    "after": 0
+                }, 
+                "21450": {
+                    "chars": "maltreatment", 
+                    "after": 0
+                }, 
+                "23500": {
+                    "chars": "hemlines", 
+                    "after": 0
+                }, 
+                "25550": {
+                    "chars": "breeches", 
+                    "after": 0
+                }, 
+                "27600": {
+                    "chars": "deifying", 
+                    "after": 0
+                }, 
+                "29650": {
+                    "chars": "apple", 
+                    "after": 0
+                }, 
+                "31700": {
+                    "chars": "cherishes", 
+                    "after": 0
+                }, 
+                "33750": {
+                    "chars": "sifts", 
+                    "after": 0
+                }, 
+                "35800": {
+                    "chars": "glowered", 
+                    "after": 0
+                }, 
+                "37850": {
+                    "chars": "piddles", 
+                    "after": 0
+                }, 
+                "39900": {
+                    "chars": "Dushanbe", 
+                    "after": 0
+                }, 
+                "41950": {
+                    "chars": "Mon", 
+                    "after": 0
+                }, 
+                "44000": {
+                    "chars": "injustice", 
+                    "after": 0
+                }, 
+                "46050": {
+                    "chars": "orbs", 
+                    "after": 0
+                }, 
+                "48100": {
+                    "chars": "Friedan", 
+                    "after": 0
+                }, 
+                "1000": {
+                    "chars": "bipartisan", 
+                    "after": 0
+                }, 
+                "3050": {
+                    "chars": "construed", 
+                    "after": 0
+                }, 
+                "5100": {
+                    "chars": "obsequious", 
+                    "after": 0
+                }, 
+                "7150": {
+                    "chars": "umpires", 
+                    "after": 0
+                }, 
+                "9200": {
+                    "chars": "unforeseen", 
+                    "after": 0
+                }, 
+                "11250": {
+                    "chars": "unpleasantness", 
+                    "after": 0
+                }, 
+                "13300": {
+                    "chars": "sired", 
+                    "after": 0
+                }, 
+                "15350": {
+                    "chars": "cancelling", 
+                    "after": 0
+                }, 
+                "17400": {
+                    "chars": "placental", 
+                    "after": 0
+                }, 
+                "19450": {
+                    "chars": "trikes", 
+                    "after": 0
+                }, 
+                "21500": {
+                    "chars": "interrelated", 
+                    "after": 0
+                }, 
+                "23550": {
+                    "chars": "rookeries", 
+                    "after": 0
+                }, 
+                "25600": {
+                    "chars": "wistful", 
+                    "after": 0
+                }, 
+                "27650": {
+                    "chars": "levers", 
+                    "after": 0
+                }, 
+                "29700": {
+                    "chars": "dromedaries", 
+                    "after": 0
+                }, 
+                "31750": {
+                    "chars": "deluding", 
+                    "after": 0
+                }, 
+                "33800": {
+                    "chars": "Alpo", 
+                    "after": 0
+                }, 
+                "35850": {
+                    "chars": "tomahawk", 
+                    "after": 0
+                }, 
+                "37900": {
+                    "chars": "cooping", 
+                    "after": 0
+                }, 
+                "39950": {
+                    "chars": "variegate", 
+                    "after": 0
+                }, 
+                "42000": {
+                    "chars": "insidiously", 
+                    "after": 0
+                }, 
+                "44050": {
+                    "chars": "homesteaded", 
+                    "after": 0
+                }, 
+                "46100": {
+                    "chars": "reprehending", 
+                    "after": 0
+                }, 
+                "48150": {
+                    "chars": "Gatsby", 
+                    "after": 0
+                }, 
+                "1050": {
+                    "chars": "noticeable", 
+                    "after": 0
+                }, 
+                "3100": {
+                    "chars": "collarbones", 
+                    "after": 0
+                }, 
+                "5150": {
+                    "chars": "comprehension", 
+                    "after": 0
+                }, 
+                "7200": {
+                    "chars": "vowels", 
+                    "after": 0
+                }, 
+                "9250": {
+                    "chars": "pedestals", 
+                    "after": 0
+                }, 
+                "11300": {
+                    "chars": "monarchist", 
+                    "after": 0
+                }, 
+                "13350": {
+                    "chars": "obsessive", 
+                    "after": 0
+                }, 
+                "15400": {
+                    "chars": "Smollett", 
+                    "after": 0
+                }, 
+                "17450": {
+                    "chars": "collapsed", 
+                    "after": 0
+                }, 
+                "19500": {
+                    "chars": "bangle", 
+                    "after": 0
+                }, 
+                "21550": {
+                    "chars": "sketching", 
+                    "after": 0
+                }, 
+                "23600": {
+                    "chars": "Cinderellas", 
+                    "after": 0
+                }, 
+                "25650": {
+                    "chars": "quails", 
+                    "after": 0
+                }, 
+                "27700": {
+                    "chars": "languishing", 
+                    "after": 0
+                }, 
+                "29750": {
+                    "chars": "hovel", 
+                    "after": 0
+                }, 
+                "31800": {
+                    "chars": "tufting", 
+                    "after": 0
+                }, 
+                "33850": {
+                    "chars": "graver", 
+                    "after": 0
+                }, 
+                "35900": {
+                    "chars": "revolutionists", 
+                    "after": 0
+                }, 
+                "37950": {
+                    "chars": "Hertzsprung", 
+                    "after": 0
+                }, 
+                "40000": {
+                    "chars": "Adirondack", 
+                    "after": 0
+                }, 
+                "42050": {
+                    "chars": "merriment", 
+                    "after": 0
+                }, 
+                "44100": {
+                    "chars": "mistype", 
+                    "after": 0
+                }, 
+                "46150": {
+                    "chars": "sassafras", 
+                    "after": 0
+                }, 
+                "48200": {
+                    "chars": "xenon", 
+                    "after": 0
+                }, 
+                "1100": {
+                    "chars": "megalomania", 
+                    "after": 0
+                }, 
+                "3150": {
+                    "chars": "graces", 
+                    "after": 0
+                }, 
+                "5200": {
+                    "chars": "Frankel", 
+                    "after": 0
+                }, 
+                "7250": {
+                    "chars": "squishing", 
+                    "after": 0
+                }, 
+                "9300": {
+                    "chars": "tussles", 
+                    "after": 0
+                }, 
+                "11350": {
+                    "chars": "foreskins", 
+                    "after": 0
+                }, 
+                "13400": {
+                    "chars": "issued", 
+                    "after": 0
+                }, 
+                "15450": {
+                    "chars": "Jerry", 
+                    "after": 0
+                }, 
+                "17500": {
+                    "chars": "taillights", 
+                    "after": 0
+                }, 
+                "19550": {
+                    "chars": "us", 
+                    "after": 0
+                }, 
+                "21600": {
+                    "chars": "salt", 
+                    "after": 0
+                }, 
+                "23650": {
+                    "chars": "colonizes", 
+                    "after": 0
+                }, 
+                "25700": {
+                    "chars": "impaneling", 
+                    "after": 0
+                }, 
+                "27750": {
+                    "chars": "recopying", 
+                    "after": 0
+                }, 
+                "29800": {
+                    "chars": "Karen", 
+                    "after": 0
+                }, 
+                "31850": {
+                    "chars": "restlessly", 
+                    "after": 0
+                }, 
+                "33900": {
+                    "chars": "snivels", 
+                    "after": 0
+                }, 
+                "35950": {
+                    "chars": "poops", 
+                    "after": 0
+                }, 
+                "38000": {
+                    "chars": "aortae", 
+                    "after": 0
+                }, 
+                "40050": {
+                    "chars": "caprice", 
+                    "after": 0
+                }, 
+                "42100": {
+                    "chars": "prologs", 
+                    "after": 0
+                }, 
+                "44150": {
+                    "chars": "Chauncey", 
+                    "after": 0
+                }, 
+                "46200": {
+                    "chars": "nefariousness", 
+                    "after": 0
+                }, 
+                "48250": {
+                    "chars": "gratifying", 
+                    "after": 0
+                }, 
+                "1150": {
+                    "chars": "determines", 
+                    "after": 0
+                }, 
+                "3200": {
+                    "chars": "venturous", 
+                    "after": 0
+                }, 
+                "5250": {
+                    "chars": "begets", 
+                    "after": 0
+                }, 
+                "7300": {
+                    "chars": "tyrannically", 
+                    "after": 0
+                }, 
+                "9350": {
+                    "chars": "pointedly", 
+                    "after": 0
+                }, 
+                "11400": {
+                    "chars": "timpanist", 
+                    "after": 0
+                }, 
+                "13450": {
+                    "chars": "plate", 
+                    "after": 0
+                }, 
+                "15500": {
+                    "chars": "suctions", 
+                    "after": 0
+                }, 
+                "17550": {
+                    "chars": "terser", 
+                    "after": 0
+                }, 
+                "19600": {
+                    "chars": "levering", 
+                    "after": 0
+                }, 
+                "21650": {
+                    "chars": "whiff", 
+                    "after": 0
+                }, 
+                "23700": {
+                    "chars": "bequests", 
+                    "after": 0
+                }, 
+                "25750": {
+                    "chars": "superimpose", 
+                    "after": 0
+                }, 
+                "27800": {
+                    "chars": "activity", 
+                    "after": 0
+                }, 
+                "29850": {
+                    "chars": "efface", 
+                    "after": 0
+                }, 
+                "31900": {
+                    "chars": "pauperism", 
+                    "after": 0
+                }, 
+                "33950": {
+                    "chars": "example", 
+                    "after": 0
+                }, 
+                "36000": {
+                    "chars": "valence", 
+                    "after": 0
+                }, 
+                "38050": {
+                    "chars": "snapshots", 
+                    "after": 0
+                }, 
+                "40100": {
+                    "chars": "privateer", 
+                    "after": 0
+                }, 
+                "42150": {
+                    "chars": "plumbers", 
+                    "after": 0
+                }, 
+                "44200": {
+                    "chars": "upbeats", 
+                    "after": 0
+                }, 
+                "46250": {
+                    "chars": "numbing", 
+                    "after": 0
+                }, 
+                "48300": {
+                    "chars": "honeyed", 
+                    "after": 0
+                }, 
+                "1200": {
+                    "chars": "firsthand", 
+                    "after": 0
+                }, 
+                "3250": {
+                    "chars": "ketches", 
+                    "after": 0
+                }, 
+                "5300": {
+                    "chars": "perfectly", 
+                    "after": 0
+                }, 
+                "7350": {
+                    "chars": "starter", 
+                    "after": 0
+                }, 
+                "9400": {
+                    "chars": "actualities", 
+                    "after": 0
+                }, 
+                "11450": {
+                    "chars": "nudism", 
+                    "after": 0
+                }, 
+                "13500": {
+                    "chars": "indecently", 
+                    "after": 0
+                }, 
+                "15550": {
+                    "chars": "mortician", 
+                    "after": 0
+                }, 
+                "17600": {
+                    "chars": "lacier", 
+                    "after": 0
+                }, 
+                "19650": {
+                    "chars": "screenings", 
+                    "after": 0
+                }, 
+                "21700": {
+                    "chars": "gracing", 
+                    "after": 0
+                }, 
+                "23750": {
+                    "chars": "Monticello", 
+                    "after": 0
+                }, 
+                "25800": {
+                    "chars": "Lydia", 
+                    "after": 0
+                }, 
+                "27850": {
+                    "chars": "amassing", 
+                    "after": 0
+                }, 
+                "29900": {
+                    "chars": "cup", 
+                    "after": 0
+                }, 
+                "31950": {
+                    "chars": "wangles", 
+                    "after": 0
+                }, 
+                "34000": {
+                    "chars": "illegitimacy", 
+                    "after": 0
+                }, 
+                "36050": {
+                    "chars": "obstructs", 
+                    "after": 0
+                }, 
+                "38100": {
+                    "chars": "milch", 
+                    "after": 0
+                }, 
+                "40150": {
+                    "chars": "tibias", 
+                    "after": 0
+                }, 
+                "42200": {
+                    "chars": "dogmatism", 
+                    "after": 0
+                }, 
+                "44250": {
+                    "chars": "crimping", 
+                    "after": 0
+                }, 
+                "46300": {
+                    "chars": "forecasting", 
+                    "after": 0
+                }, 
+                "48350": {
+                    "chars": "tranquilly", 
+                    "after": 0
+                }, 
+                "1250": {
+                    "chars": "showcasing", 
+                    "after": 0
+                }, 
+                "3300": {
+                    "chars": "stairwell", 
+                    "after": 0
+                }, 
+                "5350": {
+                    "chars": "siliceous", 
+                    "after": 0
+                }, 
+                "7400": {
+                    "chars": "limousine", 
+                    "after": 0
+                }, 
+                "9450": {
+                    "chars": "absorbents", 
+                    "after": 0
+                }, 
+                "11500": {
+                    "chars": "magnetic", 
+                    "after": 0
+                }, 
+                "13550": {
+                    "chars": "suchlike", 
+                    "after": 0
+                }, 
+                "15600": {
+                    "chars": "church", 
+                    "after": 0
+                }, 
+                "17650": {
+                    "chars": "conditioning", 
+                    "after": 0
+                }, 
+                "19700": {
+                    "chars": "brassy", 
+                    "after": 0
+                }, 
+                "21750": {
+                    "chars": "subconscious", 
+                    "after": 0
+                }, 
+                "23800": {
+                    "chars": "forum", 
+                    "after": 0
+                }, 
+                "25850": {
+                    "chars": "creeping", 
+                    "after": 0
+                }, 
+                "27900": {
+                    "chars": "unceasingly", 
+                    "after": 0
+                }, 
+                "29950": {
+                    "chars": "dissuasion", 
+                    "after": 0
+                }, 
+                "32000": {
+                    "chars": "freethinkers", 
+                    "after": 0
+                }, 
+                "34050": {
+                    "chars": "Volga", 
+                    "after": 0
+                }, 
+                "36100": {
+                    "chars": "hybridize", 
+                    "after": 0
+                }, 
+                "38150": {
+                    "chars": "Scriabin", 
+                    "after": 0
+                }, 
+                "40200": {
+                    "chars": "landing", 
+                    "after": 0
+                }, 
+                "42250": {
+                    "chars": "chamberlains", 
+                    "after": 0
+                }, 
+                "44300": {
+                    "chars": "Rhonda", 
+                    "after": 0
+                }, 
+                "46350": {
+                    "chars": "Walsh", 
+                    "after": 0
+                }, 
+                "48400": {
+                    "chars": "flashing", 
+                    "after": 0
+                }, 
+                "1300": {
+                    "chars": "ridden", 
+                    "after": 0
+                }, 
+                "3350": {
+                    "chars": "trepidation", 
+                    "after": 0
+                }, 
+                "5400": {
+                    "chars": "trefoils", 
+                    "after": 0
+                }, 
+                "7450": {
+                    "chars": "caffeine", 
+                    "after": 0
+                }, 
+                "9500": {
+                    "chars": "tits", 
+                    "after": 0
+                }, 
+                "11550": {
+                    "chars": "ferrules", 
+                    "after": 0
+                }, 
+                "13600": {
+                    "chars": "mitts", 
+                    "after": 0
+                }, 
+                "15650": {
+                    "chars": "verily", 
+                    "after": 0
+                }, 
+                "17700": {
+                    "chars": "resend", 
+                    "after": 0
+                }, 
+                "19750": {
+                    "chars": "listened", 
+                    "after": 0
+                }, 
+                "21800": {
+                    "chars": "foreordained", 
+                    "after": 0
+                }, 
+                "23850": {
+                    "chars": "constitutionality", 
+                    "after": 0
+                }, 
+                "25900": {
+                    "chars": "sandhog", 
+                    "after": 0
+                }, 
+                "27950": {
+                    "chars": "reappraisals", 
+                    "after": 0
+                }, 
+                "30000": {
+                    "chars": "mildewing", 
+                    "after": 0
+                }, 
+                "32050": {
+                    "chars": "sweethearts", 
+                    "after": 0
+                }, 
+                "34100": {
+                    "chars": "espadrille", 
+                    "after": 0
+                }, 
+                "36150": {
+                    "chars": "longshoremen", 
+                    "after": 0
+                }, 
+                "38200": {
+                    "chars": "coronary", 
+                    "after": 0
+                }, 
+                "40250": {
+                    "chars": "urinate", 
+                    "after": 0
+                }, 
+                "42300": {
+                    "chars": "idolizes", 
+                    "after": 0
+                }, 
+                "44350": {
+                    "chars": "kohlrabi", 
+                    "after": 0
+                }, 
+                "46400": {
+                    "chars": "slovenlier", 
+                    "after": 0
+                }, 
+                "48450": {
+                    "chars": "fractious", 
+                    "after": 0
+                }, 
+                "1350": {
+                    "chars": "furthermost", 
+                    "after": 0
+                }, 
+                "3400": {
+                    "chars": "astringency", 
+                    "after": 0
+                }, 
+                "5450": {
+                    "chars": "Banneker", 
+                    "after": 0
+                }, 
+                "7500": {
+                    "chars": "Valhalla", 
+                    "after": 0
+                }, 
+                "9550": {
+                    "chars": "emeritus", 
+                    "after": 0
+                }, 
+                "11600": {
+                    "chars": "Curacao", 
+                    "after": 0
+                }, 
+                "13650": {
+                    "chars": "nightshirt", 
+                    "after": 0
+                }, 
+                "15700": {
+                    "chars": "drinking", 
+                    "after": 0
+                }, 
+                "17750": {
+                    "chars": "gooses", 
+                    "after": 0
+                }, 
+                "19800": {
+                    "chars": "contaminating", 
+                    "after": 0
+                }, 
+                "21850": {
+                    "chars": "seraph", 
+                    "after": 0
+                }, 
+                "23900": {
+                    "chars": "overcharge", 
+                    "after": 0
+                }, 
+                "25950": {
+                    "chars": "code", 
+                    "after": 0
+                }, 
+                "28000": {
+                    "chars": "agitation", 
+                    "after": 0
+                }, 
+                "30050": {
+                    "chars": "typesets", 
+                    "after": 0
+                }, 
+                "32100": {
+                    "chars": "pollutant", 
+                    "after": 0
+                }, 
+                "34150": {
+                    "chars": "monogrammed", 
+                    "after": 0
+                }, 
+                "36200": {
+                    "chars": "Carpathian", 
+                    "after": 0
+                }, 
+                "38250": {
+                    "chars": "hierarchy", 
+                    "after": 0
+                }, 
+                "40300": {
+                    "chars": "drunkards", 
+                    "after": 0
+                }, 
+                "42350": {
+                    "chars": "deliverers", 
+                    "after": 0
+                }, 
+                "44400": {
+                    "chars": "politely", 
+                    "after": 0
+                }, 
+                "46450": {
+                    "chars": "rewrite", 
+                    "after": 0
+                }, 
+                "48500": {
+                    "chars": "shambles", 
+                    "after": 0
+                }, 
+                "1400": {
+                    "chars": "funnelled", 
+                    "after": 0
+                }, 
+                "3450": {
+                    "chars": "windmilled", 
+                    "after": 0
+                }, 
+                "5500": {
+                    "chars": "messiest", 
+                    "after": 0
+                }, 
+                "7550": {
+                    "chars": "idlest", 
+                    "after": 0
+                }, 
+                "9600": {
+                    "chars": "hollower", 
+                    "after": 0
+                }, 
+                "11650": {
+                    "chars": "zoned", 
+                    "after": 0
+                }, 
+                "13700": {
+                    "chars": "daydreamer", 
+                    "after": 0
+                }, 
+                "15750": {
+                    "chars": "Midas", 
+                    "after": 0
+                }, 
+                "17800": {
+                    "chars": "Ithaca", 
+                    "after": 0
+                }, 
+                "19850": {
+                    "chars": "irrationality", 
+                    "after": 0
+                }, 
+                "21900": {
+                    "chars": "flimsiness", 
+                    "after": 0
+                }, 
+                "23950": {
+                    "chars": "accidentals", 
+                    "after": 0
+                }, 
+                "26000": {
+                    "chars": "aide", 
+                    "after": 0
+                }, 
+                "28050": {
+                    "chars": "chicaneries", 
+                    "after": 0
+                }, 
+                "30100": {
+                    "chars": "sourest", 
+                    "after": 0
+                }, 
+                "32150": {
+                    "chars": "antisocial", 
+                    "after": 0
+                }, 
+                "34200": {
+                    "chars": "gentleness", 
+                    "after": 0
+                }, 
+                "36250": {
+                    "chars": "invidious", 
+                    "after": 0
+                }, 
+                "38300": {
+                    "chars": "kilobytes", 
+                    "after": 0
+                }, 
+                "40350": {
+                    "chars": "pinnacles", 
+                    "after": 0
+                }, 
+                "42400": {
+                    "chars": "escaping", 
+                    "after": 0
+                }, 
+                "44450": {
+                    "chars": "conjugating", 
+                    "after": 0
+                }, 
+                "46500": {
+                    "chars": "genitives", 
+                    "after": 0
+                }, 
+                "48550": {
+                    "chars": "bestowals", 
+                    "after": 0
+                }, 
+                "1450": {
+                    "chars": "storeroom", 
+                    "after": 0
+                }, 
+                "3500": {
+                    "chars": "plateaux", 
+                    "after": 0
+                }, 
+                "5550": {
+                    "chars": "inventoried", 
+                    "after": 0
+                }, 
+                "7600": {
+                    "chars": "luminosity", 
+                    "after": 0
+                }, 
+                "9650": {
+                    "chars": "cones", 
+                    "after": 0
+                }, 
+                "11700": {
+                    "chars": "cozens", 
+                    "after": 0
+                }, 
+                "13750": {
+                    "chars": "pesticide", 
+                    "after": 0
+                }, 
+                "15800": {
+                    "chars": "undergoing", 
+                    "after": 0
+                }, 
+                "17850": {
+                    "chars": "gratefully", 
+                    "after": 0
+                }, 
+                "19900": {
+                    "chars": "earthquake", 
+                    "after": 0
+                }, 
+                "21950": {
+                    "chars": "overflow", 
+                    "after": 0
+                }, 
+                "24000": {
+                    "chars": "wistfulness", 
+                    "after": 0
+                }, 
+                "26050": {
+                    "chars": "besieger", 
+                    "after": 0
+                }, 
+                "28100": {
+                    "chars": "carriers", 
+                    "after": 0
+                }, 
+                "30150": {
+                    "chars": "Oxford", 
+                    "after": 0
+                }, 
+                "32200": {
+                    "chars": "cleanliness", 
+                    "after": 0
+                }, 
+                "34250": {
+                    "chars": "bristlier", 
+                    "after": 0
+                }, 
+                "36300": {
+                    "chars": "faggots", 
+                    "after": 0
+                }, 
+                "38350": {
+                    "chars": "physicals", 
+                    "after": 0
+                }, 
+                "40400": {
+                    "chars": "bluster", 
+                    "after": 0
+                }, 
+                "42450": {
+                    "chars": "curlycues", 
+                    "after": 0
+                }, 
+                "44500": {
+                    "chars": "Baguio", 
+                    "after": 0
+                }, 
+                "46550": {
+                    "chars": "replay", 
+                    "after": 0
+                }, 
+                "48600": {
+                    "chars": "laughing", 
+                    "after": 0
+                }, 
+                "1500": {
+                    "chars": "shanties", 
+                    "after": 0
+                }, 
+                "3550": {
+                    "chars": "payable", 
+                    "after": 0
+                }, 
+                "5600": {
+                    "chars": "futon", 
+                    "after": 0
+                }, 
+                "7650": {
+                    "chars": "signings", 
+                    "after": 0
+                }, 
+                "9700": {
+                    "chars": "juices", 
+                    "after": 0
+                }, 
+                "11750": {
+                    "chars": "neckerchief", 
+                    "after": 0
+                }, 
+                "13800": {
+                    "chars": "shodden", 
+                    "after": 0
+                }, 
+                "15850": {
+                    "chars": "job", 
+                    "after": 0
+                }, 
+                "17900": {
+                    "chars": "Perseus", 
+                    "after": 0
+                }, 
+                "19950": {
+                    "chars": "harmony", 
+                    "after": 0
+                }, 
+                "22000": {
+                    "chars": "Amie", 
+                    "after": 0
+                }, 
+                "24050": {
+                    "chars": "parsimonious", 
+                    "after": 0
+                }, 
+                "26100": {
+                    "chars": "perplexity", 
+                    "after": 0
+                }, 
+                "28150": {
+                    "chars": "coherently", 
+                    "after": 0
+                }, 
+                "30200": {
+                    "chars": "summarized", 
+                    "after": 0
+                }, 
+                "32250": {
+                    "chars": "Burberry", 
+                    "after": 0
+                }, 
+                "34300": {
+                    "chars": "excursion", 
+                    "after": 0
+                }, 
+                "36350": {
+                    "chars": "facades", 
+                    "after": 0
+                }, 
+                "38400": {
+                    "chars": "awoken", 
+                    "after": 0
+                }, 
+                "40450": {
+                    "chars": "prefacing", 
+                    "after": 0
+                }, 
+                "42500": {
+                    "chars": "Toynbee", 
+                    "after": 0
+                }, 
+                "44550": {
+                    "chars": "pretended", 
+                    "after": 0
+                }, 
+                "46600": {
+                    "chars": "preshrunk", 
+                    "after": 0
+                }, 
+                "48650": {
+                    "chars": "skylight", 
+                    "after": 0
+                }, 
+                "1550": {
+                    "chars": "chronology", 
+                    "after": 0
+                }, 
+                "3600": {
+                    "chars": "earnests", 
+                    "after": 0
+                }, 
+                "5650": {
+                    "chars": "transmittal", 
+                    "after": 0
+                }, 
+                "7700": {
+                    "chars": "melancholics", 
+                    "after": 0
+                }, 
+                "9750": {
+                    "chars": "vociferous", 
+                    "after": 0
+                }, 
+                "11800": {
+                    "chars": "beryllium", 
+                    "after": 0
+                }, 
+                "13850": {
+                    "chars": "Case", 
+                    "after": 0
+                }, 
+                "15900": {
+                    "chars": "doodling", 
+                    "after": 0
+                }, 
+                "17950": {
+                    "chars": "clothing", 
+                    "after": 0
+                }, 
+                "20000": {
+                    "chars": "acclimatizing", 
+                    "after": 0
+                }, 
+                "22050": {
+                    "chars": "Oklahoma", 
+                    "after": 0
+                }, 
+                "24100": {
+                    "chars": "pretensions", 
+                    "after": 0
+                }, 
+                "26150": {
+                    "chars": "pleasantly", 
+                    "after": 0
+                }, 
+                "28200": {
+                    "chars": "abolishes", 
+                    "after": 0
+                }, 
+                "30250": {
+                    "chars": "wastefully", 
+                    "after": 0
+                }, 
+                "32300": {
+                    "chars": "drags", 
+                    "after": 0
+                }, 
+                "34350": {
+                    "chars": "timider", 
+                    "after": 0
+                }, 
+                "36400": {
+                    "chars": "compartmentalizing", 
+                    "after": 0
+                }, 
+                "38450": {
+                    "chars": "Micronesia", 
+                    "after": 0
+                }, 
+                "40500": {
+                    "chars": "Hermosillo", 
+                    "after": 0
+                }, 
+                "42550": {
+                    "chars": "coupes", 
+                    "after": 0
+                }, 
+                "44600": {
+                    "chars": "schwas", 
+                    "after": 0
+                }, 
+                "46650": {
+                    "chars": "Idahos", 
+                    "after": 0
+                }, 
+                "48700": {
+                    "chars": "fallow", 
+                    "after": 0
+                }, 
+                "1600": {
+                    "chars": "Leakey", 
+                    "after": 0
+                }, 
+                "3650": {
+                    "chars": "taupe", 
+                    "after": 0
+                }, 
+                "5700": {
+                    "chars": "disturbances", 
+                    "after": 0
+                }, 
+                "7750": {
+                    "chars": "awesome", 
+                    "after": 0
+                }, 
+                "9800": {
+                    "chars": "epigram", 
+                    "after": 0
+                }, 
+                "11850": {
+                    "chars": "Joan", 
+                    "after": 0
+                }, 
+                "13900": {
+                    "chars": "inheritors", 
+                    "after": 0
+                }, 
+                "15950": {
+                    "chars": "skedaddle", 
+                    "after": 0
+                }, 
+                "18000": {
+                    "chars": "caliphates", 
+                    "after": 0
+                }, 
+                "20050": {
+                    "chars": "interbreeds", 
+                    "after": 0
+                }, 
+                "22100": {
+                    "chars": "dough", 
+                    "after": 0
+                }, 
+                "24150": {
+                    "chars": "tore", 
+                    "after": 0
+                }, 
+                "26200": {
+                    "chars": "cutbacks", 
+                    "after": 0
+                }, 
+                "28250": {
+                    "chars": "lament", 
+                    "after": 0
+                }, 
+                "30300": {
+                    "chars": "flumes", 
+                    "after": 0
+                }, 
+                "32350": {
+                    "chars": "doughtiest", 
+                    "after": 0
+                }, 
+                "34400": {
+                    "chars": "cloth", 
+                    "after": 0
+                }, 
+                "36450": {
+                    "chars": "afar", 
+                    "after": 0
+                }, 
+                "38500": {
+                    "chars": "makers", 
+                    "after": 0
+                }, 
+                "40550": {
+                    "chars": "thermionic", 
+                    "after": 0
+                }, 
+                "42600": {
+                    "chars": "melodic", 
+                    "after": 0
+                }, 
+                "44650": {
+                    "chars": "petitioning", 
+                    "after": 0
+                }, 
+                "46700": {
+                    "chars": "ways", 
+                    "after": 0
+                }, 
+                "48750": {
+                    "chars": "inking", 
+                    "after": 0
+                }, 
+                "1650": {
+                    "chars": "disrespect", 
+                    "after": 0
+                }, 
+                "3700": {
+                    "chars": "Ivy", 
+                    "after": 0
+                }, 
+                "5750": {
+                    "chars": "easel", 
+                    "after": 0
+                }, 
+                "7800": {
+                    "chars": "facts", 
+                    "after": 0
+                }, 
+                "9850": {
+                    "chars": "irreverence", 
+                    "after": 0
+                }, 
+                "11900": {
+                    "chars": "perturbation", 
+                    "after": 0
+                }, 
+                "13950": {
+                    "chars": "relent", 
+                    "after": 0
+                }, 
+                "16000": {
+                    "chars": "bathmats", 
+                    "after": 0
+                }, 
+                "18050": {
+                    "chars": "North", 
+                    "after": 0
+                }, 
+                "20100": {
+                    "chars": "postdate", 
+                    "after": 0
+                }, 
+                "22150": {
+                    "chars": "dorm", 
+                    "after": 0
+                }, 
+                "24200": {
+                    "chars": "taxable", 
+                    "after": 0
+                }, 
+                "26250": {
+                    "chars": "crying", 
+                    "after": 0
+                }, 
+                "28300": {
+                    "chars": "hermitage", 
+                    "after": 0
+                }, 
+                "30350": {
+                    "chars": "tenderized", 
+                    "after": 0
+                }, 
+                "32400": {
+                    "chars": "uneducated", 
+                    "after": 0
+                }, 
+                "34450": {
+                    "chars": "dizziness", 
+                    "after": 0
+                }, 
+                "36500": {
+                    "chars": "lachrymal", 
+                    "after": 0
+                }, 
+                "38550": {
+                    "chars": "precipitates", 
+                    "after": 0
+                }, 
+                "40600": {
+                    "chars": "storms", 
+                    "after": 0
+                }, 
+                "42650": {
+                    "chars": "historical", 
+                    "after": 0
+                }, 
+                "44700": {
+                    "chars": "Oedipus", 
+                    "after": 0
+                }, 
+                "46750": {
+                    "chars": "Barrie", 
+                    "after": 0
+                }, 
+                "48800": {
+                    "chars": "cataloged", 
+                    "after": 0
+                }, 
+                "1700": {
+                    "chars": "M", 
+                    "after": 0
+                }, 
+                "3750": {
+                    "chars": "augment", 
+                    "after": 0
+                }, 
+                "5800": {
+                    "chars": "chinstraps", 
+                    "after": 0
+                }, 
+                "7850": {
+                    "chars": "clouding", 
+                    "after": 0
+                }, 
+                "9900": {
+                    "chars": "components", 
+                    "after": 0
+                }, 
+                "11950": {
+                    "chars": "authored", 
+                    "after": 0
+                }, 
+                "14000": {
+                    "chars": "interbreeding", 
+                    "after": 0
+                }, 
+                "16050": {
+                    "chars": "cutoffs", 
+                    "after": 0
+                }, 
+                "18100": {
+                    "chars": "yowls", 
+                    "after": 0
+                }, 
+                "20150": {
+                    "chars": "fattest", 
+                    "after": 0
+                }, 
+                "22200": {
+                    "chars": "freshwater", 
+                    "after": 0
+                }, 
+                "24250": {
+                    "chars": "boo", 
+                    "after": 0
+                }, 
+                "26300": {
+                    "chars": "demitasses", 
+                    "after": 0
+                }, 
+                "28350": {
+                    "chars": "trivialize", 
+                    "after": 0
+                }, 
+                "30400": {
+                    "chars": "Berger", 
+                    "after": 0
+                }, 
+                "32450": {
+                    "chars": "potentate", 
+                    "after": 0
+                }, 
+                "34500": {
+                    "chars": "indispositions", 
+                    "after": 0
+                }, 
+                "36550": {
+                    "chars": "Emerson", 
+                    "after": 0
+                }, 
+                "38600": {
+                    "chars": "unpins", 
+                    "after": 0
+                }, 
+                "40650": {
+                    "chars": "stepdaughter", 
+                    "after": 0
+                }, 
+                "42700": {
+                    "chars": "asymptotic", 
+                    "after": 0
+                }, 
+                "44750": {
+                    "chars": "reorganization", 
+                    "after": 0
+                }, 
+                "46800": {
+                    "chars": "hoards", 
+                    "after": 0
+                }, 
+                "48850": {
+                    "chars": "eases", 
+                    "after": 0
+                }, 
+                "1750": {
+                    "chars": "regret", 
+                    "after": 0
+                }, 
+                "3800": {
+                    "chars": "Havanas", 
+                    "after": 0
+                }, 
+                "5850": {
+                    "chars": "grate", 
+                    "after": 0
+                }, 
+                "7900": {
+                    "chars": "dawdle", 
+                    "after": 0
+                }, 
+                "9950": {
+                    "chars": "whizzes", 
+                    "after": 0
+                }, 
+                "12000": {
+                    "chars": "laterally", 
+                    "after": 0
+                }, 
+                "14050": {
+                    "chars": "diagram", 
+                    "after": 0
+                }, 
+                "16100": {
+                    "chars": "type", 
+                    "after": 0
+                }, 
+                "18150": {
+                    "chars": "blunderbusses", 
+                    "after": 0
+                }, 
+                "20200": {
+                    "chars": "beatniks", 
+                    "after": 0
+                }, 
+                "22250": {
+                    "chars": "provoked", 
+                    "after": 0
+                }, 
+                "24300": {
+                    "chars": "attuning", 
+                    "after": 0
+                }, 
+                "26350": {
+                    "chars": "yarmulkes", 
+                    "after": 0
+                }, 
+                "28400": {
+                    "chars": "marksmen", 
+                    "after": 0
+                }, 
+                "30450": {
+                    "chars": "superintendent", 
+                    "after": 0
+                }, 
+                "32500": {
+                    "chars": "pens", 
+                    "after": 0
+                }, 
+                "34550": {
+                    "chars": "colliery", 
+                    "after": 0
+                }, 
+                "36600": {
+                    "chars": "cabals", 
+                    "after": 0
+                }, 
+                "38650": {
+                    "chars": "wideness", 
+                    "after": 0
+                }, 
+                "40700": {
+                    "chars": "marquise", 
+                    "after": 0
+                }, 
+                "42750": {
+                    "chars": "packer", 
+                    "after": 0
+                }, 
+                "44800": {
+                    "chars": "meatballs", 
+                    "after": 0
+                }, 
+                "46850": {
+                    "chars": "submersible", 
+                    "after": 0
+                }, 
+                "48900": {
+                    "chars": "Porrima", 
+                    "after": 0
+                }, 
+                "1800": {
+                    "chars": "airsickness", 
+                    "after": 0
+                }, 
+                "3850": {
+                    "chars": "hooves", 
+                    "after": 0
+                }, 
+                "5900": {
+                    "chars": "frizzy", 
+                    "after": 0
+                }, 
+                "7950": {
+                    "chars": "salmon", 
+                    "after": 0
+                }, 
+                "10000": {
+                    "chars": "blubbering", 
+                    "after": 0
+                }, 
+                "12050": {
+                    "chars": "preponderant", 
+                    "after": 0
+                }, 
+                "14100": {
+                    "chars": "capers", 
+                    "after": 0
+                }, 
+                "16150": {
+                    "chars": "saleswoman", 
+                    "after": 0
+                }, 
+                "18200": {
+                    "chars": "resolve", 
+                    "after": 0
+                }, 
+                "20250": {
+                    "chars": "preps", 
+                    "after": 0
+                }, 
+                "22300": {
+                    "chars": "Borneo", 
+                    "after": 0
+                }, 
+                "24350": {
+                    "chars": "contusion", 
+                    "after": 0
+                }, 
+                "26400": {
+                    "chars": "terns", 
+                    "after": 0
+                }, 
+                "28450": {
+                    "chars": "same", 
+                    "after": 0
+                }, 
+                "30500": {
+                    "chars": "rubble", 
+                    "after": 0
+                }, 
+                "32550": {
+                    "chars": "erased", 
+                    "after": 0
+                }, 
+                "34600": {
+                    "chars": "garroting", 
+                    "after": 0
+                }, 
+                "36650": {
+                    "chars": "pooched", 
+                    "after": 0
+                }, 
+                "38700": {
+                    "chars": "Magritte", 
+                    "after": 0
+                }, 
+                "40750": {
+                    "chars": "assimilate", 
+                    "after": 0
+                }, 
+                "42800": {
+                    "chars": "overfull", 
+                    "after": 0
+                }, 
+                "44850": {
+                    "chars": "depositors", 
+                    "after": 0
+                }, 
+                "46900": {
+                    "chars": "resemble", 
+                    "after": 0
+                }, 
+                "48950": {
+                    "chars": "bedded", 
+                    "after": 0
+                }, 
+                "1850": {
+                    "chars": "Eli", 
+                    "after": 0
+                }, 
+                "3900": {
+                    "chars": "peppier", 
+                    "after": 0
+                }, 
+                "5950": {
+                    "chars": "crunchier", 
+                    "after": 0
+                }, 
+                "8000": {
+                    "chars": "Ndjamena", 
+                    "after": 0
+                }, 
+                "10050": {
+                    "chars": "eyelid", 
+                    "after": 0
+                }, 
+                "12100": {
+                    "chars": "provably", 
+                    "after": 0
+                }, 
+                "14150": {
+                    "chars": "Nicobar", 
+                    "after": 0
+                }, 
+                "16200": {
+                    "chars": "Marian", 
+                    "after": 0
+                }, 
+                "18250": {
+                    "chars": "moonlighting", 
+                    "after": 0
+                }, 
+                "20300": {
+                    "chars": "rant", 
+                    "after": 0
+                }, 
+                "22350": {
+                    "chars": "Americanization", 
+                    "after": 0
+                }, 
+                "24400": {
+                    "chars": "Welland", 
+                    "after": 0
+                }, 
+                "26450": {
+                    "chars": "treadmills", 
+                    "after": 0
+                }, 
+                "28500": {
+                    "chars": "clergy", 
+                    "after": 0
+                }, 
+                "30550": {
+                    "chars": "unscathed", 
+                    "after": 0
+                }, 
+                "32600": {
+                    "chars": "Mullins", 
+                    "after": 0
+                }, 
+                "34650": {
+                    "chars": "predating", 
+                    "after": 0
+                }, 
+                "36700": {
+                    "chars": "vulgarity", 
+                    "after": 0
+                }, 
+                "38750": {
+                    "chars": "muggings", 
+                    "after": 0
+                }, 
+                "40800": {
+                    "chars": "segments", 
+                    "after": 0
+                }, 
+                "42850": {
+                    "chars": "amatory", 
+                    "after": 0
+                }, 
+                "44900": {
+                    "chars": "Seuss", 
+                    "after": 0
+                }, 
+                "46950": {
+                    "chars": "smokiness", 
+                    "after": 0
+                }, 
+                "49000": {
+                    "chars": "artifices", 
+                    "after": 0
+                }, 
+                "1900": {
+                    "chars": "cairns", 
+                    "after": 0
+                }, 
+                "3950": {
+                    "chars": "transgression", 
+                    "after": 0
+                }, 
+                "6000": {
+                    "chars": "perfecter", 
+                    "after": 0
+                }, 
+                "8050": {
+                    "chars": "cogitation", 
+                    "after": 0
+                }, 
+                "10100": {
+                    "chars": "subscript", 
+                    "after": 0
+                }, 
+                "12150": {
+                    "chars": "snicker", 
+                    "after": 0
+                }, 
+                "14200": {
+                    "chars": "libeled", 
+                    "after": 0
+                }, 
+                "16250": {
+                    "chars": "sesames", 
+                    "after": 0
+                }, 
+                "18300": {
+                    "chars": "hepper", 
+                    "after": 0
+                }, 
+                "20350": {
+                    "chars": "dross", 
+                    "after": 0
+                }, 
+                "22400": {
+                    "chars": "subcontinent", 
+                    "after": 0
+                }, 
+                "24450": {
+                    "chars": "Ritalin", 
+                    "after": 0
+                }, 
+                "26500": {
+                    "chars": "Wasatch", 
+                    "after": 0
+                }, 
+                "28550": {
+                    "chars": "soundproofs", 
+                    "after": 0
+                }, 
+                "30600": {
+                    "chars": "Germans", 
+                    "after": 0
+                }, 
+                "32650": {
+                    "chars": "pushiness", 
+                    "after": 0
+                }, 
+                "34700": {
+                    "chars": "expostulate", 
+                    "after": 0
+                }, 
+                "36750": {
+                    "chars": "puniest", 
+                    "after": 0
+                }, 
+                "38800": {
+                    "chars": "bolstered", 
+                    "after": 0
+                }, 
+                "40850": {
+                    "chars": "unfasten", 
+                    "after": 0
+                }, 
+                "42900": {
+                    "chars": "idealizes", 
+                    "after": 0
+                }, 
+                "44950": {
+                    "chars": "wipes", 
+                    "after": 0
+                }, 
+                "47000": {
+                    "chars": "dawning", 
+                    "after": 0
+                }, 
+                "49050": {
+                    "chars": "torment", 
+                    "after": 0
+                }, 
+                "1950": {
+                    "chars": "incredibility", 
+                    "after": 0
+                }, 
+                "4000": {
+                    "chars": "smothering", 
+                    "after": 0
+                }, 
+                "6050": {
+                    "chars": "Orlons", 
+                    "after": 0
+                }, 
+                "8100": {
+                    "chars": "halibut", 
+                    "after": 0
+                }, 
+                "10150": {
+                    "chars": "cannabis", 
+                    "after": 0
+                }, 
+                "12200": {
+                    "chars": "sandstorm", 
+                    "after": 0
+                }, 
+                "14250": {
+                    "chars": "zeroing", 
+                    "after": 0
+                }, 
+                "16300": {
+                    "chars": "sticking", 
+                    "after": 0
+                }, 
+                "18350": {
+                    "chars": "flyswatters", 
+                    "after": 0
+                }, 
+                "20400": {
+                    "chars": "posses", 
+                    "after": 0
+                }, 
+                "22450": {
+                    "chars": "tipper", 
+                    "after": 0
+                }, 
+                "24500": {
+                    "chars": "Ericson", 
+                    "after": 0
+                }, 
+                "26550": {
+                    "chars": "enfolding", 
+                    "after": 0
+                }, 
+                "28600": {
+                    "chars": "Milagros", 
+                    "after": 0
+                }, 
+                "30650": {
+                    "chars": "concordant", 
+                    "after": 0
+                }, 
+                "32700": {
+                    "chars": "crinolines", 
+                    "after": 0
+                }, 
+                "34750": {
+                    "chars": "contributor", 
+                    "after": 0
+                }, 
+                "36800": {
+                    "chars": "pertained", 
+                    "after": 0
+                }, 
+                "38850": {
+                    "chars": "factors", 
+                    "after": 0
+                }, 
+                "40900": {
+                    "chars": "consumed", 
+                    "after": 0
+                }, 
+                "42950": {
+                    "chars": "integrals", 
+                    "after": 0
+                }, 
+                "45000": {
+                    "chars": "alluvial", 
+                    "after": 0
+                }, 
+                "47050": {
+                    "chars": "mining", 
+                    "after": 0
+                }, 
+                "49100": {
+                    "chars": "sticker", 
+                    "after": 0
+                }, 
+                "2000": {
+                    "chars": "twitting", 
+                    "after": 0
+                }, 
+                "4050": {
+                    "chars": "misunderstands", 
+                    "after": 0
+                }, 
+                "6100": {
+                    "chars": "Islamic", 
+                    "after": 0
+                }, 
+                "8150": {
+                    "chars": "anaconda", 
+                    "after": 0
+                }, 
+                "10200": {
+                    "chars": "incorporation", 
+                    "after": 0
+                }, 
+                "12250": {
+                    "chars": "Avalon", 
+                    "after": 0
+                }, 
+                "14300": {
+                    "chars": "profoundly", 
+                    "after": 0
+                }, 
+                "16350": {
+                    "chars": "counterpoints", 
+                    "after": 0
+                }, 
+                "18400": {
+                    "chars": "stoning", 
+                    "after": 0
+                }, 
+                "20450": {
+                    "chars": "claiming", 
+                    "after": 0
+                }, 
+                "22500": {
+                    "chars": "wholesale", 
+                    "after": 0
+                }, 
+                "24550": {
+                    "chars": "eggbeater", 
+                    "after": 0
+                }, 
+                "26600": {
+                    "chars": "lounges", 
+                    "after": 0
+                }, 
+                "28650": {
+                    "chars": "sub", 
+                    "after": 0
+                }, 
+                "30700": {
+                    "chars": "teak", 
+                    "after": 0
+                }, 
+                "32750": {
+                    "chars": "forfeiture", 
+                    "after": 0
+                }, 
+                "34800": {
+                    "chars": "kissers", 
+                    "after": 0
+                }, 
+                "36850": {
+                    "chars": "suites", 
+                    "after": 0
+                }, 
+                "38900": {
+                    "chars": "dialyzes", 
+                    "after": 0
+                }, 
+                "40950": {
+                    "chars": "spare", 
+                    "after": 0
+                }, 
+                "43000": {
+                    "chars": "werewolf", 
+                    "after": 0
+                }, 
+                "45050": {
+                    "chars": "overdrive", 
+                    "after": 0
+                }, 
+                "47100": {
+                    "chars": "inadvertent", 
+                    "after": 0
+                }, 
+                "49150": {
+                    "chars": "militate", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }
+    }, 
+    "topology": [
+        "fully-connected", 
+        "star"
+    ]
+}

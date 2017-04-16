@@ -6,6 +6,7 @@ import * as T from '../types/Types';
 
 class Client {
 
+    private DISABLE_INTERFACE = true;
 
     private doc: any;   // sharejs doc
     private id: string;
@@ -26,7 +27,7 @@ class Client {
                 console.error("Quitting sharejs doc initialization");
                 return;
             }
-
+ 
             if (doc.getText().length > 0) {
                 console.error('Starting document is not empty (just a heads up)');
             }
@@ -35,8 +36,12 @@ class Client {
             let ta = document.createElement('textarea');
             ta.id = id.toString();
             interfaceContainer.appendChild(ta);
-            doc.attach_textarea(ta);
 
+            
+if (!this.DISABLE_INTERFACE) {
+    console.log('attaching text area');
+            doc.attach_textarea(ta);
+}
             for (let eventTime in events.insert) {
                 let time = parseFloat(eventTime);
                 let insert = events.insert[time];
@@ -46,25 +51,26 @@ class Client {
                     //console.log("Client: " + id + " inserted: " + insert.chars + " after: " + insert.after + " at: " + time);
 
                     doc.insert(insert.after, insert.chars, null);
-
+if (!this.DISABLE_INTERFACE) {
                     ta.value = doc.getText();   // wasn't updating otherwise for some reason
-                })
+}
+                }.bind(this))
 
             }
 
             for (let eventTime in events.delete) {
                 let time = parseFloat(eventTime);
                 let deletes = events.delete[eventTime];
-                for (let i = 0; i < deletes.length; i++) {
-                    let toDelete = deletes[i];
+                for (let i = 0; i < deletes.length; i++) {  //array of indices
+                    let toDelete = deletes[i]; 
                     scheduler.addEvent(time, i, function() {
-                        doc.insert(toDelete.index, 1, null);
+                        doc.del(toDelete, 1, null);
                     })
                 }
             }
 
             readyCallback();
-        })
+        }.bind(this))
 
         /*
 
