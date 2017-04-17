@@ -236,7 +236,7 @@ This method of generating identifiers independently of each other is an expensiv
 Further research with Logoot enabled `undo' and `redo' functionality, which is described below.
 
 
-\subsection{Logoot-Undo}
+\subsection{Logoot-Undo} \label{sec:logootundo}
 
 CRDTs generally struggle to provide an undo mechanism since the concept of reversing an update to the data structure is fundamentally contrary to the key property of CRDTs: commutativity of operations. For example, removing an insert does not commute with the original insertion. If it were, the insertion of a character followed by its removal would produce the same result as removal followed by its insertion. In the first case, the character is removed. In the second case, the removal has no effect since the character does not exist yet, so the following insertion takes effect. Thus the order the operations take effect matters; they do not commute.
 
@@ -786,9 +786,9 @@ public addEvent(time: number, clock: number, action: any) {
 
 	
 		\paragraph{Modified Vector Clocks}
-		A traditional vector clock is outlined is Appendix [TODO]. In this system, the causal delivery layer must delay messages that arrive before all of their causal dependencies are delivered, which requires calculating exactly which messages are missing.
+		A traditional vector clock is outlined is Appendix \ref{appendix:vectorclocks}. In this system, the causal delivery layer must delay messages that arrive before all of their causal dependencies are delivered, which requires calculating exactly which messages are missing.
 		
-		To this end, I modified the rule [TODO rule number from appendix] to only increment the local clock whenever a message is generated. This way, each value in a vector represents exactly how many messages have been sent by the corresponding client. 
+		To this end, I modified the vector merge rule (number 4 from the appendix) to only increment the local clock whenever a message is generated. This way, each value in a vector represents exactly how many messages are known to have been sent by the corresponding client. 
 		
 		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<_v$.
 				
@@ -807,34 +807,6 @@ public addEvent(time: number, clock: number, action: any) {
  		\label{fig:efficient}
  		\end{figure}
 		
-%		\paragraph{Vector Clocks} \label{sec:vectorclock}
-%		A vector clock is an list of sequence numbers, one per distributed process. At the time the system is initialized, all clients have a vector of zeros. According to the original paper by Fidge, there are 5 rules for updating which ensure that causal order can be determined by comparing vectors. The specifics of vector clocks are outlined in Appendix~\ref{appendix:vectorclocks}. The properties of vector clocks guarantee that \[ A \rightarrow B\ \Leftrightarrow Vector(A) < Vector(B)\] where $<$ is defined to in the appendix.
-		
-%		Fidge's nth[TODO] rule indicates that a receiver should increment its own local clock value on receipt of a message, as well as on sending its own messages. While this rule makes it easy to determine whether a message comes before or after or occurred concurrently with another, it is not so straightforward to determine, for instance, if a message overtook another on the same link, or how many messages occurred between two given vectors.
-		
-%		\paragraph{Modified Vector Clocks}
-%		Causal delivery layers delay messages that arrive before all of their causal dependencies are delivered. This requires calculating exactly which messages are missing, before a delayed message can be passed from the buffer to the client.
-		
-%		To do this simply, I modified the rule of incrementing local clocks on receipt, and only increment locally whenever a message is generated. This way, each value in a vector represents exactly how many messages have been sent by the corresponding client. This avoids conflating `how many messages this client has seen' with `how many messages this client has generated'.
-		
-%		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<$.
-		
-%		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \land\ v1.c' > v2.c'\]
-		
-%		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \land\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
-%		In this definition, $v2$ is causally dependent on $v1$ and $v1$ is causally prior to $v2$.
-		
-%		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
-		
-%		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Delta vectors are useful for delivering messages efficiently.
-		
-		
-%		\paragraph{Efficient Delivery}
-%		The causal delivery middleware must buffer all messages with dependencies that have not arrived yet. This means, that on each new message, the buffer must be searched for messages that can be delivered. This could lead to a cascade of deliveries which if implemented naiively is quadratic in the number of buffered messages.
-		
-%		Instead, using Delta Vectors we can form a dependency graph which allows more efficient delivery.
-		
-
 	
 	
 \section{ShareJS Comparative Environment} \label{sec:comparative}
@@ -851,7 +823,7 @@ public addEvent(time: number, clock: number, action: any) {
 	
 \section{Experiment Creation and Use} \label{sec:experimentcreation}
 
-	This section deals with the creation and analysis of the experiments. First I outline the overall system work flow. Then, I discuss the design of an individual experiment. Lastly, I examine why I decided to log to text files, then separately parse and analyze these files.
+	This section deals with the creation and analysis of the experiments. First I outline the overall system work flow. Then, I discuss the design of an individual experiment. Lastly, I briefly examine the decision to log experiments to text files, then separately parse and analyze these files to collect data.
 
 	\subsection{Work Flow}
 	On the whole, this project operates as in Figure~\ref{fig:workflow}. 
@@ -865,11 +837,11 @@ public addEvent(time: number, clock: number, action: any) {
 
 	
 	
-	Manually or with a custom script, experiment setup files are created, with specifications over which variations should be executed (such as different topologies or optimizations enabled). An experiment server provides whichever experiment and variant is queued to the requester, which may be the CRDT-based system, or the ShareJS-based one. In either case, the same basic data is served, though the experiment variations only apply to the CRDT-based system. The system then runs the experiment and submits the resulting log back to a logging server that then identifies which experiment was served, and writes the log to the correct file system directory. Then at some future point, a separate script collects logs and summarizes them into digestible formats.
+	Manually or with a custom script, experiment setup files are created, with specifications over which variations should be executed (such as different topologies or optimizations enabled). An experiment server provides whichever experiment and variant is queued to the requester, which may be the CRDT-based system, or the ShareJS-based one. In either case, the same basic data is served. The system then runs the experiment and submits the resulting log back to a logging server that then writes the log to the correct file system directory. Then at some future point, a separate script collects logs and summarizes them into digestible formats.
 
 	\subsection{Experiment Design}
 	
-	A basic experiment must specify the number of clients participating and when they join the network, a set of events for each client to execute, and the network topology and link latencies. I chose to save this data in a JSON file which is easily served from an experiment server to the web browser (browsers do not have facilities for automatically accessing local files for security reasons, otherwise the server would be redundant). Other options in experiment setups are variants, such as different network topologies to run the same experiment on and the type of scheduler to use in the CRDT-based system.	Listing~\ref{lst:simple} below makes all of these features visible for a simple experiment.
+	A basic experiment must define the number of clients participating, a set of events for each client to execute (these are seeded in the scheduler), and the network topology and link latencies. Listing~\ref{lst:simple} shows all of the features visible for a simple experiment.
 	
 
 \begin{lstlisting}[caption={A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}, label={lst:simple}]
@@ -924,55 +896,50 @@ public addEvent(time: number, clock: number, action: any) {
 }
 \end{lstlisting}
 
-	The choice to assign latencies per-node, and calculate a link latency as the average between two nodes' values, rather than assign per-link stems from the need to have one network description that fits any topology. It also models the real world better on a conceptual level: a device with one high latency link, such as a mobile phone, will likely have only higher latency links rather than some fast and slow links. This ``higher on all connections'' is modeled with the average between a (high-valued) node and its neighbors.
+	The choice to assign latencies per-node, and calculate a link latency as the average between two nodes' values, rather than assign per-link stems from the need to have one network description that fits any topology. It also models the real world better on a conceptual level: a device with one high latency link, such as a mobile phone, will likely have only higher latency links rather than some fast and slow links. This ``higher on all connections'' is modeled with an average between a (high-valued) node and its neighbors.
 
 	
 	\subsection{Separation of Concerns}
 	
-	A major decision that was made was to separate log analysis from the system generating the log itself. One reason for this was that it is good software engineering: one component should do one task. Another is that a separate analysis layer can analyze results from both the ShareJS and CRDT systems, rather than duplicating functionality for each system. On the other hand, modules for examining logged packet departures and arrivals end up resembling a set of `clients', much like the original simulations' and ShareJS's clients. However, I decided that having a system common to both that is separate and easily extensible is worth duplicating some high level functionality. The result is a Python script which parses and summarizes multiple log files from a single experiment.
+	A major decision that was made was to separate log analysis from the system generating the log itself. One reason for this is that it is good software engineering: one component should do one task. Another is that a separate analysis layer can analyze results from both the ShareJS and CRDT systems, rather than duplicating functionality within each system. 
 	
-	The analyzer pairs up send and receive log lines for each packet and calculates link latencies (important for ShareJS where latencies are nondeterministic) and length of packets, records the increases in memory usage at checkpoints in the log files, and various other statistics. A sample output is listed in Appendix~\ref{appendix:simplelogsummary}.	
+	Modules for tracing logged packet departures and arrivals end up resembling a set of `clients', much like the original simulations' and ShareJS's clients. However, I decided that having a shared layer that is easily extensible is worth some high level duplication. An independently running Python script serves this purpose. A sample from a simple experiment is listed in Appendix~\ref{appendix:simplelogsummary}.	
 	
 	
 	
 \section{Extension: Local Undo} \label{sec:undo}
 	
-	In interactive systems undo and redo are key features \cite{shneiderman1982}. As such, it is an interesting extension to the capabilities of a CRDT beyond basic insertion and deletion. I chose to implement a local undo -- that is, only allow undoing and redoing operations that were performed locally -- rather than a global undo, where everyone can modify any operation, at the suggestion of my supervisor. The approaches detailed below were developed originally prior to reading related literature, but one is very similar to that of Logoot Undo [section ref needed].
+	In interactive systems undo and redo are key features \cite{shneiderman1982}. As such, it is an interesting extension to the capabilities of a CRDT beyond basic insertion and deletion. I chose to implement a local undo -- that is, only allow undoing and redoing operations that were performed locally -- rather than a global undo, where everyone can modify any operation, at the suggestion of my supervisor. The approaches detailed below were developed originally prior to reading related literature, but one is very similar to that of Logoot Undo \cref{sec:logootundo}.
 	
 	\subsection{Overview}
 	Each client keeps a local stack of operations that it produced. The stack can be truncated to a certain length to avoid ever-growing memory consumption. When undoing an operation, a pointer is moved back down the stack and the inverse operation of the corresponding item on the stack is generated and broadcast to other clients.
 	
-	There are two operations that can be undone or redone: insert and delete. Only one client can ever locally generate an insert event (as each character is tagged with a globally unique identifier generated on the client) and thus it can undo and redo the operation. In the other case, two clients can concurrently delete the same character and so have the same operation on their local stack. How undoing and redoing this concurrent case is handled leads to two different semantics and consistency models. However, the insert is handled the same way in both cases.
+	There are two operations that can be undone or redone: insert and delete. Only one client can ever locally generate an insert event (as each character is tagged with a globally unique identifier generated on the client) and thus only it can undo and redo the operation. In the other case, two clients can concurrently delete the same character and so have the same operation on their local stack. How undoing and redoing this concurrent case is handled leads to two different semantics and consistency models.
 	
 	
 	\subsection{Insert}
-	The undoing of an insert can be thought of as a deletion, but this leads to the idea undo/redo can be implemented using the existing delete and insert operations. However, this is not feasible: doing a `redo insert' by inserting a new character of the same value, is not the same thing as redoing the insertion of the original character -- this is especially obvious when looking at the structure of the CRDT. Since each character is identified uniquely, the redo must reintroduce the same character with the same unique identifier rather than creating a new one with a fresh tag. Additionally, other clients may have performed concurrent operations on the character which must be brought back into effect on redo. The solution to this is discussed in the following subsections.
+	Undo and redo of an insert are not equivalent to deletion and insertion, due to the unique identifiers generated during insertion events. Rather, a redo must reintroduce the same character with the same unique identifier. The solution to this is discussed in the following subsections.
 	
 		\subsubsection{Undo/Redo Insert Semantics}
-		The creator of an insert can choose to undo its creation at any point in time. To satisfy the CCI consistency model and semantics (defined in [section ref] and below), an undo and a redo should have \textit{the same effect on the visible text as if the prior creation or undo never occurred}. For instance, if $A$ creates a character which is deleted by $B$, and the creation is undone and then redone by $A$, the character should still not be visible: the effect of client $B$s delete come back into effect as if $A$ never undid the insertion.
+		To satisfy the CCI consistency model and semantics (defined formally in \cref{sec:cciundo}), an undo and a redo should have \textit{the same effect on the visible text as if the prior creation or undo never occurred}. For instance, if $A$ creates a character which is deleted by $B$, and the creation is undone and then redone by $A$, the character should still not be visible: the effect of client $B$s delete returns as if $A$ never undid the insertion.
 		
-		Using this idea, it is evident that `undo insert' and `delete' operations need to be kept separate. Additionally, the operation needs to take precedence over deletions that have occurred subsequently. This along with the fact that a redo needs to reintroduce the original character leads to an effective semantics and straightforward implementation.
+		This idea leads to the fact that `undo insert' and `delete' operations need to be kept separate. Additionally, `undo insert' needs to take precedence over deletions that have occurred subsequently.
 		
 		\subsubsection{Implementation}
 		
-		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, but these along with the undo-delete and redo-delete bundles (to be seen) all have the same functional form.
-		 
-		The bundle contains
-		\begin{itemize}
-			\item The unique identifier of the character to be operated upon
-		\end{itemize}
-		
-		Undo packets also contain, besides the bundle, a string disambiguator to differentiate undo/redo and insert/delete.
+		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, which also have the same functional form as undo-delete and redo-delete, and only contain the character identifier to operate upon.
 		
 		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called), nodes which have $v = false$ are ignored and not retrieved.
 		
-		Normally, operations on the same piece of data in a CRDT need to commute. However, in this case, only one client can generate the messages and so conflict from different clients cannot occur. This also means the operations are all causally related by $\rightarrow$, and since the network layer guarantees causal delivery, there is never conflict. Thus, no proof of commutativity is required.
+		As only the originator of an insert can undo and redo it, there are never conflicting operations and there is no need to prove commutativity. Operations from the originator are delivered in order by the network.
+		
+-------------------------v1 cut so far-------------------------------------
 		
 	\subsection{Delete}
 		Undoing a delete, as mentioned before, is tricker than an insert as multiple clients can perform and therefore `own' a delete at the same time. How this concurrency is handled determines system behavior. The two possibilities are implementing the CCI consistency model and a variant I termed ``Immediate Undo''.
 		
 		\subsubsection{CCI Undo} \label{sec:cciundo}
-		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires full consensus between $n$ clients that concurrently deleted a character to return it.
+		According to CCI, undoing an delete should lead the system to behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires \textit{full consensus} between $n$ clients that concurrently deleted a character to return it.
 		
 			\paragraph{Modified Links}
 			While consensus is awkward, it is effectively implemented with counters. The key change is to modify the `deleted' tag of links in the CRDT from boolean to integer.
@@ -987,11 +954,9 @@ export interface MapEntry {
 \end{lstlisting}
 
 			\paragraph{Delete, Undo, Redo}
-			The first delete bundle can no longer have the effect of setting the boolean `deleted' flag. Instead, on each client it increments the $d$ value in the target link. A redo delete operation will also increment the `deleted' value on every client.
+			Delete and redo operations now increment the $d$ value in the target link. An undo packet has the effect of decrementing $d$.
 			
-			On the other hand, an undo delete operation is a bundle containing only the target ID to undo the deletion of. Its effect on any client is to decrement the `deleted' value.
-			
-			Now, when the $read()$ method is called on the CRDT, we only retrieve links that satisfy
+			Now, when the $read()$ method is called on the CRDT, only retrieve links that satisfy
 			
 				\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor l.d = 0 ) \] 
 			
@@ -1007,17 +972,17 @@ export interface MapEntry {
 			talk about cost (minimal) and the fact that an undo that happened a long time ago and is no longer on an operation stack has the same weight as one that happened more recently and is still in a stack(by $\rightarrow$) ??? 
 			
 		\subsubsection{Immediate Undo}
-		The CCI Undo is awkward in that it requires consensus to make concurrently deleted characters reappear. It would be preferable for any user to be able to immediately undo a character they may or may not have deleted concurrently with another user.
+		The CCI Undo is awkward in that it requires consensus to make concurrently deleted characters reappear. It would be preferable for any user to be able to immediately undo a character regardless of other users.
 		
 			\paragraph{Semantics}
-			To this end, the following describes the desired semantics:
+			To this end, the following are the desired semantics:
 			
 			In the case of conflicting concurrent \textit{make-invisible} operations (such as delete or redo delete) and \textit{make-visible} operations (such as undo delete), the \textit{make-visible} operation will take effect.
 			
 			The follows the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. Note that this effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character.  [talk about no longer having the pitfall of losing an undo/redo in the op stack when it is overwritten]
 			
 			\paragraph{Implementation}
-			In order to support an immediate undo effectively, we need to be able to compare the ``time'' at which a deletion, undo, or redo occurred in order to detect concurrency. Vector clocks allow exactly this. Thus, every such operation needs to tag the data in the CRDT with the vector clock value it occurred at. Then, when other operations arrive which affect the same data, the packet's vector and the vector in the CRDT can be compared and acted upon.
+			In order to support an immediate undo, we need to be able to compare the ``time'' at which a deletion, undo, or redo occurred in order to detect concurrency. Vector clocks allow exactly this: every such packet tags the data in the CRDT with the vector clock value of the packet. Then, when other operations arrive which affect the same data, the packet's vector and the vector in the CRDT can be compared and acted upon.
 			
 			The required modification in the CRDT is that the `deleted' tag of a link $l.d$ now represents a pair ($true/false$, $vector$). The first value is a boolean for whether or not the character is deleted. The second is the vector of the packet that delivered the operation (this cheats a little and reaches across network layers into the causal delivery mechanism to obtain a copy, but is more efficient than redundantly sending the vector both in the bundle and in the packet containing the bundle).
 			
@@ -1224,7 +1189,57 @@ export interface MapEntry {
 
 \section{Formal Definition}
 \label{appendix:vectorclocks}
-TODO
+
+As outlined in \cite{fidge1987}, the aim of vector clocks is to implement the $\rightarrow$ relation such that $ a \rightarrow b$ iff $a$ can causally affect $b$. It is possible to have neither $a \rightarrow b$ nor $b \rightarrow a$ indicating concurrent events.
+
+A vector clock $VC$ is an array of integer timestamps $[c_1, c_2...c_n]$. $c_p$ represents last known clock value $c$ of process $p$, 
+
+There are 5 rules associated with traditional vector clocks.
+\begin{enumerate}
+	\item All values are initially zero
+	\item The local clock value is incremented at least once for each atomic event
+	\item The current value of the entire vector is sent with every outgoing message
+	\item Upon receipt of a vector, set the local vector to be the maximum of corresponding values in the received and local vectors. The local value is incremented by one.
+	\item No value is ever decremented	
+\end{enumerate}
+
+The desired partial ordering can then be defined
+
+\[VC_a <_v VC_b \leftrightarrow \forall i[VC_a[i] \leq VC_b[i]] \land \exists j[VC_a[j] < VC_b[j]])\]
+
+%\section{Compact Representation}
+
+
+
+%		\paragraph{Vector Clocks} \label{sec:vectorclock}
+%		A vector clock is an list of sequence numbers, one per distributed process. At the time the system is initialized, all clients have a vector of zeros. According to the original paper by Fidge, there are 5 rules for updating which ensure that causal order can be determined by comparing vectors. The specifics of vector clocks are outlined in Appendix~\ref{appendix:vectorclocks}. The properties of vector clocks guarantee that \[ A \rightarrow B\ \Leftrightarrow Vector(A) < Vector(B)\] where $<$ is defined to in the appendix.
+		
+%		Fidge's nth[TODO] rule indicates that a receiver should increment its own local clock value on receipt of a message, as well as on sending its own messages. While this rule makes it easy to determine whether a message comes before or after or occurred concurrently with another, it is not so straightforward to determine, for instance, if a message overtook another on the same link, or how many messages occurred between two given vectors.
+		
+%		\paragraph{Modified Vector Clocks}
+%		Causal delivery layers delay messages that arrive before all of their causal dependencies are delivered. This requires calculating exactly which messages are missing, before a delayed message can be passed from the buffer to the client.
+		
+%		To do this simply, I modified the rule of incrementing local clocks on receipt, and only increment locally whenever a message is generated. This way, each value in a vector represents exactly how many messages have been sent by the corresponding client. This avoids conflating `how many messages this client has seen' with `how many messages this client has generated'.
+		
+%		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<$.
+		
+%		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \land\ v1.c' > v2.c'\]
+		
+%		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \land\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
+%		In this definition, $v2$ is causally dependent on $v1$ and $v1$ is causally prior to $v2$.
+		
+%		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
+		
+%		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Delta vectors are useful for delivering messages efficiently.
+		
+		
+%		\paragraph{Efficient Delivery}
+%		The causal delivery middleware must buffer all messages with dependencies that have not arrived yet. This means, that on each new message, the buffer must be searched for messages that can be delivered. This could lead to a cascade of deliveries which if implemented naiively is quadratic in the number of buffered messages.
+		
+%		Instead, using Delta Vectors we can form a dependency graph which allows more efficient delivery.
+		
+
+
 
 
 \chapter{Simple Experiment}
