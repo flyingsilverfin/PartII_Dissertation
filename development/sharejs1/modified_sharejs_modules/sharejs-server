@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
 // This is a simple example sharejs server which hosts the sharejs
 // examples in examples/.

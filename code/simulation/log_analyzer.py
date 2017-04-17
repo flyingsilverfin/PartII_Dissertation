@@ -232,6 +232,8 @@ class ExperimentAnalzer(object):
         self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
         self.logPath = logPath
 
+        self.finalMemoryUsage = int(open(os.path.join(*(logPath[:-1] + ['final_memory_usage.txt']))).read())
+
         # used for filling various datapoints later
         if identifier[0] != "fully-connected" and identifier[0] != "star":
             self.network_type = "sharejs"
@@ -531,6 +533,8 @@ class ExperimentAnalzer(object):
                 )
             for i in range(len(self.memory_stamps))
         ]
+
+        memory_checkpoints[-1] = self.formatResultEntry('MemoryCheckpointNoLog', self.finalMemoryUsage - initial_memory, readableStringOverride="nolog")
 
 
         # skip latencies for now

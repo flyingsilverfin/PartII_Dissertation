@@ -55,6 +55,16 @@ function runExperiment(experiment) {
                 'optimized': experiment.optimized
             }
         );
+    }, function(noLogMemory) {
+        postObject(
+            "http://localhost:3001/crdtMemoryNoLog",
+            {
+                'name': name,
+                'topology': experiment.topology,
+                'memory': noLogMemory,
+                'optimized': experiment.optimized
+            }
+        )
     });
 }
   

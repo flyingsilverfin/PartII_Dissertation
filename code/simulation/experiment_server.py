@@ -3,11 +3,38 @@ import os
 from flask import Flask
 from flask import request
 import glob
+import threading
+import time
 
 app = Flask(__name__)
 
 print "---Current dir---"
 print os.getcwd()
+
+# --- async stuff for restarting chrome for next experiment when experiment finishes ---
+
+class AsyncRunIn(threading.Thread):
+    def __init__(self, startIn, function):
+        threading.Thread.__init__(self)
+        self.toRun = function
+        self.startIn = startIn
+        self.start()
+
+    def run(self):
+        time.sleep(self.startIn)
+        self.toRun()
+
+
+
+# flask is threaded so this should be fine
+def restartChrome():
+    os.system('./restart_chrome_script.sh')
+
+def restartShareServer():
+    os.system('./restart_share_server.sh')
+
+# --- END stuff for restarting chrome when experiment finishes ---
+
 
 def getNextIncompleteCRDTExperiment():
     existingExperiments = os.listdir(os.path.join('.', 'experiments'))
@@ -44,6 +71,8 @@ def getNextIncompleteOTExperiment():
         experimentFolderSubDirs = os.listdir(experimentFolder)
         if 'ot' not in experimentFolderSubDirs:
             return experimentFolder
+        if 'log.txt' not in os.listdir(os.path.join(experimentFolder, 'ot')):
+            return experimentFolder
     return None
 
 @app.route('/nextCRDTExperiment', methods=['GET'])
@@ -68,6 +97,7 @@ def nextOTExperiment():
     experimentPath = getNextIncompleteOTExperiment()
     if experimentPath == None:
         return "{}"
+    print "returning: " + experimentPath
     setup = open(os.path.join(experimentPath, 'setup.json')).read()
     return setup
 
@@ -102,6 +132,26 @@ def receiveCRDTResult():
     
     return ""
 
+@app.route('/crdtMemoryNoLog', methods=['POST'])
+def receiveCRDTMemory():
+    data = request.get_json()
+
+    experimentName = data['name']
+    memory = str(data['memory'])
+    top = data['topology']
+    optimized = data['optimized']
+    #required directories must already exist
+    optimized_folder_name = "optimized" if optimized else "nonoptimized"
+
+    resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name, 'log.txt'), 'a')  #append
+    resultLog.write(memory + '\n')
+
+    resultLog.close()
+    
+    AsyncRunIn(5, restartChrome)
+    return ""
+
+
 @app.route('/otResult', methods=['POST'])
 def receiveOTResult():
 
@@ -121,7 +171,42 @@ def receiveOTResult():
     resultLog.close()
     
     return ""
+
+@app.route('/otMemoryNoLog', methods=['POST'])
+def receiveOTMemory():
+    data = request.get_json()
+
+    experimentName = data['name']
+    memory = str(data['memory'])
+    #required directories must already exist
+
+
+
+#TODO put this into the CRDT version!!!!!
+
+
+
+    resultLog = open(os.path.join('.', 'experiments', experimentName, 'ot', 'final_memory_usage.txt'), 'a+')    #append and read
+
+    numTrialsCompleted = len(resultLog.readlines())
     
+    print "Memory received: " + memory
+    resultLog.write(memory + '\n')
+    
+    resultLog.close()
+
+    #delete the log so it gets rerun if the number of lines in the resultLog is less than the intended number of trials
+    setup = json.loads(open(os.path.join('.','experiments',experimentName,'setup.json')).read())
+    numTrialsNeeded = int(setup['repeat'])
+
+    if numTrialsCompleted < numTrialsNeeded:
+        os.remove(os.path.join('.','experiments',experimentName,'ot','log.txt'))
+        os.remove(os.path.join('.','experiments',experimentName,'sharejs-server.log'))
+
+    AsyncRunIn(2, restartChrome)
+    AsyncRunIn(2, restartShareServer)
+    return ""
+
 
 
 # CORS hack

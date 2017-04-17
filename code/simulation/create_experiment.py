@@ -20,7 +20,8 @@ experiment_setup = {
     },
     "init": "",             # initial document contents
     "optimized": False,     #toggled by the experiment server when serving experiments
-    "description": ""
+    "description": "",
+    "repeat": 1
 }
 
 
@@ -52,6 +53,10 @@ EXPERIMENT_SETUP_OPTIONS = {
         "type": "str|int",
         "text": "Enter string that is initial document content "
                 "or number that indicates length of random string"
+    },
+    'repeat' : {
+        'type': 'int',
+        'text': "Number of repetitions for this experiment"
     }
 }
 
@@ -79,7 +84,7 @@ def printChoicesFor(item):
         raise Exception()
 
 # - indicates a sub-index
-order = ["description", "execution", "clients", "latency_model-type", "latency_model-center", "init"]
+order = ["description", "repeat", "execution", "clients", "latency_model-type", "latency_model-center", "init"]
 
 i = 0
 while i < len(order):
@@ -100,8 +105,11 @@ while i < len(order):
         try:
             assign[subindices[-1]] = int(value)
         except Exception:
-            print "exception"
-            continue
+            if experiment_setup[item] != None:
+                pass
+            else:
+                print "exception with no default"
+                continue
     elif typeRequired == "float":
         try:
             assign[subindices[-1]] = float(value)
@@ -166,6 +174,9 @@ num_deletes_per_client = 0 if len(num_deletes_per_client) == 0 else int(num_dele
 dt_per_client_event = raw_input("Event spacing per client (default 0): ")
 dt_per_client_event = 0 if len(dt_per_client_event) == 0 else int(dt_per_client_event)
 
+wordlen = raw_input("Length per insert (default random dictionary word: ")
+wordlen = -1 if len(wordlen) == 0 else int(wordlen)
+
 
 for i in range(numClients):
     experiment_setup["events"][i] = {
@@ -173,7 +184,12 @@ for i in range(numClients):
         "delete": {}
     }
     for j in range(num_inserts_per_client):
-        toInsert = pickRandomWord()
+
+        if (wordlen == -1):
+            toInsert = pickRandomWord()
+        else:
+            s = [chr(random.randint(97,122)) for i in range(wordlen)]
+            toInsert = "".join(s)
         when = j*dt_per_client_event
         experiment_setup["events"][i]["insert"][when] = {
             "chars": toInsert,

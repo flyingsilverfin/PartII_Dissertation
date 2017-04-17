@@ -25,6 +25,8 @@
 hat = require 'hat'
 fs = require 'fs'
 
+os = require 'os'
+
 syncQueue = require './syncqueue'
 
 # Time (in ms) that the server will wait for an auth message from the client before closing the connection
@@ -38,6 +40,12 @@ AUTH_TIMEOUT = 10000
 #   send(msg)
 #   removeListener()
 #   on(event, handler) - where event can be 'message' or 'closed'
+
+
+#random vars to do stuff once
+has_logged_initial_memory = false
+
+
 exports.handler = (session, createAgent) ->
     data =
       headers: session.headers
@@ -140,7 +148,7 @@ exports.handler = (session, createAgent) ->
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
         Date.now() + '    sent    -1    ' + id + '    sharejs-op    ' + len + '    ' + JSON.stringify(body) + '\n',
         (err) ->
-           console.error("Error writing log file for experiment: " + docName) if err
+           #console.error("SERVER: Error writing log file for experiment: " + docName) if err
            console.error(err) if err
       );
 
@@ -149,7 +157,7 @@ exports.handler = (session, createAgent) ->
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
         Date.now() + '    join-ack    ' + '-1' + '    ' + JSON.stringify(body) + '\n',
         (err) ->
-           console.error("Error writing log file for experiment: " + docName) if err
+           #console.error("SERVER: error writing log file for experiment: " + docName) if err
            console.error(err) if err
       );
 
@@ -159,9 +167,25 @@ exports.handler = (session, createAgent) ->
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
         Date.now() + '    join    ' + '-1' + '    ' + JSON.stringify(body) + '\n',
         (err) ->
-          console.error("Error writing log file for experiment: " + docName) if err
+          #console.error("SERVER: Error writing log file for experiment: " + docName) if err
           console.error(err) if err
       );
+      if has_logged_initial_memory == false
+
+        global.gc();
+
+        
+        fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server-memory.log',
+          process.memoryUsage().heapUsed + '\n',
+          (err) ->
+            if err 
+              console.error(err)
+            else
+              console.log "Wrote initial memory usage: " + process.memoryUsage().heapUsed + " to experiment: " + docName
+        )
+        has_logged_initial_memory = true
+
+
 
     # DISSERTATION LOG FUNCTION
     logOpReceived = (docName, id, body) ->
@@ -179,7 +203,7 @@ exports.handler = (session, createAgent) ->
       fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server.log', 
         Date.now() + '    ' + 'other-received    ' + id + '    -1    ' + JSON.stringify(body) + '\n',
         (err) ->
-          console.error("Error writing log file for experiment: " + docName) if err
+          #console.error("Error writing log file for experiment: " + docName) if err
           console.error(err) if err
       );
 
@@ -205,12 +229,12 @@ exports.handler = (session, createAgent) ->
         docName = null
         for name of docState
           docName = name
-        if response.open or response.create
+        val = response.open || response.create
+        session.send response
+        if val
           logJoinAckSent(docName, agent.sessionId, response)
         else
           logSent(docName, agent.sessionId, response)
-
-        session.send response
 
     # Open the given document name, at the requested version.
     # callback(error, version)
@@ -362,6 +386,20 @@ exports.handler = (session, createAgent) ->
 
     # The socket closes a document
     handleClose = (query, callback) ->
+
+      doc = query.doc
+      docName = doc.split('-')[0]
+
+      fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server-memory.log',
+        process.memoryUsage().heapUsed + '\n',
+        (err) ->
+          if err 
+            console.error(err)
+          else
+            console.log "Wrote final memory usage: " + process.memoryUsage().heapUsed + " to experiment: " + docName
+      )
+
+
       close query.doc, (error) ->
         if error
             # An error closing still results in the doc being closed.

@@ -4,7 +4,9 @@ import Client from './Client';
 import RealtimeScheduler from './RealtimeScheduler';
 import * as T from '../types/Types';
 
-export function main(experimentSetup, graph=true, finishedCallback) {
+declare var gc;
+
+export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryUsageCallback) {
 
     let logger = new Logger();
     logger.logMemory("pre-experiment");
@@ -29,6 +31,8 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
     let docSeed = Math.floor(Math.random()*1000000);
 
+    let shareDocReference = null; //massive hack to force server to get an error when finished so it logs memory
+
     // to be accessed from iframes
     // we add a Random number to the experiment name
     // so we (probably) get a fresh document that doesn't contain any data from an old experiment
@@ -48,8 +52,8 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         return s;
     };
 
-    (<any>window).clientReady = function() {
-
+    (<any>window).clientReady = function(docReference) {
+        shareDocReference = docReference;
         //numReady++;
         //console.log(numReady, numClients);
         //if (numReady === numClients) {
@@ -76,6 +80,17 @@ export function main(experimentSetup, graph=true, finishedCallback) {
             }
             logger.logMemory("post-experiment");
             finishedCallback(result);
+
+            // signal server to close document and log its memory
+            shareDocReference.close();
+
+
+            // clear log to lose any references to it
+            logger.freeLog();
+            // force GC
+            gc();
+            console.log("sending memory without log!!");
+            noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
         }, 2000);
     }
 

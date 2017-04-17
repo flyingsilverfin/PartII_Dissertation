@@ -29,6 +29,17 @@ function runExperiment(experiment) {
                 'result': experimentResult
             }
         );
+    }, function(noLogMemory) {
+        setTimeout(function() { //delay to ensure it arrives after otResult
+            // post() stringifies the json internally
+            postObject(
+                "http://localhost:3001/otMemoryNoLog",
+                {
+                    'name': name,
+                    'memory': noLogMemory
+                }
+            );
+        }, 1000);
     });
 }
   

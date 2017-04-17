@@ -47,6 +47,9 @@ export default class Logger {
             msg);
     }
 
+    public freeLog(): void {
+        this.l = null;
+    }
 
     public logMemory(when: "pre-experiment" |
                            "post-topology-init" | 

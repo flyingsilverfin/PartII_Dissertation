@@ -15,8 +15,10 @@ import TopologyStar from './topology/TopologyStar';
 import * as tsUnit from 'tsunit.external/tsUnit';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
+declare var gc;
 
-export function main(experimentSetup, graph=true, finishedCallback) {
+
+export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryUsageCallback) {
 
 
 
@@ -91,8 +93,13 @@ export function main(experimentSetup, graph=true, finishedCallback) {
                                             log: log
                                         }
                                         logger.logMemory("post-experiment");
-                                        debugger
                                         finishedCallback(result); 
+
+                                        // clear log to lose any references to it
+                                        logger.freeLog();
+                                        // force GC
+                                        gc();
+                                        noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
                                      }
     );
 

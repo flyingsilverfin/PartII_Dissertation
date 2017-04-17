@@ -69,7 +69,7 @@ if (!this.DISABLE_INTERFACE) {
                 }
             }
 
-            readyCallback();
+            readyCallback(doc);
         }.bind(this))
 
         /*
