@@ -1,0 +1,23 @@
+
+\section{Analysis}
+	
+	\subsection{Memory}
+	
+	***This can be redone, for instance ops grow in size as document number grows***
+	
+	Given our rough understanding of CRDTs and ShareJS, we can make hypotheses about the quantitative results that might be obtained. In terms of basic memory requirements, each ShareJS client requires storing the current document string, along with past operations. At worst, each character in the string was delivered as an individual operation, so given n characters we expect $O(2n)$ = $O(n)$ memory usage. The server must also store a list of these operations, but the overall cost is still $O(n)$. On the other hand, CRDTs at worst tag each character with a unique identifier. The largest identifier is $O(log(n))$ characters long (assuming increasing natural numbers as tags), which leads to $O(nlog(n))$ cost overall. This is slightly higher than ShareJS's linear growth.
+	
+	\subsection{Network}
+	
+	Given that the CRDT system will run over a P2P network, while ShareJS requires a server, as long as the P2P network is more connected than a star topology (equivalent to client/server), the average latency for all the clients to receive data should be lower. In fact, at best a P2P network will cut the time to receive an update to half of a client/server network. 
+	
+	In terms of number of characters sent over the network per action, it is difficult to make a prediction due to optimizations that may or may not be implemented. However, given a basic assumption of each character inserted into a CRDT also requiring an identifier to be sent, we get an $\Theta(nlog(n))$ space complexity again. On the other hand, ShareJS sends one character or word at a time, plus an index and a document version that the operation was performed on. If there are $n$ characters in the document, there are at most $n$ versions. The length of the decimal string $n$ is $log(n)$ characters. Thus we get an approximate $\Theta(nlog(n))$ packets sent for ShareJS.
+	
+	\subsection{Processor Load}
+	
+	The relative algorithmic simplicity of CRDTs versus OT hints that CRDTs should be computationally more efficient. If we assume that an insert and delete operation can be done in constant time in a CRDT, then the most expensive operation to be done is a linear time retrieval and update of the string displayed to the user. Operational transformations not only need to update the displayed string, but also need to transform (either on clients or on the server) changes against any concurrent edits. While this is hard to quantify, it is reasonable to expect that achieving convergence is more processor intensive with OTs than CRDTs.
+	
+	
+	\subsection{Client-Server versus Peer to Peer}
+	
+	It is worth examining what other reasons there might be for using a system that is capable of running over a P2P network. Generally, a key element is privacy. A P2P network can run over a secure, anonymous network such as Tor\footnote{\url{https://www.torproject.org/docs/faq}} and since no middleware needs to intercept and read packets, encryption may be used. OT systems almost always require a server, which may need to transform operations against each other – which requires transmitting all operations in plain text and kills any hope of privacy. One benefit of using a central server is that there is a natural “cloud” repository in which to store the contents of documents; a P2P network either requires some peers to be connected in order to download the latest version, or a server to have a repository of documents. Similar issues face state replay for new clients that join an active network; this is examined in section [SECTION REF]. Luckily, in terms of privacy, a central repository for CRDT based documents would not need to be able to read the contents, just distribute them on demand. Lastly, established P2P networks have further benefits such as lacking single points of failure, lower probability of downtime and lower operational cost to the provider, but these properties and their implications are not in the scope of this project.

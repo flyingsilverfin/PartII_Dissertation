@@ -32,18 +32,23 @@
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.1}Motivation}{9}{section.1.1}}
+\abx@aux@cite{preguica2009}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.2}Overview}{10}{section.1.2}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1.3}Related Work}{10}{section.1.3}}
-\abx@aux@cite{preguica2009}
+\newlabel{sec:relatedwork}{{1.3}{10}{Related Work}{section.1.3}{}}
+\newlabel{sec:relatedwork@cref}{{[section][3][1]1.3}{10}}
 \abx@aux@cite{weiss2008}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}Treedoc}{11}{subsection.1.3.1}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Concurrent updates to the same node. In the first state (left), client 1 has written the string `Cambride' into the text buffer. The systems settles and client 2 also sees the string `Cambride'. Both clients 1 and 2 realize there is a missing character -- client 1 inserts `g' and client 2 mistakenly inserts 'h'. As both create the same node in the tree, the nodes are merged as mini-nodes into a larger node. Both clients now see the string 'Cambridghe'.\relax }}{11}{figure.caption.9}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:treedoc}{{1.1}{11}{Concurrent updates to the same node. In the first state (left), client 1 has written the string `Cambride' into the text buffer. The systems settles and client 2 also sees the string `Cambride'. Both clients 1 and 2 realize there is a missing character -- client 1 inserts `g' and client 2 mistakenly inserts 'h'. As both create the same node in the tree, the nodes are merged as mini-nodes into a larger node. Both clients now see the string 'Cambridghe'.\relax }{figure.caption.9}{}}
+\newlabel{fig:treedoc@cref}{{[figure][1][1]1.1}{11}}
 \abx@aux@cite{nedelec2013lseq}
 \abx@aux@cite{nedelec2013}
 \abx@aux@cite{weiss2010undo}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Logoot}{12}{subsection.1.3.2}}
+\newlabel{sec:logoot}{{1.3.2}{12}{Logoot}{subsection.1.3.2}{}}
+\newlabel{sec:logoot@cref}{{[subsection][2][1,3]1.3.2}{12}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Logoot-Undo}{12}{subsection.1.3.3}}
 \abx@aux@cite{lamport1978}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {2}Preparation}{13}{chapter.2}}
@@ -54,145 +59,181 @@
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}CCI Consistency Model}{13}{subsection.2.1.2}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Two clients are initially in a quiescent state i.e. the system has settled with the shared string `computer '. They then concurrently insert different words at the same index. At first each sees only their own edit. Then operations are exchanged and the system reaches quiescence again. Both clients see the string 'computer labvision'. Client 1 thus `won' and kept the original index, while Client 2 had its insertion offset.\relax }}{14}{figure.caption.10}}
 \newlabel{fig:reconcile}{{2.1}{14}{Two clients are initially in a quiescent state i.e. the system has settled with the shared string `computer '. They then concurrently insert different words at the same index. At first each sees only their own edit. Then operations are exchanged and the system reaches quiescence again. Both clients see the string 'computer labvision'. Client 1 thus `won' and kept the original index, while Client 2 had its insertion offset.\relax }{figure.caption.10}{}}
+\newlabel{fig:reconcile@cref}{{[figure][1][2]2.1}{14}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.2}Achieving Eventual Consistency}{14}{section.2.2}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Operational Transformations}{15}{subsection.2.2.1}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Operational Transformations -- concurrent insertion}}{15}{figure.caption.11}}
 \newlabel{fig:ot1}{{2.2}{15}{Operational Transformations -- concurrent insertion}{figure.caption.11}{}}
+\newlabel{fig:ot1@cref}{{[figure][2][2]2.2}{15}}
 \abx@aux@cite{shapiro2007}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Operational Transformations -- concurrent deletion}}{16}{figure.caption.12}}
 \newlabel{fig:ot2}{{2.3}{16}{Operational Transformations -- concurrent deletion}{figure.caption.12}{}}
+\newlabel{fig:ot2@cref}{{[figure][3][2]2.3}{16}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Operational Transformations -- concurrent insertion and deletion}}{16}{figure.caption.13}}
 \newlabel{fig:ot3}{{2.4}{16}{Operational Transformations -- concurrent insertion and deletion}{figure.caption.13}{}}
+\newlabel{fig:ot3@cref}{{[figure][4][2]2.4}{16}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Convergent Replicated Data Types}{16}{subsection.2.2.2}}
+\newlabel{sec:crdtoverview}{{2.2.2}{16}{Convergent Replicated Data Types}{subsection.2.2.2}{}}
+\newlabel{sec:crdtoverview@cref}{{[subsection][2][2,2]2.2.2}{16}}
 \abx@aux@cite{shapiro2011}
 \abx@aux@cite{takada2013}
 \abx@aux@cite{sharejs}
 \abx@aux@cite{kumawat2016}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Text CRDT as a tagged set}}{17}{figure.caption.14}}
 \newlabel{fig:taggedset}{{2.5}{17}{Text CRDT as a tagged set}{figure.caption.14}{}}
+\newlabel{fig:taggedset@cref}{{[figure][5][2]2.5}{17}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}ShareJS}{18}{subsection.2.2.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.3}Analysis}{19}{section.2.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Memory}{19}{subsection.2.3.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Network}{19}{subsection.2.3.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Processor Load}{19}{subsection.2.3.3}}
+\newlabel{sec:sharejs}{{2.2.3}{18}{ShareJS}{subsection.2.2.3}{}}
+\newlabel{sec:sharejs@cref}{{[subsection][3][2,2]2.2.3}{18}}
 \abx@aux@cite{compsysmodeling}
 \abx@aux@cite{concdistsystems}
 \abx@aux@cite{computernetworking}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Client-Server versus Peer to Peer}{20}{subsection.2.3.4}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.4}Starting Point}{20}{section.2.4}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.5}Requirements Analysis}{20}{section.2.5}}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Project Goals, Priority, and Difficulty\relax }}{21}{table.caption.15}}
-\newlabel{table: goals}{{2.1}{21}{Project Goals, Priority, and Difficulty\relax }{table.caption.15}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.6}Software Engineering}{21}{section.2.6}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Libraries}{21}{subsection.2.6.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Languages}{21}{subsection.2.6.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}Tooling}{22}{subsection.2.6.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.4}Backup Strategy and Development Machine}{22}{subsection.2.6.4}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.3}Starting Point}{19}{section.2.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.4}Requirements Analysis}{19}{section.2.4}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Project Goals, Priority, and Difficulty\relax }}{19}{table.caption.15}}
+\newlabel{table: goals}{{2.1}{19}{Project Goals, Priority, and Difficulty\relax }{table.caption.15}{}}
+\newlabel{table: goals@cref}{{[table][1][2]2.1}{19}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.5}Software Engineering}{20}{section.2.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Libraries}{20}{subsection.2.5.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Languages}{20}{subsection.2.5.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Tooling}{20}{subsection.2.5.3}}
 \abx@aux@cite{RFC2460}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Backup Strategy and Development Machine}{21}{subsection.2.5.4}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.6}Early Design Decisions}{21}{section.2.6}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Network Simulation}{21}{subsection.2.6.1}}
 \abx@aux@cite{protobuf}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.7}Early Design Decisions}{23}{section.2.7}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Network Simulation}{23}{subsection.2.7.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Data Collection and Logging}{23}{subsection.2.7.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{25}{chapter.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Data Collection and Logging}{22}{subsection.2.6.2}}
+\newlabel{sec:datacollectiondecisions}{{2.6.2}{22}{Data Collection and Logging}{subsection.2.6.2}{}}
+\newlabel{sec:datacollectiondecisions@cref}{{[subsection][2][2,6]2.6.2}{22}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{23}{chapter.3}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.1}CRDT-based system}{25}{section.3.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Overview}{25}{subsection.3.1.1}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{26}{figure.caption.16}}
-\newlabel{fig:sysarch}{{3.1}{26}{System Architecture}{figure.caption.16}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}CRDT}{26}{subsection.3.1.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Structure and Functionality}{26}{section*.17}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{27}{figure.caption.18}}
-\newlabel{fig:linkedlist}{{3.2}{27}{Updating linked lists}{figure.caption.18}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{28}{figure.caption.19}}
-\newlabel{fig:hashlist}{{3.3}{28}{Annotated CRDT}{figure.caption.19}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Identifiers}{28}{section*.20}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Operations}{29}{section*.21}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Insert}{29}{section*.22}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Insert Bundle Type Signature}{29}{lstlisting.3.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Delete}{30}{section*.23}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Delete Bundle Type Signature}{30}{lstlisting.3.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Tombstones}{30}{subsection.3.1.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Optimizations}{31}{subsection.3.1.4}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.5}Network simulation}{32}{subsection.3.1.5}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Assumptions}{32}{section*.24}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Abstraction}{33}{section*.25}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Network Interface}{33}{section*.26}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}NetworkInterface Type Signature (cleaned)}{33}{lstlisting.3.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Joining the Network}{34}{section*.27}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Network Manager}{34}{section*.28}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Scheduler}{35}{section*.29}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}The Scheduler.addEvent method}{35}{lstlisting.3.4}}
+\newlabel{sec:implementation}{{3}{23}{Implementation}{chapter.3}{}}
+\newlabel{sec:implementation@cref}{{[chapter][3][]3}{23}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.1}CRDT-based system}{23}{section.3.1}}
+\newlabel{sec:crdt}{{3.1}{23}{CRDT-based system}{section.3.1}{}}
+\newlabel{sec:crdt@cref}{{[section][1][3]3.1}{23}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Overview}{23}{subsection.3.1.1}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{24}{figure.caption.16}}
+\newlabel{fig:sysarch}{{3.1}{24}{System Architecture}{figure.caption.16}{}}
+\newlabel{fig:sysarch@cref}{{[figure][1][3]3.1}{24}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}CRDT}{24}{subsection.3.1.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Structure and Functionality}{24}{section*.17}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{25}{figure.caption.18}}
+\newlabel{fig:linkedlist}{{3.2}{25}{Updating linked lists}{figure.caption.18}{}}
+\newlabel{fig:linkedlist@cref}{{[figure][2][3]3.2}{25}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{25}{figure.caption.19}}
+\newlabel{fig:hashlist}{{3.3}{25}{Annotated CRDT}{figure.caption.19}{}}
+\newlabel{fig:hashlist@cref}{{[figure][3][3]3.3}{25}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Identifiers}{26}{section*.20}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Operations}{26}{section*.21}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Insert}{26}{section*.22}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Insert Bundle Type Signature}{27}{lstlisting.3.1}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Incorporating Insert Bundle into CRDT}{27}{lstlisting.3.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Delete}{27}{section*.23}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}Delete Bundle Type Signature}{27}{lstlisting.3.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Tombstones}{28}{subsection.3.1.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Optimizations}{28}{subsection.3.1.4}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.5}Network simulation}{29}{subsection.3.1.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Assumptions}{29}{section*.24}}
+\newlabel{sec:networkassumptions}{{3.1.5}{29}{Assumptions}{section*.24}{}}
+\newlabel{sec:networkassumptions@cref}{{[subsection][5][3,1]3.1.5}{29}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Abstraction}{30}{section*.25}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Network Interface}{30}{section*.26}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}NetworkInterface Type Signature (cleaned)}{31}{lstlisting.3.4}}
+\newlabel{sec:networkjoin}{{3.1.5}{31}{Joining the Network}{section*.27}{}}
+\newlabel{sec:networkjoin@cref}{{[subsection][5][3,1]3.1.5}{31}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Joining the Network}{31}{section*.27}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Network Manager}{32}{section*.28}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Scheduler}{32}{section*.29}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}The Scheduler.addEvent method}{32}{lstlisting.3.5}}
 \abx@aux@cite{fidge1987}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Time}{36}{section*.30}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Causal Delivery}{36}{section*.31}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Ensuring Causal Delivery}}{37}{figure.caption.32}}
-\newlabel{fig:causal}{{3.4}{37}{Ensuring Causal Delivery}{figure.caption.32}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Vector Clocks}{37}{section*.33}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Modified Vector Clocks}{37}{section*.34}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Efficient Delivery}{38}{section*.35}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Dependency Graph in Message Buffer}}{39}{figure.caption.36}}
-\newlabel{fig:efficient}{{3.5}{39}{Dependency Graph in Message Buffer}{figure.caption.36}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{39}{section.3.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Scheduling}{39}{section*.37}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Logging}{40}{section*.38}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{40}{section.3.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Work Flow}{40}{subsection.3.3.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{40}{subsection.3.3.2}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{41}{figure.caption.39}}
-\newlabel{fig:workflow}{{3.6}{41}{Workflow}{figure.caption.39}{}}
-\newlabel{lst:simple}{{3.5}{41}{A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}{lstlisting.3.5}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}{41}{lstlisting.3.5}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{42}{subsection.3.3.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Time}{33}{section*.30}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Causal Delivery}{33}{section*.31}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Ensuring Causal Delivery}}{34}{figure.caption.32}}
+\newlabel{fig:causal}{{3.4}{34}{Ensuring Causal Delivery}{figure.caption.32}{}}
+\newlabel{fig:causal@cref}{{[figure][4][3]3.4}{34}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Modified Vector Clocks}{34}{section*.33}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Dependency Graph in Message Buffer}}{35}{figure.caption.34}}
+\newlabel{fig:efficient}{{3.5}{35}{Dependency Graph in Message Buffer}{figure.caption.34}{}}
+\newlabel{fig:efficient@cref}{{[figure][5][3]3.5}{35}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{35}{section.3.2}}
+\newlabel{sec:comparative}{{3.2}{35}{ShareJS Comparative Environment}{section.3.2}{}}
+\newlabel{sec:comparative@cref}{{[section][2][3]3.2}{35}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Scheduling}{35}{section*.35}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Logging}{36}{section*.36}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{36}{section.3.3}}
+\newlabel{sec:experimentcreation}{{3.3}{36}{Experiment Creation and Use}{section.3.3}{}}
+\newlabel{sec:experimentcreation@cref}{{[section][3][3]3.3}{36}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Work Flow}{36}{subsection.3.3.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{36}{subsection.3.3.2}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{37}{figure.caption.37}}
+\newlabel{fig:workflow}{{3.6}{37}{Workflow}{figure.caption.37}{}}
+\newlabel{fig:workflow@cref}{{[figure][6][3]3.6}{37}}
+\newlabel{lst:simple}{{3.6}{37}{A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}{lstlisting.3.6}{}}
+\newlabel{lst:simple@cref}{{[listing][6][3]3.6}{37}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}A simple JSON experiment setup. Comments added for explanation and not part of JSON syntax}{37}{lstlisting.3.6}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{38}{subsection.3.3.3}}
 \abx@aux@cite{shneiderman1982}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.4}Extension: Local Undo}{43}{section.3.4}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Overview}{43}{subsection.3.4.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Insert}{43}{subsection.3.4.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Undo/Redo Insert Semantics}{44}{section*.40}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Implementation}{44}{section*.41}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Delete}{44}{subsection.3.4.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{CCI Undo}{45}{section*.42}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Modified Links}{45}{section*.43}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}New Type Signature of a Link in the CRDT}{45}{lstlisting.3.6}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Delete, Undo, Redo}{45}{section*.44}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{45}{section*.45}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Cost and Causality}{46}{section*.46}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Immediate Undo}{46}{section*.47}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Semantics}{46}{section*.48}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Implementation}{46}{section*.49}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Proof of Commutativity}{47}{section*.50}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Cost}{47}{section*.51}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{49}{chapter.4}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.4}Extension: Local Undo}{39}{section.3.4}}
+\newlabel{sec:undo}{{3.4}{39}{Extension: Local Undo}{section.3.4}{}}
+\newlabel{sec:undo@cref}{{[section][4][3]3.4}{39}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Overview}{39}{subsection.3.4.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Insert}{39}{subsection.3.4.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Undo/Redo Insert Semantics}{40}{section*.38}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Implementation}{40}{section*.39}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Delete}{40}{subsection.3.4.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{CCI Undo}{41}{section*.40}}
+\newlabel{sec:cciundo}{{3.4.3}{41}{CCI Undo}{section*.40}{}}
+\newlabel{sec:cciundo@cref}{{[subsection][3][3,4]3.4.3}{41}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Modified Links}{41}{section*.41}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}New Type Signature of a Link in the CRDT}{41}{lstlisting.3.7}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Delete, Undo, Redo}{41}{section*.42}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{41}{section*.43}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Cost and Causality}{42}{section*.44}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Immediate Undo}{42}{section*.45}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Semantics}{42}{section*.46}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Implementation}{42}{section*.47}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Proof of Commutativity}{43}{section*.48}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Cost}{44}{section*.49}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{45}{chapter.4}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.1}Overall Results}{49}{section.4.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.1}Overall Results}{45}{section.4.1}}
 \abx@aux@cite{Patton}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.2}Testing the CRDT}{50}{section.4.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.3}Quantitative Analysis}{50}{section.4.3}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{51}{figure.caption.52}}
-\newlabel{fig:unittests}{{4.1}{51}{Unit tests for CRDT}{figure.caption.52}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}ShareJS Performance}{52}{subsection.4.3.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{}{52}{section*.53}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Core CRDT Performance}{52}{subsection.4.3.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}ShareJS vs CRDT for Text Editing}{52}{subsection.4.3.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Network}{52}{subsection.4.3.4}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{53}{chapter.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.2}Testing the CRDT}{46}{section.4.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.3}Quantitative Analysis}{46}{section.4.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}ShareJS Latencies}{46}{subsection.4.3.1}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{47}{figure.caption.50}}
+\newlabel{fig:unittests}{{4.1}{47}{Unit tests for CRDT}{figure.caption.50}{}}
+\newlabel{fig:unittests@cref}{{[figure][1][4]4.1}{47}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Memory}{48}{subsection.4.3.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Single Client}{48}{section*.51}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{Multiple Clients}{48}{section*.52}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}ShareJS Performance}{49}{subsection.4.3.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{}{49}{section*.53}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Core CRDT Performance}{49}{subsection.4.3.4}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}ShareJS vs CRDT for Text Editing}{49}{subsection.4.3.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Network}{49}{subsection.4.3.6}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Bibliography}{53}{chapter.5}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {A}Vector Clocks}{57}{appendix.A}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Bibliography}{51}{chapter.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {A}Vector Clocks}{55}{appendix.A}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {A.1}Formal Definition}{57}{section.A.1}}
-\newlabel{appendix:vectorclocks}{{A.1}{57}{Formal Definition}{section.A.1}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {B}Simple Experiment}{59}{appendix.B}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {A.1}Formal Definition}{55}{section.A.1}}
+\newlabel{appendix:vectorclocks}{{A.1}{55}{Formal Definition}{section.A.1}{}}
+\newlabel{appendix:vectorclocks@cref}{{[subappendix][1][2147483647,1]A.1}{55}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {B}Simple Experiment}{57}{appendix.B}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {B.1}Summary of Logs of Simple Experiment}{59}{section.B.1}}
-\newlabel{appendix:simplelogsummary}{{B.1}{59}{Summary of Logs of Simple Experiment}{section.B.1}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {B.1}Summary of Logs of Simple Experiment}{57}{section.B.1}}
+\newlabel{appendix:simplelogsummary}{{B.1}{57}{Summary of Logs of Simple Experiment}{section.B.1}{}}
+\newlabel{appendix:simplelogsummary@cref}{{[subappendix][1][2147483647,2]B.1}{57}}
 \abx@aux@cite{Technion}
 \abx@aux@cite{sun1998operational}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {C}Project Proposal}{63}{appendix.C}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {C}Project Proposal}{61}{appendix.C}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
 \abx@aux@cite{preguica2009commutative}
