@@ -1,0 +1,42 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+	title=Single Client Memory Consumption,
+	xlabel={Number of Insertions (1000s)},
+	ylabel={KBytes},
+	bar width=10pt,
+	xmin=0, xmax=11000,
+	ymax=35000000,
+	scale=1.5,
+	scaled y ticks = real:1000,
+	y tick label style={/pgf/number format/fixed},
+	ytick scale label code/.code={},
+	scaled x ticks = real:1000,
+	x tick label style={/pgf/number format/fixed},
+	xtick scale label code/.code={},
+	legend pos=north west
+	]
+
+\addplot+ 
+ plot[error bars/.cd, y dir = both, y explicit]
+ table[x index=1, y index = 2, y error index= 4] {./1client_ot_client_memory.dat_STATS.dat};
+ \addlegendentry{ShareJS Client}
+
+\addplot+ 
+ plot[error bars/.cd, y dir = both, y explicit]
+ table[x index=1, y index = 2, y error index= 4] {./1client_crdt_memory.dat_STATS.dat};
+ \addlegendentry{CRDT Client}
+ 
+\addplot+ [black]
+  plot[error bars/.cd, y dir = both, y explicit]
+  table[x index=1, y index = 2, y error index= 4] {./1client_share_server_memory.dat_STATS.dat};
+  \addlegendentry{ShareJS Server}
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

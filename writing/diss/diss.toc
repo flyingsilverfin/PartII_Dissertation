@@ -128,13 +128,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{41}{section*.43}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Cost and Causality}{41}{section*.44}
+\contentsline {paragraph}{Cost}{41}{section*.44}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Immediate Undo}{41}{section*.45}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Semantics}{41}{section*.46}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Implementation}{42}{section*.47}
+\contentsline {paragraph}{Implementation}{41}{section*.47}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Proof of Commutativity}{42}{section*.48}
 \defcounter {refsection}{0}\relax 
@@ -146,36 +146,38 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}Testing the CRDT}{46}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Quantitative Analysis}{46}{section.4.3}
+\contentsline {section}{\numberline {4.3}Quantitative Analysis}{47}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.1}ShareJS Latencies}{46}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}ShareJS Latencies}{47}{subsection.4.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.2}Memory}{48}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Single Client}{48}{section*.51}
+\contentsline {paragraph}{ShareJS Expectations}{48}{section*.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Multiple Clients}{48}{section*.52}
+\contentsline {paragraph}{Single Client}{49}{section*.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}ShareJS Performance}{49}{subsection.4.3.3}
+\contentsline {paragraph}{Multiple Clients}{50}{section*.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{}{49}{section*.53}
+\contentsline {subsection}{\numberline {4.3.3}ShareJS Performance}{51}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}Core CRDT Performance}{49}{subsection.4.3.4}
+\contentsline {subsubsection}{}{51}{section*.57}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}ShareJS vs CRDT for Text Editing}{49}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.4}Core CRDT Performance}{51}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Network}{49}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.5}ShareJS vs CRDT for Text Editing}{51}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
+\contentsline {subsection}{\numberline {4.3.6}Network}{51}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{51}{chapter.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{53}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Vector Clocks}{55}{appendix.A}
+\contentsline {chapter}{Bibliography}{53}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Formal Definition}{55}{section.A.1}
+\contentsline {chapter}{\numberline {A}Vector Clocks}{57}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Simple Experiment}{57}{appendix.B}
+\contentsline {section}{\numberline {A.1}Formal Definition}{57}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}Summary of Logs of Simple Experiment}{57}{section.B.1}
+\contentsline {chapter}{\numberline {B}Simple Experiment}{59}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Project Proposal}{61}{appendix.C}
+\contentsline {section}{\numberline {B.1}Summary of Logs of Simple Experiment}{59}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Project Proposal}{63}{appendix.C}
