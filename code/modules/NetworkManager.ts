@@ -66,7 +66,7 @@ class NetworkManager {
 
             this.log.logJoin("join", id, "Joined network!");
 
-            this.visualizer.setNodeActive(id);
+            if (this.visualizer !== null) this.visualizer.setNodeActive(id);
 
         } catch (err) {
             // this would be a FixedSizeTopologyException

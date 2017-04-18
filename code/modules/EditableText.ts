@@ -3,6 +3,8 @@ import {insertIntoString, deleteAt} from './Helper';
 import * as IT from '../types/InterfaceTypes';
 
 
+let DISABLE_INTERFACE = true;
+
 class EditableText implements IT.EditableTextInterface {
     private container: HTMLDivElement;
     private clientIdField: HTMLElement; // some sort of id field, might be a header
@@ -180,7 +182,9 @@ class EditableText implements IT.EditableTextInterface {
         // insert 
         content = insertIntoString(chars, after, content);
 
+if (!DISABLE_INTERFACE) {
         this.setContent(content);
+}
         this.setCursorPosition(after + chars.length);
 
         this.insertCallback(chars, after, true);
@@ -196,8 +200,9 @@ class EditableText implements IT.EditableTextInterface {
         }
         
         content = deleteAt(content, index);
-
+if (!DISABLE_INTERFACE) {
         this.setContent(content);
+}
         this.setCursorPosition(index);
 
         this.deleteCallback(index);

@@ -199,15 +199,25 @@ class Client {
             }
         }
 
+        // want deletes scheduled at same time as inserts to run After
+
         for (let eventTime in this.events.delete) {
             let time = parseFloat(eventTime);
             let deletes = this.events.delete[eventTime];
 
             let self = this;
 
+            let insertAt = this.events.insert[eventTime];
+            let numInserts;
+            if (insertAt !== undefined) {
+                numInserts = insertAt.chars.length
+            } else {
+                numInserts = 0;
+            }
+
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
-                this.scheduler.addEvent(time, i, function() {
+                this.scheduler.addEvent(time, 1 + i + numInserts, function() {
                     self.interface.mockDelete(mockDelete);
                 });
             }
@@ -248,7 +258,7 @@ class Client {
         However, once the concurrent packet arrives, one client will see its word jump ahead
         This is expected behavior
     */
-    private charInsertedLocal(char: string, after: number, commitNow=false): void {
+    private charInsertedLocal(char: string, index: number, commitNow=false): void {
         let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
         let opId = nextT + '.' + this.id;
 
@@ -261,7 +271,7 @@ class Client {
         // NOTE: this is a possible optimization that requires inserts/deletes to be labeled as (prior hash identifier, offset)
         //       then split up the word in the CRDT into sub words/characters
 
-        let idOfAfter = this.getIdOfStringIndex(after);
+        let idOfAfter = this.getIdOfStringIndex(index-1);
         let bundle: CT.InsertMessage = {
             id: opId,
             char: char,
@@ -310,17 +320,16 @@ class Client {
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
 
-
-if (!this.DISABLE_INTERFACE) {
         this.updateParallelArrays();
 
         // probably possible to do this more cleanly
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
+}
         if (oldAfterId !== newAfterId) {
             this.interface.incrementCursorPosition(bundle.char.length);
         }
-}
         //return true;
     }
 
@@ -350,7 +359,6 @@ if (!this.DISABLE_INTERFACE) {
         
         this.dt.delete(bundle, when, this.network.getCurrentVector());
 
-if (!this.DISABLE_INTERFACE) {
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
@@ -359,11 +367,14 @@ if (!this.DISABLE_INTERFACE) {
 
         // probably possible to do this more cleanly
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+
+if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
+}
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
-}
+
     }
 
     private requestCRDTReceived(origin: T.ClientId): void {
@@ -396,16 +407,15 @@ if (!this.DISABLE_INTERFACE) {
     }
 
     private getIdOfStringIndex(after: number): string {
-        return this.idArray[after];
+        return this.idArray[after+1];
     }
 
     private updateInterface(): void {
+    this.updateParallelArrays();
 
-if (this.DISABLE_INTERFACE) {
-    return;
-}
-        this.updateParallelArrays();
+if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
+}
     }
 
 }

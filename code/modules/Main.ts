@@ -17,7 +17,6 @@ import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
 declare var gc;
 
-
 export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryUsageCallback) {
 
 
@@ -26,6 +25,8 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
     let logger = new Logger(time);
 
     let optimized = experimentSetup.optimized;
+
+    gc();   // clear before experiment runs
 
     logger.logMemory("pre-experiment");
 
@@ -56,6 +57,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
     let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = null;
     if (graph) {
+        console.log("Graph: " + graph);
         graphVisualizer = new GraphVisualizer(
                                                 svg, 
                                                 topology,

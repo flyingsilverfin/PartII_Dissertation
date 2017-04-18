@@ -3,6 +3,9 @@
 import {main} from '../modules/Main';
 import {fetchJSONFile, postObject} from '../modules/Helper';
 
+/*
+// clunky way to disable testing using up memory
+
 import * as tsUnit from 'tsunit.external/tsUnit'
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 import MapCRDTTests from '../tests/MapCRDTTests';
@@ -21,6 +24,7 @@ for (let i = 0; i < tests.length; i++) {
     document.getElementById('testing-results').appendChild(div);
     result.showResults("results-" + i);
 } 
+*/
 
 // --- bit that fetches and runs experiments --- 
 
@@ -36,12 +40,14 @@ function getNextExperiment() {
 
 }
 
+let TESTING = false;
+
 function runExperiment(experiment) {
 
     let name = experiment.experiment_name;
     console.log("-----Fetched and running experiment with topology: " + name + " " + experiment.topology);
 
-    main(experiment, true, function(experimentResult) {
+    main(experiment, TESTING, function(experimentResult) {
 
         console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);
         
@@ -56,15 +62,17 @@ function runExperiment(experiment) {
             }
         );
     }, function(noLogMemory) {
-        postObject(
-            "http://localhost:3001/crdtMemoryNoLog",
-            {
-                'name': name,
-                'topology': experiment.topology,
-                'memory': noLogMemory,
-                'optimized': experiment.optimized
-            }
-        )
+        setTimeout(function() {
+            postObject(
+                "http://localhost:3001/crdtMemoryNoLog",
+                {
+                    'name': name,
+                    'topology': experiment.topology,
+                    'memory': noLogMemory,
+                    'optimized': experiment.optimized
+                }
+            )
+        }, 1000);
     });
 }
   

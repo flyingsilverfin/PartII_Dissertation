@@ -37,29 +37,29 @@ def restartShareServer():
 
 
 def getNextIncompleteCRDTExperiment():
-    existingExperiments = os.listdir(os.path.join('.', 'experiments'))
+    existingExperiments = glob.glob('./experiments/experiment_*')
     existingExperiments.sort()  #impose order
 
-    for experimentFolder in existingExperiments:
-        setup = json.loads(open(os.path.join('.', 'experiments', experimentFolder, 'setup.json')).read())
+    for experimentPath in existingExperiments:
+        setup = json.loads(open(os.path.join(experimentPath, 'setup.json')).read())
         topologies = setup["topology"]
 
-        experimentFolderSubDirs = os.listdir(os.path.join('.','experiments', experimentFolder))
+        experimentFolderSubDirs = os.listdir(experimentPath)
         # if experiment not started at all yet, send first topology of this experiment
         if 'crdt' not in experimentFolderSubDirs:
-            return (experimentFolder, topologies[0], "optimized")
+            return (experimentPath, topologies[0], "optimized")
 
-        topology_dirs = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt'))
+        topology_dirs = os.listdir(os.path.join(experimentPath, 'crdt'))
         topology_dirs.sort() # impose order
         for top in topologies:
             if top in topology_dirs:
-                completed_options = os.listdir(os.path.join('.', 'experiments', experimentFolder, 'crdt', top))
+                completed_options = os.listdir(os.path.join(experimentPath, 'crdt', top))
                 if "optimized" not in completed_options:
-                    return (experimentFolder, top, "optimized")
+                    return (experimentPath, top, "optimized")
                 if "nonoptimized" not in completed_options:
-                    return (experimentFolder, top, "nonoptimized")
+                    return (experimentPath, top, "nonoptimized")
             else:
-                return (experimentFolder, top, "optimized")
+                return (experimentPath, top, "optimized")
 
     return None
 
@@ -77,11 +77,11 @@ def getNextIncompleteOTExperiment():
 
 @app.route('/nextCRDTExperiment', methods=['GET'])
 def nextCRDTExperiment():
-    (experimentName, topology, optimization) = getNextIncompleteCRDTExperiment()
-    print "Next experiment: " + experimentName + ", topology: " + topology + ", optimization: " + optimization
-    if experimentName == None:
+    (experimentPath, topology, optimization) = getNextIncompleteCRDTExperiment()
+    print "Next experiment: " + experimentPath + ", topology: " + topology + ", optimization: " + optimization
+    if experimentPath == None:
         return "{}"
-    setup = json.loads(open(os.path.join('.','experiments',experimentName, 'setup.json')).read())
+    setup = json.loads(open(os.path.join(experimentPath, 'setup.json')).read())
     setup["topology"] = topology  # only operate on this one topology for now
     if optimization == "optimized":
         setup["optimized"] = True
@@ -143,12 +143,23 @@ def receiveCRDTMemory():
     #required directories must already exist
     optimized_folder_name = "optimized" if optimized else "nonoptimized"
 
-    resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name, 'log.txt'), 'a')  #append
-    resultLog.write(memory + '\n')
+    resultLog = open(os.path.join('.', 'experiments', experimentName, 'crdt', top, optimized_folder_name, 'log.txt'), 'a+')    #append and read
 
-    resultLog.close()
+    numTrialsCompleted = len(resultLog.readlines())
     
-    AsyncRunIn(5, restartChrome)
+    print "Memory received: " + memory
+    resultLog.write(memory + '\n')
+    
+    resultLog.close()
+
+    #delete the log so it gets rerun if the number of lines in the resultLog is less than the intended number of trials
+    setup = json.loads(open(os.path.join('.','experiments',experimentName,'setup.json')).read())
+    numTrialsNeeded = int(setup['repeat'])
+
+    if numTrialsCompleted < numTrialsNeeded:
+        os.remove(os.path.join('.','experiments',experimentName,'crdt', top, optimized_folder_name,'log.txt'))
+
+    AsyncRunIn(3, restartChrome)
     return ""
 
 
@@ -180,12 +191,6 @@ def receiveOTMemory():
     memory = str(data['memory'])
     #required directories must already exist
 
-
-
-#TODO put this into the CRDT version!!!!!
-
-
-
     resultLog = open(os.path.join('.', 'experiments', experimentName, 'ot', 'final_memory_usage.txt'), 'a+')    #append and read
 
     numTrialsCompleted = len(resultLog.readlines())
@@ -203,8 +208,8 @@ def receiveOTMemory():
         os.remove(os.path.join('.','experiments',experimentName,'ot','log.txt'))
         os.remove(os.path.join('.','experiments',experimentName,'sharejs-server.log'))
 
-    AsyncRunIn(2, restartChrome)
     AsyncRunIn(2, restartShareServer)
+    AsyncRunIn(5, restartChrome)
     return ""
 
 
