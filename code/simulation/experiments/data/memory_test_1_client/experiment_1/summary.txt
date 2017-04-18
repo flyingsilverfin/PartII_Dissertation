@@ -1,0 +1,110 @@
+---fully-connected, nonoptimized---
+	Total simulation duration: 49900.0
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 500
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 146800
+	nologMemoryRepetitions: [604432, 628920, 629808, 605040, 623456, 627104, 625464, 620072, 581512, 607376, 628792]
+
+---fully-connected, optimized---
+	Total simulation duration: 49900.0
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 500
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 146848
+	nologMemoryRepetitions: [649392, 598320, 652912, 645248, 653416, 597360, 669056, 650824, 627296, 646944, 651288]
+
+---star, nonoptimized---
+	Total simulation duration: 49900.0
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 500
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 149784
+	nologMemoryRepetitions: [596616, 612688, 614752, 613520, 623232, 628536, 551256, 637368, 588416, 590792, 634312]
+
+---star, optimized---
+	Total simulation duration: 49900.0
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 500
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 149832
+	nologMemoryRepetitions: [653992, 651752, 676216, 677464, 655120, 656944, 605784, 634480, 668424, 668040, 651984]
+
+---experiment_1, ot---
+	Total simulation duration: 52417.0
+	Total insert events: 500
+	Total delete events: 0
+	Total packets: 1002
+	Total size of packets sent: 20469
+	Average packet payload size: 20.4281437126
+	Total size of packets sent, if there were no meta-information: 0
+	Average packet payload size without meta-information: 0.0
+	Expected number of packets sent - give optimal client-server network with everyone joining at start: 1002
+	Latency/wait time per client when requesting CRDT: [66.0, 0]
+	From whom each client request CRDT: [-1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {(0, -1): [5.0, 3.0, 7.0, 7.0, 7.0, 4.0, 11.0, 4.0, 8.0, 4.0, 5.0, 4.0, 4.0, 5.0, 3.0, 4.0, 3.0, 6.0, 4.0, 3.0, 6.0, 3.0, 3.0, 10.0, 4.0, 6.0, 2.0, 5.0, 4.0, 6.0, 3.0, 6.0, 3.0, 3.0, 6.0, 5.0, 4.0, 5.0, 13.0, 5.0, 5.0, 4.0, 4.0, 3.0, 3.0, 3.0, 3.0, 3.0, 6.0, 5.0, 5.0, 6.0, 4.0, 3.0, 4.0, 6.0, 5.0, 3.0, 2.0, 5.0, 7.0, 3.0, 3.0, 5.0, 4.0, 5.0, 5.0, 2.0, 4.0, 5.0, 5.0, 5.0, 3.0, 2.0, 3.0, 3.0, 4.0, 5.0, 4.0, 4.0, 3.0, 9.0, 5.0, 5.0, 4.0, 5.0, 5.0, 8.0, 5.0, 6.0, 3.0, 4.0, 3.0, 3.0, 5.0, 3.0, 5.0, 2.0, 3.0, 5.0, 5.0, 3.0, 4.0, 3.0, 4.0, 3.0, 4.0, 6.0, 4.0, 4.0, 5.0, 5.0, 6.0, 7.0, 3.0, 4.0, 5.0, 8.0, 5.0, 5.0, 7.0, 6.0, 5.0, 4.0, 13.0, 7.0, 16.0, 5.0, 3.0, 8.0, 3.0, 4.0, 3.0, 3.0, 2.0, 4.0, 5.0, 4.0, 5.0, 5.0, 5.0, 5.0, 2.0, 3.0, 4.0, 5.0, 7.0, 5.0, 4.0, 5.0, 5.0, 3.0, 3.0, 5.0, 5.0, 5.0, 5.0, 3.0, 3.0, 4.0, 5.0, 5.0, 5.0, 3.0, 5.0, 3.0, 3.0, 4.0, 3.0, 2.0, 4.0, 5.0, 5.0, 5.0, 3.0, 5.0, 7.0, 5.0, 5.0, 5.0, 3.0, 3.0, 3.0, 4.0, 4.0, 4.0, 5.0, 5.0, 5.0, 4.0, 3.0, 6.0, 5.0, 5.0, 4.0, 9.0, 4.0, 4.0, 3.0, 5.0, 5.0, 3.0, 5.0, 3.0, 3.0, 3.0, 5.0, 7.0, 4.0, 4.0, 3.0, 5.0, 3.0, 5.0, 4.0, 5.0, 5.0, 3.0, 3.0, 5.0, 5.0, 4.0, 3.0, 4.0, 4.0, 3.0, 4.0, 4.0, 3.0, 4.0, 5.0, 5.0, 3.0, 4.0, 5.0, 5.0, 3.0, 2.0, 3.0, 3.0, 6.0, 3.0, 6.0, 3.0, 5.0, 5.0, 3.0, 3.0, 3.0, 4.0, 3.0, 6.0, 3.0, 5.0, 3.0, 6.0, 5.0, 3.0, 2.0, 3.0, 4.0, 3.0, 2.0, 5.0, 5.0, 5.0, 3.0, 3.0, 5.0, 5.0, 7.0, 6.0, 5.0, 5.0, 3.0, 3.0, 4.0, 3.0, 4.0, 2.0, 5.0, 5.0, 3.0, 5.0, 5.0, 2.0, 5.0, 3.0, 3.0, 4.0, 2.0, 5.0, 5.0, 3.0, 5.0, 4.0, 5.0, 4.0, 5.0, 5.0, 5.0, 5.0, 5.0, 2.0, 3.0, 5.0, 5.0, 3.0, 3.0, 3.0, 3.0, 5.0, 3.0, 5.0, 4.0, 5.0, 5.0, 5.0, 3.0, 5.0, 3.0, 5.0, 5.0, 5.0, 6.0, 9.0, 6.0, 2.0, 6.0, 5.0, 3.0, 3.0, 5.0, 3.0, 3.0, 5.0, 5.0, 4.0, 3.0, 2.0, 3.0, 4.0, 4.0, 6.0, 4.0, 4.0, 5.0, 4.0, 3.0, 16.0, 5.0, 8.0, 2.0, 2.0, 5.0, 4.0, 5.0, 5.0, 5.0, 5.0, 3.0, 2.0, 4.0, 3.0, 4.0, 4.0, 3.0, 4.0, 6.0, 5.0, 5.0, 3.0, 5.0, 4.0, 4.0, 4.0, 3.0, 6.0, 3.0, 4.0, 4.0, 5.0, 5.0, 7.0, 7.0, 5.0, 7.0, 4.0, 13.0, 6.0, 5.0, 5.0, 9.0, 2.0, 4.0, 4.0, 5.0, 5.0, 4.0, 5.0, 4.0, 7.0, 5.0, 4.0, 5.0, 3.0, 4.0, 4.0, 5.0, 4.0, 5.0, 4.0, 5.0, 5.0, 3.0, 5.0, 5.0, 3.0, 5.0, 5.0, 5.0, 4.0, 5.0, 4.0, 5.0, 3.0, 3.0, 3.0, 3.0, 2.0, 7.0, 4.0, 4.0, 4.0, 5.0, 4.0, 5.0, 2.0, 4.0, 4.0, 5.0, 4.0, 3.0, 3.0, 4.0, 4.0, 4.0, 5.0, 2.0, 4.0, 5.0, 4.0, 4.0, 6.0, 3.0, 6.0, 5.0, 5.0, 5.0, 3.0, 3.0, 5.0, 5.0, 4.0, 4.0, 5.0, 5.0, 4.0, 6.0, 4.0, 5.0, 5.0, 5.0, 4.0, 5.0, 3.0, 5.0, 5.0, 4.0, 3.0, 5.0, 4.0, 4.0, 4.0, 4.0, 4.0, 5.0, 3.0, 6.0, 5.0, 5.0, 4.0, 4.0, 5.0, 4.0, 5.0, 5.0, 5.0, 5.0, 4.0], (-1, 0): [33.0, 1.0, 3.0, 5.0, 4.0, 3.0, 3.0, 1.0, 4.0, 2.0, 4.0, 3.0, 2.0, 3.0, 2.0, 2.0, 1.0, 3.0, 3.0, 1.0, 3.0, 3.0, 2.0, 4.0, 2.0, 4.0, 2.0, 3.0, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 4.0, 4.0, 3.0, 4.0, 3.0, 3.0, 1.0, 1.0, 2.0, 2.0, 5.0, 2.0, 2.0, 2.0, 4.0, 3.0, 4.0, 4.0, 2.0, 2.0, 4.0, 1.0, 3.0, 2.0, 2.0, 4.0, 4.0, 2.0, 5.0, 3.0, 2.0, 3.0, 3.0, 1.0, 4.0, 1.0, 4.0, 3.0, 1.0, 2.0, 2.0, 1.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 6.0, 3.0, 4.0, 4.0, 2.0, 4.0, 4.0, 3.0, 2.0, 1.0, 4.0, 5.0, 2.0, 4.0, 1.0, 2.0, 1.0, 3.0, 3.0, 2.0, 2.0, 4.0, 2.0, 4.0, 4.0, 6.0, 4.0, 3.0, 4.0, 3.0, 3.0, 3.0, 4.0, 4.0, 2.0, 4.0, 3.0, 3.0, 4.0, 4.0, 2.0, 4.0, 2.0, 2.0, 5.0, 3.0, 7.0, 3.0, 2.0, 1.0, 2.0, 2.0, 4.0, 2.0, 2.0, 4.0, 2.0, 4.0, 4.0, 1.0, 2.0, 3.0, 3.0, 4.0, 3.0, 2.0, 4.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0, 5.0, 1.0, 3.0, 2.0, 2.0, 3.0, 3.0, 4.0, 3.0, 5.0, 3.0, 4.0, 2.0, 3.0, 4.0, 3.0, 2.0, 4.0, 4.0, 4.0, 4.0, 3.0, 1.0, 4.0, 3.0, 5.0, 3.0, 2.0, 4.0, 4.0, 1.0, 2.0, 3.0, 2.0, 4.0, 2.0, 1.0, 2.0, 4.0, 2.0, 2.0, 2.0, 2.0, 1.0, 3.0, 3.0, 3.0, 2.0, 2.0, 3.0, 1.0, 4.0, 3.0, 4.0, 3.0, 1.0, 2.0, 4.0, 4.0, 3.0, 1.0, 3.0, 2.0, 3.0, 3.0, 2.0, 3.0, 2.0, 4.0, 4.0, 2.0, 17.0, 3.0, 2.0, 2.0, 2.0, 4.0, 2.0, 3.0, 4.0, 4.0, 2.0, 4.0, 4.0, 2.0, 2.0, 3.0, 3.0, 2.0, 3.0, 2.0, 4.0, 3.0, 5.0, 3.0, 2.0, 6.0, 2.0, 3.0, 2.0, 2.0, 6.0, 4.0, 4.0, 2.0, 2.0, 1.0, 4.0, 3.0, 5.0, 4.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0, 2.0, 4.0, 4.0, 2.0, 4.0, 3.0, 3.0, 4.0, 5.0, 2.0, 4.0, 2.0, 4.0, 3.0, 1.0, 4.0, 4.0, 4.0, 5.0, 3.0, 4.0, 4.0, 4.0, 4.0, 4.0, 5.0, 3.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 7.0, 1.0, 3.0, 4.0, 3.0, 2.0, 3.0, 3.0, 3.0, 4.0, 4.0, 1.0, 6.0, 4.0, 1.0, 4.0, 3.0, 1.0, 3.0, 5.0, 1.0, 3.0, 2.0, 3.0, 3.0, 3.0, 1.0, 5.0, 2.0, 4.0, 6.0, 2.0, 4.0, 3.0, 13.0, 2.0, 1.0, 3.0, 4.0, 2.0, 1.0, 4.0, 4.0, 4.0, 3.0, 2.0, 3.0, 2.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0, 2.0, 4.0, 3.0, 1.0, 5.0, 3.0, 6.0, 4.0, 1.0, 5.0, 2.0, 3.0, 3.0, 4.0, 5.0, 2.0, 5.0, 4.0, 4.0, 3.0, 2.0, 15.0, 4.0, 6.0, 4.0, 2.0, 3.0, 4.0, 4.0, 2.0, 4.0, 3.0, 3.0, 4.0, 4.0, 4.0, 4.0, 4.0, 2.0, 4.0, 2.0, 4.0, 3.0, 3.0, 3.0, 3.0, 3.0, 7.0, 2.0, 1.0, 4.0, 2.0, 5.0, 4.0, 4.0, 10.0, 2.0, 2.0, 3.0, 1.0, 2.0, 2.0, 3.0, 2.0, 2.0, 4.0, 4.0, 4.0, 4.0, 1.0, 3.0, 4.0, 3.0, 2.0, 1.0, 2.0, 6.0, 5.0, 3.0, 3.0, 2.0, 4.0, 4.0, 3.0, 2.0, 3.0, 2.0, 4.0, 4.0, 3.0, 5.0, 4.0, 3.0, 3.0, 3.0, 2.0, 4.0, 3.0, 3.0, 3.0, 4.0, 4.0, 4.0, 3.0, 4.0, 3.0, 3.0, 1.0, 4.0, 2.0, 4.0, 2.0, 3.0, 3.0, 2.0, 2.0, 3.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 4.0, 3.0, 3.0, 4.0, 3.0, 4.0, 4.0, 3.0, 3.0]}
+	pre-experiment: 0
+	post-clients-create: 988456
+	nologMemoryRepetitions: [3509072, 3512600, 3513952, 3515264, 3459616, 3543952, 3485376, 3525400, 3493312, 3545432, 3503024]
+

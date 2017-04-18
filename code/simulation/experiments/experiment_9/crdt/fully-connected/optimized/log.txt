@@ -1,0 +1,4 @@
+0    memory    12265296    pre-experiment
+0    memory    12412096    post-topology-init
+0    join    0    Joined network!
+1249950    memory    44311360    post-experiment

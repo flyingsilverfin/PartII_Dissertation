@@ -196,7 +196,8 @@ for i in range(numClients):
             "after": 0
         }
     for j in range(num_deletes_per_client):
-        toDelete = random.randint(1,num_inserts_per_client)    #just pick between index 1 and 5 or however many
+        #toDelete = random.randint(1,num_inserts_per_client)    
+        toDelete = 0    #always delete first character, only one guaranteed to be there
         when = j*dt_per_client_event
         experiment_setup["events"][i]["delete"][when] = [toDelete]
 

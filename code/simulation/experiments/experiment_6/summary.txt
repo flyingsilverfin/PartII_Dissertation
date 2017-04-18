@@ -1,0 +1,46 @@
+---fully-connected, nonoptimized---
+	Total simulation duration: 99950.0
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 2000
+	Total delete events: 2000
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 146800
+	nologMemoryRepetitions: [1894992, 1896264, 1896624, 1896856, 1892296, 1896560, 1890952, 1893976, 1895232, 1897024, 1894544]
+
+---fully-connected, optimized---
+	Total simulation duration: 99950.0
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 2000
+	Total delete events: 2000
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 0
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 0
+	Latency/wait time per client when requesting CRDT: [0]
+	From whom each client request CRDT: [-1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 146800
+	nologMemoryRepetitions: [1914824, 1912816, 1908544, 1908672, 1927992, 1910488, 1913312, 1910040, 1910856, 1912104, 1905576]
+

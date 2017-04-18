@@ -9,6 +9,9 @@ declare var gc;
 export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryUsageCallback) {
 
     let logger = new Logger();
+
+    gc();
+
     logger.logMemory("pre-experiment");
 
     let statsDiv = <HTMLDivElement>document.getElementById('stats-pane');

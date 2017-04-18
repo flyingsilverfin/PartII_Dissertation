@@ -41,7 +41,7 @@ class NetworkManager {
         this.finished = finishedCallback;
 
 
-        console.log(visualizer);
+        //console.log(visualizer);
     }
 
     public isPaused() {
@@ -66,7 +66,7 @@ class NetworkManager {
 
             this.log.logJoin("join", id, "Joined network!");
 
-            this.visualizer.setNodeActive(id);
+            if (this.visualizer !== null) this.visualizer.setNodeActive(id);
 
         } catch (err) {
             // this would be a FixedSizeTopologyException
@@ -90,7 +90,7 @@ class NetworkManager {
         let self = this;
 
 
-        // iterate over identifier of the links
+        // iterate over identifier of the linksf
         for (let i = 0; i < neighborLinks.length; i++) {
             let edge = neighborLinks[i];
 

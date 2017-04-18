@@ -67,10 +67,9 @@ class MapCRDT implements CT.CRDT {
         let entryBeforeId = after;
         let entryBefore = this.map[after];
 
-
         // move forward until hit a next element which is less than id
         // entryBefore.next may be null! (will often be null)
-        while (CC.compare(startId, entryBefore.n) < 0) {      //ERROR HERE - comparison is wrong somehow...
+        while (CC.compare(startId, entryBefore.n) < 0) { 
             entryBeforeId = entryBefore.n;
             entryBefore = this.map[entryBeforeId];
         }
@@ -116,6 +115,9 @@ class MapCRDT implements CT.CRDT {
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }
+        if (idToDelete === "0") {
+            throw new Helper.CRDTException("Not allowed to delete ID 0");
+        }
         if (this.map[idToDelete].d === undefined) {
             this.map[idToDelete].d = [true, when] ;
         } else {
@@ -137,7 +139,6 @@ class MapCRDT implements CT.CRDT {
 
     // has capability for multi undo already
     public undoInsert(bundle: CT.UndoMessage): void {
-        debugger
         let undoTargets = bundle.id;
         for (let id of undoTargets) {
             this.map[id].v = false;
@@ -200,7 +201,7 @@ class MapCRDT implements CT.CRDT {
     // implements interface
     public read(): CT.ParallelStringArrays {
         // writing to array then joining seems to be fastest way of doing this
-
+debugger
         let charArray = [];
         let idArray = [];
         let id = '0';

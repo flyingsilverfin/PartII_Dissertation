@@ -27,6 +27,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
     let optimized = experimentSetup.optimized;
 
+    gc();
     logger.logMemory("pre-experiment");
 
 
@@ -85,7 +86,6 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
                                      scheduler, 
                                      logger, 
                                      function() {
-                                        mockClients;
                                         // END OF EXPERIMENT
                                         let log = logger.getLog();
                                         let result = {
@@ -102,30 +102,6 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
                                         noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
                                      }
     );
-
-    //(<any>window).runEvents = manager.runSimulation.bind(manager);
-    (<any>window).pauseplay = function() {
-        if (manager.isPaused()) {
-            console.log('playing');
-            (<any>window).onSpeedEditBlur();
-            document.getElementById('pauseplay-button').innerHTML = "Pause";
-            manager.start();
-        } else {
-            console.log('pausing');
-            document.getElementById('pauseplay-button').innerHTML = "Play";
-            manager.pause();
-        }
-    };
-
-    (<any>window).onSpeedEditBlur = function() {
-        try {
-            let speed = parseFloat((<HTMLInputElement>document.getElementById('speed-control')).value);
-            console.log(speed);
-            manager.setSimulationSpeed(speed);
-        } catch (Exception) {
-            console.error("Invalid speed multiplier, using old one");
-        }
-    }
 
 
     let mockClients: Client[] = [];
@@ -144,6 +120,37 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
         }
         scheduler.addEvent(timeToCreate, 0, action);
     }
+
+
+    //(<any>window).runEvents = manager.runSimulation.bind(manager);
+    
+    let pauseplay = function() {
+        if (manager.isPaused()) {
+            console.log('playing');
+            (<any>window).onSpeedEditBlur();
+            document.getElementById('pauseplay-button').innerHTML = "Pause";
+            manager.start();
+        } else {
+            console.log('pausing');
+            document.getElementById('pauseplay-button').innerHTML = "Play";
+            manager.pause();
+        }
+    };
+
+    let onSpeedEditBlur = function() {
+        try {
+            let speed = parseFloat((<HTMLInputElement>document.getElementById('speed-control')).value);
+            console.log(speed);
+            manager.setSimulationSpeed(speed);
+        } catch (Exception) {
+            console.error("Invalid speed multiplier, using old one");
+        }
+    };
+
+    (<any>window).pauseplay = pauseplay;
+    (<any>window).onSpeedEditBlur = onSpeedEditBlur;
+
+    pauseplay()
 
     logger.logMemory("post-clients-init");
 }

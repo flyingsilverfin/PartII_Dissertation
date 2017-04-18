@@ -87,6 +87,9 @@ class ClientAnalyzer(object):
         else:   #case sharejs
             assert msg_type == "sharejs-op"
             payload = json.loads(log_msg[6])
+            if 'v' not in payload:
+                print "sharejs-op msg does not have a version, skipping: " + str(log_msg)
+                return
             version = payload['v']
             length = len(log_msg[6])
             self.active_packets[(version, receiver)] = when
@@ -232,7 +235,7 @@ class ExperimentAnalzer(object):
         self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
         self.logPath = logPath
 
-        self.finalMemoryUsage = int(open(os.path.join(*(logPath[:-1] + ['final_memory_usage.txt']))).read())
+        self.finalMemoryUsages = open(os.path.join(*(logPath[:-1] + ['final_memory_usage.txt']))).readlines()
 
         # used for filling various datapoints later
         if identifier[0] != "fully-connected" and identifier[0] != "star":
@@ -386,7 +389,7 @@ class ExperimentAnalzer(object):
                         msg[2] = id_map[msg[2]]
                         self.clients[sender].msgArrived(msg)
                 else:
-                    print "--Ignoring: Unknown sever log msg type: " + msg
+                    print "--Ignoring: Unknown sever log msg type: " + str(msg)
                     continue
 
         for func in run_later:
@@ -534,7 +537,9 @@ class ExperimentAnalzer(object):
             for i in range(len(self.memory_stamps))
         ]
 
-        memory_checkpoints[-1] = self.formatResultEntry('MemoryCheckpointNoLog', self.finalMemoryUsage - initial_memory, readableStringOverride="nolog")
+        memory_checkpoints[-1] = self.formatResultEntry('MemoryCheckpointNoLog', 
+                                                        [int(self.finalMemoryUsages[i]) - initial_memory for i in range(len(self.finalMemoryUsages))], 
+                                                        readableStringOverride="nologMemoryRepetitions")
 
 
         # skip latencies for now

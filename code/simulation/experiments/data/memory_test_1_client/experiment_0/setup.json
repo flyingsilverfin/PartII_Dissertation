@@ -1,0 +1,431 @@
+{
+    "optimized": false, 
+	"repeat": 10,
+    "latency_model": {
+        "type": "normally distributed", 
+        "center": 30.0
+    }, 
+    "experiment_name": "experiment_0", 
+    "clients": [
+        0
+    ], 
+    "network": {
+        "0": {
+            "latency": 30.353101572374374
+        }
+    }, 
+    "description": "Memory test, 1 client, 100x1 character insertion", 
+    "execution": "event-driven", 
+    "init": "", 
+    "events": {
+        "0": {
+            "insert": {
+                "0": {
+                    "chars": "x", 
+                    "after": 0
+                }, 
+                "4100": {
+                    "chars": "k", 
+                    "after": 0
+                }, 
+                "8200": {
+                    "chars": "s", 
+                    "after": 0
+                }, 
+                "3600": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "7700": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "3100": {
+                    "chars": "i", 
+                    "after": 0
+                }, 
+                "7200": {
+                    "chars": "u", 
+                    "after": 0
+                }, 
+                "2600": {
+                    "chars": "g", 
+                    "after": 0
+                }, 
+                "6700": {
+                    "chars": "o", 
+                    "after": 0
+                }, 
+                "2100": {
+                    "chars": "e", 
+                    "after": 0
+                }, 
+                "6200": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "1600": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "5700": {
+                    "chars": "j", 
+                    "after": 0
+                }, 
+                "9800": {
+                    "chars": "r", 
+                    "after": 0
+                }, 
+                "1100": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "5200": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "9300": {
+                    "chars": "u", 
+                    "after": 0
+                }, 
+                "600": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "4700": {
+                    "chars": "g", 
+                    "after": 0
+                }, 
+                "8800": {
+                    "chars": "s", 
+                    "after": 0
+                }, 
+                "100": {
+                    "chars": "k", 
+                    "after": 0
+                }, 
+                "4200": {
+                    "chars": "m", 
+                    "after": 0
+                }, 
+                "8300": {
+                    "chars": "i", 
+                    "after": 0
+                }, 
+                "3700": {
+                    "chars": "q", 
+                    "after": 0
+                }, 
+                "7800": {
+                    "chars": "j", 
+                    "after": 0
+                }, 
+                "3200": {
+                    "chars": "x", 
+                    "after": 0
+                }, 
+                "7300": {
+                    "chars": "q", 
+                    "after": 0
+                }, 
+                "2700": {
+                    "chars": "q", 
+                    "after": 0
+                }, 
+                "6800": {
+                    "chars": "c", 
+                    "after": 0
+                }, 
+                "2200": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "6300": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "1700": {
+                    "chars": "f", 
+                    "after": 0
+                }, 
+                "5800": {
+                    "chars": "x", 
+                    "after": 0
+                }, 
+                "9900": {
+                    "chars": "o", 
+                    "after": 0
+                }, 
+                "1200": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "5300": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "9400": {
+                    "chars": "c", 
+                    "after": 0
+                }, 
+                "700": {
+                    "chars": "c", 
+                    "after": 0
+                }, 
+                "4800": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "8900": {
+                    "chars": "q", 
+                    "after": 0
+                }, 
+                "200": {
+                    "chars": "i", 
+                    "after": 0
+                }, 
+                "4300": {
+                    "chars": "r", 
+                    "after": 0
+                }, 
+                "8400": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "3800": {
+                    "chars": "g", 
+                    "after": 0
+                }, 
+                "7900": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "3300": {
+                    "chars": "p", 
+                    "after": 0
+                }, 
+                "7400": {
+                    "chars": "j", 
+                    "after": 0
+                }, 
+                "2800": {
+                    "chars": "r", 
+                    "after": 0
+                }, 
+                "6900": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "2300": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "6400": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "1800": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "5900": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "1300": {
+                    "chars": "m", 
+                    "after": 0
+                }, 
+                "5400": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "9500": {
+                    "chars": "f", 
+                    "after": 0
+                }, 
+                "800": {
+                    "chars": "u", 
+                    "after": 0
+                }, 
+                "4900": {
+                    "chars": "p", 
+                    "after": 0
+                }, 
+                "9000": {
+                    "chars": "m", 
+                    "after": 0
+                }, 
+                "300": {
+                    "chars": "g", 
+                    "after": 0
+                }, 
+                "4400": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "8500": {
+                    "chars": "k", 
+                    "after": 0
+                }, 
+                "3900": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "8000": {
+                    "chars": "b", 
+                    "after": 0
+                }, 
+                "3400": {
+                    "chars": "r", 
+                    "after": 0
+                }, 
+                "7500": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "2900": {
+                    "chars": "o", 
+                    "after": 0
+                }, 
+                "7000": {
+                    "chars": "y", 
+                    "after": 0
+                }, 
+                "2400": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "6500": {
+                    "chars": "h", 
+                    "after": 0
+                }, 
+                "1900": {
+                    "chars": "c", 
+                    "after": 0
+                }, 
+                "6000": {
+                    "chars": "t", 
+                    "after": 0
+                }, 
+                "1400": {
+                    "chars": "h", 
+                    "after": 0
+                }, 
+                "5500": {
+                    "chars": "w", 
+                    "after": 0
+                }, 
+                "9600": {
+                    "chars": "q", 
+                    "after": 0
+                }, 
+                "900": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "5000": {
+                    "chars": "j", 
+                    "after": 0
+                }, 
+                "9100": {
+                    "chars": "u", 
+                    "after": 0
+                }, 
+                "400": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "4500": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "8600": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "4000": {
+                    "chars": "s", 
+                    "after": 0
+                }, 
+                "8100": {
+                    "chars": "i", 
+                    "after": 0
+                }, 
+                "3500": {
+                    "chars": "w", 
+                    "after": 0
+                }, 
+                "7600": {
+                    "chars": "c", 
+                    "after": 0
+                }, 
+                "3000": {
+                    "chars": "a", 
+                    "after": 0
+                }, 
+                "7100": {
+                    "chars": "l", 
+                    "after": 0
+                }, 
+                "2500": {
+                    "chars": "b", 
+                    "after": 0
+                }, 
+                "6600": {
+                    "chars": "i", 
+                    "after": 0
+                }, 
+                "2000": {
+                    "chars": "d", 
+                    "after": 0
+                }, 
+                "6100": {
+                    "chars": "s", 
+                    "after": 0
+                }, 
+                "1500": {
+                    "chars": "x", 
+                    "after": 0
+                }, 
+                "5600": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "9700": {
+                    "chars": "v", 
+                    "after": 0
+                }, 
+                "1000": {
+                    "chars": "y", 
+                    "after": 0
+                }, 
+                "5100": {
+                    "chars": "a", 
+                    "after": 0
+                }, 
+                "9200": {
+                    "chars": "n", 
+                    "after": 0
+                }, 
+                "500": {
+                    "chars": "o", 
+                    "after": 0
+                }, 
+                "4600": {
+                    "chars": "u", 
+                    "after": 0
+                }, 
+                "8700": {
+                    "chars": "l", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }
+    }, 
+    "topology": [
+        "fully-connected", 
+        "star"
+    ]
+}

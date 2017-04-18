@@ -180,7 +180,7 @@ class EditableText implements IT.EditableTextInterface {
         // insert 
         content = insertIntoString(chars, after, content);
 
-        this.setContent(content);
+        //this.setContent(content);
         this.setCursorPosition(after + chars.length);
 
         this.insertCallback(chars, after, true);
@@ -197,7 +197,7 @@ class EditableText implements IT.EditableTextInterface {
         
         content = deleteAt(content, index);
 
-        this.setContent(content);
+        //this.setContent(content);
         this.setCursorPosition(index);
 
         this.deleteCallback(index);
