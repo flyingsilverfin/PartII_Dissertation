@@ -6,10 +6,16 @@ export function gt(v1: NT.VectorClock, v2: NT.VectorClock, gte=false): boolean {
     let l1 = Object.keys(v1).length;
     let l2 = Object.keys(v2).length;
 
-    // if second vector contains something we've not seen, we can't be greater
+    // if second vector contains something we've not seen, expand v1 with the missing elements, making local copy first to avoid side effects
+    let missingElements = {};
     if (l2 > l1) {
-        return false;
+        for (let id in v2) {
+            if (v1[id] == undefined) {
+                missingElements[id] = 0;
+            }
+        }
     }
+    v1 = Object.assign({}, v1, missingElements);
     // at this point they must have equal size or v1 has more contents
     for (let id in v1) {
         // fail if any element in v1 is less than or if equals-to enabled, equal to
@@ -33,11 +39,11 @@ export function areConcurrent(v1: NT.VectorClock, v2: NT.VectorClock): boolean {
 
 
     for (let id of allKeys) {
-        if (v1[id] === undefined) {
+        if (v1[id] === undefined && v2[id] > 0) {
             v2Greater = true;
             continue;
         }
-        if (v2[id] === undefined) {
+        if (v2[id] === undefined && v1[id] > 0) {
             v1Greater = true;
             continue;
         }

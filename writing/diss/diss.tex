@@ -1120,6 +1120,8 @@ export interface MapEntry {
 				As noted in \cref{sec:sharejs} I expect both the server and clients to buffer past operations to transform concurrent operations against. To confirm this, I created a series of experiments which insert and remove the same character a number of times. This ensures the document size is not growing, so the only potential growth is storing past operations.
 				
 				Client memory use Figure [TODO]. next to server use figure [TODO]
+				
+				Experiments 6-10
 		
 			\paragraph{Single Client}
 				I noted in \cref{sec:sharejs} a ShareJS client might scale linearly in terms of memory consumption due to saved operations and document size. Comparatively, a CRDT with $n$ characters must store $n$ links of constant size (ignoring immediate undo requirements), each identified by an identifier of decimal length $log(n)$, so one might expect a $O(nlog(n))$ space complexity. To test this, a series of experiments were designed using only a single client. Operations inserted only one character at a time. 
@@ -1135,6 +1137,7 @@ export interface MapEntry {
 				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
 				
 				[figure]
+				Experiments 16-20
 				
 				
 				Drawing conclusions from these figures..... TODO
@@ -1143,6 +1146,8 @@ export interface MapEntry {
 			\paragraph{Multiple Clients}
 				Try inserting a set number (5000) characters into the document in both systems, but with split across increasing numbers of clients. 1 Client has already been done above. The insertions were split across 1, 2, 5, 10, 50, and 100 clients.
 				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
+				
+				Experiments 11-15
 		
 		
 	

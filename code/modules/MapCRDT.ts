@@ -201,7 +201,7 @@ class MapCRDT implements CT.CRDT {
     // implements interface
     public read(): CT.ParallelStringArrays {
         // writing to array then joining seems to be fastest way of doing this
-debugger
+
         let charArray = [];
         let idArray = [];
         let id = '0';

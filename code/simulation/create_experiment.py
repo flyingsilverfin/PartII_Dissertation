@@ -201,10 +201,10 @@ for i in range(numClients):
         when = j*dt_per_client_event
         experiment_setup["events"][i]["delete"][when] = [toDelete]
 
-existingExperiments = glob.glob('./experiments/experiment_*')
-existingExperiments.sort()
+existingExperimentNums = [int(exp.split('_')[1]) for exp in glob.glob('./experiments/experiment_*')]
+existingExperimentNums.sort()
 try:
-    nextNum = int(existingExperiments[-1].split('_')[-1]) + 1
+    nextNum = existingExperimentNums[-1] + 1
 except Exception: #any sort of error
     nextNum = 0
 

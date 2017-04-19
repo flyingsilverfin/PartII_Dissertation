@@ -107,6 +107,13 @@ export default class CausalDeliveryLayer {
             this.n++;
         }
 
+        // update local vector clock with unseen client, set to 0
+        for (let id in vector) {
+            if (this.vclock[id] === undefined) {
+                this.vclock[id] = 0;
+            }
+        }
+
         return Object.keys(vector).length === 0 || (!this.bufferedMessages.contains(origin, vector) && !this.isLaterThan(vector));
 
     }
