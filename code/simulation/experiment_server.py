@@ -107,7 +107,7 @@ def nextOTExperiment():
 @app.route('/crdtResult', methods=['POST'])
 def receiveCRDTResult():
 
-    data = request.get_json()
+    data = request.get_json(force=True) #ignore MIME type
 
     experimentName = data['name']
     experimentResult = data['result']
@@ -140,7 +140,7 @@ def receiveCRDTResult():
 
 @app.route('/crdtMemoryNoLog', methods=['POST'])
 def receiveCRDTMemory():
-    data = request.get_json()
+    data = request.get_json(force=True)
 
     experimentName = data['name']
     memory = str(data['memory'])
@@ -160,7 +160,10 @@ def receiveCRDTMemory():
     numTrialsNeeded = int(setup['repeat'])
 
     if numTrialsCompleted < numTrialsNeeded:
-        os.remove(os.path.join('.','experiments',experimentName,'crdt', top, optimized_folder_name,'log.txt'))
+        try:
+            os.remove(os.path.join('.','experiments',experimentName,'crdt', top, optimized_folder_name,'log.txt'))
+        except Exception:
+            pass
 
     print "EXPERIMENT SERVER: restarting chrome"
     AsyncRunIn(3, restartChrome)
@@ -170,7 +173,7 @@ def receiveCRDTMemory():
 @app.route('/otResult', methods=['POST'])
 def receiveOTResult():
 
-    data = request.get_json()
+    data = request.get_json(force=True)
     
     experimentName = data['name']
     experimentResult = data['result']
@@ -189,7 +192,7 @@ def receiveOTResult():
 
 @app.route('/otMemoryNoLog', methods=['POST'])
 def receiveOTMemory():
-    data = request.get_json()
+    data = request.get_json(force=True)
 
     experimentName = data['name']
     memory = str(data['memory'])

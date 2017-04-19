@@ -112,7 +112,7 @@ export function postObject(path, object) {
     var httpRequest = new XMLHttpRequest();
 
     httpRequest.open('POST', path, true);
-    httpRequest.setRequestHeader('Content-type', 'application/json');
+    httpRequest.setRequestHeader('Content-type', 'text/plain');
     httpRequest.onload = function () {
         // do something to response
         console.log("Posted data: " + JSON.stringify(object));

@@ -71,7 +71,7 @@ function runExperiment(experiment) {
                     'optimized': experiment.optimized
                 }
             )
-        }, 1000);
+        }, 2000);
     });
 }
   

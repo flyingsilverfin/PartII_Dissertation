@@ -3,16 +3,8 @@
     analyzes them and records summaries
 """
 import os
+import sys
 import json
-
-
-"""
-    TODO
-    create experiment which shows that it's actually generating correct strings
-    might need more sophisticated experiment generation - including a sort of causal
-    "insert ___ after word ___ arrives"
-
-"""
 
 
 
@@ -725,6 +717,9 @@ def findReadyExperiments():
 
 if __name__ == '__main__':
     readyExperiments = findReadyExperiments()
+    if len(sys.argv) > 1:
+        targetExp = sys.argv[1]
+        readyExperiments = [[targetExp]]
     for exp in readyExperiments:
         print "running new unfinished experiment analysis: " + exp[-1]
         MainAnalyzer(exp[-1])
