@@ -20,6 +20,8 @@ export interface DualKeyHeapElement {
 export interface ScheduledEvents {
     insert: ScheduledInsertEvents;
     delete: ScheduledDeleteEvents;
+    undo: number[];     //list of times to execute an undo
+    redo: number[];     //list of times to execute an undo
 }
 
 export interface ScheduledInsertEvents {

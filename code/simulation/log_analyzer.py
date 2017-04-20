@@ -529,9 +529,9 @@ class ExperimentAnalzer(object):
             for i in range(len(self.memory_stamps))
         ]
 
-        memory_checkpoints[-1] = self.formatResultEntry('MemoryCheckpointNoLog', 
-                                                        [int(self.finalMemoryUsages[i]) - initial_memory for i in range(len(self.finalMemoryUsages))], 
-                                                        readableStringOverride="nologMemoryRepetitions")
+        memory_checkpoints.append(self.formatResultEntry('MemoryCheckpointNoLog', 
+                                    [int(x.strip()) for x in self.finalMemoryUsages], 
+                                    readableStringOverride="nologMemoryRepetitions"))
 
 
         # skip latencies for now
@@ -687,6 +687,7 @@ class MainAnalyzer(object):
         p = ['.', 'experiments', experiment_name]
         summary = open(os.path.join(*(p + ['summary.txt'])), 'w')
         jsonSummary = open(os.path.join(*(p + ['summary.json'])),'w')
+        print "writing file: " + str(p)
         for res in results:
             summary.write(res + '\n')
         summary.close()
@@ -708,9 +709,9 @@ def findReadyExperiments():
     for exp in os.listdir(os.path.join('.', 'experiments')):
         if not os.path.isdir(os.path.join('.', 'experiments', exp)) or 'setup.json' not in os.listdir(os.path.join('.', 'experiments', exp)):
             continue
-        if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)):
-            os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))
-            os.remove(os.path.join('.', 'experiments', exp, 'summary.json'))
+        #if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)): #just gets overwritten anyway
+            #os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))
+            #os.remove(os.path.join('.', 'experiments', exp, 'summary.json'))
         experiments.append(['.', 'experiments', exp])
     return experiments
 

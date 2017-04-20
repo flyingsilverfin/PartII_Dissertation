@@ -46,6 +46,9 @@ function runExperiment(experiment) {
     let name = experiment.experiment_name;
     console.log("-----Fetched and running experiment with topology: " + name + " " + experiment.topology);
 
+    let topology = experiment.topology;
+    let optimized = experiment.optimized;
+
     main(experiment, false, function(experimentResult) {
 
         console.log("-----Completed running experiment with topology: " + name + " " + experiment.topology);

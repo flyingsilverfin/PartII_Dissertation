@@ -24,7 +24,7 @@ export default class CausalDeliveryLayer {
     // returns true if the message is new and needs to be broadcast again
     // false otherwise
     public receive(message: NT.NetworkPacket, action: () => void): boolean {
-        console.log('Received message: ' + JSON.stringify(message));
+        //console.log('Received message: ' + JSON.stringify(message));
         if (message.origin === this.clientId) {
             return false;
         }

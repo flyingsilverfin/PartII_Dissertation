@@ -15,12 +15,12 @@ def make_histograms(dataMatrix, bins=default_bins):
 def file_to_histograms(f, binFile = None, normalize = True):
 	print "calculating histograms"
 	if binFile != None:
-		bins = np.array([float(x) for x in open(binFile).readlines()  if len(x) > 0])
+		bins = np.array([float(x) for x in open(binFile).readlines()  if len(x.strip()) > 0])
 	else:
 		bins = np.copy(default_bins)
 	data = [line.split("\t") for line in open(f).readlines()[:-1]]
 	labels = data.pop(0)
-	data = [[float(x.strip()) if len(x) > 0 else 0 for x in j] for j in data]
+	data = [[float(x.strip()) if len(x.strip()) > 0 else 0 for x in j] for j in data]
 	mat = np.asmatrix(data).transpose()
 	histograms = make_histograms(mat, bins)
 	if normalize:

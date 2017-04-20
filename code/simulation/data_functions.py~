@@ -43,7 +43,6 @@ def stats(f):
 	for c in range(len(data[0])):
 		asRows.append([])
 		for r in range(len(data)):
-			print data[r]
 			if len(data[r][c]) > 0:
 				asRows[-1].append(float(data[r][c].strip()))
 	

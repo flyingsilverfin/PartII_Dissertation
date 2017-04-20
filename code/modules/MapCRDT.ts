@@ -74,7 +74,7 @@ class MapCRDT implements CT.CRDT {
             entryBefore = this.map[entryBeforeId];
         }
 
-        console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
+        //console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
 
 
         // now capable of adding words at a time given a start ID and a string

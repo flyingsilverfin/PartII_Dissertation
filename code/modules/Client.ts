@@ -27,7 +27,7 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
-    private DISABLE_INTERFACE = true;
+    private DISABLE_INTERFACE = false;
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
@@ -79,7 +79,7 @@ class Client {
 
         let interfaceContainer = <HTMLDivElement>document.getElementById('clients-container');
 
-        this.interface = new EditableText(interfaceContainer, optimized);
+        this.interface = new EditableText(interfaceContainer, optimized, this.DISABLE_INTERFACE);
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
@@ -214,11 +214,49 @@ if (this.DISABLE_INTERFACE) {
 
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
-                this.scheduler.addEvent(time, 1 + numInsertsAtTime, function() {
+                this.scheduler.addEvent(time, 1 + i + numInsertsAtTime, function() {
                     self.interface.mockDelete(mockDelete);
                 });
             }
         }
+
+        for (let undoAt of this.events.undo) {
+            let insertsAtTime = this.events.insert[undoAt]; // for experiments, want deletes to happen after inserts of the same time
+            let numInsertsAtTime = 0;
+            if (insertsAtTime !== undefined) {
+                numInsertsAtTime = insertsAtTime.chars.length;
+            }
+
+            let deletesAt = this.events.delete[undoAt]
+            let numDeletesAtTime = 0;
+            if (deletesAt !== undefined) {
+                numDeletesAtTime = deletesAt.length;
+            }
+            let self = this;
+            this.scheduler.addEvent(undoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
+                self.localUndo();
+            });
+        }
+
+        for (let redoAt of this.events.redo) {
+            let insertsAtTime = this.events.insert[redoAt]; // for experiments, want deletes to happen after inserts of the same time
+            let numInsertsAtTime = 0;
+            if (insertsAtTime !== undefined) {
+                numInsertsAtTime = insertsAtTime.chars.length;
+            }
+
+            let deletesAt = this.events.delete[redoAt]
+            let numDeletesAtTime = 0;
+            if (deletesAt !== undefined) {
+                numDeletesAtTime = deletesAt.length;
+            }
+            let self = this;
+            this.scheduler.addEvent(redoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
+                self.localRedo();
+            });
+        }
+
+        this.events = null; // to enable GC later
     }
 
     private commit(): void {

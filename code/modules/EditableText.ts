@@ -27,8 +27,12 @@ class EditableText implements IT.EditableTextInterface {
     private undoCallback = null;    // need to be set via setter
     private redoCallback = null;    // need to set via setter
 
+    // disable interface for running experiments, enable for testing usually
+    private DISABLE_INTERFACE: boolean;
 
-    constructor(parent: HTMLDivElement, optimized=false) {
+    constructor(parent: HTMLDivElement, optimized=false, DISABLE_INTERFACE = false) {
+        this.DISABLE_INTERFACE = DISABLE_INTERFACE;
+
         this.container = document.createElement('div');
         this.container.className = 'client-container';
 
@@ -179,8 +183,9 @@ class EditableText implements IT.EditableTextInterface {
     
         // insert 
         content = insertIntoString(chars, after, content);
-
-        //this.setContent(content);
+        if (!this.DISABLE_INTERFACE) {
+            this.setContent(content);
+        }
         this.setCursorPosition(after + chars.length);
 
         this.insertCallback(chars, after, true);
@@ -196,8 +201,9 @@ class EditableText implements IT.EditableTextInterface {
         }
         
         content = deleteAt(content, index);
-
-        //this.setContent(content);
+        if (!this.DISABLE_INTERFACE) {
+            this.setContent(content);
+        }
         this.setCursorPosition(index);
 
         this.deleteCallback(index);

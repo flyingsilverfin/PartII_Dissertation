@@ -1,4 +1,4 @@
-import GraphVisualizer from './GraphVisualizer';
+//import GraphVisualizer from './GraphVisualizer';
 import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 
@@ -57,6 +57,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
     let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = null;
     if (graph) {
+        /*
         graphVisualizer = new GraphVisualizer(
                                                 svg, 
                                                 topology,
@@ -73,7 +74,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
         graphVisualizer.draw();
         
         logger.logMemory("post-graph-init");
-
+        */
     }
 
 
@@ -95,11 +96,20 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
                                         logger.logMemory("post-experiment");
                                         finishedCallback(result); 
 
+                                        result = null;
+                                        log = null;
+
                                         // clear log to lose any references to it
                                         logger.freeLog();
-                                        // force GC
-                                        gc();
-                                        noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
+                                        delete experimentSetup.events;
+                                        
+                                        // delayed GC
+                                        setTimeout(function() {
+                                            gc();
+                                            let mem = (<any>window.performance).memory.usedJSHeapSize;
+                                            console.log("Mem after GC: " + mem);
+                                            noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
+                                        }, 4000);
                                      }
     );
 
@@ -120,6 +130,8 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
         }
         scheduler.addEvent(timeToCreate, 0, action);
     }
+
+    scheduledEvents = null; // gc later
 
 
     //(<any>window).runEvents = manager.runSimulation.bind(manager);
@@ -150,7 +162,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
     (<any>window).pauseplay = pauseplay;
     (<any>window).onSpeedEditBlur = onSpeedEditBlur;
 
-    pauseplay()
+    //pauseplay()
 
     logger.logMemory("post-clients-init");
 }
