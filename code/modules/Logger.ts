@@ -102,7 +102,7 @@ export default class Logger {
     }
 
     public writeLogToConsole(): void {
-        console.log(JSON.stringify(this.l, null, 4));
+        //dconsole.log(JSON.stringify(this.l, null, 4));
     }
 
     public getLog(): string[] {

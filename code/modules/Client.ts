@@ -220,40 +220,43 @@ if (this.DISABLE_INTERFACE) {
             }
         }
 
-        for (let undoAt of this.events.undo) {
-            let insertsAtTime = this.events.insert[undoAt]; // for experiments, want deletes to happen after inserts of the same time
-            let numInsertsAtTime = 0;
-            if (insertsAtTime !== undefined) {
-                numInsertsAtTime = insertsAtTime.chars.length;
-            }
+        if (this.events.undo !== undefined) {
+            for (let undoAt of this.events.undo) {
+                let insertsAtTime = this.events.insert[undoAt]; // for experiments, want deletes to happen after inserts of the same time
+                let numInsertsAtTime = 0;
+                if (insertsAtTime !== undefined) {
+                    numInsertsAtTime = insertsAtTime.chars.length;
+                }
 
-            let deletesAt = this.events.delete[undoAt]
-            let numDeletesAtTime = 0;
-            if (deletesAt !== undefined) {
-                numDeletesAtTime = deletesAt.length;
+                let deletesAt = this.events.delete[undoAt]
+                let numDeletesAtTime = 0;
+                if (deletesAt !== undefined) {
+                    numDeletesAtTime = deletesAt.length;
+                }
+                let self = this;
+                this.scheduler.addEvent(undoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
+                    self.localUndo();
+                });
             }
-            let self = this;
-            this.scheduler.addEvent(undoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
-                self.localUndo();
-            });
         }
+        if (this.events.redo !== undefined) {
+            for (let redoAt of this.events.redo) {
+                let insertsAtTime = this.events.insert[redoAt]; // for experiments, want deletes to happen after inserts of the same time
+                let numInsertsAtTime = 0;
+                if (insertsAtTime !== undefined) {
+                    numInsertsAtTime = insertsAtTime.chars.length;
+                }
 
-        for (let redoAt of this.events.redo) {
-            let insertsAtTime = this.events.insert[redoAt]; // for experiments, want deletes to happen after inserts of the same time
-            let numInsertsAtTime = 0;
-            if (insertsAtTime !== undefined) {
-                numInsertsAtTime = insertsAtTime.chars.length;
+                let deletesAt = this.events.delete[redoAt]
+                let numDeletesAtTime = 0;
+                if (deletesAt !== undefined) {
+                    numDeletesAtTime = deletesAt.length;
+                }
+                let self = this;
+                this.scheduler.addEvent(redoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
+                    self.localRedo();
+                });
             }
-
-            let deletesAt = this.events.delete[redoAt]
-            let numDeletesAtTime = 0;
-            if (deletesAt !== undefined) {
-                numDeletesAtTime = deletesAt.length;
-            }
-            let self = this;
-            this.scheduler.addEvent(redoAt, 2+numInsertsAtTime + numDeletesAtTime, function() {
-                self.localRedo();
-            });
         }
 
         this.events = null; // to enable GC later

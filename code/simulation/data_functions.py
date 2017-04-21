@@ -37,7 +37,10 @@ def file_to_histograms(f, binFile = None, normalize = True):
 
 def stats(f):
 	print "calculating stats"
-	data = [line.rstrip().split("\t") for line in open(f).readlines()[:-1]]
+	d = open(f).readlines()
+	if len(d[-1]) == 0:
+		d.pop(-1)
+	data = [line.rstrip().split("\t") for line in d]
 	labels = data.pop(0)
 	asRows = []
 	for c in range(len(data[0])):
@@ -47,7 +50,7 @@ def stats(f):
 				asRows[-1].append(float(data[r][c].strip()))
 	
 	means = np.array([np.mean(row) for row in asRows])
-	variances = np.array([np.var(row) for row in asRows])
+	variances = np.array([np.var(row, ddof=1) for row in asRows])
 	labels = np.array(labels)
 	result = np.vstack((labels, means, variances, variances**0.5))
 	result = result.transpose()
@@ -66,11 +69,11 @@ def stats(f):
 if __name__ == "__main__":
 	print sys.argv[1], sys.argv[2]
 	func = sys.argv[1]
-	dataFile = sys.argv[2]
+	pathToDataFile = sys.argv[2]
 	if func == 'hist':
 		if len(sys.argv) > 3:
-			file_to_histograms(dataFile, sys.argv[3])
+			file_to_histograms(pathToDataFile, sys.argv[3])
 		else:
-			file_to_histograms(dataFile)
+			file_to_histograms(pathToDataFile)
 	if func == 'stats':
-		stats(dataFile)
+		stats(pathToDataFile)

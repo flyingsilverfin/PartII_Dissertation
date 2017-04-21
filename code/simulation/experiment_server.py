@@ -166,7 +166,7 @@ def receiveCRDTMemory():
             pass
 
     print "EXPERIMENT SERVER: restarting chrome"
-    #AsyncRunIn(3, restartChrome)
+    AsyncRunIn(3, restartChrome)
     return ""
 
 

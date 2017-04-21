@@ -101,8 +101,9 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
                                         // clear log to lose any references to it
                                         logger.freeLog();
-                                        delete experimentSetup.events;
-                                        
+                                        //delete experimentSetup.events;    // don't gc this! already included in pre-experiment so just subtract it out
+                                        //gc();
+
                                         // delayed GC
                                         setTimeout(function() {
                                             gc();
@@ -162,7 +163,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
     (<any>window).pauseplay = pauseplay;
     (<any>window).onSpeedEditBlur = onSpeedEditBlur;
 
-    //pauseplay()
+    pauseplay()
 
     logger.logMemory("post-clients-init");
 }

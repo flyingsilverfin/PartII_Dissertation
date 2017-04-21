@@ -519,18 +519,19 @@ class ExperimentAnalzer(object):
                 total_packets_size_nometa += result["total_packets_size_nometa"]
 
 
-        initial_memory = self.memory_stamps[0][0]
+        
+            
         memory_checkpoints = [
             self.formatResultEntry(
                 'MemoryCheckpoint' + str(i),
-                self.memory_stamps[i][0] - initial_memory,
+                self.memory_stamps[i][0] - self.memory_stamps[1][1],    #compare vs post-client-create or post-topology-init (both at same index)
                 readableStringOverride=self.memory_stamps[i][1]
                 )
-            for i in range(len(self.memory_stamps))
+            for i in range(1,len(self.memory_stamps))
         ]
 
         memory_checkpoints.append(self.formatResultEntry('MemoryCheckpointNoLog', 
-                                    [int(x.strip()) for x in self.finalMemoryUsages], 
+                                    [int(x.strip()) for x in self.finalMemoryUsages] - self.memory_stamps[1][1], 
                                     readableStringOverride="nologMemoryRepetitions"))
 
 
