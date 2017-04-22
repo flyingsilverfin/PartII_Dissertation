@@ -129,7 +129,7 @@ exports.handler = (session, createAgent) ->
                  # The socket is submitting an op.
         else if query.op? or query.meta?.path?
           # DISSERTATION LOG MSG
-          logOpReceived(docName, agent.sessionId, query)
+          #logOpReceived(docName, agent.sessionId, query) #disable for heavy expeirments for memory
           handleOp query, callback
 
         else
@@ -174,7 +174,7 @@ exports.handler = (session, createAgent) ->
 
         global.gc();
 
-        
+
         fs.appendFile('/media/data/Uni/Year3/dissertation/code/simulation/experiments/'+docName+'/sharejs-server-memory.log',
           process.memoryUsage().heapUsed + '\n',
           (err) ->
@@ -224,17 +224,20 @@ exports.handler = (session, createAgent) ->
       # Its invalid to send a message to a closed session. We'll silently drop messages if the
       # session has closed.
       if session.ready()
-
+        #console.log("Time at sessions.read(): " + Date.now());
         # DISSERTATION LOG MSG
         docName = null
         for name of docState
           docName = name
         val = response.open || response.create
         session.send response
+        #console.log("Time after sending response: " + Date.now());
         if val
           logJoinAckSent(docName, agent.sessionId, response)
-        else
-          logSent(docName, agent.sessionId, response)
+        #else #disable for heavy experiments for memory
+          #logSent(docName, agent.sessionId, response)
+          
+        #console.log("Time after logging send: " + Date.now())
 
     # Open the given document name, at the requested version.
     # callback(error, version)

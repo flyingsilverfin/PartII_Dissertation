@@ -24,4 +24,5 @@ let scheduler = setup.scheduler;
 
 scheduler.addEvent(whenToJoin, 0, function() {
     new Client(id, setup.experimentName, sharejs, scheduler, setup.events, (<any>parentWindow).clientReady);
+    delete setup.events;
 });

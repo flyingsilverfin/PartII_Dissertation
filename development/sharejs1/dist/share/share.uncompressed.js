@@ -1144,7 +1144,7 @@
       } else{
         console.log('Unknown msg type for logging: ' + JSON.stringify(data));
       }
-      console.log(data);
+      //console.log(data);
 
       return this.socket.send(data);
     };

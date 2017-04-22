@@ -206,12 +206,13 @@ for i in range(numClients):
         "undo": [],
         "redo": []
     }
+    print "Going for client: %d" %i
     for j in range(num_inserts_per_client):
 
         if (wordlen == -1):
             toInsert = pickRandomWord()
         else:
-            s = [chr(random.randint(97,122)) for i in range(wordlen)]
+            s = [chr(random.randint(97,122)) for k in range(wordlen)]
             toInsert = "".join(s)
         when = j*insert_spacing
         experiment_setup["events"][i]["insert"][when] = {

@@ -69,6 +69,8 @@ if (!this.DISABLE_INTERFACE) {
                 }
             }
 
+            events = null;
+
             readyCallback(doc);
         }.bind(this))
 

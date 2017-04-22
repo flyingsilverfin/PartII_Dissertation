@@ -34,11 +34,17 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{46}{figure.caption.50}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{44}{figure.caption.49}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Local Ping}}{48}{figure.caption.52}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Memory Consumption Sanity Check}}{46}{figure.caption.51}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces interesting results\relax }}{49}{figure.caption.55}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Single Client Memory Consumption}}{47}{figure.caption.53}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Client-Server Latency}}{49}{figure.caption.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Server-Client Latencies}}{50}{figure.caption.57}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

@@ -6,6 +6,7 @@
     "pwd": "echo $PWD",
     "preinstall": "npm link typescript",
     "modshare": "./modifyShare.sh",
+    "devserv": "webpack-dev-server",
     "build": "npm run modshare && webpack",
     "start": "npm run modshare && webpack-dev-server"
   },

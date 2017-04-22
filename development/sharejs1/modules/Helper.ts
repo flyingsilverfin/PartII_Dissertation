@@ -42,7 +42,7 @@ export function postObject(path, object) {
     httpRequest.setRequestHeader('Content-type', 'application/json');
     httpRequest.onload = function () {
         // do something to response
-        console.log("Posted data: " + JSON.stringify(object));
+        //console.log("Posted data: " + JSON.stringify(object));
     };
     httpRequest.send(JSON.stringify(object));
 }

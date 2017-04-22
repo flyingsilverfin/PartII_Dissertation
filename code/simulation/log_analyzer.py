@@ -86,7 +86,8 @@ class ClientAnalyzer(object):
                 #TODO
                 pass
             else:
-                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                #print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                pass
             
         else:   #case sharejs
             assert msg_type == "sharejs-op"
@@ -164,7 +165,8 @@ class ClientAnalyzer(object):
                 #TODO
                 pass
             else:
-                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                #print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                pass
         else:   # case sharejs
 
             assert msg_type == "sharejs-op"

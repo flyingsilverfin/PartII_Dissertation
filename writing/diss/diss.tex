@@ -14,6 +14,8 @@
 \usepackage{amsthm}
 \usepackage{listings}
 \usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[font={it},justification={centering}]{caption}
 \usepackage{float}
 \usepackage{framed}
@@ -21,8 +23,11 @@
 \usepackage{fancyvrb,newverbs,xcolor}
 \usepackage{pgfplots}
 \usepackage[subpreambles=true]{standalone}	% to include external pgfplots
+\usepgfplotslibrary{external}
 
+\tikzexternalize% activate externalization!
 
+\pgfplotsset{compat=newest}
 
 
 \usepackage[UKenglish]{babel}% Recommended
@@ -30,7 +35,6 @@
 
 \addbibresource{refs.bib}% Syntax for version >= 1.2
 
-\pgfplotsset{compat=1.5}
 
 \raggedbottom                           % try to avoid widows and orphans
 \sloppy
@@ -100,6 +104,8 @@
   {\egroup\colorbox{cverbbg}{\box\verbbox}}
   
   
+  
+\newtheorem{lemma}{Lemma}
   
 \begin{document}
 
@@ -589,7 +595,7 @@ interface InsertMessage {
 				
 				This is the standard procedure to insert a new node into a linked list, with the exception of lines 2 and 3. These are the key steps to ensure that all clients converge to the same string, no matter what order the concurrent inserts are incorporated.
 				
-				To understand the intuition behind why this works, recall the reason for utilizing a Lamport clock: we can deduce that a remote, incoming identifier $id_a$ and some locally generated $id_b$, are concurrent if $id_a \leq id_b$ . Thus, when incorporating $id_a$, we skip over local, concurrent identifiers until finding one where the condition $\leq$ fails and insert there. Reciprocally, once local operations arrive at the sender, the same algorithm will be applied. The arrived operations will have greater identifiers, $id_b > id_a$ (same identifiers of concern as before, just on the other client), and so step 2 will iterate over nothing and insert them before $id_a$. Thus on both clients, $id_a$ will be reside after $id_b$ in the linked list.
+				To understand the intuition behind why this works, recall the reason for utilizing a Lamport clock: we can deduce that a remote, incoming identifier $id_a$ and some locally generated $id_b$, are concurrent if $id_a <_{id} id_b$ . Thus, when incorporating $id_a$, we skip over local, concurrent identifiers until finding one where the condition $<_{id}$ fails and insert there. Reciprocally, once local operations arrive at the sender, the same algorithm will be applied. The arrived operations will have greater identifiers, $id_b >_{id} id_a$ (same identifiers of concern as before, just on the other client), and so step 2 will iterate over nothing and insert them before $id_a$. Thus on both clients, $id_a$ will be reside after $id_b$ in the linked list.
 				
 			\paragraph{Delete}
 				Deleting a character from the text document generates a delete operation, which is transmitted as a bundle $B$ containing
@@ -790,8 +796,8 @@ public addEvent(time: number, clock: number, action: any) {
 	\end{figure}
 
 	
-		\paragraph{Modified Vector Clocks}
-		A traditional vector clock is outlined is Appendix \ref{appendix:vectorclocks}. In this system, the causal delivery layer must delay messages that arrive before all of their causal dependencies are delivered, which requires calculating exactly which messages are missing. To this end, I modified the vector merge rule (number 4 from the appendix) to only increment the local clock whenever a message is generated. This way, each value in a vector represents exactly how many messages are known to have been sent by the corresponding client. 
+		\paragraph{Modified Vector Clocks} \label{sec:modifiedvectors}
+		A traditional vector clock is outlined is Appendix \ref{appendix:vectorclocks}. In this system, the causal delivery layer must delay messages that arrive before all of their causal dependencies are delivered, which requires calculating exactly which messages are missing. To this end, I modified the vector merge rule (number 4 from the appendix) to only increment the local clock whenever a message is generated. This way, each value in a vector represents exactly how many messages are known to have been sent by the corresponding client. The full modified rules are listed \cref{appendix:modifiedvector}.
 		
 		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<_v$.
 				
@@ -800,7 +806,7 @@ public addEvent(time: number, clock: number, action: any) {
 		Given vectors $v_1$ and $v_2$ define \[v_1\ <_v\ v_2 \iff\ \forall c \in v_2, v_2.\ v1.c \leq v_2.c\ \land\ \exists c' \in v_1, v_2.\ v_1.c' < v_2.c'\]
 		We say $v_2$ is \textit{causally dependent} on $v_1$ and $v_1$ is \textit{causally prior} to $v_2$.
 		
-		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v <_v s$, then the message has been seen before and can be discarded. If $s < v$, a delta can be computed by taking the element wise difference between $v$ and $s$, treating missing elements as $0$. This represents the number of messages missing from each client. 
+		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v <_v s$, then the message has been seen before and can be discarded. If $s <_v v$, a delta can be computed by taking the element wise difference between $v$ and $s$, treating missing elements as $0$. This represents the number of messages missing from each client. 
 		
 		Using a delta we can more efficiently deliver buffered packets than doing a linear search through the queued packets on each new arrival. This idea is depicted in Figure \ref{fig:efficient}.
  		\begin{figure}[htb]
@@ -930,7 +936,7 @@ public addEvent(time: number, clock: number, action: any) {
 		
 		\subsubsection{Implementation}
 		
-		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, which also have the same functional form as undo-delete and redo-delete, and only contain the character identifier to operate upon.
+		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, which also have the same functional form as undo-delete and redo-delete bundles, and only contain the character identifier to operate upon.
 		
 		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called), nodes which have $v = false$ are ignored and not retrieved.
 		
@@ -971,7 +977,7 @@ export interface MapEntry {
 			\paragraph{Cost}
 			The cost of this approach is minimal: one extra integer per deleted link in the CRDT.
 			
-		\subsubsection{Immediate Undo}
+		\subsubsection{Immediate Undo} \label{sec:immediateundo}
 		CCT Undo requires users agree to make deleted characters reappear. It would be preferable for any user to be able to immediately undo a character regardless of other users.
 		
 			\paragraph{Semantics}
@@ -998,22 +1004,11 @@ export interface MapEntry {
 			
 					\[\forall Links\ l.\  (\lnot\exists l.v \lor l.v = true) \land (\lnot\exists l.d \lor \lnot l.d[0]) \] 
 						
+			The proof of commutativity can be found in Appendix \ref{appendix:immundoproof}.
 			
-			\paragraph{Proof of Commutativity}
-			\textcolor{blue}{This could be moved into the appendix to save word count ~320 words less\\}
-			We only need to consider commutativity with other operations that may operate on the same data in the CRDT and therefore conflict. Since any given delete, undo, or redo operation $op$ only affects the specific node $node$ in the linked list identified by $op.deleteId$, the only conflicting operations might be other delete, undo delete, and redo delete operations.
-						
-			\begin{proof}
 			
-				We treat delete and redo delete operations identically. Any non-concurrent modifications are not considered as the latest causally dependent operation is defined to take effect.
-				
-				Take a system which begins in quiescence, submits concurrent operations and returns to quiescence. There are three possible cases: delete-delete, delete and delete-undo, and undo-undo.
-				
-				In the delete-delete scenario, the operations are idempotent: both set $node.d[0]$ to $true$ and $node.d[1]$ to the merged local and incoming vectors of the two operations. Thus on any client, the target node is no longer visible. The undo-undo case is exactly analogous except $node.d[0] = false$. 
-				
-				In the delete, delete-undo case (one client deletes while another deletes then undoes immediately), any client receiving a single delete $op_{d_1}$ first will set $node.d[0] = true$ and record the merged vector in $node.d[1]$. On delivery of the concurrent delete $op_{d_2}$, only the vector at $node.d[1]$ is updated as the node is already marked as deleted. Then, undo $op_{undo_2}$, since it is a \textit{make-visible} operation, and determined to be concurrent with the merged vector stored at $node.d[1]$, takes effect and $node.d[0]$ is set to $false$. If $op_{d_2}$ were delivered before $op_{d_1}$ the same would occur. Lastly, if the first arrivals are $op_{d_2}$ followed by $undo_{d_2}$, the undo takes effect and $node.d[0] = false$ and $node.d[1]$ is set to the merged vector. On arrival of $op_{d_1}$, since it is concurrent with $node.d[1]$ and a \textit{make-invisible} operation taking effect against a \textit{make-visible} operation, it is ignored. Thus, in any case the clients resolve $node.d[0] = false$ and the node is visible. The stored vector is the result of merging the vectors of the three operations which may be done in any order, thus equivalent in any case.
-				
-			\end{proof}
+			
+			
 			
 			\paragraph{Cost}
 			Storing a vector with every character that at one point was deleted can become quite expensive: Vector clocks are $\Theta (m*log(k))$, where $m$ is the number of clients in the network and $k$ is the decimal length of the longest sequence number in the vector.
@@ -1069,88 +1064,98 @@ export interface MapEntry {
 	
 		This section aims to empirically test both ShareJS and the underlying operation transformations, and my CRDT-based system. While experiments were run for data collection rather than testing and debugging, the user interface components were disabled: updating the user interface is an expensive operation on both systems and slows the experiment execution.
 		
-		\subsection{ShareJS Latencies}
-			ShareJS has nondeterminism introduced by the time taken for a TCP request to propagate through a socket to a local server and back. On the other hand the simulation is determined by the preprogrammed setup. To make the experiments as similar as possible between the two systems, I aim to set the latencies of the simulation to be similar to that of ShareJS. This requires measuring the approximate latency on links to and from the server.
-			
-			Firstly, it is interesting that under low load (approximately 10 requests per second), a single client-server link is symmetric: the latency is approximately normal centered at 4ms for both directions. However, under higher load from a single client (approximately 20 requests per second), the distribution becomes bimodal. The lower lobe is again centered at 4ms and represents the client to server link, while the second is around 45ms and represents the server-client link.
-			
-			
-			\begin{figure}[htb]
-			\centering
-			%\resizebox {\columnwidth} {!}{
-				\begin{tikzpicture}
-					\begin{axis}[
-						title=Link Latency at Increasing Load,
-						xlabel={Latency (ms)},
-						ylabel={Proportion of occurrences},
-						xmin=0, xmax=100,
-						scale=1.5
-						]
-					
-					\addplot+[blue] table[x index=0, y index =1] {data/latencies.dat_HIST.dat};
-					\addlegendentry{10 Requests per second}
-					\addplot+[red] table[x index=0, y index =2] {data/latencies.dat_HIST.dat};
-					\addlegendentry{20 Requests per second}
-					\addplot+[green] table[x index=0, y index =3] {data/latencies.dat_HIST.dat};
-					\addlegendentry{50 Requests per second}
-					\addplot+[purple] table[x index=0, y index =4] {data/latencies.dat_HIST.dat};
-					\addlegendentry{100 Requests per second}
-					\addplot+[black] table[x index=0, y index =5] {data/latencies.dat_HIST.dat};
-					\addlegendentry{200 Requests per second}
-					
-					\end{axis}
-				\end{tikzpicture}
-			%}
-			\end{figure}
-			
-			At increasing server load, the distribution becomes approximately normally distributed. The mean shifts is approximately 29ms when operating at 200 requests per second from 10 separate TCP connections. This increase likely corresponds to load incurred either on the server itself or on the operating system network stack which handles locally routed packets. For experiments on the CRDT system, 30ms will be the mean latency with a standard deviation of 10 ms.
-			
-			Interestingly, as shown Figure \ref{fig:localping} executing a local ping takes on average 0.03 ms, rather than the 3 to 30 ms supported by the data above. The discrepancy might be attributed to the nature of the Node server used, ShareJS, Chrome and the use of HTTP requests, interaction with logging, or operating system effects such as context switching. For the purpose of this project, the actual latencies are not very important, and indeed higher values make it easier to simulate concurrency.
-			
-			\begin{figure}[htb]
-			\centering
-			\includegraphics[width=1\linewidth]{figs/local_ping.png}
-			\caption[Local Ping]{Execution of \textit{ping} to localhost.}
-			\label{fig:localping}
-			\end{figure}
+		
 			
 		\subsection{Memory}
+			Data collected for the following sections was done on the Immediate Undo variant \cref{sec:immediateundo} of the CRDT-based system. Once I established that using different network topologies produced extremely similar results, I decided to combine results from experiments on both fully-connected and star topologies to better average out nondeterminism introduced by the operating system. Values are calculated as the difference from before the experiment is initialized so as to only measure the additional memory used.
 		
-			\paragraph{ShareJS Expectations}
-				As noted in \cref{sec:sharejs} I expect both the server and clients to buffer past operations to transform concurrent operations against. To confirm this, I created a series of experiments which insert and remove the same character a number of times. This ensures the document size is not growing, so the only potential growth is storing past operations.
+			\paragraph{Sanity Check}
+				As noted in \cref{sec:sharejs} I expect both the ShareJS server and clients to suffer from having to save past operations to transform concurrent modifications against. I created a series of experiments which insert and remove the same character a number of times. This ensures the document size is not growing: the only growth should be storing past operations. 
 				
-				Client memory use Figure [TODO]. next to server use figure [TODO]
+				For comparison, the same experiments were evaluated on the CRDT system in two ways: firstly using standard insert/delete operations, and secondly as undo/redo operations. The key is that these both have the same effect of inserting and removing characters from the visible document text. However, using insertion and deletion generates a uniquely tagged character each time, so the memory use should increase though the visible document size does not. Doing effectively the same thing with undo and redo operations should not grow internal structures. This test is very useful in establishing the presence of memory leaks and as a general sanity check.
 				
-				Experiments 6-10
+				Figure [TODO] confirms these expectations: ShareJS clients and server increase their memory usage as they buffer past operations, though at the end of the experiments the document size is zero characters long. The insert/delete CRDT experiments grow approximately linearly as prediced, whereas using undo/redo shows almost no growth. 
+				
+				This exposes a clear advantage for using CRDT undo/redo versus ShareJS's approach to undo/redo, which is generating opposite actions to undo a prior operation i.e. a delete to undo insertion and an insert to undo a deletion. 
+				
+				\begin{figure}[h]
+					\centering
+					\includestandalone[mode=buildnew]{data/memory_sanity_check/memory_sanity_check_plot}
+					\caption[Memory Consumption Sanity Check] {A plot comparing the performance of the ShareJS client and server, a CRDT based client performing insertions and deletions, and a CRDT client using undo and redo operations. The error bars indicate one standard deviation from the mean. Error in the CRDT data is generally too small to be visible.}
+				\end{figure}
 		
-			\paragraph{Single Client}
-				I noted in \cref{sec:sharejs} a ShareJS client might scale linearly in terms of memory consumption due to saved operations and document size. Comparatively, a CRDT with $n$ characters must store $n$ links of constant size (ignoring immediate undo requirements), each identified by an identifier of decimal length $log(n)$, so one might expect a $O(nlog(n))$ space complexity. To test this, a series of experiments were designed using only a single client. Operations inserted only one character at a time. 
-				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
+			\paragraph{Single Editor}
+				In addition to storing past operations, ShareJS components also need to store the document as it grows. This series of experiment explores combined growth with increasing numbers of insertions of single characters. While ShareJS should scale linearly, a CRDT with $n$ characters must store $n$ links of constant size (ignoring deletion requirements), each identified by an identifier of decimal length $log(n)$, so one might expect a $O(nlog(n))$ space complexity. To test this, a series of experiments were designed using only a single client. Operations inserted only one character at a time, shown in \ref{fig:sub1}.
+					
+				To compare to a more realistic workload, another series of experiments was performed inserting words of average length 7.8 at a time rather than individual characters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer packets, reflecting that it needs to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards is likely extra closures and overhead associated with a character by character operations rather than words). If operations are are kept small and frequent, as is common when streaming changes between clients, CRDTs offer better performance for small and medium sized documents.
 				
-				\begin{figure}
+				[TODO mention possible optimization of inserting into the CRDT itself in groups of splittable words. talk about in conclusion]
+				
+				\begin{figure} [H]
+				\centering
+				\begin{subfigure}[t]{.45\textwidth}
 				  \centering
-				  \includestandalone[mode=buildnew]{data/1client_plot}
-				  \caption[Single Client Memory Consumption] {Memory consumption of both systems with only one client. Interestingly, the server memory use decreases up to about 1000 insertions... [Explanation TODO]. All three components scale linearly with the number of insertions. It appears the predicted $log(n)$ factor has little effect at this scale of operation. In the plot, the error in the measurement of the CRDT client is too small to see.}
+				  \includestandalone[width=.99\linewidth,mode=buildnew]{data/singleclient_memory/singleclient_plot}
+				  \caption[Single Client Memory Consumption with Character Insertion] {A plot of component behavior as characters are inserted one at a time into the documents.}
+				  \label{fig:sub1}
+				\end{subfigure}%
+				\begin{subfigure}[t]{.45\textwidth}
+				  \centering
+				  \includestandalone[width=.99\linewidth,mode=buildnew]{data/singleclient_word_insert_memory/singleclient_word_insert_plot}
+				  \caption{A plot of component behavior as characters are inserted one word at a time. In this scenario, the CRDT overtakes the ShareJS client after approximately 1300 word insertions, or about $1300*7.8 = 10140$ characters.}
+				  \label{fig:sub2}
+				\end{subfigure}
+				\begin{subfigure}[t]{0.6\textwidth}
+				  \centering
+			  	  \includestandalone[width=1\linewidth,mode=buildnew]{data/combined_single_client_memory/combined_single_client_memory}
+				  \caption{A simplified plot including only the ShareJS and CRDT client consumptions on the same scale. The values from \ref{fig:sub2} have been rescaled by the average word length of 7.8 characters to fit the same axis as \ref{fig:sub1}.}
+				  \label{fig:sub3}
+				\end{subfigure}
+				\caption[Single Client Memory Consumption]{Plots comparing the behavior of ShareJS and CRDT based systems under different behaviors.}
+				\label{fig:singleclientmemory}
 				\end{figure}
 				
-				Instead, a more reasonable interaction that might be expected is word-insertion rather than single character insertion. The performance of the CRDT should be identical, whereas ShareJS's should improve: fewer packets sent means fewer packets need to be saved client side, though document size is similar. 
-				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
-				
-				[figure]
-				Experiments 16-20
-				
-				
-				Drawing conclusions from these figures..... TODO
 				
 				
 			\paragraph{Multiple Clients}
 				Try inserting a set number (5000) characters into the document in both systems, but with split across increasing numbers of clients. 1 Client has already been done above. The insertions were split across 1, 2, 5, 10, 50, and 100 clients.
 				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
 				
-				Experiments 11-15
+				Experiments 44-48 inclusive
+				
+			\paragraph{CRDT System Variations}
+				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:implementation}, in some situations undo functionality may not be necessary. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems across a mixture of insertion to deletion ratios at a fixed number of clients, operations and fixed word length.
+				
+				Experiments TODO
+					Perhaps 1000 operations per client, 5 clients at different mixes of insertion/deletion ratios, fixed length ``words'' of say length 5. Perhaps 100/0, 80/20, 60/40, 40/60, 20/80 is as low as we can go with 5 char words -- returns to empty!. Bar graph
+					100/0 has already been done 1000 operations for 5 clients each in multiple clients
+					
+					Experiments 49-52 inclusive, plus 45
+					Copy and re-evaluate for no undo and CCI Undo
+					
+					
+		\subsection{Network}
+			
 		
-		
+			\subsection{ShareJS Latencies}
+			When creating fully deterministic experiments for the simulation, latencies over every link need to be specified. For realism and similarity to ShareJS, I chose to set these to be similar to the nondeterministic latencies experienced by ShareJS. I collected data on the ShareJS client to server links, and about server-client links separately.			
+			
+			\begin{figure}[h]
+				\centering
+					\includestandalone[mode=buildnew]{data/latencies/latencies_distributions_client-server}
+				\caption[Client-Server Latency] {Latency to the server remains is typically around 3ms until a higher load of 200 requests per second.}
+			\end{figure}
+			\begin{figure}[h]
+				\centering
+					\includestandalone[mode=buildnew]{data/latencies/latencies_distributions_server-client}
+				\caption[Server-Client Latencies] {At very low load, the return latency is around 3ms. Until high load from multiple TCP connections, latencies are concentrated around 45ms. At high load a more normal distribution is achieved with a mean of 29ms.}
+			\end{figure}
+			
+			A strange feature of these approximate distributions is the 45ms return time. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually arrive within a few milliseconds, but are only passed to the client after an additional delay of about 30-40ms.
+			
+			For simulations I generate normally distributed latencies with mean 30ms and standard deviation 10ms, similar to the distributions at 200 requests per second.
 	
+		
 	
 	
 		Begin by empirically confirming the predictions made before... 
@@ -1160,7 +1165,7 @@ export interface MapEntry {
 			CPU: Cost of integrating remote changes and cost of generating local changes and sending them... how to deal with server
 			
 		
-			
+		
 		Lastly, a real world simulation based on user interactions with wikipedia
 		
 		
@@ -1173,8 +1178,8 @@ export interface MapEntry {
 			%CRDT:	 Confirm O(nlogn) memory growth per client\\
 			
 
-			ShareJS: sending N words of average length k => total packet size (grows with version number)\\
-			CRDT: 	 Given average latency of ShareJS, show how latency scales with connectivity in simulation versus 2*RTT for ShareJS\\
+			%ShareJS: sending N words of average length k => total packet size (grows with version number)\\
+			%CRDT: 	 Given average latency of ShareJS, show how latency scales with connectivity in simulation versus 2*RTT for ShareJS\\
 			CRDT:	 sending N words of average length k => packet size growth ... cf above. Perhaps same plot?\\
 			CRDT: 	 Flooding as a function as number of clients at one or two topologies (fully connected and star)\\
 			
@@ -1242,11 +1247,11 @@ A vector clock $VC$ is an array of integer timestamps $[c_1, c_2...c_n]$. $c_p$ 
 
 There are 5 rules associated with traditional vector clocks.
 \begin{enumerate}
-	\item All values are initially zero
-	\item The local clock value is incremented at least once for each atomic event
-	\item The current value of the entire vector is sent with every outgoing message
+	\item All values are initially zero.
+	\item The local clock value is incremented at least once for each atomic event.
+	\item The current value of the entire vector is sent with every outgoing message.
 	\item Upon receipt of a vector, set the local vector to be the maximum of corresponding values in the received and local vectors. The local value is incremented by one.
-	\item No value is ever decremented	
+	\item No value is ever decremented.
 \end{enumerate}
 
 The desired partial ordering can then be defined
@@ -1256,37 +1261,49 @@ The desired partial ordering can then be defined
 %\section{Compact Representation}
 
 
+\section{Modified Vector Clock}
+\label{appendix:modifiedvector}
 
-%		\paragraph{Vector Clocks} \label{sec:vectorclock}
-%		A vector clock is an list of sequence numbers, one per distributed process. At the time the system is initialized, all clients have a vector of zeros. According to the original paper by Fidge, there are 5 rules for updating which ensure that causal order can be determined by comparing vectors. The specifics of vector clocks are outlined in Appendix~\ref{appendix:vectorclocks}. The properties of vector clocks guarantee that \[ A \rightarrow B\ \Leftrightarrow Vector(A) < Vector(B)\] where $<$ is defined to in the appendix.
-		
-%		Fidge's nth[TODO] rule indicates that a receiver should increment its own local clock value on receipt of a message, as well as on sending its own messages. While this rule makes it easy to determine whether a message comes before or after or occurred concurrently with another, it is not so straightforward to determine, for instance, if a message overtook another on the same link, or how many messages occurred between two given vectors.
-		
-%		\paragraph{Modified Vector Clocks}
-%		Causal delivery layers delay messages that arrive before all of their causal dependencies are delivered. This requires calculating exactly which messages are missing, before a delayed message can be passed from the buffer to the client.
-		
-%		To do this simply, I modified the rule of incrementing local clocks on receipt, and only increment locally whenever a message is generated. This way, each value in a vector represents exactly how many messages have been sent by the corresponding client. This avoids conflating `how many messages this client has seen' with `how many messages this client has generated'.
-		
-%		We can now determine concurrent, causally dependent and causally prior messages by comparing vectors. We define the latter two about $<$.
-		
-%		Concurrent. Given two vectors $v1$ and $v2$, they occurred concurrently iff \[\exists c,c' \in v1,\ v2.\ v1.c > v2.c\ \land\ v1.c' > v2.c'\]
-		
-%		Causally Dependent and Causally Prior. Given vectors $v1$ and $v2$, \[v1\ <\ v2 \iff\ \forall c \in v1, v2.\ v1.c \leq v2.c\ \land\ \exists c' \in v1, v2.\ v1.c' < v2.c'\]
-%		In this definition, $v2$ is causally dependent on $v1$ and $v1$ is causally prior to $v2$.
-		
-%		If a client receives a vector $v$ that is concurrent with the client's current vector $s$, the causal network layer immediately delivers the message to the client. If $v < s$, then the message has been seen before and can be discarded. In the case that $s < v$, the Delta Vector can be computed.
-		
-%		A Delta Vector $dv$ between $v1$ and $v2$ is their element-wise difference. If the sizes of the vectors mismatch, treat the missing vector elements as being equal to 0. Delta vectors are useful for delivering messages efficiently.
-		
-		
-%		\paragraph{Efficient Delivery}
-%		The causal delivery middleware must buffer all messages with dependencies that have not arrived yet. This means, that on each new message, the buffer must be searched for messages that can be delivered. This could lead to a cascade of deliveries which if implemented naiively is quadratic in the number of buffered messages.
-		
-%		Instead, using Delta Vectors we can form a dependency graph which allows more efficient delivery.
-		
+The modified rule used in~\cref{sec:modifiedvectors} changed rule four from the previous section. For completeness, the full complete rules used are listed below.
+
+\begin{enumerate}
+	\item All values are initially zero.
+	\item The local clock value is incremented with every message sent by a replica.
+	\item The current value of the entire vector is sent with every outgoing message.
+	\item Upon receipt of a vector, set the local vector to be the maximum of corresponding values in the received and local vectors.
+	\item No value is ever decremented.
+\end{enumerate}
 
 
 
+
+\chapter{Convergence of Immediate Undo Variant}
+
+\section{Proof of Commutativity} \label{appendix:immundoproof}
+
+Section \cref{sec:immediateundo} presented an alternative method of implementing undo and redo functionality for the CRDT. To prove convergence, only commutativity needs to be guaranteed as discussed in \cref{sec:crdtoverview}. The commutativity of the undo and redo operations are presented below.
+
+We only need to consider commutativity with other operations that may operate on the same data in the CRDT and therefore conflict. Since any given delete, undo, or redo operation $op$ only affects the specific node $node$ in the linked list identified by $op.deleteId$, the only conflicting operations might be other delete, undo delete, and redo delete operations.
+						
+	\begin{proof}
+	
+		We treat delete and redo delete operations identically. Any non-concurrent modifications are not considered as the latest causally dependent operation is defined to take effect.
+		
+		Take a system which begins in quiescence, submits concurrent operations and returns to quiescence. There are three possible cases: delete-delete, delete and delete-undo, and undo-undo.
+		
+		In the delete-delete scenario, the operations are idempotent: both set $node.d[0]$ to $true$ and $node.d[1]$ to the merged local and incoming vectors of the two operations. Thus on any client, the target node is no longer visible. The undo-undo case is exactly analogous except $node.d[0] = false$. 
+		
+		In the delete, delete-undo case (one client deletes while another deletes then undoes immediately), any client receiving a single delete $op_{d_1}$ first will set $node.d[0] = true$ and record the merged vector in $node.d[1]$. On delivery of the concurrent delete $op_{d_2}$, only the vector at $node.d[1]$ is updated as the node is already marked as deleted. Then, undo $op_{undo_2}$, since it is a \textit{make-visible} operation, and determined to be concurrent with the merged vector stored at $node.d[1]$, takes effect and $node.d[0]$ is set to $false$. If $op_{d_2}$ were delivered before $op_{d_1}$ the same would occur. Lastly, if the first arrivals are $op_{d_2}$ followed by $undo_{d_2}$, the undo takes effect and $node.d[0] = false$ and $node.d[1]$ is set to the merged vector. On arrival of $op_{d_1}$, since it is concurrent with $node.d[1]$ and a \textit{make-invisible} operation taking effect against a \textit{make-visible} operation, it is ignored. Thus, in any case the clients resolve $node.d[0] = false$ and the node is visible. The stored vector is the result of merging the vectors of the three operations. This merge will produce identical results in any order as proven in Lemma \ref{VectorMergeLemma}.
+		
+	\end{proof}
+	
+	\begin{lemma}\label{VectorMergeLemma}
+		A set of vectors $S = {v_1, v_2... v_n}$ merged in any order will converge to the same result.\\
+		The vector merge rule used is Rule 4 from Appendix \ref{appendix:modifiedvector}, which states the merge between vectors $v_a$ and $v_b$ is the component-wise maximum of the vectors. That is, $\forall i. v_{result}^i = max(v_a^i, v_b^i)$.
+		
+		The result of merging $n$ vectors is $v_{result}^i = max(v_1^i, max(v_2^i,...max(v_{n-1}^i, v_n^i)...))$, though the order of nesting is arbitrary. In any ordering component $i$ is simply the maximum of all possible $i$ components from the set $S$. Thus, the ordering used to merge a set of vectors is irrelevant and produces the same result in any ordering.
+		
+	\end{lemma}
 
 \chapter{Simple Experiment}
 
@@ -1298,7 +1315,6 @@ The desired partial ordering can then be defined
 	Total simulation duration: 848.547219206
 	Optimizations enabled: False
 	All clients converged to same result: True
-	Converged string (if all match, else first logged string): None
 	Total insert events: 27
 	Total delete events: 0
 	Total insert packets sent: 125
@@ -1322,7 +1338,6 @@ The desired partial ordering can then be defined
 	Total simulation duration: 848.547219206
 	Optimizations enabled: True
 	All clients converged to same result: True
-	Converged string (if all match, else first logged string): None
 	Total insert events: 3
 	Total delete events: 0
 	Total insert packets sent: 13
@@ -1346,7 +1361,6 @@ The desired partial ordering can then be defined
 	Total simulation duration: 959.239037182
 	Optimizations enabled: False
 	All clients converged to same result: True
-	Converged string (if all match, else first logged string): None
 	Total insert events: 27
 	Total delete events: 0
 	Total insert packets sent: 89
@@ -1370,7 +1384,6 @@ The desired partial ordering can then be defined
 	Total simulation duration: 959.239037182
 	Optimizations enabled: True
 	All clients converged to same result: True
-	Converged string (if all match, else first logged string): None
 	Total insert events: 3
 	Total delete events: 0
 	Total insert packets sent: 9

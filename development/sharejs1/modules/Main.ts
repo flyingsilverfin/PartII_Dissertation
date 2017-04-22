@@ -90,10 +90,16 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
             // clear log to lose any references to it
             logger.freeLog();
-            // force GC
-            gc();
-            console.log("sending memory without log!!");
-            noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
+            result = null;
+            log = null;
+
+            //delete experimentSetup.events;    // subtract it out later instead
+            // force GC after a delay
+            setTimeout(function() {
+                gc();
+                let mem = (<any>window.performance).memory.usedJSHeapSize;
+                noLogMemoryUsageCallback(mem);
+            }, 1000);
         }, 2000);
     }
 
