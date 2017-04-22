@@ -1,6 +1,6 @@
 import NetworkInterface from './NetworkInterface';
 import NetworkStatsManager from './NetworkStatsManager';
-import GraphVisualizer from './GraphVisualizer';
+//import GraphVisualizer from './GraphVisualizer';
 import Topology from './topology/Topology';
 import EventDrivenScheduler from './EventDrivenScheduler';
 import Time from './Time';
@@ -16,7 +16,7 @@ class NetworkManager {
     private topology: Topology;
     private scheduler: EventDrivenScheduler;
     private networkStats: NetworkStatsManager;
-    private visualizer: GraphVisualizer;
+    private visualizer: any;
     private log: Logger;
 
     private paused = true;
@@ -27,7 +27,7 @@ class NetworkManager {
 
     constructor(topology: Topology, 
                 networkStatsManager: NetworkStatsManager, 
-                visualizer: GraphVisualizer, 
+                visualizer: any, 
                 scheduler: EventDrivenScheduler, 
                 log: Logger,
                 finishedCallback: () => void) {

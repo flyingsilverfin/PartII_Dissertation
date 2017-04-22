@@ -166,7 +166,7 @@ def receiveCRDTMemory():
             pass
 
     print "EXPERIMENT SERVER: restarting chrome"
-    AsyncRunIn(3, restartChrome)
+    AsyncRunIn(0.1, restartChrome)
     return ""
 
 
@@ -215,8 +215,8 @@ def receiveOTMemory():
         os.remove(os.path.join('.','experiments',experimentName,'ot','log.txt'))
         os.remove(os.path.join('.','experiments',experimentName,'sharejs-server.log'))
 
-    AsyncRunIn(2, restartShareServer)
-    AsyncRunIn(8, restartChrome)        # give time for server to restart
+    AsyncRunIn(0.1, restartShareServer)
+    AsyncRunIn(5, restartChrome)        # give time for server to restart
     return ""
 
 

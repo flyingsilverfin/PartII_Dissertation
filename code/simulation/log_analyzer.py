@@ -73,9 +73,21 @@ class ClientAnalyzer(object):
             elif msg_type == 'returnCRDT':
                 #CRDT provider has nothing useful to say when the return is sent
                 pass
+            elif msg_type == 'undoInsert':
+                #not implemented yet
+                pass
+            elif msg_type == 'redoInsert':
+                #TODO
+                pass
+            elif msg_type == 'undoDelete':
+                #TODO
+                pass
+            elif msg_type == 'redoDelete':
+                #TODO
+                pass
             else:
                 print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
-
+            
         else:   #case sharejs
             assert msg_type == "sharejs-op"
             payload = json.loads(log_msg[6])
@@ -139,6 +151,18 @@ class ClientAnalyzer(object):
                 else:   # pass it to the correct client (breaks convention being used before)
                     rec = self.other_clients[receiver]
                     rec.msgArrived(log_msg)
+            elif msg_type == 'undoInsert':
+                #not implemented yet
+                pass
+            elif msg_type == 'redoInsert':
+                #TODO
+                pass
+            elif msg_type == 'undoDelete':
+                #TODO
+                pass
+            elif msg_type == 'redoDelete':
+                #TODO
+                pass
             else:
                 print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
         else:   # case sharejs
@@ -226,6 +250,8 @@ class ExperimentAnalzer(object):
         self.stringIdentifier = ", ".join(identifier)
         self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
         self.logPath = logPath
+
+        #print logPath
 
         self.finalMemoryUsages = open(os.path.join(*(logPath[:-1] + ['final_memory_usage.txt']))).readlines()
 
@@ -524,14 +550,14 @@ class ExperimentAnalzer(object):
         memory_checkpoints = [
             self.formatResultEntry(
                 'MemoryCheckpoint' + str(i),
-                self.memory_stamps[i][0] - self.memory_stamps[1][1],    #compare vs post-client-create or post-topology-init (both at same index)
+                self.memory_stamps[i][0] - self.memory_stamps[1][0],    #compare vs post-client-create or post-topology-init (both at same index)
                 readableStringOverride=self.memory_stamps[i][1]
                 )
             for i in range(1,len(self.memory_stamps))
         ]
 
         memory_checkpoints.append(self.formatResultEntry('MemoryCheckpointNoLog', 
-                                    [int(x.strip()) for x in self.finalMemoryUsages] - self.memory_stamps[1][1], 
+                                    [int(x.strip()) - self.memory_stamps[1][0] for x in self.finalMemoryUsages], 
                                     readableStringOverride="nologMemoryRepetitions"))
 
 

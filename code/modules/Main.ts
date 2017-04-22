@@ -110,7 +110,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
                                             let mem = (<any>window.performance).memory.usedJSHeapSize;
                                             console.log("Mem after GC: " + mem);
                                             noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
-                                        }, 4000);
+                                        }, 1000);
                                      }
     );
 

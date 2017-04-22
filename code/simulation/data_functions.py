@@ -1,5 +1,6 @@
 import numpy as np
 import sys
+import itertools
 
 default_bins = np.array([1+i*2 for i in range(100)], dtype=np.int)
 
@@ -41,16 +42,20 @@ def stats(f):
 	if len(d[-1]) == 0:
 		d.pop(-1)
 	data = [line.rstrip().split("\t") for line in d]
+
 	labels = data.pop(0)
-	asRows = []
-	for c in range(len(data[0])):
-		asRows.append([])
-		for r in range(len(data)):
-			if len(data[r][c]) > 0:
-				asRows[-1].append(float(data[r][c].strip()))
+	#asRows = []
+	#for c in range(len(data[0])):
+	#	asRows.append([])
+	#	for r in range(len(data)):
+	#		if len(data[r][c]) > 0:
+	#			asRows[-1].append(float(data[r][c].strip()))
 	
-	means = np.array([np.mean(row) for row in asRows])
-	variances = np.array([np.var(row, ddof=1) for row in asRows])
+	#extend and transpose
+	asRows = list(itertools.izip_longest(*data, fillvalue=''))
+
+	means = np.array([np.mean([float(v) for v in row if len(v) > 0]) for row in asRows])
+	variances = np.array([np.var([float(v) for v in row if len(v) > 0], ddof=1) for row in asRows])
 	labels = np.array(labels)
 	result = np.vstack((labels, means, variances, variances**0.5))
 	result = result.transpose()

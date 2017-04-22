@@ -53,13 +53,13 @@ def extractMemoryLogs(path):
 	#extend and and transpose
 	otMemsTransp = list(itertools.izip_longest(*otMems, fillvalue=''))
 	crdtMemsTransp = list(itertools.izip_longest(*crdtMems, fillvalue=''))
-	serverMemsTransp = list(itertools.izip_longest(*crdtMems, fillvalue=''))
+	serverMemsTransp = list(itertools.izip_longest(*serverMems, fillvalue=''))
 
 	for row in otMemsTransp:
 		otFile.write("\t".join([str(x) for x in row]) + "\n")
 	for row in crdtMemsTransp:
 		crdtFile.write("\t".join([str(x) for x in row]) + "\n")
-	for row in otMemsTransp:
+	for row in serverMemsTransp:
 		serverFile.write("\t".join([str(x) for x in row]) + "\n")
 
 	otFile.close()
