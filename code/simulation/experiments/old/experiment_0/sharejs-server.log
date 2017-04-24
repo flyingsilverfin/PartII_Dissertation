@@ -1,0 +1,174 @@
+1487255824829    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255824845    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255824829    join-ack    -1    {"doc":"experiment_0-750352","create":true,"open":true,"v":0,"serveId":"608b14e410fd68fa96828d58474aaadc"}
+1487255824846    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":0,"snapshot":"","open":true,"serveId":"ff28d0050659e00b474e88e6983ea2cd"}
+1487255824899    received    608b14e410fd68fa96828d58474aaadc    -1    sharejs-op    66    {"op":[{"p":0,"i":"coliseums"}],"v":0,"doc":"experiment_0-750352"}
+1487255824899    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    110    {"op":[{"p":0,"i":"coliseums"}],"v":0,"meta":{"source":"608b14e410fd68fa96828d58474aaadc","ts":1487255824899}}
+1487255824899    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    7    {"v":0}
+1487255825161    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255825161    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":1,"snapshot":"coliseums","open":true,"serveId":"c094198419946700de4d0e32e1d24992"}
+1487255825227    received    ff28d0050659e00b474e88e6983ea2cd    -1    sharejs-op    65    {"op":[{"p":0,"i":"tackling"}],"v":1,"doc":"experiment_0-750352"}
+1487255825227    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    109    {"op":[{"p":0,"i":"tackling"}],"v":1,"meta":{"source":"ff28d0050659e00b474e88e6983ea2cd","ts":1487255825227}}
+1487255825228    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    111    {"op":[{"i":"freshening","p":0}],"v":2,"meta":{"source":"c094198419946700de4d0e32e1d24992","ts":1487255825228}}
+1487255825228    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    111    {"op":[{"i":"freshening","p":0}],"v":2,"meta":{"source":"c094198419946700de4d0e32e1d24992","ts":1487255825228}}
+1487255825228    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    7    {"v":2}
+1487255825227    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    109    {"op":[{"p":0,"i":"tackling"}],"v":1,"meta":{"source":"ff28d0050659e00b474e88e6983ea2cd","ts":1487255825227}}
+1487255825227    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    7    {"v":1}
+1487255825228    received    c094198419946700de4d0e32e1d24992    -1    sharejs-op    67    {"op":[{"p":0,"i":"freshening"}],"v":1,"doc":"experiment_0-750352"}
+1487255825281    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255825282    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":3,"snapshot":"fresheningtacklingcoliseums","open":true,"serveId":"4d395df77636f1209891402f98671a38"}
+1487255825354    received    4d395df77636f1209891402f98671a38    -1    sharejs-op    62    {"op":[{"p":0,"i":"irony"}],"v":3,"doc":"experiment_0-750352"}
+1487255825354    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    106    {"op":[{"p":0,"i":"irony"}],"v":3,"meta":{"source":"4d395df77636f1209891402f98671a38","ts":1487255825354}}
+1487255825354    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    106    {"op":[{"p":0,"i":"irony"}],"v":3,"meta":{"source":"4d395df77636f1209891402f98671a38","ts":1487255825354}}
+1487255825354    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    106    {"op":[{"p":0,"i":"irony"}],"v":3,"meta":{"source":"4d395df77636f1209891402f98671a38","ts":1487255825354}}
+1487255825354    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    7    {"v":3}
+1487255825375    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255825375    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":4,"snapshot":"ironyfresheningtacklingcoliseums","open":true,"serveId":"f0ec939f15674284bee6a45615a6dbb3"}
+1487255825409    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255825409    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":4,"snapshot":"ironyfresheningtacklingcoliseums","open":true,"serveId":"a60d3bdecababb2f661da6e72b065516"}
+1487255825489    received    a60d3bdecababb2f661da6e72b065516    -1    sharejs-op    62    {"op":[{"p":0,"i":"cagey"}],"v":4,"doc":"experiment_0-750352"}
+1487255825491    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    106    {"op":[{"p":0,"i":"cagey"}],"v":4,"meta":{"source":"a60d3bdecababb2f661da6e72b065516","ts":1487255825491}}
+1487255825491    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    106    {"op":[{"p":0,"i":"cagey"}],"v":4,"meta":{"source":"a60d3bdecababb2f661da6e72b065516","ts":1487255825491}}
+1487255825491    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    7    {"v":4}
+1487255825491    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    106    {"op":[{"p":0,"i":"cagey"}],"v":4,"meta":{"source":"a60d3bdecababb2f661da6e72b065516","ts":1487255825491}}
+1487255825491    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    106    {"op":[{"p":0,"i":"cagey"}],"v":4,"meta":{"source":"a60d3bdecababb2f661da6e72b065516","ts":1487255825491}}
+1487255825491    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    106    {"op":[{"p":0,"i":"cagey"}],"v":4,"meta":{"source":"a60d3bdecababb2f661da6e72b065516","ts":1487255825491}}
+1487255825609    received    f0ec939f15674284bee6a45615a6dbb3    -1    sharejs-op    68    {"op":[{"p":0,"i":"admonishing"}],"v":5,"doc":"experiment_0-750352"}
+1487255825610    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    112    {"op":[{"p":0,"i":"admonishing"}],"v":5,"meta":{"source":"f0ec939f15674284bee6a45615a6dbb3","ts":1487255825610}}
+1487255825610    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    112    {"op":[{"p":0,"i":"admonishing"}],"v":5,"meta":{"source":"f0ec939f15674284bee6a45615a6dbb3","ts":1487255825610}}
+1487255825610    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    112    {"op":[{"p":0,"i":"admonishing"}],"v":5,"meta":{"source":"f0ec939f15674284bee6a45615a6dbb3","ts":1487255825610}}
+1487255825610    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    112    {"op":[{"p":0,"i":"admonishing"}],"v":5,"meta":{"source":"f0ec939f15674284bee6a45615a6dbb3","ts":1487255825610}}
+1487255825610    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    112    {"op":[{"p":0,"i":"admonishing"}],"v":5,"meta":{"source":"f0ec939f15674284bee6a45615a6dbb3","ts":1487255825610}}
+1487255825610    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    7    {"v":5}
+1487255826017    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255826017    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":6,"snapshot":"admonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"42f85f7a8ad4c9df4491d88f93a74716"}
+1487255826020    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255826020    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":6,"snapshot":"admonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"9b31ea5400dc04f866ff33c7465d2a66"}
+1487255826037    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255826037    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":6,"snapshot":"admonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"173a9b49bbb2ce5718caaa3f923841b7"}
+1487255826043    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255826043    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":6,"snapshot":"admonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"9c0a90d11810943ff98f692eaa044013"}
+1487255826125    received    9c0a90d11810943ff98f692eaa044013    -1    sharejs-op    71    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"doc":"experiment_0-750352"}
+1487255826125    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826125    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826125    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826125    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826125    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826125    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826128    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    7    {"v":6}
+1487255826129    received    9b31ea5400dc04f866ff33c7465d2a66    -1    sharejs-op    66    {"op":[{"p":0,"i":"courtroom"}],"v":6,"doc":"experiment_0-750352"}
+1487255826129    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826129    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826129    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826128    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826130    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826130    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826130    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826130    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826130    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826130    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    7    {"v":7}
+1487255826128    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826128    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    115    {"op":[{"p":0,"i":"discontinuance"}],"v":6,"meta":{"source":"9c0a90d11810943ff98f692eaa044013","ts":1487255826125}}
+1487255826129    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    110    {"op":[{"i":"courtroom","p":0}],"v":7,"meta":{"source":"9b31ea5400dc04f866ff33c7465d2a66","ts":1487255826129}}
+1487255826151    received    173a9b49bbb2ce5718caaa3f923841b7    -1    sharejs-op    63    {"op":[{"p":0,"i":"Aludra"}],"v":7,"doc":"experiment_0-750352"}
+1487255826152    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    7    {"v":8}
+1487255826152    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826152    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    107    {"op":[{"i":"Aludra","p":0}],"v":8,"meta":{"source":"173a9b49bbb2ce5718caaa3f923841b7","ts":1487255826152}}
+1487255826184    received    42f85f7a8ad4c9df4491d88f93a74716    -1    sharejs-op    59    {"op":[{"p":0,"i":"Dr"}],"v":7,"doc":"experiment_0-750352"}
+1487255826184    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    103    {"op":[{"i":"Dr","p":0}],"v":9,"meta":{"source":"42f85f7a8ad4c9df4491d88f93a74716","ts":1487255826184}}
+1487255826185    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    7    {"v":9}
+1487255826570    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255826570    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":10,"snapshot":"DrAludracourtroomdiscontinuanceadmonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"9d2b6e791d13ea0334c6a6f8aec28820"}
+1487255826738    received    9d2b6e791d13ea0334c6a6f8aec28820    -1    sharejs-op    71    {"op":[{"p":0,"i":"interrogative"}],"v":10,"doc":"experiment_0-750352"}
+1487255826738    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826738    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826738    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826738    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826738    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826739    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826739    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826739    sent    -1    9d2b6e791d13ea0334c6a6f8aec28820    sharejs-op    8    {"v":10}
+1487255826738    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826738    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255826739    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    115    {"op":[{"p":0,"i":"interrogative"}],"v":10,"meta":{"source":"9d2b6e791d13ea0334c6a6f8aec28820","ts":1487255826738}}
+1487255827109    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":11,"snapshot":"interrogativeDrAludracourtroomdiscontinuanceadmonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"658a98ada180e93f1717b62884dd4078"}
+1487255827109    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255827243    received    658a98ada180e93f1717b62884dd4078    -1    sharejs-op    63    {"op":[{"p":0,"i":"Soddy"}],"v":11,"doc":"experiment_0-750352"}
+1487255827243    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827244    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827244    sent    -1    9d2b6e791d13ea0334c6a6f8aec28820    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827244    sent    -1    658a98ada180e93f1717b62884dd4078    sharejs-op    8    {"v":11}
+1487255827243    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255827243    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    107    {"op":[{"p":0,"i":"Soddy"}],"v":11,"meta":{"source":"658a98ada180e93f1717b62884dd4078","ts":1487255827243}}
+1487255829149    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255829150    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":12,"snapshot":"SoddyinterrogativeDrAludracourtroomdiscontinuanceadmonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"1c0047c839a35e9fbffcb290a1b4fe3f"}
+1487255829327    received    1c0047c839a35e9fbffcb290a1b4fe3f    -1    sharejs-op    69    {"op":[{"p":0,"i":"established"}],"v":12,"doc":"experiment_0-750352"}
+1487255829328    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829328    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829328    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    9d2b6e791d13ea0334c6a6f8aec28820    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829328    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829328    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829328    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    658a98ada180e93f1717b62884dd4078    sharejs-op    113    {"op":[{"p":0,"i":"established"}],"v":12,"meta":{"source":"1c0047c839a35e9fbffcb290a1b4fe3f","ts":1487255829328}}
+1487255829329    sent    -1    1c0047c839a35e9fbffcb290a1b4fe3f    sharejs-op    8    {"v":12}
+1487255831193    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":13,"snapshot":"establishedSoddyinterrogativeDrAludracourtroomdiscontinuanceadmonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"d1c0bc392d742e5826d8eb44a9b65646"}
+1487255831193    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255831420    received    d1c0bc392d742e5826d8eb44a9b65646    -1    sharejs-op    66    {"op":[{"p":0,"i":"piloting"}],"v":13,"doc":"experiment_0-750352"}
+1487255831421    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831421    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    9d2b6e791d13ea0334c6a6f8aec28820    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    658a98ada180e93f1717b62884dd4078    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    1c0047c839a35e9fbffcb290a1b4fe3f    sharejs-op    110    {"op":[{"p":0,"i":"piloting"}],"v":13,"meta":{"source":"d1c0bc392d742e5826d8eb44a9b65646","ts":1487255831421}}
+1487255831422    sent    -1    d1c0bc392d742e5826d8eb44a9b65646    sharejs-op    8    {"v":13}
+1487255835237    join    -1    {"doc":"experiment_0-750352","open":true,"snapshot":null,"type":"text","create":true}
+1487255835238    join-ack    -1    {"doc":"experiment_0-750352","create":false,"v":14,"snapshot":"pilotingestablishedSoddyinterrogativeDrAludracourtroomdiscontinuanceadmonishingcageyironyfresheningtacklingcoliseums","open":true,"serveId":"8f31f13a5c2d46c695b322f904365291"}
+1487255835453    received    8f31f13a5c2d46c695b322f904365291    -1    sharejs-op    69    {"op":[{"p":0,"i":"attentively"}],"v":14,"doc":"experiment_0-750352"}
+1487255835453    sent    -1    4d395df77636f1209891402f98671a38    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835453    sent    -1    f0ec939f15674284bee6a45615a6dbb3    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835453    sent    -1    a60d3bdecababb2f661da6e72b065516    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835453    sent    -1    42f85f7a8ad4c9df4491d88f93a74716    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    9b31ea5400dc04f866ff33c7465d2a66    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    173a9b49bbb2ce5718caaa3f923841b7    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    9c0a90d11810943ff98f692eaa044013    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    9d2b6e791d13ea0334c6a6f8aec28820    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    658a98ada180e93f1717b62884dd4078    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    1c0047c839a35e9fbffcb290a1b4fe3f    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    d1c0bc392d742e5826d8eb44a9b65646    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835454    sent    -1    8f31f13a5c2d46c695b322f904365291    sharejs-op    8    {"v":14}
+1487255835453    sent    -1    608b14e410fd68fa96828d58474aaadc    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835453    sent    -1    ff28d0050659e00b474e88e6983ea2cd    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}
+1487255835453    sent    -1    c094198419946700de4d0e32e1d24992    sharejs-op    113    {"op":[{"p":0,"i":"attentively"}],"v":14,"meta":{"source":"8f31f13a5c2d46c695b322f904365291","ts":1487255835453}}

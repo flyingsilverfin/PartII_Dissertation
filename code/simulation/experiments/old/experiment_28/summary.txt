@@ -1,0 +1,115 @@
+---fully-connected, nonoptimized---
+	Total simulation duration: 1250012.47423
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 9
+	Total delete events: 0
+	Total insert packets sent: 9
+	Total size of insert packets sent: 781
+	Average insert packet size (incl vector clock etc.): 86.7777777778
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 18
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 9
+	Latency/wait time per client when requesting CRDT: [0, 62.474231229352384]
+	From whom each client request CRDT: [-1, 0]
+	Length of stringified document/crdt during state replay, on average: 133
+	latencies: {(0, 1): [31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192]}
+	pre-experiment: 0
+	post-topology-init: 154648
+	post-experiment: 121711840
+	nologMemoryRepetitions: [268608, 275280, 207176]
+
+---fully-connected, optimized---
+	Total simulation duration: 1250012.47423
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 1
+	Total delete events: 0
+	Total insert packets sent: 1
+	Total size of insert packets sent: 93
+	Average insert packet size (incl vector clock etc.): 93.0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 2
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 1
+	Latency/wait time per client when requesting CRDT: [0, 62.474231229352384]
+	From whom each client request CRDT: [-1, 0]
+	Length of stringified document/crdt during state replay, on average: 169
+	latencies: {(0, 1): [31.237115614676192]}
+	pre-experiment: 0
+	post-topology-init: 154648
+	post-experiment: 90996064
+	nologMemoryRepetitions: [300072, 300200, 296432]
+
+---star, nonoptimized---
+	Total simulation duration: 1250012.47423
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 9
+	Total delete events: 0
+	Total insert packets sent: 9
+	Total size of insert packets sent: 781
+	Average insert packet size (incl vector clock etc.): 86.7777777778
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 18
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 9
+	Latency/wait time per client when requesting CRDT: [0, 62.474231229352384]
+	From whom each client request CRDT: [-1, 0]
+	Length of stringified document/crdt during state replay, on average: 133
+	latencies: {(0, 1): [31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192, 31.237115614676192]}
+	pre-experiment: 0
+	post-topology-init: 156656
+	post-experiment: 124609848
+	nologMemoryRepetitions: [277712, 221224, 219472]
+
+---star, optimized---
+	Total simulation duration: 1250012.47423
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 1
+	Total delete events: 0
+	Total insert packets sent: 1
+	Total size of insert packets sent: 93
+	Average insert packet size (incl vector clock etc.): 93.0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 2
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 1
+	Latency/wait time per client when requesting CRDT: [0, 62.474231229352384]
+	From whom each client request CRDT: [-1, 0]
+	Length of stringified document/crdt during state replay, on average: 169
+	latencies: {(0, 1): [31.237115614676192]}
+	pre-experiment: 0
+	post-topology-init: 156656
+	post-experiment: 94730440
+	nologMemoryRepetitions: [300536, 300232, 300168]
+
+---experiment_28, ot---
+	Total simulation duration: 2103.0
+	Total insert events: 1
+	Total delete events: 0
+	Total packets: 7
+	Total size of packets sent: 556
+	Average packet payload size: 79.4285714286
+	Total size of packets sent, if there were no meta-information: 44
+	Average packet payload size without meta-information: 6.28571428571
+	Expected number of packets sent - give optimal client-server network with everyone joining at start: 7
+	Latency/wait time per client when requesting CRDT: [57.0, 43.0, 0]
+	From whom each client request CRDT: [-1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {(0, -1): [7.0], (-1, 1): [21.0], (-1, 0): [37.0]}
+	pre-experiment: 0
+	post-clients-create: 1984048
+	post-experiment: 3973504
+	nologMemoryRepetitions: [3033128, 3033248, 3032168]
+

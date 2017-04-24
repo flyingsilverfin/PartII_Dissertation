@@ -1,0 +1,9 @@
+1492825443474    join    -1    {"doc":"experiment_28-422606","open":true,"snapshot":null,"type":"text","create":true}
+1492825443502    join-ack    -1    {"doc":"experiment_28-422606","create":true,"open":true,"v":0,"serveId":"013f3bc07c0b40d89bd804fbd2d3b926"}
+1492825443509    join    -1    {"doc":"experiment_28-422606","open":true,"snapshot":null,"type":"text","create":true}
+1492825443509    join-ack    -1    {"doc":"experiment_28-422606","create":false,"v":0,"snapshot":"","open":true,"serveId":"cd0927b37916563a7c4afc972e9ec7a2"}
+1492825443535    received    cd0927b37916563a7c4afc972e9ec7a2    -1    sharejs-op    67    {"op":[{"p":0,"i":"shameless"}],"v":0,"doc":"experiment_28-422606"}
+1492825443538    sent    -1    013f3bc07c0b40d89bd804fbd2d3b926    sharejs-op    110    {"op":[{"p":0,"i":"shameless"}],"v":0,"meta":{"source":"cd0927b37916563a7c4afc972e9ec7a2","ts":1492825443537}}
+1492825443538    sent    -1    cd0927b37916563a7c4afc972e9ec7a2    sharejs-op    7    {"v":0}
+1492825445415    other-received    cd0927b37916563a7c4afc972e9ec7a2    -1    {"open":false,"doc":"experiment_28-422606"}
+1492825445416    sent    -1    cd0927b37916563a7c4afc972e9ec7a2    sharejs-op    14    {"open":false}

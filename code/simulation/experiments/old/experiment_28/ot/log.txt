@@ -1,0 +1,10 @@
+1492825443308    memory    3770416    pre-experiment
+1492825443375    memory    5754464    post-clients-create
+1492825443463    join    1    {"doc":"experiment_28-422606","open":true,"snapshot":null,"type":"text","create":true}
+1492825443466    join    0    {"doc":"experiment_28-422606","open":true,"snapshot":null,"type":"text","create":true}
+1492825443506    join-ack    1    {"doc":"experiment_28-422606","create":true,"open":true,"v":0,"serveId":"013f3bc07c0b40d89bd804fbd2d3b926"}
+1492825443523    join-ack    0    {"doc":"experiment_28-422606","create":false,"v":0,"snapshot":"","open":true,"serveId":"cd0927b37916563a7c4afc972e9ec7a2"}
+1492825443528    sent    0    -1    sharejs-op    38    {"op":[{"p":0,"i":"shameless"}],"v":0}
+1492825443559    received    -1    1    sharejs-op    110    {"op":[{"p":0,"i":"shameless"}],"v":0,"meta":{"source":"cd0927b37916563a7c4afc972e9ec7a2","ts":1492825443537}}
+1492825443575    received    -1    0    sharejs-op    7    {"v":0}
+1492825445411    memory    7743920    post-experiment

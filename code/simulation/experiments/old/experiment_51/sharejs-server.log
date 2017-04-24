@@ -1,0 +1,11 @@
+1492891822611    join    -1    {"doc":"experiment_51-305617","open":true,"snapshot":null,"type":"text","create":true}
+1492891822645    join-ack    -1    {"doc":"experiment_51-305617","create":true,"open":true,"v":0,"serveId":"6d661690ce4ba6566e791e163e49ba1a"}
+1492891822649    join    -1    {"doc":"experiment_51-305617","open":true,"snapshot":null,"type":"text","create":true}
+1492891822649    join-ack    -1    {"doc":"experiment_51-305617","create":false,"v":0,"snapshot":"","open":true,"serveId":"13a657ae7ea22079ea1fc06b762d39b2"}
+1492891822656    join    -1    {"doc":"experiment_51-305617","open":true,"snapshot":null,"type":"text","create":true}
+1492891822656    join-ack    -1    {"doc":"experiment_51-305617","create":false,"v":0,"snapshot":"","open":true,"serveId":"d0d7c85e11eb97f243e5e6c9aa704cbc"}
+1492891822659    join    -1    {"doc":"experiment_51-305617","open":true,"snapshot":null,"type":"text","create":true}
+1492891822659    join-ack    -1    {"doc":"experiment_51-305617","create":false,"v":0,"snapshot":"","open":true,"serveId":"89d3b882f4f5b69c3221eb08ec51bb22"}
+1492891822682    join    -1    {"doc":"experiment_51-305617","open":true,"snapshot":null,"type":"text","create":true}
+1492891822682    join-ack    -1    {"doc":"experiment_51-305617","create":false,"v":0,"snapshot":"","open":true,"serveId":"dec98970b8479927d8df24e96f2ae033"}
+1492891870709    other-received    dec98970b8479927d8df24e96f2ae033    -1    {"open":false,"doc":"experiment_51-305617"}
