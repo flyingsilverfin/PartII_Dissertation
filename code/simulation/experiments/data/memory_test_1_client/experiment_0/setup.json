@@ -425,7 +425,6 @@
         }
     }, 
     "topology": [
-        "fully-connected", 
-        "star"
+        "fully-connected"
     ]
 }

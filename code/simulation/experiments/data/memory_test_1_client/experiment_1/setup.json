@@ -1,6 +1,6 @@
 {
     "optimized": false,
-	"repeat": 10, 
+	"repeat": 6, 
     "latency_model": {
         "type": "normally distributed", 
         "center": 30.0
