@@ -2,6 +2,7 @@ import * as NT from '../types/NetworkTypes';
 import * as T from '../types/Types';
 import MessageBuffer from './MessageBuffer';
 import * as Helper from './Helper';
+import {gt} from './VectorComparators';
 
 export default class CausalDeliveryLayer {
 
@@ -23,7 +24,7 @@ export default class CausalDeliveryLayer {
     // returns true if the message is new and needs to be broadcast again
     // false otherwise
     public receive(message: NT.NetworkPacket, action: () => void): boolean {
-        console.log('Received message: ' + JSON.stringify(message));
+        //console.log('Received message: ' + JSON.stringify(message));
         if (message.origin === this.clientId) {
             return false;
         }
@@ -72,6 +73,15 @@ export default class CausalDeliveryLayer {
         return copy;
     }
 
+    public peekNextVector(): NT.VectorClock {
+        let copy = {};
+        for (let k in this.vclock) {
+            copy[k] = this.vclock[k];
+        }
+        copy[this.clientId]++;
+        return copy;
+    }
+
     // takes in the client id from which we just got an in order message
     private checkForDeliveries(newMessageFrom: T.ClientId): void {
 
@@ -95,6 +105,13 @@ export default class CausalDeliveryLayer {
         if (this.vclock[origin] === undefined) {
             this.vclock[origin] = 0;
             this.n++;
+        }
+
+        // update local vector clock with unseen client, set to 0
+        for (let id in vector) {
+            if (this.vclock[id] === undefined) {
+                this.vclock[id] = 0;
+            }
         }
 
         return Object.keys(vector).length === 0 || (!this.bufferedMessages.contains(origin, vector) && !this.isLaterThan(vector));
@@ -125,28 +142,7 @@ export default class CausalDeliveryLayer {
     // mostly going to be used to reject seen-before messages
     // read as 'this(.)isgreaterthan a given vector'
     private isLaterThan(vector: NT.VectorClock): boolean {
-        return this.gt(this.vclock, vector, true);
-    }
-
-    // last flag sets greater than or equal to
-    private gt(v1: NT.VectorClock, v2: NT.VectorClock, gte=false): boolean {
-
-        let l1 = Object.keys(v1).length;
-        let l2 = Object.keys(v2).length;
-
-        // if second vector contains something we've not seen, we can't be greater
-        if (l2 > l1) {
-            return false;
-        }
-        // at this point they must have equal size or v1 has more contents
-        for (let id in v1) {
-            // fail if any element in v1 is less than or if equals-to enabled, equal to
-            if (v2[id] === undefined || v1[id] > v2[id] || (gte && v1[id] === v2[id])) {
-               continue
-            }
-            return false;
-        }
-        return true;
+        return gt(this.vclock, vector, true);
     }
 
 

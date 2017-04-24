@@ -33,6 +33,7 @@ export default class Logger {
 
     // logs [time] [type] sender receiver type id __msg__
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
+        return;
         let time = this.getTime();
 
         let packetType = packet.type;
@@ -86,6 +87,10 @@ export default class Logger {
             
     }
 
+    public freeLog(): void {
+        this.l = null;
+    }
+
     public logMemory(when: "pre-experiment" |
                            "post-topology-init" | 
                            "post-graph-init" |
@@ -98,7 +103,7 @@ export default class Logger {
     }
 
     public writeLogToConsole(): void {
-        console.log(JSON.stringify(this.l, null, 4));
+        //console.log(JSON.stringify(this.l, null, 4));
     }
 
     public getLog(): string[] {

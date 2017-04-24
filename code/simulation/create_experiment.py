@@ -2,6 +2,7 @@ import json
 import os
 import random
 import latency_models
+import glob
 
 
 experiment_setup = {
@@ -19,7 +20,8 @@ experiment_setup = {
     },
     "init": "",             # initial document contents
     "optimized": False,     #toggled by the experiment server when serving experiments
-    "description": ""
+    "description": "",
+    "repeat": 1
 }
 
 
@@ -51,6 +53,10 @@ EXPERIMENT_SETUP_OPTIONS = {
         "type": "str|int",
         "text": "Enter string that is initial document content "
                 "or number that indicates length of random string"
+    },
+    'repeat' : {
+        'type': 'int',
+        'text': "Number of repetitions for this experiment"
     }
 }
 
@@ -78,7 +84,7 @@ def printChoicesFor(item):
         raise Exception()
 
 # - indicates a sub-index
-order = ["description", "execution", "clients", "latency_model-type", "latency_model-center", "init"]
+order = ["description", "repeat", "execution", "clients", "latency_model-type", "latency_model-center", "init"]
 
 i = 0
 while i < len(order):
@@ -99,8 +105,11 @@ while i < len(order):
         try:
             assign[subindices[-1]] = int(value)
         except Exception:
-            print "exception"
-            continue
+            if experiment_setup[item] != None:
+                pass
+            else:
+                print "exception with no default"
+                continue
     elif typeRequired == "float":
         try:
             assign[subindices[-1]] = float(value)
@@ -120,6 +129,8 @@ while i < len(order):
                 s += pickRandomWord() + " "
             value = s[:-1] # remove last space
         # otherwise, just use the string entered
+        assign[subindices[-1]] = value
+    elif typeRequired == 'str':
         assign[subindices[-1]] = value
     i += 1
 
@@ -153,22 +164,77 @@ for i in range(numClients):
 
 # now need to schedule some events for the experiment
 # just does one word per client for now
+
+num_inserts_per_client = raw_input("Number of insert events per client (default 1): ")
+num_inserts_per_client = 1 if len(num_inserts_per_client) == 0 else int(num_inserts_per_client)
+
+insert_spacing = 0
+if (num_inserts_per_client > 0):
+    tmp = raw_input("Insert event spacing (default 0): ")
+    if len(tmp) > 0: insert_spacing = int(tmp)
+
+num_deletes_per_client = raw_input("Number of delete events per client (default 0): ")
+num_deletes_per_client = 0 if len(num_deletes_per_client) == 0 else int(num_deletes_per_client)
+
+deletes_spacing = 0
+if (num_deletes_per_client > 0):
+    tmp = raw_input("Insert event spacing (default 0): ")
+    if len(tmp) > 0: deletes_spacing = int(tmp)
+
+num_undo = raw_input("Number of undos (default 0): ")
+num_undo = 0 if len(num_undo) == 0 else int(num_undo)
+undo_spacing = insert_spacing
+if (num_undo > 0):
+    tmp = raw_input("Undo Event spacing (default = insert spacing): ")
+    if len(tmp) > 0: undo_spacing = int(tmp)
+
+num_redo = raw_input("Number of redos (default 0): ")
+num_redo = 0 if len(num_redo) == 0 else int(num_redo)
+redo_spacing = num_redo
+if (num_redo > 0):
+    tmp = raw_input("Redo Event spacing (default = event spacing): ")
+    if len(tmp) > 0: redo_spacing = int(tmp)
+
+wordlen = raw_input("Length per insert (default random dictionary word: ")
+wordlen = -1 if len(wordlen) == 0 else int(wordlen)
+
+
 for i in range(numClients):
     experiment_setup["events"][i] = {
         "insert" : {},
-        "delete": {}
+        "delete": {},
+        "undo": [],
+        "redo": []
     }
-    toInsert = pickRandomWord()
-    when = i*15
-    experiment_setup["events"][i]["insert"][when] = {
-        "chars": toInsert,
-        "after": 0
-    }
+    print "Going for client: %d" %i
+    for j in range(num_inserts_per_client):
 
-existingExperiments = os.listdir(os.path.join('.', 'experiments'))
-existingExperiments.sort()
+        if (wordlen == -1):
+            toInsert = pickRandomWord()
+        else:
+            s = [chr(random.randint(97,122)) for k in range(wordlen)]
+            toInsert = "".join(s)
+        when = j*insert_spacing
+        experiment_setup["events"][i]["insert"][when] = {
+            "chars": toInsert,
+            "after": 0
+        }
+    for j in range(num_deletes_per_client):
+        #toDelete = random.randint(1,num_inserts_per_client)    
+        toDelete = 0    #always delete first character, only one guaranteed to be there
+        when = j*deletes_spacing
+        experiment_setup["events"][i]["delete"][when] = [toDelete]
+    
+    for j in range(num_undo):
+        experiment_setup["events"][i]["undo"].append(j * undo_spacing)
+    for j in range(num_redo):
+        experiment_setup["events"][i]["redo"].append(j * redo_spacing)
+
+
+existingExperimentNums = [int(exp.split('_')[1]) for exp in glob.glob('./experiments/experiment_*')]
+existingExperimentNums.sort()
 try:
-    nextNum = int(existingExperiments[-1].split('_')[-1]) + 1
+    nextNum = existingExperimentNums[-1] + 1
 except Exception: #any sort of error
     nextNum = 0
 
