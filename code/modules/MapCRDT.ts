@@ -46,19 +46,19 @@ class MapCRDT implements CT.CRDT {
 
         // this is now checked by sequence numbers at network layer
         // keep this as a check
-        if (this.map.hasOwnProperty(bundle.id)) {
+        if (this.map.hasOwnProperty(bundle.i)) {
             throw new Helper.CRDTException("Received an insert bundle which has already been inserted... network failed to reject already seen before packet");
         }
 
         // ASSERT NEEDED:
         //  this.map[bundle.id] === undefined 
 
-        let startId = bundle.id;     // id.timestamp to insert this char with
+        let startId = bundle.i;     // id.timestamp to insert this char with
         let startIdTimestamp = parseInt(startId.split('.')[0]);
         let startIdClient = startId.split('.')[1];
 
-        let char = bundle.char;
-        let after = bundle.after;   // id.timestamp to insert this char after
+        let char = bundle.c;
+        let after = bundle.a;   // id.timestamp to insert this char after
 
         // implement core CRDT insert algorithm here
         // may want to abstract out into separate class to plug into other datastructures if desired
@@ -73,7 +73,7 @@ class MapCRDT implements CT.CRDT {
             entryBefore = this.map[entryBeforeId];
         }
 
-        console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
+        //console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
 
 
         // now capable of adding words at a time given a start ID and a string
@@ -110,7 +110,7 @@ class MapCRDT implements CT.CRDT {
     // implements interface
     // 
     public delete(bundle: CT.DeleteMessage): void {
-        let idToDelete = bundle.deleteId;
+        let idToDelete = bundle.delId;
         if (this.map[idToDelete] === undefined ) {
             throw new Helper.CRDTException("Trying to delete CRDT ID that doesn't exist... something is very broken");
         }

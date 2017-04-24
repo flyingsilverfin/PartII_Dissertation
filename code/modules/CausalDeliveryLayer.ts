@@ -25,25 +25,25 @@ export default class CausalDeliveryLayer {
     // false otherwise
     public receive(message: NT.NetworkPacket, action: () => void): boolean {
         //console.log('Received message: ' + JSON.stringify(message));
-        if (message.origin === this.clientId) {
+        if (message.o === this.clientId) {
             return false;
         }
 
-        if (!this.isNewMessage(message.origin, message.vector)) {
+        if (!this.isNewMessage(message.o, message.v)) {
             return false;
         }
 
-        if (Object.keys(message.vector).length === 0) { //unicast, just handle it here
+        if (Object.keys(message.v).length === 0) { //unicast, just handle it here
             action();
             return true;
         }
 
-        let negativeDeltas = this.acceptNow(message.origin, message.vector);
+        let negativeDeltas = this.acceptNow(message.o, message.v);
 
         if (Object.keys(negativeDeltas).length === 0) {
             action();
-            this.vclock[message.origin]++;  // update our vector to include this message
-            this.bufferedMessages.update(message.origin, this.vclock);   // check for further messages to deliver efficiently
+            this.vclock[message.o]++;  // update our vector to include this message
+            this.bufferedMessages.update(message.o, this.vclock);   // check for further messages to deliver efficiently
         } else {
             this.bufferedMessages.add(message, action, negativeDeltas);
         }
