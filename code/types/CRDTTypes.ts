@@ -16,15 +16,15 @@ export interface ParallelStringArrays {
 }
 
 export interface InsertMessage {
-    id: string,
-    char: string,
-    after: string
+    i: string,
+    c: string,
+    a: string
 }
 
 
 export interface DeleteMessage {
     // id: string   // unsure exactly how to implement this
-    deleteId: string
+    delId: string
 }
 
 
