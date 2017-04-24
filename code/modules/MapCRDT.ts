@@ -130,9 +130,9 @@ class MapCRDT implements CT.CRDT {
         let entry;
         while (id !== null) {
             entry = this.map[id];
-            if (!entry.deleted) {
+            if (!entry.d) {
                 // TODO unsure of how to handle deletion still!
-                charArray.push(entry.char);
+                charArray.push(entry.c);
                 idArray.push(id)
             }
             id = entry.next;

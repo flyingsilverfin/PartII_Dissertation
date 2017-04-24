@@ -6,6 +6,9 @@ class LatencyModel {
     private modelDescription;
     private nodeLatencies: NT.NodeLatencies;
 
+    //for testing overtaking on same link
+    //private n;
+
     // parameter node_latencies is defined as:
     //  map between node_id and a latency
     //  edges connected between node_id and target is (map[node_id] + map[target]) / 2
@@ -18,10 +21,16 @@ class LatencyModel {
     constructor(modelDescription, nodeLatencies) {
         this.modelDescription = modelDescription;
         this.nodeLatencies = nodeLatencies;
+        //this.n = 1;
     }
 
     public getLatency(source:number, target:number): number {
-        return (this.nodeLatencies[source].latency + this.nodeLatencies[target].latency)/2;
+
+        let base = this.nodeLatencies[source].latency + this.nodeLatencies[target].latency;
+        //this.n++;
+        return base/2;
+
+        // return (this.nodeLatencies[source].latency + this.nodeLatencies[target].latency)/2;
     }
 
     public getDescription(): string {

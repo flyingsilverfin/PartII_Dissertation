@@ -32,11 +32,11 @@ class TopologyStar extends OpenSizeTopology  {
             let edgeId = this.numEdges;
             this.numEdges++;
             let target = 0;
-            let latency = this.latencyModel.getLatency(nodeId, 0);
+            let lambda = () => this.latencyModel.getLatency(nodeId, 0);
             let adjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: target,
-                latency: latency
+                getLatency: lambda
             }
             // add references for fast neighbor retrieval
             newNode.links.push(adjacentEdge);
@@ -44,7 +44,7 @@ class TopologyStar extends OpenSizeTopology  {
             let oppositeAdjacentEdge: GT.AdjacentEdge = {
                 id: edgeId,
                 target: nodeId,
-                latency: latency
+                getLatency: lambda
             }
             this.graph.nodes[target].links.push(oppositeAdjacentEdge);
             this.graph.nodes.push(newNode);
