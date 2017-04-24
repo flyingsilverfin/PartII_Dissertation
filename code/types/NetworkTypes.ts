@@ -3,13 +3,13 @@ import * as T from './Types';
 import NetworkInterface from '../modules/NetworkInterface';
 
 export interface NetworkPacket extends PreparedPacket {
-    vector: VectorClock,
-    origin: number
+    v: VectorClock,
+    o: number
 }
 
 export interface PreparedPacket {
-    type: "i" | "d"  | "ui" | "ud" | "ri" | "rd" |  "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
-    bundle: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | CRDTTypes.UndoMessage | RequestCRDTMessage | ReturnCRDTMessage;
+    t: "i" | "d"  | "ui" | "ud" | "ri" | "rd" |  "reqCRDT" | "retCRDT",    // insert or delete or request CRDT or return CRDT
+    b: CRDTTypes.InsertMessage | CRDTTypes.DeleteMessage | CRDTTypes.UndoMessage | RequestCRDTMessage | ReturnCRDTMessage;
 }
 
 export interface RequestCRDTMessage {

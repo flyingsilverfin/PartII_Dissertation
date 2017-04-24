@@ -26,9 +26,9 @@ export interface ParallelStringArrays {
     rather than relying on the embedding to take care of it
 */
 export interface InsertMessage {
-    id: string,
-    char: string,
-    after: string
+    i: string,
+    c: string,
+    a: string
 }
 
 // built in support for multiple undos of the same type in case I decide to do batching
@@ -38,7 +38,7 @@ export interface UndoMessage {
 
 export interface DeleteMessage {
     // id: string   // unsure exactly how to implement this
-    deleteId: string,
+    delId: string,
 }
 
 
@@ -50,6 +50,6 @@ export interface MapCRDTStore {
 export interface MapEntry {
     c: string,  // character
     n: string,  // next link
-    d?: [boolean, NT.VectorClock],  // [deleted, when]
+    d?: number,  // [deleted, when]
     v?: boolean  // visible, used for creator to undo
 }
