@@ -1078,7 +1078,7 @@ export interface MapEntry {
 				
 				This exposes a clear advantage for using CRDT undo/redo versus ShareJS's approach to undo/redo, which generates new operations to undo a prior modification i.e. a delete to undo insertion and an insert to undo a deletion. 
 				
-				\begin{figure}[h]
+				\begin{figure}[htb]
 					\centering
 					\includestandalone[mode=buildnew]{data/memory_sanity_check/memory_sanity_check_plot}
 					\caption[Memory Consumption Sanity Check] {A plot comparing the performance of the ShareJS client and server, a CRDT based client performing insertions and deletions, and a CRDT client using undo and redo operations. The error bars indicate one standard deviation from the mean. Error in the CRDT data is generally too small to be visible.}
@@ -1126,22 +1126,24 @@ export interface MapEntry {
 				\begin{figure}[htb]
 					\centering
 					\includestandalone[mode=buildnew]{data/multiclient_memory/multiclient_plot}
-					\caption[Memory Consumption versus Replication] {Combined server and client cost for the ShareJS system next to the CRDT based system. Error bars represent one standard deviation. Experiments inserted a total of 5000 characters split across the clients.}
+					\caption[Memory Consumption versus Replication] {Combined server and client cost for the ShareJS system next to the CRDT based system. Error bars represent one standard deviation. Experiments inserted a total of 5000 characters split across the clients. Errors in the CRDT are generally too small to be visible.}
 					\label{fig:memvsreplication}
 				\end{figure}
 				
 			\paragraph{CRDT System Variations}
-				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:immediateundo}, with Immediate Undo, in some situations undo functionality may not be necessary. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems across a mixture of insertion to deletion ratios at a fixed number of clients (5), operations (5000) and fixed word length (5).
+				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:immediateundo}, Immediate Undo, in some situations undo functionality may not be necessary, or CCI consistency may be desired. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems with varying amounts deletion, but fixed number of clients (5), insertions (100 words per client) and fixed word length (5 characters), 2500 character insertions in total.
 				
+				\begin{figure}[htb]
+					\centering
+					\includestandalone[mode=buildnew]{data/indel_system_compare/indel_system_compare}
+					\caption[Behavior of System Variants] {A plot of the different system variations developed, along with the ShareJS system with a fixed document size and varying number of deletions. Executed with 5 clients, 100 words inserted per client, each word being 5 characters long.}
+					\label{fig:variantsmemory}
+				\end{figure}
 				
+				Figure \ref{fig:variantsmemory} shows that CRDTs of increasing complexity cost consistently more in terms of memory. Not implementing undo shows consistent performance as hardly any data is added into the data structure, whereas the Immediate Undo variant grows consistently with the number of characters deleted. ShareJS behaves rather unpredictably, though consumes many times more memory than any of the CRDT based systems.
 				
-				Experiments TODO
-					Perhaps 1000 operations per client, 5 clients at different mixes of insertion/deletion ratios, fixed length ``words'' of say length 5. Perhaps 100/0, 80/20, 60/40, 40/60, 20/80 is as low as we can go with 5 char words -- returns to empty!. Bar graph
-					100/0 has already been done 1000 operations for 5 clients each in multiple clients
-					
-					Experiments 49-52 inclusive, plus 45
-					Copy and re-evaluate for no undo and CCI Undo
-					
+			\paragraph{Summary}
+				This subsection explored the behavior of both the ShareJS and CRDT based systems across a variety of settings. Several key ideas were discovered. Firstly, my CRDT offers significantly better memory consumption for small and medium sized documents. Additionally, OT, at least in the form used by ShareJS, suffers from streaming many small operations, whereas CRDTs are agnostic to the size of operations. Both systems scale relatively similarly as replication increases, though the CRDT generally offered better performance. Lastly, enabling undo functionality has significant overhead, especially when offering `Immediate Undo' semantics, but making effective use of it can have considerable savings.
 					
 		\subsection{Network}
 			

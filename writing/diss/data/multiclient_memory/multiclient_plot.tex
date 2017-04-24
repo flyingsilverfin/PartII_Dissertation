@@ -2,7 +2,7 @@
 \usepackage{pgfplots}
 
 \pgfplotsset{compat=newest}
-\definecolor{darkergreen}{RGB}{51, 204, 51}
+\definecolor{darkergreen}{RGB}{51, 184, 51}
 
 % https://tex.stackexchange.com/questions/13627/pgfplots-multiple-shifted-stacked-plots-in-one-diagram
 \makeatletter
@@ -36,26 +36,26 @@
 	legend cell align=left,
 	enlarge x limits=0.15, %hack to plot on the full x-axis scale
 	]
-
-\addplot+ [bar shift=-0.3cm]
- plot[error bars/.cd, y dir = both, y explicit]
- table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
- \addlegendentry{Aggregate ShareJS Clients}
  
-\addplot+ [bar shift=-0.3cm]
-  plot[error bars/.cd, y dir = both, y explicit]
-  table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
-  \addlegendentry{ShareJS Server}
-  
-  
-\resetstackedplots
-  
 
-\addplot+ [bar shift=.3cm]
+
+\addplot+ [bar shift=-0.3cm]
  plot[error bars/.cd, y dir = both, y explicit]
 table[x index=1, y index = 2, y error index= 4] {./crdt_memory.dat_STATS.dat};
  \addlegendentry{Aggregate CRDT Clients}
  
+  
+\resetstackedplots
+  
+\addplot+ [bar shift=0.3cm]
+  plot[error bars/.cd, y dir = both, y explicit]
+  table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
+  \addlegendentry{ShareJS Server}
+  
+\addplot+ [bar shift=0.3cm, fill=darkergreen, fill opacity=0.5, darkergreen]
+ plot[error bars/.cd, y dir = both, y explicit]
+ table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
+ \addlegendentry{Aggregate ShareJS Clients}
 
 
 \end{axis}

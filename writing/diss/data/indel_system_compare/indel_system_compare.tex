@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest}
+\definecolor{darkergreen}{RGB}{51, 184, 51}
+
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+	width=1\textwidth,
+    ybar,
+    bar width=12pt,
+	title=Behavior of System Variants,
+	xlabel={Number of Deletions},
+	ylabel={Additional Mememory Consumed (MBytes)},
+	ymax=36000000,
+	scale=0.9,
+	scaled y ticks = real:1000000,
+	y tick label style={/pgf/number format/fixed},
+	ytick scale label code/.code={},
+	xtick=data,
+	legend style={at={(0.01,  0.4)},anchor=west},
+	enlargelimits=false,
+	symbolic x coords = {0, 100, 200, 300, 400, 500},
+	clip=false,
+	legend cell align=left,
+	enlarge x limits=0.09, %hack to plot on the full x-axis scale
+	x post scale=1.40,
+	]
+
+\addplot+
+   	plot[error bars/.cd, y dir = both, y explicit]
+   	table[x index=1, y index = 2, y error index= 4] {./noundo/crdt_memory.dat_STATS.dat};
+   	\addlegendentry{No Undo CRDT}
+
+\addplot+
+   	plot[error bars/.cd, y dir = both, y explicit]
+   	table[x index=1, y index = 2, y error index= 4] {./cciundo/crdt_memory.dat_STATS.dat};
+   	\addlegendentry{CCI Undo CRDT}
+    
+\addplot+ 
+   	plot[error bars/.cd, y dir = both, y explicit]
+   	table[x index=1, y index = 2, y error index= 4] {./standard/crdt_memory.dat_STATS.dat};
+   	\addlegendentry{Immediate Undo CRDT}
+   	
+   	
+\addplot+  [fill=darkergreen, fill opacity=0.5, darkergreen]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=1, y index = 2, y error index= 4] {./standard/share_data_combined.dat};
+	\addlegendentry{ShareJS Server + Clients} 
+ 	
+ 	
+   	
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
