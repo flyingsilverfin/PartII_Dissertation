@@ -9,7 +9,6 @@ import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 import ClientOpStack from './ClientOpStack';
 
-
 /*
 TODO
 I've imagined a pretty horrible case:
@@ -27,7 +26,7 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
-    private DISABLE_INTERFACE = false;
+    private DISABLE_INTERFACE = true;
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
@@ -174,6 +173,9 @@ if (this.DISABLE_INTERFACE) {
         // 'events' are stored as a map between time and items to insert and delete
         // IMPORTANT: we now interpret the scheduled events as relative to when the client has been created
         //            
+
+        // info
+        let counter = 0;
         for (let eventTime in this.events.insert) {
             let time = parseFloat(eventTime);
             let insert = this.events.insert[time];

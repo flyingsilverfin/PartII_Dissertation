@@ -220,6 +220,11 @@ def receiveOTMemory():
     return ""
 
 
+@app.route('/info', methods=['POST'])
+def printInfo():
+    data = request.get_json(force=True)
+    print data["i"]
+    return ""
 
 # CORS hack
 

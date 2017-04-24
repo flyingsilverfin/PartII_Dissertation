@@ -33,6 +33,7 @@ export default class Logger {
 
     // logs [time] [type] sender receiver type id __msg__
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
+        return;
         let time = this.getTime();
 
         let packetType = packet.type;

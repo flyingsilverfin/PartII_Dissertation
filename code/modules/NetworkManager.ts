@@ -1,5 +1,5 @@
 import NetworkInterface from './NetworkInterface';
-import NetworkStatsManager from './NetworkStatsManager';
+//import NetworkStatsManager from './NetworkStatsManager';
 //import GraphVisualizer from './GraphVisualizer';
 import Topology from './topology/Topology';
 import EventDrivenScheduler from './EventDrivenScheduler';
@@ -15,7 +15,7 @@ class NetworkManager {
     private clientLogicalCounterMap: NT.ClientLogicalCounterMap;
     private topology: Topology;
     private scheduler: EventDrivenScheduler;
-    private networkStats: NetworkStatsManager;
+    //private networkStats: NetworkStatsManager;
     private visualizer: any;
     private log: Logger;
 
@@ -26,7 +26,7 @@ class NetworkManager {
 
 
     constructor(topology: Topology, 
-                networkStatsManager: NetworkStatsManager, 
+                networkStatsManager: any, 
                 visualizer: any, 
                 scheduler: EventDrivenScheduler, 
                 log: Logger,
@@ -35,7 +35,7 @@ class NetworkManager {
         this.clientLogicalCounterMap = {};
         this.topology = topology;
         this.scheduler = scheduler;
-        this.networkStats = networkStatsManager;
+        //this.networkStats = networkStatsManager;
         this.visualizer = visualizer;
         this.log = log;
         this.finished = finishedCallback;
@@ -106,13 +106,13 @@ class NetworkManager {
             //let targetNetworkInterface = self.clientMap[(<any>edge.target).index];
 
             let action = function() {
-                self.networkStats.decrementLoad(edge.id);
+                //self.networkStats.decrementLoad(edge.id);
                 self.log.logPacket(sender, edge.target, "received", packet);
                 targetNetworkInterface.receive(packet);
                 if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
             };
             this.scheduler.addEvent(edge.getLatency(), this.clientLogicalCounterMap[sender], action);
-            this.networkStats.incrementLoad(edge.id);
+            //this.networkStats.incrementLoad(edge.id);
             this.log.logPacket(sender, edge.target, "sent", packet);
         }
         if (this.visualizer !== null) this.visualizer.updateLoads();
@@ -147,7 +147,7 @@ class NetworkManager {
         }
 
         let action = function() {
-            self.networkStats.decrementLoad(edge.id);
+            //self.networkStats.decrementLoad(edge.id);
             self.log.logPacket(from, to, "received", packet);
             targetNetworkInterface.receive(packet);
             if (self.visualizer !== null) self.visualizer.updateLoads();  //TODO this is an O(#edges) operation per packet received...
@@ -155,7 +155,7 @@ class NetworkManager {
 
         this.scheduler.addEvent(edge.getLatency(), this.clientLogicalCounterMap[from], action);
 
-        this.networkStats.incrementLoad(edge.id);
+        //this.networkStats.incrementLoad(edge.id);
         this.log.logPacket(from, edge.target, "sent", packet);
         if (this.visualizer !== null) this.visualizer.updateLoads();
         this.clientLogicalCounterMap[from]++;

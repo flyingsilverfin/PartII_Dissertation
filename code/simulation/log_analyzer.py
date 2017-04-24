@@ -552,14 +552,14 @@ class ExperimentAnalzer(object):
         memory_checkpoints = [
             self.formatResultEntry(
                 'MemoryCheckpoint' + str(i),
-                self.memory_stamps[i][0] - self.memory_stamps[1][0],    #compare vs post-client-create or post-topology-init (both at same index)
+                self.memory_stamps[i][0] - self.memory_stamps[0][0],    #compare vs post-client-create or post-topology-init (both at same index) when only using 1 client, else 0
                 readableStringOverride=self.memory_stamps[i][1]
                 )
-            for i in range(1,len(self.memory_stamps))
+            for i in range(0,len(self.memory_stamps))
         ]
 
         memory_checkpoints.append(self.formatResultEntry('MemoryCheckpointNoLog', 
-                                    [int(x.strip()) - self.memory_stamps[1][0] for x in self.finalMemoryUsages], 
+                                    [int(x.strip()) - self.memory_stamps[0][0] for x in self.finalMemoryUsages], 
                                     readableStringOverride="nologMemoryRepetitions"))
 
 

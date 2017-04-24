@@ -2,7 +2,6 @@
 import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 
-import NetworkStatsManager from './NetworkStatsManager';
 import NetworkInterface from './NetworkInterface';
 import Time from './Time';
 import Logger from './Logger';
@@ -54,7 +53,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
 
 
-    let networkStats = new NetworkStatsManager(topology, statsDiv);
+    //let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = null;
     if (graph) {
         /*
@@ -82,7 +81,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
 
     let manager = new NetworkManager(topology, 
-                                     networkStats,
+                                     null,
                                      graphVisualizer, 
                                      scheduler, 
                                      logger, 
