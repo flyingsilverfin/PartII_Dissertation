@@ -129,7 +129,7 @@ exports.handler = (session, createAgent) ->
                  # The socket is submitting an op.
         else if query.op? or query.meta?.path?
           # DISSERTATION LOG MSG
-          #logOpReceived(docName, agent.sessionId, query) #disable for heavy expeirments for memory
+          logOpReceived(docName, agent.sessionId, query) #disable for heavy expeirments for memory
           handleOp query, callback
 
         else
@@ -234,8 +234,8 @@ exports.handler = (session, createAgent) ->
         #console.log("Time after sending response: " + Date.now());
         if val
           logJoinAckSent(docName, agent.sessionId, response)
-        #else #disable for heavy experiments for memory
-          #logSent(docName, agent.sessionId, response)
+        else #disable for heavy experiments for memory
+          logSent(docName, agent.sessionId, response)
           
         #console.log("Time after logging send: " + Date.now())
 
