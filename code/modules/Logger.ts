@@ -35,25 +35,24 @@ export default class Logger {
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
         let time = this.getTime();
 
-        let packetType = packet.type;
+        let packetType = packet.t;
         let readablePacketType;
-        let bundle = packet.bundle;
+        let bundle = packet.b;
 
-        let bundleSize = JSON.stringify(bundle).length;
+        let packetSize = JSON.stringify(packet).length;
         
         let msg;
         if (packetType === "i") {
             readablePacketType = "insert"; // for logging
             msg = 
-                (<CRDTTypes.InsertMessage>bundle).char +
+                (<CRDTTypes.InsertMessage>bundle).c +
                 "    " +
-                (<CRDTTypes.InsertMessage>bundle).id +
+                (<CRDTTypes.InsertMessage>bundle).i +
                 "    " +
-                (<CRDTTypes.InsertMessage>bundle).after;
+                (<CRDTTypes.InsertMessage>bundle).a;
         } else if (packetType === "d") {
             readablePacketType = "delete"; // for logging
-            msg = 
-                (<CRDTTypes.DeleteMessage>bundle).deleteId
+            msg = (<CRDTTypes.DeleteMessage>bundle).delId
         } else if (packetType === "reqCRDT") {
             readablePacketType = "requestCRDT";
             msg = ""
@@ -62,7 +61,15 @@ export default class Logger {
             let crdt = JSON.stringify((<NT.ReturnCRDTMessage>bundle).crdt);
             let crdtLen = crdt.length;
             msg = "" + crdtLen;
-        } else {
+        } else if (packetType === 'ui') {
+            
+        } else if (packetType === 'ud') {
+            
+        } else if (packetType === 'ri') {
+            
+        } else if (packetType === 'rd') {
+            
+        }else {
             console.error("Logging a packet of neither insert nor delete type...");
             this.l.push("");
             return;
@@ -74,9 +81,13 @@ export default class Logger {
             sender + "    " +
             receiver + "    " +
             readablePacketType + "    " +
-            bundleSize + "    " +
+            packetSize + "    " +
             msg);
             
+    }
+
+    public freeLog(): void {
+        this.l = null;
     }
 
     public logMemory(when: "pre-experiment" |
@@ -91,7 +102,7 @@ export default class Logger {
     }
 
     public writeLogToConsole(): void {
-        console.log(JSON.stringify(this.l, null, 4));
+        //console.log(JSON.stringify(this.l, null, 4));
     }
 
     public getLog(): string[] {

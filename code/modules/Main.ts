@@ -1,8 +1,7 @@
-import GraphVisualizer from './GraphVisualizer';
+//import GraphVisualizer from './GraphVisualizer';
 import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 
-import NetworkStatsManager from './NetworkStatsManager';
 import NetworkInterface from './NetworkInterface';
 import Time from './Time';
 import Logger from './Logger';
@@ -15,8 +14,10 @@ import TopologyStar from './topology/TopologyStar';
 import * as tsUnit from 'tsunit.external/tsUnit';
 import DualKeyMinHeapTests from '../tests/DualKeyMinHeapTests';
 
+declare var gc;
 
-export function main(experimentSetup, graph=true, finishedCallback) {
+
+export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryUsageCallback) {
 
 
 
@@ -25,6 +26,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
     let optimized = experimentSetup.optimized;
 
+    gc();
     logger.logMemory("pre-experiment");
 
 
@@ -51,9 +53,10 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
 
 
-    let networkStats = new NetworkStatsManager(topology, statsDiv);
+    //let networkStats = new NetworkStatsManager(topology, statsDiv);
     let graphVisualizer = null;
     if (graph) {
+        /*
         graphVisualizer = new GraphVisualizer(
                                                 svg, 
                                                 topology,
@@ -70,7 +73,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         graphVisualizer.draw();
         
         logger.logMemory("post-graph-init");
-
+        */
     }
 
 
@@ -78,7 +81,7 @@ export function main(experimentSetup, graph=true, finishedCallback) {
 
 
     let manager = new NetworkManager(topology, 
-                                     networkStats,
+                                     null,
                                      graphVisualizer, 
                                      scheduler, 
                                      logger, 
@@ -91,35 +94,28 @@ export function main(experimentSetup, graph=true, finishedCallback) {
                                         }
                                         logger.logMemory("post-experiment");
                                         finishedCallback(result); 
+
+                                        result = null;
+                                        log = null;
+
+                                        // clear log to lose any references to it
+                                        logger.freeLog();
+                                        //delete experimentSetup.events;    // don't gc this! already included in pre-experiment so just subtract it out
+                                        //gc();
+
+                                        // delayed GC
+                                        setTimeout(function() {
+                                            gc();
+                                            let mem = (<any>window.performance).memory.usedJSHeapSize;
+                                            console.log("Mem after GC: " + mem);
+                                            noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
+                                        }, 1000);
                                      }
     );
 
-    //(<any>window).runEvents = manager.runSimulation.bind(manager);
-    (<any>window).pauseplay = function() {
-        if (manager.isPaused()) {
-            console.log('playing');
-            (<any>window).onSpeedEditBlur();
-            document.getElementById('pauseplay-button').innerHTML = "Pause";
-            manager.start();
-        } else {
-            console.log('pausing');
-            document.getElementById('pauseplay-button').innerHTML = "Play";
-            manager.pause();
-        }
-    };
-
-    (<any>window).onSpeedEditBlur = function() {
-        try {
-            let speed = parseFloat((<HTMLInputElement>document.getElementById('speed-control')).value);
-            console.log(speed);
-            manager.setSimulationSpeed(speed);
-        } catch (Exception) {
-            console.error("Invalid speed multiplier, using old one");
-        }
-    }
-
 
     let mockClients: Client[] = [];
+    this.clients = mockClients;
     let scheduledEvents = experimentSetup.events;
     let clients = experimentSetup.clients;
 
@@ -134,6 +130,39 @@ export function main(experimentSetup, graph=true, finishedCallback) {
         }
         scheduler.addEvent(timeToCreate, 0, action);
     }
+
+    scheduledEvents = null; // gc later
+
+
+    //(<any>window).runEvents = manager.runSimulation.bind(manager);
+    
+    let pauseplay = function() {
+        if (manager.isPaused()) {
+            console.log('playing');
+            (<any>window).onSpeedEditBlur();
+            document.getElementById('pauseplay-button').innerHTML = "Pause";
+            manager.start();
+        } else {
+            console.log('pausing');
+            document.getElementById('pauseplay-button').innerHTML = "Play";
+            manager.pause();
+        }
+    };
+
+    let onSpeedEditBlur = function() {
+        try {
+            let speed = parseFloat((<HTMLInputElement>document.getElementById('speed-control')).value);
+            console.log(speed);
+            manager.setSimulationSpeed(speed);
+        } catch (Exception) {
+            console.error("Invalid speed multiplier, using old one");
+        }
+    };
+
+    (<any>window).pauseplay = pauseplay;
+    (<any>window).onSpeedEditBlur = onSpeedEditBlur;
+
+    pauseplay()
 
     logger.logMemory("post-clients-init");
 }

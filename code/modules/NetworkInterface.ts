@@ -59,9 +59,9 @@ class NetworkInterface {
     // Asks a neighbor for the current CRDT state
     public requestCRDT(destination: T.ClientId): void {
         let packet: NT.NetworkPacket = {
-            origin: "" + this.clientId, // need to be string
-            type: "reqCRDT",
-            bundle: {}
+            o: "" + this.clientId, // need to be string
+            t: "reqCRDT",
+            b: {}
         };
 
         this.networkManager.unicast(this.clientId, destination, packet);
@@ -69,9 +69,9 @@ class NetworkInterface {
 
     public returnCRDT(destination: T.ClientId, crdt: CT.MapCRDTStore): void {
         let packet: NT.NetworkPacket = {
-            origin: "" + this.clientId,
-            type: "retCRDT",
-            bundle: {
+            o: "" + this.clientId,
+            t: "retCRDT",
+            b: {
                 crdt: crdt
             }
         }
@@ -91,7 +91,7 @@ class NetworkInterface {
 
     public receive(packet: NT.NetworkPacket) {
         // if it's type retCRDT or reqCRDT let it through
-        if (!this.enabled && packet.type !== "retCRDT" && packet.type !== "reqCRDT") {
+        if (!this.enabled && packet.t !== "retCRDT" && packet.t !== "reqCRDT") {
             // push the same function call into a queue to be executed later
             this.queue.push(function() {
                 this.receive(packet)
@@ -105,22 +105,22 @@ class NetworkInterface {
 
         // demultiplex packet type
         let isValidNewPacket;
-        if (packet.type === 'i') {
-            isValidNewPacket = this.insertPacketReceived(packet.bundle);
-        } else if (packet.type === 'd') {
-            isValidNewPacket = this.deletePacketReceived(packet.bundle);
-        } else if (packet.type == "reqCRDT") {
+        if (packet.t === 'i') {
+            isValidNewPacket = this.insertPacketReceived(packet.b);
+        } else if (packet.t === 'd') {
+            isValidNewPacket = this.deletePacketReceived(packet.b);
+        } else if (packet.t == "reqCRDT") {
             // bundle is empty
-            let origin = packet.origin;
+            let origin = packet.o;
             this.requestCRDTReceived(parseInt(origin));
             isValidNewPacket = false;   // disable broadcasting this unicast...
-        } else if (packet.type == "retCRDT") {
-            let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt;
+        } else if (packet.t == "retCRDT") {
+            let crdt = (<NT.ReturnCRDTMessage>packet.b).crdt;
             this.returnCRDTReceived(crdt);
             isValidNewPacket = false;   // disable broadcasting this unicast...
         }        
          else {
-            console.error('Received unknown network packet type: ' + packet.type);
+            console.error('Received unknown network packet type: ' + packet.t);
             return;
         }
 

@@ -20,17 +20,40 @@ class EditableText implements IT.EditableTextInterface {
     public deleteCallback = null;
     public commitCallback = null;   // for word insert optimization
 
-    constructor(parent: HTMLDivElement, optimized=false) {
+
+    //new undo/redo capability
+    private undoButton: HTMLButtonElement;
+    private redoButton: HTMLButtonElement;
+    private undoCallback = null;    // need to be set via setter
+    private redoCallback = null;    // need to set via setter
+
+    // disable interface for running experiments, enable for testing usually
+    private DISABLE_INTERFACE: boolean;
+
+    constructor(parent: HTMLDivElement, optimized=false, DISABLE_INTERFACE = false) {
+        this.DISABLE_INTERFACE = DISABLE_INTERFACE;
+
         this.container = document.createElement('div');
         this.container.className = 'client-container';
 
         this.clientIdField = document.createElement('h2');
         this.clientIdField.className = 'client-id';
 
+        this.undoButton = document.createElement('button');
+        this.undoButton.innerHTML = "undo";
+        this.undoButton.className = "client-button";
+            
+        this.redoButton = document.createElement('button');
+        this.redoButton.innerHTML = "redo";
+        this.redoButton.className = "client-button";
+
+
         this.textarea = document.createElement('textarea');
         this.textarea.className = 'client-textarea';
 
         this.container.appendChild(this.clientIdField);
+        this.container.appendChild(this.undoButton);
+        this.container.appendChild(this.redoButton);
         this.container.appendChild(this.textarea);
 
         parent.appendChild(this.container);
@@ -53,6 +76,18 @@ class EditableText implements IT.EditableTextInterface {
         this.textarea.value = text;
         this.setDirection(0);   // force client to commit it's own changes immediately
     }
+
+    public setUndoCallback(f: any): void {
+        this.undoCallback = f;
+        this.undoButton.onclick = this.undoCallback;
+    }
+
+    public setRedoCallback(f: any): void {
+        this.redoCallback = f;
+        this.redoButton.onclick = this.redoCallback;
+    }
+
+
 
     public incrementCursorPosition(n?:number): void {
         if (n === undefined) {
@@ -138,7 +173,6 @@ class EditableText implements IT.EditableTextInterface {
 
     public mockInsert(chars: string, after: number): void {
         console.log('mock insert');
-        debugger
 
         let content = this.getContent();
 
@@ -149,8 +183,9 @@ class EditableText implements IT.EditableTextInterface {
     
         // insert 
         content = insertIntoString(chars, after, content);
-
-        this.setContent(content);
+        if (!this.DISABLE_INTERFACE) {
+            this.setContent(content);
+        }
         this.setCursorPosition(after + chars.length);
 
         this.insertCallback(chars, after, true);
@@ -166,8 +201,9 @@ class EditableText implements IT.EditableTextInterface {
         }
         
         content = deleteAt(content, index);
-
-        this.setContent(content);
+        if (!this.DISABLE_INTERFACE) {
+            this.setContent(content);
+        }
         this.setCursorPosition(index);
 
         this.deleteCallback(index);

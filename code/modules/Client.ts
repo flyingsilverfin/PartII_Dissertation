@@ -26,6 +26,8 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
+    private DISABLE_INTERFACE = true;
+
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
 
@@ -64,7 +66,7 @@ class Client {
 
         let interfaceContainer = <HTMLDivElement>document.getElementById('clients-container');
 
-        this.interface = new EditableText(interfaceContainer, optimized);
+        this.interface = new EditableText(interfaceContainer, optimized, this.DISABLE_INTERFACE);
         this.interface.setId(this.id);
         this.interface.insertCallback = this.charInsertedLocal.bind(this);
         this.interface.deleteCallback = this.charDeletedLocal.bind(this);
@@ -78,7 +80,9 @@ class Client {
             
         } else {
             let neighbor = this.network.getLowestIdNeighbor();
+if (!this.DISABLE_INTERFACE) {
             this.interface.setContent("(Retrieving datastructure/document)");
+}
             this.network.requestCRDT(neighbor);
             // will callback to returnCRDTReceived when received the CRDT from neighbor
         }
@@ -89,7 +93,9 @@ class Client {
         // WARN: MUST be called first - network.enable may run queued receives which require
         //       an up to date id and char array
         this.updateParallelArrays();
-
+if (this.DISABLE_INTERFACE) {
+    this.interface.setContent("Running")
+}
         this.network.enable();
         this.createScheduledEvents();
 
@@ -132,9 +138,15 @@ class Client {
 
             let self = this;
 
+            let insertsAtTime = this.events.insert[eventTime]; // for experiments, want deletes to happen after inserts of the same time
+            let numInsertsAtTime = 0;
+            if (insertsAtTime !== undefined) {
+                numInsertsAtTime = insertsAtTime.chars.length;
+            }
+
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
-                this.scheduler.addEvent(time, i, function() {
+                this.scheduler.addEvent(time, 1 + i + numInsertsAtTime, function() {
                     self.interface.mockDelete(mockDelete.index);
                 });
             }
@@ -148,15 +160,15 @@ class Client {
             let afterId = this.insertStartAfter;
 
             let bundle: CT.InsertMessage = {
-                id: insertId,
-                char: chars,
-                after: afterId
+                i: insertId,
+                c: chars,
+                a: afterId
             };
 
             let networkPacket: NT.NetworkPacket = {
-                origin: this.id,
-                type: 'i',
-                bundle: bundle
+                o: this.id,
+                t: 'i',
+                b: bundle
             };
             this.network.broadcast(networkPacket);
 
@@ -176,7 +188,7 @@ class Client {
         However, once the concurrent packet arrives, one client will see its word jump ahead
         This is expected behavior
     */
-    private charInsertedLocal(char: string, after: number, commitNow=false): void {
+    private charInsertedLocal(char: string, index: number, commitNow=false): void {
         let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
         let opId = nextT + '.' + this.id;
 
@@ -189,11 +201,11 @@ class Client {
         //           
 
         debugger
-        let idOfAfter = this.getIdOfStringIndex(after);
+        let idOfAfter = this.getIdOfStringIndex(index-1);
         let bundle: CT.InsertMessage = {
-            id: opId,
-            char: char,
-            after: idOfAfter
+            i: opId,
+            c: char,
+            a: idOfAfter
         };
 
         this.dt.insert(bundle);
@@ -217,9 +229,9 @@ class Client {
             }
         } else {
             let networkPacket: NT.NetworkPacket = {
-                origin: this.id,
-                type: 'i',
-                bundle: bundle
+                o: this.id,
+                t: 'i',
+                b: bundle
             }
             this.network.broadcast(networkPacket);
         }
@@ -235,14 +247,15 @@ class Client {
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
-
+if (!this.DISABLE_INTERFACE) {
         this.updateParallelArrays();
+}
 
         // probably possible to do this more cleanly
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
         this.interface.setContent(this.charArray.join(''));
         if (oldAfterId !== newAfterId) {
-            this.interface.incrementCursorPosition(bundle.char.length);
+            this.interface.incrementCursorPosition(bundle.c.length);
         }
         return true;
     }
@@ -250,15 +263,15 @@ class Client {
     private charDeletedLocal(index: number) {
         let deletedId = this.getIdOfStringIndex(index);
         let bundle: CT.DeleteMessage = {
-            deleteId: deletedId
+            delId: deletedId
         };
 
         this.dt.delete(bundle);
 
         let networkPacket: NT.NetworkPacket = {
-            origin: this.id,
-            type: 'd',
-            bundle: bundle
+            o: this.id,
+            t: 'd',
+            b: bundle
         };
         this.network.broadcast(networkPacket);
         this.updateParallelArrays();
@@ -276,7 +289,9 @@ class Client {
 
         // probably possible to do this more cleanly
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
+}
         if (oldAfterId !== newAfterId) {
             this.interface.decrementCursorPosition();
         }
@@ -313,7 +328,7 @@ class Client {
     }
 
     private getIdOfStringIndex(after: number): string {
-        return this.idArray[after];
+        return this.idArray[after+1];
     }
 
 }

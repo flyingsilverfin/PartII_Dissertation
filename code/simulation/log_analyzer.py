@@ -3,16 +3,8 @@
     analyzes them and records summaries
 """
 import os
+import sys
 import json
-
-
-"""
-    TODO
-    create experiment which shows that it's actually generating correct strings
-    might need more sophisticated experiment generation - including a sort of causal
-    "insert ___ after word ___ arrives"
-
-"""
 
 
 
@@ -48,7 +40,7 @@ class ClientAnalyzer(object):
             "requestFrom": -1
         }
         self.active_join_packets = {} # map (dest) => time packet was sent
-        self.actual_link_latencies = {}     # map destination => [#packets, total time taken]
+        self.actual_link_latencies = {}     # map destination => time[]
 
     def sentMessage(self, log_msg):
         """
@@ -81,15 +73,32 @@ class ClientAnalyzer(object):
             elif msg_type == 'returnCRDT':
                 #CRDT provider has nothing useful to say when the return is sent
                 pass
+            elif msg_type == 'undoInsert':
+                #not implemented yet
+                pass
+            elif msg_type == 'redoInsert':
+                #TODO
+                pass
+            elif msg_type == 'undoDelete':
+                #TODO
+                pass
+            elif msg_type == 'redoDelete':
+                #TODO
+                pass
             else:
-                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
-
+                #print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                pass
+            
         else:   #case sharejs
             assert msg_type == "sharejs-op"
             payload = json.loads(log_msg[6])
+            if 'v' not in payload:
+                print "sharejs-op msg does not have a version, skipping: " + str(log_msg)
+                return
             version = payload['v']
             length = len(log_msg[6])
             self.active_packets[(version, receiver)] = when
+            #print "sent: " + str(self.client_id) + " sent v: " + str(version) + " to: " + str(receiver)
             self.total_packets_sent += 1
             self.total_packets_size += length
 
@@ -118,19 +127,16 @@ class ClientAnalyzer(object):
                 sent_at = self.active_insert_packets[(insert_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.get_actual_link_latency(receiver)
-                current_totals[0] += 1
-                current_totals[1] += actual_latency
-                self.actual_link_latencies[receiver] = current_totals
+                latencies = self.get_actual_link_latency(receiver)
+                latencies.append(actual_latency)
 
             elif msg_type == 'delete':
                 delete_id = log_msg[6]
                 sent_at = self.active_delete_packets[(delete_id, receiver)]
                 actual_latency = when - sent_at
 
-                current_totals = self.get_actual_link_latency(receiver)
-                current_totals[0] += 1
-                self.actual_link_latencies[receiver] = current_totals
+                latencies = self.get_actual_link_latency(receiver)
+                latencies.append(actual_latency)
 
             elif msg_type == 'requestCRDT':
                 #sender has nothing useful to say when request arrives at remote
@@ -146,8 +152,21 @@ class ClientAnalyzer(object):
                 else:   # pass it to the correct client (breaks convention being used before)
                     rec = self.other_clients[receiver]
                     rec.msgArrived(log_msg)
+            elif msg_type == 'undoInsert':
+                #not implemented yet
+                pass
+            elif msg_type == 'redoInsert':
+                #TODO
+                pass
+            elif msg_type == 'undoDelete':
+                #TODO
+                pass
+            elif msg_type == 'redoDelete':
+                #TODO
+                pass
             else:
-                print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                #print "Unknown msg type (not insert/delete/reqCRDT/retCRDT): " + msg_type
+                pass
         else:   # case sharejs
 
             assert msg_type == "sharejs-op"
@@ -157,10 +176,8 @@ class ClientAnalyzer(object):
             sent_at = self.active_packets[(version, receiver)]
             actual_latency = when - sent_at
 
-            current_totals = self.get_actual_link_latency(receiver)
-            current_totals[0] += 1
-            current_totals[1] += actual_latency
-            self.actual_link_latencies[receiver] = current_totals
+            latencies = self.get_actual_link_latency(receiver)
+            latencies.append(actual_latency)
 
 
     # ---- these aren't really following the 'sender tracks packets' convention ----
@@ -203,7 +220,7 @@ class ClientAnalyzer(object):
         try:
             return self.actual_link_latencies[receiver]
         except KeyError:
-            self.actual_link_latencies[receiver] = [0, 0]
+            self.actual_link_latencies[receiver] = []
             return self.actual_link_latencies[receiver]
 
     def getResult(self):
@@ -235,6 +252,10 @@ class ExperimentAnalzer(object):
         self.stringIdentifier = ", ".join(identifier)
         self.log = [s.strip() for s in open(os.path.join(*logPath)).readlines()]
         self.logPath = logPath
+
+        #print logPath
+
+        self.finalMemoryUsages = open(os.path.join(*(logPath[:-1] + ['final_memory_usage.txt']))).readlines()
 
         # used for filling various datapoints later
         if identifier[0] != "fully-connected" and identifier[0] != "star":
@@ -320,6 +341,9 @@ class ExperimentAnalzer(object):
         run_later = []
         id_map = {} #only needed for non-crdt but whatever
 
+        #print self.log
+
+
         for msg in self.log:
             msg = msg.split('    ')
             msg_type = msg[1]
@@ -336,6 +360,7 @@ class ExperimentAnalzer(object):
             elif msg_type == 'sent' or msg_type == 'received':
                 sender = int(msg[2])
                 if msg_type == 'sent':
+                    # print "sent"
                     self.clients[sender].sentMessage(msg)
                 else: # msg_type == 'receiver' -- guaranteed
                     # stick the msg_arrived into a lambda to run later
@@ -358,7 +383,6 @@ class ExperimentAnalzer(object):
 
         if not self.crdt:
             id_map["-1"] = -1
-            print id_map
 
             server_log_path = self.logPath[:-2] + ["sharejs-server.log"]
             server_log = [s.strip() for s in open(os.path.join(*server_log_path)).readlines()]
@@ -371,7 +395,7 @@ class ExperimentAnalzer(object):
                     #caution: reversed again
                     receiver = msg[2]
                     self.clients[id_map[receiver]].joinReceived(msg)
-                    print id_map
+                    #print id_map
                 elif msg_type == 'join-ack':
                     # sender is always server here
                     sender = -1
@@ -385,7 +409,7 @@ class ExperimentAnalzer(object):
                         msg[2] = id_map[msg[2]]
                         self.clients[sender].msgArrived(msg)
                 else:
-                    print "--Ignoring: Unknown sever log msg type: " + msg
+                    print "--Ignoring: Unknown sever log msg type: " + str(msg)
                     continue
 
         for func in run_later:
@@ -482,7 +506,7 @@ class ExperimentAnalzer(object):
         get, format results and return as a string
         """
 
-        average_measured_link_latencies = {}
+        link_latencies = {}
         state_replay_summary = {
             "waiting_times" : [],
             "requested_from": [],
@@ -505,8 +529,7 @@ class ExperimentAnalzer(object):
 
             latencies = result["link_latencies"]
             for dest in latencies.keys():
-                average_measured_link_latencies[(client.client_id, dest)] = \
-                    float(latencies[dest][1]) / latencies[dest][0]
+                link_latencies[(client.client_id, dest)] = latencies[dest]
 
             state_replay = result["state_replay"]
             state_replay_summary["waiting_times"].append(state_replay["return"] - state_replay["request"])
@@ -524,15 +547,20 @@ class ExperimentAnalzer(object):
                 total_packets_size_nometa += result["total_packets_size_nometa"]
 
 
-        initial_memory = self.memory_stamps[0][0]
+        
+            
         memory_checkpoints = [
             self.formatResultEntry(
                 'MemoryCheckpoint' + str(i),
-                self.memory_stamps[i][0] - initial_memory,
+                self.memory_stamps[i][0] - self.memory_stamps[0][0],    #compare vs post-client-create or post-topology-init (both at same index) when only using 1 client, else 0
                 readableStringOverride=self.memory_stamps[i][1]
                 )
-            for i in range(len(self.memory_stamps))
+            for i in range(0,len(self.memory_stamps))
         ]
+
+        memory_checkpoints.append(self.formatResultEntry('MemoryCheckpointNoLog', 
+                                    [int(x.strip()) - self.memory_stamps[0][0] for x in self.finalMemoryUsages], 
+                                    readableStringOverride="nologMemoryRepetitions"))
 
 
         # skip latencies for now
@@ -554,13 +582,14 @@ class ExperimentAnalzer(object):
             'stateReplayWaitTimes': 'Latency/wait time per client when requesting CRDT',
             'stateReplayRequestFrom': 'From whom each client request CRDT',
             'stateReplayAvSize': 'Length of stringified document/crdt during state replay, on average',
+            'latencies': 'latencies',
 
             'insertPackets': 'Total insert packets sent',
             'insertPacketsSize': 'Total size of insert packets sent',
-            'avgInsertPacket': 'Average insert packet payload size',
+            'avgInsertPacket': 'Average insert packet size (incl vector clock etc.)',
             'deletePackets': 'Total delete packets sent',
             'deletePacketsSize': 'Total size of delete packets sent',
-            'avgDeletePacket': 'Average delete packet payload size',
+            'avgDeletePacket': 'Average delete packet size (incl vector clock etc.)',
             'naiiveP2PExpPackets': 'Expected number of packets sent - given naiive broadcast in a p2p network',
             'optimalP2PExpPackets': 'Expected number of packets sent - given optimal p2p network with everyone joining at start',
             'stringsMatch': 'All clients converged to same result',
@@ -605,6 +634,8 @@ class ExperimentAnalzer(object):
                 self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
                 self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
                 
+                self.formatResultEntry('latencies', link_latencies),
+
                 *memory_checkpoints
             )
         else:
@@ -632,6 +663,8 @@ class ExperimentAnalzer(object):
                 self.formatResultEntry('stateReplayRequestFrom', state_replay_summary["requested_from"]),
                 self.formatResultEntry('stateReplayAvSize', state_replay_summary["sum_crdt_sizes"]/len(state_replay_summary["waiting_times"])),
                 
+                self.formatResultEntry('latencies', link_latencies),
+
                 *memory_checkpoints
             )
 
@@ -683,6 +716,7 @@ class MainAnalyzer(object):
         p = ['.', 'experiments', experiment_name]
         summary = open(os.path.join(*(p + ['summary.txt'])), 'w')
         jsonSummary = open(os.path.join(*(p + ['summary.json'])),'w')
+        print "writing file: " + str(p)
         for res in results:
             summary.write(res + '\n')
         summary.close()
@@ -702,17 +736,20 @@ class MainAnalyzer(object):
 def findReadyExperiments():
     experiments = []
     for exp in os.listdir(os.path.join('.', 'experiments')):
-        if not os.path.isdir(os.path.join('.', 'experiments', exp)):
+        if not os.path.isdir(os.path.join('.', 'experiments', exp)) or 'setup.json' not in os.listdir(os.path.join('.', 'experiments', exp)):
             continue
-        if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)):
-            os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))
-            os.remove(os.path.join('.', 'experiments', exp, 'summary.json'))
+        #if 'summary.txt' in os.listdir(os.path.join('.', 'experiments', exp)): #just gets overwritten anyway
+            #os.remove(os.path.join('.', 'experiments', exp, 'summary.txt'))
+            #os.remove(os.path.join('.', 'experiments', exp, 'summary.json'))
         experiments.append(['.', 'experiments', exp])
     return experiments
 
 
 if __name__ == '__main__':
     readyExperiments = findReadyExperiments()
+    if len(sys.argv) > 1:
+        targetExp = sys.argv[1]
+        readyExperiments = [[targetExp]]
     for exp in readyExperiments:
         print "running new unfinished experiment analysis: " + exp[-1]
         MainAnalyzer(exp[-1])
