@@ -71,7 +71,7 @@ class MapCRDT implements CT.CRDT {
             entryBefore = this.map[entryBeforeId];
         }
 
-        console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
+        //console.log('Inserting after: ' + entryBeforeId + ' with id ' + startId);
 
 
         // now capable of adding words at a time given a start ID and a string
@@ -127,15 +127,15 @@ class MapCRDT implements CT.CRDT {
         let charArray = [];
         let idArray = [];
         let id = '0';
-        let entry;
+        let entry: CT.MapEntry;
         while (id !== null) {
             entry = this.map[id];
-            if (!entry.d) {
+            if (entry.d == undefined || !entry.d) {
                 // TODO unsure of how to handle deletion still!
                 charArray.push(entry.c);
                 idArray.push(id)
             }
-            id = entry.next;
+            id = entry.n;
         }
 
         return {charArray: charArray, idArray: idArray};

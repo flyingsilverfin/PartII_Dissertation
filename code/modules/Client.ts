@@ -147,7 +147,7 @@ if (this.DISABLE_INTERFACE) {
             for (let i = 0; i < deletes.length; i++) {
                 let mockDelete = deletes[i];
                 this.scheduler.addEvent(time, 1 + i + numInsertsAtTime, function() {
-                    self.interface.mockDelete(mockDelete.index);
+                    self.interface.mockDelete(mockDelete);
                 });
             }
         }
@@ -200,7 +200,6 @@ if (this.DISABLE_INTERFACE) {
         //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
         //           
 
-        debugger
         let idOfAfter = this.getIdOfStringIndex(index-1);
         let bundle: CT.InsertMessage = {
             i: opId,
@@ -247,13 +246,13 @@ if (this.DISABLE_INTERFACE) {
         // get old cursor position and 'after'
         let oldCursorPosition = this.interface.getCursorPosition();
         let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
-if (!this.DISABLE_INTERFACE) {
         this.updateParallelArrays();
-}
 
         // probably possible to do this more cleanly
         let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
+}
         if (oldAfterId !== newAfterId) {
             this.interface.incrementCursorPosition(bundle.c.length);
         }

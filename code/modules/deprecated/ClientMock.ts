@@ -32,7 +32,7 @@ class ClientMock {
         for (let eventTime in events.insert) {
             let time = parseFloat(eventTime);   // TODO this is weird... shouldn't be necessary
             let charsToInsert = events.insert[time];
-            console.log("adding insert event for chars: " + charsToInsert + " at time: " + eventTime);
+            //console.log("adding insert event for chars: " + charsToInsert + " at time: " + eventTime);
 
             let self = this;
 

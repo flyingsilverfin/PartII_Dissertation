@@ -35,8 +35,34 @@ export class NoMoreNodesToAllocateException implements T.Exception {
     }
 }
 
+export class NoUndosAvailableException implements T.Exception {
+    msg: string;
+    constructor(msg) {
+        this.msg = msg;
+    }
+}
+
+export class NoRedosAvailableException implements T.Exception {
+    msg: string;
+    constructor(msg) {
+        this.msg = msg;
+    }
+}
+
+
 export function now(): number { 
     return Date.now();
+}
+
+
+export function assert(condition, message): void {
+    if (!condition) {
+        message = message || "Assertion failed";
+        if (typeof Error !== "undefined") {
+            throw new Error(message);
+        }
+        throw message; // Fallback
+    }
 }
 
 export function within(x:number, y:number, tolerance:number): boolean{
@@ -62,6 +88,11 @@ export function deleteAt(str: string, index: number) {
     return str.substring(0, index) + str.substring(index+1);
 }
 
+export function remove(arr: any[], index: number) {
+    arr.splice(index, 1);
+    return arr;
+}
+
 export function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
@@ -81,10 +112,10 @@ export function postObject(path, object) {
     var httpRequest = new XMLHttpRequest();
 
     httpRequest.open('POST', path, true);
-    httpRequest.setRequestHeader('Content-type', 'application/json');
+    httpRequest.setRequestHeader('Content-type', 'text/plain');
     httpRequest.onload = function () {
         // do something to response
-        console.log("Posted data: " + JSON.stringify(object));
+        //console.log("Posted data: " + JSON.stringify(object));
     };
     httpRequest.send(JSON.stringify(object));
 }
