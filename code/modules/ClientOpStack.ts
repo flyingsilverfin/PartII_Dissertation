@@ -67,8 +67,8 @@ export default class ClientOpStack {
         };
 
         let packet: NT.PreparedPacket = {
-            type: inverseType,
-            bundle: bundle
+            t: inverseType,
+            b: bundle
         }
 
         return packet;
@@ -100,8 +100,8 @@ export default class ClientOpStack {
         };
 
         let packet: NT.PreparedPacket = {
-            type: inverseType,
-            bundle: bundle
+            t: inverseType,
+            b: bundle
         }
 
         return packet;

@@ -50,6 +50,6 @@ export interface MapCRDTStore {
 export interface MapEntry {
     c: string,  // character
     n: string,  // next link
-    d?: number,  // [deleted, when]
+    d?: [boolean, NT.VectorClock],  // [deleted, when]
     v?: boolean  // visible, used for creator to undo
 }

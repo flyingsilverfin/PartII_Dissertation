@@ -33,12 +33,11 @@ export default class Logger {
 
     // logs [time] [type] sender receiver type id __msg__
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", packet: NT.NetworkPacket) {
-        return;
         let time = this.getTime();
 
-        let packetType = packet.type;
+        let packetType = packet.t;
         let readablePacketType;
-        let bundle = packet.bundle;
+        let bundle = packet.b;
 
         let packetSize = JSON.stringify(packet).length;
         
@@ -46,14 +45,14 @@ export default class Logger {
         if (packetType === "i") {
             readablePacketType = "insert"; // for logging
             msg = 
-                (<CRDTTypes.InsertMessage>bundle).char +
+                (<CRDTTypes.InsertMessage>bundle).c +
                 "    " +
-                (<CRDTTypes.InsertMessage>bundle).id +
+                (<CRDTTypes.InsertMessage>bundle).i +
                 "    " +
-                (<CRDTTypes.InsertMessage>bundle).after;
+                (<CRDTTypes.InsertMessage>bundle).a;
         } else if (packetType === "d") {
             readablePacketType = "delete"; // for logging
-            msg = (<CRDTTypes.DeleteMessage>bundle).deleteId
+            msg = (<CRDTTypes.DeleteMessage>bundle).delId
         } else if (packetType === "reqCRDT") {
             readablePacketType = "requestCRDT";
             msg = ""

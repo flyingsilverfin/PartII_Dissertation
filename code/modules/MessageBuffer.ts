@@ -50,12 +50,12 @@ export default class MessageBuffer {
     // all the negative values in the difference between local clock and incoming vector
     // identical in form to vector clock
     public add(msg: NT.NetworkPacket, action: () => void, delta: NT.VectorClock) {
-        if (this.containsMap[msg.origin] === undefined) {
-            this.containsMap[msg.origin] = new Set();
+        if (this.containsMap[msg.o] === undefined) {
+            this.containsMap[msg.o] = new Set();
         }
-        this.containsMap[msg.origin].add(msg.vector[msg.origin]);
+        this.containsMap[msg.o].add(msg.v[msg.o]);
 
-        let key = [msg.origin, msg.vector[msg.origin]];
+        let key = [msg.o, msg.v[msg.o]];
 
         let totalDependents = 0;
         for (let dependencyId in delta) {

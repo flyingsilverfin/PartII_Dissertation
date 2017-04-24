@@ -72,10 +72,10 @@ class NetworkInterface {
     // only use vectors for BROADCAST!! NOT for unicast!
     public requestCRDT(destination: T.ClientId): void {
         let packet: NT.NetworkPacket = {
-            origin: this.clientId, 
-            vector: {},
-            type: "reqCRDT",
-            bundle: {}
+            o: this.clientId, 
+            v: {},
+            t: "reqCRDT",
+            b: {}
         };
 
         this.networkManager.unicast(this.clientId, destination, packet);
@@ -86,10 +86,10 @@ class NetworkInterface {
         let vectorCopy = this.causalDeliveryLayer.copyVector(); //copy in this client's sequence number for the receiver
 
         let packet: NT.NetworkPacket = {
-            origin: this.clientId,
-            vector: {},
-            type: "retCRDT",
-            bundle: {
+            o: this.clientId,
+            v: {},
+            t: "retCRDT",
+            b: {
                 crdt: crdt,
                 currentVector: vectorCopy
             },
@@ -106,14 +106,14 @@ class NetworkInterface {
             return;
         }
 
-        let netPacket: NT.NetworkPacket = Object.assign({vector: this.causalDeliveryLayer.getNextVector(), origin: this.clientId}, packet);
+        let netPacket: NT.NetworkPacket = Object.assign({v: this.causalDeliveryLayer.getNextVector(), o: this.clientId}, packet);
 
         this.networkManager.transmit(this.clientId, netPacket);
     }
 
     public receive(packet: NT.NetworkPacket) {
         // if it's type retCRDT or reqCRDT let it through
-        if (!this.enabled && packet.type !== "retCRDT" && packet.type !== "reqCRDT") {
+        if (!this.enabled && packet.t !== "retCRDT" && packet.t !== "reqCRDT") {
             // push the same function call into a queue to be executed later
             this.queue.push(function() {
                 this.receive(packet)
@@ -131,27 +131,27 @@ class NetworkInterface {
 */
 
         let actions = {
-            'i': () => this.insertPacketReceived(<CT.InsertMessage>packet.bundle),
-            'd': () => this.deletePacketReceived(<CT.DeleteMessage>packet.bundle, packet.vector),
-            'ui': () => this.undoInsertReceived(<CT.UndoMessage>packet.bundle),
-            'ud': () => this.undoDeleteReceived(<CT.UndoMessage>packet.bundle, packet.vector),
-            'ri': () => this.redoInsertReceived(<CT.UndoMessage>packet.bundle),
-            'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.bundle, packet.vector),
+            'i': () => this.insertPacketReceived(<CT.InsertMessage>packet.b),
+            'd': () => this.deletePacketReceived(<CT.DeleteMessage>packet.b, packet.v),
+            'ui': () => this.undoInsertReceived(<CT.UndoMessage>packet.b),
+            'ud': () => this.undoDeleteReceived(<CT.UndoMessage>packet.b, packet.v),
+            'ri': () => this.redoInsertReceived(<CT.UndoMessage>packet.b),
+            'rd': () => this.redoDeleteReceived(<CT.UndoMessage>packet.b, packet.v),
             'reqCRDT': () => {
-                                this.requestCRDTReceived(packet.origin); 
+                                this.requestCRDTReceived(packet.o); 
                             },  
             'retCRDT': () => {
                                 // copying in sequence numbers need to happen before copying in CRDT and executing queued operations
-                                let vectorReceived = (<NT.ReturnCRDTMessage>packet.bundle).currentVector;
+                                let vectorReceived = (<NT.ReturnCRDTMessage>packet.b).currentVector;
                                 
                                 this.causalDeliveryLayer.setVector(vectorReceived);
-                                let crdt = (<NT.ReturnCRDTMessage>packet.bundle).crdt; 
+                                let crdt = (<NT.ReturnCRDTMessage>packet.b).crdt; 
                                 this.returnCRDTReceived(crdt);
                             }
         };
 
-        let isNewPacket = this.causalDeliveryLayer.receive(packet, actions[packet.type].bind(this));
-        let retransmit = packet.type !== "retCRDT" && packet.type !== "reqCRDT" && isNewPacket;
+        let isNewPacket = this.causalDeliveryLayer.receive(packet, actions[packet.t].bind(this));
+        let retransmit = packet.t !== "retCRDT" && packet.t !== "reqCRDT" && isNewPacket;
 
         if (retransmit) this.networkManager.transmit(this.clientId, packet);
 

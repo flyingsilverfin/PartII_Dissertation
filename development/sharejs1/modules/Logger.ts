@@ -30,7 +30,6 @@ export default class Logger {
 
     public logPacket(sender: T.ClientId, receiver: T.ClientId, type: "sent" | "received", data: any) {
 
-        return; // disable for heavy experiments
         let time = this.getTime();
 
         let readablePacketType = 'sharejs-op';

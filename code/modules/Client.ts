@@ -106,9 +106,9 @@ class Client {
             return;
         }
         let packet = this.opStack.undo();
-        let op = <CT.UndoMessage>packet.bundle;
+        let op = <CT.UndoMessage>packet.b;
 
-        if (packet.type === "ui") {
+        if (packet.t === "ui") {
             this.dt.undoInsert(op);
         } else {    // type ud - undo delete
             let when = this.network.peekNextVector();
@@ -123,10 +123,10 @@ class Client {
             return;
         }
         let packet = this.opStack.redo();
-        let op = <CT.UndoMessage>packet.bundle;
+        let op = <CT.UndoMessage>packet.b;
 
 
-        if (packet.type === "ri") {
+        if (packet.t === "ri") {
             this.dt.redoInsert(op);
         } else {    // type rd - redo delete
             let when = this.network.peekNextVector();
@@ -271,14 +271,14 @@ if (this.DISABLE_INTERFACE) {
             let afterId = this.insertStartAfter;
 
             let bundle: CT.InsertMessage = {
-                id: insertId,
-                char: chars,
-                after: afterId
+                i: insertId,
+                c: chars,
+                a: afterId
             };
 
             let networkPacket: NT.PreparedPacket = {
-                type: 'i',
-                bundle: bundle
+                t: 'i',
+                b: bundle
             };
             this.network.broadcast(networkPacket);
 
@@ -313,9 +313,9 @@ if (this.DISABLE_INTERFACE) {
 
         let idOfAfter = this.getIdOfStringIndex(index-1);
         let bundle: CT.InsertMessage = {
-            id: opId,
-            char: char,
-            after: idOfAfter
+            i: opId,
+            c: char,
+            a: idOfAfter
         };
 
         this.dt.insert(bundle);
@@ -340,8 +340,8 @@ if (this.DISABLE_INTERFACE) {
             }
         } else {
             let networkPacket: NT.PreparedPacket = {
-                type: 'i',
-                bundle: bundle
+                t: 'i',
+                b: bundle
             }
             this.network.broadcast(networkPacket);
         }
@@ -369,7 +369,7 @@ if (!this.DISABLE_INTERFACE) {
         this.interface.setContent(this.charArray.join(''));
 }
         if (oldAfterId !== newAfterId) {
-            this.interface.incrementCursorPosition(bundle.char.length);
+            this.interface.incrementCursorPosition(bundle.c.length);
         }
 
         //return true;
@@ -378,7 +378,7 @@ if (!this.DISABLE_INTERFACE) {
     private charDeletedLocal(index: number) {
         let deletedId = this.getIdOfStringIndex(index);
         let bundle: CT.DeleteMessage = {
-            deleteId: deletedId
+            delId: deletedId
         };
 
         // WARNING: NOT ROBOUST IF BUFFERING IN THE FUTURE
@@ -390,8 +390,8 @@ if (!this.DISABLE_INTERFACE) {
         this.opStack.localDelete(deletedId, 1); // no support for group deletes yet, would need a buffering layer
 
         let networkPacket: NT.PreparedPacket = {
-            type: 'd',
-            bundle: bundle
+            t: 'd',
+            b: bundle
         };
         this.network.broadcast(networkPacket);
         this.updateParallelArrays();
