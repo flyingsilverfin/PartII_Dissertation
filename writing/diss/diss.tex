@@ -1087,7 +1087,7 @@ export interface MapEntry {
 			\paragraph{Single Editor}
 				In addition to storing past operations, ShareJS components also need to store the document as it grows. This series of experiment explores combined growth with increasing numbers of insertions of single characters. While ShareJS should scale linearly, a CRDT with $n$ characters must store $n$ links of constant size (ignoring deletion requirements), each identified by an identifier of decimal length $log(n)$, so one might expect a $O(nlog(n))$ space complexity. To test this, a series of experiments were designed using only a single client. Operations inserted only one character at a time, shown in \ref{fig:sub1}.
 					
-				To compare to a more realistic workload, another series of experiments was performed inserting words of average length 7.8 at a time rather than individual characters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer packets, reflecting that it needs to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards is likely extra closures and overhead associated with a character by character operations rather than words). If operations are are kept small and frequent, as is common when streaming changes between clients, CRDTs offer better performance for small and medium sized documents.
+				To compare to a different workload, another series of experiments was performed inserting words of average length 7.8 at a time rather than individual characters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer packets, reflecting that it needs to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards is likely extra closures and overhead associated with a character by character operations rather than words). If operations are are kept small and frequent, as is common when streaming changes between clients, CRDTs offer better performance for small and medium sized documents.
 				
 				[TODO mention possible optimization of inserting into the CRDT itself in groups of splittable words. talk about in conclusion]
 				
@@ -1118,13 +1118,19 @@ export interface MapEntry {
 				
 				
 			\paragraph{Multiple Clients}
-				Try inserting a set number (5000) characters into the document in both systems, but with split across increasing numbers of clients. 1 Client has already been done above. The insertions were split across 1, 2, 5, 10, 50, and 100 clients.
-				[For the CRDT system, run this on both an Undo-enabled system, CCI Undo, and the Immediate Undo system. Plot all of these on the same graph.]
-				
-				Experiments 44-48 inclusive
+				Figure \ref{fig:memvsreplication} examines how both systems scale in terms of the number of connected replicas. In all cases from 1 to 100 connected clients, the CRDT based distributed editor outperformed the ShareJS based one in terms of overall memory consumption. In the cases of fewer clients, this was by several multiples. Though the CRDT clients appear exhibit higher aggregate growth as the number of peers increases, part of this can credited toward overheads in the network simulation.
+			
+				\begin{figure}[htb]
+					\centering
+					\includestandalone[mode=buildnew]{data/multiclient_memory/multiclient_plot}
+					\caption[Memory Consumption versus Replication] {Combined server and client cost for the ShareJS system next to the CRDT based system. Error bars represent one standard deviation. Experiments inserted a total of 5000 characters split across the clients.}
+					\label{fig:memvsreplication}
+				\end{figure}
 				
 			\paragraph{CRDT System Variations}
-				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:implementation}, in some situations undo functionality may not be necessary. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems across a mixture of insertion to deletion ratios at a fixed number of clients, operations and fixed word length.
+				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:immediateundo}, with Immediate Undo, in some situations undo functionality may not be necessary. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems across a mixture of insertion to deletion ratios at a fixed number of clients (5), operations (5000) and fixed word length (5).
+				
+				
 				
 				Experiments TODO
 					Perhaps 1000 operations per client, 5 clients at different mixes of insertion/deletion ratios, fixed length ``words'' of say length 5. Perhaps 100/0, 80/20, 60/40, 40/60, 20/80 is as low as we can go with 5 char words -- returns to empty!. Bar graph

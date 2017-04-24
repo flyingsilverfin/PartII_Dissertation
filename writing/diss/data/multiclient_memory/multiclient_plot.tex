@@ -1,0 +1,64 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest}
+\definecolor{darkergreen}{RGB}{51, 204, 51}
+
+% https://tex.stackexchange.com/questions/13627/pgfplots-multiple-shifted-stacked-plots-in-one-diagram
+\makeatletter
+\newcommand\resetstackedplots{
+	\makeatletter
+	\pgfplots@stacked@isfirstplottrue
+	\makeatother
+	\addplot [forget plot,draw=none] coordinates{(1,0) (2,0) (5,0) (10,0) (50,0)};
+}
+
+\makeatother
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    stack plots=y,ybar,
+    bar width=15pt,
+	title=Total System Memory Use with varing Number of Clients,
+	xlabel={Number of Clients},
+	ylabel={Additional Mememory Consumed (MBytes)},
+	ymax=150000000,
+	scale=1.5,
+	scaled y ticks = real:1000000,
+	y tick label style={/pgf/number format/fixed},
+	ytick scale label code/.code={},
+	xtick=data,
+	legend pos=north west,
+	enlargelimits=false,
+	symbolic x coords = {1, 2, 5, 10, 50, 100},
+	clip=false,
+	legend cell align=left,
+	enlarge x limits=0.15, %hack to plot on the full x-axis scale
+	]
+
+\addplot+ [bar shift=-0.3cm]
+ plot[error bars/.cd, y dir = both, y explicit]
+ table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
+ \addlegendentry{Aggregate ShareJS Clients}
+ 
+\addplot+ [bar shift=-0.3cm]
+  plot[error bars/.cd, y dir = both, y explicit]
+  table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
+  \addlegendentry{ShareJS Server}
+  
+  
+\resetstackedplots
+  
+
+\addplot+ [bar shift=.3cm]
+ plot[error bars/.cd, y dir = both, y explicit]
+table[x index=1, y index = 2, y error index= 4] {./crdt_memory.dat_STATS.dat};
+ \addlegendentry{Aggregate CRDT Clients}
+ 
+
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

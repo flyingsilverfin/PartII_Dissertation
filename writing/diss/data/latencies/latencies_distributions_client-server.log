@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  18 APR 2017 21:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  21 APR 2017 10:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**1client_plot.tex
-(./1client_plot.tex
+**latencies_distributions_client-server.tex
+(./latencies_distributions_client-server.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 2 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/standalone/standalone.cls
@@ -463,8 +463,8 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 (/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2010/10/15 v2.10 (rcs-revision 1.12)
 )))
-(./1client_plot.aux)
-\openout1 = `1client_plot.aux'.
+(./latencies_distributions_client-server.aux)
+\openout1 = `latencies_distributions_client-server.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -478,7 +478,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
@@ -537,28 +538,32 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.9} into y
 our preamble.
  on input line 5.
 
-PGFPlots: reading {./1client_ot_client_memory.dat_STATS.dat}
-PGFPlots: reading {./1client_crdt_memory.dat_STATS.dat}
-PGFPlots: reading {./1client_share_server_memory.dat_STATS.dat}
+PGFPlots: reading {./client_server_latencies.dat_HIST.dat}
+PGFPlots: reading {./client_server_latencies.dat_HIST.dat}
+PGFPlots: reading {./client_server_latencies.dat_HIST.dat}
+PGFPlots: reading {./client_server_latencies.dat_HIST.dat}
+PGFPlots: reading {./client_server_latencies.dat_HIST.dat}
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 39.
+(Font)              <7> on input line 27.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 39.
+(Font)              <5> on input line 27.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./1client_plot.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+(./latencies_distributions_client-server.aux) ) 
 Here is how much of TeX's memory you used:
- 18012 strings out of 495028
- 443427 string characters out of 6181496
- 606906 words of memory out of 5000000
- 20881 multiletter control sequences out of 15000+600000
+ 17957 strings out of 495028
+ 442331 string characters out of 6181496
+ 635478 words of memory out of 5000000
+ 20830 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,18n,94p,708b,2196s stack positions out of 5000i,500n,10000p,200000b,80000s
-</us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on 1client_plot.pdf (1 page, 29984 bytes).
+ 63i,18n,94p,733b,1989s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb>
+Output written on latencies_distributions_client-server.pdf (1 page, 36387 byte
+s).
 PDF statistics:
  19 PDF objects out of 1000 (max. 8388607)
  13 compressed objects within 1 object stream

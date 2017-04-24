@@ -152,40 +152,40 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Single Editor}{45}{section*.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Multiple Clients}{48}{section*.54}
+\contentsline {paragraph}{Multiple Clients}{47}{figure.caption.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{CRDT System Variations}{48}{section*.55}
+\contentsline {paragraph}{CRDT System Variations}{48}{section*.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.2}Network}{48}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}Network}{49}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}ShareJS Latencies}{48}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}ShareJS Latencies}{49}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}ShareJS Performance}{50}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.4}ShareJS Performance}{51}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{}{50}{section*.58}
+\contentsline {subsubsection}{}{51}{section*.59}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}Core CRDT Performance}{50}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.5}Core CRDT Performance}{51}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}ShareJS vs CRDT for Text Editing}{50}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.6}ShareJS vs CRDT for Text Editing}{51}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.7}Network}{50}{subsection.4.3.7}
+\contentsline {subsection}{\numberline {4.3.7}Network}{51}{subsection.4.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{53}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{51}{chapter.5}
+\contentsline {chapter}{Bibliography}{53}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Vector Clocks}{55}{appendix.A}
+\contentsline {chapter}{\numberline {A}Vector Clocks}{57}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Formal Definition}{55}{section.A.1}
+\contentsline {section}{\numberline {A.1}Formal Definition}{57}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Modified Vector Clock}{55}{section.A.2}
+\contentsline {section}{\numberline {A.2}Modified Vector Clock}{57}{section.A.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{57}{appendix.B}
+\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{59}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}Proof of Commutativity}{57}{section.B.1}
+\contentsline {section}{\numberline {B.1}Proof of Commutativity}{59}{section.B.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Simple Experiment}{59}{appendix.C}
+\contentsline {chapter}{\numberline {C}Simple Experiment}{61}{appendix.C}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{59}{section.C.1}
+\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{61}{section.C.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {D}Project Proposal}{63}{appendix.D}
+\contentsline {chapter}{\numberline {D}Project Proposal}{65}{appendix.D}
