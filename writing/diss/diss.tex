@@ -24,6 +24,14 @@
 \usepackage{pgfplots}
 \usepackage[subpreambles=true]{standalone}	% to include external pgfplots
 \usepgfplotslibrary{external}
+\usepackage{mathtools}
+\usepackage{makecell}
+
+\usepackage{etex}
+\reserveinserts{28}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
 
 \tikzexternalize% activate externalization!
 
@@ -1085,7 +1093,7 @@ export interface MapEntry {
 					\label{fig:sanitycheck}
 				\end{figure}
 		
-			\paragraph{Single Editor}
+			\paragraph{Single Editor} \label{sec:singleeditor}
 				In addition to storing past operations, ShareJS components also need to store the document as it grows. This series of experiment explores combined growth with increasing numbers of insertions of single characters. While ShareJS should scale linearly, a CRDT with $n$ characters must store $n$ links of constant size (ignoring deletion requirements), each identified by an identifier of decimal length $log_{10}(n)$, so one might expect a $\Theta (nlog(n))$ space complexity. These experiments were designed using only a single client, inserting only one character at a time,. Results are shown in \ref{fig:sub1}.
 					
 				To compare to a different workload, another series of experiments was performed inserting words of average length about 8 characters -- the average word length of the English dictionary built into UNIX systems -- rather than individual characters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer, larger packets, reflecting its need to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards is likely extra closures and overhead associated with a character by character operations rather than words). 
@@ -1143,30 +1151,96 @@ export interface MapEntry {
 				Figure \ref{fig:variantsmemory} shows that CRDTs of increasing complexity cost consistently more in terms of memory. Not implementing undo shows consistent performance as hardly any data is added into the data structure, whereas the Immediate Undo variant grows consistently with the number of characters deleted. ShareJS behaves rather unpredictably, though consumes many times more memory than any of the CRDT based systems.
 				
 			\paragraph{Summary}
-				This subsection explored the behavior of both the ShareJS and CRDT based systems across a variety of settings. Several key ideas were discovered. Firstly, my CRDT offers significantly better memory consumption for small and medium sized documents. Additionally, OT, at least in the form used by ShareJS, suffers from streaming many small operations, whereas CRDTs are agnostic to the size of operations. Both systems scale relatively similarly as replication increases, though the CRDT generally offered better performance. Lastly, enabling undo functionality has significant overhead, especially when offering `Immediate Undo' semantics, but making effective use of it can have considerable savings.
+				This subsection explored the behavior of both the ShareJS and CRDT based systems across a variety of settings. Several key ideas were discovered. Firstly, my CRDT offers significantly better memory consumption for small and medium sized documents, though with large documents and chunked operations tends to perform worse. Secondly, OT, at least in the form used by ShareJS, suffers from streaming many small operations, whereas CRDTs are agnostic to the size of operations. Both systems scale relatively similarly as replication increases, though the CRDT generally offered better performance. Lastly, enabling undo functionality has significant overhead, especially when offering `Immediate Undo' semantics, but making effective use of it can have considerable savings.
 					
 		\subsection{Network}
 			
 		
-			\subsection{ShareJS Latencies}
-			When creating fully deterministic experiments for the simulation, latencies over every link need to be specified. For realism and similarity to ShareJS, I chose to set these to be similar to the nondeterministic latencies experienced by ShareJS. I collected data on the ShareJS client to server links, and about server-client links separately.			
+			\subsection{Latencies and Batching}
+			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions of deletions before they begin being batched into larger changes.
 			
-			\begin{figure}[h]
+			In comparison my system is more flexible: it can send one character at a time, or buffer and group operations to best match the needs of the larger system (for example, if sending small packets is expensive in the network, it can be programmed to send fewer, larger packets like ShareJS).			
+			
+			The data gathered here also helped to generate link latencies for the CRDT network simulation during experiment design. I used the approximately normal distribution from \ref{fig:latency-sc} at 200ms combined with the equivalent distribution in \ref{fig:latency-sc}, which is estimated by a normal with mean 30 and standard deviation 10. These link latencies to an extent determine the amount of concurrency prevalent in the system.
+			
+			\begin{figure}[H]
 				\centering
 					\includestandalone[mode=buildnew]{data/latencies/latencies_distributions_client-server}
-				\caption[Client-Server Latency] {Latency to the server remains is typically around 3ms until a higher load of 200 requests per second.}
+				\caption[Client-Server Latency] {A plot of latency versus load on the server. Time to the server remains around 3ms until a much higher load of 200 requests per second.}
+				\label{fig:latency-cs}
 			\end{figure}
-			\begin{figure}[h]
+			\begin{figure}[H]
 				\centering
 					\includestandalone[mode=buildnew]{data/latencies/latencies_distributions_server-client}
-				\caption[Server-Client Latencies] {At very low load, the return latency is around 3ms. Until high load from multiple TCP connections, latencies are concentrated around 45ms. At high load a more normal distribution is achieved with a mean of 29ms.}
+				\caption[Server-Client Latencies] {At very low load, the return latency is around 3ms. At high load of 200 requests per second, a more normal distribution is achieved. Surprisingly, until such load from multiple TCP connections, latencies are concentrated around 45ms.}
+				\label{fig:latency-sc}
 			\end{figure}
-			
-			A strange feature of these approximate distributions is the 45ms return time. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually arrive within a few milliseconds, but are only passed to the client after an additional delay of about 30-40ms.
-			
-			For simulations I generate normally distributed latencies with mean 30ms and standard deviation 10ms, similar to the distributions at 200 requests per second.
 	
 		
+		\paragraph{Packet Size}
+			The size of packets in both systems is almost fully determined by a few parameters. For this section I will assume that operations are not batched, though they may insert or delete multiple contiguous sequences. As shown above and discussed in \cref{sec:singleeditor}, in both this testing environment and real world deployments most packets will be small, single character operations, so this assumption is reasonable.
+			
+			
+			\begin{table}[htb]
+			\centering
+			\caption[ShareJS Insert and Delete Packet Size]{Tabulating the size of ShareJS's insert and delete packets, in terms of number of characters}
+			\label{tab:sharepackets}
+			\begin{tabular}{@{}lll@{}}
+                                             & ShareJS Insert             & ShareJS Delete     \\ \toprule
+			JSON Overhead                                      & $25$                       & $25$               \\ \midrule
+			Length of string to insert $n$                     & $n$                        & N/A             \\ \midrule
+			Number of characters \\to delete $n$                 & N/A                        & $\lfloor log_{10}(n) \rfloor+1$ \\ \midrule
+			Position $p$, bounded\\by document size $n_{chars}$ & $\lfloor log_{10}(n_{chars}) \rfloor+1$				 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \midrule
+			Document version $v$, \\bounded by $n_{chars}$       & $\lfloor log_{10}(n_{chars}) \rfloor+1$                 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \bottomrule
+			Total                                              & $27+n+2(\lfloor log_{10}(n_{chars}) \rfloor)$ & $28 + \lfloor log_{10}(n)\rfloor+2(\lfloor log_{10}(n_{chars}) \rfloor)$
+			\end{tabular}
+			\end{table}
+	
+			
+
+			\begin{table}[htb]
+			\centering
+			\caption[CRDT System Insert Packet Size]{Tabulating the size of the CRDT based system's insert packets. Delete packets are identical except they do not contain characters to insert and the ID of the character to insert after.}
+			\label{tab:crdtinsertpacket}
+			\begin{tabular}{@{}ll@{}}
+			
+                             & Cost (upperbound)\\ \toprule                                                                                                                                                       
+			JSON Overhead                   & $46$ \\ \midrule
+			Client ID                       & $\lfloor log_{10}(n_{clients}) \rfloor+1$  \\ \midrule
+			Vector Clock                    & $1 + n_{clients} * (\lfloor log_{10}(n_{chars}/n_{clients})\rfloor + 5)$ \\ \midrule
+			Type Disambiguator              & $1$ \\ \midrule
+			Characters to Insert            & $n$ \\ \midrule
+			ID of First New Character       & $\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor  +1$  \\ \midrule
+			ID of Character to Insert After & $\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor +1$  \\ \bottomrule
+			Total                           & \makecell{$51 + n + 5n_{clients} + n_{clients} *(\lfloor log_{10}(n_{chars}/n_{clients}\rfloor) +$ \\ $2*(\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor)$}
+			\end{tabular}
+			\end{table}
+			
+			The expressions in Tables \ref{tab:sharepackets} and \ref{tab:crdtinsertpacket}] are rather complicated and only need to convey a few ideas: Firstly, insert packet sizes scale linearly with the number of characters to add. Both have significant JSON overheads, though the intrinsic complexity of the CRDT packets means its overheads are even higher. The vector clock component of the CRDT insert (and delete, not shown here) contributes another linear cost in the number of clients in the system. This reflects the difficulty of routing and enforcing causality in distributed, flexible topology systems. Lastly, the only component of these expressions that may grow very large is the version $v$ in ShareJS and $n_{chars}$, the number of characters in the document. However, both of these are present only as $log$ terms, so even large values lead to manageable packet sizes.
+			
+			Table \ref{tab:samplepacketsizes} shows some typical packet sizes taken from experiments run previously. Note that ShareJS is invariant to the number of clients in the network, whereas the use of vector clocks again penalizes the CRDT based system.
+			
+			\begin{table}[htb]
+			\centering
+			\caption[Sample Packet Sizes]{Sample Real Packet Sizes}
+			\label{tab:samplepacketsizes}
+			\begin{tabular}{@{}lll@{}}
+			                                                           & 2 Clients & 5 clients \\ \toprule
+			CRDT Insert 5 chars, 30 char document                      & 70        & 88        \\ \midrule
+			CRDT Delete 1 character, 30 char document                  & 54        & 71        \\ \midrule
+			ShareJS Insert 5 chars, 30 char document, without metadata & 34        & 34        \\ \midrule
+			ShareJS Insert 5 chars, 30 char document, with metadata    & 74        & 74        \\ \midrule
+			ShareJS Delete 1 char, 30 char document, without metadata  & 30        & 30        \\
+			ShareJS Delete 1char, 30 char document, with metadata      & 74        & 74       \bottomrule
+			\end{tabular}
+			\end{table}
+			
+			
+			
+		\paragraph{Packet Quantity}
+			
+	
+	
 	
 	
 		Begin by empirically confirming the predictions made before... 
@@ -1181,13 +1255,6 @@ export interface MapEntry {
 		
 		
 		Experiments
-			%ShareJS: Confirm O(n) memory usage for document string + past operations \\
-			%ShareJS: Confirm O(n) memory usage on server for stored ops\\
-			%ShareJS: Confirm - one packet in flight => packet size and quantity change as network latency grows. \\
-			%			Also: Clients must be able to undo operations in case of reject, as well as transform any subsequent operations that have occurred against the inverse of the rejected %one => So, the clients must each also have a list of past operations, which also affects memory use.
-						
-			%CRDT:	 Confirm O(nlogn) memory growth per client\\
-			
 
 			%ShareJS: sending N words of average length k => total packet size (grows with version number)\\
 			%CRDT: 	 Given average latency of ShareJS, show how latency scales with connectivity in simulation versus 2*RTT for ShareJS\\

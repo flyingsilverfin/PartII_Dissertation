@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  25 APR 2017 11:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  25 APR 2017 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -184,8 +184,7 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks16
 \verbatim@line=\toks17
 \verbatim@in@stream=\read1
-)
-(/usr/share/texlive/texmf-dist/tex/latex/docmute/docmute.sty
+) (./docmute.sty
 Package: docmute 2012/03/22 v1.4 Input stand-alone documents
 )
 (/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
@@ -1151,7 +1150,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count363
 \@quotereset=\count364
- (./diss.aux)
+No file diss.aux.
 \openout1 = `diss.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
@@ -1182,7 +1181,6 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 118.
 LaTeX Info: Redefining \pageref on input line 118.
 LaTeX Info: Redefining \nameref on input line 118.
- (./diss.out) (./diss.out)
 \@outlinefile=\write8
 \openout8 = `diss.out'.
 
@@ -1258,7 +1256,6 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.9}).
 
- (./diss.sta)
 \openout5 = `diss.sta'.
 
 Package biblatex Info: No input encoding detected.
@@ -1564,7 +1561,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [4] (./diss.toc)
+ [4]
+No file diss.toc.
 \tf@toc=\write10
 \openout10 = `diss.toc'.
 
@@ -1617,667 +1615,8 @@ and I'll forget about whatever was undefined.
 
  [6
 
-] (./diss.lof
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.2 ... the string 'Cambridghe'.}}{11}{figure.1.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.2 ... the string 'Cambridghe'.}}{11}{figure.1.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.2 ... the string 'Cambridghe'.}}{11}{figure.1.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.4 ...had its insertion offset.}}{13}{figure.2.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.4 ...had its insertion offset.}}{13}{figure.2.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.4 ...had its insertion offset.}}{13}{figure.2.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.5 ...s -- concurrent insertion}}{15}{figure.2.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.5 ...s -- concurrent insertion}}{15}{figure.2.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.5 ...s -- concurrent insertion}}{15}{figure.2.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.6 ...ns -- concurrent deletion}}{15}{figure.2.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.6 ...ns -- concurrent deletion}}{15}{figure.2.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.6 ...ns -- concurrent deletion}}{15}{figure.2.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.7 ...nt insertion and deletion}}{15}{figure.2.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.7 ...nt insertion and deletion}}{15}{figure.2.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.7 ...nt insertion and deletion}}{15}{figure.2.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.8 ...Text CRDT as a tagged set}}{15}{figure.2.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.8 ...Text CRDT as a tagged set}}{15}{figure.2.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.8 ...Text CRDT as a tagged set}}{15}{figure.2.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.10 ...aces System Architecture}}{24}{figure.3.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.10 ...aces System Architecture}}{24}{figure.3.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.10 ...aces System Architecture}}{24}{figure.3.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.11 ...es Updating linked lists}}{24}{figure.3.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.11 ...es Updating linked lists}}{24}{figure.3.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.11 ...es Updating linked lists}}{24}{figure.3.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.12 ...orespaces Annotated CRDT}}{25}{figure.3.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.12 ...orespaces Annotated CRDT}}{25}{figure.3.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.12 ...orespaces Annotated CRDT}}{25}{figure.3.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.13 ...Ensuring Causal Delivery}}{33}{figure.3.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.13 ...Ensuring Causal Delivery}}{33}{figure.3.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.13 ...Ensuring Causal Delivery}}{33}{figure.3.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.14 ...}{\ignorespaces Workflow}}{35}{figure.3.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.14 ...}{\ignorespaces Workflow}}{35}{figure.3.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.14 ...}{\ignorespaces Workflow}}{35}{figure.3.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.16 ...aces Unit tests for CRDT}}{44}{figure.4.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.16 ...aces Unit tests for CRDT}}{44}{figure.4.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.16 ...aces Unit tests for CRDT}}{44}{figure.4.1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.17 ...Consumption Sanity Check}}{45}{figure.4.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.17 ...Consumption Sanity Check}}{45}{figure.4.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.17 ...Consumption Sanity Check}}{45}{figure.4.2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.18 ...with Character Insertion}}{46}{figure.4.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.18 ...with Character Insertion}}{46}{figure.4.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.18 ...with Character Insertion}}{46}{figure.4.3}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.19 ...7.8 = 10140$ characters.}}{46}{figure.4.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.19 ...7.8 = 10140$ characters.}}{46}{figure.4.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.19 ...7.8 = 10140$ characters.}}{46}{figure.4.4}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.20 ...axis as \ref {fig:sub1}.}}{46}{figure.4.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Reference `fig:sub2' on page 7 undefined on input line 20.
-
-
-LaTeX Warning: Reference `fig:sub1' on page 7 undefined on input line 20.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.20 ...axis as \ref {fig:sub1}.}}{46}{figure.4.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.20 ...axis as \ref {fig:sub1}.}}{46}{figure.4.5}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.21 ...lient Memory Consumption}}{46}{figure.4.6}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.21 ...lient Memory Consumption}}{46}{figure.4.6}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.21 ...lient Memory Consumption}}{46}{figure.4.6}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \vbox (badness 1087) has occurred while \output is active []
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.22 ...ption versus Replication}}{46}{figure.4.7}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.22 ...ption versus Replication}}{46}{figure.4.7}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [7]
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.22 ...ption versus Replication}}{46}{figure.4.7}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.22 ...ption versus Replication}}{46}{figure.4.7}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.22 ...ption versus Replication}}{46}{figure.4.7}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.23 ...avior of System Variants}}{47}{figure.4.8}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.23 ...avior of System Variants}}{47}{figure.4.8}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.23 ...avior of System Variants}}{47}{figure.4.8}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
+]
+No file diss.lof.
 \tf@lof=\write11
 \openout11 = `diss.lof'.
 
@@ -2303,61 +1642,36 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+ [7]
+! Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.209 \chapter
+              {Introduction}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.209 \chapter
+              {Introduction}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
  [8]
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.209 \chapter
-              {Introduction}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.209 \chapter
-              {Introduction}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [9]
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.209 \chapter
-              {Introduction}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.209 \chapter
-              {Introduction}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [10
-
-]
 Chapter 1.
 
-LaTeX Warning: Citation `MotherDemo' on page 11 undefined on input line 216.
+LaTeX Warning: Citation `MotherDemo' on page 9 undefined on input line 216.
 
 
-LaTeX Warning: Citation `Ellis1989' on page 11 undefined on input line 216.
+LaTeX Warning: Citation `Ellis1989' on page 9 undefined on input line 216.
 
 ! Undefined control sequence.
 <recently read> \Hy@colorlink 
@@ -2382,21 +1696,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `Gilbert2005' on page 11 undefined on input line 218.
+LaTeX Warning: Citation `Gilbert2005' on page 9 undefined on input line 218.
 
 
-LaTeX Warning: Citation `zeller2014' on page 11 undefined on input line 218.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.219 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `zeller2014' on page 9 undefined on input line 218.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -2420,7 +1723,20 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [11]
+! Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.219 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+ [9
+
+]
 
 LaTeX Warning: Reference `sec:crdt' on page 1 undefined on input line 224.
 
@@ -2429,7 +1745,7 @@ LaTeX Warning: Reference `sec:implementation' on page 1 undefined on input line
  230.
 
 
-LaTeX Warning: Citation `preguica2009' on page 12 undefined on input line 234.
+LaTeX Warning: Citation `preguica2009' on page 10 undefined on input line 234.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -2453,7 +1769,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [12]
+ [10]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -2528,14 +1844,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `weiss2008' on page 13 undefined on input line 251.
+LaTeX Warning: Citation `weiss2008' on page 11 undefined on input line 251.
 
 
-LaTeX Warning: Citation `nedelec2013lseq' on page 13 undefined on input line 25
+LaTeX Warning: Citation `nedelec2013lseq' on page 11 undefined on input line 25
 3.
 
 
-LaTeX Warning: Citation `nedelec2013' on page 13 undefined on input line 253.
+LaTeX Warning: Citation `nedelec2013' on page 11 undefined on input line 253.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -2559,7 +1875,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -2567,7 +1883,7 @@ and I'll forget about whatever was undefined.
 l.254 
       ]
 
-LaTeX Warning: Citation `weiss2010undo' on page 14 undefined on input line 262.
+LaTeX Warning: Citation `weiss2010undo' on page 12 undefined on input line 262.
 
 
 
@@ -2595,10 +1911,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [14]
+ [12]
 Chapter 2.
 
-LaTeX Warning: Reference `fig:reconcile' on page 15 undefined on input line 274
+LaTeX Warning: Reference `fig:reconcile' on page 13 undefined on input line 274
 .
 
 ! Undefined control sequence.
@@ -2658,7 +1974,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `weiss2010undo' on page 15 undefined on input line 284.
+LaTeX Warning: Citation `weiss2010undo' on page 13 undefined on input line 284.
 
 
 ! Undefined control sequence.
@@ -2683,7 +1999,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [15
+ [13
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
 has been already used, duplicate ignored
@@ -2704,7 +2020,7 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
 
-LaTeX Warning: Citation `lamport1978' on page 16 undefined on input line 287.
+LaTeX Warning: Citation `lamport1978' on page 14 undefined on input line 287.
 
 
 LaTeX Warning: Reference `sec:cciundo' on page 1 undefined on input line 304.
@@ -2716,7 +2032,7 @@ ions is by ex-am-ple.
  []
 
 
-LaTeX Warning: Reference `fig:ot1' on page 16 undefined on input line 315.
+LaTeX Warning: Reference `fig:ot1' on page 14 undefined on input line 315.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -2799,9 +2115,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [16]
+ [14]
 
-LaTeX Warning: Reference `fig:ot2' on page 17 undefined on input line 324.
+LaTeX Warning: Reference `fig:ot2' on page 15 undefined on input line 324.
 
 
 Overfull \hbox (16.08089pt too wide) in paragraph at lines 324--325
@@ -2866,7 +2182,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:ot3' on page 17 undefined on input line 333.
+LaTeX Warning: Reference `fig:ot3' on page 15 undefined on input line 333.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -2928,10 +2244,10 @@ and I'll forget about whatever was undefined.
 LaTeX Warning: Reference `sec:crdt' on page 1 undefined on input line 346.
 
 
-LaTeX Warning: Citation `shapiro2007' on page 17 undefined on input line 348.
+LaTeX Warning: Citation `shapiro2007' on page 15 undefined on input line 348.
 
 
-LaTeX Warning: Reference `fig:taggedset' on page 17 undefined on input line 348
+LaTeX Warning: Reference `fig:taggedset' on page 15 undefined on input line 348
 .
 
 ! Undefined control sequence.
@@ -2991,21 +2307,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `shapiro2011' on page 17 undefined on input line 357.
+LaTeX Warning: Citation `shapiro2011' on page 15 undefined on input line 357.
 
 
-LaTeX Warning: Citation `takada2013' on page 17 undefined on input line 357.
-
-! Undefined control sequence.
-\set@color ...\@pdfcolorstack push{\current@color 
-                                                  }\aftergroup \reset@color 
-l.358 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `takada2013' on page 15 undefined on input line 357.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -3018,7 +2323,18 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+! Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.358 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -3044,7 +2360,7 @@ l.358
 l.358 
       ]
 
-LaTeX Warning: Citation `sharejs' on page 18 undefined on input line 363.
+LaTeX Warning: Citation `sharejs' on page 16 undefined on input line 363.
 
 ! Undefined control sequence.
 <recently read> \Hy@colorlink 
@@ -3091,7 +2407,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `kumawat2016' on page 18 undefined on input line 363.
+LaTeX Warning: Citation `kumawat2016' on page 16 undefined on input line 363.
 
 
 ! LaTeX Error: Environment lcverbatim undefined.
@@ -3204,21 +2520,21 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [18]
+ [16]
 
-LaTeX Warning: Citation `compsysmodeling' on page 19 undefined on input line 39
+LaTeX Warning: Citation `compsysmodeling' on page 17 undefined on input line 39
 3.
 
 
-LaTeX Warning: Citation `concdistsystems' on page 19 undefined on input line 39
+LaTeX Warning: Citation `concdistsystems' on page 17 undefined on input line 39
 3.
 
 
-LaTeX Warning: Citation `computernetworking' on page 19 undefined on input line
+LaTeX Warning: Citation `computernetworking' on page 17 undefined on input line
  393.
 
 
-LaTeX Warning: Reference `table: goals' on page 19 undefined on input line 407.
+LaTeX Warning: Reference `table: goals' on page 17 undefined on input line 407.
 
 
 ! Undefined control sequence.
@@ -3364,9 +2680,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [19]
+ [17]
 
-LaTeX Warning: Citation `sharejs' on page 20 undefined on input line 431.
+LaTeX Warning: Citation `sharejs' on page 18 undefined on input line 431.
 
 ! Undefined control sequence.
 <recently read> \Hy@colorlink 
@@ -3721,7 +3037,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [20pdfTeX warning (ext4): destination with the same identifier (name{table.2.1
+ [18pdfTeX warning (ext4): destination with the same identifier (name{table.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -3808,16 +3124,16 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [21]
+ [19]
 
 LaTeX Warning: Reference `sec:networkassumptions' on page 1 undefined on input 
 line 449.
 
 
-LaTeX Warning: Citation `RFC2460' on page 22 undefined on input line 449.
+LaTeX Warning: Citation `RFC2460' on page 20 undefined on input line 449.
 
 
-LaTeX Warning: Citation `protobuf' on page 22 undefined on input line 458.
+LaTeX Warning: Citation `protobuf' on page 20 undefined on input line 458.
 
 
 LaTeX Warning: Reference `sec:networkjoin' on page 1 undefined on input line 45
@@ -3845,7 +3161,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [22]
+ [20]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -3868,7 +3184,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [23]
+ [21]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -3891,7 +3207,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [24
+ [22
 
 ]
 Chapter 3.
@@ -3940,7 +3256,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:sysarch' on page 25 undefined on input line 472.
+LaTeX Warning: Reference `fig:sysarch' on page 23 undefined on input line 472.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -4031,7 +3347,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [25]
+ [23]
 
 LaTeX Warning: Reference `sec:crdtoverview' on page 1 undefined on input line 4
 85.
@@ -4135,7 +3451,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [26pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [24pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -4149,7 +3465,7 @@ l.514
 l.514 
       ]
 
-LaTeX Warning: Reference `fig:hashlist' on page 27 undefined on input line 515.
+LaTeX Warning: Reference `fig:hashlist' on page 25 undefined on input line 515.
 
 
 ! Undefined control sequence.
@@ -4209,7 +3525,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `lamport1978' on page 27 undefined on input line 558.
+LaTeX Warning: Citation `lamport1978' on page 25 undefined on input line 558.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -4233,7 +3549,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [27pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [25pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -4291,7 +3607,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [28pdfTeX warning (ext4): destination with the same identifier (name{lstnumber
+ [26pdfTeX warning (ext4): destination with the same identifier (name{lstnumber
 .1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -4352,7 +3668,7 @@ and I'll forget about whatever was undefined.
 LaTeX Warning: Reference `sec:logoot' on page 1 undefined on input line 628.
 
 
-LaTeX Warning: Citation `preguica2009' on page 29 undefined on input line 630.
+LaTeX Warning: Citation `preguica2009' on page 27 undefined on input line 630.
 
 
 LaTeX Warning: Reference `sec:undo' on page 1 undefined on input line 630.
@@ -4379,7 +3695,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [29]
+ [27]
 
 LaTeX Warning: Reference `sec:datacollectiondecisions' on page 1 undefined on i
 nput line 646.
@@ -4406,9 +3722,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [30]
+ [28]
 
-LaTeX Warning: Citation `concdistsystems' on page 31 undefined on input line 65
+LaTeX Warning: Citation `concdistsystems' on page 29 undefined on input line 65
 6.
 
 ! Undefined control sequence.
@@ -4433,7 +3749,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [31]pdfTeX warning (ext4): destination with the same identifier (name{lstnumbe
+ [29]pdfTeX warning (ext4): destination with the same identifier (name{lstnumbe
 r.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -4601,7 +3917,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [32]
+ [30]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -4625,7 +3941,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation `protobuf' on page 33 undefined on input line 749.
+LaTeX Warning: Citation `protobuf' on page 31 undefined on input line 749.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -4735,7 +4051,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [33]
+ [31]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -4810,7 +4126,7 @@ LaTeX Warning: Reference `sec:networkassumptions' on page 1 undefined on input
 line 775.
 
 
-LaTeX Warning: Citation `compsysmodeling' on page 34 undefined on input line 77
+LaTeX Warning: Citation `compsysmodeling' on page 32 undefined on input line 77
 7.
 
 
@@ -4839,16 +4155,16 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [34]
+ [32]
 
 LaTeX Warning: Reference `sec:comparative' on page 1 undefined on input line 79
 0.
 
 
-LaTeX Warning: Citation `fidge1987' on page 35 undefined on input line 794.
+LaTeX Warning: Citation `fidge1987' on page 33 undefined on input line 794.
 
 
-LaTeX Warning: Reference `fig:causal' on page 35 undefined on input line 796.
+LaTeX Warning: Reference `fig:causal' on page 33 undefined on input line 796.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -4907,7 +4223,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `appendix:vectorclocks' on page 35 undefined on input 
+LaTeX Warning: Reference `appendix:vectorclocks' on page 33 undefined on input 
 line 808.
 
 
@@ -4936,7 +4252,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [35pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [33pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -4944,7 +4260,7 @@ and I'll forget about whatever was undefined.
 l.818 
       ]
 
-LaTeX Warning: Reference `fig:efficient' on page 36 undefined on input line 819
+LaTeX Warning: Reference `fig:efficient' on page 34 undefined on input line 819
 .
 
 ! Undefined control sequence.
@@ -5029,7 +4345,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [36pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [34pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -5037,7 +4353,7 @@ and I'll forget about whatever was undefined.
 l.844 
       ]
 
-LaTeX Warning: Reference `fig:workflow' on page 37 undefined on input line 846.
+LaTeX Warning: Reference `fig:workflow' on page 35 undefined on input line 846.
 
 
 ! Undefined control sequence.
@@ -5103,7 +4419,7 @@ ver pro-vides whichever
  []
 
 
-LaTeX Warning: Reference `lst:simple' on page 37 undefined on input line 861.
+LaTeX Warning: Reference `lst:simple' on page 35 undefined on input line 861.
 
 pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.1})
  has been already used, duplicate ignored
@@ -5209,7 +4525,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [37pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [35pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -5316,13 +4632,13 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [38]
+ [36]
 
-LaTeX Warning: Reference `appendix:simplelogsummary' on page 39 undefined on in
+LaTeX Warning: Reference `appendix:simplelogsummary' on page 37 undefined on in
 put line 923.
 
 
-LaTeX Warning: Citation `shneiderman1982' on page 39 undefined on input line 92
+LaTeX Warning: Citation `shneiderman1982' on page 37 undefined on input line 92
 9.
 
 
@@ -5351,7 +4667,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [39]
+ [37]
 
 LaTeX Warning: Reference `sec:cciundo' on page 1 undefined on input line 941.
 
@@ -5377,7 +4693,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [40]pdfTeX warning (ext4): destination with the same identifier (name{lstnumbe
+ [38]pdfTeX warning (ext4): destination with the same identifier (name{lstnumbe
 r.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -5452,9 +4768,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [41]
+ [39]
 
-LaTeX Warning: Reference `appendix:immundoproof' on page 42 undefined on input 
+LaTeX Warning: Reference `appendix:immundoproof' on page 40 undefined on input 
 line 1015.
 
 ! Undefined control sequence.
@@ -5479,7 +4795,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [42]
+ [40]
 
 LaTeX Warning: Reference `sec:networkjoin' on page 1 undefined on input line 10
 24.
@@ -5506,7 +4822,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [43]
+ [41]
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
                                                   }\aftergroup \reset@color 
@@ -5529,7 +4845,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [44
+ [42
 
 ]
 Chapter 4.
@@ -5555,9 +4871,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [45]
+ [43]
 
-LaTeX Warning: Citation `Patton' on page 46 undefined on input line 1057.
+LaTeX Warning: Citation `Patton' on page 44 undefined on input line 1057.
 
 
 LaTeX Warning: Reference `sec:crdtstructure' on page 1 undefined on input line 
@@ -5608,7 +4924,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:unittests' on page 46 undefined on input line 105
+LaTeX Warning: Reference `fig:unittests' on page 44 undefined on input line 105
 9.
 
 ! Undefined control sequence.
@@ -5622,7 +4938,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- <figs/unittests.png, id=454, 490.08093pt x 578.16pt>
+ <figs/unittests.png, id=399, 490.08093pt x 578.16pt>
 File: figs/unittests.png Graphic file (type png)
  <use figs/unittests.png>
 Package pdftex.def Info: figs/unittests.png used on input line 1063.
@@ -5693,7 +5009,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [46pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [44pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -5708,7 +5024,7 @@ LaTeX Warning: Reference `sec:immediateundo' on page 1 undefined on input line
 LaTeX Warning: Reference `sec:sharejs' on page 1 undefined on input line 1081.
 
 
-LaTeX Warning: Reference `fig:sanitycheck' on page 47 undefined on input line 1
+LaTeX Warning: Reference `fig:sanitycheck' on page 45 undefined on input line 1
 085.
 
 ! Undefined control sequence.
@@ -5801,7 +5117,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Reference `fig:sub1' on page 47 undefined on input line 1097.
+LaTeX Warning: Reference `fig:sub1' on page 45 undefined on input line 1097.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -5825,7 +5141,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [47pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [45pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -5833,23 +5149,23 @@ and I'll forget about whatever was undefined.
 l.1098 
        ]
 
-LaTeX Warning: Reference `fig:sub2' on page 48 undefined on input line 1099.
+LaTeX Warning: Reference `fig:sub2' on page 46 undefined on input line 1099.
 
 
-LaTeX Warning: Reference `fig:sub3' on page 48 undefined on input line 1099.
+LaTeX Warning: Reference `fig:sub3' on page 46 undefined on input line 1099.
 
 
-LaTeX Warning: Reference `fig:sub1' on page 48 undefined on input line 1099.
+LaTeX Warning: Reference `fig:sub1' on page 46 undefined on input line 1099.
 
 
-LaTeX Warning: Citation `bochkarev2012average' on page 48 undefined on input li
+LaTeX Warning: Citation `bochkarev2012average' on page 46 undefined on input li
 ne 1101.
 
 
-LaTeX Warning: Citation `latencies' on page 48 undefined on input line 1101.
+LaTeX Warning: Citation `latencies' on page 46 undefined on input line 1101.
 
 
-LaTeX Warning: Citation `fccbroadband' on page 48 undefined on input line 1101.
+LaTeX Warning: Citation `fccbroadband' on page 46 undefined on input line 1101.
 
 
 ! Undefined control sequence.
@@ -6252,10 +5568,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:sub2' on page 48 undefined on input line 1122.
+LaTeX Warning: Reference `fig:sub2' on page 46 undefined on input line 1122.
 
 
-LaTeX Warning: Reference `fig:sub1' on page 48 undefined on input line 1122.
+LaTeX Warning: Reference `fig:sub1' on page 46 undefined on input line 1122.
 
 ! Undefined control sequence.
 \set@color ...\@pdfcolorstack push{\current@color 
@@ -6269,10 +5585,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:sub2' on page 48 undefined on input line 1122.
+LaTeX Warning: Reference `fig:sub2' on page 46 undefined on input line 1122.
 
 
-LaTeX Warning: Reference `fig:sub1' on page 48 undefined on input line 1122.
+LaTeX Warning: Reference `fig:sub1' on page 46 undefined on input line 1122.
 
 
 ! LaTeX Error: \begin{figure} on input line 1105 ended by \end{subfigure}.
@@ -6356,9 +5672,9 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [48]
+ [46]
 
-LaTeX Warning: Reference `fig:memvsreplication' on page 49 undefined on input l
+LaTeX Warning: Reference `fig:memvsreplication' on page 47 undefined on input l
 ine 1132.
 
 ! Undefined control sequence.
@@ -6544,7 +5860,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Reference `fig:variantsmemory' on page 49 undefined on input lin
+LaTeX Warning: Reference `fig:variantsmemory' on page 47 undefined on input lin
 e 1151.
 
 ! Undefined control sequence.
@@ -6569,7 +5885,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [49pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [47pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -6601,15 +5917,15 @@ l.1152
 l.1152 
        ]
 
-LaTeX Warning: Reference `fig:latency-cs' on page 50 undefined on input line 11
+LaTeX Warning: Reference `fig:latency-cs' on page 48 undefined on input line 11
 60.
 
 
-LaTeX Warning: Reference `fig:latency-sc' on page 50 undefined on input line 11
+LaTeX Warning: Reference `fig:latency-sc' on page 48 undefined on input line 11
 60.
 
 
-LaTeX Warning: Reference `fig:latency-sc' on page 50 undefined on input line 11
+LaTeX Warning: Reference `fig:latency-sc' on page 48 undefined on input line 11
 60.
 
 ! Undefined control sequence.
@@ -6657,11 +5973,11 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:latency-sc' on page 50 undefined on input line 11
+LaTeX Warning: Reference `fig:latency-sc' on page 48 undefined on input line 11
 64.
 
 
-LaTeX Warning: Reference `fig:latency-sc' on page 50 undefined on input line 11
+LaTeX Warning: Reference `fig:latency-sc' on page 48 undefined on input line 11
 64.
 
 ! Undefined control sequence.
@@ -6697,7 +6013,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [50pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [48pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -7166,11 +6482,11 @@ Overfull \hbox (120.5295pt too wide) in paragraph at lines 1205--1217
  []
 
 
-LaTeX Warning: Reference `tab:sharepackets' on page 51 undefined on input line 
+LaTeX Warning: Reference `tab:sharepackets' on page 49 undefined on input line 
 1219.
 
 
-LaTeX Warning: Reference `tab:crdtinsertpacket' on page 51 undefined on input l
+LaTeX Warning: Reference `tab:crdtinsertpacket' on page 49 undefined on input l
 ine 1219.
 
 ! Undefined control sequence.
@@ -7195,7 +6511,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [51pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [49pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -7215,7 +6531,7 @@ l.1220
 l.1220 
        ]
 
-LaTeX Warning: Reference `tab:samplepacketsizes' on page 52 undefined on input 
+LaTeX Warning: Reference `tab:samplepacketsizes' on page 50 undefined on input 
 line 1221.
 
 ! Undefined control sequence.
@@ -8175,12 +7491,12 @@ l.1235 			\end
               {tabular}
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 34195 strings out of 495028
- 707224 string characters out of 6181496
- 1226411 words of memory out of 5000000
+ 34180 strings out of 495028
+ 706960 string characters out of 6181496
+ 1224370 words of memory out of 5000000
  36526 multiletter control sequences out of 15000+600000
  12276 words of font info for 45 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,17n,81p,1408b,8859s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,17n,81p,1408b,8862s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!
