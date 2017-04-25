@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest}
+\definecolor{darkergreen}{RGB}{51, 184, 51}
+
+\definecolor{darkerblue}{RGB}{20, 20, 200}
+
+\definecolor{darkerred}{RGB} {180, 10, 10}
+
+\definecolor{lightergreen}{RGB}{10, 235, 10}
+\definecolor{darkergreen}{RGB}{10, 184, 10}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    ymin = 25, ymax=100,
+    bar width=12.0pt,
+	title=Behavior of System Variants - Packet Size,
+	xlabel={Number of Operations},
+	ylabel={Average Size of Packet},
+	y tick label style={/pgf/number format/fixed},
+	ytick scale label code/.code={},
+	xtick=data,
+	enlargelimits=false,
+	symbolic x coords = {1000, 3000},
+	clip=false,
+	legend cell align=center,
+	legend style={at={(0.315,  0.82)},anchor=west,font=\small},
+	enlarge x limits = 0.25,
+	scale=1.5,
+	]
+
+\addplot+
+ 	plot[error bars/.cd, y dir = both, y explicit]
+   	table[x index=0, y index = 1, y error index= 2] {./packet_sizes.dat};
+   	\addlegendentry{No Undo CRDT - Insert}
+   	
+\addplot+ [fill=darkerblue, fill opacity=0.5, darkerblue]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=0, y index = 3, y error index= 4] {./packet_sizes.dat};
+	\addlegendentry{No Undo CRDT - Delete}
+	
+\addplot+ [fill=red, fill opacity=0.3, red]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=0, y index = 5, y error index= 6] {./packet_sizes.dat};
+	\addlegendentry{Undo CRDT - Insert}
+	
+\addplot+ [fill=darkerred, fill opacity=0.5, darkerred]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=0, y index = 7, y error index= 8] {./packet_sizes.dat};
+	\addlegendentry{Undo CRDT - Delete}
+	
+\addplot+ [fill=lightergreen, fill opacity=0.4, lightergreen]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=0, y index = 9, y error index= 10] {./packet_sizes.dat};
+	\addlegendentry{ShareJS - With Meta}
+	
+\addplot+ [fill=darkergreen, fill opacity=0.5, darkergreen]
+	plot[error bars/.cd, y dir = both, y explicit]
+	table[x index=0, y index = 11, y error index= 12] {./packet_sizes.dat};
+	\addlegendentry{ShareJS - Without Meta}
+  	   	   	   	
+
+   	
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

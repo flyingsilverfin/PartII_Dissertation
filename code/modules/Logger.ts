@@ -40,6 +40,8 @@ export default class Logger {
         let bundle = packet.b;
 
         let packetSize = JSON.stringify(packet).length;
+
+        console.log(JSON.stringify(packet));
         
         let msg;
         if (packetType === "i") {

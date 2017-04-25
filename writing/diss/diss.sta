@@ -1,1 +1,5 @@
 \standalonepreambles
+\subpreamble{proposal.tex}
+\usepackage [pdfborder={0 0 0}]{hyperref}\usepackage [margin=25mm]{geometry}\usepackage {graphicx}\usepackage {parskip}\usepackage [UKenglish]{babel}\usepackage [bibstyle=numeric,citestyle=numeric,backend=biber,natbib=true]{biblatex}
+\endsubpreamble
+\endstandalonepreambles

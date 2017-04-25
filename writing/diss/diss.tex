@@ -1138,13 +1138,13 @@ export interface MapEntry {
 					\label{fig:memvsreplication}
 				\end{figure}
 				
-			\paragraph{CRDT System Variations}
+			\paragraph{CRDT System Variants}
 				Though the prior data sets were collected with the arguably most useful variation presented in \cref{sec:immediateundo}, Immediate Undo, in some situations undo functionality may not be necessary, or CCI consistency may be desired. Thus a quick comparison between the versions developed is worthwhile: Without undo, CCI Undo, and Immediate Undo; ShareJS is tested as well. This series of experiments tests the systems with varying amounts deletion, but fixed number of clients (5), insertions (100 words per client) and fixed word length (5 characters), 2500 character insertions in total.
 				
 				\begin{figure}[htb]
 					\centering
 					\includestandalone[mode=buildnew]{data/indel_system_compare/indel_system_compare}
-					\caption[Behavior of System Variants] {A plot of the different system variations developed, along with the ShareJS system with a fixed document size and varying number of deletions. Executed with 5 clients, 100 words inserted per client, each word being 5 characters long.}
+					\caption[Behavior of System Variants - Memory] {A plot of the different system variations developed, along with the ShareJS system with a fixed document size and varying number of deletions. Executed with 5 clients, 100 words inserted per client, each word being 5 characters long.}
 					\label{fig:variantsmemory}
 				\end{figure}
 				
@@ -1156,7 +1156,7 @@ export interface MapEntry {
 		\subsection{Network}
 			
 		
-			\subsection{Latencies and Batching}
+			\paragraph{Latencies and Batching}
 			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions of deletions before they begin being batched into larger changes.
 			
 			In comparison my system is more flexible: it can send one character at a time, or buffer and group operations to best match the needs of the larger system (for example, if sending small packets is expensive in the network, it can be programmed to send fewer, larger packets like ShareJS).			
@@ -1185,6 +1185,7 @@ export interface MapEntry {
 			\centering
 			\caption[ShareJS Insert and Delete Packet Size]{Tabulating the size of ShareJS's insert and delete packets, in terms of number of characters}
 			\label{tab:sharepackets}
+			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}lll@{}}
                                              & ShareJS Insert             & ShareJS Delete     \\ \toprule
 			JSON Overhead                                      & $25$                       & $25$               \\ \midrule
@@ -1192,16 +1193,15 @@ export interface MapEntry {
 			Number of characters \\to delete $n$                 & N/A                        & $\lfloor log_{10}(n) \rfloor+1$ \\ \midrule
 			Position $p$, bounded\\by document size $n_{chars}$ & $\lfloor log_{10}(n_{chars}) \rfloor+1$				 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \midrule
 			Document version $v$, \\bounded by $n_{chars}$       & $\lfloor log_{10}(n_{chars}) \rfloor+1$                 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \bottomrule
-			Total                                              & $27+n+2(\lfloor log_{10}(n_{chars}) \rfloor)$ & $28 + \lfloor log_{10}(n)\rfloor+2(\lfloor log_{10}(n_{chars}) \rfloor)$
+			Total	 		& $27+n+2(\lfloor log_{10}(n_{chars}) \rfloor)$ & $28 + \lfloor log_{10}(n)\rfloor+2(\lfloor log_{10}(n_{chars}) \rfloor)$
 			\end{tabular}
-			\end{table}
-	
+			\end{table}	
 			
-
 			\begin{table}[htb]
 			\centering
 			\caption[CRDT System Insert Packet Size]{Tabulating the size of the CRDT based system's insert packets. Delete packets are identical except they do not contain characters to insert and the ID of the character to insert after.}
 			\label{tab:crdtinsertpacket}
+			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}ll@{}}
 			
                              & Cost (upperbound)\\ \toprule                                                                                                                                                       
@@ -1216,7 +1216,7 @@ export interface MapEntry {
 			\end{tabular}
 			\end{table}
 			
-			The expressions in Tables \ref{tab:sharepackets} and \ref{tab:crdtinsertpacket}] are rather complicated and only need to convey a few ideas: Firstly, insert packet sizes scale linearly with the number of characters to add. Both have significant JSON overheads, though the intrinsic complexity of the CRDT packets means its overheads are even higher. The vector clock component of the CRDT insert (and delete, not shown here) contributes another linear cost in the number of clients in the system. This reflects the difficulty of routing and enforcing causality in distributed, flexible topology systems. Lastly, the only component of these expressions that may grow very large is the version $v$ in ShareJS and $n_{chars}$, the number of characters in the document. However, both of these are present only as $log$ terms, so even large values lead to manageable packet sizes.
+			The expressions in Tables \ref{tab:sharepackets} and \ref{tab:crdtinsertpacket} are rather complicated but only need to convey a few ideas: Firstly, insert packet sizes scale linearly with the number of characters to add. Both have significant JSON overheads, though the intrinsic complexity of the CRDT packets means its overheads are even higher. The vector clock component of the CRDT insert (and delete, not shown here) contributes another linear cost in the number of clients in the system. This reflects the difficulty of routing and enforcing causality in distributed, flexible topology systems. Lastly, the only component of these expressions that may grow very large is the version $v$ in ShareJS and $n_{chars}$, the number of characters in the document. However, both of these are present only as $log$ terms, so even large values lead to manageable packet sizes.
 			
 			Table \ref{tab:samplepacketsizes} shows some typical packet sizes taken from experiments run previously. Note that ShareJS is invariant to the number of clients in the network, whereas the use of vector clocks again penalizes the CRDT based system.
 			
@@ -1224,22 +1224,58 @@ export interface MapEntry {
 			\centering
 			\caption[Sample Packet Sizes]{Sample Real Packet Sizes}
 			\label{tab:samplepacketsizes}
+			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}lll@{}}
-			                                                           & 2 Clients & 5 clients \\ \toprule
-			CRDT Insert 5 chars, 30 char document                      & 70        & 88        \\ \midrule
-			CRDT Delete 1 character, 30 char document                  & 54        & 71        \\ \midrule
+			Operation													   & 2 Clients & 5 clients \\ \toprule
 			ShareJS Insert 5 chars, 30 char document, without metadata & 34        & 34        \\ \midrule
 			ShareJS Insert 5 chars, 30 char document, with metadata    & 74        & 74        \\ \midrule
-			ShareJS Delete 1 char, 30 char document, without metadata  & 30        & 30        \\
-			ShareJS Delete 1char, 30 char document, with metadata      & 74        & 74       \bottomrule
+			ShareJS Delete 1 char, 30 char document, without metadata  & 30        & 30        \\ \midrule
+			ShareJS Delete 1char, 30 char document, with metadata      & 74        & 74       \\ \midrule
+			CRDT Insert 5 chars, 30 char document                      & 70        & 88        \\ \midrule
+			CRDT Delete 1 character, 30 char document                  & 54        & 71        \\ \bottomrule
+
 			\end{tabular}
 			\end{table}
 			
 			
 			
 		\paragraph{Packet Quantity}
+			Routing in a flexible P2P network is more difficult than in a client-server architecture, which was why my system used a simple flooding mechanism to disseminate packets. However, this becomes more inefficient as connectivity increases, as illustrated in Table \ref{tab:topologypackets}: the number of packets sent approaches a quadratic cost in the number of peers. Connectivity is one major advantage P2P networks have over traditional ones, as it lowers latency, but requires a more sophisticated routing protocol to handle efficiently.
 			
+			\begin{table}[htb]
+			\centering
+			\caption[Number of Packets in P2P Network] {Table of topology, the number of packets sent per operation, and the time taken until all clients receive the operation the first time. This assumes a constant latency $L$ on each link. The diagrams in the leftmost column demonstrate topologies with $n_{peers}=4$.}
+			\label{tab:topologypackets}
+			\setlength{\tabcolsep}{12pt}
+			\begin{tabular}{@{}lll@{}}
+			Topology		& Total Packets Sent            & Time to receipt on all Peers   \\ \toprule
+			\makecell{Linear \\ \includegraphics[width=0.2\linewidth]{figs/linear_top.eps}  }        & $n_{peers}$                   & $(n_{peers}-1)L$              \\ \midrule
+			\makecell{n-gon  \\ \includegraphics[width=0.2\linewidth]{figs/ngon_top.eps} }        & $n_{peers}+1$                 & $\lfloor n_{peers}/2 \rfloor L$ \\ \midrule
+			\makecell{Star  \\ \includegraphics[width=0.2\linewidth]{figs/star.eps} }         & $n_{peers}$ 	                & $\approx 2L$                           \\ \midrule
+			\makecell{Fully Connected  \\ \includegraphics[width=0.2\linewidth]{figs/fullyconnected.eps} } & $n_{peers} * (n_{peers} - 1)$ & $L$                 \\ \bottomrule          
+			\end{tabular}
+			\end{table}
+			
+			The fact that using a star topology, ShareJS and the CRDT based system send the same number of packets into the network is a positive. Additionally, the \textit{average} time for the clients to receive a modification is lower than in ShareJS: the time to the center node is always $L$ rather than $2L$ which brings down the average time for change propagation. However, it would be useful to take advantage of more connectivity. A newer protocol designed for potentially high churn P2P systems such as Spray \cite{nedelec2015spray}, would be ideal.
+			
+			
+		\paragraph{CRDT System Variants}
+			As before, in some situations it may not be necessary to use vector clocks to ensure causal delivery. In those cases the basic implementation would work well, and undo functionality could be implemented as CCI Undo (as Immediate Undo must have vector clocks). Figure \ref{fig:sysvariationspackets} demonstrates the cost of using vector clocks once again: packet sizes are double the size versus the basic implementation. Note that ShareJS packets are shown in two variants: with extraneous meta data stripped out, and with it retained. The meta data allows extra functionality not relevant to this project so should be ignored. Thus ShareJS achieves better performance than any of the alternatives presented here.
+		
+			\begin{figure}[htb]
+				\centering
+				\includestandalone[mode=buildnew]{data/variants_packet_sizes/variants_packet_sizes}
+				\caption[Behavior of System Variants - Packet Size] {Cost of insert and delete packets with different system configurations. Both CCI and Immediate Undo variants use identical packets and are shown here as `Undo CRDT' together. ShareJS has very similar insert and delete packet sizes; these are shown together.}
+				\label{fig:sysvariationspackets}
+			\end{figure}
+			
+		
+		\paragraph{Summary}
+			This section showed that using a CRDT over a P2P network offers flexibility in terms of operation grouping or streaming that ShareJS does not. In addition, on equivalent topologies they send the same quantity of packets, though my system sends packets that are between 1.5 and 3.5 times as large. Lastly, though using a P2P network can halve the latency to disseminate operations to all peers, this either comes at the cost of a more complex network protocol or massively increased numbers of packets.
+			
+		
 	
+			
 	
 	
 	

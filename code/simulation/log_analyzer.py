@@ -173,6 +173,8 @@ class ClientAnalyzer(object):
             payload = json.loads(log_msg[6])
             version = payload['v']
 
+
+
             sent_at = self.active_packets[(version, receiver)]
             actual_latency = when - sent_at
 

@@ -1,0 +1,201 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {UKenglish}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Motivation}{9}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Overview}{10}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Related Work}{10}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.1}Treedoc}{11}{subsection.1.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.2}Logoot}{12}{subsection.1.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.3}Logoot-Undo}{12}{subsection.1.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Preparation}{13}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Consistency Models}{13}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}What is ``Conflict Free''}{13}{subsection.2.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}CCI Consistency Model}{13}{subsection.2.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Achieving Eventual Consistency}{14}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.1}Operational Transformations}{15}{subsection.2.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}Convergent Replicated Data Types}{16}{subsection.2.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.3}ShareJS}{18}{subsection.2.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Starting Point}{19}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Requirements Analysis}{19}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Software Engineering}{20}{section.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.1}Libraries}{20}{subsection.2.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.2}Languages}{20}{subsection.2.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.3}Tooling}{20}{subsection.2.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.4}Backup Strategy and Development Machine}{21}{subsection.2.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Early Design Decisions}{21}{section.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.1}Network Simulation}{21}{subsection.2.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.2}Data Collection and Logging}{22}{subsection.2.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Implementation}{23}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}CRDT-based system}{23}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Overview}{23}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}CRDT}{24}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Structure and Functionality}{24}{section*.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Identifiers}{26}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Operations}{26}{section*.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Insert}{26}{section*.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Delete}{27}{section*.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Tombstones}{28}{subsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}Optimizations}{28}{subsection.3.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.5}Network simulation}{29}{subsection.3.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Assumptions}{29}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Abstraction}{30}{section*.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Network Interface}{31}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Joining the Network}{31}{section*.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Network Manager}{32}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Scheduler}{32}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Time}{33}{section*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Causal Delivery}{33}{section*.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Modified Vector Clocks}{34}{section*.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{35}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scheduling}{35}{section*.35}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Logging}{36}{section*.36}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{36}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Work Flow}{36}{subsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{36}{subsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{38}{subsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Extension: Local Undo}{39}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}Overview}{39}{subsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}Insert}{39}{subsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Undo/Redo Insert Semantics}{39}{section*.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Implementation}{40}{section*.39}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.3}Delete}{40}{subsection.3.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{CCI Undo}{40}{section*.40}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Modified Links}{40}{section*.41}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Delete, Undo, Redo}{41}{section*.42}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{41}{section*.43}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Cost}{41}{section*.44}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Immediate Undo}{41}{section*.45}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Semantics}{41}{section*.46}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Implementation}{41}{section*.47}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Cost}{42}{section*.48}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Evaluation}{43}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Overall Results}{43}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Testing the CRDT}{44}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Quantitative Analysis}{45}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Memory}{45}{subsection.4.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Sanity Check}{45}{section*.50}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Single Editor}{45}{section*.52}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Multiple Clients}{48}{section*.54}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{CRDT System Variants}{48}{section*.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Summary}{49}{section*.58}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Network}{49}{subsection.4.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Latencies and Batching}{49}{section*.59}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Packet Size}{51}{section*.62}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Packet Quantity}{53}{section*.66}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{CRDT System Variants}{54}{section*.68}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Summary}{54}{section*.70}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.3}ShareJS Performance}{56}{subsection.4.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{}{56}{section*.71}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.4}Core CRDT Performance}{56}{subsection.4.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.5}ShareJS vs CRDT for Text Editing}{56}{subsection.4.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.6}Network}{56}{subsection.4.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Conclusion}{57}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{57}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Vector Clocks}{59}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Formal Definition}{59}{section.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Modified Vector Clock}{59}{section.A.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{61}{appendix.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.1}Proof of Commutativity}{61}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Simple Experiment}{63}{appendix.C}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{63}{section.C.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {D}Project Proposal}{67}{appendix.D}

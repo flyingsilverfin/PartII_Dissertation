@@ -1,0 +1,97 @@
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motivation}{9}{section.1.1}
+\contentsline {section}{\numberline {1.2}Overview}{10}{section.1.2}
+\contentsline {section}{\numberline {1.3}Related Work}{10}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Treedoc}{11}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Logoot}{11}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Logoot-Undo}{12}{subsection.1.3.3}
+\contentsline {chapter}{\numberline {2}Preparation}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Consistency Models}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}What is ``Conflict Free''}{13}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}CCI Consistency Model}{14}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Achieving Eventual Consistency}{14}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Operational Transformations}{14}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Convergent Replicated Data Types}{15}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}ShareJS}{16}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Starting Point}{17}{section.2.3}
+\contentsline {section}{\numberline {2.4}Requirements Analysis}{17}{section.2.4}
+\contentsline {section}{\numberline {2.5}Software Engineering}{18}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Libraries}{18}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Languages}{18}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Tooling}{19}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Backup Strategy and Development Machine}{19}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Early Design Decisions}{20}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Network Simulation}{20}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Data Collection and Logging}{20}{subsection.2.6.2}
+\contentsline {chapter}{\numberline {3}Implementation}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}CRDT-based system}{23}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Overview}{23}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}CRDT}{24}{subsection.3.1.2}
+\contentsline {subsubsection}{Structure and Functionality}{24}{section*.9}
+\contentsline {subsubsection}{Identifiers}{25}{section*.10}
+\contentsline {subsubsection}{Operations}{26}{section*.11}
+\contentsline {paragraph}{Insert}{26}{section*.12}
+\contentsline {paragraph}{Delete}{27}{section*.13}
+\contentsline {subsection}{\numberline {3.1.3}Tombstones}{27}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Optimizations}{28}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Network simulation}{28}{subsection.3.1.5}
+\contentsline {subsubsection}{Assumptions}{29}{section*.14}
+\contentsline {subsubsection}{Abstraction}{30}{section*.15}
+\contentsline {paragraph}{Network Interface}{30}{section*.16}
+\contentsline {paragraph}{Joining the Network}{31}{section*.17}
+\contentsline {paragraph}{Network Manager}{31}{section*.18}
+\contentsline {subsubsection}{Scheduler}{31}{section*.19}
+\contentsline {paragraph}{Time}{32}{section*.20}
+\contentsline {subsubsection}{Causal Delivery}{33}{section*.21}
+\contentsline {paragraph}{Modified Vector Clocks}{33}{section*.22}
+\contentsline {section}{\numberline {3.2}ShareJS Comparative Environment}{34}{section.3.2}
+\contentsline {paragraph}{Scheduling}{34}{section*.23}
+\contentsline {paragraph}{Logging}{34}{section*.24}
+\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{35}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Work Flow}{35}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{35}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{37}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Extension: Local Undo}{37}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Overview}{37}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Insert}{38}{subsection.3.4.2}
+\contentsline {subsubsection}{Undo/Redo Insert Semantics}{38}{section*.25}
+\contentsline {subsubsection}{Implementation}{38}{section*.26}
+\contentsline {subsection}{\numberline {3.4.3}Delete}{38}{subsection.3.4.3}
+\contentsline {subsubsection}{CCI Undo}{39}{section*.27}
+\contentsline {paragraph}{Modified Links}{39}{section*.28}
+\contentsline {paragraph}{Delete, Undo, Redo}{39}{section*.29}
+\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{39}{section*.30}
+\contentsline {paragraph}{Cost}{40}{section*.31}
+\contentsline {subsubsection}{Immediate Undo}{40}{section*.32}
+\contentsline {paragraph}{Semantics}{40}{section*.33}
+\contentsline {paragraph}{Implementation}{40}{section*.34}
+\contentsline {paragraph}{Cost}{41}{section*.35}
+\contentsline {chapter}{\numberline {4}Evaluation}{43}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overall Results}{43}{section.4.1}
+\contentsline {section}{\numberline {4.2}Testing the CRDT}{44}{section.4.2}
+\contentsline {section}{\numberline {4.3}Quantitative Analysis}{45}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Memory}{45}{subsection.4.3.1}
+\contentsline {paragraph}{Sanity Check}{45}{section*.36}
+\contentsline {paragraph}{Single Editor}{46}{section*.37}
+\contentsline {paragraph}{Multiple Clients}{47}{section*.38}
+\contentsline {paragraph}{CRDT System Variations}{47}{section*.39}
+\contentsline {paragraph}{Summary}{48}{section*.40}
+\contentsline {subsection}{\numberline {4.3.2}Network}{48}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Latencies and Batching}{48}{subsection.4.3.3}
+\contentsline {paragraph}{Packet Size}{49}{section*.41}
+\contentsline {paragraph}{Packet Quantity}{50}{section*.42}
+\contentsline {subsection}{\numberline {4.3.4}ShareJS Performance}{52}{subsection.4.3.4}
+\contentsline {subsubsection}{}{52}{section*.43}
+\contentsline {subsection}{\numberline {4.3.5}Core CRDT Performance}{52}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.6}ShareJS vs CRDT for Text Editing}{52}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.7}Network}{52}{subsection.4.3.7}
+\contentsline {chapter}{\numberline {5}Conclusion}{53}{chapter.5}
+\contentsline {chapter}{Bibliography}{53}{chapter.5}
+\contentsline {chapter}{\numberline {A}Vector Clocks}{55}{appendix.A}
+\contentsline {section}{\numberline {A.1}Formal Definition}{55}{section.A.1}
+\contentsline {section}{\numberline {A.2}Modified Vector Clock}{55}{section.A.2}
+\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{57}{appendix.B}
+\contentsline {section}{\numberline {B.1}Proof of Commutativity}{57}{section.B.1}
+\contentsline {chapter}{\numberline {C}Simple Experiment}{59}{appendix.C}
+\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{59}{section.C.1}
+\contentsline {chapter}{\numberline {D}Project Proposal}{63}{appendix.D}
