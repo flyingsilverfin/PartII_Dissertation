@@ -25,7 +25,7 @@ export interface ScheduledEvents {
 }
 
 export interface ScheduledInsertEvents {
-    [time: number] : ScheduledInsert;
+    [time: number] : ScheduledInsert[];
 }
 
 export interface ScheduledInsert {

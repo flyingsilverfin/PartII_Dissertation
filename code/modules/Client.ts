@@ -35,9 +35,9 @@ class Client {
 
     private events: T.ScheduledEvents;    // all the events to insert and delete
     private optimized: boolean;
-    private insertBuffer: string[] = [];
-    private insertStartId: string;
-    private insertStartAfter: string;
+    private insertBuffer: [string, string][] = [];  //repurpose to hold pairs of (startId, insertAfter)
+    //private insertStartId: string;
+    //private insertStartAfter: string;
 
     private interface: EditableText;
     private scheduler: EventDrivenScheduler;
@@ -63,6 +63,7 @@ class Client {
         this.opStack = new ClientOpStack();
 
         this.network = networkInterface;
+        this.network.bundledInsertPacketReceived = this.bundledInsertReceived.bind(this);
         this.network.insertPacketReceived = this.insertReceived.bind(this);
         this.network.deletePacketReceived = this.deleteReceived.bind(this);
         this.network.requestCRDTReceived = this.requestCRDTReceived.bind(this);
@@ -178,7 +179,7 @@ if (this.DISABLE_INTERFACE) {
         let counter = 0;
         for (let eventTime in this.events.insert) {
             let time = parseFloat(eventTime);
-            let insert = this.events.insert[time];
+            let inserts = this.events.insert[time];
 
             let self = this;
 
@@ -189,15 +190,16 @@ if (this.DISABLE_INTERFACE) {
             */
             if (this.optimized) {
                 this.scheduler.addEvent(time, 0, function() {
-                    self.interface.mockInsert(insert.chars, insert.after);
+                    self.interface.mockInsert(inserts);
                 })
-
             } else {
-                for (let i = 0; i < insert.chars.length; i++) {
+              /*  for (let i = 0; i < insert.chars.length; i++) {
                     this.scheduler.addEvent(time, i, function() {
                         self.interface.mockInsert(insert.chars[i], insert.after + i);
                     });
                 }
+                */
+                console.log("Not programmed for non-optimized testing, skipping!")
             }
         }
 
@@ -207,22 +209,13 @@ if (this.DISABLE_INTERFACE) {
             let deletes = this.events.delete[eventTime];
 
             let self = this;
-            
-            let insertsAtTime = this.events.insert[eventTime]; // for experiments, want deletes to happen after inserts of the same time
-            let numInsertsAtTime = 0;
-            if (insertsAtTime !== undefined) {
-                numInsertsAtTime = insertsAtTime.chars.length;
-            }
 
-            for (let i = 0; i < deletes.length; i++) {
-                let mockDelete = deletes[i];
-                this.scheduler.addEvent(time, 1 + i + numInsertsAtTime, function() {
-                    self.interface.mockDelete(mockDelete);
-                });
-            }
+            this.scheduler.addEvent(time, 1, function() {
+                self.interface.mockDelete(deletes);
+            });
         }
 
-        if (this.events.undo !== undefined) {
+/*        if (this.events.undo !== undefined) {
             for (let undoAt of this.events.undo) {
                 let insertsAtTime = this.events.insert[undoAt]; // for experiments, want deletes to happen after inserts of the same time
                 let numInsertsAtTime = 0;
@@ -262,13 +255,20 @@ if (this.DISABLE_INTERFACE) {
         }
 
         this.events = null; // to enable GC later
+*/
     }
 
-    private commit(): void {
-        if (this.insertBuffer.length > 0) {
-            let chars = this.insertBuffer.join('');
-            let insertId = this.insertStartId;
-            let afterId = this.insertStartAfter;
+    private commit(inserts: T.ScheduledInsert[]): void {
+        let bundles = [];
+        for (let insert of inserts) {
+            let chars = insert.chars;
+
+
+            let vals = this.insertBuffer.shift();
+
+
+            let insertId = vals[0];
+            let afterId = vals[1];
 
             let bundle: CT.InsertMessage = {
                 i: insertId,
@@ -276,17 +276,17 @@ if (this.DISABLE_INTERFACE) {
                 a: afterId
             };
 
-            let networkPacket: NT.PreparedPacket = {
-                t: 'i',
-                b: bundle
-            };
-            this.network.broadcast(networkPacket);
-
-            this.insertBuffer = [];
-            // don't need to reset the rest of the values as they just get overwritten
-        } else {
-            return;
+            bundles.push(bundle);
         }
+
+        //bundled insert to allow many inserts at same time at different places
+        let networkPacket: NT.PreparedPacket = {
+            t: 'bi',
+            b: bundles
+        };
+        this.network.broadcast(networkPacket);
+
+        this.insertBuffer = [];
     }
 
 
@@ -298,53 +298,85 @@ if (this.DISABLE_INTERFACE) {
         However, once the concurrent packet arrives, one client will see its word jump ahead
         This is expected behavior
     */
-    private charInsertedLocal(char: string, index: number, commitNow=false): void {
-        let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
-        let opId = nextT + '.' + this.id;
+    private charInsertedLocal(inserts: T.ScheduledInsert[], commitNow=false): void {
+
+        for (let insert of inserts) {
+            let char = insert.chars;
+            let index = insert.after;
+
+            let nextT = this.dt.getNextTs().toString(); // must reserve this timestamp for this character
+            let opId = nextT + '.' + this.id;
 
 
-        // CAN I PUT THIS INTO THE CRDT LATER ALL TOGETHER ie with one start ID + length????
-        // ANS: bad idea - if another message arrives with a higher Timestamp, this one will jump up
-        //      and we will no longer have a continuous sequence of timestamps in our crdt
-        // SOLUTION: insert each character into CRDT immediately with unique ID
-        //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
-        // NOTE: this is a possible optimization that requires inserts/deletes to be labeled as (prior hash identifier, offset)
-        //       then split up the word in the CRDT into sub words/characters
+            // CAN I PUT THIS INTO THE CRDT LATER ALL TOGETHER ie with one start ID + length????
+            // ANS: bad idea - if another message arrives with a higher Timestamp, this one will jump up
+            //      and we will no longer have a continuous sequence of timestamps in our crdt
+            // SOLUTION: insert each character into CRDT immediately with unique ID
+            //           Meanwhlie, buffer the string to be sent. If an edit arrives, then immediately send our changes
+            // NOTE: this is a possible optimization that requires inserts/deletes to be labeled as (prior hash identifier, offset)
+            //       then split up the word in the CRDT into sub words/characters
 
-        let idOfAfter = this.getIdOfStringIndex(index-1);
-        let bundle: CT.InsertMessage = {
-            i: opId,
-            c: char,
-            a: idOfAfter
-        };
+            let idOfAfter = this.getIdOfStringIndex(index-1);
+            let bundle: CT.InsertMessage = {
+                i: opId,
+                c: char,
+                a: idOfAfter
+            };
 
-        this.dt.insert(bundle);
-        this.opStack.localInsert(opId, char.length);
+            this.dt.insert(bundle);
+            this.insertBuffer.push([opId, idOfAfter]);   // repurpose to contain the op
+        //this.opStack.localInsert(opId, char.length);
 
 
-        // this is bad - does a O(N) retrieval each insert!
-        //  #optmize potential
+
+            /*if (this.optimized) {
+                if (this.insertBuffer.length === 0) {
+                    this.insertBuffer.push(char);
+                    this.insertStartId = opId;
+                    this.insertStartAfter = idOfAfter;
+                } else {
+                    this.insertBuffer.push(char);
+                }
+            } else {
+                let networkPacket: NT.PreparedPacket = {
+                    t: 'i',
+                    b: bundle
+                }
+                this.network.broadcast(networkPacket);
+                
+            }
+            */
+        }
         this.updateParallelArrays();
 
-        if (this.optimized) {
-            if (this.insertBuffer.length === 0) {
-                this.insertBuffer.push(char);
-                this.insertStartId = opId;
-                this.insertStartAfter = idOfAfter;
-            } else {
-                this.insertBuffer.push(char);
-            }
-            // this is used for mock inserts mostly
-            if (commitNow) {
-                this.commit();
-            }
-        } else {
-            let networkPacket: NT.PreparedPacket = {
-                t: 'i',
-                b: bundle
-            }
-            this.network.broadcast(networkPacket);
+        // this is used for mock inserts mostly
+        if (commitNow) {
+            this.commit(inserts);
         }
+    }
+
+    private bundledInsertReceived(b: CT.BundledInsertMessage): void {
+        let bundles = b.inserts;
+        for (let bundle of bundles) {
+            this.dt.insert(bundle);
+
+
+            // get old cursor position and 'after'
+            let oldCursorPosition = this.interface.getCursorPosition();
+            let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+
+
+            // probably possible to do this more cleanly
+            let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+            if (oldAfterId !== newAfterId) {
+                this.interface.incrementCursorPosition(bundle.c.length);
+            }
+
+        }
+    if (!this.DISABLE_INTERFACE) {
+            this.interface.setContent(this.charArray.join(''));
+    }
+        this.updateParallelArrays();
     }
 
     private insertReceived(bundle: CT.InsertMessage): void {

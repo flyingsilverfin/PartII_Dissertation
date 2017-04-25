@@ -22,6 +22,7 @@ class NetworkInterface {
     private enabled: boolean;
     private queue: (()=>void)[];    // list of actions to do queued up
 
+    public bundledInsertPacketReceived: (bundle: CT.BundledInsertMessage) => void;
     public insertPacketReceived: (bundle: CT.InsertMessage) => void;
     public deletePacketReceived: (bundle: CT.DeleteMessage, when: NT.VectorClock) => void;
     public requestCRDTReceived: (origin: T.ClientId) => void;
@@ -131,6 +132,8 @@ class NetworkInterface {
 */
 
         let actions = {
+            'bi': () => this.bundledInsertPacketReceived(<CT.BundledInsertMessage>packet.b),
+
             'i': () => this.insertPacketReceived(<CT.InsertMessage>packet.b),
             'd': () => this.deletePacketReceived(<CT.DeleteMessage>packet.b, packet.v),
             'ui': () => this.undoInsertReceived(<CT.UndoMessage>packet.b),

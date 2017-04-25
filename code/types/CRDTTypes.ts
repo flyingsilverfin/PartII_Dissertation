@@ -31,6 +31,11 @@ export interface InsertMessage {
     a: string
 }
 
+export interface BundledInsertMessage {
+    inserts: InsertMessage[]
+}
+
+
 // built in support for multiple undos of the same type in case I decide to do batching
 export interface UndoMessage {
     id: string[]

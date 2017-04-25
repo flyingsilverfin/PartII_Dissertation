@@ -1,6 +1,7 @@
 import {insertIntoString, deleteAt} from './Helper';
 
 import * as IT from '../types/InterfaceTypes';
+import * as T from '../types/Types';
 
 
 class EditableText implements IT.EditableTextInterface {
@@ -171,42 +172,41 @@ class EditableText implements IT.EditableTextInterface {
         this.currentCursorPosition = this.textareaCursorPosition();
     }
 
-    public mockInsert(chars: string, after: number): void {
+    public mockInsert(inserts: T.ScheduledInsert[]): void {
         console.log('mock insert');
 
         let content = this.getContent();
 
-        if (after > content.length) {
-            console.error('Cannot do mock insert at: ' + after + ', content is not that long');
-            return;
-        }
     
-        // insert 
-        content = insertIntoString(chars, after, content);
+        // insert each event
+
+        for (let insert of inserts) {
+            let chars = insert.chars;
+            let after = insert.after;
+            content = insertIntoString(chars, after, content);
+            this.setCursorPosition(after + chars.length);
+        }
+
         if (!this.DISABLE_INTERFACE) {
             this.setContent(content);
-        }
-        this.setCursorPosition(after + chars.length);
-
-        this.insertCallback(chars, after, true);
-    }
-
-    public mockDelete(index: number): void {
-        let content = this.getContent();
-
-        // TODO check >= is correct
-        if (index >= content.length) {
-            console.error('Cannot do mock delete at: ' + index + ', content is not that long');
-            return;
         }
         
-        content = deleteAt(content, index);
-        if (!this.DISABLE_INTERFACE) {
-            this.setContent(content);
-        }
-        this.setCursorPosition(index);
+        this.insertCallback(inserts, true);
+    }
 
-        this.deleteCallback(index);
+    public mockDelete(indices: number[]): void {
+        let content = this.getContent();
+
+
+        for (let index of indices) {
+            content = deleteAt(content, index);
+            if (!this.DISABLE_INTERFACE) {
+                this.setContent(content);
+            }
+            this.setCursorPosition(index);
+        }
+
+        this.deleteCallback(indices);
         
     }
 
