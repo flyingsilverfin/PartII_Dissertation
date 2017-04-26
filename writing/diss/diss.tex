@@ -1157,7 +1157,7 @@ export interface MapEntry {
 			
 		
 			\paragraph{Latencies and Batching}
-			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions of deletions before they begin being batched into larger changes.
+			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions or deletions before they begin being batched into larger changes.
 			
 			In comparison my system is more flexible: it can send one character at a time, or buffer and group operations to best match the needs of the larger system (for example, if sending small packets is expensive in the network, it can be programmed to send fewer, larger packets like ShareJS).			
 			
@@ -1275,7 +1275,19 @@ export interface MapEntry {
 			
 		
 	
+		\subsection{CPU Time}
+			Knowing the relative simplicity of CRDT algorithms versus those of OT hints that processing time may be the real benefit of using CRDTs. Especially in scenarios where OT may have to transform incoming operations against a long history of concurrent ones; this issue does not arise with CRDTs, though the worst case scenarios can still be linear in the size of the CRDT.
 			
+			Unfortunately, web browsers are nonideal platforms for examining computation time. Additionally, nondeterministic latency between ShareJS clients and server could make results unreliable. To handle these issues, I chose to generate very large concurrent operations for both systems and use millisecond-precision timers to measure the time taken from operation arrival from the network until complete integration. Large workloads disguise the use of low precision timers, and allow a rough estimate of computation time. In these experiments, one client is a simple listener and does not generate operations. Other clients only generate operations. The times indicated in Figure TODO are the sum of processing times on generator nodes, server relay time (if applicable), and integration time on the listener.
+			
+			As shown in the graph, ShareJS spends much longer generating and integrating changes than the CRDT based system does. In the basic experiment, the CRDT integrates changes 38 times faster, and at worst it is 3 time quicker. This data provides strong evidence that CRDTs scale much more favorably while in high concurrency situations.
+			
+			\begin{figure}[htb]
+				\centering
+				\includestandalone[mode=buildnew]{data/cpu_testing/cpu_testing}
+				\caption[CPU Time] {}
+				\label{fig:cputime}
+			\end{figure}
 	
 	
 	

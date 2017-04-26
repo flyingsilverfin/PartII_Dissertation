@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest}
+\definecolor{darkergreen}{RGB}{51, 154, 51}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+	title={Computation Time in various Concurrent Scenarios},
+	xlabel={Milliseconds},
+		scaled x ticks = false,
+    xbar=0.1cm,
+	bar width=16pt,
+      nodes near coords={\pgfmathprintnumber{\pgfplotspointmeta} ms},
+	every node near coord/.append style={xshift=0.4cm, opacity=1},
+    enlarge y limits=0.12,
+    xmin=0, xmax=40000,
+    symbolic y coords={exp7,exp6,exp4,exp9,exp5},
+    ytick={exp7,exp6, exp4,exp9,exp5},
+    yticklabels={{Replication x2, Ops x4}, {Replication x2, Ops x2}, {Ops x6}, {Ops x4},{Basic Experiment}},
+    height=4in,
+    legend style={at={(.34, 0.35)},anchor=west},
+    reverse legend,
+    ]
+
+\addplot+ [xbar]
+  plot[error bars/.cd, x dir = both, x explicit]
+  table[y index=0, x index = 1, x error index= 2]
+ 	{./crdt_exp_9.dat};
+  \addlegendentry{Aggregate CRDT Computation Time}
+ 	
+\addplot+ [xbar, fill=darkergreen, fill opacity=0.5, darkergreen]
+ plot[error bars/.cd, x dir = both, x explicit]
+ table[y index=0, x index = 1, x error index= 2]
+	 {./sharejs_exp_9.dat};
+   \addlegendentry{Aggregate ShareJS Computation Time}
+   
+\end{axis}
+
+\end{tikzpicture}
+\end{document}

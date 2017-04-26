@@ -170,32 +170,34 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Summary}{54}{section*.70}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}ShareJS Performance}{56}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}CPU Time}{55}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{}{56}{section*.71}
+\contentsline {subsection}{\numberline {4.3.4}ShareJS Performance}{57}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}Core CRDT Performance}{56}{subsection.4.3.4}
+\contentsline {subsubsection}{}{57}{section*.72}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}ShareJS vs CRDT for Text Editing}{56}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.5}Core CRDT Performance}{57}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Network}{56}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.6}ShareJS vs CRDT for Text Editing}{57}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Conclusion}{57}{chapter.5}
+\contentsline {subsection}{\numberline {4.3.7}Network}{57}{subsection.4.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliography}{57}{chapter.5}
+\contentsline {chapter}{\numberline {5}Conclusion}{59}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Vector Clocks}{59}{appendix.A}
+\contentsline {chapter}{Bibliography}{59}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Formal Definition}{59}{section.A.1}
+\contentsline {chapter}{\numberline {A}Vector Clocks}{61}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Modified Vector Clock}{59}{section.A.2}
+\contentsline {section}{\numberline {A.1}Formal Definition}{61}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{61}{appendix.B}
+\contentsline {section}{\numberline {A.2}Modified Vector Clock}{61}{section.A.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}Proof of Commutativity}{61}{section.B.1}
+\contentsline {chapter}{\numberline {B}Convergence of Immediate Undo Variant}{63}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Simple Experiment}{63}{appendix.C}
+\contentsline {section}{\numberline {B.1}Proof of Commutativity}{63}{section.B.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{63}{section.C.1}
+\contentsline {chapter}{\numberline {C}Simple Experiment}{65}{appendix.C}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {D}Project Proposal}{67}{appendix.D}
+\contentsline {section}{\numberline {C.1}Summary of Logs of Simple Experiment}{65}{section.C.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {D}Project Proposal}{69}{appendix.D}
