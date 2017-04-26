@@ -8,6 +8,7 @@ import NetworkInterface from './NetworkInterface';
 import NetworkManager from './NetworkManager';
 import EventDrivenScheduler from './EventDrivenScheduler';
 import ClientOpStack from './ClientOpStack';
+import Logger from './Logger';
 
 /*
 TODO
@@ -26,7 +27,9 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
-    private DISABLE_INTERFACE = true;
+    private DISABLE_INTERFACE = false;
+
+    private logger: Logger;
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)
@@ -51,10 +54,10 @@ class Client {
     private idArray: string[];
 
 
-    constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false) {
+    constructor(networkInterface: NetworkInterface, id: T.ClientId, scheduler: EventDrivenScheduler, events: T.ScheduledEvents, optimized=false, logger:Logger) {
 
 
-        
+        this.logger = logger;
 
 
         this.events = events;
@@ -64,6 +67,7 @@ class Client {
 
         this.network = networkInterface;
         this.network.bundledInsertPacketReceived = this.bundledInsertReceived.bind(this);
+        this.network.bundledDeletePacketReceived = this.bundledDeleteReceived.bind(this);
         this.network.insertPacketReceived = this.insertReceived.bind(this);
         this.network.deletePacketReceived = this.deleteReceived.bind(this);
         this.network.requestCRDTReceived = this.requestCRDTReceived.bind(this);
@@ -183,6 +187,10 @@ if (this.DISABLE_INTERFACE) {
 
             let self = this;
 
+            if (inserts.length === 0) {  //skip empty insertions
+                continue;
+            }
+
             /*
             OPTIMIZATION
                 if enabled, here we will take advantage of the 'insert word' capability
@@ -190,7 +198,9 @@ if (this.DISABLE_INTERFACE) {
             */
             if (this.optimized) {
                 this.scheduler.addEvent(time, 0, function() {
+                    self.logger.log('time', "Beginning large mock insert");
                     self.interface.mockInsert(inserts);
+                    self.logger.log("time", "Finished large mock insert at source");
                 })
             } else {
               /*  for (let i = 0; i < insert.chars.length; i++) {
@@ -210,8 +220,14 @@ if (this.DISABLE_INTERFACE) {
 
             let self = this;
 
+            if (deletes.length === 0) {
+                continue;
+            }
+
             this.scheduler.addEvent(time, 1, function() {
+                self.logger.log('time', "Beginning large mock delete");
                 self.interface.mockDelete(deletes);
+                self.logger.log('time', "Finished large mock delete");
             });
         }
 
@@ -259,6 +275,9 @@ if (this.DISABLE_INTERFACE) {
     }
 
     private commit(inserts: T.ScheduledInsert[]): void {
+        if (inserts === undefined) {
+            return;
+        }
         let bundles = [];
         for (let insert of inserts) {
             let chars = insert.chars;
@@ -325,6 +344,7 @@ if (this.DISABLE_INTERFACE) {
 
             this.dt.insert(bundle);
             this.insertBuffer.push([opId, idOfAfter]);   // repurpose to contain the op
+
         //this.opStack.localInsert(opId, char.length);
 
 
@@ -347,8 +367,9 @@ if (this.DISABLE_INTERFACE) {
             }
             */
         }
-        this.updateParallelArrays();
 
+
+        this.updateParallelArrays();
         // this is used for mock inserts mostly
         if (commitNow) {
             this.commit(inserts);
@@ -356,7 +377,9 @@ if (this.DISABLE_INTERFACE) {
     }
 
     private bundledInsertReceived(b: CT.BundledInsertMessage): void {
-        let bundles = b.inserts;
+        let bundles = b;
+
+        this.logger.log('time', "Beginning remote insertion bundle integration at " + this.id);
         for (let bundle of bundles) {
             this.dt.insert(bundle);
 
@@ -371,12 +394,15 @@ if (this.DISABLE_INTERFACE) {
             if (oldAfterId !== newAfterId) {
                 this.interface.incrementCursorPosition(bundle.c.length);
             }
-
         }
-    if (!this.DISABLE_INTERFACE) {
-            this.interface.setContent(this.charArray.join(''));
-    }
+
         this.updateParallelArrays();
+        if (!this.DISABLE_INTERFACE) {
+            this.interface.setContent(this.charArray.join(''));
+        }
+        this.logger.log('time', "Finished remote insertion bundle integration at " + this.id);
+
+
     }
 
     private insertReceived(bundle: CT.InsertMessage): void {
@@ -407,26 +433,61 @@ if (!this.DISABLE_INTERFACE) {
         //return true;
     }
 
-    private charDeletedLocal(index: number) {
-        let deletedId = this.getIdOfStringIndex(index);
-        let bundle: CT.DeleteMessage = {
-            delId: deletedId
-        };
+    private charDeletedLocal(indices: number[]) {
+        let bundles = [];
+        for (let index of indices) {
+            this.updateParallelArrays();        // could move this out to make it insanely faster than ShareJS
 
-        // WARNING: NOT ROBOUST IF BUFFERING IN THE FUTURE
-        //          all buffered local deletes will have same peeked vector...
-        //          would either need some sort of keep for next buffered item OR redo this architecture (better)
-        let when = this.network.peekNextVector();   // vector that will be used with the delete
+            let deletedId = this.getIdOfStringIndex(index);
+            let bundle: CT.DeleteMessage = {
+                delId: deletedId
+            };
+            bundles.push(bundle);
 
-        this.dt.delete(bundle, when, when);
-        this.opStack.localDelete(deletedId, 1); // no support for group deletes yet, would need a buffering layer
+            // WARNING: NOT ROBOUST IF BUFFERING IN THE FUTURE
+            //          all buffered local deletes will have same peeked vector...
+            //          would either need some sort of keep for next buffered item OR redo this architecture (better)
+            let when = this.network.peekNextVector();   // vector that will be used with the delete
 
+            this.dt.delete(bundle, when, when);
+            this.opStack.localDelete(deletedId, 1); // no support for group deletes yet, would need a buffering layer
+        }
         let networkPacket: NT.PreparedPacket = {
-            t: 'd',
-            b: bundle
+            t: 'bd',
+            b: bundles
         };
-        this.network.broadcast(networkPacket);
+        this.network.broadcast(networkPacket);  // I'll have to see if using the same vector for each will work OK... everything will be deemed concurrent which is the goal
+        //this.updateParallelArrays();
+        if (!this.DISABLE_INTERFACE) {
+            this.interface.setContent(this.charArray.join(''));
+        }
+    }
+
+    private bundledDeleteReceived(bundles:CT.BundledDeleteMessage, when:NT.VectorClock): void {
+
+        this.logger.log('time', "Beginning remote deletion bundle integration at " + this.id);
+
+        for (let bundle of bundles) {
+            this.dt.delete(bundle, when, this.network.getCurrentVector());
+
+            // get old cursor position and 'after'
+            let oldCursorPosition = this.interface.getCursorPosition();
+            let oldAfterId = this.getIdOfStringIndex(oldCursorPosition);
+
+
+            // probably possible to do this more cleanly
+            let newAfterId = this.getIdOfStringIndex(oldCursorPosition);
+   
+            if (oldAfterId !== newAfterId) {
+                this.interface.decrementCursorPosition();
+            }
+        }
+
         this.updateParallelArrays();
+        if (!this.DISABLE_INTERFACE) {
+            this.interface.setContent(this.charArray.join(''));
+        }
+        this.logger.log('time', "Finished remote deletion bundle integration at " + this.id);
     }
 
     private deleteReceived(bundle: CT.DeleteMessage, when: NT.VectorClock): void {

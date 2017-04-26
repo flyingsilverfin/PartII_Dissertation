@@ -99,17 +99,18 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
                                         log = null;
 
                                         // clear log to lose any references to it
-                                        logger.freeLog();
                                         //delete experimentSetup.events;    // don't gc this! already included in pre-experiment so just subtract it out
                                         //gc();
 
                                         // delayed GC
                                         setTimeout(function() {
+                                            logger.freeLog();
+
                                             gc();
                                             let mem = (<any>window.performance).memory.usedJSHeapSize;
                                             console.log("Mem after GC: " + mem);
                                             noLogMemoryUsageCallback((<any>window.performance).memory.usedJSHeapSize);
-                                        }, 1000);
+                                        }, 4000);
                                      }
     );
 
@@ -126,7 +127,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
             let id = manager.register(ni);
             ni.setClientId(id);
             ni.setManager(manager);
-            mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id], optimized));
+            mockClients.push(new Client(ni, id, scheduler, experimentSetup.events[id], optimized, logger));
         }
         scheduler.addEvent(timeToCreate, 0, action);
     }

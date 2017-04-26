@@ -20,9 +20,13 @@ export default class Logger {
         this.l = [];
     }
 
-    public log(tag: "memory" | "convergedString", msg: string) {
+    public log(tag: "memory" | "convergedString" | "time", msg: string) {
         let time = this.getTime();
-        this.l.push(time + "    " + tag + "    " + msg);
+        if (tag === "time") {
+            this.l.push(Date.now() + "    " + tag + "     " + msg);
+        } else {
+            this.l.push(time + "    " + tag + "    " + msg);
+        }
     }
 
     public logJoin(tag: "join" | "join-ack", id: number, msg: string) {
@@ -41,7 +45,7 @@ export default class Logger {
 
         let packetSize = JSON.stringify(packet).length;
 
-        console.log(JSON.stringify(packet));
+        //console.log(JSON.stringify(packet));
         
         let msg;
         if (packetType === "i") {
