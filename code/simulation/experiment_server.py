@@ -215,8 +215,8 @@ def receiveOTMemory():
         os.remove(os.path.join('.','experiments',experimentName,'ot','log.txt'))
         os.remove(os.path.join('.','experiments',experimentName,'sharejs-server.log'))
 
-    AsyncRunIn(0.1, restartShareServer)
-    AsyncRunIn(5, restartChrome)        # give time for server to restart
+    #AsyncRunIn(0.1, restartShareServer)
+    #AsyncRunIn(5, restartChrome)        # give time for server to restart
     return ""
 
 

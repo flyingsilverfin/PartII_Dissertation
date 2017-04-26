@@ -203,6 +203,11 @@ for i in range(numClients):
         "redo": []
     }
     print "Going for client: %d" %i
+
+    #client 0 is the observer integrating concurrent changes we are testing on so don't generate for it
+    if (i == 0):
+        continue
+
     for j in range(num_inserts_per_client):
 
         if (wordlen == -1):
@@ -217,7 +222,7 @@ for i in range(numClients):
         })
 
     for j in range(num_deletes_per_client):
-        toDelete = 0    #always delete first character, only one guaranteed to be there
+        toDelete = j    
         when = deletes_at
         experiment_setup["events"][i]["delete"][when].append(toDelete)
     
