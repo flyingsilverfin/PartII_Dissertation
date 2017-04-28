@@ -108,7 +108,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.3}Separation of Concerns}{40}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Extension: Local Undo}{41}{section.3.4}
+\contentsline {section}{\numberline {3.4}Extension: Local Undo}{40}{section.3.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4.1}Overview}{41}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
@@ -116,7 +116,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Undo/Redo Insert Semantics}{41}{section*.39}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Implementation}{42}{section*.40}
+\contentsline {subsubsection}{Implementation}{41}{section*.40}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4.3}Delete}{42}{subsection.3.4.3}
 \defcounter {refsection}{0}\relax 
@@ -124,7 +124,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Modified Links}{42}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Delete, Undo, Redo}{43}{section*.43}
+\contentsline {paragraph}{Delete, Undo, Redo}{42}{section*.43}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{43}{section*.44}
 \defcounter {refsection}{0}\relax 
@@ -152,7 +152,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Single Editor}{47}{section*.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Multiple Clients}{49}{section*.55}
+\contentsline {paragraph}{Scaling Replication}{49}{section*.55}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{CRDT System Variants}{50}{section*.57}
 \defcounter {refsection}{0}\relax 

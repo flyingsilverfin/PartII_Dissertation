@@ -26,6 +26,7 @@
 \usepgfplotslibrary{external}
 \usepackage{mathtools}
 \usepackage{makecell}
+\usepackage{amssymb}
 
 \usepackage{etex}
 \reserveinserts{28}
@@ -251,7 +252,7 @@ Treedoc~\cite{preguica2009} is a replicated text buffer represented as an ordere
 \label{fig:treedoc}
 \end{figure}
 
-Deletes in Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of \textit{tombstone}CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the path to a node in the tree (i.e. its identifier) can become very long. The authors propose an expensive commitment protocol to rebalance it periodically. Not only is this inefficient, but also rather contrary to the spirit of consensus-free operation that makes a CRDT so useful.
+Deletes in Treedoc are handled by marking a node as deleted (but the node remains in the structure). Thus Treedoc falls into the class of \textit{tombstone} CRDTs. As deletes and inserts are not guaranteed to result in a balanced tree, the path to a node in the tree (i.e. its identifier) can become very long. The authors propose an expensive commitment protocol to rebalance it periodically. Not only is this inefficient, but also rather contrary to the spirit of consensus-free operation that makes a CRDT so useful.
 
 \subsection{Logoot} \label{sec:logoot}
 
@@ -287,7 +288,7 @@ Logoot Undo~\cite{weiss2010undo} proposes to resolve this by essentially tagging
 	\label{fig:reconcile}
 	\end{figure}
 	
-	\subsection{CCI Consistency Model}
+	\subsection{CCI Consistency Model} 	\label{sec:cciconsistency}
 	The commonly used consistency model for concurrent document editing is the CCI model. The definition here is borrowed from~\cite{weiss2010undo}.
 	
 	\begin{itemize}
@@ -930,10 +931,10 @@ public addEvent(time: number, clock: number, action: any) {
 	
 \section{Extension: Local Undo} \label{sec:undo}
 	
-	In interactive systems undo and redo are key features~\cite{shneiderman1982}. As such, it is an interesting extension to the capabilities of a CRDT beyond basic insertion and deletion. I chose to implement a local undo -- that is, only allow undoing and redoing operations that were performed locally -- rather than a global undo, where everyone can modify any operation, at the suggestion of my supervisor. The approaches detailed below were developed originally prior to reading related literature, but one is very similar to that of Logoot Undo~\cref{sec:logootundo}.
+	In interactive systems undo and redo are key features~\cite{shneiderman1982}. As such, these are interesting extensions to the capabilities of a CRDT beyond basic insertion and deletion. I chose to implement a local undo -- that is, only allow undoing and redoing operations that were performed locally -- rather than a global undo, where anyone can modify any operation, at the suggestion of my supervisor. The approaches detailed below were developed originally prior to reading related literature, but one is very similar to that of Logoot Undo~\cref{sec:logootundo}.
 	
 	\subsection{Overview}
-	Each client keeps a local stack of operations that it produced. The stack can be truncated to a certain length to avoid ever-growing memory consumption. When undoing an operation, a pointer is moved back down the stack and the inverse operation of the corresponding item on the stack is generated and broadcast to other clients.
+	Each client keeps a local stack of operations that it produced. The stack can be truncated to avoid ever-growing memory consumption. To undo an operation, the stack pointer is moved down the stack and the inverse operation of the corresponding item on the stack is generated, executed, and broadcast to other clients.
 	
 	There are two operations that can be undone or redone: insert and delete. Only one client can ever locally generate an insert event (as each character is tagged with a globally unique identifier generated on the client) and thus only it can undo and redo the operation. However, multiple clients can concurrently delete the same character and so have the same operation on their local stack. How this concurrent case is handled leads to two different semantics and consistency models.
 	
@@ -942,20 +943,20 @@ public addEvent(time: number, clock: number, action: any) {
 	Undo and redo of an insert are not equivalent to deletion and insertion, due to the unique identifiers generated during insertion events. Rather, a redo must reintroduce the same character with the same unique identifier. The solution to this is discussed in the following subsections.
 	
 		\subsubsection{Undo/Redo Insert Semantics}
-		To satisfy the CCI consistency model and semantics (defined formally in~\cref{sec:cciundo}), an undo and a redo should have \textit{the same effect on the visible text as if the prior creation or undo never occurred}. For instance, if $A$ creates a character which is deleted by $B$, and the creation is undone and then redone by $A$, the character should still not be visible: the effect of client $B$s delete returns as if $A$ never undid the insertion.
+		To satisfy the CCI consistency model and semantics (\cref{sec:cciconsistency}), an undo and a redo should have \textit{the same effect on the visible text as if the prior creation or undo never occurred}. For instance, if $A$ creates a character which is deleted by $B$, and the creation is undone and then redone by $A$, the character should still not be visible: $B$s delete should take effect as if $A$ never undid the insertion.
 		
 		This idea leads to the fact that `undo insert' and `delete' operations need to be kept separate. Additionally, `undo insert' needs to take precedence over deletions that have occurred subsequently.
 		
 		\subsubsection{Implementation}
 		
-		To achieve the desired functionality, I augmented links in the CRDT with an extra boolean `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, which also have the same functional form as undo-delete and redo-delete bundles, and only contain the character identifier to operate upon.
+		To achieve the desired functionality, I augmented links in the CRDT with a `visible' tag (denoted $v$). The two new bundles that need to be created are undo-insert and redo-insert, which have the same functional form as undo-delete and redo-delete bundles, and only contain the character identifier to operate upon.
 		
 		The effect of a undo insert packet on CRDT node $L$ is to set $L.v = false$, while a redo insert packet sets $L.v = true$. When the string is queried from the CRDT (i.e. the CRDT `read()' method is called), nodes which have $v = false$ are ignored and not retrieved.
 		
-		As only the originator of an insert can undo and redo it, there are never conflicting operations and there is no need to prove commutativity. Operations from the originator are delivered in order by the network.
+		As only the originator of an insert can undo and redo it, conflicting operations can never be produced and there is no need to prove commutativity.
 		
 	\subsection{Delete}
-		Undoing a delete, as mentioned before, is tricker than an insert as multiple clients can perform and therefore `own' a delete at the same time. How this concurrency is handled determines system behavior. The two possibilities are implementing the CCI consistency model and a variant I termed ``Immediate Undo''.
+		Undoing a delete, as mentioned before, is tricker than an insert as multiple clients can concurrently perform and therefore `own' a delete. How this concurrency is handled determines system behavior. Two possibilities are implementing the CCI consistency model and a variant I termed ``Immediate Undo''.
 		
 		\subsubsection{CCI Undo} \label{sec:cciundo}
 		According to CCI, in the event of an undo delete, the system should behave as if the delete never occurred. So, if users 1 and 2 concurrently delete a character, then 1 undoes its removal, the expected result is that the system behaves as if only the 2's delete happened. While this sounds sensible, it is uncomfortable to user 1: they undid their deletion and expect the character to return. In effect, this consistency model requires \textit{full consensus} between $n$ clients that concurrently deleted a character to return it.
@@ -973,7 +974,7 @@ export interface MapEntry {
 \end{lstlisting}
 
 			\paragraph{Delete, Undo, Redo}
-			Delete and redo operations now increment the $d$ value in the target link. An undo packet has the effect of decrementing $d$.
+			Delete and redo operations increment the $d$ value in the target link. An undo packet has the effect of decrementing $d$.
 			
 			Now, when the $read()$ method is called on the CRDT, only retrieve links that satisfy
 			
@@ -990,25 +991,25 @@ export interface MapEntry {
 			The cost of this approach is minimal: one extra integer per deleted link in the CRDT.
 			
 		\subsubsection{Immediate Undo} \label{sec:immediateundo}
-		CCT Undo requires users agree to make deleted characters reappear. It would be preferable for any user to be able to immediately undo a character regardless of other users.
+		CCT Undo requires users reach consensus to make deleted characters reappear. It would be preferable for any user to be able to immediately undo a character regardless of other users.
 		
 			\paragraph{Semantics}
 			To this end, the following are the desired semantics:
 			
 			In the case of conflicting concurrent \textit{make-invisible} operations (such as delete or redo delete) and \textit{make-visible} operations (such as undo delete), the \textit{make-visible} operation will take effect.
 			
-			The follows the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. Note that this effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character. 
+			This follows from the idea that a user recalling a prior character likely wishes to utilize it, while a user wishing to remove a character does not care about its presence or absence. Note that this effectively inverts the consensus of CCI Undo to require full concurrent agreement to remove a character. 
 			
 			\paragraph{Implementation}
 			In order to support an immediate undo, we need to be able to compare the ``time'' at which a deletion, undo, or redo occurred in order to detect concurrency. Vector clocks allow exactly this. When operations arrive, the packet's vector and the vector stored the relevant CRDT link can be compared and acted upon.
 			
 			The required modification in the CRDT is that the `deleted' tag of a link $l.d$ now represents a pair ($true/false$, $vector$). The first value is a boolean for whether or not the character is deleted. The second is the result of merging the local vector and the vector of the packet that delivered the operation.
 			
-			As before, delete, undo delete and redo delete bundles contain only the identifier of the link $l$ to act upon. In non-concurrent cases, that is, operations are causally dependent, the latest dependent operation is applied to $l$. 
+			As before, delete, undo delete and redo delete bundles contain only the identifier of the link $l$ to act upon. In non-concurrent cases, i.e. operations are causally dependent, the last dependent operation is applied to $l$. 
 			
-			If a remote delete or redo delete operation is concurrent with the vector stored in $l.d[1]$, do nothing. This ensures that a local make-visible operation retains its effect (e.g. a undo delete). Otherwise, a make-invisible operation is already in effect and $l.d[0]$ is already $true$.
+			If a remote delete or redo delete operation is concurrent with the vector stored in $l.d[1]$, do nothing. This ensures that a local \textit{make-visible} operation retains its effect (e.g. a undo delete). Otherwise, a \textit{make-invisible} operation is already in effect and $l.d[0]$ is already $true$.
 			
-			Similarly, if a remote undo delete operation is concurrent with the vector stored in $l.d[1]$, always set $l.d$ to $false$, so that the make-visible operation takes effect.
+			Similarly, if a remote undo delete operation is concurrent with the vector stored in $l.d[1]$, always set $l.d$ to $false$, so that the \textit{make-visible} operation takes effect.
 			
 			In any case, the vector stored at $l.d[1]$ is updated to the current client vector clock.
 			
@@ -1025,7 +1026,7 @@ export interface MapEntry {
 			\paragraph{Cost}
 			Storing a vector with every character that at one point was deleted can become quite expensive: Vector clocks are $\Theta (m*log(k))$, where $m$ is the number of clients in the network and $k$ is the decimal length of the longest sequence number in the vector.
 			
-			One advantage of this approach is that can enable a sort of distributed garbage collection. Every client is known in the network as it cannot become active until requesting a CRDT from a neighbor (\cref{sec:networkjoin}). Clients could record the last known vector sent by every client. Then, they can periodically traverse the local CRDT and remove tombstones whose vectors are strictly older than all the last known vectors of the clients, which guarantees all clients have incorporated the deletion. However the interaction with undo capabilities necessitates further thought and study, and so this approach is not implemented in this project.
+			One advantage of this approach is that it enables a sort of distributed garbage collection. Every client is known in the network as it cannot become active until requesting a CRDT from a neighbor (\cref{sec:networkjoin}). Clients could record the last known vector sent by every client. Then, they can periodically traverse the local CRDT and remove tombstones whose vectors are strictly older than all the last known vectors of the clients, which guarantees all clients have incorporated the deletion. However the interaction with undo capabilities necessitates further thought and study; this approach is not implemented in this project.
 			
 			
 			
@@ -1042,21 +1043,21 @@ export interface MapEntry {
 	
 	\textbf{Success Criterion 1:} \textit{Implement a concurrent, distributed text editor based on CRDTs.}
 	
-	I can qualitatively assert that this first goal has been completed.~\cref{sec:crdt} outlines the components needed and steps taken to create a distributed text editor based on CRDTs and connected by a network simulation. Though the primary use of the editor is to gather data via programmatically predefined experiments, it can also be used manually via the user interface. This feature is counted towards fulfilling success criterion 1.
+	I can qualitatively assert that this first goal has been completed.~\cref{sec:crdt} outlines the components needed and steps taken to create a distributed text editor based on CRDTs with an underlying network simulation. Though the primary use of the editor is to gather data via programmatically predefined experiments, it can also be used interactively via the user interface. This feature is counted towards fulfilling success criterion 1. $\text{\rlap{$\checkmark$}}\square$
 	
 	\textbf{Success Criterion 2:} \textit{Pass correctness tests for this CRDT.}
 	
-	The key property of concurrent, distributed text editing is eventual convergence of the data. To this end, the second success criterion aims to ensure that the implementation provides the same guarantees as the theory. Unit testing of the CRDT helped find and eliminate bugs that broke these guarantees. The testing results are described more in the following section.
+	The key property of concurrent, distributed text editing is eventual convergence of the data. To this end, the second success criterion aims to ensure that the implementation provides the same guarantees as the theory. Unit testing of the CRDT helped find and eliminate bugs that broke these guarantees. The successful testing is described more in the following section. $\text{\rlap{$\checkmark$}}\square$
 	
 
 	\textbf{Success Criterion 3:} \textit{Obtain and compare quantitative results from ShareJS and the CRDT based systems}
 	
-	This criterion was intentionally vague in the proposal to allow maximum flexibility during analysis. The bulk of this chapter will focus on the results obtained by experimenting on both the CRDT and ShareJS based systems.	
+	This criterion was intentionally vague in the proposal to allow maximum flexibility during analysis. The bulk of this chapter will focus on the results obtained by experimenting on both the CRDT and ShareJS based systems.	$\text{\rlap{$\checkmark$}}\square$
 	
 	
 	\section{Testing the CRDT}
 	
-	The testing of the core CRDT used a \textit{black-box testing} approach~\cite{Patton}. Unit tests were designed for the interface provided by the CRDT without need for knowledge of the CRDT internals. This implies that the CRDT itself could be implemented using a linked list, a linked list within a hash table, or in fact be a completely different CRDT providing the same interface described in~\cref{sec:crdtstructure}. Insert and delete operations were applied to the CRDT in different orders, and every order needed to produce the same resulting string from \textit{CRDT.read()}.
+	The testing of the core CRDT used a \textit{black-box testing} approach~\cite{Patton}. Unit tests were designed for the interface provided by the CRDT without need for knowledge of the CRDT internals. This implies that the CRDT itself could be implemented using a linked list, a linked list within a hash table, or in fact be a completely different CRDT. Insert and delete operations were applied to the CRDT in different orders, and every order needed to produce the same resulting string from \textit{CRDT.read()}.
 	
 	The Typescript unit testing library tsUnit\footnote{\url{https://github.com/Steve-Fenton/tsUnit}} provided the framework used in this process. The testing output is shown below in Figure~\ref{fig:unittests}.
 
@@ -1072,15 +1073,15 @@ export interface MapEntry {
 	
 	\section{Quantitative Analysis} \label{sec:quanteval}
 	
-		This section aims to empirically test both ShareJS and the underlying operation transformations, and my CRDT-based system. As experiments were run for data collection rather than testing and debugging, the user interface components were disabled: updating the user interface is an expensive operation on both systems and slows experiment execution.
+		This section aims to empirically test both ShareJS and the underlying operation transformations, and my CRDT-based system. As experiments were run for data collection rather than testing and debugging, the graphical components were disabled: updating the interface is an expensive operation on both systems and impacts results significantly.
 		
 		
 			
 		\subsection{Memory}
-			Data collected for the following sections was done on the Immediate Undo variant (\cref{sec:immediateundo}) of the CRDT-based system. Once I established that using different network topologies produced extremely similar results, I decided to combine results from experiments on both fully-connected and star topologies to better average out nondeterminism introduced by the operating system. Values are calculated as the difference from experiment initialization to only measure the additional memory consumed.
+			Data collected for the following sections was done on the Immediate Undo variant (\cref{sec:immediateundo}) of the CRDT-based system. Since using network topologies has little impact here, I averaged results from both star and fully connected networks. The values presented here are also the difference between experiment termination and initialization, to only measure the additional memory consumed.
 		
 			\paragraph{Sanity Check} \label{sec:sanitycheck}
-				As noted in~\cref{sec:sharejs} I expect both the ShareJS server and clients to suffer from having to save past operations to transform concurrent modifications against. I created a series of experiments which insert and remove the same character a number of times. This ensures the visible document size is not growing: the only growth should be storing past operations. 
+				As noted in~\cref{sec:sharejs} I expect both the ShareJS server and clients to suffer from having to save past operations to transform concurrent modifications against. I created a series of experiments which insert and remove the same character a number of times. This ensures the visible document size is not growing: the only memory growth should be storing past operations. 
 				
 				For comparison, the same experiments were evaluated on the CRDT system in two ways: firstly using standard insert/delete operations, and secondly as undo/redo operations. The key is that these both have the same effect of inserting and removing characters from the visible document text. However, using insertion and deletion generates a uniquely tagged character each time, so the memory use should increase though the visible document size does not. Doing effectively the same thing with undo and redo operations should not grow internal structures. This test is very useful in establishing the presence of memory leaks and as a general sanity check.
 				
@@ -1098,7 +1099,7 @@ export interface MapEntry {
 			\paragraph{Single Editor} \label{sec:singleeditor}
 				In addition to storing past operations, ShareJS components also need to store the document as it grows. This series of experiment explores combined growth with increasing numbers of insertions of single characters. While ShareJS should scale linearly, a CRDT with $n$ characters must store $n$ links of constant size (ignoring deletion requirements), each identified by an identifier of decimal length $log_{10}(n)$, so one might expect a $\Theta (nlog(n))$ space complexity. These experiments were designed using only a single client, inserting only one character at a time,. Results are shown in \ref{fig:sub1}.
 					
-				To compare to a different workload, another series of experiments was performed inserting words of average length about 8 characters -- the average word length of the English dictionary built into UNIX systems -- rather than individual characters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer, larger packets, reflecting its need to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards is likely extra closures and overhead associated with a character by character operations rather than words). 
+				To compare to a different workload, another series of experiments was performed inserting words of average length approximately 8 characters rather than individual letters (\ref{fig:sub2}). Both scenarios are plotted on the same axes in \ref{fig:sub3}, with the word insertions rescaled to fit the axis of \ref{fig:sub1}. The data shows that eventually, as the document size becomes very large, ShareJS achieves lower memory consumption. Where this threshold occurs depends on the nature of interactions with the data structures: ShareJS grows less slowly when operations are grouped into fewer, larger packets, reflecting its need to buffer fewer objects in its stack of past operations. On the other hand, my CRDT grows at the same rate no matter what the behavior is (the divergence from 10000 insertions onwards in \ref{fig:sub3} is likely overhead associated with a character by character operations rather than words). 
 				
 				To do a high level estimate of which scenario is more likely, I will assume that a person can type at 60 words per minute, words are of average length 5 characters~\cite{bochkarev2012average} and wordwide latencies average 100ms~\cite{latencies}~\cite{fccbroadband}. This leads to about 300 characters per minute, or one character every 200ms. Thus, the character by character streaming scenario that is detrimental to OT is more likely.
 				
@@ -1129,7 +1130,7 @@ export interface MapEntry {
 				
 				
 				
-			\paragraph{Multiple Clients}
+			\paragraph{Scaling Replication}
 				Figure \ref{fig:memvsreplication} examines how both systems scale in terms of the number of connected replicas. In all cases from 1 to 100 connected clients, the CRDT based distributed editor outperformed the ShareJS based one in terms of overall memory consumption. In the cases of fewer clients, this was by several multiples. Though the CRDT clients appear exhibit higher aggregate growth as the number of peers increases, part of this can credited toward overheads in the network simulation.
 			
 				\begin{figure}[htb]
@@ -1149,7 +1150,7 @@ export interface MapEntry {
 					\label{fig:variantsmemory}
 				\end{figure}
 				
-				Figure \ref{fig:variantsmemory} shows that CRDTs of increasing complexity cost consistently more in terms of memory. Not implementing undo shows consistent performance as hardly any data is added into the data structure, whereas the Immediate Undo variant grows consistently with the number of characters deleted. ShareJS behaves rather unpredictably, though consumes many times more memory than any of the CRDT based systems.
+				Figure \ref{fig:variantsmemory} shows not implementing undo provides consistent performance as hardly any data is added into the CRDT, whereas the Immediate Undo variant grows consistently with the number of characters deleted. CCI Undo sits comfortable between the other variants. ShareJS behaves rather unpredictably, though consumes many times more memory than any of the CRDT based systems.
 				
 			\paragraph{Summary}
 				This subsection explored the behavior of both the ShareJS and CRDT based systems across a variety of settings. Several key ideas were discovered. Firstly, my CRDT offers significantly better memory consumption for small and medium sized documents, though with large documents and chunked operations tends to perform worse. Secondly, OT, at least in the form used by ShareJS, suffers from streaming many small operations, whereas CRDTs are agnostic to the size of operations. Both systems scale relatively similarly as replication increases, though the CRDT generally offered better performance. Lastly, enabling undo functionality has significant overhead, especially when offering `Immediate Undo' semantics, but making effective use of it can have considerable savings.
@@ -1158,11 +1159,11 @@ export interface MapEntry {
 			
 		
 			\paragraph{Latencies and Batching}
-			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions or deletions before they begin being batched into larger changes.
+			Figures \ref{fig:latency-cs} and \ref{fig:latency-sc} examine the theoretical speed at which operations can be streamed between ShareJS clients, expecting locally looped back transmissions to be the fastest communication possible. Interestingly, a strange feature of these approximate distributions is the 45ms return time peak in Figure \ref{fig:latency-sc}. I traced this into the implementation of the BrowserChannel\footnote{\url{https://www.npmjs.com/package/browserchannel-middleware}} connection module used by the ShareJS client -- messages actually return within a few milliseconds, but are only made available to the client after an additional delay of about 30-40ms. With a trip time via the server to any other client of at most 50ms, the character streaming limit is about 1200 insertions or deletions before they begin being batched into larger changes.
 			
-			In comparison my system is more flexible: it can send one character at a time, or buffer and group operations to best match the needs of the larger system (for example, if sending small packets is expensive in the network, it can be programmed to send fewer, larger packets like ShareJS).			
+			In comparison my system is more flexible: it can be adjusted to send one character at a time, or buffer and group operations to best match the needs of the larger system (for example, if sending small packets is expensive in the network, it can be programmed to send fewer, larger packets like ShareJS).			
 			
-			The data gathered here also helped to generate link latencies for the CRDT network simulation during experiment design. I used the approximately normal distribution from \ref{fig:latency-sc} at 200ms combined with the equivalent distribution in \ref{fig:latency-sc}, which is estimated by a normal with mean 30 and standard deviation 10. These link latencies to an extent determine the amount of concurrency prevalent in the system.
+			%The data gathered here also helped to generate link latencies for the CRDT network simulation during experiment design. I used the approximately normal distribution from \ref{fig:latency-sc} at 200ms combined with the equivalent distribution in \ref{fig:latency-sc}, which is estimated by a normal with mean 30 and standard deviation 10. These link latencies to an extent determine the amount of concurrency prevalent in the system.
 			
 			\begin{figure}[H]
 				\centering
@@ -1179,12 +1180,12 @@ export interface MapEntry {
 	
 		
 		\paragraph{Packet Size}
-			The size of packets in both systems is almost fully determined by a few parameters. For this section I will assume that operations are not batched, though they may insert or delete multiple contiguous sequences. As shown above and discussed in~\cref{sec:singleeditor}, in both this testing environment and real world deployments most packets will be small, single character operations, so this assumption is reasonable.
+			The size of packets in both systems is almost fully determined by a few parameters. For this section I will assume that operations are not batched, though they may insert or delete multiple contiguous sequences. As shown above and discussed in~\cref{sec:singleeditor}, in both this testing environment and real world deployments most packets will contain small operations, so this assumption is reasonable.
 			
 			
 			\begin{table}[htb]
 			\centering
-			\caption[ShareJS Insert and Delete Packet Size]{Tabulating the size of ShareJS's insert and delete packets, in terms of number of characters}
+			\caption[ShareJS Insert and Delete Packet Size]{Tabulating the size of ShareJS's insert and delete packets}
 			\label{tab:sharepackets}
 			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}lll@{}}
@@ -1194,7 +1195,7 @@ export interface MapEntry {
 			Number of characters \\to delete $n$                 & N/A                        & $\lfloor log_{10}(n) \rfloor+1$ \\ \midrule
 			Position $p$, bounded\\by document size $n_{chars}$ & $\lfloor log_{10}(n_{chars}) \rfloor+1$				 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \midrule
 			Document version $v$, \\bounded by $n_{chars}$       & $\lfloor log_{10}(n_{chars}) \rfloor+1$                 & $\lfloor log_{10}(n_{chars}) \rfloor+1$  \\ \bottomrule
-			Total	 		& $27+n+2(\lfloor log_{10}(n_{chars}) \rfloor)$ & $28 + \lfloor log_{10}(n)\rfloor+2(\lfloor log_{10}(n_{chars}) \rfloor)$
+			Total	 		& $27+\boldsymbol{n}+2(\lfloor log_{10}(n_{chars}) \rfloor)$ & $28 + \lfloor log_{10}(n)\rfloor+2(\lfloor log_{10}(n_{chars}) \rfloor)$
 			\end{tabular}
 			\end{table}	
 			
@@ -1205,7 +1206,7 @@ export interface MapEntry {
 			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}ll@{}}
 			
-                             & Cost (upperbound)\\ \toprule                                                                                                                                                       
+                             & Cost (upper bound)\\ \toprule                                                                                                                                                       
 			JSON Overhead                   & $46$ \\ \midrule
 			Client ID                       & $\lfloor log_{10}(n_{clients}) \rfloor+1$  \\ \midrule
 			Vector Clock                    & $1 + n_{clients} * (\lfloor log_{10}(n_{chars}/n_{clients})\rfloor + 5)$ \\ \midrule
@@ -1213,13 +1214,13 @@ export interface MapEntry {
 			Characters to Insert            & $n$ \\ \midrule
 			ID of First New Character       & $\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor  +1$  \\ \midrule
 			ID of Character to Insert After & $\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor +1$  \\ \bottomrule
-			Total                           & \makecell{$51 + n + 5n_{clients} + n_{clients} *(\lfloor log_{10}(n_{chars}/n_{clients}\rfloor) +$ \\ $2*(\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor)$}
+			Total                           & \makecell{$51 + \boldsymbol{n} + \boldsymbol{5n_{clients}} + \boldsymbol{n_{clients} *(\lfloor log_{10}(n_{chars}/n_{clients}\rfloor)} +$ \\ $2*(\lfloor log_{10}(n_{chars}/n_{clients}) \rfloor + \lfloor log_{10}(n_{clients}) \rfloor)$}
 			\end{tabular}
 			\end{table}
 			
-			The expressions in Tables \ref{tab:sharepackets} and \ref{tab:crdtinsertpacket} are rather complicated but only need to convey a few ideas: Firstly, insert packet sizes scale linearly with the number of characters to add. Both have significant JSON overheads, though the intrinsic complexity of the CRDT packets means its overheads are even higher. The vector clock component of the CRDT insert (and delete, not shown here) contributes another linear cost in the number of clients in the system. This reflects the difficulty of routing and enforcing causality in distributed, flexible topology systems. Lastly, the only component of these expressions that may grow very large is the version $v$ in ShareJS and $n_{chars}$, the number of characters in the document. However, both of these are present only as $log$ terms, so even large values lead to manageable packet sizes.
+			The expressions in Tables \ref{tab:sharepackets} and \ref{tab:crdtinsertpacket} are rather complicated but only need to convey a few ideas: Firstly, insert packet sizes scale linearly with the number of characters to add (bolded). Both have significant JSON overheads, though the intrinsic complexity of the CRDT packets means its overheads are even higher. The vector clock component of the CRDT insert (and delete, not shown here) contributes another quasilinear cost. This reflects the difficulty of routing and enforcing causality in distributed, flexible topology systems. Lastly, the primary component of these expressions that is likely to grow very large is $n_{chars}$, the number of characters in the document, and the version $v$ in ShareJS. However, both of these are present only as $log$ terms, so even large values lead to manageable packet sizes.
 			
-			Table \ref{tab:samplepacketsizes} shows some typical packet sizes taken from experiments run previously. Note that ShareJS is invariant to the number of clients in the network, whereas the use of vector clocks again penalizes the CRDT based system.
+			Table \ref{tab:samplepacketsizes} shows some typical packet sizes taken from experiments run previously. We see that ShareJS is invariant to the number of clients in the network, whereas the use of vector clocks again penalizes the CRDT based system. Note that ShareJS packets are shown in two variants: with extraneous meta data stripped out, and with it retained. The meta data allows extra functionality not relevant to this project so should be ignored.
 			
 			\begin{table}[htb]
 			\centering
@@ -1241,7 +1242,7 @@ export interface MapEntry {
 			
 			
 		\paragraph{Packet Quantity}
-			Routing in a flexible P2P network is more difficult than in a client-server architecture, which was why my system used a simple flooding mechanism to disseminate packets. However, this becomes more inefficient as connectivity increases, as illustrated in Table \ref{tab:topologypackets}: the number of packets sent approaches a quadratic cost in the number of peers. Connectivity is one major advantage P2P networks have over traditional ones, as it lowers latency, but requires a more sophisticated routing protocol to handle efficiently.
+			Routing in a flexible P2P network is more difficult than in a client-server architecture, which is why my system uses a simple broadcast to disseminate packets. However, this becomes more inefficient with increasing connectivity, illustrated in Table \ref{tab:topologypackets}: the number of packets sent approaches a quadratic cost in the number of peers. Connectivity is one major advantage P2P networks have over traditional ones, as it can lower latency, but requires a more sophisticated routing protocol to handle efficiently.
 			
 			\begin{table}[htb]
 			\centering
@@ -1250,18 +1251,18 @@ export interface MapEntry {
 			\setlength{\tabcolsep}{12pt}
 			\begin{tabular}{@{}lll@{}}
 			Topology		& Total Packets Sent            & Time to receipt on all Peers   \\ \toprule
-			\makecell{Linear \\ \includegraphics[width=0.2\linewidth]{figs/linear_top.eps}  }        & $n_{peers}$                   & $(n_{peers}-1)L$              \\ \midrule
+			\makecell{Linear \\ \includegraphics[width=0.2\linewidth]{figs/linear_top.eps}  }        & $n_{peers} - 1$                   & $(n_{peers}-1)L$              \\ \midrule
 			\makecell{n-gon  \\ \includegraphics[width=0.2\linewidth]{figs/ngon_top.eps} }        & $n_{peers}+1$                 & $\lfloor n_{peers}/2 \rfloor L$ \\ \midrule
-			\makecell{Star  \\ \includegraphics[width=0.2\linewidth]{figs/star.eps} }         & $n_{peers}$ 	                & $\approx 2L$                           \\ \midrule
+			\makecell{Star  \\ \includegraphics[width=0.2\linewidth]{figs/star.eps} }         & $n_{peers} - 1$ 	                & $2L$                           \\ \midrule
 			\makecell{Fully Connected  \\ \includegraphics[width=0.2\linewidth]{figs/fullyconnected.eps} } & $n_{peers} * (n_{peers} - 1)$ & $L$                 \\ \bottomrule          
 			\end{tabular}
 			\end{table}
 			
-			The fact that using a star topology, ShareJS and the CRDT based system send the same number of packets into the network is a positive. Additionally, the \textit{average} time for the clients to receive a modification is lower than in ShareJS: the time to the center node is always $L$ rather than $2L$ which brings down the average time for change propagation. However, it would be useful to take advantage of more connectivity. A newer protocol designed for potentially high churn P2P systems such as Spray~\cite{nedelec2015spray}, would be ideal.
+			The fact that in a star topology, ShareJS and the CRDT based system send the same number of packets into the network is a positive. Additionally, the \textit{average} time for the clients to receive a modification is lower than in ShareJS: the time to the center node is always $L$ rather than $2L$ which brings down the average time for change propagation. However, it would be useful to take advantage of higher connectivity, perhaps using a newer protocol such as Spray~\cite{nedelec2015spray}.
 			
 			
 		\paragraph{CRDT System Variants}
-			As before, in some situations it may not be necessary to use vector clocks to ensure causal delivery. In those cases the basic implementation would work well, and undo functionality could be implemented as CCI Undo (as Immediate Undo must have vector clocks). Figure \ref{fig:sysvariationspackets} demonstrates the cost of using vector clocks once again: packet sizes are double the size versus the basic implementation. Note that ShareJS packets are shown in two variants: with extraneous meta data stripped out, and with it retained. The meta data allows extra functionality not relevant to this project so should be ignored. Thus ShareJS achieves better performance than any of the alternatives presented here.
+			As before, in some situations it may not be necessary to use vector clocks to ensure causal delivery. In those cases the basic implementation would work well, and undo functionality could be implemented as CCI Undo (as Immediate Undo must have vector clocks). Figure \ref{fig:sysvariationspackets} demonstrates the cost of using vector clocks once again: packet sizes are double the size versus the basic implementation. ShareJS achieves better performance than any of the CRDT variants.
 		
 			\begin{figure}[htb]
 				\centering
@@ -1272,16 +1273,16 @@ export interface MapEntry {
 			
 		
 		\paragraph{Summary}
-			This section showed that using a CRDT over a P2P network offers flexibility in terms of operation grouping or streaming that ShareJS does not. In addition, on equivalent topologies they send the same quantity of packets, though my system sends packets that are between 1.5 and 3.5 times as large. Lastly, though using a P2P network can halve the latency to disseminate operations to all peers, this either comes at the cost of a more complex network protocol or massively increased numbers of packets.
+			This section showed that using a CRDT over a P2P network offers flexibility in terms of operation grouping or streaming that ShareJS does not. In addition, on equivalent topologies they send the same quantity of packets, but my system sends packets that are between 1.5 and 3.5 times as large, reflecting the use of P2P networks more sophisticated data structures. Relatedly, using a P2P network can halve the latency to disseminate operations to all peers, but this either comes at the cost of a more complex network protocol or massively increased numbers of packets. However, ShareJS generally requires less network capacity and offers reasonable latencies to all clients.
 			
 		
 	
 		\subsection{CPU Time}
 			Knowing the relative simplicity of CRDT algorithms versus those of OT hints that processing time may be the real benefit of using CRDTs. Especially in scenarios where OT may have to transform incoming operations against a long history of concurrent ones; this issue does not arise with CRDTs, though the worst case scenarios can still be linear in the size of the CRDT.
 			
-			Unfortunately, web browsers are nonideal platforms for examining computation time. Additionally, nondeterministic latency between ShareJS clients and server could make results unreliable. To handle these issues, I chose to generate very large concurrent operations for both systems and use millisecond-precision timers to measure the time taken from operation arrival from the network until complete integration. Large workloads disguise the use of low precision timers, and allow a rough estimate of computation time. In these experiments, one client is a simple listener and does not generate operations. Other clients only generate operations. The times indicated in Figure \ref{fig:cputime} are the sum of processing times on generator nodes, server relay time (if applicable), and integration time on the listener.
+			Unfortunately, web browsers are nonideal platforms for examining computation time. Additionally, nondeterministic latency between ShareJS clients and server could make results unreliable. To handle these issues, I chose to generate very large concurrent operations for both systems and use millisecond-precision timers to measure the time taken from operation arrival from the network until complete integration. Large workloads disguise the use of low precision timers, and allow a rough estimate of actual CPU time. In these experiments, one client is a simple listener and receives operations generated concurrently on other nodes. The times indicated in Figure \ref{fig:cputime} are the sum of processing times on generator nodes, server relay time (if applicable), and integration time on the listener.
 			
-			As shown in the graph, ShareJS spends much longer generating and integrating changes than the CRDT based system does. In the basic experiment, the CRDT integrates changes 38 times faster, and at worst it is 3 time quicker. This data provides strong evidence that CRDTs scale much more favorably while in high concurrency situations.
+			As shown in the graph, ShareJS spends much longer generating and integrating changes than the CRDT based system does. In the basic experiment, the CRDT integrates changes 38 times faster, and at worst it is 3 time quicker. This data provides strong evidence that CRDTs fare much more favorably under highly concurrent loads.
 			
 			\begin{figure}[htb]
 				\centering
@@ -1308,18 +1309,18 @@ export interface MapEntry {
 
 \chapter{Conclusion}
 
-Realtime collaboration is more feasible than ever, with decades of development resulting in mature algorithms based on operational transformations, and a more recent surge in interest in CRDTs enabling faster and more efficient applications that conform to users' expectations. This dissertation has compared and contrasted both technologies via implementations of distributed text editors. I gathered evidence that the system I built around a specific CRDT is more efficient in highly concurrent and distributed workloads but needs more work to take advantage of its P2P nature, while ShareJS shows its strengths with very large documents and chunked operations but fares badly with many concurrent operations.
+Realtime collaboration is more feasible than ever, with decades of development resulting in mature algorithms based on operational transformations and recently developed CRDTs enabling faster and more efficient distributed applications that conform to users' expectations. This dissertation has compared and contrasted both technologies via implementations of distributed text editors. I gathered evidence that the system I built around a specific CRDT is more efficient in highly concurrent and distributed workloads but needs more work to take advantage of its P2P nature, while ShareJS shows its strengths with very large documents and chunked operations but fares badly under concurrent loads.
 
 \section{Achievements}
 
-I succeeded in meeting all the initial project goals: the final CRDT passed a set of correctness tests I defined, which in turn enabled correct operation of a distributed text editor running on top of a simulated network. To enable comparison, I built a system around the OT enabled ShareJS capable of executing identical experiments as my from-scratch editor. In~\cref{sec:quanteval} I presented analysis exploring various dimensions of both systems: Memory usage, network behavior and computation time across different scales of document sizes and levels of replication. 
+I succeeded in meeting all my initial project goals: the final CRDT passed a set of correctness tests I defined, which in turn enabled correct operation of a distributed text editor running on top of a simulated network. To enable comparison, I built a system around the OT enabled ShareJS capable of executing identical experiments as my from-scratch editor. In~\cref{sec:quanteval} I presented quantitative analysis exploring various dimensions of both systems: memory usage, network behavior and computation time, across different scales of document sizes and levels of replication. 
 
-In addition to the core goals, I also completed one extension which makes the CRDT much more useful for text editing. Two originally developed implementations of Undo and Redo capabilities were presented, each providing different semantics. The resulting data indicated that implementing the ``Immediate Undo'' semantics has a relatively high cost, but has the potential to for large savings over the OT approach to Undo and Redo used in ShareJS.
+In addition to the core goals, I completed one extension which makes the CRDT much more useful for text editing. Two originally developed implementations of Undo and Redo capabilities were presented, each providing different semantics. The resulting data indicated that implementing the ``Immediate Undo'' semantics has a relatively high cost, but also potential for large savings over the OT approach to Undo and Redo used in ShareJS.
 
-This project has from the outset been designed to facilitate replacement of the network simulation with a real P2P networking stack. Having this overall goal in mind led me to plan my implementation thoroughly and isolate functionality. The result is a pleasingly modular, extensible piece of engineering that I hope to build on in the future. Aside from the software development perspective, I gained much deeper insight into conflict free algorithms and data structures, reinforced much of the theoretical underpinnings we learn in our coursework with practical implementation, and discovered how much fun it could be to spend days reading scientific papers.
+This project has from the outset been designed to facilitate replacement of the network simulation with a real P2P networking stack. Having this overall goal in mind led me to plan my implementation thoroughly and isolate functionality. The result is a pleasingly modular, extensible piece of engineering that I hope to build on in the future. Aside from the software development perspective, I gained much deeper insight into conflict free algorithms and data structures, reinforced much of the theoretical underpinnings learned in coursework with practical implementation, and discovered how much fun it could be to spend days reading scientific papers.
 
 \section{Lessons Learned}
-The task of taking an idea and creating a fully fledged, useful implementation is incredibly satisfying. However, with the benefit of hindsight, there are a few adjustments I would make to the development process. I would spend more time focusing on the CRDT, rather than the networking aspect of the project, implementing further optimizations and capabilities. Additionally, getting the network simulation working correctly, with two different schedulers and a visualization may well have taken just as long as implementing a real network stack. I also underestimated the amount of time it would take to fix memory leaks and complete accurate, comparable evaluations of the systems.
+The task of taking an idea and creating a fully fledged, useful implementation is incredibly satisfying. However, with the benefit of hindsight, there are a few adjustments I would make to the development process. I would spend more time focusing on the CRDT, rather than the networking aspect of the project, implementing further optimizations and capabilities. Additionally, getting the network simulation and schedulers working correctly may well have taken just as long as implementing a real network stack and not been worthwhile. Lastly, having underestimated the amount of time it would take to fix memory leaks and complete accurate, comparable evaluations of the systems, I would start earlier on these steps.
 
 
 \section{Future Work} \label{sec:futurework}
@@ -1327,11 +1328,11 @@ The task of taking an idea and creating a fully fledged, useful implementation i
 Though I completed my initial project specification, there is further development that could be undertaken in relation to the work presented. In particular, these relate to optimizations applicable to the CRDT, the network simulation, and vector clocks.
 
 \begin{itemize}
-	\item{\textbf{CRDT Optimizations: } I have implemented word insertion at the network level. That is, rather than sending one character with an identifier per packet, sending one word with an identifier only for the first character. This could be extended to the CRDT itself: storing contiguous identifiers and words compactly, and splitting them on demand, could reduce the space complexity of the CRDT by many multiples. Other ideas include tombstone garbage collection using vector clocks.}
+	\item{\textbf{CRDT Optimizations: } I implemented word insertion at the network level. That is, rather than sending one character with an identifier per packet, sending one word with an identifier only for the first character. This could be extended to the CRDT itself: storing contiguous words compactly and splitting them on demand could reduce the space complexity of the CRDT by many multiples. Other ideas include tombstone garbage collection using vector clocks.}
 	
 	\item{\textbf{Probabilistic Broadcast: } As discussed previously, flooding is a relatively inefficient delivery mechanism in a P2P network. Instead, a probabilistic broadcast algorithm such as lpbcast combined with an anti-entropy protocol (\cite{eugster2003lightweight}) could be used, reducing the network load while taking advantage of the connectedness of a P2P network. Alternatively a more modern approach such as Spray~\cite{nedelec2015spray} could be used.}
 
-	\item{\textbf{Vector Clocks: } Using full vector clocks overly restricts concurrency as all potentially dependent operations are stalled, rather than only those with real causal requirements. This could be made more efficient by listing dependent operations, again resulting in a form of vector. However, more efficient representations have been developed such as~\cite{preguicca2010dotted}.}
+	\item{\textbf{Vector Clocks: } Using full vector clocks overly restricts concurrency as all potentially dependent operations are stalled, rather than only those with real causal requirements. This could be made more efficient by listing dependent operations, again resulting in a form of vector. However, more efficient representations have been developed such as dotted version vectors~\cite{preguicca2010dotted}.}
 
 \end{itemize}
 
@@ -1374,7 +1375,7 @@ The desired partial ordering can then be defined
 \section{Modified Vector Clock}
 \label{appendix:modifiedvector}
 
-The modified rule used in~\cref{sec:modifiedvectors} changed rule four from the previous section. For completeness, the full complete rules used are listed below.
+The modified rule used in~\cref{sec:modifiedvectors} changed rule four from the previous section. For completeness, the full modified rules used are listed below.
 
 \begin{enumerate}
 	\item All values are initially zero.
@@ -1397,9 +1398,9 @@ We only need to consider commutativity with other operations that may operate on
 						
 	\begin{proof}
 	
-		We treat delete and redo delete operations identically. Any non-concurrent modifications are not considered as the latest causally dependent operation is defined to take effect.
+	   	Treat delete and redo delete operations identically. Any non-concurrent modifications are not considered as the latest causally dependent operation is defined to take effect.
 		
-		Take a system which begins in quiescence, submits concurrent operations and returns to quiescence. There are three possible cases: delete-delete, delete and delete-undo, and undo-undo.
+		Take a system which begins in quiescence, submits concurrent operations and returns to quiescence. There are three possible conflicting cases: delete-delete, delete and delete-undo, and undo-undo.
 		
 		In the delete-delete scenario, the operations are idempotent: both set $node.d[0]$ to $true$ and $node.d[1]$ to the merged local and incoming vectors of the two operations. Thus on any client, the target node is no longer visible. The undo-undo case is exactly analogous except $node.d[0] = false$. 
 		

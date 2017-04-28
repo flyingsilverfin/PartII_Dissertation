@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  24 APR 2017 18:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  28 APR 2017 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -535,13 +535,13 @@ Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.9}).
 
 PGFPlots: reading {./ot_client_memory.dat_STATS.dat}
-PGFPlots: reading {./crdt_memory.dat_STATS.dat}
 PGFPlots: reading {./share_server_memory.dat_STATS.dat}
+PGFPlots: reading {./crdt_memory.dat_STATS.dat}
 PGFPlots: reading {./crdt_memory_undoredo.dat}
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 50.
+(Font)              <7> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 50.
+(Font)              <5> on input line 52.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -553,10 +553,10 @@ Here is how much of TeX's memory you used:
  20899 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,18n,94p,747b,2236s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,18n,94p,747b,2232s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr10.pfb>
-Output written on memory_sanity_check_plot.pdf (1 page, 23159 bytes).
+Output written on memory_sanity_check_plot.pdf (1 page, 22472 bytes).
 PDF statistics:
  15 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream
