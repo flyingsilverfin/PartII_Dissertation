@@ -1,13 +1,13 @@
 [0] Config.pm:318> INFO - This is Biber 1.8
 [0] Config.pm:321> INFO - Logfile is 'proposal.blg'
-[50] biber:275> INFO - === Wed Mar  8, 2017, 22:10:33
-[50] Biber.pm:333> INFO - Reading 'proposal.bcf'
-[100] Biber.pm:630> INFO - Found 5 citekeys in bib section 0
-[113] Biber.pm:3053> INFO - Processing section 0
-[126] Biber.pm:3190> INFO - Looking for bibtex format file 'proposal_bibliography.bib' for section 0
-[129] bibtex.pm:808> INFO - Found BibTeX data source 'proposal_bibliography.bib'
-[168] Biber.pm:2939> INFO - Overriding locale 'en_US.UTF-8' default tailoring 'variable = shifted' with 'variable = non-ignorable'
-[169] Biber.pm:2945> INFO - Sorting 'entry' list 'nty' keys
-[169] Biber.pm:2949> INFO - No sort tailoring available for locale 'en_US.UTF-8'
-[179] bbl.pm:482> INFO - Writing 'proposal.bbl' with encoding 'ascii'
-[181] bbl.pm:555> INFO - Output to proposal.bbl
+[59] biber:275> INFO - === Thu Apr 27, 2017, 10:55:07
+[59] Biber.pm:333> INFO - Reading 'proposal.bcf'
+[113] Biber.pm:630> INFO - Found 5 citekeys in bib section 0
+[128] Biber.pm:3053> INFO - Processing section 0
+[143] Biber.pm:3190> INFO - Looking for bibtex format file 'proposal_bibliography.bib' for section 0
+[144] bibtex.pm:808> INFO - Found BibTeX data source 'proposal_bibliography.bib'
+[186] Biber.pm:2939> INFO - Overriding locale 'en_US.UTF-8' default tailoring 'variable = shifted' with 'variable = non-ignorable'
+[186] Biber.pm:2945> INFO - Sorting 'entry' list 'nty' keys
+[186] Biber.pm:2949> INFO - No sort tailoring available for locale 'en_US.UTF-8'
+[197] bbl.pm:482> INFO - Writing 'proposal.bbl' with encoding 'ascii'
+[199] bbl.pm:555> INFO - Output to proposal.bbl

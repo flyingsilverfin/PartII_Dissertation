@@ -9,7 +9,7 @@
 
 
 \usepackage[UKenglish]{babel}% Recommended
-\usepackage[bibstyle=numeric,citestyle=numeric,backend=biber,natbib=true]{biblatex}	
+\usepackage[bibstyle=numeric,citestyle=numeric,backend=biber,natbib=true]{biblatex}
 
 %\addbibresource{proposal_bibliography.bib} 
 
@@ -59,7 +59,7 @@ such that the result converges~\cite{sun1998operational}. The server may also be
 Due to this, central server must be able to read all the operations being performed by clients.
 Thus, unless the server is trusted and secure, OT-based services cannot provide any security or privacy guarantees. 
 
-The alternative, newer technology uses Conflict Free Replicated Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual consistency by transforming operations against each other, CRDTs use special datastructures that guarantee that no operations will conflict~\cite{preguica2009commutative}. There are many types of CRDTs that are tailored for different situations. One example is a simple up-down counter which could be implemented as two locally replicated registers, one for increments and one for decrements, where the current state is their difference\cite{Shapiro2011}. Compared to OT, there is no interdependence between edits (as long as the network protocol can guarantee in-order delivery), which means CRDT-based systems can do away with the server and be implemented using peer to peer (P2P) protocols. This lends itself to security (encryption is now possible between endpoints),
+The alternative, newer technology uses Conflict Free Replicated Datatypes (CRDTs). Instead of resolving conflicts and guaranteeing eventual consistency by transforming operations against each other, CRDTs use special datastructures that guarantee that no operations will conflict~\cite{preguica2009}. There are many types of CRDTs that are tailored for different situations. One example is a simple up-down counter which could be implemented as two locally replicated registers, one for increments and one for decrements, where the current state is their difference\cite{shapiro2011}. Compared to OT, there is no interdependence between edits (as long as the network protocol can guarantee in-order delivery), which means CRDT-based systems can do away with the server and be implemented using peer to peer (P2P) protocols. This lends itself to security (encryption is now possible between endpoints),
 and possibly more scalability and efficiency.
 
 This project is first concerned with exploring and developing a P2P CRDT concurrent text editor, and secondly comparing it to the OT-based client/server approach available in the open source library ShareJS. Several extensions are also possible,
@@ -67,7 +67,7 @@ listed in later sections.
 
 \subsection*{Resources required}
 
-The primary external resource I will need is the Javascript library ShareJS, which is published under the MIT license on GitHub \cite{ShareJS}.
+The primary external resource I will need is the Javascript library ShareJS, which is published under the MIT license on GitHub \cite{sharejs}.
 
 Additionally, I am developing on my personal computer, a Thinkpad T440s with 8 GiB of RAM,
 128 GB of hard drive space, and a low wattage dual core Intel CPU running at 1.60GHz.

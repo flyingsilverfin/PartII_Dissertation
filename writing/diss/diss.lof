@@ -4,53 +4,53 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Concurrent updates to the same node. In the first state (left), client 1 has written the string `Cambride' into the text buffer. The systems settles and client 2 also sees the string `Cambride'. Both clients 1 and 2 realize there is a missing character -- client 1 inserts `g' and client 2 mistakenly inserts 'h'. As both create the same node in the tree, the nodes are merged as mini-nodes into a larger node. Both clients now see the string 'Cambridghe'.\relax }}{11}{figure.caption.9}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Concurrent Updates in Treedoc}}{13}{figure.caption.10}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Two clients are initially in a quiescent state i.e. the system has settled with the shared string `computer '. They then concurrently insert different words at the same index. At first each sees only their own edit. Then operations are exchanged and the system reaches quiescence again. Both clients see the string 'computer labvision'. Client 1 thus `won' and kept the original index, while Client 2 had its insertion offset.\relax }}{14}{figure.caption.10}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Achieving Conflict Free Text Editing}}{16}{figure.caption.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Operational Transformations -- concurrent insertion}}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Operational Transformations -- concurrent insertion}}{17}{figure.caption.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Operational Transformations -- concurrent deletion}}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Operational Transformations -- concurrent deletion}}{18}{figure.caption.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Operational Transformations -- concurrent insertion and deletion}}{16}{figure.caption.13}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Operational Transformations -- concurrent insertion and deletion}}{18}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Text CRDT as a tagged set}}{17}{figure.caption.14}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{24}{figure.caption.16}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{25}{figure.caption.18}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{25}{figure.caption.19}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Ensuring Causal Delivery}}{34}{figure.caption.32}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Dependency Graph in Message Buffer}}{35}{figure.caption.34}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{37}{figure.caption.37}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Text CRDT as a tagged set}}{19}{figure.caption.15}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{44}{figure.caption.49}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{26}{figure.caption.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Memory Consumption Sanity Check}}{46}{figure.caption.51}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{27}{figure.caption.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Single Client Memory Consumption}}{47}{figure.caption.53}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{27}{figure.caption.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Memory Consumption versus Replication}}{48}{figure.caption.55}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Ensuring Causal Delivery}}{36}{figure.caption.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Behavior of System Variants - Memory}}{49}{figure.caption.57}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Dependency Graph in Message Buffer}}{37}{figure.caption.35}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Client-Server Latency}}{50}{figure.caption.60}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{39}{figure.caption.38}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Server-Client Latencies}}{51}{figure.caption.61}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Behavior of System Variants - Packet Size}}{54}{figure.caption.69}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{46}{figure.caption.50}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.9}{\ignorespaces CPU Time}}{55}{figure.caption.71}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Memory Consumption Sanity Check}}{48}{figure.caption.52}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Single Client Memory Consumption}}{49}{figure.caption.54}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Memory Consumption versus Replication}}{50}{figure.caption.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Behavior of System Variants - Memory}}{51}{figure.caption.58}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Client-Server Latency}}{52}{figure.caption.61}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Server-Client Latencies}}{53}{figure.caption.62}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Behavior of System Variants - Packet Size}}{56}{figure.caption.70}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces CPU Time}}{57}{figure.caption.72}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
