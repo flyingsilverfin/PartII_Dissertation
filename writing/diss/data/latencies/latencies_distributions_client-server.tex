@@ -7,10 +7,12 @@
 \begin{axis}[
 	title= Client-Server Link Latency,
 	xlabel={Latency (ms)},
-	ylabel={Proportion of occurrences},
-	xmin=0, xmax=100,
+	ylabel={\% of occurrences},
+	xmin=0, xmax=60,
 	enlargelimits=false,
 	scale= 1.3,
+	yticklabel={\pgfmathparse{\tick*100}\pgfmathprintnumber{\pgfmathresult}\%},
+	legend style={at={(0.18,0.8)},anchor=west},
 	]
 
 \addplot+[blue] table[x index=0, y index =1] {./client_server_latencies.dat_HIST.dat};
