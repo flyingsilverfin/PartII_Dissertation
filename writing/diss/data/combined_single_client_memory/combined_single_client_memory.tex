@@ -4,8 +4,16 @@
 \pgfplotsset{compat=newest}
 
 
-\definecolor{darkergreen}{RGB}{51, 204, 51}
+%\definecolor{darkergreen}{RGB}{51, 204, 51}
 
+\definecolor{c1}{RGB}{27,158,119}
+\definecolor{c2}{RGB}{217,95,2}
+\definecolor{c3}{RGB}{117,112,179}
+\definecolor{c4}{RGB}{231,41,138}
+\definecolor{c5}{RGB}{102,166,30}
+\definecolor{c6}{RGB}{230,171,2}
+  
+  
 \begin{document}
 \begin{tikzpicture}
 \begin{axis}[
@@ -28,11 +36,11 @@
 	legend style={font=\small}
 	]
 
-\addplot+ [mark=square*]
+\addplot+ [mark=square*, c3, mark options={c3}]
  table[x index=1, y index = 2, y error index= 4] {./character/ot_client_memory.dat_STATS.dat};
  \addlegendentry{ShareJS Client (Character Insert)}
 
-\addplot+ [mark=square*]
+\addplot+ [mark=square*, c1, mark options={c1}]
  table[x index=1, y index = 2, y error index= 4] {./character/crdt_memory.dat_STATS.dat};
  \addlegendentry{CRDT Client (Character Insert)}
  
@@ -43,11 +51,11 @@
   
   
  % now the word by word insertions, x axis scaled *8 since average word length is ~8
-\addplot+ [dashed, darkergreen, mark=triangle*,mark options={darkergreen}]
+\addplot+ [dashed, c4, mark=triangle*,mark options={c4}]
   table[x expr=\thisrow{xaxis}*7.8, y index = 2, y error index= 4] {./word/ot_client_memory.dat_STATS.dat};
   \addlegendentry{ShareJS Client (Word Insert)}
 
-\addplot+ [dashed, orange, mark=triangle*,mark options={orange}]
+\addplot+ [dashed, c6, mark=triangle*,mark options={c6}]
   table[x expr=\thisrow{xaxis}*7.8, y index = 2, y error index= 4] {./word/crdt_memory.dat_STATS.dat};
   \addlegendentry{CRDT Client (Word Insert)}
 

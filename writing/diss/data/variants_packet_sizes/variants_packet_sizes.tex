@@ -1,15 +1,23 @@
 \documentclass{standalone}
 \usepackage{pgfplots}
 
-\pgfplotsset{compat=newest}
-\definecolor{darkergreen}{RGB}{51, 184, 51}
+%\pgfplotsset{compat=newest}
+%\definecolor{darkergreen}{RGB}{51, 184, 51}
 
-\definecolor{darkerblue}{RGB}{20, 20, 200}
+%\definecolor{darkerblue}{RGB}{20, 20, 200}
 
-\definecolor{darkerred}{RGB} {180, 10, 10}
+%\definecolor{darkerred}{RGB} {180, 10, 10}
 
-\definecolor{lightergreen}{RGB}{10, 225, 10}
-\definecolor{darkergreen}{RGB}{51, 154, 51}
+%\definecolor{lightergreen}{RGB}{10, 225, 10}
+%\definecolor{darkergreen}{RGB}{51, 154, 51}
+
+\definecolor{c1}{RGB}{118,42,131}
+\definecolor{c1l}{RGB}{238,142,211}
+\definecolor{c2}{RGB}{227,26,28}	%edited
+\definecolor{c2l}{RGB}{245,141,133}
+\definecolor{c6}{RGB}{27,120,55}
+\definecolor{c6l}{RGB}{137,210,135}
+
 
 \begin{document}
 \begin{tikzpicture}
@@ -32,32 +40,32 @@
 	scale=1.5,
 	]
 
-\addplot+
+\addplot+ [fill=c6, fill opacity=0.5, c6]
  	plot[error bars/.cd, y dir = both, y explicit]
    	table[x index=0, y index = 1, y error index= 2] {./packet_sizes.dat};
    	\addlegendentry{No Undo CRDT - Insert}
    	
-\addplot+ [fill=darkerblue, fill opacity=0.5, darkerblue]
+\addplot+ [fill=c6l, fill opacity=0.5, c6l]
 	plot[error bars/.cd, y dir = both, y explicit]
 	table[x index=0, y index = 3, y error index= 4] {./packet_sizes.dat};
 	\addlegendentry{No Undo CRDT - Delete}
 	
-\addplot+ [fill=red, fill opacity=0.3, red]
+\addplot+ [fill=c2, fill opacity=0.5, c2]
 	plot[error bars/.cd, y dir = both, y explicit]
 	table[x index=0, y index = 5, y error index= 6] {./packet_sizes.dat};
 	\addlegendentry{Undo CRDT - Insert}
 	
-\addplot+ [fill=darkerred, fill opacity=0.5, darkerred]
+\addplot+ [fill=c2l, fill opacity=0.5, c2l]
 	plot[error bars/.cd, y dir = both, y explicit]
 	table[x index=0, y index = 7, y error index= 8] {./packet_sizes.dat};
 	\addlegendentry{Undo CRDT - Delete}
 	
-\addplot+ [fill=lightergreen, fill opacity=0.4, lightergreen]
+\addplot+ [fill=c1, fill opacity=0.5, c1] 
 	plot[error bars/.cd, y dir = both, y explicit]
 	table[x index=0, y index = 9, y error index= 10] {./packet_sizes.dat};
 	\addlegendentry{ShareJS - With Meta}
 	
-\addplot+ [fill=darkergreen, fill opacity=0.5, darkergreen]
+\addplot+ [fill=c1l, fill opacity=0.5, c1l]
 	plot[error bars/.cd, y dir = both, y explicit]
 	table[x index=0, y index = 11, y error index= 12] {./packet_sizes.dat};
 	\addlegendentry{ShareJS - Without Meta}

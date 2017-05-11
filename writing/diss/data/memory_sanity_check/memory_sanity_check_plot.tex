@@ -3,6 +3,12 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
+\definecolor{c1}{RGB}{27,158,119}
+\definecolor{c2}{RGB}{217,95,2}
+\definecolor{c3}{RGB}{117,112,179}
+\definecolor{c4}{RGB}{231,41,138}
+\definecolor{c5}{RGB}{102,166,30}
+\definecolor{c6}{RGB}{230,171,2}
 
 \definecolor{darkergreen}{RGB}{51, 184, 51}
 
@@ -27,24 +33,24 @@
 	legend cell align=left,
 	]
 
-\addplot+ 
+\addplot+ [c3, mark options={c3}]
  plot[error bars/.cd, y dir = both, y explicit]
  table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
  \addlegendentry{ShareJS Client}
 
-\addplot+
+\addplot+ [c4, mark options={c4}]
   plot[error bars/.cd, y dir = both, y explicit]
   table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
   \addlegendentry{ShareJS Server}
   
-\addplot+ [mark=triangle*]
+\addplot+ [ c1, mark options={c1}, mark=triangle*]
  plot[error bars/.cd, y dir = both, y explicit]
  table[x index=1, y index = 2, y error index= 4] {./crdt_memory.dat_STATS.dat};
  \addlegendentry{CRDT using Insert/Delete}
  
 
   
-\addplot+ [darkergreen, mark = square*]
+\addplot+ [c6, mark options={c6}, mark = square*]
   plot[error bars/.cd, y dir = both, y explicit]
   table[x index=1, y index = 2, y error index= 4] {./crdt_memory_undoredo.dat};
   \addlegendentry{CRDT using Undo/Redo}

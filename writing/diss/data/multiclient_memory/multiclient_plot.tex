@@ -2,7 +2,13 @@
 \usepackage{pgfplots}
 
 \pgfplotsset{compat=newest}
-\definecolor{darkergreen}{RGB}{51, 154, 51}
+\definecolor{c1}{RGB}{27,158,119}
+\definecolor{c2}{RGB}{217,95,2}
+\definecolor{c3}{RGB}{117,112,179}
+\definecolor{c4}{RGB}{231,41,138}
+\definecolor{c5}{RGB}{102,166,30}
+\definecolor{c6}{RGB}{230,171,2}
+
 
 % https://tex.stackexchange.com/questions/13627/pgfplots-multiple-shifted-stacked-plots-in-one-diagram
 \makeatletter
@@ -39,7 +45,7 @@
  
 
 
-\addplot+ [bar shift=-0.3cm]
+\addplot+ [bar shift=-0.3cm, fill=c1, fill opacity=0.5, c1]
  plot[error bars/.cd, y dir = both, y explicit]
 table[x index=1, y index = 2, y error index= 4] {./crdt_memory.dat_STATS.dat};
  \addlegendentry{Aggregate CRDT Clients}
@@ -47,15 +53,15 @@ table[x index=1, y index = 2, y error index= 4] {./crdt_memory.dat_STATS.dat};
   
 \resetstackedplots
   
- \addplot+ [bar shift=0.3cm]
-   plot[error bars/.cd, y dir = both, y explicit]
-   table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
-   \addlegendentry{ShareJS Server}
-   
- \addplot+ [bar shift=0.3cm, fill=darkergreen, fill opacity=0.5, darkergreen]
-  plot[error bars/.cd, y dir = both, y explicit]
-  table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
-  \addlegendentry{Aggregate ShareJS Clients}
+   \addplot+ [bar shift=0.3cm, fill=c3, fill opacity=0.5, c3]
+     plot[error bars/.cd, y dir = both, y explicit]
+     table[x index=1, y index = 2, y error index= 4] {./share_server_memory.dat_STATS.dat};
+     \addlegendentry{ShareJS Server}
+     
+   \addplot+ [bar shift=0.3cm, fill=c4, fill opacity=0.5, c4]
+    plot[error bars/.cd, y dir = both, y explicit]
+    table[x index=1, y index = 2, y error index= 4] {./ot_client_memory.dat_STATS.dat};
+    \addlegendentry{Aggregate ShareJS Clients}
  
 
 \end{axis}

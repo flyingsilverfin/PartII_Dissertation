@@ -4,6 +4,13 @@
 \pgfplotsset{compat=newest}
 \definecolor{darkergreen}{RGB}{51, 154, 51}
 
+\definecolor{c1}{RGB}{27,158,119}
+\definecolor{c2}{RGB}{217,95,2}
+\definecolor{c3}{RGB}{117,112,179}
+\definecolor{c4}{RGB}{231,41,138}
+\definecolor{c5}{RGB}{102,166,30}
+\definecolor{c6}{RGB}{230,171,2}
+  
 
 
 \begin{document}
@@ -22,17 +29,17 @@
     ytick={exp7,exp6, exp4,exp9,exp5},
     yticklabels={{Replication x2, Ops x4}, {Replication x2, Ops x2}, {Ops x6}, {Ops x4},{Basic Experiment}},
     height=4in,
-    legend style={at={(.34, 0.35)},anchor=west},
+    legend style={at={(.34, 0.85)},anchor=west},
     reverse legend,
     ]
 
-\addplot+ [xbar]
+\addplot+ [xbar, fill=c1, fill opacity=0.5, c1]
   plot[error bars/.cd, x dir = both, x explicit]
   table[y index=0, x index = 1, x error index= 2]
  	{./crdt_exp_9.dat};
   \addlegendentry{Aggregate CRDT Computation Time}
  	
-\addplot+ [xbar, fill=darkergreen, fill opacity=0.5, darkergreen]
+\addplot+ [xbar, fill=c3, fill opacity=0.5, c3]
  plot[error bars/.cd, x dir = both, x explicit]
  table[y index=0, x index = 1, x error index= 2]
 	 {./sharejs_exp_9.dat};

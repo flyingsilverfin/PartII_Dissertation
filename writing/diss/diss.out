@@ -1,61 +1,60 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{Overview}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.3}{Related Work}{chapter.1}% 4
-\BOOKMARK [2][-]{subsection.1.3.1}{RGA}{section.1.3}% 5
-\BOOKMARK [2][-]{subsection.1.3.2}{Treedoc}{section.1.3}% 6
-\BOOKMARK [2][-]{subsection.1.3.3}{Logoot}{section.1.3}% 7
-\BOOKMARK [2][-]{subsection.1.3.4}{Logoot-Undo}{section.1.3}% 8
-\BOOKMARK [0][-]{chapter.2}{Preparation}{}% 9
-\BOOKMARK [1][-]{section.2.1}{Consistency Models}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.1.1}{Definition of ``Conflict Free''}{section.2.1}% 11
-\BOOKMARK [2][-]{subsection.2.1.2}{CCI Consistency Model}{section.2.1}% 12
-\BOOKMARK [1][-]{section.2.2}{Achieving Eventual Consistency}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.2.1}{Operational Transformations}{section.2.2}% 14
-\BOOKMARK [2][-]{subsection.2.2.2}{Convergent Replicated Data Types}{section.2.2}% 15
-\BOOKMARK [2][-]{subsection.2.2.3}{ShareJS}{section.2.2}% 16
-\BOOKMARK [1][-]{section.2.3}{Starting Point}{chapter.2}% 17
-\BOOKMARK [1][-]{section.2.4}{Requirements Analysis}{chapter.2}% 18
-\BOOKMARK [1][-]{section.2.5}{Software Engineering}{chapter.2}% 19
-\BOOKMARK [2][-]{subsection.2.5.1}{Libraries}{section.2.5}% 20
-\BOOKMARK [2][-]{subsection.2.5.2}{Languages and Tooling}{section.2.5}% 21
-\BOOKMARK [2][-]{subsection.2.5.3}{Backup Strategy and Development Machine}{section.2.5}% 22
-\BOOKMARK [1][-]{section.2.6}{Early Design Decisions}{chapter.2}% 23
-\BOOKMARK [2][-]{subsection.2.6.1}{Network Simulation}{section.2.6}% 24
-\BOOKMARK [2][-]{subsection.2.6.2}{Data Collection and Logging}{section.2.6}% 25
-\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 26
-\BOOKMARK [1][-]{section.3.1}{CRDT-based system}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 28
-\BOOKMARK [2][-]{subsection.3.1.2}{CRDT}{section.3.1}% 29
-\BOOKMARK [2][-]{subsection.3.1.3}{Tombstones}{section.3.1}% 30
-\BOOKMARK [2][-]{subsection.3.1.4}{Optimizations}{section.3.1}% 31
-\BOOKMARK [2][-]{subsection.3.1.5}{Network simulation}{section.3.1}% 32
-\BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 33
-\BOOKMARK [1][-]{section.3.3}{Experiment Creation and Use}{chapter.3}% 34
-\BOOKMARK [2][-]{subsection.3.3.1}{Work Flow}{section.3.3}% 35
-\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 36
-\BOOKMARK [2][-]{subsection.3.3.3}{Separation of Concerns}{section.3.3}% 37
-\BOOKMARK [1][-]{section.3.4}{Extension: Local Undo}{chapter.3}% 38
-\BOOKMARK [2][-]{subsection.3.4.1}{Overview}{section.3.4}% 39
-\BOOKMARK [2][-]{subsection.3.4.2}{Insert}{section.3.4}% 40
-\BOOKMARK [2][-]{subsection.3.4.3}{Delete}{section.3.4}% 41
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 42
-\BOOKMARK [1][-]{section.4.1}{Overall Results}{chapter.4}% 43
-\BOOKMARK [1][-]{section.4.2}{Testing the CRDT}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.3}{Quantitative Analysis}{chapter.4}% 45
-\BOOKMARK [2][-]{subsection.4.3.1}{Memory}{section.4.3}% 46
-\BOOKMARK [2][-]{subsection.4.3.2}{Network}{section.4.3}% 47
-\BOOKMARK [2][-]{subsection.4.3.3}{CPU Time}{section.4.3}% 48
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 49
-\BOOKMARK [1][-]{section.5.1}{Achievements}{chapter.5}% 50
-\BOOKMARK [1][-]{section.5.2}{Lessons Learned}{chapter.5}% 51
-\BOOKMARK [1][-]{section.5.3}{Future Work}{chapter.5}% 52
-\BOOKMARK [0][-]{section.5.3}{Bibliography}{}% 53
-\BOOKMARK [0][-]{appendix.A}{Vector Clocks}{}% 54
-\BOOKMARK [1][-]{section.A.1}{Formal Definition}{appendix.A}% 55
-\BOOKMARK [1][-]{section.A.2}{Modified Vector Clock}{appendix.A}% 56
-\BOOKMARK [0][-]{appendix.B}{Convergence of Immediate Undo Variant}{}% 57
-\BOOKMARK [1][-]{section.B.1}{Proof of Commutativity}{appendix.B}% 58
-\BOOKMARK [0][-]{appendix.C}{Simple Experiment}{}% 59
-\BOOKMARK [1][-]{section.C.1}{Summary of Logs of Simple Experiment}{appendix.C}% 60
-\BOOKMARK [0][-]{appendix.D}{Project Proposal}{}% 61
+\BOOKMARK [0][-]{chapter.2}{Preparation}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Consistency Models}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.1.1}{Definition of ``Conflict Free''}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.2}{CCI Consistency Model}{section.2.1}% 7
+\BOOKMARK [1][-]{section.2.2}{Achieving Eventual Consistency}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.1}{Operational Transformations}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.2}{ShareJS}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.3}{Convergent Replicated Data Types}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.4}{CRDTs for Text Editing}{section.2.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Starting Point}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.4}{Requirements Analysis}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.5}{Software Engineering}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.5.1}{Libraries}{section.2.5}% 16
+\BOOKMARK [2][-]{subsection.2.5.2}{Languages and Tooling}{section.2.5}% 17
+\BOOKMARK [2][-]{subsection.2.5.3}{Backup Strategy and Development Machine}{section.2.5}% 18
+\BOOKMARK [1][-]{section.2.6}{Early Design Decisions}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.6.1}{Network Simulation}{section.2.6}% 20
+\BOOKMARK [2][-]{subsection.2.6.2}{Data Collection and Logging}{section.2.6}% 21
+\BOOKMARK [0][-]{chapter.3}{Implementation}{}% 22
+\BOOKMARK [1][-]{section.3.1}{CRDT-based system}{chapter.3}% 23
+\BOOKMARK [2][-]{subsection.3.1.1}{Overview}{section.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.1.2}{CRDT}{section.3.1}% 25
+\BOOKMARK [2][-]{subsection.3.1.3}{Simulated Network}{section.3.1}% 26
+\BOOKMARK [2][-]{subsection.3.1.4}{Simulation}{section.3.1}% 27
+\BOOKMARK [1][-]{section.3.2}{ShareJS Comparative Environment}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.2.1}{Scheduling}{section.3.2}% 29
+\BOOKMARK [2][-]{subsection.3.2.2}{Logging}{section.3.2}% 30
+\BOOKMARK [1][-]{section.3.3}{Experiment Creation and Use}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.1}{Work Flow}{section.3.3}% 32
+\BOOKMARK [2][-]{subsection.3.3.2}{Experiment Design}{section.3.3}% 33
+\BOOKMARK [2][-]{subsection.3.3.3}{Separation of Modeling and Analysis}{section.3.3}% 34
+\BOOKMARK [1][-]{section.3.4}{Extension: Local Undo}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.4.1}{Overview}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.2}{Undo and Redo of Insertions}{section.3.4}% 37
+\BOOKMARK [2][-]{subsection.3.4.3}{Undo and Redo of Deletions}{section.3.4}% 38
+\BOOKMARK [1][-]{section.3.5}{Summary of Implementation}{chapter.3}% 39
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 40
+\BOOKMARK [1][-]{section.4.1}{Overall Results}{chapter.4}% 41
+\BOOKMARK [1][-]{section.4.2}{Testing the CRDT}{chapter.4}% 42
+\BOOKMARK [1][-]{section.4.3}{Quantitative Analysis}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.3.1}{Memory}{section.4.3}% 44
+\BOOKMARK [2][-]{subsection.4.3.2}{Network}{section.4.3}% 45
+\BOOKMARK [2][-]{subsection.4.3.3}{CPU Time}{section.4.3}% 46
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 47
+\BOOKMARK [1][-]{section.5.1}{Achievements}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.2}{Lessons Learned}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.3}{Limitations and Future Work}{chapter.5}% 50
+\BOOKMARK [0][-]{section.5.3}{Bibliography}{}% 51
+\BOOKMARK [0][-]{appendix.A}{Vector Clocks}{}% 52
+\BOOKMARK [1][-]{section.A.1}{Formal Definition}{appendix.A}% 53
+\BOOKMARK [1][-]{section.A.2}{Modified Vector Clock}{appendix.A}% 54
+\BOOKMARK [0][-]{appendix.B}{Convergence of Immediate Undo Variant}{}% 55
+\BOOKMARK [1][-]{section.B.1}{Proof of Commutativity}{appendix.B}% 56
+\BOOKMARK [0][-]{appendix.C}{Simple Experiment Experimental Setup and Results}{}% 57
+\BOOKMARK [1][-]{section.C.1}{Experiment Setup}{appendix.C}% 58
+\BOOKMARK [1][-]{section.C.2}{Summary of Results of Simple Experiment}{appendix.C}% 59
+\BOOKMARK [0][-]{appendix.D}{Project Proposal}{}% 60

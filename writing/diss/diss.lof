@@ -4,53 +4,53 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Concurrent Updates in Treedoc}}{16}{figure.caption.10}
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Achieving Conflict Free Text Editing}}{16}{figure.caption.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Operational Transformations --- concurrent insertion}}{17}{figure.caption.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Operational Transformations --- concurrent deletion}}{17}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Operational Transformations --- concurrent insertion and deletion}}{18}{figure.caption.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Text CRDT as a tagged set}}{20}{figure.caption.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Concurrent Updates in Treedoc}}{21}{figure.caption.17}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Achieving Conflict Free Text Editing}}{18}{figure.caption.11}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{28}{figure.caption.21}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Operational Transformations -- concurrent insertion}}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{29}{figure.caption.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Operational Transformations -- concurrent deletion}}{20}{figure.caption.13}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{29}{figure.caption.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Operational Transformations -- concurrent insertion and deletion}}{20}{figure.caption.14}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Convergence using Total Order}}{31}{figure.caption.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Text CRDT as a tagged set}}{21}{figure.caption.15}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Ensuring Causal Delivery}}{37}{figure.caption.36}
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces System Architecture}}{28}{figure.caption.17}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Updating linked lists}}{29}{figure.caption.19}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Annotated CRDT}}{29}{figure.caption.20}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Ensuring Causal Delivery}}{38}{figure.caption.33}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Dependency Graph in Message Buffer}}{39}{figure.caption.35}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{41}{figure.caption.38}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow}}{40}{figure.caption.40}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{48}{figure.caption.50}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Unit tests for CRDT}}{48}{figure.caption.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Memory Consumption Sanity Check}}{50}{figure.caption.52}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Memory Consumption Sanity Check}}{50}{figure.caption.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Single Client Memory Consumption}}{51}{figure.caption.54}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Single Client Memory Consumption}}{51}{figure.caption.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Memory Consumption versus Replication}}{52}{figure.caption.56}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Memory Consumption versus Replication}}{52}{figure.caption.58}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Behavior of System Variants - Memory}}{53}{figure.caption.58}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Behavior of System Variants - Memory}}{53}{figure.caption.60}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Client-Server Latency}}{54}{figure.caption.61}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Client-Server Latency}}{54}{figure.caption.63}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Server-Client Latencies}}{55}{figure.caption.62}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Server-Client Latencies}}{55}{figure.caption.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Behavior of System Variants - Packet Size}}{59}{figure.caption.70}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Behavior of System Variants - Packet Size}}{59}{figure.caption.72}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.9}{\ignorespaces CPU Time}}{60}{figure.caption.72}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces CPU Time}}{60}{figure.caption.74}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

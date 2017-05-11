@@ -19,12 +19,39 @@
 
 \refsection{0}
   \sortlist{entry}{nty}
-    \entry{Technion}{article}{}
+    \entry{ahmed2011evaluating}{inproceedings}{}
+      \name{labelname}{5}{}{%
+        {{hash=4f2e7962719bd983fad55122c812334f}{Ahmed-Nacer}{A\bibinithyphendelim N\bibinitperiod}{Mehdi}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+        {{hash=b8aa17d0442b713d215a9d6fbac6f7ad}{Oster}{O\bibinitperiod}{G{\'e}rald}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=72a55783d8bb93a1fabdffd8c82b7b20}{Roh}{R\bibinitperiod}{Hyun-Gul}{H\bibinithyphendelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{5}{}{%
+        {{hash=4f2e7962719bd983fad55122c812334f}{Ahmed-Nacer}{A\bibinithyphendelim N\bibinitperiod}{Mehdi}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+        {{hash=b8aa17d0442b713d215a9d6fbac6f7ad}{Oster}{O\bibinitperiod}{G{\'e}rald}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=72a55783d8bb93a1fabdffd8c82b7b20}{Roh}{R\bibinitperiod}{Hyun-Gul}{H\bibinithyphendelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{cf689e64abfd41a9a54fcb74108516ed}
+      \strng{fullhash}{9ef09cffbcbc28c4e876b04aa81dde41}
+      \field{sortinit}{A}
+      \field{labeltitle}{Evaluating crdts for real-time document editing}
+      \field{booktitle}{Proceedings of the 11th ACM symposium on Document engineering}
+      \field{title}{Evaluating crdts for real-time document editing}
+      \field{year}{2011}
+      \field{pages}{103\bibrangedash 112}
+    \endentry
+    \entry{Technion}{inproceedings}{}
       \name{labelname}{6}{}{%
         {{hash=5091941a46cda12c54d008b88885c1fc}{Attiya}{A\bibinitperiod}{Hagit}{H\bibinitperiod}{}{}{}{}}%
         {{hash=712c7950a80e789733554d845d4a1056}{Burckhardt}{B\bibinitperiod}{Sebastian}{S\bibinitperiod}{}{}{}{}}%
         {{hash=43b6ef103d831c5c4e2506ebd3aad931}{Gotsman}{G\bibinitperiod}{Alexey}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=1df9b05f8dfd6005b39faf88e9b27e90}{Morrison\bibnamedelima Technion}{M\bibinitperiod\bibinitdelim T\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=3959b4901b01ec379cdb6e26d406f37d}{Morrison}{M\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
         {{hash=f54dd89dfae376ce30704e5a2ea3b4b1}{Yang}{Y\bibinitperiod}{Hongseok}{H\bibinitperiod}{}{}{}{}}%
         {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
       }
@@ -32,26 +59,21 @@
         {{hash=5091941a46cda12c54d008b88885c1fc}{Attiya}{A\bibinitperiod}{Hagit}{H\bibinitperiod}{}{}{}{}}%
         {{hash=712c7950a80e789733554d845d4a1056}{Burckhardt}{B\bibinitperiod}{Sebastian}{S\bibinitperiod}{}{}{}{}}%
         {{hash=43b6ef103d831c5c4e2506ebd3aad931}{Gotsman}{G\bibinitperiod}{Alexey}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=1df9b05f8dfd6005b39faf88e9b27e90}{Morrison\bibnamedelima Technion}{M\bibinitperiod\bibinitdelim T\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=3959b4901b01ec379cdb6e26d406f37d}{Morrison}{M\bibinitperiod}{Adam}{A\bibinitperiod}{}{}{}{}}%
         {{hash=f54dd89dfae376ce30704e5a2ea3b4b1}{Yang}{Y\bibinitperiod}{Hongseok}{H\bibinitperiod}{}{}{}{}}%
         {{hash=d091ed4cb7e2ab01f03d04bfcd52f83f}{Zawirski}{Z\bibinitperiod}{Marek}{M\bibinitperiod}{}{}{}{}}%
       }
+      \list{organization}{1}{%
+        {ACM}%
+      }
       \strng{namehash}{3b887d8001c224a4c0d694ba3cfa83b6}
-      \strng{fullhash}{56f18120363baa803281d66773bd60fa}
+      \strng{fullhash}{cca561327e89c657b0b2cf6ce1db3f62}
       \field{sortinit}{A}
-      \field{labeltitle}{{Specification and Complexity of Collaborative Text Editing}}
-      \field{abstract}{Collaborative text editing systems allow users to concurrently edit a shared document, inserting and deleting elements (e.g., characters or lines). There are a number of protocols for collaborative text editing, but so far there has been no precise specification of their desired behavior, and several of these protocols have been shown not to satisfy even basic expectations. This paper provides a precise specification of a replicated list object, which models the core functionality of replicated systems for collaborative text editing. We define a strong list specification, which we prove is implemented by an existing protocol, as well as a weak list specification, which admits additional protocol behaviors. A major factor determining the efficiency and practical feasibility of a collaborative text editing protocol is the space overhead of the metadata that the protocol must maintain to ensure correctness. We show that for a large class of list protocols, implementing either the strong or the weak list specification requires a metadata overhead that is at least linear in the number of elements deleted from the list. The class of protocols to which this lower bound applies includes all list protocols that we are aware of, and we show that one of these protocols almost matches the bound.}
-      \field{isbn}{9781450339643}
-      \field{number}{Section 3}
-      \field{title}{{Specification and Complexity of Collaborative Text Editing}}
-      \field{volume}{1}
-      \verb{doi}
-      \verb 10.1145/2933057.2933090
-      \endverb
-      \verb{file}
-      \verb :media/data/Uni/Year3/dissertation/research/Papers/Specification and Complexity of Collaborative Text Editing.pdf:pdf
-      \endverb
-      \keyw{collaborative text editing,eventual consistency}
+      \field{labeltitle}{Specification and complexity of collaborative text editing}
+      \field{booktitle}{Proceedings of the 2016 ACM Symposium on Principles of Distributed Computing}
+      \field{title}{Specification and complexity of collaborative text editing}
+      \field{year}{2016}
+      \field{pages}{259\bibrangedash 268}
     \endentry
     \entry{bochkarev2012average}{article}{}
       \name{labelname}{3}{}{%
@@ -68,9 +90,30 @@
       \strng{fullhash}{e4cca8f8a56e5a26332b68ea79dc69f9}
       \field{sortinit}{B}
       \field{labeltitle}{Average word length dynamics as indicator of cultural changes in society}
-      \field{journaltitle}{CoRR, abs/1208.6109}
+      \field{journaltitle}{CoRR}
       \field{title}{Average word length dynamics as indicator of cultural changes in society}
       \field{year}{2012}
+    \endentry
+    \entry{dang2016performance}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=31e66f1a81e998ed2b67335da3fb6f70}{Dang}{D\bibinitperiod}{Quang-Vinh}{Q\bibinithyphendelim V\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=31e66f1a81e998ed2b67335da3fb6f70}{Dang}{D\bibinitperiod}{Quang-Vinh}{Q\bibinithyphendelim V\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{28550bcb005e4c9b98a6ef16b8906361}
+      \strng{fullhash}{28550bcb005e4c9b98a6ef16b8906361}
+      \field{sortinit}{D}
+      \field{labeltitle}{Performance of real-time collaborative editors at large scale: User perspective}
+      \field{booktitle}{IFIP Networking Conference (IFIP Networking) and Workshops, 2016}
+      \field{title}{Performance of real-time collaborative editors at large scale: User perspective}
+      \field{year}{2016}
+      \field{pages}{548\bibrangedash 553}
     \endentry
     \entry{RFC2460}{report}{}
       \name{labelname}{2}{}{%
@@ -81,20 +124,13 @@
         {{hash=bf91c7bc263e6f01f0f753a0c489f976}{Deering}{D\bibinitperiod}{Stephen\bibnamedelima E.}{S\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
         {{hash=879207f498d898e1338868e606b766e0}{Hinden}{H\bibinitperiod}{Robert\bibnamedelima M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
       }
-      \list{institution}{1}{%
-        {RFC Editor}%
-      }
-      \list{publisher}{1}{%
-        {RFC Editor}%
-      }
       \strng{namehash}{69c6b966ef626c15868fe7563b6f5175}
       \strng{fullhash}{69c6b966ef626c15868fe7563b6f5175}
       \field{sortinit}{D}
       \field{labeltitle}{Internet Protocol, Version 6 (IPv6) Specification}
       \field{howpublished}{Internet Requests for Comments}
-      \field{issn}{2070-1721}
       \field{month}{12}
-      \field{note}{\url{http://www.rfc-editor.org/rfc/rfc2460.txt}}
+      \field{note}{Accessed: 2017-04-01}
       \field{number}{2460}
       \field{title}{Internet Protocol, Version 6 (IPv6) Specification}
       \field{type}{RFC}
@@ -114,6 +150,7 @@
       \strng{fullhash}{e2b7f853cd1184ee44401e852e13fbaa}
       \field{sortinit}{D}
       \field{labeltitle}{Computer Networking}
+      \field{note}{Accessed: 2017-04-01}
       \field{title}{Computer Networking}
       \field{year}{2016}
       \verb{url}
@@ -131,6 +168,7 @@
       \strng{fullhash}{4e0b3033f43afd33c4603d89542bba74}
       \field{sortinit}{D}
       \field{labeltitle}{Computer Systems Modeling}
+      \field{note}{Accessed: 2017-04-01}
       \field{title}{Computer Systems Modeling}
       \field{year}{2017}
       \verb{url}
@@ -168,9 +206,6 @@
         {{hash=9b9299c37ae8a9e21a292b5dacb7e614}{Kouznetsov}{K\bibinitperiod}{Petr}{P\bibinitperiod}{}{}{}{}}%
         {{hash=aecb64f8058bfef71deb28fc57a00b16}{Kermarrec}{K\bibinitperiod}{A-M}{A\bibinithyphendelim M\bibinitperiod}{}{}{}{}}%
       }
-      \list{publisher}{1}{%
-        {ACM}%
-      }
       \strng{namehash}{e8dd6f8cec127018f6f740064b1ac95d}
       \strng{fullhash}{03c7a75bad04195f03bc9ceaf2140c00}
       \field{sortinit}{E}
@@ -193,6 +228,7 @@
       \strng{fullhash}{a44b9f61b43631a04f181b6ab1259e51}
       \field{sortinit}{F}
       \field{labeltitle}{Measuring Broadband America}
+      \field{note}{Accessed: 2017-04-25}
       \field{title}{Measuring Broadband America}
       \verb{url}
       \verb https://www.fcc.gov/general/measuring-broadband-america
@@ -230,6 +266,7 @@
       \field{sortinit}{G}
       \field{labeltitle}{ShareJS v0.6.3}
       \field{howpublished}{\url{https://github.com/josephg/ShareJS/tree/0.6}}
+      \field{note}{Accessed: 2016-10-09}
       \field{title}{ShareJS v0.6.3}
       \field{year}{2013}
     \endentry
@@ -261,6 +298,7 @@
       \strng{fullhash}{a31c46a084bc509f462678dc9d690d98}
       \field{sortinit}{G}
       \field{labeltitle}{Internet Latencies}
+      \field{note}{Accessed: 2017-04-25}
       \field{title}{Internet Latencies}
       \verb{url}
       \verb https://www.igvita.com/2012/07/19/latency-the-new-web-performance-bottleneck/
@@ -277,6 +315,7 @@
       \strng{fullhash}{2720e823db87672e3be1971d976ca746}
       \field{sortinit}{I}
       \field{labeltitle}{Protocol Buffers}
+      \field{note}{Accessed: 2017-04-20}
       \field{title}{Protocol Buffers}
       \verb{url}
       \verb https://developers.google.com/protocol-buffers/
@@ -298,7 +337,6 @@
       \strng{fullhash}{33886329b75df67d345f0d4cef567f0f}
       \field{sortinit}{K}
       \field{labeltitle}{Analysis of Operational Transformation Algorithms}
-      \field{booktitle}{Proceedings of the International Conference on Recent Cognizance in Wireless Communication \& Image Processing}
       \field{title}{Analysis of Operational Transformation Algorithms}
       \field{year}{2016}
       \field{pages}{9\bibrangedash 20}
@@ -400,6 +438,30 @@
       \field{type}{phdthesis}
       \field{year}{2015}
     \endentry
+    \entry{oster2005proving}{thesis}{}
+      \name{labelname}{4}{}{%
+        {{hash=b8aa17d0442b713d215a9d6fbac6f7ad}{Oster}{O\bibinitperiod}{G{\'e}rald}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=f50519681c06901f21680d00b85021dd}{Imine}{I\bibinitperiod}{Abdessamad}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=b8aa17d0442b713d215a9d6fbac6f7ad}{Oster}{O\bibinitperiod}{G{\'e}rald}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0937c3c475f725e7d657d2f6c252809c}{Urso}{U\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=b54f2aecb465a28cf47060c08312c998}{Molli}{M\bibinitperiod}{Pascal}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=f50519681c06901f21680d00b85021dd}{Imine}{I\bibinitperiod}{Abdessamad}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {INRIA}%
+      }
+      \strng{namehash}{4dd398292f0ae729bd11ba11ae6568a7}
+      \strng{fullhash}{02852f1b2af1395b37e0378f62d5f3a3}
+      \field{sortinit}{O}
+      \field{labeltitle}{Proving correctness of transformation functions in collaborative editing systems}
+      \field{title}{Proving correctness of transformation functions in collaborative editing systems}
+      \field{type}{phdthesis}
+      \field{year}{2005}
+    \endentry
     \entry{Patton}{book}{}
       \name{labelname}{1}{}{%
         {{hash=5fb53c0d02d2466622e46d9777d24b35}{Patton}{P\bibinitperiod}{Ron}{R\bibinitperiod}{}{}{}{}}%
@@ -417,7 +479,6 @@
       \strng{fullhash}{5fb53c0d02d2466622e46d9777d24b35}
       \field{sortinit}{P}
       \field{labeltitle}{Software Testing}
-      \field{isbn}{0672327988}
       \field{title}{Software Testing}
       \field{year}{2005}
     \endentry
@@ -465,9 +526,32 @@
       \strng{fullhash}{188916a1ad222ce0f63d05962c26a166}
       \field{sortinit}{P}
       \field{labeltitle}{Dotted version vectors: Logical clocks for optimistic replication}
-      \field{journaltitle}{arXiv preprint arXiv:1011.5808}
       \field{title}{Dotted version vectors: Logical clocks for optimistic replication}
       \field{year}{2010}
+    \endentry
+    \entry{roh2011replicated}{article}{}
+      \name{labelname}{4}{}{%
+        {{hash=72a55783d8bb93a1fabdffd8c82b7b20}{Roh}{R\bibinitperiod}{Hyun-Gul}{H\bibinithyphendelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=2442247634b461aeb0ca8524a41d64a4}{Jeon}{J\bibinitperiod}{Myeongjae}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=40278bab70310baface28927e754f6ca}{Kim}{K\bibinitperiod}{Jin-Soo}{J\bibinithyphendelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=68c9f371e571baefe427a4b8cd24281d}{Lee}{L\bibinitperiod}{Joonwon}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=72a55783d8bb93a1fabdffd8c82b7b20}{Roh}{R\bibinitperiod}{Hyun-Gul}{H\bibinithyphendelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=2442247634b461aeb0ca8524a41d64a4}{Jeon}{J\bibinitperiod}{Myeongjae}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=40278bab70310baface28927e754f6ca}{Kim}{K\bibinitperiod}{Jin-Soo}{J\bibinithyphendelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=68c9f371e571baefe427a4b8cd24281d}{Lee}{L\bibinitperiod}{Joonwon}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{5b13040ba5858cb841ec9fba47acbdf9}
+      \strng{fullhash}{6d6ef20053c0fa48c50ad06631d34530}
+      \field{sortinit}{R}
+      \field{labeltitle}{Replicated abstract data types: Building blocks for collaborative applications}
+      \field{journaltitle}{Journal of Parallel and Distributed Computing}
+      \field{number}{3}
+      \field{title}{Replicated abstract data types: Building blocks for collaborative applications}
+      \field{volume}{71}
+      \field{year}{2011}
+      \field{pages}{354\bibrangedash 368}
     \endentry
     \entry{shapiro2007}{article}{}
       \name{labelname}{2}{}{%
@@ -486,9 +570,6 @@
       \field{title}{Designing a commutative replicated data type}
       \field{volume}{abs/0710.1784}
       \field{year}{2007}
-      \verb{url}
-      \verb http://arxiv.org/abs/0710.1784
-      \endverb
     \endentry
     \entry{shapiro2011}{report}{}
       \name{labelname}{4}{}{%
@@ -515,9 +596,6 @@
       \field{type}{Research Report}
       \field{year}{2011}
       \field{pages}{50}
-      \verb{url}
-      \verb http://hal.inria.fr/inria-00555588
-      \endverb
     \endentry
     \entry{shneiderman1982}{article}{}
       \name{labelname}{1}{}{%
@@ -536,12 +614,6 @@
       \field{volume}{1}
       \field{year}{1982}
       \field{pages}{237\bibrangedash 256}
-      \verb{doi}
-      \verb 10.1080/01449298208914450
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1080/01449298208914450
-      \endverb
     \endentry
     \entry{sun1998operational}{inproceedings}{}
       \name{labelname}{2}{}{%
@@ -559,7 +631,6 @@
       \strng{fullhash}{5fe4f39d547f4ddf51c082dd98ea295f}
       \field{sortinit}{S}
       \field{labeltitle}{Operational transformation in real-time group editors: issues, algorithms, and achievements}
-      \field{booktitle}{Proceedings of the 1998 ACM conference on Computer supported cooperative work}
       \field{title}{Operational transformation in real-time group editors: issues, algorithms, and achievements}
       \field{year}{1998}
       \field{pages}{59\bibrangedash 68}
@@ -583,7 +654,7 @@
       \field{sortinit}{T}
       \field{labeltitle}{The Mother of All Demos, Reel 3}
       \field{howpublished}{\url{https://archive.org/details/XD300-25_68HighlightsAResearchCntAugHumanIntellect&start=286}}
-      \field{note}{Accessed: 2017-03-01}
+      \field{note}{Accessed: 2017-04-01}
       \field{title}{The Mother of All Demos, Reel 3}
     \endentry
     \entry{concdistsystems}{online}{}
@@ -597,6 +668,7 @@
       \strng{fullhash}{50f9beeb72948cb2605ce8c7d61b3cfd}
       \field{sortinit}{W}
       \field{labeltitle}{Concurrent and Distributed Systems}
+      \field{note}{Accessed: 2017-04-01}
       \field{title}{Concurrent and Distributed Systems}
       \field{year}{2016}
       \verb{url}
@@ -651,12 +723,29 @@
       \field{type}{Research Report}
       \field{year}{2008}
       \field{pages}{13}
-      \verb{file}
-      \verb https://hal.inria.fr/inria-00336191/file/main.pdf
-      \endverb
-      \verb{url}
-      \verb https://hal.inria.fr/inria-00336191
-      \endverb
+    \endentry
+    \entry{yu2015crdt}{inproceedings}{}
+      \name{labelname}{3}{}{%
+        {{hash=82d24221087111197a6146c0fe076ad9}{Yu}{Y\bibinitperiod}{Weihai}{W\bibinitperiod}{}{}{}{}}%
+        {{hash=f58f53acc1bea1edb607b3f5596fcbf6}{Andr{\'e}}{A\bibinitperiod}{Luc}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=82d24221087111197a6146c0fe076ad9}{Yu}{Y\bibinitperiod}{Weihai}{W\bibinitperiod}{}{}{}{}}%
+        {{hash=f58f53acc1bea1edb607b3f5596fcbf6}{Andr{\'e}}{A\bibinitperiod}{Luc}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=23bc293728b3609ddaa444dcc92d6011}{Ignat}{I\bibinitperiod}{Claudia-Lavinia}{C\bibinithyphendelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{bca05007fc01465813e3a2776a373848}
+      \strng{fullhash}{bca05007fc01465813e3a2776a373848}
+      \field{sortinit}{Y}
+      \field{labeltitle}{A CRDT supporting selective undo for collaborative text editing}
+      \field{booktitle}{IFIP International Conference on Distributed Applications and Interoperable Systems}
+      \field{title}{A CRDT supporting selective undo for collaborative text editing}
+      \field{year}{2015}
+      \field{pages}{193\bibrangedash 206}
     \endentry
     \entry{zeller2014}{inproceedings}{}
       \name{labelname}{3}{}{%
