@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  11 MAY 2017 15:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  17 MAY 2017 21:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -544,9 +544,9 @@ PGFPlots: reading {./packet_sizes.dat}
 PGFPlots: reading {./packet_sizes.dat}
 PGFPlots: reading {./packet_sizes.dat}
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 75.
+(Font)              <7> on input line 76.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 75.
+(Font)              <5> on input line 76.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -558,11 +558,11 @@ Here is how much of TeX's memory you used:
  20959 multiletter control sequences out of 15000+600000
  3939 words of font info for 15 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,18n,84p,717b,2268s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,18n,84p,717b,2270s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr9.pfb>
-Output written on variants_packet_sizes.pdf (1 page, 33080 bytes).
+Output written on variants_packet_sizes.pdf (1 page, 32996 bytes).
 PDF statistics:
  19 PDF objects out of 1000 (max. 8388607)
  13 compressed objects within 1 object stream

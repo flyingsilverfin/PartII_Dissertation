@@ -52,7 +52,7 @@ a special offering by few applications to a common and expected interface.
 The key property that must be implemented to achieve concurrent editing is eventual consistency,
 meaning that all connected users should end up with the same result after receiving all changes to the document 
 --- even if edits conflict~\cite{Technion}. There are two main technologies that are used to enable concurrent editing of a document (plain text or otherwise). One approach is Operational Transforms (OT), 
-which that generally relies  on having a central server receive, serialize, transform, and 
+which generally relies  on having a central server receive, serialize, transform, and 
 relay edits occurring simultaneously to each client. OT is notoriously difficult to implement 
 correctly as incoming operations have to be transformed against preceding ones on each client, 
 such that the result converges~\cite{sun1998operational}. The server may also be required to make some transformations. 

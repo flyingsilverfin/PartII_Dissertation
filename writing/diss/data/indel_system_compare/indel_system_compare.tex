@@ -25,11 +25,12 @@
 	y tick label style={/pgf/number format/fixed},
 	ytick scale label code/.code={},
 	xtick=data,
-	legend style={at={(0.01,  0.4)},anchor=west},
+	legend style={at={(0.35,  0.875)},anchor=west},
 	enlargelimits=false,
 	symbolic x coords = {0, 100, 200, 300, 400, 500},
 	clip=false,
-	legend cell align=left,
+		legend cell align=left,
+		reverse legend,
 	enlarge x limits=0.09, %hack to plot on the full x-axis scale
 	x post scale=1.40,
 	]

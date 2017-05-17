@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  11 MAY 2017 21:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.10.10)  17 MAY 2017 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1160,22 +1160,22 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
-LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 127.
+Package hyperref Info: Link coloring OFF on input line 120.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1184,9 +1184,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count365
 )
-LaTeX Info: Redefining \ref on input line 127.
-LaTeX Info: Redefining \pageref on input line 127.
-LaTeX Info: Redefining \nameref on input line 127.
+LaTeX Info: Redefining \ref on input line 120.
+LaTeX Info: Redefining \pageref on input line 120.
+LaTeX Info: Redefining \nameref on input line 120.
 
 (./diss.out) (./diss.out)
 \@outlinefile=\write8
@@ -1276,29 +1276,29 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'diss.bbl' found.
  (./diss.bbl)
-Package biblatex Info: Reference section=0 on input line 127.
-Package biblatex Info: Reference segment=0 on input line 127.
+Package biblatex Info: Reference section=0 on input line 120.
+Package biblatex Info: Reference segment=0 on input line 120.
 \docmute@nestinglevel=\count373
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 155.
+LaTeX Font Info:    Try loading font information for U+msa on input line 150.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 155.
+LaTeX Font Info:    Try loading font information for U+msb on input line 150.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (15.58737pt too wide) in paragraph at lines 155--165
+Overfull \hbox (15.58737pt too wide) in paragraph at lines 150--160
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--165
+Underfull \hbox (badness 10000) in paragraph at lines 150--160
 
  []
 
@@ -1322,13 +1322,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 155--165
 
 
 [11]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 207.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 202.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 207.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 202.
  [12]
 Chapter 1.
 [13
@@ -1343,18 +1343,15 @@ Package epstopdf Info: Source file: <figs/reconcile.eps>
 (epstopdf)                    size: 9998 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/reconcile-eps-convert
 ed-to.pdf figs/reconcile.eps>
-(epstopdf)             \includegraphics on input line 271.
+(epstopdf)             \includegraphics on input line 266.
 Package epstopdf Info: Output file is already uptodate.
-<figs/reconcile-eps-converted-to.pdf, id=457, 947.54pt x 445.665pt>
+<figs/reconcile-eps-converted-to.pdf, id=458, 947.54pt x 445.665pt>
 File: figs/reconcile-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/reconcile-eps-converted-to.pdf>
 Package pdftex.def Info: figs/reconcile-eps-converted-to.pdf used on input line
- 271.
+ 266.
 (pdftex.def)             Requested size: 455.24411pt x 214.11397pt.
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
  [15
 
 ] [16 <./figs/reconcile-eps-converted-to.pdf>]
@@ -1366,14 +1363,14 @@ Package epstopdf Info: Source file: <figs/ot1.eps>
 (epstopdf)                    size: 10037 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/ot1-eps-converted-to.
 pdf figs/ot1.eps>
-(epstopdf)             \includegraphics on input line 310.
+(epstopdf)             \includegraphics on input line 305.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/ot1-eps-converted-to.pdf, id=480, 816.04875pt x 306.14375pt>
+<figs/ot1-eps-converted-to.pdf, id=481, 816.04875pt x 306.14375pt>
 File: figs/ot1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/ot1-eps-converted-to.pdf>
-Package pdftex.def Info: figs/ot1-eps-converted-to.pdf used on input line 310.
+Package pdftex.def Info: figs/ot1-eps-converted-to.pdf used on input line 305.
 (pdftex.def)             Requested size: 455.24411pt x 170.78532pt.
 Package epstopdf Info: Source file: <figs/ot2.eps>
 (epstopdf)                    date: 2017-04-28 17:39:04
@@ -1383,14 +1380,14 @@ Package epstopdf Info: Source file: <figs/ot2.eps>
 (epstopdf)                    size: 9943 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/ot2-eps-converted-to.
 pdf figs/ot2.eps>
-(epstopdf)             \includegraphics on input line 319.
+(epstopdf)             \includegraphics on input line 314.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/ot2-eps-converted-to.pdf, id=481, 767.86874pt x 301.125pt>
+<figs/ot2-eps-converted-to.pdf, id=482, 767.86874pt x 301.125pt>
 File: figs/ot2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/ot2-eps-converted-to.pdf>
-Package pdftex.def Info: figs/ot2-eps-converted-to.pdf used on input line 319.
+Package pdftex.def Info: figs/ot2-eps-converted-to.pdf used on input line 314.
 (pdftex.def)             Requested size: 455.24411pt x 178.53061pt.
 Package epstopdf Info: Source file: <figs/ot3.eps>
 (epstopdf)                    date: 2017-04-28 17:39:15
@@ -1400,14 +1397,14 @@ Package epstopdf Info: Source file: <figs/ot3.eps>
 (epstopdf)                    size: 10298 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/ot3-eps-converted-to.
 pdf figs/ot3.eps>
-(epstopdf)             \includegraphics on input line 328.
+(epstopdf)             \includegraphics on input line 323.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/ot3-eps-converted-to.pdf, id=482, 810.02625pt x 309.155pt>
+<figs/ot3-eps-converted-to.pdf, id=483, 810.02625pt x 309.155pt>
 File: figs/ot3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/ot3-eps-converted-to.pdf>
-Package pdftex.def Info: figs/ot3-eps-converted-to.pdf used on input line 328.
+Package pdftex.def Info: figs/ot3-eps-converted-to.pdf used on input line 323.
 (pdftex.def)             Requested size: 455.24411pt x 173.753pt.
  [17 <./figs/ot1-eps-converted-to.pdf> <./figs/ot2-eps-converted-to.pdf>] [18 <
 ./figs/ot3-eps-converted-to.pdf>]
@@ -1419,7 +1416,7 @@ Package epstopdf Info: Source file: <figs/tagged_set.eps>
 (epstopdf)                    size: 8342 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/tagged_set-eps-conver
 ted-to.pdf figs/tagged_set.eps>
-(epstopdf)             \includegraphics on input line 369.
+(epstopdf)             \includegraphics on input line 366.
 Package epstopdf Info: Output file is already uptodate.
 
 <figs/tagged_set-eps-converted-to.pdf, id=543, 373.395pt x 191.71625pt>
@@ -1427,7 +1424,7 @@ File: figs/tagged_set-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/tagged_set-eps-converted-to.pdf>
 Package pdftex.def Info: figs/tagged_set-eps-converted-to.pdf used on input lin
-e 369.
+e 366.
 (pdftex.def)             Requested size: 455.24411pt x 233.75012pt.
  [19] [20 <./figs/tagged_set-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figs/treedoc_1.eps>
@@ -1438,7 +1435,7 @@ Package epstopdf Info: Source file: <figs/treedoc_1.eps>
 (epstopdf)                    size: 5931 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/treedoc_1-eps-convert
 ed-to.pdf figs/treedoc_1.eps>
-(epstopdf)             \includegraphics on input line 393.
+(epstopdf)             \includegraphics on input line 390.
 Package epstopdf Info: Output file is already uptodate.
 
 <figs/treedoc_1-eps-converted-to.pdf, id=572, 307.1475pt x 300.12125pt>
@@ -1446,7 +1443,7 @@ File: figs/treedoc_1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/treedoc_1-eps-converted-to.pdf>
 Package pdftex.def Info: figs/treedoc_1-eps-converted-to.pdf used on input line
- 393.
+ 390.
 (pdftex.def)             Requested size: 170.71652pt x 166.81197pt.
 Package epstopdf Info: Source file: <figs/treedoc_2.eps>
 (epstopdf)                    date: 2017-04-24 16:07:46
@@ -1456,7 +1453,7 @@ Package epstopdf Info: Source file: <figs/treedoc_2.eps>
 (epstopdf)                    size: 6517 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/treedoc_2-eps-convert
 ed-to.pdf figs/treedoc_2.eps>
-(epstopdf)             \includegraphics on input line 395.
+(epstopdf)             \includegraphics on input line 392.
 Package epstopdf Info: Output file is already uptodate.
 
 <figs/treedoc_2-eps-converted-to.pdf, id=573, 328.22626pt x 300.12125pt>
@@ -1464,7 +1461,7 @@ File: figs/treedoc_2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/treedoc_2-eps-converted-to.pdf>
 Package pdftex.def Info: figs/treedoc_2-eps-converted-to.pdf used on input line
- 395.
+ 392.
 (pdftex.def)             Requested size: 170.71652pt x 156.10057pt.
  [21 <./figs/treedoc_1-eps-converted-to.pdf> <./figs/treedoc_2-eps-converted-to
 .pdf>] [22] [23] [24] [25] [26
@@ -1479,14 +1476,14 @@ Package epstopdf Info: Source file: <figs/sysarch.eps>
 (epstopdf)                    size: 7383 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/sysarch-eps-converted
 -to.pdf figs/sysarch.eps>
-(epstopdf)             \includegraphics on input line 520.
+(epstopdf)             \includegraphics on input line 517.
 Package epstopdf Info: Output file is already uptodate.
 <figs/sysarch-eps-converted-to.pdf, id=665, 1048.91875pt x 471.7625pt>
 File: figs/sysarch-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/sysarch-eps-converted-to.pdf>
 Package pdftex.def Info: figs/sysarch-eps-converted-to.pdf used on input line 5
-20.
+17.
 (pdftex.def)             Requested size: 455.24411pt x 204.74712pt.
  [27]
 Package epstopdf Info: Source file: <figs/linkedlist_0.eps>
@@ -1497,15 +1494,15 @@ Package epstopdf Info: Source file: <figs/linkedlist_0.eps>
 (epstopdf)                    size: 4262 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/linkedlist_0-eps-conv
 erted-to.pdf figs/linkedlist_0.eps>
-(epstopdf)             \includegraphics on input line 545.
+(epstopdf)             \includegraphics on input line 540.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/linkedlist_0-eps-converted-to.pdf, id=673, 411.5375pt x 53.19875pt>
+<figs/linkedlist_0-eps-converted-to.pdf, id=672, 411.5375pt x 53.19875pt>
 File: figs/linkedlist_0-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/linkedlist_0-eps-converted-to.pdf>
 Package pdftex.def Info: figs/linkedlist_0-eps-converted-to.pdf used on input l
-ine 545.
+ine 540.
 (pdftex.def)             Requested size: 170.71652pt x 22.06813pt.
 Package epstopdf Info: Source file: <figs/linkedlist.eps>
 (epstopdf)                    date: 2017-04-24 16:07:46
@@ -1515,15 +1512,15 @@ Package epstopdf Info: Source file: <figs/linkedlist.eps>
 (epstopdf)                    size: 4641 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/linkedlist-eps-conver
 ted-to.pdf figs/linkedlist.eps>
-(epstopdf)             \includegraphics on input line 547.
+(epstopdf)             \includegraphics on input line 542.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/linkedlist-eps-converted-to.pdf, id=674, 411.5375pt x 147.55125pt>
+<figs/linkedlist-eps-converted-to.pdf, id=673, 411.5375pt x 147.55125pt>
 File: figs/linkedlist-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/linkedlist-eps-converted-to.pdf>
 Package pdftex.def Info: figs/linkedlist-eps-converted-to.pdf used on input lin
-e 547.
+e 542.
 (pdftex.def)             Requested size: 170.71652pt x 61.20786pt.
  [28 <./figs/sysarch-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figs/json_annotated.eps>
@@ -1534,29 +1531,29 @@ Package epstopdf Info: Source file: <figs/json_annotated.eps>
 (epstopdf)                    size: 7036 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/json_annotated-eps-co
 nverted-to.pdf figs/json_annotated.eps>
-(epstopdf)             \includegraphics on input line 582.
+(epstopdf)             \includegraphics on input line 577.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/json_annotated-eps-converted-to.pdf, id=689, 721.69624pt x 223.83624pt>
+<figs/json_annotated-eps-converted-to.pdf, id=688, 721.69624pt x 223.83624pt>
 File: figs/json_annotated-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/json_annotated-eps-converted-to.pdf>
 Package pdftex.def Info: figs/json_annotated-eps-converted-to.pdf used on input
- line 582.
+ line 577.
 (pdftex.def)             Requested size: 455.24411pt x 141.19518pt.
  [29 <./figs/linkedlist_0-eps-converted-to.pdf> <./figs/linkedlist-eps-converte
 d-to.pdf> <./figs/json_annotated-eps-converted-to.pdf>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 618.
+nput line 613.
 
 
-Package Listings Warning: Text dropped after begin of listing on input line 618
+Package Listings Warning: Text dropped after begin of listing on input line 613
 .
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 619.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 614.
 
-Package Listings Warning: Text dropped after begin of listing on input line 628
+Package Listings Warning: Text dropped after begin of listing on input line 623
 .
 
 [30]
@@ -1568,72 +1565,73 @@ Package epstopdf Info: Source file: <figs/totalordering.eps>
 (epstopdf)                    size: 21200 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/totalordering-eps-con
 verted-to.pdf figs/totalordering.eps>
-(epstopdf)             \includegraphics on input line 648.
+(epstopdf)             \includegraphics on input line 643.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/totalordering-eps-converted-to.pdf, id=732, 1028.84375pt x 688.5725pt>
+<figs/totalordering-eps-converted-to.pdf, id=734, 1028.84375pt x 688.5725pt>
 File: figs/totalordering-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/totalordering-eps-converted-to.pdf>
 Package pdftex.def Info: figs/totalordering-eps-converted-to.pdf used on input 
-line 648.
+line 643.
 (pdftex.def)             Requested size: 455.24411pt x 304.68542pt.
 
 
-Package Listings Warning: Text dropped after begin of listing on input line 661
+Package Listings Warning: Text dropped after begin of listing on input line 656
 .
 
-[31 <./figs/totalordering-eps-converted-to.pdf>] [32] [33] [34]
+[31 <./figs/totalordering-eps-converted-to.pdf>] [32] [33]
 
-Package Listings Warning: Text dropped after begin of listing on input line 770
+Package Listings Warning: Text dropped after begin of listing on input line 765
+.
+
+[34]
+
+Package Listings Warning: Text dropped after begin of listing on input line 781
 .
 
 
-Package Listings Warning: Text dropped after begin of listing on input line 786
-.
-
-
-Underfull \hbox (badness 2012) in paragraph at lines 798--799
+Underfull \hbox (badness 2012) in paragraph at lines 793--794
 \OT1/cmr/m/n/12 The lower lay-ers of the net-work stack are pro-vided by the \O
 T1/cmtt/m/n/12 Network Manager\OT1/cmr/m/n/12 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 798--799
+Underfull \hbox (badness 10000) in paragraph at lines 793--794
 \OT1/cmr/m/n/12 It has two key meth-ods: \OT1/cmtt/m/n/12 NetworkManager.transm
 it(sender, packet) \OT1/cmr/m/n/12 and
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 798--799
+Underfull \hbox (badness 1033) in paragraph at lines 793--794
 \OT1/cmtt/m/n/12 NetworkManager.unicast(from, to, packet)\OT1/cmr/m/n/12 . The 
 sim-u-la-tion is given a pre-de-
  []
 
 [35]
 Package epstopdf Info: Source file: <figs/causal_arch_2.eps>
-(epstopdf)                    date: 2017-05-11 15:40:50
+(epstopdf)                    date: 2017-05-16 21:26:41
 (epstopdf)                    size: 10392 bytes
 (epstopdf)             Output file: <figs/causal_arch_2-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-05-11 15:40:54
-(epstopdf)                    size: 7805 bytes
+(epstopdf)                    date: 2017-05-16 21:26:56
+(epstopdf)                    size: 7808 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/causal_arch_2-eps-con
 verted-to.pdf figs/causal_arch_2.eps>
-(epstopdf)             \includegraphics on input line 815.
+(epstopdf)             \includegraphics on input line 810.
 Package epstopdf Info: Output file is already uptodate.
- <figs/causal_arch_2-eps-converted-to.pdf, id=813, 1043.9pt x 560.0925pt>
+ <figs/causal_arch_2-eps-converted-to.pdf, id=811, 1043.9pt x 560.0925pt>
 File: figs/causal_arch_2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/causal_arch_2-eps-converted-to.pdf>
 Package pdftex.def Info: figs/causal_arch_2-eps-converted-to.pdf used on input 
-line 815.
+line 810.
 (pdftex.def)             Requested size: 455.24411pt x 244.2536pt.
- [36] [37 <./figs/causal_arch_2-eps-converted-to.pdf>]
+ [36 <./figs/causal_arch_2-eps-converted-to.pdf>]
 
-Package Listings Warning: Text dropped after begin of listing on input line 852
+Package Listings Warning: Text dropped after begin of listing on input line 847
 .
 
-[38] [39]
+[37] [38]
 Package epstopdf Info: Source file: <figs/workflow.eps>
 (epstopdf)                    date: 2017-04-24 16:07:46
 (epstopdf)                    size: 12149 bytes
@@ -1642,80 +1640,80 @@ Package epstopdf Info: Source file: <figs/workflow.eps>
 (epstopdf)                    size: 7637 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/workflow-eps-converte
 d-to.pdf figs/workflow.eps>
-(epstopdf)             \includegraphics on input line 904.
+(epstopdf)             \includegraphics on input line 899.
 Package epstopdf Info: Output file is already uptodate.
- <figs/workflow-eps-converted-to.pdf, id=860, 465.74pt x 326.21875pt>
+ <figs/workflow-eps-converted-to.pdf, id=853, 465.74pt x 326.21875pt>
 File: figs/workflow-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/workflow-eps-converted-to.pdf>
 Package pdftex.def Info: figs/workflow-eps-converted-to.pdf used on input line 
-904.
+899.
 (pdftex.def)             Requested size: 455.24411pt x 318.88081pt.
- [40 <./figs/workflow-eps-converted-to.pdf>] [41] [42]
+ [39] [40 <./figs/workflow-eps-converted-to.pdf>] [41] [42]
 
-Package Listings Warning: Text dropped after begin of listing on input line 962
+Package Listings Warning: Text dropped after begin of listing on input line 957
 .
 
-[43] [44] [45] [46]
-Chapter 4.
-[47
+[43] [44] [45] [46
 
-] <figs/unittests.png, id=930, 490.08093pt x 578.16pt>
+]
+Chapter 4.
+[47] <figs/unittests.png, id=927, 490.08093pt x 578.16pt>
 File: figs/unittests.png Graphic file (type png)
 
 <use figs/unittests.png>
-Package pdftex.def Info: figs/unittests.png used on input line 1062.
+Package pdftex.def Info: figs/unittests.png used on input line 1057.
 (pdftex.def)             Requested size: 254.93558pt x 300.7508pt.
  [48 <./figs/unittests.png (PNG copy)>]
 Package standalone Info: data/memory_sanity_check/memory_sanity_check_plot.tex 
 file newer then data/memory_sanity_check/memory_sanity_check_plot.pdf on input 
-line 1091.
+line 1086.
 
-<data/memory_sanity_check/memory_sanity_check_plot.pdf, id=940, 283.39777pt x 2
+<data/memory_sanity_check/memory_sanity_check_plot.pdf, id=937, 283.39777pt x 2
 54.43054pt>
 File: data/memory_sanity_check/memory_sanity_check_plot.pdf Graphic file (type 
 pdf)
  <use data/memory_sanity_check/memory_sanity_check_plot.pdf>
 Package pdftex.def Info: data/memory_sanity_check/memory_sanity_check_plot.pdf 
-used on input line 1091.
+used on input line 1086.
 (pdftex.def)             Requested size: 283.39706pt x 254.42992pt.
 
 [49]
 Package standalone Info: data/singleclient_memory/singleclient_plot.tex file ne
-wer then data/singleclient_memory/singleclient_plot.pdf on input line 1106.
+wer then data/singleclient_memory/singleclient_plot.pdf on input line 1101.
 
-<data/singleclient_memory/singleclient_plot.pdf, id=952, 271.09279pt x 231.2409
-pt>
+<data/singleclient_memory/singleclient_plot.pdf, id=949, 279.89368pt x 247.0449
+5pt>
 File: data/singleclient_memory/singleclient_plot.pdf Graphic file (type pdf)
  <use data/singleclient_memory/singleclient_plot.pdf>
 Package pdftex.def Info: data/singleclient_memory/singleclient_plot.pdf used on
- input line 1106.
-(pdftex.def)             Requested size: 202.81099pt x 173.0033pt.
+ input line 1101.
+(pdftex.def)             Requested size: 202.81099pt x 179.00685pt.
 Package standalone Info: data/singleclient_word_insert_memory/singleclient_word
 _insert_plot.tex file newer then data/singleclient_word_insert_memory/singlecli
-ent_word_insert_plot.pdf on input line 1112.
+ent_word_insert_plot.pdf on input line 1107.
 
-<data/singleclient_word_insert_memory/singleclient_word_insert_plot.pdf, id=953
+<data/singleclient_word_insert_memory/singleclient_word_insert_plot.pdf, id=950
 , 261.35744pt x 231.2379pt>
 File: data/singleclient_word_insert_memory/singleclient_word_insert_plot.pdf Gr
 aphic file (type pdf)
 
 <use data/singleclient_word_insert_memory/singleclient_word_insert_plot.pdf>
 Package pdftex.def Info: data/singleclient_word_insert_memory/singleclient_word
-_insert_plot.pdf used on input line 1112.
+_insert_plot.pdf used on input line 1107.
 (pdftex.def)             Requested size: 202.81099pt x 179.44743pt.
 Package standalone Info: data/combined_single_client_memory/combined_single_cli
 ent_memory.tex file newer then data/combined_single_client_memory/combined_sing
-le_client_memory.pdf on input line 1118.
+le_client_memory.pdf on input line 1113.
 
-<data/combined_single_client_memory/combined_single_client_memory.pdf, id=954, 
+<data/combined_single_client_memory/combined_single_client_memory.pdf, id=951, 
 278.56271pt x 247.43944pt>
 File: data/combined_single_client_memory/combined_single_client_memory.pdf Grap
 hic file (type pdf)
 
 <use data/combined_single_client_memory/combined_single_client_memory.pdf>
 Package pdftex.def Info: data/combined_single_client_memory/combined_single_cli
-ent_memory.pdf used on input line 1118.
+ent_memory.pdf used on input line 1113.
 (pdftex.def)             Requested size: 273.14923pt x 242.65512pt.
 
 [50 <./data/memory_sanity_check/memory_sanity_check_plot.pdf>] [51 <./data/sing
@@ -1723,52 +1721,52 @@ leclient_memory/singleclient_plot.pdf> <./data/singleclient_word_insert_memory/
 singleclient_word_insert_plot.pdf> <./data/combined_single_client_memory/combin
 ed_single_client_memory.pdf>]
 Package standalone Info: data/multiclient_memory/multiclient_plot.tex file newe
-r then data/multiclient_memory/multiclient_plot.pdf on input line 1136.
+r then data/multiclient_memory/multiclient_plot.pdf on input line 1131.
 
-<data/multiclient_memory/multiclient_plot.pdf, id=998, 331.4272pt x 296.14038pt
+<data/multiclient_memory/multiclient_plot.pdf, id=995, 331.4272pt x 296.14038pt
 >
 File: data/multiclient_memory/multiclient_plot.pdf Graphic file (type pdf)
  <use data/multiclient_memory/multiclient_plot.pdf>
 Package pdftex.def Info: data/multiclient_memory/multiclient_plot.pdf used on i
-nput line 1136.
+nput line 1131.
 (pdftex.def)             Requested size: 331.42639pt x 296.13965pt.
  [52 <./data/multiclient_memory/multiclient_plot.pdf>]
 Package standalone Info: data/indel_system_compare/indel_system_compare.tex fil
 e newer then data/indel_system_compare/indel_system_compare.pdf on input line 1
-146.
+141.
 
-<data/indel_system_compare/indel_system_compare.pdf, id=1010, 453.9138pt x 280.
+<data/indel_system_compare/indel_system_compare.pdf, id=1007, 453.9138pt x 280.
 44977pt>
 File: data/indel_system_compare/indel_system_compare.pdf Graphic file (type pdf
 )
  <use data/indel_system_compare/indel_system_compare.pdf>
 Package pdftex.def Info: data/indel_system_compare/indel_system_compare.pdf use
-d on input line 1146.
+d on input line 1141.
 (pdftex.def)             Requested size: 453.91269pt x 280.44907pt.
  [53 <./data/indel_system_compare/indel_system_compare.pdf>]
 Package standalone Info: data/latencies/latencies_distributions_client-server.t
 ex file newer then data/latencies/latencies_distributions_client-server.pdf on 
-input line 1168.
+input line 1163.
 
-<data/latencies/latencies_distributions_client-server.pdf, id=1026, 304.19449pt
+<data/latencies/latencies_distributions_client-server.pdf, id=1023, 304.19449pt
  x 264.2131pt>
 File: data/latencies/latencies_distributions_client-server.pdf Graphic file (ty
 pe pdf)
  <use data/latencies/latencies_distributions_client-server.pdf>
 Package pdftex.def Info: data/latencies/latencies_distributions_client-server.p
-df used on input line 1168.
+df used on input line 1163.
 (pdftex.def)             Requested size: 304.19374pt x 264.21245pt.
 Package standalone Info: data/latencies/latencies_distributions_server-client.t
 ex file newer then data/latencies/latencies_distributions_server-client.pdf on 
-input line 1174.
+input line 1169.
 
-<data/latencies/latencies_distributions_server-client.pdf, id=1027, 304.19449pt
+<data/latencies/latencies_distributions_server-client.pdf, id=1024, 304.19449pt
  x 264.21811pt>
 File: data/latencies/latencies_distributions_server-client.pdf Graphic file (ty
 pe pdf)
  <use data/latencies/latencies_distributions_server-client.pdf>
 Package pdftex.def Info: data/latencies/latencies_distributions_server-client.p
-df used on input line 1174.
+df used on input line 1169.
 (pdftex.def)             Requested size: 304.19374pt x 264.21745pt.
 
 [54 <./data/latencies/latencies_distributions_client-server.pdf>] [55 <./data/l
@@ -1781,15 +1779,15 @@ Package epstopdf Info: Source file: <figs/linear_top.eps>
 (epstopdf)                    size: 3768 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/linear_top-eps-conver
 ted-to.pdf figs/linear_top.eps>
-(epstopdf)             \includegraphics on input line 1253.
+(epstopdf)             \includegraphics on input line 1248.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/linear_top-eps-converted-to.pdf, id=1061, 280.04625pt x 28.105pt>
+<figs/linear_top-eps-converted-to.pdf, id=1058, 280.04625pt x 28.105pt>
 File: figs/linear_top-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/linear_top-eps-converted-to.pdf>
 Package pdftex.def Info: figs/linear_top-eps-converted-to.pdf used on input lin
-e 1253.
+e 1248.
 (pdftex.def)             Requested size: 68.28383pt x 6.85297pt.
 Package epstopdf Info: Source file: <figs/ngon_top.eps>
 (epstopdf)                    date: 2017-04-25 14:12:54
@@ -1799,15 +1797,15 @@ Package epstopdf Info: Source file: <figs/ngon_top.eps>
 (epstopdf)                    size: 3774 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/ngon_top-eps-converte
 d-to.pdf figs/ngon_top.eps>
-(epstopdf)             \includegraphics on input line 1254.
+(epstopdf)             \includegraphics on input line 1249.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/ngon_top-eps-converted-to.pdf, id=1062, 110.4125pt x 114.4275pt>
+<figs/ngon_top-eps-converted-to.pdf, id=1059, 110.4125pt x 114.4275pt>
 File: figs/ngon_top-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/ngon_top-eps-converted-to.pdf>
 Package pdftex.def Info: figs/ngon_top-eps-converted-to.pdf used on input line 
-1254.
+1249.
 (pdftex.def)             Requested size: 68.28383pt x 70.7697pt.
 Package epstopdf Info: Source file: <figs/star.eps>
 (epstopdf)                    date: 2017-04-25 14:13:53
@@ -1817,14 +1815,14 @@ Package epstopdf Info: Source file: <figs/star.eps>
 (epstopdf)                    size: 3830 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/star-eps-converted-to
 .pdf figs/star.eps>
-(epstopdf)             \includegraphics on input line 1255.
+(epstopdf)             \includegraphics on input line 1250.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/star-eps-converted-to.pdf, id=1063, 161.60374pt x 142.5325pt>
+<figs/star-eps-converted-to.pdf, id=1060, 161.60374pt x 142.5325pt>
 File: figs/star-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/star-eps-converted-to.pdf>
-Package pdftex.def Info: figs/star-eps-converted-to.pdf used on input line 1255
+Package pdftex.def Info: figs/star-eps-converted-to.pdf used on input line 1250
 .
 (pdftex.def)             Requested size: 68.28383pt x 60.22426pt.
 Package epstopdf Info: Source file: <figs/fullyconnected.eps>
@@ -1835,44 +1833,43 @@ Package epstopdf Info: Source file: <figs/fullyconnected.eps>
 (epstopdf)                    size: 3848 bytes
 (epstopdf)             Command: <repstopdf --outfile=figs/fullyconnected-eps-co
 nverted-to.pdf figs/fullyconnected.eps>
-(epstopdf)             \includegraphics on input line 1256.
+(epstopdf)             \includegraphics on input line 1251.
 Package epstopdf Info: Output file is already uptodate.
 
-<figs/fullyconnected-eps-converted-to.pdf, id=1064, 114.4275pt x 117.43875pt>
+<figs/fullyconnected-eps-converted-to.pdf, id=1061, 114.4275pt x 117.43875pt>
 File: figs/fullyconnected-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figs/fullyconnected-eps-converted-to.pdf>
 Package pdftex.def Info: figs/fullyconnected-eps-converted-to.pdf used on input
- line 1256.
+ line 1251.
 (pdftex.def)             Requested size: 68.28383pt x 70.08388pt.
  [57 <./figs/linear_top-eps-converted-to.pdf> <./figs/ngon_top-eps-converted-to
 .pdf> <./figs/star-eps-converted-to.pdf> <./figs/fullyconnected-eps-converted-t
 o.pdf>]
 Package standalone Info: data/variants_packet_sizes/variants_packet_sizes.tex f
 ile newer then data/variants_packet_sizes/variants_packet_sizes.pdf on input li
-ne 1271.
+ne 1266.
 
-<data/variants_packet_sizes/variants_packet_sizes.pdf, id=1094, 335.47433pt x 2
+<data/variants_packet_sizes/variants_packet_sizes.pdf, id=1091, 335.47433pt x 2
 95.49095pt>
 File: data/variants_packet_sizes/variants_packet_sizes.pdf Graphic file (type p
 df)
  <use data/variants_packet_sizes/variants_packet_sizes.pdf>
 Package pdftex.def Info: data/variants_packet_sizes/variants_packet_sizes.pdf u
-sed on input line 1271.
+sed on input line 1266.
 (pdftex.def)             Requested size: 335.4735pt x 295.49022pt.
- [58]
-[59 <./data/variants_packet_sizes/variants_packet_sizes.pdf>]
+ [58 <./data/variants_packet_sizes/variants_packet_sizes.pdf>]
 Package standalone Info: data/cpu_testing/cpu_testing.tex file newer then data/
-cpu_testing/cpu_testing.pdf on input line 1291.
+cpu_testing/cpu_testing.pdf on input line 1286.
 
-<data/cpu_testing/cpu_testing.pdf, id=1115, 418.7113pt x 294.78632pt>
+<data/cpu_testing/cpu_testing.pdf, id=1107, 418.7113pt x 294.78632pt>
 File: data/cpu_testing/cpu_testing.pdf Graphic file (type pdf)
 
 <use data/cpu_testing/cpu_testing.pdf>
 Package pdftex.def Info: data/cpu_testing/cpu_testing.pdf used on input line 12
-91.
+86.
 (pdftex.def)             Requested size: 418.71027pt x 294.78558pt.
- [60 <./data/cpu_testing/cpu_testing.pdf>]
+ [59] [60 <./data/cpu_testing/cpu_testing.pdf>]
 Chapter 5.
 [61
 
@@ -1904,24 +1901,28 @@ File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 ]
 Appendix D.
 (./proposal.tex [77] [78] [79] [80] [81])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1557.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1557.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1552.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1552.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1557.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1557.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1552.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1552.
 
 Package rerunfilecheck Info: File `diss.out' has not changed.
 (rerunfilecheck)             Checksum: 05796D79A1E2027B2ECE225D28245AEE;4015.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1557.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1552.
  ) 
 Here is how much of TeX's memory you used:
- 35414 strings out of 495028
- 728051 string characters out of 6181496
- 1310741 words of memory out of 5000000
- 37449 multiletter control sequences out of 15000+600000
+ 35408 strings out of 495028
+ 727997 string characters out of 6181496
+ 1310213 words of memory out of 5000000
+ 37443 multiletter control sequences out of 15000+600000
  19308 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,22n,97p,1256b,2986s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,22n,97p,1256b,2989s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texl
@@ -1946,10 +1947,10 @@ ic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
 s/msam10.pfb>
-Output written on diss.pdf (81 pages, 688924 bytes).
+Output written on diss.pdf (81 pages, 688800 bytes).
 PDF statistics:
- 1596 PDF objects out of 1728 (max. 8388607)
- 1412 compressed objects within 15 object streams
+ 1593 PDF objects out of 1728 (max. 8388607)
+ 1409 compressed objects within 15 object streams
  481 named destinations out of 1000 (max. 500000)
  638 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -62,7 +62,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Structure and Functionality}{28}{section*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Identifiers}{30}{section*.25}
+\contentsline {subsubsection}{Identifiers}{29}{section*.25}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Insert Operation}{30}{section*.26}
 \defcounter {refsection}{0}\relax 
@@ -76,19 +76,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Assumptions}{33}{section*.31}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Upper Network Abstraction: Network Interface}{35}{section*.32}
+\contentsline {subsubsection}{Upper Network Abstraction: Network Interface}{34}{section*.32}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Lower Network Abstraction: Network Manager}{35}{section*.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Joining the Network}{36}{section*.34}
+\contentsline {subsubsection}{Joining the Network}{35}{section*.34}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Causal Delivery}{36}{section*.35}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Modified Vector Clocks}{37}{section*.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.4}Simulation}{38}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.4}Simulation}{37}{subsection.3.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Scheduler}{38}{section*.38}
+\contentsline {subsubsection}{Scheduler}{37}{section*.38}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Representation of Time}{38}{section*.39}
 \defcounter {refsection}{0}\relax 
@@ -96,47 +96,47 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.1}Scheduling}{39}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.2}Logging}{40}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.2}Logging}{39}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{40}{section.3.3}
+\contentsline {section}{\numberline {3.3}Experiment Creation and Use}{39}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Work Flow}{40}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.1}Work Flow}{39}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{41}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.2}Experiment Design}{40}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.3}Separation of Modeling and Analysis}{41}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Extension: Local Undo}{41}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.1}Overview}{42}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}Overview}{41}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.2}Undo and Redo of Insertions}{42}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.2}Undo and Redo of Insertions}{41}{subsection.3.4.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Undo/Redo Insert Semantics}{42}{section*.41}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Implementation}{42}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.3}Undo and Redo of Deletions}{43}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.3}Undo and Redo of Deletions}{42}{subsection.3.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{CCI Undo/Redo of Deletions}{43}{section*.43}
+\contentsline {subsubsection}{CCI Undo/Redo of Deletions}{42}{section*.43}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Implementation}{43}{section*.44}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{44}{section*.45}
+\contentsline {paragraph}{Proof of Commutativity of Delete, Undo, Redo}{43}{section*.45}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Cost}{44}{section*.46}
+\contentsline {paragraph}{Cost}{43}{section*.46}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Immediate Undo/Redo of Deletions}{44}{section*.47}
+\contentsline {subsubsection}{Immediate Undo/Redo of Deletions}{43}{section*.47}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Semantics}{44}{section*.48}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Implementation}{44}{section*.49}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Cost}{45}{section*.50}
+\contentsline {paragraph}{Cost}{44}{section*.50}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Alternative Approaches}{45}{section*.51}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Summary of Implementation}{46}{section.3.5}
+\contentsline {section}{\numberline {3.5}Summary of Implementation}{45}{section.3.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Evaluation}{47}{chapter.4}
 \defcounter {refsection}{0}\relax 
@@ -152,7 +152,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Single Editor}{50}{section*.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Multiple Clients: Scaling Replication}{52}{section*.57}
+\contentsline {subsubsection}{Multiple Editors: Scaling Replication}{52}{section*.57}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{CRDT System Variants}{52}{section*.59}
 \defcounter {refsection}{0}\relax 
