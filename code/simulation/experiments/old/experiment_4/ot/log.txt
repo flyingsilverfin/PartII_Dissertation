@@ -1,4 +1,0 @@
-1492420343860    memory    3645544    pre-experiment
-1492420343967    memory    5293200    post-clients-create
-1492420345968    memory    5641696    post-experiment
-1492420346000    memory    5666488    post-experiment
