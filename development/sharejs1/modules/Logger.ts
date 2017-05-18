@@ -17,7 +17,7 @@ export default class Logger {
         this.l = [];
     }
 
-    public log(tag: "memory", msg: string) {
+    public log(tag: "memory" | "time", msg: string) {
         let time = this.getTime();
         this.l.push(time + "    " + tag + "    " + msg);
     }

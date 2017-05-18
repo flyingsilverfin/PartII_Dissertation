@@ -474,6 +474,8 @@
       return this.on('remoteop', function(op) {
         var component, _i, _len, _results;
 
+        window.logLine('time', "Beginning proper integration at " + window.getId());
+
         _results = [];
         for (_i = 0, _len = op.length; _i < _len; _i++) {
           component = op[_i];
@@ -483,6 +485,9 @@
             _results.push(this.emit('delete', component.p, component.d));
           }
         }
+
+        window.logLine('time', "Maybe? Finished integrating received op at " + window.getId());
+
         return _results;
       });
     }
@@ -689,6 +694,9 @@
           }
           return this.flush();
         case !msg.op:
+
+          window.logLine('time', "Beginning received op integration at " + window.getId());
+
           if (msg.v < this.version) {
             return;
           }

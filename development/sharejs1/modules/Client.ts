@@ -1,12 +1,13 @@
 declare var sharejs;
 
 
-import RealtimeScheduler from '../modules/RealtimeScheduler';
+import RealtimeScheduler from './RealtimeScheduler';
+import Logger from './Logger';
 import * as T from '../types/Types';
 
 class Client {
 
-    private DISABLE_INTERFACE = true;
+    private DISABLE_INTERFACE = false;
 
     private doc: any;   // sharejs doc
     private id: string;
@@ -15,7 +16,7 @@ class Client {
     
 
 
-    constructor(id: T.ClientId, experimentName, sharejs, scheduler: RealtimeScheduler, events: T.ScheduledEvents, readyCallback) {
+    constructor(id: T.ClientId, experimentName, sharejs, scheduler: RealtimeScheduler, events: T.ScheduledEvents, readyCallback, logger: Logger) {
         console.log('id: ' + id);
 
         //use subdomains trick - given an ID it's subdomain is id/5
@@ -42,30 +43,44 @@ if (!this.DISABLE_INTERFACE) {
     console.log('attaching text area');
             doc.attach_textarea(ta);
 }
+
+
             for (let eventTime in events.insert) {
                 let time = parseFloat(eventTime);
-                let insert = events.insert[time];
+                let inserts = events.insert[time];
 
+                if (inserts.length > 0) {
+                    scheduler.addEvent(time, 0, function() {
 
-                scheduler.addEvent(time, 0, function() {
-                    //console.log("Client: " + id + " inserted: " + insert.chars + " after: " + insert.after + " at: " + time);
+                        logger.log("time", "Beginning scheduled insert");
 
-                    doc.insert(insert.after, insert.chars, null);
-if (!this.DISABLE_INTERFACE) {
-                    ta.value = doc.getText();   // wasn't updating otherwise for some reason
-}
-                }.bind(this))
+                        for (let insert of inserts) {
+                            doc.insert(insert.after, insert.chars, null);
+                        };
+                        if (!this.DISABLE_INTERFACE) {
+                            ta.value = doc.getText();   // wasn't updating otherwise for some reason
+                        }
 
+                        logger.log("time", "Finished scheduled insert + one getText");
+
+                    }.bind(this))
+                }
             }
 
             for (let eventTime in events.delete) {
                 let time = parseFloat(eventTime);
                 let deletes = events.delete[eventTime];
-                for (let i = 0; i < deletes.length; i++) {  //array of indices
-                    let toDelete = deletes[i]; 
-                    scheduler.addEvent(time, i, function() {
-                        doc.del(toDelete, 1, null);
-                    })
+                if (deletes.length > 0) {
+                    scheduler.addEvent(time, 1, function() {
+                        logger.log("time", "Beginning scheduled delete")
+                        for (let i = 0; i < deletes.length; i++) {  //array of indices
+                            doc.del(deletes[i], 1, null);
+                        }
+                        if (!this.DISABLE_INTERFACE) {
+                            ta.value = doc.getText();   // wasn't updating otherwise for some reason
+                        }
+                        logger.log("time", "Finished scheduled delete + one getText");
+                    });
                 }
             }
 

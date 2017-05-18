@@ -89,7 +89,7 @@ export function main(experimentSetup, graph=true, finishedCallback, noLogMemoryU
 
 
             // clear log to lose any references to it
-            logger.freeLog();
+            //logger.freeLog();
             result = null;
             log = null;
 

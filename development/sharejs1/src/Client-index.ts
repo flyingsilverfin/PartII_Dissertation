@@ -16,13 +16,13 @@ let id = parseInt(window.frameElement.id);
 let setup: T.ExperimentSetup = (<any>parentWindow).getClientSetup(id);
 let logger = setup.logger;
 (<any>window).logPacket = logger.logPacket.bind(logger);
-(<any>window).log = logger.log.bind(logger);
+(<any>window).logLine = logger.log.bind(logger);
 (<any>window).logJoin = logger.logJoin.bind(logger);
 
 let whenToJoin = setup.whenToJoin;
 let scheduler = setup.scheduler;
 
 scheduler.addEvent(whenToJoin, 0, function() {
-    new Client(id, setup.experimentName, sharejs, scheduler, setup.events, (<any>parentWindow).clientReady);
+    new Client(id, setup.experimentName, sharejs, scheduler, setup.events, (<any>parentWindow).clientReady, logger);
     delete setup.events;
 });
