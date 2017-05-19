@@ -1,0 +1,25 @@
+0    memory    9613216    pre-experiment
+0    memory    9705248    post-topology-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    sent    1    0    requestCRDT    35    
+30    received    1    0    requestCRDT    35    
+30    sent    0    1    returnCRDT    95    23
+60    received    0    1    returnCRDT    95    23
+1493202171652    time     Beginning large mock insert
+
+1493202171676    time     Finished large mock insert at source
+1493202171676    time     Beginning large mock delete
+
+1493202171756    time     Finished large mock delete
+
+1493202171759    time     Beginning remote insertion bundle integration
+1493202171767    time     Finished remote insertion bundle integration
+
+
+1493202171769    time     Beginning remote deletion bundle integration
+1493202171772    time     Finished remote deletion bundle integration
+
+
+
+220    memory    10998768    post-experiment

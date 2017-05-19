@@ -1,0 +1,86 @@
+0    memory    14064656    pre-experiment
+0    memory    14157304    post-topology-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+0    sent    1    0    requestCRDT    35    
+0    join    2    Joined network!
+0    sent    2    0    requestCRDT    35    
+30    received    1    0    requestCRDT    35    
+30    sent    0    1    returnCRDT    95    23
+30    received    2    0    requestCRDT    35    
+30    sent    0    2    returnCRDT    101    23
+60    received    0    1    returnCRDT    95    23
+60    received    0    2    returnCRDT    101    23
+1493204408778    time     Beginning large mock insert
+
+
+1493204408816    time     Finished large mock insert at source
+1493204408816    time     Beginning large mock insert
+
+
+1493204408851    time     Finished large mock insert at source
+1493204408851    time     Beginning large mock delete
+
+
+1493204409113    time     Finished large mock delete
+1493204409113    time     Beginning large mock delete
+
+
+1493204409273    time     Finished large mock delete
+
+1493204409276    time     Beginning remote insertion bundle integration at 2
+1493204412537    time     Finished remote insertion bundle integration at 2
+
+
+
+1493204412539    time     Beginning remote insertion bundle integration at 1
+1493204415348    time     Finished remote insertion bundle integration at 1
+
+
+
+1493204415350    time     Beginning remote insertion bundle integration at 0
+1493204415360    time     Finished remote insertion bundle integration at 0
+
+
+
+1493204415362    time     Beginning remote insertion bundle integration at 0
+1493204418225    time     Finished remote insertion bundle integration at 0
+
+
+
+1493204418228    time     Beginning remote deletion bundle integration at 1
+1493204418232    time     Finished remote deletion bundle integration at 1
+
+
+
+1493204418234    time     Beginning remote deletion bundle integration at 0
+1493204418237    time     Finished remote deletion bundle integration at 0
+
+
+
+1493204418239    time     Beginning remote deletion bundle integration at 0
+1493204418242    time     Finished remote deletion bundle integration at 0
+
+
+
+1493204418244    time     Beginning remote deletion bundle integration at 2
+1493204418246    time     Finished remote deletion bundle integration at 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+220    memory    23292072    post-experiment

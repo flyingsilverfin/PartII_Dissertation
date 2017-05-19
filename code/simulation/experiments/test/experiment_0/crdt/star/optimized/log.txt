@@ -1,0 +1,19 @@
+0    memory    6807864    pre-experiment
+0    memory    6910160    post-topology-init
+0    memory    6936096    post-clients-init
+0    join    0    Joined network!
+0    join    1    Joined network!
+100    join    2    Joined network!
+400    join    3    Joined network!
+500    join    4    Joined network!
+500    join    5    Joined network!
+999.9999999999997    join    6    Joined network!
+999.9999999999997    join    7    Joined network!
+999.9999999999997    join    8    Joined network!
+999.9999999999997    join    9    Joined network!
+1499.9999999999998    join    10    Joined network!
+2000    join    11    Joined network!
+4000.000000000002    join    12    Joined network!
+6000.000000000001    join    13    Joined network!
+10000.000000000004    join    14    Joined network!
+11252.01687984805    memory    8085552    post-experiment

@@ -1,0 +1,216 @@
+{
+    "optimized": false, 
+    "latency_model": {
+        "type": "normally distributed", 
+        "center": 200.0
+    }, 
+    "experiment_name": "experiment_0", 
+    "clients": [
+        0, 
+        0, 
+        100, 
+        400, 
+        500, 
+        1000, 
+        1000, 
+        1000, 
+        2000, 
+        1000, 
+        1500, 
+        4000, 
+        500, 
+        10000, 
+        6000
+    ], 
+    "network": {
+        "0": {
+            "latency": 196.7632081023716
+        }, 
+        "1": {
+            "latency": 220.01040150077455
+        }, 
+        "2": {
+            "latency": 122.31541467483453
+        }, 
+        "3": {
+            "latency": 176.66887263876458
+        }, 
+        "4": {
+            "latency": 193.492508510653
+        }, 
+        "5": {
+            "latency": 241.18900809963299
+        }, 
+        "6": {
+            "latency": 265.1513625999552
+        }, 
+        "7": {
+            "latency": 122.68220718548723
+        }, 
+        "8": {
+            "latency": 240.0884736051725
+        }, 
+        "9": {
+            "latency": 179.72543032567128
+        }, 
+        "10": {
+            "latency": 206.59797634682707
+        }, 
+        "11": {
+            "latency": 158.77205484370276
+        }, 
+        "12": {
+            "latency": 227.74691864414257
+        }, 
+        "13": {
+            "latency": 267.03344902036554
+        }, 
+        "14": {
+            "latency": 188.71694038116738
+        }
+    }, 
+    "description": "", 
+    "execution": "event-driven", 
+    "init": "Test", 
+    "events": {
+        "0": {
+            "insert": {
+                "0": {
+                    "chars": "coliseums", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "1": {
+            "insert": {
+                "15": {
+                    "chars": "tackling", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "2": {
+            "insert": {
+                "30": {
+                    "chars": "freshening", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "3": {
+            "insert": {
+                "45": {
+                    "chars": "irony", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "4": {
+            "insert": {
+                "60": {
+                    "chars": "cagey", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "5": {
+            "insert": {
+                "75": {
+                    "chars": "discontinuance", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "6": {
+            "insert": {
+                "90": {
+                    "chars": "courtroom", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "7": {
+            "insert": {
+                "105": {
+                    "chars": "Aludra", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "8": {
+            "insert": {
+                "120": {
+                    "chars": "Soddy", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "9": {
+            "insert": {
+                "135": {
+                    "chars": "Dr", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "10": {
+            "insert": {
+                "150": {
+                    "chars": "interrogative", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "11": {
+            "insert": {
+                "165": {
+                    "chars": "established", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "12": {
+            "insert": {
+                "180": {
+                    "chars": "admonishing", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "13": {
+            "insert": {
+                "195": {
+                    "chars": "attentively", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }, 
+        "14": {
+            "insert": {
+                "210": {
+                    "chars": "piloting", 
+                    "after": 0
+                }
+            }, 
+            "delete": {}
+        }
+    }, 
+    "topology": [
+        "fully-connected", 
+        "star"
+    ]
+}

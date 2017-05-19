@@ -26,7 +26,7 @@ to all of its neighbors, which will include Client 1!
 
 class Client {
 
-    private DISABLE_INTERFACE = true;
+    private DISABLE_INTERFACE = false;
 
     private id: string;
     private dt: CT.CRDT;    // our CRDT (datastructure)

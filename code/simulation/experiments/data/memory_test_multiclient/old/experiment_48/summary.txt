@@ -1,0 +1,18 @@
+---experiment_48, ot---
+	Total simulation duration: 18509.0
+	Total insert events: 5000
+	Total delete events: 0
+	Total packets: 200
+	Total size of packets sent: 20785
+	Average packet payload size: 103.925
+	Total size of packets sent, if there were no meta-information: 0
+	Average packet payload size without meta-information: 0.0
+	Expected number of packets sent - give optimal client-server network with everyone joining at start: 505200
+	Latency/wait time per client when requesting CRDT: [822.0, 742.0, 794.0, 738.0, 736.0, 665.0, 710.0, 816.0, 719.0, 769.0, 788.0, 665.0, 756.0, 702.0, 745.0, 798.0, 741.0, 678.0, 795.0, 788.0, 697.0, 713.0, 737.0, 814.0, 723.0, 845.0, 742.0, 812.0, 708.0, 726.0, 804.0, 735.0, 739.0, 749.0, 797.0, 799.0, 814.0, 720.0, 788.0, 673.0, 664.0, 729.0, 628.0, 742.0, 708.0, 792.0, 618.0, 730.0, 796.0, 713.0, 752.0, 742.0, 677.0, 815.0, 798.0, 678.0, 737.0, 790.0, 740.0, 798.0, 759.0, 796.0, 771.0, 675.0, 664.0, 734.0, 683.0, 680.0, 666.0, 651.0, 712.0, 664.0, 652.0, 652.0, 652.0, 720.0, 673.0, 656.0, 655.0, 655.0, 680.0, 841.0, 644.0, 640.0, 638.0, 731.0, 691.0, 642.0, 641.0, 642.0, 741.0, 699.0, 643.0, 630.0, 627.0, 808.0, 683.0, 651.0, 624.0, 765.0, 0]
+	From whom each client request CRDT: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	post-clients-create: 0
+	post-experiment: 70485816
+	nologMemoryRepetitions: [22177976, 25448712, 27831336, 20922760, 27824864, 26521040, 23376824, 24443008, 25830208, 25126720, 24542936]
+

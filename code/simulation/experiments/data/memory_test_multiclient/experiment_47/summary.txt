@@ -1,0 +1,67 @@
+---star, nonoptimized---
+	Total simulation duration: 5172.26884397
+	Optimizations enabled: False
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 5000
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 490000
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 245000
+	Latency/wait time per client when requesting CRDT: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	From whom each client request CRDT: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 191768
+	post-experiment: 214520784
+	nologMemoryRepetitions: [44167040]
+
+---star, optimized---
+	Total simulation duration: 5172.26884397
+	Optimizations enabled: True
+	All clients converged to same result: True
+	Converged string (if all match, else first logged string): None
+	Total insert events: 5000
+	Total delete events: 0
+	Total insert packets sent: 0
+	Total size of insert packets sent: 0
+	Average insert packet size (incl vector clock etc.): 0
+	Total delete packets sent: 0
+	Total size of delete packets sent: 0
+	Average delete packet size (incl vector clock etc.): 0
+	Expected number of packets sent - given naiive broadcast in a p2p network: 490000
+	Expected number of packets sent - given optimal p2p network with everyone joining at start: 245000
+	Latency/wait time per client when requesting CRDT: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	From whom each client request CRDT: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-topology-init: 191768
+	post-experiment: 148218152
+	nologMemoryRepetitions: [44244992, 44250752, 44217680]
+
+---experiment_47, ot---
+	Total simulation duration: 20088.0
+	Total insert events: 5000
+	Total delete events: 0
+	Total packets: 100
+	Total size of packets sent: 10385
+	Average packet payload size: 103.85
+	Total size of packets sent, if there were no meta-information: 0
+	Average packet payload size without meta-information: 0.0
+	Expected number of packets sent - give optimal client-server network with everyone joining at start: 255100
+	Latency/wait time per client when requesting CRDT: [433.0, 337.0, 439.0, 253.0, 612.0, 491.0, 415.0, 468.0, 427.0, 436.0, 447.0, 476.0, 461.0, 452.0, 495.0, 427.0, 434.0, 452.0, 436.0, 426.0, 440.0, 430.0, 436.0, 436.0, 448.0, 413.0, 489.0, 443.0, 471.0, 428.0, 459.0, 407.0, 408.0, 412.0, 410.0, 339.0, 411.0, 326.0, 301.0, 436.0, 356.0, 336.0, 387.0, 372.0, 399.0, 440.0, 306.0, 346.0, 297.0, 335.0, 0]
+	From whom each client request CRDT: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+	Length of stringified document/crdt during state replay, on average: 0
+	latencies: {}
+	pre-experiment: 0
+	post-clients-create: 35833072
+	post-experiment: 193549680
+	nologMemoryRepetitions: [111585016, 110763280, 109202232, 95839904, 113074576, 108127520, 92624832, 108248320, 93440768, 105867408, 114642192]
+
